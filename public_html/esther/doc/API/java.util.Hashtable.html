@@ -1,0 +1,399 @@
+<html><head><title>Class Hashtable</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.Dictionary.html">Prev</a>  <a href="java.util.Observable.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="1828"><h1>	&#167;3.4 Class Hashtable</h1></a>
+<pre>public &#32;class &#32;java.util.<strong>Hashtable
+</strong>    extends &#32;java.util.<strong>Dictionary</strong> &#32;<a href="java.util.Dictionary.html#26885">(I-&#167;3.3)</a>
+    implements java.lang.<strong>Cloneable</strong> &#32;<a href="java.lang.Cloneable.html#45621">(I-&#167;1.22)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Hashtable</strong>();	<a href="java.util.Hashtable.html#1978">&#167;3.4.1</a>
+    public <strong>Hashtable</strong>(int &#32;initialCapacity);	<a href="java.util.Hashtable.html#1990">&#167;3.4.2</a>
+    public <strong>Hashtable</strong>(int &#32;initialCapacity, float &#32;loadFactor);	<a href="java.util.Hashtable.html#2008">&#167;3.4.3</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>clear</strong>();	<a href="java.util.Hashtable.html#2054">&#167;3.4.4</a>
+    public Object <strong>clone</strong>();	<a href="java.util.Hashtable.html#2068">&#167;3.4.5</a>
+    public boolean <strong>contains</strong>(Object &#32;value);	<a href="java.util.Hashtable.html#2094">&#167;3.4.6</a>
+    public boolean <strong>containsKey</strong>(Object &#32;key);	<a href="java.util.Hashtable.html#2136">&#167;3.4.7</a>
+    public Enumeration <strong>elements</strong>();	<a href="java.util.Hashtable.html#2168">&#167;3.4.8</a>
+    public Object <strong>get</strong>(Object &#32;key);	<a href="java.util.Hashtable.html#2206">&#167;3.4.9</a>
+    public boolean <strong>isEmpty</strong>();	<a href="java.util.Hashtable.html#2246">&#167;3.4.10</a>
+    public Enumeration <strong>keys</strong>();	<a href="java.util.Hashtable.html#2272">&#167;3.4.11</a>
+    public Object <strong>put</strong>(Object &#32;key, Object &#32;value);	<a href="java.util.Hashtable.html#2310">&#167;3.4.12</a>
+    protected void <strong>rehash</strong>();	<a href="java.util.Hashtable.html#2364">&#167;3.4.13</a>
+    public Object <strong>remove</strong>(Object &#32;key);	<a href="java.util.Hashtable.html#2378">&#167;3.4.14</a>
+    public int <strong>size</strong>();	<a href="java.util.Hashtable.html#2410">&#167;3.4.15</a>
+    public String <strong>toString</strong>();	<a href="java.util.Hashtable.html#2436">&#167;3.4.16</a>
+}
+</pre><a name="1944">This class implements a hash table, which maps keys to values. Any non-null object can be 
+used as a key or as a value.
+</a><p><a name="1946">To successfully store and retrieve objects from a hash table, the objects used as keys must 
+implement the hashCode method <a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a> and the equals method <a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a><p><a name="31062">An instance of Hashtable has two parameters that affect its efficiency: its <em>capacity</em> and its 
+<em>load factor</em>. The load factor should be between 0.0 and 1.0. When the number of entries in 
+the hash table exceeds the product of the load factor and the current capacity, the capacity 
+is increased by calling the rehash method <a href="java.util.Hashtable.html#2364">(I-&#167;3.4.13)</a>. Larger load factors use memory more 
+efficiently, at the expense of larger expected time per lookup. 
+</a><p><a name="31068">If many entries are to be made into a Hashtable, creating it with a sufficiently large capacity 
+may allow the entries to be inserted more efficiently than letting it perform automatic 
+rehashing as needed to grow the table.
+</a><p><a name="1948">This example creates a hashtable of numbers. It uses the names of the numbers as keys: 
+</a><p><ul><a name="1950">
+<code>Hashtable &#32;numbers &#32;= &#32;new &#32;Hashtable();<br>
+numbers.put("one", &#32;new &#32;Integer(1));<br>
+numbers.put("two", &#32;new &#32;Integer(2));<br>
+numbers.put("three", &#32;new &#32;Integer(3));
+</code>
+</a></ul><a name="1952">To retrieve a number use the following code:
+</a><p><ul><a name="1954">
+<code>Integer &#32;n &#32;= &#32;(Integer)numbers.get("two");<br>
+if &#32;(n &#32;!= &#32;null) &#32;{<br>
+ &#32; &#32; &#32; &#32;System.out.println("two &#32;= &#32;" &#32;+ &#32;n);<br>
+}
+</code>
+</a></ul>
+<hr>
+<a name="1970"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Hashtable">
+<a name="1978"><h3>Hashtable
+</h3></a>
+<a name="1980"><code>public Hashtable()
+</code></a>
+<dl>
+<dd><a name="1982">Constructs a new empty hashtable.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="Hashtable">
+<a name="1990"><h3>Hashtable
+</h3></a>
+<a name="1992"><code>public Hashtable(int &#32;initialCapacity)
+</code></a>
+<dl>
+<dd><a name="1994">Constructs a new, empty hash table with the specified initial capacity.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1996"><b>Parameters:
+</b></a><dd><a name="1998"><code>initialCapacity
+- </code></a><a name="2000">the initial capacity of the hash table
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Hashtable">
+<a name="2008"><h3>Hashtable
+</h3></a>
+<a name="2010"><code>public<br>
+Hashtable(int &#32;initialCapacity, float &#32;loadFactor)
+</code></a>
+<dl>
+<dd><a name="2012">Constructs a new, empty hashtable with the specified initial capacity and 
+the specified load factor. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2014"><b>Parameters:
+</b></a><dd><a name="2016"><code>initialCapacity
+- </code></a><a name="2018">the initial size of the hashtable
+</a>
+<dd><a name="2020"><code>loadFactor
+- </code></a><a name="2022">a number between 0.0 and 1.0,
+</a>
+
+<dt><a name="2024"><b>Throws
+</b></a><dd><a name="2030">IllegalArgumentException &#32;<a href="java.lang.IllegalArgumentException.html#13758">(I-&#167;1.32)</a>
+</a>
+<dd><a name="2032">If the initial capacity is less than or equal to zero, or if the load factor 
+is less than or equal to zero.
+</a>
+</dl></dl>
+<hr>
+<a name="2044"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="clear">
+<a name="2054"><h3>clear
+</h3></a>
+<a name="2056"><code>public void clear()
+</code></a>
+<dl>
+<dd><a name="2058">Clears this hash table so that it contains no keys.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="clone">
+<a name="2068"><h3>clone
+</h3></a>
+<a name="2070"><code>public Object clone()
+</code></a>
+<dl>
+<dd><a name="2072">Creates a shallow copy of this hash table. The keys and values themselves 
+are not cloned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2074"><b>Returns:
+</b></a><dd><a name="2076">a clone of the hash table.
+</a>
+
+<dt><a name="2078"><b>Overrides:
+</b></a><dd><a name="2084">clone in class Object &#32;<a href="java.lang.Object.html#26164">(I-&#167;1.12.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="contains">
+<a name="2094"><h3>contains
+</h3></a>
+<a name="2096"><code>public boolean contains(Object &#32;value)
+</code></a>
+<dl><dl>
+<dt><a name="2100"><b>Parameters:
+</b></a><dd><a name="2102"><code>value
+- </code></a><a name="2104">a value to search for
+</a>
+
+<dt><a name="2106"><b>Returns:
+</b></a><dd><a name="28435">true if some key maps to the value argument in this hash table; false otherwise.
+</a>
+
+<dt><a name="2110"><b>Throws
+</b></a><dd><a name="2116">NullPointerException &#32;<a href="java.lang.NullPointerException.html#14382">(I-&#167;1.40)</a>
+</a>
+<dd><a name="2118">If the value is null.
+</a>
+
+<dt><a name="2120"><b>See Also:
+</b></a><dd><a name="2126">containsKey &#32;<a href="java.util.Hashtable.html#2136">(I-&#167;3.4.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="containsKey">
+<a name="2136"><h3>containsKey
+</h3></a>
+<a name="2138"><code>public boolean containsKey(Object &#32;key)
+</code></a>
+<dl><dl>
+<dt><a name="2142"><b>Parameters:
+</b></a><dd><a name="2144"><code>key
+- </code></a><a name="2146">possible key
+</a>
+
+<dt><a name="2148"><b>Returns:
+</b></a><dd><a name="2150">true if the specified object is a key in this hash table; false otherwise.
+</a>
+
+<dt><a name="2152"><b>See Also:
+</b></a><dd><a name="2158">contains &#32;<a href="java.util.Hashtable.html#2094">(I-&#167;3.4.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="elements">
+<a name="2168"><h3>elements
+</h3></a>
+<a name="2170"><code>public Enumeration elements()
+</code></a>
+<dl><dl>
+<dt><a name="2174"><b>Returns:
+</b></a><dd><a name="2176">an enumeration <a href="java.util.Enumeration.html#29289">(I-&#167;3.11)</a> of the values in this hash table.
+</a>
+
+<dt><a name="2178"><b>Overrides:
+</b></a><dd><a name="2184">elements in class Dictionary &#32;<a href="java.util.Dictionary.html#1626">(I-&#167;3.3.2)</a>.
+</a>
+
+<dt><a name="2186"><b>See Also:
+</b></a><dd><a name="2196">keys &#32;<a href="java.util.Hashtable.html#2272">(I-&#167;3.4.11)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="get">
+<a name="2206"><h3>get
+</h3></a>
+<a name="30064"><code>public Object get(Object &#32;key)
+</code></a>
+<dl><dl>
+<dt><a name="30066"><b>Parameters:
+</b></a><dd><a name="27186"><code>key
+- </code></a><a name="27187">a key in the hash table
+</a>
+
+<dt><a name="27188"><b>Returns:
+</b></a><dd><a name="28451">the value to which the key is mapped in this hash table; null if the key 
+is not mapped to any value is this hash table.
+</a>
+
+<dt><a name="2222"><b>Overrides:
+</b></a><dd><a name="2228">get in class Dictionary &#32;<a href="java.util.Dictionary.html#1656">(I-&#167;3.3.3)</a>.
+</a>
+
+<dt><a name="2230"><b>See Also:
+</b></a><dd><a name="2236">put &#32;<a href="java.util.Hashtable.html#2310">(I-&#167;3.4.12)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isEmpty">
+<a name="2246"><h3>isEmpty
+</h3></a>
+<a name="2248"><code>public boolean isEmpty()
+</code></a>
+<dl><dl>
+<dt><a name="2252"><b>Returns:
+</b></a><dd><a name="28461">true if this hash table maps no keys to values; false otherwise.
+</a>
+
+<dt><a name="2256"><b>Overrides:
+</b></a><dd><a name="2262">isEmpty in class Dictionary &#32;<a href="java.util.Dictionary.html#29230">(I-&#167;3.3.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="keys">
+<a name="2272"><h3>keys
+</h3></a>
+<a name="2274"><code>public Enumeration keys()
+</code></a>
+<dl><dl>
+<dt><a name="2278"><b>Returns:
+</b></a><dd><a name="27181">an enumeration <a href="java.util.Enumeration.html#29289">(I-&#167;3.11)</a> of the keys in this hash table.
+</a>
+
+<dt><a name="2282"><b>Overrides:
+</b></a><dd><a name="2288">keys in class Dictionary &#32;<a href="java.util.Dictionary.html#1706">(I-&#167;3.3.5)</a>.
+</a>
+
+<dt><a name="2290"><b>See Also:
+</b></a><dd><a name="2300">elements &#32;<a href="java.util.Hashtable.html#2168">(I-&#167;3.4.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="put">
+<a name="2310"><h3>put
+</h3></a>
+<a name="2312"><code>public Object put(Object &#32;key, Object &#32;value)
+</code></a>
+<dl>
+<dd><a name="28465">Maps the specified key to the specified value in this hash table. Neither the 
+key nor the value can be null.
+<pre>
+</pre></a>
+
+<dd><a name="28469">The value can be retrieved by calling the the get method <a href="java.util.Hashtable.html#2206">(I-&#167;3.4.9)</a> with a 
+key that is equal <a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a> to the original key.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27247"><b>Parameters:
+</b></a><dd><a name="27248"><code>key
+- </code></a><a name="27249">the hashtable key
+</a>
+<dd><a name="27250"><code>value
+- </code></a><a name="27251">the value
+</a>
+
+<dt><a name="27252"><b>Returns:
+</b></a><dd><a name="27253">the previous value of of the specified key in this hash table, or null if it 
+did not have one.
+</a>
+
+<dt><a name="27254"><b>Throws
+</b></a><dd><a name="27258">NullPointerException &#32;<a href="java.lang.NullPointerException.html#14382">(I-&#167;1.40)</a>
+</a>
+<dd><a name="27259">If the key or value is null.
+</a>
+
+<dt><a name="2340"><b>Overrides:
+</b></a><dd><a name="2346">put in class Dictionary &#32;<a href="java.util.Dictionary.html#27004">(I-&#167;3.3.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="rehash">
+<a name="2364"><h3>rehash
+</h3></a>
+<a name="2366"><code>protected void rehash()
+</code></a>
+<dl>
+<dd><a name="2368">Rehashes the contents of the hash table into a hash table with a larger 
+capacity. This method is called automatically when the number of keys in 
+the hash table exceeds this hash table's capacity and load factor.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="remove">
+<a name="2378"><h3>remove
+</h3></a>
+<a name="2380"><code>public Object remove(Object &#32;key)
+</code></a>
+<dl>
+<dd><a name="28483">Removes the key (and its corresponding value) from this hash table. This 
+method does nothing if the key is not in the hash table.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27277"><b>Parameters:
+</b></a><dd><a name="27278"><code>key
+- </code></a><a name="27279">the key that needs to be removed
+</a>
+
+<dt><a name="27280"><b>Returns:
+</b></a><dd><a name="28489">the value to which the key had been mapped in this hash table, or null 
+if the key did not have a mapping.
+</a>
+
+<dt><a name="2394"><b>Overrides:
+</b></a><dd><a name="2400">remove in class Dictionary &#32;<a href="java.util.Dictionary.html#1782">(I-&#167;3.3.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="size">
+<a name="2410"><h3>size
+</h3></a>
+<a name="2412"><code>public int size()
+</code></a>
+<dl><dl>
+<dt><a name="27315"><b>Returns:
+</b></a><dd><a name="27316">the number of keys in this hash table.
+</a>
+
+<dt><a name="2420"><b>Overrides:
+</b></a><dd><a name="2426">size in class Dictionary &#32;<a href="java.util.Dictionary.html#1806">(I-&#167;3.3.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="2436"><h3>toString
+</h3></a>
+<a name="2438"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="2442"><b>Returns:
+</b></a><dd><a name="2444">a string representation of this hash table.
+</a>
+
+<dt><a name="2446"><b>Overrides:
+</b></a><dd><a name="2452">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.Dictionary.html">Prev</a>  <a href="java.util.Observable.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

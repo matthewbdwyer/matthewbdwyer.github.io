@@ -1,0 +1,634 @@
+<html><head><title>Class Long</title></head>
+<!--Last split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Integer.html">Prev</a>  <a href="java.lang.Math.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="4138"><h1>	&#167;1.9 Class Long</h1></a>
+<pre>public &#32;final &#32;class &#32;java.lang.<strong>Long
+</strong>    extends &#32;java.lang.<strong>Number</strong> &#32;<a href="java.lang.Number.html#5764">(I-&#167;1.11)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public final static long <strong>MAX_VALUE</strong>;	<a href="java.lang.Long.html#4300">&#167;1.9.1</a>
+    public final static long <strong>MIN_VALUE</strong>;	<a href="java.lang.Long.html#4312">&#167;1.9.2</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Long</strong>(long &#32;value);	<a href="java.lang.Long.html#4328">&#167;1.9.3</a>
+    public <strong>Long</strong>(String &#32;s);	<a href="java.lang.Long.html#4346">&#167;1.9.4</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public double <strong>doubleValue</strong>();	<a href="java.lang.Long.html#4380">&#167;1.9.5</a>
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.lang.Long.html#4402">&#167;1.9.6</a>
+    public float <strong>floatValue</strong>();	<a href="java.lang.Long.html#4434">&#167;1.9.7</a>
+    public static Long <strong>getLong</strong>(String &#32;nm);	<a href="java.lang.Long.html#4456">&#167;1.9.8</a>
+    public static Long <strong>getLong</strong>(String &#32;nm, long &#32;val);	<a href="java.lang.Long.html#4474">&#167;1.9.9</a>
+    public static Long <strong>getLong</strong>(String &#32;nm, Long &#32;val);	<a href="java.lang.Long.html#27588">&#167;1.9.10</a>
+    public int <strong>hashCode</strong>();	<a href="java.lang.Long.html#4520">&#167;1.9.11</a>
+    public int <strong>intValue</strong>();	<a href="java.lang.Long.html#4542">&#167;1.9.12</a>
+    public long <strong>longValue</strong>();	<a href="java.lang.Long.html#4564">&#167;1.9.13</a>
+    public static long <strong>parseLong</strong>(String &#32;s);	<a href="java.lang.Long.html#4586">&#167;1.9.14</a>
+    public static long <strong>parseLong</strong>(String &#32;s, int &#32;radix);	<a href="java.lang.Long.html#4616">&#167;1.9.15</a>
+    public static String <strong>toBinaryString</strong>(long &#32;i);	<a href="java.lang.Long.html#4652">&#167;1.9.16</a>
+    public static String <strong>toHexString</strong>(long &#32;i);	<a href="java.lang.Long.html#4666">&#167;1.9.17</a>
+    public static String <strong>toOctalString</strong>(long &#32;i);	<a href="java.lang.Long.html#4680">&#167;1.9.18</a>
+    public String <strong>toString</strong>();	<a href="java.lang.Long.html#4694">&#167;1.9.19</a>
+    public static String <strong>toString</strong>(long &#32;i);	<a href="java.lang.Long.html#4714">&#167;1.9.20</a>
+    public static String <strong>toString</strong>(long &#32;i, int &#32;radix);	<a href="java.lang.Long.html#4732">&#167;1.9.21</a>
+    public static Long <strong>valueOf</strong>(String &#32;s);	<a href="java.lang.Long.html#4768">&#167;1.9.22</a>
+    public static Long <strong>valueOf</strong>(String &#32;s, int &#32;radix);	<a href="java.lang.Long.html#4798">&#167;1.9.23</a>
+}
+</pre><a name="36916">This class wraps a value of the primitive type long in an object. An object of type Long contains a single field whose type is long.
+</a><p><a name="36917">In addition, this class provides a number of methods for converting a long to a String and a 
+String to a long, as well as other constants and methods useful when dealing with a long.
+</a><p>
+<hr>
+<a name="4292"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="MAX_VALUE">
+<a name="4300"><h3>MAX_VALUE
+</h3></a>
+<a name="4302"><code>public final static long MAX_VALUE = 9223372036854775807L
+</code></a>
+<dl>
+<dd><a name="4304">The largest value of type long.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MIN_VALUE">
+<a name="4312"><h3>MIN_VALUE
+</h3></a>
+<a name="4314"><code>public final static long MIN_VALUE = -9223372036854775808L
+</code></a>
+<dl>
+<dd><a name="27535">The smallest value of type long.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="4320"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Long">
+<a name="4328"><h3>Long
+</h3></a>
+<a name="4330"><code>public Long(long &#32;value)
+</code></a>
+<dl>
+<dd><a name="39146">Constructs a newly allocated Long object that represents the primitive 
+long argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39147"><b>Parameters:
+</b></a><dd><a name="39148"><code>value
+- </code></a><a name="39149">the value to be reprsented by the Long
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Long">
+<a name="4346"><h3>Long
+</h3></a>
+<a name="4348"><code>public Long(String &#32;s)
+</code></a>
+<a name="4350"><code>throws NumberFormatException
+</code></a>
+<dl>
+<dd><a name="39159">Constructs a newly allocated Long object that represents the value represented by the string. The string is converted to an long value as if by the 
+valueOf method <a href="java.lang.Long.html#4768">(I-&#167;1.9.22)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39163"><b>Parameters:
+</b></a><dd><a name="39164"><code>s
+- </code></a><a name="39165">the string to be converted to a Long
+</a>
+
+<dt><a name="39166"><b>Throws
+</b></a><dd><a name="39170">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="39171">If the String does not contain a parsable long integer.
+</a>
+</dl></dl>
+<hr>
+<a name="4370"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="doubleValue">
+<a name="4380"><h3>doubleValue
+</h3></a>
+<a name="4382"><code>public double doubleValue()
+</code></a>
+<dl><dl>
+<dt><a name="28761"><b>Returns:
+</b></a><dd><a name="31740">The long value represented by this object is converted to type double and the result of the conversion is returned.
+</a>
+
+<dt><a name="27552"><b>Overrides:
+</b></a><dd><a name="4392">doubleValue in class Number &#32;<a href="java.lang.Number.html#5854">(I-&#167;1.11.1)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="equals">
+<a name="4402"><h3>equals
+</h3></a>
+<a name="4404"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="28741">The result is true if and only if the argument is not null and is a Long object 
+that contains the same long value as this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="4408"><b>Parameters:
+</b></a><dd><a name="4410"><code>obj
+- </code></a><a name="4412">the object to compare with
+</a>
+
+<dt><a name="4414"><b>Returns:
+</b></a><dd><a name="4416">true if the objects are the same; false otherwise.
+</a>
+
+<dt><a name="4418"><b>Overrides:
+</b></a><dd><a name="4424">equals in class Object &#32;<a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="floatValue">
+<a name="4434"><h3>floatValue
+</h3></a>
+<a name="4436"><code>public float floatValue()
+</code></a>
+<dl><dl>
+<dt><a name="28757"><b>Returns:
+</b></a><dd><a name="31744">The long value represented by this object is converted to type 
+float and the result of the conversion is returned.
+</a>
+
+<dt><a name="4440"><b>Overrides:
+</b></a><dd><a name="4446">floatValue in class Number &#32;<a href="java.lang.Number.html#5868">(I-&#167;1.11.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getLong">
+<a name="4456"><h3>getLong
+</h3></a>
+<a name="4458"><code>public static Long getLong(String &#32;nm)
+</code></a>
+<dl>
+<dd><a name="44066">Determines the long value of the system property with the specified name.
+<pre>
+</pre></a>
+
+<dd><a name="39186">The first argument is treated as the name of a system property to be 
+obtained as if by the method System.getProperty <a href="java.lang.System.html#10938">(I-&#167;1.18.10)</a>. The string value 
+of this property is then interpreted as a long value and a Long object representing this value is returned. . The full details of the possible numeric formats are given in <a href="java.lang.Long.html#27588">I</a>-<a href="java.lang.Long.html#27588">&#167;1.9.10</a>.
+<pre>
+</pre></a>
+
+<dd><a name="39190">If there is no property with the specified name, or if the property does not 
+have the correct numeric format, then null is returned. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39194"><b>Parameters:
+</b></a><dd><a name="39195"><code>nm
+- </code></a><a name="39196">property name
+</a>
+
+<dt><a name="39197"><b>Returns:
+</b></a><dd><a name="39198">the Long value of the property.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getLong">
+<a name="4474"><h3>getLong
+</h3></a>
+<a name="4476"><code>public static Long getLong(String &#32;nm, long &#32;val)
+</code></a>
+<dl>
+<dd><a name="44070">Determines the long value of the system property with the specified name.
+<pre>
+</pre></a>
+
+<dd><a name="39219">The first argument is treated as the name of a system property to be 
+obtained as if by the method System.getProperty <a href="java.lang.System.html#10938">(I-&#167;1.18.10)</a>. The string value 
+of this property is then interpreted as a long value and a Long object representing this value is returned. The full details of the possible numeric formats is given in <a href="java.lang.Long.html#27588">I</a>-<a href="java.lang.Long.html#27588">&#167;1.9.10</a>.
+<pre>
+</pre></a>
+
+<dd><a name="39223">If there is no property with the specified name, or if the property does not 
+have the correct numeric format, then a Long object that represents the 
+value of the second argument is returned. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39227"><b>Parameters:
+</b></a><dd><a name="39228"><code>nm
+- </code></a><a name="39229">property name
+</a>
+<dd><a name="39230"><code>val
+- </code></a><a name="39231">default value
+</a>
+
+<dt><a name="39232"><b>Returns:
+</b></a><dd><a name="39233">the Long value of the property.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getLong">
+<a name="27588"><h3>getLong
+</h3></a>
+<a name="4498"><code>public static Long getLong(String &#32;nm, Long &#32;val)
+</code></a>
+<dl>
+<dd><a name="44072">Determines the long value of the system property with the specified name.
+<pre>
+</pre></a>
+
+<dd><a name="39273">The first argument is treated as the name of a system property to be 
+obtained as if by the method System.getProperty <a href="java.lang.System.html#10938">(I-&#167;1.18.10)</a>. The string value 
+of this property is then interpreted as a long value and a Long object representing this value is returned.
+<pre>
+</pre></a>
+
+<dd><a name="28957">If the property value begins with "0x" or "#", not followed by a minus sign, 
+the rest of it is parsed as a hexadecimal integer exactly as for the method 
+Long.valueOf <a href="java.lang.Long.html#4798">(I-&#167;1.9.23)</a> with radix 16.
+<pre>
+</pre></a>
+
+<dd><a name="28961">If the property value begins with "0" then it is parsed as an octal integer 
+exactly as for the method Long.valueOf <a href="java.lang.Long.html#4798">(I-&#167;1.9.23)</a> with radix 8.
+<pre>
+</pre></a>
+
+<dd><a name="28965">Otherwise the property value is parsed as a decimal integer exactly as for 
+the method Long.valueOf <a href="java.lang.Long.html#4798">(I-&#167;1.9.23)</a> with radix 10.
+<pre>
+</pre></a>
+
+<dd><a name="28969">Note that, in every case, neither L nor l is permitted to appear at the end of 
+the string.
+<pre>
+</pre></a>
+
+<dd><a name="28970">The second argument is the default value. If there is no property of the 
+specified name, or if the property does not have the correct numeric format, then the second argument is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="4502"><b>Parameters:
+</b></a><dd><a name="4504"><code>nm
+- </code></a><a name="4506">the property name
+</a>
+<dd><a name="4508"><code>val
+- </code></a><a name="4510">the default Long value
+</a>
+
+<dt><a name="31747"><b>Returns:
+</b></a><dd><a name="31748">the long value of the property.
+</a>
+<a name="31745">
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="4520"><h3>hashCode
+</h3></a>
+<a name="4522"><code>public int hashCode()
+</code></a>
+<dl><dl>
+<dt><a name="31165"><b>Returns:
+</b></a><dd><a name="31166">a hash code value for this object. 
+</a>
+
+<dt><a name="4526"><b>Overrides:
+</b></a><dd><a name="4532">hashCode in class Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="intValue">
+<a name="4542"><h3>intValue
+</h3></a>
+<a name="4544"><code>public int intValue()
+</code></a>
+<dl><dl>
+<dt><a name="31751"><b>Returns:
+</b></a><dd><a name="31754">the long value represented by this object is converted to type int 
+and the result of the conversion is returned.
+</a>
+
+<dt><a name="4548"><b>Overrides:
+</b></a><dd><a name="4554">intValue in class Number &#32;<a href="java.lang.Number.html#5882">(I-&#167;1.11.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="longValue">
+<a name="4564"><h3>longValue
+</h3></a>
+<a name="4566"><code>public long longValue()
+</code></a>
+<dl><dl>
+<dt><a name="31756"><b>Returns:
+</b></a><dd><a name="31759">the long value represented by this object is returned..
+</a>
+
+<dt><a name="4570"><b>Overrides:
+</b></a><dd><a name="4576">longValue in class Number &#32;<a href="java.lang.Number.html#5896">(I-&#167;1.11.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="parseLong">
+<a name="4586"><h3>parseLong
+</h3></a>
+<a name="4588"><code>public static long parseLong(String &#32;s)
+</code></a>
+<a name="4590"><code>throws NumberFormatException
+</code></a>
+<dl>
+<dd><a name="39283">Parses the string argument as a signed decimal long. The characters in the 
+string must all be decimal digits, except that the first character may be an 
+ASCII minus sign '-' to indicate a negative value. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39284"><b>Parameters:
+</b></a><dd><a name="39285"><code>s
+- </code></a><a name="39286">a string
+</a>
+
+<dt><a name="39287"><b>Returns:
+</b></a><dd><a name="39288">the long represented by the argument in decimal
+</a>
+
+<dt><a name="39289"><b>Throws
+</b></a><dd><a name="39293">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="39294">If the string does not contain a parsable long.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="parseLong">
+<a name="4616"><h3>parseLong
+</h3></a>
+<a name="4618"><code>public static long parseLong(String &#32;s, int &#32;radix)
+</code></a>
+<a name="4620"><code>throws NumberFormatException
+</code></a>
+<dl>
+<dd><a name="39303">Parses the string argument as a signed long in the radix specified by the 
+second argument. The characters in the string must all be digits of the 
+specified radix (as determined by whether Character.digit <a href="java.lang.Character.html#752">(I-&#167;1.2.7)</a> returns a 
+nonnegative value), except that the first character may be an ASCII minus 
+sign '-' to indicate a negative value. The resulting long value is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39307"><b>Parameters:
+</b></a><dd><a name="39308"><code>s
+- </code></a><a name="39309">the String containing the long
+</a>
+<dd><a name="39310"><code>radix
+- </code></a><a name="39311">the radix to be used
+</a>
+
+<dt><a name="39312"><b>Returns:
+</b></a><dd><a name="39313">the long represented by the string argument in the specified radix.
+</a>
+
+<dt><a name="39314"><b>Throws
+</b></a><dd><a name="39318">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="39319">If the string does not contain a parsable integer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toBinaryString">
+<a name="4652"><h3>toBinaryString<a href="#27618"><sup>1</sup></a>
+</h3></a>
+<a name="4654"><code>public static String toBinaryString(long &#32;i)
+</code></a>
+<dl>
+<dd><a name="43322">Creates a string representation of the long argument as an unsigned integer 
+in base 2.
+<pre>
+</pre></a>
+
+<dd><a name="36651">The unsigned long value is the argument plus <img src="javaa16.gif"> if the argument is negative; otherwise it is equal to the argument. This value is converted to a 
+string of ASCII digits in binary (base 2) with no extra leading 0's.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31778"><b>Parameters:
+</b></a><dd><a name="31779"><code>i
+- </code></a><a name="31780">a long
+</a>
+
+<dt><a name="31781"><b>Returns:
+</b></a><dd><a name="36631">the string representation of the unsigned long value represented by the 
+argument in binary (base 2).
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toHexString">
+<a name="4666"><h3>toHexString<a href="#27621"><sup>2</sup></a>
+</h3></a>
+<a name="4668"><code>public static String toHexString(long &#32;i)
+</code></a>
+<dl>
+<dd><a name="43330">Creates a string representation of the long argument as an unsigned integer 
+in base 16.
+<pre>
+</pre></a>
+
+<dd><a name="45025">The unsigned long value is the argument plus <img src="javaa17.gif"> if the argument is negative; otherwise it is equal to the argument. This value is converted to a 
+string of ASCII digits in hexadecimal (base 16) with no extra leading 0's.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="45026"><b>Parameters:
+</b></a><dd><a name="45027"><code>i
+- </code></a><a name="45028">a long
+</a>
+
+<dt><a name="45029"><b>Returns:
+</b></a><dd><a name="45030">the string representation of the unsigned long value represented by the 
+argument in hexadecimal (base 16).
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toOctalString">
+<a name="4680"><h3>toOctalString<a href="#27624"><sup>3</sup></a>
+</h3></a>
+<a name="4682"><code>public static String toOctalString(long &#32;i)
+</code></a>
+<dl>
+<dd><a name="43332">Creates a string representation of the long argument as an unsigned integer 
+in base 8.
+<pre>
+</pre></a>
+
+<dd><a name="45039">The unsigned long value is the argument plus <img src="javaa18.gif"> if the argument is negative; otherwise it is equal to the argument. This value is converted to a 
+string of ASCII digits in octal (base 8) with no extra leading 0's.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="45040"><b>Parameters:
+</b></a><dd><a name="45041"><code>i
+- </code></a><a name="45042">a long
+</a>
+
+<dt><a name="45043"><b>Returns:
+</b></a><dd><a name="45044">the string representation of the unsigned long value represented by the 
+argument in octal (base 8).
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="4694"><h3>toString
+</h3></a>
+<a name="4696"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="39374"><b>Returns:
+</b></a><dd><a name="39375">a string representation of this object in base 10.
+</a>
+
+<dt><a name="43945"><b>Overrides:
+</b></a><dd><a name="43949">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="4714"><h3>toString
+</h3></a>
+<a name="4716"><code>public static String toString(long &#32;i)
+</code></a>
+<dl><dl>
+<dt><a name="39386"><b>Parameters:
+</b></a><dd><a name="39387"><code>i
+- </code></a><a name="39388">a long to be converted
+</a>
+
+<dt><a name="39389"><b>Returns:
+</b></a><dd><a name="39390">a string representation of the argument in base 10.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="4732"><h3>toString
+</h3></a>
+<a name="4734"><code>public static String toString(long &#32;i, int &#32;radix)
+</code></a>
+<dl>
+<dd><a name="43335">Creates a string representation of the first argument in the radix specified 
+by the second argument.
+<pre>
+</pre></a>
+
+<dd><a name="39400">If the radix is smaller than Character.MIN_RADIX <a href="java.lang.Character.html#680">(I-&#167;1.2.3)</a> or larger than Character.MAX_RADIX <a href="java.lang.Character.html#648">(I-&#167;1.2.1)</a>, then the radix 10 is used instead.
+<pre>
+</pre></a>
+
+<dd><a name="39404">If the first argument is negative, the first element of the result is the ASCII 
+minus sign '-' . If the first argument is not negative, no sign character 
+appears in the result. The following ASCII characters are used as digits:
+<pre>
+</pre></a>
+
+<dd><a name="39405"> &#32; &#32; &#32; &#32;0123456789abcdefghijklmnopqrstuvwxyz
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39406"><b>Parameters:
+</b></a><dd><a name="39407"><code>i
+- </code></a><a name="39408">a long
+</a>
+<dd><a name="39409"><code>radix
+- </code></a><a name="39410">the radix
+</a>
+
+<dt><a name="39411"><b>Returns:
+</b></a><dd><a name="39412">a string representation of the argument in the specified radix.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="valueOf">
+<a name="4768"><h3>valueOf
+</h3></a>
+<a name="4770"><code>public static Long valueOf(String &#32;s)
+</code></a>
+<a name="4772"><code>throws NumberFormatException
+</code></a>
+<dl><dl>
+<dt><a name="39420"><b>Parameters:
+</b></a><dd><a name="39421"><code>s
+- </code></a><a name="39422">the string to be parsed
+</a>
+
+<dt><a name="39423"><b>Returns:
+</b></a><dd><a name="39424">a newly constructed Long initialized to the value represented by the 
+string argument.
+</a>
+
+<dt><a name="39425"><b>Throws
+</b></a><dd><a name="39429">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="39430">If the String does not contain a parsable long.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="valueOf">
+<a name="4798"><h3>valueOf
+</h3></a>
+<a name="4800"><code>public static Long valueOf(String &#32;s, int &#32;radix)
+</code></a>
+<a name="4802"><code>throws NumberFormatException
+</code></a>
+<dl><dl>
+<dt><a name="4806"><b>Parameters:
+</b></a><dd><a name="4808"><code>s
+- </code></a><a name="4810">the String containing the long.
+</a>
+<dd><a name="4812"><code>radix
+- </code></a><a name="4814">the radix to be used
+</a>
+
+<dt><a name="39438"><b>Returns:
+</b></a><dd><a name="39439">a newly constructed Long initialized to the value represented by the 
+string argument in the specified radix.
+</a>
+
+<dt><a name="4816"><b>Throws
+</b></a><dd><a name="4822">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="4824">If the String does not contain a parsable long.
+</a>
+</dl></dl>
+<p></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="27618">This method is new in Java 1.1
+</a><p><sup>2</sup><!--"Footnote" is same tag as body.-->
+<a name="27621">This method is new in Java 1.1
+</a><p><sup>3</sup><!--"Footnote" is same tag as body.-->
+<a name="27624">This method is new in Java 1.1
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Integer.html">Prev</a>  <a href="java.lang.Math.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

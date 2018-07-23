@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>CSCE 425/825</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <meta name="Microsoft Border" content="tlb, default">
+
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><span style="position: absolute; top: 50px; left: 11px;"> <img src="../images/12x12spacer.gif" border="0" height="12" width="12"></span> </p>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+<!--#include file="sidebar.shtml" --> <td valign="top" width="24"></td>
+
+<td valign="top">
+      <h1><font face="Arial" size="5">Milestone
+Grad : Static Analysis for ESJ</font></h1>
+
+<font face="Arial" size="2">
+<p>Your task in this milestone is to extend existing static
+analysis support in the SJ compiler to ESJ,
+<a href="../extendedstaticjava.shtml">ExtendedStaticJava</a>.
+You will adapt the CFG support to work for ESJ,
+upgrade all of the Milestone 4 analyses to work for ESJ,
+and implement a new static analysis for
+ESJ to calculate information about whether allocated objects
+within a method can <em>escape</em> that methods context.
+</p>
+<p>
+The CFG enhancement is relatively easy except for the treatment
+of for loops.  You should think about how to do this in a way
+that is consistent with our current approach building the CFG
+by overlaying an additional edge set (preds/succs) on the AST nodes.
+</p>
+<p> 
+Once you have the ESJ CFG in place upgrading the analyses is
+relatively straightforward.  Obviously you need to handle all
+of the new statements and expressions and I expect that you will
+test that thoroughly.  
+</p>
+<p>
+The third component of this assignment is the implementation of
+method object escape analysis.  Consider the following code:
+<pre>
+class Node {
+  public Node next;
+  ...
+}
+
+class EscapeAnalysisTest {
+  ...
+  static Node bar(int x) {
+    Node n;
+    if (x > 0) {
+      return null; 
+    } else {
+      return new Node();
+    }
+  }
+  ...
+  static void bas(Node n) {
+    n.next = new Node();
+  }
+  ...
+  static void bat(Node n) {
+    n = new Node();
+    n.next = new Node();
+  }
+}
+</pre>
+we can that references objects allocated in methods <code>bar</code>
+and <code>bas</code> may flow outside of the body of those
+methods through, e.g., return values or side-effects on parameters.
+Method <code>bat</code> is more interesting since both of the
+allocated objects in any run of the method will not escape.
+</p>
+<p>
+As with all flow analyses, you will need to design a lattice
+of data flow facts, a space of transfer functions, and define
+the direction and extremal values for your analysis.  All of
+this should be clearly documented and explained in your project
+writeup.  You should also test this analysis thoroughly.
+</p>
+      <p>You must submit
+your assignment through the course <a href="http://cse.unl.edu/~cse425/handin">Project Upload</a> site
+by 11:59pm CDT on Friday Dec 15, 2006.
+      </p>
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">Hints</font></h3>
+<font face="Arial" size="2">
+<ul>
+<li> Here are two papers on escape analysis.  Read these for
+inspiration - don't try to implement the full generality of
+these approaches.  
+<ul>
+<li> <a href="http://portal.acm.org/citation.cfm?id=320386">Escape analysis for Java</a>
+<li>
+<a href="http://citeseer.ist.psu.edu/gay00fast.html">Fast Escape Analysis and Stack Allocation for Object-Based Programs</a>
+</ul>
+</li>
+<li> You do not need to implement an interprocedural analysis,
+but it should handlt non-trivial control flow, reference
+assignments, and treat <em>new</em> expressions in a precise way.
+</li>
+
+</ul>
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">What To Submit</font></h3>
+
+<font face="Arial" size="2">
+<p>You are to implement your solution as an extension to
+the <a href="milestone5.zip"> Milestone 5 skeletal project</a>, i.e.,
+the one deployed as your starting point for the code generator milestone.
+      <p>Your solution should consist of the following :</p>
+
+      <ul>
+
+<li>unlike the other projects, for this one I expect you to explain
+at a reasonable level of detail what you implemented.  Think of it
+as providing documentation that you could come back to in 6 months and
+be able to pick up where you left off, e.g., include design decisions,
+alternatives skipped and why, etc.</li>
+
+<li>an extended CFG implementation 
+with a suite of test
+cases and a JUnit driver called ESJCFGTest.java</li>
+
+<li>versions the analyses from Milestone 4 for ESJ 
+with a suite of test
+cases and a JUnit driver called ESJMilestone4AnalysisTest.java</li>
+
+<li>an implementation of a escape analysis for ESJ 
+with a suite of test
+cases and a JUnit driver called ESJEscapeAnalysisTest.java</li>
+
+      </ul>
+</p>
+Upload your Milestone Grad project in a single .zip file; be sure to include the
+top level directory in the zip archive (e.g., use <code>zip -r "archive-name" "milestone-grad"</code>).
+<p>
+Your Grading will be based on your solution (60%), your tests (10%),
+and your documentation (30%).
+</font>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+
+<br>
+
+</body>
+</html>

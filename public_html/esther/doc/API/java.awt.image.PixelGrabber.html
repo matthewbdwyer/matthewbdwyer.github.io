@@ -1,0 +1,499 @@
+<html><head><title>Class PixelGrabber</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.MemoryImageSource.html">Prev</a>  <a href="java.awt.image.RGBImageFilter.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="998634"><h1>	&#167;2.8 Class PixelGrabber</h1></a>
+<pre>public &#32;class &#32;java.awt.image.<strong>PixelGrabber
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+    implements java.awt.image.<strong>ImageConsumer</strong> &#32;<a href="java.awt.image.ImageConsumer.html#999415">(II-&#167;2.10)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>PixelGrabber</strong>(Image &#32;img, int &#32;x, int &#32;y, 	<a href="java.awt.image.PixelGrabber.html#998744">&#167;2.8.1</a>
+  &#32; &#32; &#32; &#32;int &#32;w, int &#32;h, int &#32;pix[], int &#32;off, int &#32;scansize);
+    public <strong>PixelGrabber</strong>(ImageProducer &#32;ip, int &#32;x,	<a href="java.awt.image.PixelGrabber.html#998783">&#167;2.8.2</a>
+   &#32; &#32; &#32;int &#32;y, int &#32;w, int &#32;h, int &#32;pix[], int &#32;off, int &#32;scansize);
+
+ &#32; &#32; &#32; &#32;// Methods
+    public boolean <strong>grabPixels</strong>();	<a href="java.awt.image.PixelGrabber.html#998823">&#167;2.8.3</a>
+    public boolean <strong>grabPixels</strong>(long &#32;ms);	<a href="java.awt.image.PixelGrabber.html#998838">&#167;2.8.4</a>
+    public void <strong>imageComplete</strong>(int &#32;status);	<a href="java.awt.image.PixelGrabber.html#998856">&#167;2.8.5</a>
+    public void <strong>setColorModel</strong>(ColorModel &#32;model);	<a href="java.awt.image.PixelGrabber.html#998872">&#167;2.8.6</a>
+    public void <strong>setDimensions</strong>(int &#32;width, int &#32;height)	<a href="java.awt.image.PixelGrabber.html#998888">&#167;2.8.7</a>
+ &#32; &#32; &#32; &#32;public void <strong>setHints</strong>(int &#32;hints);	<a href="java.awt.image.PixelGrabber.html#998900">&#167;2.8.8</a>
+    public void <strong>setPixels</strong>(int &#32;srcX, int &#32;srcY, int &#32;srcW,	<a href="java.awt.image.PixelGrabber.html#1001722">&#167;2.8.9</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;srcH, ColorModel &#32;model,
+ &#32;  &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;pixels[], int &#32;srcOff, int &#32;srcScan);
+    public void <strong>setPixels</strong>(int &#32;srcX, int &#32;srcY, int &#32;srcW,	<a href="java.awt.image.PixelGrabber.html#998949">&#167;2.8.10</a>
+  &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;srcH, ColorModel &#32;model,
+         &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;pixels[], int &#32;srcOff,  int &#32;srcScan);
+    public void <strong>setProperties</strong>(Hashtable &#32;props);	<a href="java.awt.image.PixelGrabber.html#998982">&#167;2.8.11</a>
+    public int <strong>status</strong>();	<a href="java.awt.image.PixelGrabber.html#998998">&#167;2.8.12</a>
+}
+</pre><a name="998697">The pixel grabber implements an image consumer which can be attached to an image or 
+image producer object to retrieve a subset of the pixels in that image. Pixels are stored in 
+the array in the default RGB color model <a href="java.awt.image.ColorModel.html#1001364">(II-&#167;2.1.9)</a>.
+</a><p><a name="998701">For example:
+</a><p><pre><hr>
+<a name="998702">public &#32;void &#32;handleSinglePixel(int &#32;x, &#32;int &#32;y, &#32;int &#32;pixel) &#32;{
+</a><a name="998703"> &#32; &#32; &#32; &#32;int &#32;alpha &#32;= &#32;(pixel &#32;&gt;&gt; &#32;24) &#32;&amp; &#32;0xff;
+</a><a name="998704"> &#32; &#32; &#32; &#32;int &#32;red &#32; &#32; &#32;= &#32;(pixel &#32;&gt;&gt; &#32;16) &#32;&amp; &#32;0xff;
+</a><a name="998705"> &#32; &#32; &#32; &#32;int &#32;green &#32;= &#32;(pixel &#32;&gt;&gt; &#32; &#32;8) &#32;&amp; &#32;0xff;
+</a><a name="998706"> &#32; &#32; &#32; &#32;int &#32;blue &#32; &#32;= &#32;(pixel &#32; &#32; &#32; &#32; &#32; &#32;) &#32;&amp; &#32;0xff;
+</a><a name="998707"> &#32; &#32; &#32; &#32;// &#32;Deal &#32;with &#32;the &#32;pixel &#32;as &#32;necessary...
+</a><a name="998708">}
+</a><a name="998709">
+public &#32;void &#32;GetPixels(Image &#32;img, &#32;int &#32;x, &#32;int &#32;y, &#32;int &#32;w, &#32;int &#32;h) &#32;{
+</a><a name="998710"> &#32; &#32; &#32; &#32;int[] &#32;pixels &#32;= &#32;new &#32;int[w &#32;* &#32;h];
+</a><a name="998711"> &#32; &#32; &#32; &#32;PixelGrabber &#32;pg &#32;= &#32;
+</a><a name="998712"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;new &#32;PixelGrabber(img, &#32;x, &#32;y, &#32;w, &#32;h, &#32;pixels, &#32;0, &#32;w);
+ &#32; &#32; &#32; &#32;try &#32;{
+</a><a name="998713"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;pg.grabPixels();
+</a><a name="998714"> &#32; &#32; &#32; &#32;} &#32;catch &#32;(InterruptedException &#32;e) &#32;{
+</a><a name="998715"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;System.err.println("interrupted &#32;waiting &#32;for &#32;pixels!");
+</a><a name="998716"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;return;
+</a><a name="998717"> &#32; &#32; &#32; &#32;}
+</a><a name="998718"> &#32; &#32; &#32; &#32;if &#32;((pg.status() &#32;&amp; &#32;ImageObserver.ABORT) &#32;!= &#32;0) &#32;{
+</a><a name="998719"> &#32; &#32; &#32; &#32; &#32; &#32; &#32;System.err.println("image &#32;fetch &#32;aborted &#32;or &#32;errored");
+</a><a name="998720"> &#32; &#32; &#32; &#32; &#32; &#32; &#32;return;
+</a><a name="998721"> &#32; &#32; &#32; &#32;}
+</a><a name="998722"> &#32; &#32; &#32; &#32;for &#32;(int &#32;j &#32;= &#32;0; &#32;j &#32;&lt; &#32;h; &#32;j++) &#32;{
+</a><a name="998723"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;for &#32;(int &#32;i &#32;= &#32;0; &#32;i &#32;&lt; &#32;w; &#32;i++) &#32;{
+</a><a name="998724"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;// look at the pixel
+</a><a name="998725"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;handleSinglePixel(x+i, y+j, pixels[j * w + i]);
+</a><a name="998726"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;}
+</a><a name="998727"> &#32; &#32; &#32; &#32;}
+</a><a name="998728">
+}
+</a>
+<hr></pre><a name="998735">Most applications need to call only the grabPixel methods (<a href="java.awt.image.PixelGrabber.html#998823">&#167;2.8.3</a>, <a href="java.awt.image.PixelGrabber.html#998838">&#167;2.8.4</a>) and the status 
+method <a href="java.awt.image.PixelGrabber.html#998998">(II-&#167;2.8.12)</a> of this class. The remaining methods are part of the ImageConsumer 
+interface and allow the pixel grabber to receive the image from the image producer.
+</a><p>
+<hr>
+<a name="998740"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="PixelGrabber">
+<a name="998744"><h3>PixelGrabber
+</h3></a>
+<a name="998745"><code>public PixelGrabber(Image &#32;img, int &#32;x, int &#32;y, int &#32;w, int &#32;h,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;pix[], int &#32;off, int &#32;scansize)
+</code></a>
+<dl>
+<dd><a name="998746">Creates a new pixel grabber object to grab the rectangular section of pixels 
+from the specified image into the specified array. 
+<pre>
+</pre></a>
+
+<dd><a name="998750">The pixels are stored in the array in the default RGB color model 
+<a href="java.awt.image.ColorModel.html#1001364">(II-&#167;2.1.9)</a>. The pixel data for the coordinate <img src="javaab30.gif">, where <img src="javaab31.gif"> is inside 
+the indicted rectangle, is stored in the array at index
+<pre>
+</pre></a>
+
+<dd><a name="998760"><img src="javaab32.gif">
+<pre>
+</pre></a>
+
+<dd><a name="998761">of the pixel array.
+<pre>
+</pre></a>
+
+<dd><a name="998762">The x and y coordinates indicate the upper left corner of the rectangle of 
+pixels to retrieve from the image, relative to the default (unscaled) size of 
+the image.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998763"><b>Parameters:
+</b></a><dd><a name="998764"><code>img
+- </code></a><a name="998765">the image from which to retrieve pixels
+</a>
+<dd><a name="998766"><code>x
+- </code></a><a name="998767">the x coordinate of the upper left corner
+</a>
+<dd><a name="998768"><code>y
+- </code></a><a name="998769">the y coordinate of the upper left corner
+</a>
+<dd><a name="998770"><code>w
+- </code></a><a name="998771">the width of the rectangle to retrieve
+</a>
+<dd><a name="998772"><code>h
+- </code></a><a name="998773">the height of the rectangle to retrieve
+</a>
+<dd><a name="998774"><code>pix
+- </code></a><a name="998775">the array of integers into which to place the RGB pixels retrieved 
+from the image
+</a>
+<dd><a name="998776"><code>off
+- </code></a><a name="998777">the offset into the array to store the first pixel
+</a>
+<dd><a name="998778"><code>scansize
+- </code></a><a name="998779">the distance from the start of one row of pixels to the start of 
+the next row in the array
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="PixelGrabber">
+<a name="998783"><h3>PixelGrabber
+</h3></a>
+<a name="998784"><code>public PixelGrabber(ImageProducer &#32;ip, int &#32;x, int &#32;y,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;w, int &#32;h, int &#32;pix[],<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;off, int &#32;scansize)
+</code></a>
+<dl>
+<dd><a name="998785">Creates a new pixel grabber object to grab the rectangular section of pixels 
+from the specified image producer into the specified array. 
+<pre>
+</pre></a>
+
+<dd><a name="998789">The pixels are stored in the array in the default RGB color model 
+<a href="java.awt.image.ColorModel.html#1001364">(II-&#167;2.1.9)</a>. The pixel data for the coordinate <img src="javaaa33.gif">, where <img src="javaaa34.gif"> is inside 
+the indicted rectangle, is stored in the array at the index
+<pre>
+</pre></a>
+
+<dd><a name="998799"><img src="javaaa35.gif">
+<pre>
+</pre></a>
+
+<dd><a name="998800">of the pixel array.
+<pre>
+</pre></a>
+
+<dd><a name="998801">The x and y coordinates indicate the upper left corner of the rectangle of 
+pixels to retrieve from the image, relative to the default (unscaled) size of 
+the image.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998802"><b>Parameters:
+</b></a><dd><a name="998803"><code>ip
+- </code></a><a name="998804">the image producer
+</a>
+<dd><a name="998805"><code>x
+- </code></a><a name="998806">the x coordinate of the upper left corner
+</a>
+<dd><a name="998807"><code>y
+- </code></a><a name="998808">the y coordinate of the upper left corner
+</a>
+<dd><a name="998809"><code>w
+- </code></a><a name="998810">the width of the rectangle to retrieve
+</a>
+<dd><a name="998811"><code>h
+- </code></a><a name="998812">the height of the rectangle to retrieve
+</a>
+<dd><a name="998813"><code>pix
+- </code></a><a name="998814">the array of integers into which to place the RGB pixels retrieved 
+from the image
+</a>
+<dd><a name="998815"><code>off
+- </code></a><a name="998816">the offset into the array to store the first pixel
+</a>
+<dd><a name="998817"><code>scansize
+- </code></a><a name="998818">the distance from the start of one row of pixels to the start of 
+the next row in the array
+</a>
+</dl></dl>
+<hr>
+<a name="998819"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="grabPixels">
+<a name="998823"><h3>grabPixels
+</h3></a>
+<a name="998824"><code>public boolean grabPixels()
+</code></a>
+<a name="998825"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="998826">Requests the image or image producer to start delivering pixels to this 
+image consumer. It waits for all of the pixels in the rectangle of interest to 
+be delivered.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998827"><b>Returns:
+</b></a><dd><a name="998828">true if the pixels were successfully grabbed; false on abort or error.
+</a>
+
+<dt><a name="998829"><b>Throws
+</b></a><dd><a name="998833">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="998834">If another thread has interrupted this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="grabPixels">
+<a name="998838"><h3>grabPixels
+</h3></a>
+<a name="998839"><code>public boolean grabPixels(long &#32;ms)
+</code></a>
+<a name="998840"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="998841">Requests the image or image producer to start delivering pixels to this 
+image consumer. It waits for all of the pixels in the rectangle of interest to 
+be delivered, or until the specified timeout has elapsed.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998842"><b>Parameters:
+</b></a><dd><a name="998843"><code>ms
+- </code></a><a name="998844">the number of milliseconds to wait for the pixels
+</a>
+
+<dt><a name="998845"><b>Returns:
+</b></a><dd><a name="998846">true if the pixels were successfully grabbed; false on abort, error or timeout.
+</a>
+
+<dt><a name="998847"><b>Throws
+</b></a><dd><a name="998851">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="998852">If another thread has interrupted this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="imageComplete">
+<a name="998856"><h3>imageComplete
+</h3></a>
+<a name="998857"><code>public void imageComplete(int &#32;status)
+</code></a>
+<dl>
+<dd><a name="998858">The image producer calls the imageComplete method when it has completed 
+an image or it has errored in producing or loading the image. For more 
+information on this method and its status argument, see <a href="java.awt.image.ImageConsumer.html#999592">&#167;2.10.10</a> on 
+<a href="java.awt.image.ImageConsumer.html#999592">page &#32;304</a>.
+<pre>
+</pre></a>
+
+<dd><a name="998865">The imageComplete method of PixelGrabber notifies all processes waiting for 
+the pixels to wake up. It uses the value of the status flag to determine 
+whether the image was successfully retrieved or not.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998866"><b>Parameters:
+</b></a><dd><a name="998867"><code>status
+- </code></a><a name="998868">the status of the image
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setColorModel">
+<a name="998872"><h3>setColorModel
+</h3></a>
+<a name="998873"><code>public void setColorModel(ColorModel &#32;model)
+</code></a>
+<dl>
+<dd><a name="998874">The image producer calls the setColorModel method to specify the color 
+model for the majority of the subsequent setPixels method calls. For more 
+information on this method and its model argument, see <a href="java.awt.image.ImageConsumer.html#999623">&#167;2.10.11</a> on 
+<a href="java.awt.image.ImageConsumer.html#999623">page &#32;305</a>
+<pre>
+</pre></a>
+
+<dd><a name="998881">The setColorModel method of PixelGrabber ignores this call.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998882"><b>Parameters:
+</b></a><dd><a name="998883"><code>model
+- </code></a><a name="998884">a color map used in subsequent setPixel calls
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setDimensions">
+<a name="998888"><h3>setDimensions
+</h3></a>
+<a name="998889"><code>public void setDimensions(int &#32;width, int &#32;height)
+</code></a>
+<dl>
+<dd><a name="998890">The image producer calls the setDimensions of the image consumer to tell it 
+the width and height of the image.
+<pre>
+</pre></a>
+
+<dd><a name="998891">The setDimensions method of PixelGrabber ignores the dimensions.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998892"><b>Parameters:
+</b></a><dd><a name="998893"><code>width
+- </code></a><a name="998894">the width of the image
+</a>
+<dd><a name="998895"><code>height
+- </code></a><a name="998896">the height of the image
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setHints">
+<a name="998900"><h3>setHints
+</h3></a>
+<a name="998901"><code>public void setHints(int &#32;hints)
+</code></a>
+<dl>
+<dd><a name="998902">The image producer calls the setHints method of the image consumer to 
+indicate the order in which the bits will be delivered. For more information 
+on the hints passed to the image consumer, see <a href="java.awt.image.ImageConsumer.html#999648">&#167;2.10.13</a> on <a href="java.awt.image.ImageConsumer.html#999648">page &#32;306</a>.
+<pre>
+</pre></a>
+
+<dd><a name="998909">The setHints method of PixelGrabber ignores the hints.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998910"><b>Parameters:
+</b></a><dd><a name="998911"><code>hints
+- </code></a><a name="998912">hints about the order in which the bits will be delivered
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setPixels">
+<a name="1001722"><h3>setPixels
+</h3></a>
+<a name="1001723"><code>public void<br>
+setPixels(int &#32;srcX, int &#32;srcY, int &#32;srcW, int &#32;srcH,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;ColorModel &#32;model, byte &#32;pixels[],<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;srcOff, int &#32;srcScan)
+</code></a>
+<dl>
+<dd><a name="998918">The image producer calls the setPixels method of the image consumer one 
+or more times to deliver the pixels of the image. For more information on 
+this method and its arguments, see <a href="java.awt.image.ImageConsumer.html#999677">&#167;2.10.14</a> on <a href="java.awt.image.ImageConsumer.html#999677">page &#32;307</a>.
+<pre>
+</pre></a>
+
+<dd><a name="998925">The setPixels method of PixelGrabber places the bits, if appropriate, into the 
+array of bits passed to it by a call to the grabPixels method <a href="java.awt.image.PixelGrabber.html#998823">(II-&#167;2.8.3)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998929"><b>Parameters:
+</b></a><dd><a name="998930"><code>x
+- </code></a><a name="998931">left coordinate of rectangle
+</a>
+<dd><a name="998932"><code>y
+- </code></a><a name="998933">top coordinte of rectangle
+</a>
+<dd><a name="998934"><code>w
+- </code></a><a name="998935">width of rectangle
+</a>
+<dd><a name="998936"><code>h
+- </code></a><a name="998937">height of rectangle
+</a>
+<dd><a name="998938"><code>model
+- </code></a><a name="998939">color model for bits
+</a>
+<dd><a name="998940"><code>pixels
+- </code></a><a name="998941">array of bits
+</a>
+<dd><a name="998942"><code>off
+- </code></a><a name="998943">offset for first element
+</a>
+<dd><a name="998944"><code>scansize
+- </code></a><a name="998945">number of elements per row
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setPixels">
+<a name="998949"><h3>setPixels
+</h3></a>
+<a name="998950"><code>public void<br>
+setPixels(int &#32;srcX, int &#32;srcY, int &#32;srcW, int &#32;srcH,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;ColorModel &#32;model, int &#32;pixels[],<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;srcOff, int &#32;srcScan)
+</code></a>
+<dl>
+<dd><a name="998951">The image producer calls the setPixels method of the image consumer one 
+or more times to deliver the pixels of the image. For more information on 
+this method and its arguments, see <a href="java.awt.image.ImageConsumer.html#999709">&#167;2.10.15</a> on <a href="java.awt.image.ImageConsumer.html#999709">page &#32;308</a>.
+<pre>
+</pre></a>
+
+<dd><a name="998958">The setPixels method of PixelGrabber places the bits, if appropriate, into the 
+array of bits passed to it by a call to the grabPixels method <a href="java.awt.image.PixelGrabber.html#998823">(II-&#167;2.8.3)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998962"><b>Parameters:
+</b></a><dd><a name="998963"><code>x
+- </code></a><a name="998964">left coordinate of rectangle
+</a>
+<dd><a name="998965"><code>y
+- </code></a><a name="998966">top coordinte of rectangle
+</a>
+<dd><a name="998967"><code>w
+- </code></a><a name="998968">width of rectangle
+</a>
+<dd><a name="998969"><code>h
+- </code></a><a name="998970">height of rectangle
+</a>
+<dd><a name="998971"><code>model
+- </code></a><a name="998972">color model for bits
+</a>
+<dd><a name="998973"><code>pixels
+- </code></a><a name="998974">array of bits
+</a>
+<dd><a name="998975"><code>off
+- </code></a><a name="998976">offset for first element
+</a>
+<dd><a name="998977"><code>scansize
+- </code></a><a name="998978">number of elements per row
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setProperties">
+<a name="998982"><h3>setProperties
+</h3></a>
+<a name="998983"><code>public void setProperties(Hashtable &#32;props)
+</code></a>
+<dl>
+<dd><a name="998984">The image producer calls the setProperties method of the image consumer to 
+let it know of additional properties of the image. For more information on 
+this method and its arguments, see <a href="java.awt.image.ImageConsumer.html#999739">&#167;2.10.16</a> on <a href="java.awt.image.ImageConsumer.html#999739">page &#32;308</a>.
+<pre>
+</pre></a>
+
+<dd><a name="998991">The setPropertiess method of PixelGrabber ignores the hints.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998992"><b>Parameters:
+</b></a><dd><a name="998993"><code>props
+- </code></a><a name="998994">a hashtable that maps image properties to their value
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="status">
+<a name="998998"><h3>status
+</h3></a>
+<a name="998999"><code>public int status()
+</code></a>
+<dl>
+<dd><a name="999000">Returns the bitwise OR of the appropriate ImageObserver interface 
+<a href="java.awt.image.ImageObserver.html#999757">(II-&#167;2.11)</a> flags.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="999004"><b>Returns:
+</b></a><dd><a name="999005">the status of the pixels.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.MemoryImageSource.html">Prev</a>  <a href="java.awt.image.RGBImageFilter.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

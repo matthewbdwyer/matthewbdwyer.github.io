@@ -1,0 +1,737 @@
+<html><head><title>Class MediaTracker</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.List.html">Prev</a>  <a href="java.awt.Menu.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="16703"><h1>	&#167;1.28 Class MediaTracker</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>MediaTracker
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public final static int <strong>ABORTED</strong>;	<a href="java.awt.MediaTracker.html#35250">&#167;1.28.1</a>
+    public final static int <strong>COMPLETE</strong>;	<a href="java.awt.MediaTracker.html#16879">&#167;1.28.2</a>
+    public final static int <strong>ERRORED</strong>;	<a href="java.awt.MediaTracker.html#16903">&#167;1.28.3</a>
+    public final static int <strong>LOADING</strong>;	<a href="java.awt.MediaTracker.html#16927">&#167;1.28.4</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>MediaTracker</strong>(Component &#32;comp);	<a href="java.awt.MediaTracker.html#16955">&#167;1.28.5</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addImage</strong>(Image &#32;image, int &#32;id);	<a href="java.awt.MediaTracker.html#16977">&#167;1.28.6</a>
+    public void <strong>addImage</strong>(Image &#32;image, int &#32;id, int w, int h);	<a href="java.awt.MediaTracker.html#16999">&#167;1.28.7</a>
+    public boolean <strong>checkAll</strong>();	<a href="java.awt.MediaTracker.html#48609">&#167;1.28.8</a>
+    public boolean <strong>checkAll</strong>(boolean &#32;load);	<a href="java.awt.MediaTracker.html#17067">&#167;1.28.9</a>
+    public boolean <strong>checkID</strong>(int &#32;id);	<a href="java.awt.MediaTracker.html#17111">&#167;1.28.10</a>
+    public boolean <strong>checkID</strong>(int &#32;id, boolean &#32;load);	<a href="java.awt.MediaTracker.html#17153">&#167;1.28.11</a>
+    public Object[] <strong>getErrorsAny</strong>();	<a href="java.awt.MediaTracker.html#17201">&#167;1.28.12</a>
+    public Object[] <strong>getErrorsID</strong>(int &#32;id);	<a href="java.awt.MediaTracker.html#17231">&#167;1.28.13</a>
+    public boolean <strong>isErrorAny</strong>();	<a href="java.awt.MediaTracker.html#17267">&#167;1.28.14</a>
+    public boolean <strong>isErrorID</strong>(int &#32;id);	<a href="java.awt.MediaTracker.html#17297">&#167;1.28.15</a>
+    public int <strong>statusAll</strong>(boolean &#32;load);	<a href="java.awt.MediaTracker.html#17333">&#167;1.28.16</a>
+    public int <strong>statusID</strong>(int &#32;id, boolean &#32;load);	<a href="java.awt.MediaTracker.html#35555">&#167;1.28.17</a>
+    public void <strong>waitForAll</strong>();	<a href="java.awt.MediaTracker.html#17433">&#167;1.28.18</a>
+    public boolean <strong>waitForAll</strong>(long &#32;ms);	<a href="java.awt.MediaTracker.html#17477">&#167;1.28.19</a>
+    public void <strong>waitForID</strong>(int &#32;id);	<a href="java.awt.MediaTracker.html#17533">&#167;1.28.20</a>
+    public boolean <strong>waitForID</strong>(int &#32;id, long &#32;ms);	<a href="java.awt.MediaTracker.html#17583">&#167;1.28.21</a>
+}
+</pre><a name="16843">The MediaTracker class is a utility class to trace the status of a number of media objects. 
+Media objects could include images as well as audio clips, though currently only images 
+are supported. 
+</a><p><a name="46426">To use the media tracker, create an instance of the MediaTracker class and then call the 
+addImage method <a href="java.awt.MediaTracker.html#16977">(II-&#167;1.28.6)</a> for each image to be tracked. In addition each image can be 
+assigned a unique identifier. The identifier controls both the priority order in which the 
+images are fetched as well as identifying unique subsets of the images that can be waited 
+on independently. Images with a lower ID are loaded in preference to those with a higher 
+ID number.
+</a><p><a name="46431">Here is an example: 
+</a><p><pre><hr>
+<a name="46432">import &#32;java.applet.Applet;
+</a><a name="35003">import &#32;java.awt.Color;
+</a><a name="35006">import &#32;java.awt.Image;
+</a><a name="35009">import &#32;java.awt.Graphics;
+</a><a name="35012">import &#32;java.awt.MediaTracker;
+</a><a name="35015">public &#32;class &#32;ImageBlaster &#32;extends &#32;Applet
+</a><a name="39382">implements &#32;Runnable &#32;{
+</a><a name="35018"> &#32; &#32; &#32; MediaTracker &#32;tracker;
+</a><a name="35021">	 Image &#32;bg;
+</a><a name="35024"> &#32; &#32; &#32; &#32;Image &#32;anim[] &#32;= &#32;new &#32;Image[5];
+</a><a name="35027"> &#32; &#32; &#32; &#32;int &#32;index;
+</a><a name="35030"> &#32; &#32; &#32; &#32;Thread &#32;animator;
+</a><a name="35033"> &#32; &#32; &#32; &#32;// Get the images for the background (id == 0) and the
+</a><a name="39388"> &#32; &#32; &#32; &#32;// animation frames (id == 1) and add them to the 
+</a><a name="39391"> &#32; &#32; &#32; &#32;// Media Tracker
+</a><a name="35039">    public &#32;void &#32;init() &#32;{
+</a><a name="35042">     &#32; &#32; &#32; &#32;tracker &#32;= &#32;new &#32;MediaTracker(this);
+</a><a name="35045">     &#32; &#32; &#32; &#32;bg &#32;= &#32;getImage(getDocumentBase(), &#32;
+</a><a name="39407">                        "images/background.gif");
+</a><a name="35048">     &#32; &#32; &#32; &#32;tracker.addImage(bg, &#32;0);
+</a><a name="35051">     &#32; &#32; &#32; &#32;for &#32;(int &#32;i &#32;= &#32;0; &#32;i &#32; &#32;5; &#32;i++) &#32;{
+</a><a name="35054">            anim[i] &#32;= &#32;getImage(getDocumentBase(), &#32;
+</a><a name="39410">                               "images/anim"+i+".gif");
+</a><a name="35057">             tracker.addImage(anim[i], &#32;1);
+</a><a name="39413">        }
+</a><a name="39416">     }
+</a><a name="35066">
+</a><a name="39417">    // &#32;Start &#32;the &#32;animation &#32;thread.
+</a><a name="35069">    public &#32;void &#32;start() &#32;{
+</a><a name="35072">     &#32; &#32; &#32; &#32;animator &#32;= &#32;new &#32;Thread(this);
+</a><a name="35075">     &#32; &#32; &#32; &#32;animator.start();
+</a><a name="35078">    }
+</a><a name="35081">    // &#32;Stop &#32;the &#32;animation &#32;thread.
+</a><a name="35084">    public &#32;void &#32;stop() &#32;{
+</a><a name="35087">     &#32; &#32; &#32; &#32;animator.stop();
+</a><a name="35090">     &#32; &#32; &#32; &#32;animator &#32;= &#32;null;
+</a><a name="35093">    }
+</a><a name="35096">    // &#32;Run &#32;the &#32;animation &#32;thread.
+</a><a name="35099">    // First wait for the background image to fully load
+</a><a name="39418">    // and point.  Then wait for all of the animation
+</a><a name="39419">    // frames to finish loading.  Finally loop and 
+</a><a name="39421">    // increment the animation frame index.
+</a><a name="35108">    public &#32;void &#32;run() &#32;{
+</a><a name="35111">     &#32; &#32; &#32; &#32;try &#32;{
+</a><a name="35114">            tracker.waitForID(0);
+</a><a name="35117">            tracker.waitForID(1);
+</a><a name="35120">        } &#32;catch &#32;(InterruptedException &#32;e) &#32;{
+</a><a name="35123">            return;
+</a><a name="35126">        }
+</a><a name="35129">     &#32; &#32; &#32; &#32;Thread &#32;me &#32;= &#32;Thread.currentThread();
+</a><a name="35132">     &#32; &#32; &#32; &#32;while &#32;(animator &#32;== &#32;me) &#32;{
+</a><a name="35135">            try &#32;{
+</a><a name="35138">             &#32; &#32; &#32; &#32;Thread.sleep(100);
+</a><a name="35141">            } &#32;catch &#32;(InterruptedException &#32;e) &#32;{
+</a><a name="35144">             &#32; &#32; &#32; &#32;break;
+</a><a name="35147">            }
+</a><a name="35150">            synchronized &#32;(this) &#32;{
+</a><a name="35153">             &#32; &#32; &#32; &#32;index++;
+</a><a name="35156">             &#32; &#32; &#32; &#32;if &#32;(index &#32;&gt;= &#32;anim.length) &#32;{
+</a><a name="35159">                    index &#32;= &#32;0;
+</a><a name="35162">             &#32; &#32; &#32; &#32;}
+</a><a name="35165">            }
+</a><a name="35168">            repaint();
+</a><a name="35171">        }
+</a><a name="35174">    }
+</a><a name="35177">
+</a><a name="39454">    // The background image fills our frame so we don't
+</a><a name="39457">    // need to clear the applet on repaints; just call the
+</a><a name="39458">    // paint method	
+</a><a name="35183">    public &#32;void &#32;update(Graphics &#32;g) &#32;{
+</a><a name="35186">     &#32; &#32; &#32; &#32;paint(g);
+</a><a name="35189">    }
+</a><a name="35192">    // Paint a large red rectangle if there are any errors
+</a><a name="39476">    // loading the images.  Otherwise, always paint the 
+</a><a name="39478">    // background so that it appears incrementally as it
+</a><a name="39477">    // is loading. Finally, only paint the current 
+</a><a name="39480">    // animation frame if all of the frames (id == 1) 
+</a><a name="39479">    // are done loading, so that we don't get partial
+</a><a name="39483">    // animations.
+</a><a name="35207">    public &#32;void &#32;paint(Graphics &#32;g) &#32;{
+</a><a name="35210">  &#32; &#32; &#32;    if &#32;((tracker.statusAll() &#32;&amp;&amp; &#32;
+</a><a name="39525">                  MediaTracker.ERRORED) &#32;!= &#32;0) &#32;{
+</a><a name="35213">            g.setColor(Color.red);
+</a><a name="35216">            g.fillRect(0, &#32;0, &#32;size().width, &#32;size().height);
+</a><a name="35219">            return;
+</a><a name="35222">        }
+</a><a name="35225">      &#32; &#32; &#32;g.drawImage(bg, &#32;0, &#32;0, &#32;this);
+</a><a name="35228">     &#32; &#32; &#32; &#32;if &#32;((tracker.statusID(1) &#32;&amp;&amp; &#32;
+</a><a name="39530">                  MediaTracker.COMPLETE) &#32;!= &#32;0) &#32;{
+</a><a name="35231">            g.drawImage(anim[index], &#32;10, &#32;10, &#32;this);
+</a><a name="35234">        }
+</a><a name="39535">    }
+</a><a name="35253">}
+</a>
+<hr></pre>
+<hr>
+<a name="35246"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="ABORTED">
+<a name="35250"><h3>ABORTED
+</h3></a>
+<a name="16857"><code>public final static int ABORTED = 2
+</code></a>
+<dl>
+<dd><a name="16859">Flag indicating the download of some media was aborted.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="16861"><b>See Also:
+</b></a><dd><a name="16871">statusAll &#32;<a href="java.awt.MediaTracker.html#17333">(II-&#167;1.28.16)</a><br>
+statusID &#32;<a href="java.awt.MediaTracker.html#35555">(II-&#167;1.28.17)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="COMPLETE">
+<a name="16879"><h3>COMPLETE
+</h3></a>
+<a name="16881"><code>public final static int COMPLETE = 8
+</code></a>
+<dl>
+<dd><a name="16883">Flag indicating the download of media completed successfully.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="16885"><b>See Also:
+</b></a><dd><a name="16895">statusAll &#32;<a href="java.awt.MediaTracker.html#17333">(II-&#167;1.28.16)</a><br>
+statusID &#32;<a href="java.awt.MediaTracker.html#35555">(II-&#167;1.28.17)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="ERRORED">
+<a name="16903"><h3>ERRORED
+</h3></a>
+<a name="16905"><code>public final static int ERRORED = 4
+</code></a>
+<dl>
+<dd><a name="16907">Flag indicating the download of some media encountered an error.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="16909"><b>See Also:
+</b></a><dd><a name="16919">statusAll &#32;<a href="java.awt.MediaTracker.html#17333">(II-&#167;1.28.16)</a><br>
+statusID &#32;<a href="java.awt.MediaTracker.html#35555">(II-&#167;1.28.17)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="LOADING">
+<a name="16927"><h3>LOADING
+</h3></a>
+<a name="16929"><code>public final static int LOADING = 1
+</code></a>
+<dl>
+<dd><a name="16931">Flag indicating some media is currently being loaded.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="16933"><b>See Also:
+</b></a><dd><a name="16943">statusAll &#32;<a href="java.awt.MediaTracker.html#17333">(II-&#167;1.28.16)</a><br>
+statusID &#32;<a href="java.awt.MediaTracker.html#35555">(II-&#167;1.28.17)</a>.
+</a>
+</dl></dl>
+<hr>
+<a name="16947"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="MediaTracker">
+<a name="16955"><h3>MediaTracker
+</h3></a>
+<a name="16957"><code>public MediaTracker(Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="16959">Creates a media tracker to track images for a given component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="16961"><b>Parameters:
+</b></a><dd><a name="16963"><code>comp
+- </code></a><a name="16965">the component on which the images will eventually be drawn
+</a>
+</dl></dl>
+<hr>
+<a name="16967"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addImage">
+<a name="16977"><h3>addImage
+</h3></a>
+<a name="16979"><code>public void addImage(Image &#32;image, int &#32;id)
+</code></a>
+<dl>
+<dd><a name="16981">Adds an image to the list of images being tracked by this media tracker. 
+The image will eventually be rendered at its default (unscaled) size.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="16983"><b>Parameters:
+</b></a><dd><a name="16985"><code>image
+- </code></a><a name="16987">the image to be tracked
+</a>
+<dd><a name="16989"><code>id
+- </code></a><a name="16991">the identifier used to later track this image
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="addImage">
+<a name="16999"><h3>addImage
+</h3></a>
+<a name="17001"><code>public void addImage(Image &#32;image, int &#32;id, int &#32;w, int &#32;h)
+</code></a>
+<dl>
+<dd><a name="17003">Adds a scaled image to the list of images being tracked by this media 
+tracker. The image will eventually be rendered at the indicated width and 
+height.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17005"><b>Parameters:
+</b></a><dd><a name="17007"><code>image
+- </code></a><a name="17009">the image to be tracked
+</a>
+<dd><a name="17011"><code>id
+- </code></a><a name="17013">the identifier used to later track this image
+</a>
+<dd><a name="17015"><code>w
+- </code></a><a name="17017">the width at which the image will be rendered
+</a>
+<dd><a name="17019"><code>h
+- </code></a><a name="48604">the height at which the image will be rendered 
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkAll">
+<a name="48609"><h3>checkAll
+</h3></a>
+<a name="48610"><code>public boolean checkAll()
+</code></a>
+<dl>
+<dd><a name="17035">Checks to see if all images being tracked by this media tracker have finished loading.
+<pre>
+</pre></a>
+
+<dd><a name="35276">This method does not start loading the images if they are not already loading.
+<pre>
+</pre></a>
+
+<dd><a name="35279">If there is an error while loading or scaling an image then that image is 
+considered to have finished loading.Use the isErrorAny method 
+<a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a> or isErrorID method <a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a> to check for errors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17037"><b>Returns:
+</b></a><dd><a name="17039">true if all images have finished loading, were aborted or encountered 
+an error; false otherwise.
+</a>
+
+<dt><a name="45911"><b>See Also:
+</b></a><dd><a name="45912">checkID &#32;<a href="java.awt.MediaTracker.html#17111">(II-&#167;1.28.10)</a> &#32;.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkAll">
+<a name="17067"><h3>checkAll
+</h3></a>
+<a name="17069"><code>public boolean checkAll(boolean &#32;load)
+</code></a>
+<dl>
+<dd><a name="35282">Checks to see if all images being tracked by this media tracker have finished loading.
+<pre>
+</pre></a>
+
+<dd><a name="35284">If the load flag is true, then start loading any images that are not yet being 
+loaded.
+<pre>
+</pre></a>
+
+<dd><a name="35287">If there is an error while loading or scaling an image then that image is 
+considered to have finished loading. Use the isErrorAny method 
+<a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a> or isErrorID method <a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a> to check for errors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17073"><b>Parameters:
+</b></a><dd><a name="17075"><code>load
+- </code></a><a name="17077">if true, start loading any images that are not yet being loaded.
+</a>
+
+<dt><a name="17079"><b>Returns:
+</b></a><dd><a name="17081">true if all images have finished loading, were aborted or encountered 
+an error; false otherwise.
+</a>
+
+<dt><a name="17083"><b>See Also:
+</b></a><dd><a name="17101">checkID &#32;<a href="java.awt.MediaTracker.html#17153">(II-&#167;1.28.11)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkID">
+<a name="17111"><h3>checkID
+</h3></a>
+<a name="17113"><code>public boolean checkID(int &#32;id)
+</code></a>
+<dl>
+<dd><a name="35335">Checks to see if all images tracked by this media tracker that are tagged 
+with the specified identifier have finished loading/
+<pre>
+</pre></a>
+
+<dd><a name="35336">This method does not start loading the images if they are not already loading.
+<pre>
+</pre></a>
+
+<dd><a name="35337">If there is an error while loading or scaling an image then that image is 
+considered to have finished loading. Use the isErrorAny method 
+<a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a> or isErrorID method <a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a> to check for errors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="35357"><b>Parameters:
+</b></a><dd><a name="35358"><code>id
+- </code></a><a name="35359">the identifier of the images to check.
+</a>
+
+<dt><a name="35344"><b>Returns:
+</b></a><dd><a name="35345">true if all images have finished loading, were aborted or encountered 
+an error; false otherwise.
+</a>
+
+<dt><a name="17127"><b>See Also:
+</b></a><dd><a name="45922">checkAll &#32;<a href="java.awt.MediaTracker.html#48609">(II-&#167;1.28.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkID">
+<a name="17153"><h3>checkID
+</h3></a>
+<a name="17155"><code>public boolean checkID(int &#32;id, boolean &#32;load)
+</code></a>
+<dl>
+<dd><a name="53113">Checks to see if all images tracked by this media tracker that are tagged 
+with the specified identifier have finished loading.
+<pre>
+</pre></a>
+
+<dd><a name="35384">If the load flag is true, then start loading any images that are not yet being 
+loaded.
+<pre>
+</pre></a>
+
+<dd><a name="35371">If there is an error while loading or scaling an image then that image is 
+considered tohave finished loading. Use the isErrorAny method 
+<a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a> or isErrorID method <a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a> to check for errors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="35378"><b>Parameters:
+</b></a><dd><a name="35379"><code>id
+- </code></a><a name="35380">the identifier of the images to check.
+</a>
+<dd><a name="35386"><code>load
+- </code></a><a name="35387">if true, start loading any images that are not yet being loaded.
+</a>
+
+<dt><a name="35381"><b>Returns:
+</b></a><dd><a name="35382">true if all images have finished loading, were aborted or encountered 
+an error; false otherwise.
+</a>
+
+<dt><a name="17173"><b>See Also:
+</b></a><dd><a name="17191">checkAll &#32;<a href="java.awt.MediaTracker.html#48609">(II-&#167;1.28.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getErrorsAny">
+<a name="17201"><h3>getErrorsAny
+</h3></a>
+<a name="17203"><code>public Object[] getErrorsAny()
+</code></a>
+<dl><dl>
+<dt><a name="17207"><b>Returns:
+</b></a><dd><a name="17209">an array of media objects tracked by this media tracker that have 
+encountered an error, or null if there are none with errors.
+</a>
+
+<dt><a name="17211"><b>See Also:
+</b></a><dd><a name="17221">isErrorAny &#32;<a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a><br>
+getErrorsID &#32;<a href="java.awt.MediaTracker.html#17231">(II-&#167;1.28.13)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getErrorsID">
+<a name="17231"><h3>getErrorsID
+</h3></a>
+<a name="17233"><code>public Object[] getErrorsID(int &#32;id)
+</code></a>
+<dl><dl>
+<dt><a name="53100"><b>Parameters:
+</b></a><dd><a name="35402"><code>id
+- </code></a><a name="35403">the identifier of the images to check
+</a>
+
+<dt><a name="17243"><b>Returns:
+</b></a><dd><a name="35398">an array of media objects tracked by this media tracker with the specified identifer that have encountered an error, or null if there are none 
+with errors.
+</a>
+
+<dt><a name="17247"><b>See Also:
+</b></a><dd><a name="17257">isErrorID &#32;<a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a><br>
+getErrorsAny &#32;<a href="java.awt.MediaTracker.html#17201">(II-&#167;1.28.12)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isErrorAny">
+<a name="17267"><h3>isErrorAny
+</h3></a>
+<a name="17269"><code>public boolean isErrorAny()
+</code></a>
+<dl><dl>
+<dt><a name="17273"><b>Returns:
+</b></a><dd><a name="17275">true if any of the images tracked by this media tracker had an error during loading; false otherwise.
+</a>
+
+<dt><a name="17277"><b>See Also:
+</b></a><dd><a name="17287">isErrorID &#32;<a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a><br>
+getErrorsAny &#32;<a href="java.awt.MediaTracker.html#17201">(II-&#167;1.28.12)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isErrorID">
+<a name="17297"><h3>isErrorID
+</h3></a>
+<a name="17299"><code>public boolean isErrorID(int &#32;id)
+</code></a>
+<dl>
+<dd><a name="17301">Checks the error status of all of the images tracked by this media tracker 
+with the specified ID.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17303"><b>Parameters:
+</b></a><dd><a name="35412"><code>id
+- </code></a><a name="35413">the identifier of the images to check
+</a>
+
+<dt><a name="17309"><b>Returns:
+</b></a><dd><a name="35409">true if any of the images with the specified identifier had an error during loading; false otherwise.
+</a>
+
+<dt><a name="17313"><b>See Also:
+</b></a><dd><a name="17323">isErrorAny &#32;<a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a><br>
+getErrorsID &#32;<a href="java.awt.MediaTracker.html#17231">(II-&#167;1.28.13)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="statusAll">
+<a name="17333"><h3>statusAll
+</h3></a>
+<a name="17335"><code>public int statusAll(boolean &#32;load)
+</code></a>
+<dl>
+<dd><a name="35428">Calculates and returns the bitwise inclusive OR of the status of all the 
+media being tracked by this media tracker. The possible flags are specified 
+by the following four constants:
+<pre>
+</pre></a>
+<dl><ul><li><a name="35464">MediaTracker.LOADING &#32;<a href="java.awt.MediaTracker.html#16927">(II-&#167;1.28.4)</a>
+</a></ul><ul><li><a name="35474">MediaTracker.ABORTED &#32;<a href="java.awt.MediaTracker.html#35250">(II-&#167;1.28.1)</a>
+</a><li><a name="35475">MediatTracker.ERRORED &#32;<a href="java.awt.MediaTracker.html#16903">(II-&#167;1.28.3)</a>
+</a><li><a name="35476">MediaTracker.COMPLETE &#32;<a href="java.awt.MediaTracker.html#16879">(II-&#167;1.28.2)</a>
+</a></ul></dl>
+<dd><a name="35440">An image that hasn't started loading has zero as its status.
+<pre>
+</pre></a>
+
+<dd><a name="46437">If the load flag is true, then start loading any images that are not yet being 
+loaded. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17339"><b>Parameters:
+</b></a><dd><a name="35430"><code>load
+- </code></a><a name="35431">if true, start loading any images that are not yet being loaded.
+</a>
+
+<dt><a name="17345"><b>Returns:
+</b></a><dd><a name="17347">the bitwise inclusive OR of the status of all of the media being tracked
+</a>
+
+<dt><a name="17349"><b>See Also:
+</b></a><dd><a name="17371">statusID &#32;<a href="java.awt.MediaTracker.html#35555">(II-&#167;1.28.17)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="statusID">
+<a name="35555"><h3>statusID
+</h3></a>
+<a name="17383"><code>public int statusID(int &#32;id, boolean &#32;load)
+</code></a>
+<dl>
+<dd><a name="46447">Calculates and returns the bitwise inclusive OR of the status of all the 
+media tracked by this media tracker with the specified identifier. The possible flags are as above in the statusAll method <a href="java.awt.MediaTracker.html#17333">(II-&#167;1.28.16)</a>. An image that 
+hasn't started loading has zero as its status.
+<pre>
+</pre></a>
+
+<dd><a name="35585">If the load flag is true, then start loading any images that are not yet being 
+loaded.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17387"><b>Parameters:
+</b></a><dd><a name="35415"><code>id
+- </code></a><a name="35416">the identifier of the images to check
+</a>
+<dd><a name="35433"><code>load
+- </code></a><a name="35434">if true, start loading any images that are not yet being loaded.
+</a>
+
+<dt><a name="17397"><b>Returns:
+</b></a><dd><a name="35619">the bitwise inclusive OR of the status of all of the media being 
+tracked.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="waitForAll">
+<a name="17433"><h3>waitForAll
+</h3></a>
+<a name="17435"><code>public void waitForAll()
+</code></a>
+<a name="17437"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="17439">Starts loading all images tracked by this media tracker. This method waits 
+until all the images being tracked have finished loading.
+<pre>
+</pre></a>
+
+<dd><a name="35630">If there is an error while loading or scaling an image then that image is 
+considered finished loading. Use the isErrorAny method <a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a> or 
+isErrorID method <a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a> to check for errors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17441"><b>Throws
+</b></a><dd><a name="17447">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="17449">If another thread has interrupted this thread.
+</a>
+
+<dt><a name="17451"><b>See Also:
+</b></a><dd><a name="17469">waitForID &#32;<a href="java.awt.MediaTracker.html#17533">(II-&#167;1.28.20)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="waitForAll">
+<a name="17477"><h3>waitForAll
+</h3></a>
+<a name="17479"><code>public boolean waitForAll(long &#32;ms)
+</code></a>
+<a name="17481"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="35657">Starts loading all images tracked by this media tracker. This method waits 
+until all the images being tracked have finished loading, or until the length 
+of time specified in milliseconds by the ms argument have passed.
+<pre>
+</pre></a>
+
+<dd><a name="35658">If there is an error while loading or scaling an image then that image is 
+considered finished loading. Use the isErrorAny method <a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a> or 
+isErrorID method <a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a> to check for errors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17485"><b>Parameters:
+</b></a><dd><a name="35705"><code>ms
+- </code></a><a name="35706">the number of milliseconds to wait for the loading to complete
+</a>
+
+<dt><a name="17491"><b>Returns:
+</b></a><dd><a name="17493">true if all images were successfully loaded; false otherwise.
+</a>
+
+<dt><a name="17495"><b>Throws
+</b></a><dd><a name="17501">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="17503">If another thread has interrupted this thread.
+</a>
+
+<dt><a name="17505"><b>See Also:
+</b></a><dd><a name="17523">waitForID &#32;<a href="java.awt.MediaTracker.html#17583">(II-&#167;1.28.21)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="waitForID">
+<a name="17533"><h3>waitForID
+</h3></a>
+<a name="17535"><code>public void waitForID(int &#32;id)
+</code></a>
+<a name="17537"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="35675">Starts loading all images tracked by this media tracker with the specified 
+identifier. This method waits until all the images with the specified identifier have finished loading.
+<pre>
+</pre></a>
+
+<dd><a name="35676">If there is an error while loading or scaling an image then that image is 
+considered finished loading. Use the isErrorAny method <a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a> or 
+isErrorID method <a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a> to check for errors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17541"><b>Parameters:
+</b></a><dd><a name="35418"><code>id
+- </code></a><a name="35419">the identifier of the images to check
+</a>
+
+<dt><a name="17547"><b>Throws
+</b></a><dd><a name="17553">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="17555">If another thread has interrupted this thread.
+</a>
+
+<dt><a name="17557"><b>See Also:
+</b></a><dd><a name="45937">waitForAll &#32;<a href="java.awt.MediaTracker.html#17433">(II-&#167;1.28.18)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="waitForID">
+<a name="17583"><h3>waitForID
+</h3></a>
+<a name="17585"><code>public boolean waitForID(int &#32;id, long &#32;ms)
+</code></a>
+<a name="17587"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="35690">Starts loading all images tracked by this media tracker with the specified 
+identifier. This method waits until all the images with the specified identifier have finished loading, or until the length of time specified in milliseconds by the ms argument have passed
+<pre>
+</pre></a>
+
+<dd><a name="35691">If there is an error while loading or scaling an image then that image is 
+considered finished loading. Use the isErrorAny method <a href="java.awt.MediaTracker.html#17267">(II-&#167;1.28.14)</a> or 
+isErrorID method <a href="java.awt.MediaTracker.html#17297">(II-&#167;1.28.15)</a> to check for errors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="17591"><b>Parameters:
+</b></a><dd><a name="35421"><code>id
+- </code></a><a name="35422">the identifier of the images to check
+</a>
+<dd><a name="17597"><code>ms
+- </code></a><a name="17599">the number of milliseconds to wait for the loading to complete
+</a>
+
+<dt><a name="17601"><b>Returns:
+</b></a><dd><a name="35708">true if all images were successfully loaded; false otherwise.
+</a>
+
+<dt><a name="17605"><b>Throws
+</b></a><dd><a name="17611">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="17613">If another thread has interrupted this thread.
+</a>
+
+<dt><a name="17615"><b>See Also:
+</b></a><dd><a name="17633">waitForAll &#32;<a href="java.awt.MediaTracker.html#17477">(II-&#167;1.28.19)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.List.html">Prev</a>  <a href="java.awt.Menu.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

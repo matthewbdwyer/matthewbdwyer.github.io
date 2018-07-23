@@ -1,0 +1,341 @@
+<html><head><title>Class CardLayout</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Canvas.html">Prev</a>  <a href="java.awt.Checkbox.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="827"><h1>	&#167;1.4 Class CardLayout</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>CardLayout
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+    implements java.awt.<strong>LayoutManager</strong> &#32;<a href="java.awt.LayoutManager.html#51689">(II-&#167;1.43)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>CardLayout</strong>();	<a href="java.awt.CardLayout.html#937">&#167;1.4.1</a>
+    public <strong>CardLayout</strong>(int &#32;hgap, int &#32;vgap);	<a href="java.awt.CardLayout.html#949">&#167;1.4.2</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addLayoutComponent</strong>(String &#32;name, Component &#32;comp); <a href="java.awt.CardLayout.html#975">&#167;1.4.3</a>
+    public void <strong>first</strong>(Container &#32;target);	<a href="java.awt.CardLayout.html#999">&#167;1.4.4</a>
+    public void <strong>last</strong>(Container &#32;target);	<a href="java.awt.CardLayout.html#1019">&#167;1.4.5</a>
+    public void <strong>layoutContainer</strong>(Container &#32;target);	<a href="java.awt.CardLayout.html#1039">&#167;1.4.6</a>
+    public Dimension <strong>minimumLayoutSize</strong>(Container &#32;target);	<a href="java.awt.CardLayout.html#1059">&#167;1.4.7</a>
+    public void <strong>next</strong>(Container &#32;target);	<a href="java.awt.CardLayout.html#1091">&#167;1.4.8</a>
+    public Dimension <strong>preferredLayoutSize</strong>(Container &#32;target);	<a href="java.awt.CardLayout.html#1111">&#167;1.4.9</a>
+    public void <strong>previous</strong>(Container &#32;target);	<a href="java.awt.CardLayout.html#1143">&#167;1.4.10</a>
+    public void <strong>removeLayoutComponent</strong>(Component &#32;comp);	<a href="java.awt.CardLayout.html#1163">&#167;1.4.11</a>
+    public void <strong>show</strong>(Container &#32;target, String &#32;name);	<a href="java.awt.CardLayout.html#1183">&#167;1.4.12</a>
+    public String <strong>toString</strong>();	<a href="java.awt.CardLayout.html#1207">&#167;1.4.13</a>
+}
+</pre><a name="925">A layout manager for a container that contains several "cards". Only one card is visible at 
+a time, allowing the application to flip through the cards.
+</a><p>
+<hr>
+<a name="929"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="CardLayout">
+<a name="937"><h3>CardLayout
+</h3></a>
+<a name="939"><code>public CardLayout()
+</code></a>
+<dl>
+<dd><a name="941">Creates a new card layout.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="CardLayout">
+<a name="949"><h3>CardLayout
+</h3></a>
+<a name="951"><code>public CardLayout(int &#32;hgap, int &#32;vgap)
+</code></a>
+<dl>
+<dd><a name="953">Creates a new card layout with the specified horizontal and vertical gaps. 
+The horizontal gaps are placed and the left and right edge. The vertical 
+gaps are placed at the top and bottom edge. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="955"><b>Parameters:
+</b></a><dd><a name="957"><code>hgap
+- </code></a><a name="959">the horizontal gap
+</a>
+<dd><a name="961"><code>vgap
+- </code></a><a name="963">the vertical gap
+</a>
+</dl></dl>
+<hr>
+<a name="965"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addLayoutComponent">
+<a name="975"><h3>addLayoutComponent
+</h3></a>
+<a name="977"><code>public void addLayoutComponent(String &#32;name, Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="33794">Adds the specified component to the card layout using the indicated name 
+tag. The show method <a href="java.awt.CardLayout.html#1183">(II-&#167;1.4.12)</a> can be used to display the component 
+with the specified tag.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33795"><b>Parameters:
+</b></a><dd><a name="33796"><code>name
+- </code></a><a name="33797">a tag understood by the layout manager 
+</a>
+<dd><a name="33798"><code>comp
+- </code></a><a name="33799">the component to be added
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="first">
+<a name="999"><h3>first
+</h3></a>
+<a name="1001"><code>public void first(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="1003">Flips to the first card of the container.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1005"><b>Parameters:
+</b></a><dd><a name="1007"><code>target
+- </code></a><a name="1009">the container in which to do the layout
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="last">
+<a name="1019"><h3>last
+</h3></a>
+<a name="1021"><code>public void last(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="1023">Flips to the last card of the container.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1025"><b>Parameters:
+</b></a><dd><a name="1027"><code>target
+- </code></a><a name="1029">the container in which to do the layout
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="layoutContainer">
+<a name="1039"><h3>layoutContainer
+</h3></a>
+<a name="1041"><code>public void layoutContainer(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="53188">Lays out the container argument using this card layout.
+<pre>
+</pre></a>
+
+<dd><a name="33690">Each component in the target container is reshaped to be the size of the 
+container minus space for surrounding insets, horizontal gaps, and vertical 
+gaps.
+<pre>
+</pre></a>
+
+<dd><a name="40563">Most applications do not call this method directly. This method is called 
+when a container calls its layout method <a href="java.awt.Container.html#6483">(II-&#167;1.11.11)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33691"><b>Parameters:
+</b></a><dd><a name="33679"><code>target
+- </code></a><a name="33680">the container in which to do the layout
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="minimumLayoutSize">
+<a name="1059"><h3>minimumLayoutSize
+</h3></a>
+<a name="1061"><code>public Dimension minimumLayoutSize(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="53240">Determines the minimum size of the container argument using this card 
+layout.
+<pre>
+</pre></a>
+
+<dd><a name="52547">The minimum width of a card layout is the largest minimum width of the 
+cards in the container, plus twice the horizontal gap, plus the left and right 
+insets.
+<pre>
+</pre></a>
+
+<dd><a name="33933">The minimum height of a card layout is the largest minimum height of the 
+cards in the container, plus twice the vertical gap, plus the top and bottom 
+insets.
+<pre>
+</pre></a>
+
+<dd><a name="40618">Most applications do not call this method directly. This method is called 
+when a container calls its layout method <a href="java.awt.Container.html#6483">(II-&#167;1.11.11)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33932"><b>Parameters:
+</b></a><dd><a name="33543"><code>target
+- </code></a><a name="33544">the container in which to do the layout
+</a>
+
+<dt><a name="33545"><b>Returns:
+</b></a><dd><a name="33546">the minimum dimensions needed to lay out the subcomponents of the 
+specified container.
+</a>
+
+<dt><a name="1075"><b>See Also:
+</b></a><dd><a name="1081">preferredLayoutSize &#32;<a href="java.awt.CardLayout.html#1111">(II-&#167;1.4.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="next">
+<a name="1091"><h3>next
+</h3></a>
+<a name="1093"><code>public void next(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="1095">Flips to the next card of the specified container. If the currently visible 
+card is the last one, this method flips to the first card in the layout.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1097"><b>Parameters:
+</b></a><dd><a name="1099"><code>target
+- </code></a><a name="1101">the container in which to do the layout.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="preferredLayoutSize">
+<a name="1111"><h3>preferredLayoutSize
+</h3></a>
+<a name="1113"><code>public Dimension preferredLayoutSize(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="53244">Determines the preferred size of the container argument using this card 
+layout.
+<pre>
+</pre></a>
+
+<dd><a name="52548">The preferred width of a card layout is the largest preferred width of the 
+cards in the container, plus twice the horizontal gap, plus the left and right 
+insets.
+<pre>
+</pre></a>
+
+<dd><a name="33938">The preferred height of a card layout is the largest preferred height of the 
+cards in the container, plus twice the vertical gap, plus the top and bottom 
+insets.
+<pre>
+</pre></a>
+
+<dd><a name="40720">Most applications do not call this method directly. This method is called 
+when a container calls its preferredSize method <a href="java.awt.Container.html#6681">(II-&#167;1.11.17)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33598"><b>Parameters:
+</b></a><dd><a name="33599"><code>target
+- </code></a><a name="33600">the container in which to do the layout
+</a>
+
+<dt><a name="33601"><b>Returns:
+</b></a><dd><a name="33602">the preferred dimensions to lay out the subcomponents of the specified container.
+</a>
+
+<dt><a name="1127"><b>See Also:
+</b></a><dd><a name="1133">minimumLayoutSize &#32;<a href="java.awt.CardLayout.html#1059">(II-&#167;1.4.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="previous">
+<a name="1143"><h3>previous
+</h3></a>
+<a name="1145"><code>public void previous(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="33948">Flips to the previous card of the specified container. If the currently visible 
+card is the first one, this method flips to the last card in the layout.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1149"><b>Parameters:
+</b></a><dd><a name="53784"><code>target
+- </code></a><a name="53785">the container in which to do the layout
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="removeLayoutComponent">
+<a name="1163"><h3>removeLayoutComponent
+</h3></a>
+<a name="1165"><code>public void removeLayoutComponent(Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="1167">Removes the specified component from the layout.
+<pre>
+</pre></a>
+
+<dd><a name="53798">This method is called when a container calls its remove <a href="java.awt.Container.html#6747">(II-&#167;1.11.19)</a> or 
+removeAll <a href="java.awt.Container.html#6775">(II-&#167;1.11.20)</a> methods. Most applications do not call this method 
+directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1169"><b>Parameters:
+</b></a><dd><a name="1171"><code>comp
+- </code></a><a name="1173">the component to be removed
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="show">
+<a name="1183"><h3>show
+</h3></a>
+<a name="1185"><code>public void show(Container &#32;target, String &#32;name)
+</code></a>
+<dl>
+<dd><a name="1187">Flips to the component that was added to this layout &#32;<a href="java.awt.CardLayout.html#975">(II-&#167;1.4.3)</a> with the 
+specified name tag. If no such component exists, then nothing happens.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1189"><b>Parameters:
+</b></a><dd><a name="53787"><code>target
+- </code></a><a name="53788">the container in which to do the layout
+</a>
+<dd><a name="1195"><code>name
+- </code></a><a name="1197">a tag
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="1207"><h3>toString
+</h3></a>
+<a name="1209"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="27308"><b>Returns:
+</b></a><dd><a name="27309">a String representation of this card layout.
+</a>
+
+<dt><a name="1217"><b>Overrides:
+</b></a><dd><a name="31652">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Canvas.html">Prev</a>  <a href="java.awt.Checkbox.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

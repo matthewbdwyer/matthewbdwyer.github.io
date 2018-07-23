@@ -1,0 +1,188 @@
+<html><head><title>Class Point</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Panel.html">Prev</a>  <a href="java.awt.Polygon.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="18889"><h1>	&#167;1.34 Class Point</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Point
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public int <strong>x</strong>;	<a href="java.awt.Point.html#18961">&#167;1.34.1</a>
+    public int <strong>y</strong>;	<a href="java.awt.Point.html#18973">&#167;1.34.2</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Point</strong>(int &#32;x, int &#32;y);	<a href="java.awt.Point.html#18989">&#167;1.34.3</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.awt.Point.html#19015">&#167;1.34.4</a>
+    public int <strong>hashCode</strong>();	<a href="java.awt.Point.html#19047">&#167;1.34.5</a>
+    public void <strong>move</strong>(int &#32;x, int &#32;y);	<a href="java.awt.Point.html#19073">&#167;1.34.6</a>
+    public String <strong>toString</strong>();	<a href="java.awt.Point.html#19097">&#167;1.34.7</a>
+    public void <strong>translate</strong>(int &#32;dx, int &#32;dy);	<a href="java.awt.Point.html#19123">&#167;1.34.8</a>
+}
+</pre><a name="18951">A point represents an <img src="javaaj1.gif"> coordinate.
+</a><p>
+<hr>
+<a name="18953"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="x">
+<a name="18961"><h3>x
+</h3></a>
+<a name="18963"><code>public int x
+</code></a>
+<dl>
+<dd><a name="18965">The x coordinate.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="y">
+<a name="18973"><h3>y
+</h3></a>
+<a name="18975"><code>public int y
+</code></a>
+<dl>
+<dd><a name="18977">The y coordinate.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="18981"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Point">
+<a name="18989"><h3>Point
+</h3></a>
+<a name="18991"><code>public Point(int &#32;x, int &#32;y)
+</code></a>
+<dl>
+<dd><a name="18993">Constructs and initializes a point to the specified <img src="javaaj2.gif"> coordinate.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="18995"><b>Parameters:
+</b></a><dd><a name="18997"><code>x
+- </code></a><a name="18999">the x coordinate
+</a>
+<dd><a name="19001"><code>y
+- </code></a><a name="19003">the y coordinate
+</a>
+</dl></dl>
+<hr>
+<a name="19005"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="equals">
+<a name="19015"><h3>equals
+</h3></a>
+<a name="19017"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="31028">The result is true if and only if the argument is not null and is a Point object 
+that has the same x and y coordinates as this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31029"><b>Parameters:
+</b></a><dd><a name="31030"><code>obj
+- </code></a><a name="31031">the object to compare with.
+</a>
+
+<dt><a name="31032"><b>Returns:
+</b></a><dd><a name="31033">true if the objects are the same; false otherwise.
+</a>
+
+<dt><a name="19031"><b>Overrides:
+</b></a><dd><a name="19037">equals in class Object &#32;<a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="19047"><h3>hashCode
+</h3></a>
+<a name="19049"><code>public int hashCode()
+</code></a>
+<dl><dl>
+<dt><a name="31276"><b>Returns:
+</b></a><dd><a name="31277">a hash code value for this point. 
+</a>
+
+<dt><a name="19057"><b>Overrides:
+</b></a><dd><a name="19063">hashCode in class Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="move">
+<a name="19073"><h3>move
+</h3></a>
+<a name="19075"><code>public void move(int &#32;x, int &#32;y)
+</code></a>
+<dl>
+<dd><a name="19077">Modifies this point so that it now represents the <img src="javaai3.gif"> coordinates indicated.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="19079"><b>Parameters:
+</b></a><dd><a name="19081"><code>x
+- </code></a><a name="19083">the new x coordinate
+</a>
+<dd><a name="19085"><code>y
+- </code></a><a name="19087">the new y coordinate
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="19097"><h3>toString
+</h3></a>
+<a name="19099"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="27286"><b>Returns:
+</b></a><dd><a name="27287">a string representation of this point.
+</a>
+
+<dt><a name="19107"><b>Overrides:
+</b></a><dd><a name="19113">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="translate">
+<a name="19123"><h3>translate
+</h3></a>
+<a name="19125"><code>public void translate(int &#32;dx, int &#32;dy)
+</code></a>
+<dl>
+<dd><a name="19127">Translates this point by dx to the right and dy downward so that it now represents the point <img src="javaah4.gif">, where it had been representing the 
+point <img src="javaah5.gif">.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="19129"><b>Parameters:
+</b></a><dd><a name="19131"><code>dx
+- </code></a><a name="19133">the amount to move this point to the right
+</a>
+<dd><a name="19135"><code>dy
+- </code></a><a name="19137">the amount to move this point downward
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Panel.html">Prev</a>  <a href="java.awt.Polygon.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

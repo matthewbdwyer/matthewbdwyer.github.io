@@ -1,0 +1,526 @@
+<html><head><title>Class Float</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Double.html">Prev</a>  <a href="java.lang.Integer.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="2832"><h1>	&#167;1.7 Class Float</h1></a>
+<pre>public &#32;final &#32;class &#32;java.lang.<strong>Float
+</strong>    extends &#32;java.lang.<strong>Number</strong> &#32;<a href="java.lang.Number.html#5764">(I-&#167;1.11)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public final static float <strong>MAX_VALUE</strong>;	<a href="java.lang.Float.html#45663">&#167;1.7.1</a>
+    public final static float <strong>MIN_VALUE</strong>;	<a href="java.lang.Float.html#3006">&#167;1.7.2</a>
+    public final static float <strong>NaN</strong>;	<a href="java.lang.Float.html#3018">&#167;1.7.3</a>
+    public final static float <strong>NEGATIVE_INFINITY</strong>;	<a href="java.lang.Float.html#3030">&#167;1.7.4</a>
+    public final static float <strong>POSITIVE_INFINITY</strong>;	<a href="java.lang.Float.html#3042">&#167;1.7.5</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Float</strong>(double &#32;value);	<a href="java.lang.Float.html#3058">&#167;1.7.6</a>
+    public <strong>Float</strong>(float &#32;value);	<a href="java.lang.Float.html#3076">&#167;1.7.7</a>
+    public <strong>Float</strong>(String &#32;s);	<a href="java.lang.Float.html#3094">&#167;1.7.8</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public double <strong>doubleValue</strong>();	<a href="java.lang.Float.html#3128">&#167;1.7.9</a>
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.lang.Float.html#3150">&#167;1.7.10</a>
+    public static int <strong>floatToIntBits</strong>(float &#32;value);	<a href="java.lang.Float.html#3182">&#167;1.7.11</a>
+    public float <strong>floatValue</strong>();	<a href="java.lang.Float.html#3196">&#167;1.7.12</a>
+    public int <strong>hashCode</strong>();	<a href="java.lang.Float.html#3218">&#167;1.7.13</a>
+    public static float <strong>intBitsToFloat</strong>(int &#32;bits);	<a href="java.lang.Float.html#3240">&#167;1.7.14</a>
+ &#32; &#32;public int <strong>intValue</strong>();	<a href="java.lang.Float.html#28060">&#167;1.7.15</a>
+    public boolean <strong>isInfinite</strong>();	<a href="java.lang.Float.html#3276">&#167;1.7.16</a>
+    public static boolean <strong>isInfinite</strong>(float &#32;v);	<a href="java.lang.Float.html#3288">&#167;1.7.17</a>
+    public boolean <strong>isNaN</strong>();	<a href="java.lang.Float.html#3308">&#167;1.7.18</a>
+    public static boolean <strong>isNaN</strong>(float &#32;v);	<a href="java.lang.Float.html#3320">&#167;1.7.19</a>
+    public long <strong>longValue</strong>();	<a href="java.lang.Float.html#3340">&#167;1.7.20</a>
+    public String <strong>toString</strong>();	<a href="java.lang.Float.html#3362">&#167;1.7.21</a>
+    public static String <strong>toString</strong>(float &#32;f);	<a href="java.lang.Float.html#3382">&#167;1.7.22</a>
+    public static Float <strong>valueOf</strong>(String &#32;s);	<a href="java.lang.Float.html#3402">&#167;1.7.23</a>
+}
+</pre><a name="36850">This class wraps a value of primitive type float in an object. An object of type Float contains 
+a single field whose type is float.
+</a><p><a name="36851">In addition, this class provides a number of methods for converting a float to a String and a 
+String to a float, as well as other constants and methods useful when dealing with a float.
+</a><p>
+<hr>
+<a name="45659"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="MAX_VALUE">
+<a name="45663"><h3>MAX_VALUE
+</h3></a>
+<a name="45664"><code>public final static float MAX_VALUE
+</code></a>
+<a name="27664"><code> &#32; &#32; &#32; &#32;= 3.40282346638528860e+38.
+</code></a>
+<dl>
+<dd><a name="28991">The largest positive finite value of type float. 
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MIN_VALUE">
+<a name="3006"><h3>MIN_VALUE
+</h3></a>
+<a name="35937"><code>public final static float MIN_VALUE 
+</code></a>
+<a name="35942"><code> &#32; &#32; &#32; &#32;= 1.40129846432481707e-45
+</code></a>
+<dl>
+<dd><a name="35939">The smallest positive value of type float. 
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="NaN">
+<a name="3018"><h3>NaN
+</h3></a>
+<a name="3020"><code>public final static float NaN = 0.0f/0.0f
+</code></a>
+<dl>
+<dd><a name="29023">The Not-a-Number value of type float. 
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="NEGATIVE_INFINITY">
+<a name="3030"><h3>NEGATIVE_INFINITY
+</h3></a>
+<a name="3032"><code>public final static float NEGATIVE_INFINITY
+</code></a>
+<a name="35945"><code> &#32; &#32; &#32; &#32;= -1.0f/0.0f
+</code></a>
+<dl>
+<dd><a name="29003">The negative infinity of type float. 
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="POSITIVE_INFINITY">
+<a name="3042"><h3>POSITIVE_INFINITY
+</h3></a>
+<a name="3044"><code>public final static float POSITIVE_INFINITY 
+</code></a>
+<a name="35949"><code> &#32; &#32; &#32; &#32;= 1.0f/0.0f
+</code></a>
+<dl>
+<dd><a name="27703">The positive infinity of type float. 
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="3050"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Float">
+<a name="3058"><h3>Float
+</h3></a>
+<a name="3060"><code>public Float(double &#32;value)
+</code></a>
+<dl>
+<dd><a name="45642">Constructs a newly allocated Float object that represents the argument converted to type float. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3064"><b>Parameters:
+</b></a><dd><a name="3066"><code>value
+- </code></a><a name="3068">the value to be represented by the Float
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Float">
+<a name="3076"><h3>Float
+</h3></a>
+<a name="3078"><code>public Float(float &#32;value)
+</code></a>
+<dl><dl><dd><a name="38679">
+</a>
+</dl></dl><dl>
+<dd><a name="45644">Constructs a newly allocated Float object that represents the primitive 
+float argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3082"><b>Parameters:
+</b></a><dd><a name="3084"><code>value
+- </code></a><a name="3086">the value to be represented by the Float
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Float">
+<a name="3094"><h3>Float
+</h3></a>
+<a name="3096"><code>public Float(String &#32;s)
+</code></a>
+<a name="3098"><code>throws NumberFormatException
+</code></a>
+<dl>
+<dd><a name="38662">Constructs a newly allocated Float object that represents the floating-point 
+value of type float represented by the string. The string is converted to a 
+float value as if by the valueOf method <a href="java.lang.Float.html#3402">(I-&#167;1.7.23)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="38666"><b>Parameters:
+</b></a><dd><a name="38667"><code>s
+- </code></a><a name="38668">a string to be converted to a Float
+</a>
+
+<dt><a name="38669"><b>Throws
+</b></a><dd><a name="38673">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="38674">If the string does not contain a parsable number.
+</a>
+</dl></dl>
+<hr>
+<a name="3118"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="doubleValue">
+<a name="3128"><h3>doubleValue
+</h3></a>
+<a name="3130"><code>public double doubleValue()
+</code></a>
+<dl>
+<dd><a name="29081">The float value represented by this object is converted to type double 
+and the result of the conversion is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3134"><b>Overrides:
+</b></a><dd><a name="3140">doubleValue in class Number &#32;<a href="java.lang.Number.html#5854">(I-&#167;1.11.1)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="equals">
+<a name="3150"><h3>equals
+</h3></a>
+<a name="3152"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="38727">The result is true if and only if the argument is not null and is a Float object 
+that represents a float that has the identical bit pattern to the bit pattern of 
+the float represented by this object.
+<pre>
+</pre></a>
+
+<dd><a name="43257">Note that in most cases, for two instances of class Float, f1 and f2, the value 
+of f1.equals(f2) is true if and only if <br>
+ &#32; &#32; &#32;f1.floatValue() == f2.floatValue()<br>
+also has the value true. However, there are two exceptions:
+<pre>
+</pre></a>
+<dl><ul><li><a name="43258">If f1 and f2 both represent Float.NaN,then the equals method returns true, even 
+though Float.NaN==Float.NaN has the value false. 
+</a></ul><ul><li><a name="44742">If f1 represents +0.0f while f2 represents -0.0f, or vice versa, the equal test has 
+the value false, even though 0.0f==-0.0f has the value true.
+</a></ul>
+<dt><a name="3162"><b>Returns:
+</b></a><dd><a name="3164">true if the objects are the same; false otherwise.
+</a>
+
+<dt><a name="27805"><b>See Also:
+</b></a><dd><a name="27827">floatToIntBits <a href="java.lang.Float.html#3182">(I-&#167;1.7.11)</a>.
+</a>
+
+<dt><a name="27800"><b>Overrides:
+</b></a><dd><a name="3172">equals in class Object &#32;<a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="floatToIntBits">
+<a name="3182"><h3>floatToIntBits
+</h3></a>
+<a name="3184"><code>public static int floatToIntBits(float &#32;value)
+</code></a>
+<dl>
+<dd><a name="38736">The result is a representation of the floating-point argument according to 
+the IEEE 754 floating-point "single precision" bit layout.
+<pre>
+</pre></a>
+
+<dd><a name="38737">Bit 31 represents the sign of the floating-point number. Bits 30-23 represent the exponent. Bits 22-0 represent the significand (sometimes called 
+the mantissa) of the floating-point number.
+<pre>
+</pre></a>
+
+<dd><a name="28017">If the argument is positive infinity, the result is 0x7f800000.
+<pre>
+</pre></a>
+
+<dd><a name="28018">If the argument is negative infinity, the result is 0xff800000.
+<pre>
+</pre></a>
+
+<dd><a name="28019">If the argument is NaN, the result is 0x7fc00000.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31475"><b>Parameters:
+</b></a><dd><a name="31476"><code>value
+- </code></a><a name="31487">a floating point number
+</a>
+
+<dt><a name="31478"><b>Returns:
+</b></a><dd><a name="38792">the bits that represent the floating point number.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="floatValue">
+<a name="3196"><h3>floatValue
+</h3></a>
+<a name="3198"><code>public float floatValue()
+</code></a>
+<dl><dl>
+<dt><a name="31493"><b>Returns:
+</b></a><dd><a name="29089">The float value represented by this object is returned.
+</a>
+
+<dt><a name="3202"><b>Overrides:
+</b></a><dd><a name="3208">floatValue in class Number &#32;<a href="java.lang.Number.html#5868">(I-&#167;1.11.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="3218"><h3>hashCode
+</h3></a>
+<a name="3220"><code>public int hashCode()
+</code></a>
+<dl><dl>
+<dt><a name="31152"><b>Returns:
+</b></a><dd><a name="31153">a hash code value for this object. 
+</a>
+
+<dt><a name="3224"><b>Overrides:
+</b></a><dd><a name="3230">hashCode in class Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="intBitsToFloat">
+<a name="3240"><h3>intBitsToFloat
+</h3></a>
+<a name="28041"><code>public static float intBitsToFloat(int &#32;bits)
+</code></a>
+<dl>
+<dd><a name="38805">The argument is considered to be a representation of a floating-point value 
+according to the IEEE 754 floating-point "single precision" bit layout. 
+That floating-point value is returned as the result.
+<pre>
+</pre></a>
+
+<dd><a name="38806">If the argument is 0x7f800000, the result is positive infinity.
+<pre>
+</pre></a>
+
+<dd><a name="38807">If the argument is 0xff800000, the result is negative infinity.
+<pre>
+</pre></a>
+
+<dd><a name="38808">If the argument is any value in the range 0x7f800001 through 0x7f8fffff or in 
+the range 0xff800001 through 0xff8fffff, the result is NaN. All IEEE 754 NaN 
+values are, in effect, lumped together by the Java language into a single 
+value.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31497"><b>Parameters:
+</b></a><dd><a name="31498"><code>bits
+- </code></a><a name="31499">an integer
+</a>
+
+<dt><a name="31495"><b>Returns:
+</b></a><dd><a name="38814">the single format floating-point value with the same bit pattern.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="intValue">
+<a name="28060"><h3>intValue
+</h3></a>
+<a name="28061"><code>public int intValue()
+</code></a>
+<dl><dl>
+<dt><a name="31511"><b>Returns:
+</b></a><dd><a name="31514">The float value represented by this object is converted to type int 
+and the result of the conversion is returned.
+</a>
+
+<dt><a name="3260"><b>Overrides:
+</b></a><dd><a name="3266">intValue in class Number &#32;<a href="java.lang.Number.html#5882">(I-&#167;1.11.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isInfinite">
+<a name="3276"><h3>isInfinite
+</h3></a>
+<a name="3278"><code>public boolean isInfinite()
+</code></a>
+<dl><dl>
+<dt><a name="31516"><b>Returns:
+</b></a><dd><a name="31519">true if the value value represented by this object is positive 
+infinity &#32;<a href="java.lang.Float.html#3042">(I-&#167;1.7.5)</a> or negative infinity<a href="java.lang.Float.html#3030">(I-&#167;1.7.4)</a>; false otherwise
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isInfinite">
+<a name="3288"><h3>isInfinite
+</h3></a>
+<a name="3290"><code>public static boolean isInfinite(float &#32;v)
+</code></a>
+<dl><dl>
+<dt><a name="3294"><b>Parameters:
+</b></a><dd><a name="3296"><code>v
+- </code></a><a name="3298">the value to be tested
+</a>
+
+<dt><a name="31534"><b>Returns:
+</b></a><dd><a name="31535">true if the argument is positive infinity &#32;<a href="java.lang.Float.html#3042">(I-&#167;1.7.5)</a> or negative infinity<a href="java.lang.Float.html#3030">(I-&#167;1.7.4)</a>; false otherwise
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isNaN">
+<a name="3308"><h3>isNaN
+</h3></a>
+<a name="3310"><code>public boolean isNaN()
+</code></a>
+<dl><dl>
+<dt><a name="31550"><b>Returns:
+</b></a><dd><a name="31551">true if the value value represented by this object is NaN &#32;<a href="java.lang.Float.html#3018">(I-&#167;1.7.3)</a>; false 
+otherwise
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isNaN">
+<a name="3320"><h3>isNaN
+</h3></a>
+<a name="3322"><code>public static boolean isNaN(float &#32;v)
+</code></a>
+<dl><dl>
+<dt><a name="31568"><b>Returns:
+</b></a><dd><a name="31570">true if the argument is NaN &#32;<a href="java.lang.Float.html#3018">(I-&#167;1.7.3)</a>; false otherwise
+</a>
+
+<dt><a name="3326"><b>Parameters:
+</b></a><dd><a name="3328"><code>v
+- </code></a><a name="3330">the value to be tested
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="longValue">
+<a name="3340"><h3>longValue
+</h3></a>
+<a name="3342"><code>public long longValue()
+</code></a>
+<dl><dl>
+<dt><a name="31577"><b>Returns:
+</b></a><dd><a name="31580">The float value represented by this object is converted to type 
+long and the result of the conversion is returned.
+</a>
+
+<dt><a name="3346"><b>Overrides:
+</b></a><dd><a name="3352">longValue in class Number &#32;<a href="java.lang.Number.html#5896">(I-&#167;1.11.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="3362"><h3>toString
+</h3></a>
+<a name="3364"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="29047">The primitive float value represented by this object is converted to a String 
+exactly as if by the method toString of one argument <a href="java.lang.Float.html#3382">(I-&#167;1.7.22)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31384"><b>Returns:
+</b></a><dd><a name="31385">a String representation of this object.
+</a>
+
+<dt><a name="28006"><b>Overrides:
+</b></a><dd><a name="3374">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="3382"><h3>toString
+</h3></a>
+<a name="3384"><code>public static String toString(float &#32;f)
+</code></a>
+<dl>
+<dd><a name="43277">Creates a string representation of the float argument.
+<pre>
+</pre></a>
+
+<dd><a name="38821">The values NaN, NEGATIVE_INFINITY, POSITIVE_INFINITY, -0.0, and +0.0 
+are represented by the strings "NaN", "-Infinity", "Infinity", "-0.0" and "0.0", 
+respectively.
+<pre>
+</pre></a>
+
+<dd><a name="38881">If d is in the range <img src="javaa12.gif">, then it is converted to a String in the 
+style [-]ddd.ddd. Otherwise, it is converted to a string in the style 
+[-]m.ddddE&#177;&#177;&#177;&#177;xx.
+<pre>
+</pre></a>
+
+<dd><a name="38828">There is always a minimum of one digit after the decimal point. The number of digits is the minimum needed to uniquely distinguish the argument 
+value from adjacent values of type float.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="38829"><b>Parameters:
+</b></a><dd><a name="38830"><code>d
+- </code></a><a name="38831">the float to be converted
+</a>
+
+<dt><a name="38832"><b>Returns:
+</b></a><dd><a name="38833">a string representation of the argument.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="valueOf">
+<a name="3402"><h3>valueOf
+</h3></a>
+<a name="3404"><code>public static Float valueOf(String &#32;s)
+</code></a>
+<a name="3406"><code>throws NumberFormatException
+</code></a>
+<dl>
+<dd><a name="43281">Parses a string into a Float.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="38906"><b>Parameters:
+</b></a><dd><a name="38907"><code>s
+- </code></a><a name="38908">the string to be parsed
+</a>
+
+<dt><a name="38909"><b>Returns:
+</b></a><dd><a name="38910">a newly constructed Float initialized to the value represented by the 
+String argument.
+</a>
+
+<dt><a name="38911"><b>Throws
+</b></a><dd><a name="38915">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="38916">If the string does not contain a parsable number.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Double.html">Prev</a>  <a href="java.lang.Integer.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

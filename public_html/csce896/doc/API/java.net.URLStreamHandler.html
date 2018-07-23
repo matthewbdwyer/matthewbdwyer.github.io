@@ -1,0 +1,183 @@
+<html><head><title>Class URLStreamHandler</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.net.html">This Package</a>  <a href="java.net.URLEncoder.html">Prev</a>  <a href="java.net.ContentHandlerFactory.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="3785"><h1>	&#167;4.11 Class URLStreamHandler</h1></a>
+<pre>public &#32;abstract &#32;class &#32;java.net.<strong>URLStreamHandler
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>URLStreamHandler</strong>();	<a href="java.net.URLStreamHandler.html#3841">&#167;4.11.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    protected abstract URLConnection <strong>openConnection</strong>(URL &#32;u);	<a href="java.net.URLStreamHandler.html#3855">&#167;4.11.2</a>
+    protected void <strong>parseURL</strong>(URL &#32;u, String &#32;spec,	<a href="java.net.URLStreamHandler.html#28367">&#167;4.11.3</a>
+     &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;start, int &#32;limit);
+    protected void <strong>setURL</strong>(URL &#32;u, String &#32;protocol,	<a href="java.net.URLStreamHandler.html#3909">&#167;4.11.4</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;String &#32;host, int &#32;port, String &#32;file, String &#32;ref);
+    protected String <strong>toExternalForm</strong>(URL &#32;u);	<a href="java.net.URLStreamHandler.html#3931">&#167;4.11.5</a>
+}
+</pre><a name="33531">The abstract class URLStreamHandler is the common superclass for all stream protocol handlers. A stream protocol handler knows how to make a connection for a particular protocol 
+type, such as http, ftp, or gopher,
+</a><p><a name="33532">In most cases, an instance of a URLStreamHandler subclass is not created directly by an 
+application. Rather the first time a protocol name is encountered when constructing a URL, 
+the appropropriate stream protocol handler is automatically loaded. See <a href="java.net.URL.html#2233">I</a>-<a href="java.net.URL.html#2233">&#167;4.8.2</a> for complete details.
+</a><p>
+<hr>
+<a name="3833"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="URLStreamHandler">
+<a name="3841"><h3>URLStreamHandler
+</h3></a>
+<a name="3843"><code>public URLStreamHandler()
+</code></a>
+<dl>
+<dd><a name="3845">	The default constructor.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="28345"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="openConnection">
+<a name="3855"><h3>openConnection
+</h3></a>
+<a name="3857"><code>protected abstract URLConnection openConnection(URL &#32;u)
+</code></a>
+<a name="3859"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="3861">Opens a connection to the object referenced by the URL argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3863"><b>Parameters:
+</b></a><dd><a name="28354"><code>u
+- </code></a><a name="28355">the URL that this connects to
+</a>
+
+<dt><a name="28369"><b>Returns:
+</b></a><dd><a name="28376">a URLConnection object for the URL.
+</a>
+
+<dt><a name="33405"><b>Throws
+</b></a><dd><a name="33409">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="33410">If an IO error occurs while opening the conection.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="parseURL">
+<a name="28367"><h3>parseURL
+</h3></a>
+<a name="28368"><code>protected void<br>
+parseURL(URL &#32;u, String &#32;spec, int &#32;start, int &#32;limit)
+</code></a>
+<dl>
+<dd><a name="3881">Parses the string representation of a URL into a URL object.
+<pre>
+</pre></a>
+
+<dd><a name="28412">If there is any inherited context then it has already been copied into the 
+URL argument 
+<pre>
+</pre></a>
+
+<dd><a name="28413">This method parses the string representation as if it were an http specification. Most URL protocol families have a similar parsing. A stream protocol handler for a protocol that has a different syntax must override this 
+routine.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3883"><b>Parameters:
+</b></a><dd><a name="3885"><code>u
+- </code></a><a name="3887">the URL to receive the result of parsing the spec
+</a>
+<dd><a name="3889"><code>spec
+- </code></a><a name="3891">the String representing the URL which must be parsed.
+</a>
+<dd><a name="3893"><code>start
+- </code></a><a name="3895">the character index at which to begin parsing. This is just past the 
+':' (if there is one) that specifies the determination of the protocl 
+name.
+</a>
+<dd><a name="3897"><code>limit
+- </code></a><a name="3899">the character position to stop parsing at. This is the end of the 
+string or the position of the "#" character, if present. All information 
+after the sharp sign indicates an anchor. 
+</a>
+<a name="32929">
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setURL">
+<a name="3909"><h3>setURL
+</h3></a>
+<a name="3911"><code>protected void setURL(URL &#32;u, String &#32;protocol, String &#32;host,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;port, String &#32;file, String &#32;ref)
+</code></a>
+<dl>
+<dd><a name="3913">Sets the fields of the URL argument to the indicated values.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="28429"><b>Parameters:
+</b></a><dd><a name="28430"><code>u
+- </code></a><a name="28431">the URL to modify
+</a>
+<dd><a name="28432"><code>protocol
+- </code></a><a name="28433">the protocol name
+</a>
+<dd><a name="28473"><code>host
+- </code></a><a name="28474">the remote host value for the URL
+</a>
+<dd><a name="28475"><code>port
+- </code></a><a name="28476">the port on the remote machine
+</a>
+<dd><a name="28478"><code>file
+- </code></a><a name="28479">the file
+</a>
+<dd><a name="28480"><code>ref
+- </code></a><a name="28481">the reference
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toExternalForm">
+<a name="3931"><h3>toExternalForm
+</h3></a>
+<a name="3933"><code>protected String toExternalForm(URL &#32;u)
+</code></a>
+<dl>
+<dd><a name="3935">Converts a URL of a specific protocol to a String.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3937"><b>Parameters:
+</b></a><dd><a name="3939"><code>u
+- </code></a><a name="3941">the URL
+</a>
+
+<dt><a name="3943"><b>Returns:
+</b></a><dd><a name="31644">a string representation of the URL argument.
+</a>
+</dl></dl><!--"RightPage" is inserted just before the classes begin.  Don't convert its text.-->
+<!--Forces heading to right page-->
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.net.html">This Package</a>  <a href="java.net.URLEncoder.html">Prev</a>  <a href="java.net.ContentHandlerFactory.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

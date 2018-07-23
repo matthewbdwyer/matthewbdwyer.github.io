@@ -1,0 +1,284 @@
+<html><head><title>Class Checkbox</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.CardLayout.html">Prev</a>  <a href="java.awt.CheckboxGroup.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="31659"><h1>	&#167;1.5 Class Checkbox</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Checkbox
+</strong>    extends &#32;java.awt.<strong>Component</strong> &#32;<a href="java.awt.Component.html#3219">(II-&#167;1.10)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Checkbox</strong>();	<a href="java.awt.Checkbox.html#1329">&#167;1.5.1</a>
+    public <strong>Checkbox</strong>(String &#32;label);	<a href="java.awt.Checkbox.html#1341">&#167;1.5.2</a>
+    public <strong>Checkbox</strong>(String &#32;label, CheckboxGroup &#32;group,  <a href="java.awt.Checkbox.html#1359">&#167;1.5.3</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;boolean &#32;state);
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addNotify</strong>();	<a href="java.awt.Checkbox.html#1389">&#167;1.5.4</a>
+    public CheckboxGroup <strong>getCheckboxGroup</strong>();	<a href="java.awt.Checkbox.html#1411">&#167;1.5.5</a>
+    public String <strong>getLabel</strong>();	<a href="java.awt.Checkbox.html#1437">&#167;1.5.6</a>
+    public boolean <strong>getState</strong>();	<a href="java.awt.Checkbox.html#1463">&#167;1.5.7</a>
+    protected String <strong>paramString</strong>();	<a href="java.awt.Checkbox.html#1489">&#167;1.5.8</a>
+    public void <strong>setCheckboxGroup</strong>(CheckboxGroup &#32;g);	<a href="java.awt.Checkbox.html#1515">&#167;1.5.9</a>
+    public void <strong>setLabel</strong>(String &#32;label);	<a href="java.awt.Checkbox.html#1543">&#167;1.5.10</a>
+    public void <strong>setState</strong>(boolean &#32;state);	<a href="java.awt.Checkbox.html#1571">&#167;1.5.11</a>
+}
+</pre><a name="39019">A check box is a graphical component that has an "on" (true) and "off" (false) state. Clicking on the check box changes its state from "on" to "off" or from "off" to "on".
+</a><p><a name="39002">For example, the code:
+</a><p><pre><hr>
+<a name="39038">setLayout(new GridLayout(3, 1));
+</a><a name="39039">add(new Checkbox("one", null, true));
+</a><a name="39040">add(new Checkbox("two"));
+</a><a name="39041">add(new Checkbox("three"));
+</a>
+<hr></pre><a name="39047">produces the following three check <img src="javaae4.gif">boxes:
+</a><p><a name="39055">The button labelled one is "on". The other two are "off".
+</a><p><a name="39078">When the check box is clicked,<a href="#46736"><sup>1</sup></a> AWT sends an action event <a href="java.awt.Event.html#7837">(II-&#167;1.14.11)</a> to the check 
+box. This event's target is the check box, and its object is a Boolean <a href="java.lang.Boolean.html#44466">(I-&#167;1.1)</a> giving the new 
+state of the check box. An application should override the action method <a href="java.awt.Component.html#3701">(II-&#167;1.10.1)</a> of the 
+check box or of one of its containing windows in order to cause some action to occur.
+</a><p><a name="38996">Optionally, several checkboxes can be grouped together into a CheckboxGroup <a href="java.awt.CheckboxGroup.html#1603">(II-&#167;1.6)</a>. At 
+most one button in a group can be in the "on" state at any given time. Pushing a check box 
+to turn it "on" forces any other check box in the group that is "on" to become "off".
+</a><p>
+<hr>
+<a name="1321"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Checkbox">
+<a name="1329"><h3>Checkbox
+</h3></a>
+<a name="1331"><code>public Checkbox()
+</code></a>
+<dl>
+<dd><a name="1333">Creates a check box with no label. The check box is set to "off" and is not 
+part of any check box group.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="Checkbox">
+<a name="1341"><h3>Checkbox
+</h3></a>
+<a name="1343"><code>public Checkbox(String &#32;label)
+</code></a>
+<dl>
+<dd><a name="1345">Creates a check box with the specified label. The check box is set to "off" 
+and is not part of any check box group.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1347"><b>Parameters:
+</b></a><dd><a name="1349"><code>label
+- </code></a><a name="1351">a string label for the check box, or null for no label.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Checkbox">
+<a name="1359"><h3>Checkbox
+</h3></a>
+<a name="1361"><code>public Checkbox(String &#32;label, CheckboxGroup &#32;group,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;boolean &#32;state)
+</code></a>
+<dl>
+<dd><a name="26437">Creates a check box with the specified label, in the specified check box 
+group, and set to the specified state.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1365"><b>Parameters:
+</b></a><dd><a name="26463"><code>label
+- </code></a><a name="26464">a string label for the check box, or null for no label
+</a>
+<dd><a name="26465"><code>group
+- </code></a><a name="26466">this check box's check box group, or null for no group
+</a>
+<dd><a name="1375"><code>state
+- </code></a><a name="1377">the initial state of the check box: true indicates "on"; false 
+indicates "off"
+</a>
+</dl></dl>
+<hr>
+<a name="1379"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addNotify">
+<a name="1389"><h3>addNotify
+</h3></a>
+<a name="1391"><code>public void addNotify()
+</code></a>
+<dl>
+<dd><a name="26491">This method calls the createCheckbox method <a href="java.awt.Toolkit.html#22285">(II-&#167;1.41.5)</a> of the check 
+box's toolkit <a href="java.awt.Component.html#4237">(II-&#167;1.10.20)</a> in order to create a CheckboxPeer &#32;<a href="java.awt.peer.CheckboxPeer.html#339">(II-&#167;3.4)</a> for 
+this button. This peer allows the application to change the look of a check 
+box without changing its functionality.
+<pre>
+</pre></a>
+
+<dd><a name="43763">Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1395"><b>Overrides:
+</b></a><dd><a name="1401">addNotify in class Component &#32;<a href="java.awt.Component.html#3737">(II-&#167;1.10.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getCheckboxGroup">
+<a name="1411"><h3>getCheckboxGroup
+</h3></a>
+<a name="1413"><code>public CheckboxGroup getCheckboxGroup()
+</code></a>
+<dl>
+<dd><a name="1417">Determines this check box's group.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="52551"><b>Returns:
+</b></a><dd><a name="1419">thischeck box's group, or null if it is not part of a check box group.
+</a>
+
+<dt><a name="1421"><b>See Also:
+</b></a><dd><a name="1427">setCheckboxGroup &#32;<a href="java.awt.Checkbox.html#1515">(II-&#167;1.5.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getLabel">
+<a name="1437"><h3>getLabel
+</h3></a>
+<a name="1439"><code>public String getLabel()
+</code></a>
+<dl><dl>
+<dt><a name="27104"><b>Returns:
+</b></a><dd><a name="27105">the label of this check box, or null if this check box has no label.
+</a>
+
+<dt><a name="1447"><b>See Also:
+</b></a><dd><a name="1453">setLabel &#32;<a href="java.awt.Checkbox.html#1543">(II-&#167;1.5.10)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getState">
+<a name="1463"><h3>getState
+</h3></a>
+<a name="1465"><code>public boolean getState()
+</code></a>
+<dl>
+<dd><a name="1469">Determines if this check box is "on" or "off."
+<pre>
+</pre></a>
+<dl>
+<dt><a name="52552"><b>Returns:
+</b></a><dd><a name="1471">the state of this check box. The value true indicates "on", false indicates 
+"off".
+</a>
+
+<dt><a name="1473"><b>See Also:
+</b></a><dd><a name="1479">setState &#32;<a href="java.awt.Checkbox.html#1571">(II-&#167;1.5.11)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="1489"><h3>paramString
+</h3></a>
+<a name="1491"><code>protected String paramString()
+</code></a>
+<dl>
+<dd><a name="54078">Returns the parameter string representing the state of this check box. This 
+string is useful for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1495"><b>Returns:
+</b></a><dd><a name="1497">the parameter string of this check box.
+</a>
+
+<dt><a name="1499"><b>Overrides:
+</b></a><dd><a name="1505">paramString in class Component &#32;<a href="java.awt.Component.html#5253">(II-&#167;1.10.51)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setCheckboxGroup">
+<a name="1515"><h3>setCheckboxGroup
+</h3></a>
+<a name="53263"><code>public void setCheckboxGroup(CheckboxGroup &#32;g)
+</code></a>
+<dl>
+<dd><a name="53264">Sets the group of this check box to be the specified check box group. If 
+this check box is already in a different check box group, it is first taken out 
+of that group.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1521"><b>Parameters:
+</b></a><dd><a name="1523"><code>g
+- </code></a><a name="1525">the new check box group, or null to remove the check box from any 
+check box group
+</a>
+
+<dt><a name="1527"><b>See Also:
+</b></a><dd><a name="1533">getCheckboxGroup &#32;<a href="java.awt.Checkbox.html#1411">(II-&#167;1.5.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setLabel">
+<a name="1543"><h3>setLabel
+</h3></a>
+<a name="44661"><code>public void setLabel(String &#32;label)
+</code></a>
+<dl>
+<dd><a name="44662">Sets this check box's label to be the string argument. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="44663"><b>Parameters:
+</b></a><dd><a name="27062"><code>label
+- </code></a><a name="27063">the new label, or null for no label
+</a>
+
+<dt><a name="1555"><b>See Also:
+</b></a><dd><a name="1561">getLabel &#32;<a href="java.awt.Checkbox.html#1437">(II-&#167;1.5.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setState">
+<a name="1571"><h3>setState
+</h3></a>
+<a name="1573"><code>public void setState(boolean &#32;state)
+</code></a>
+<dl>
+<dd><a name="1575">Sets this check box to the specifed boolean state: true indicates "on"; false 
+indicates "off".
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1577"><b>Parameters:
+</b></a><dd><a name="1579"><code>state
+- </code></a><a name="1581">the boolean state of the check box.
+</a>
+
+<dt><a name="1583"><b>See Also:
+</b></a><dd><a name="1589">getState &#32;<a href="java.awt.Checkbox.html#1463">(II-&#167;1.5.7)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="46736">In Java 1.0, the AWT does not send mouse or focus events to a check box. In 
+Java 1.1, the AWT sends the check box all mouse, keyboard, and focus events that 
+occur over it.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.CardLayout.html">Prev</a>  <a href="java.awt.CheckboxGroup.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

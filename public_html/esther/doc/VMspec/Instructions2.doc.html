@@ -1,0 +1,443 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html> 
+<head>
+<title>VM Spec  </title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+
+<table width=100%><tr>
+<td><a href="VMSpecTOC.doc.html">Contents</a> | <a href="Instructions.doc.html">Prev</a> | <a href="Instructions2.doc1.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+<hr><br>
+ 
+
+<a name="aaload"></a>
+<h2>aaload</h2>
+<a name="aaload.Operation"></a>
+<b>Operation</h3></b>
+<a name="67085"></a>
+Load <code>reference</code> from array<p><Table Border="1">
+<tr><td><a name="67084"></a>
+ <i>aaload</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="aaload.Forms"></a>
+<b>Forms</h3></b>
+<a name="67086"></a>
+<i>aaload</i> = 50 (0x32)<p>
+<a name="aaload.Stack"></a>
+<b>Stack</h3></b>
+<a name="67087"></a>
+..., <i>arrayref</i>, <i>index</i> <img src="chars/arrwdbrt.gif"> ..., <i>value</i><p>
+<a name="aaload.Description"></a>
+<b>Description</h3></b>
+<a name="67088"></a>
+The <i>arrayref</i> must be of type <code>reference</code> and must refer to an array whose components are of type <code>reference</code>. The <i>index</i> must be of type <code>int</code>. Both <i>arrayref</i> and <i>index</i> are popped from the operand stack. The <code>reference</code> <i>value</i> in the component of the array at <i>index</i> is retrieved and pushed onto the top of the operand stack.<p>
+<a name="aaload.Runtime"></a>
+<b>Runtime Exceptions</h3></b>
+<a name="159627"></a>
+If <i>arrayref</i><em> </em>is <code>null</code>, <i>aaload</i> throws a <code>NullPointerException</code>. <p>
+<a name="159628"></a>
+Otherwise, if <i>index</i> is not within the bounds of the array referenced by <i>arrayref</i>, the <i>aaload</i> instruction throws an <code>ArrayIndex-OutOfBounds-Exception</code>.<p>
+
+<a name="aastore"></a>
+<hr><h2>aastore</h2>
+<a name="aastore.Operation"></a>
+<b>Operation</h3></b>
+<a name="67098"></a>
+Store into <code>reference</code> array<p><Table Border="1">
+<tr><td><a name="67097"></a>
+ <i>aastore</i>
+<td><a name="87833"></a>
+ 
+
+</Table><br><br><p>
+<a name="aastore.Forms"></a>
+<b>Forms</h3></b>
+<a name="67099"></a>
+<i>aastore</i> = 83 (0x53)<p>
+<a name="aastore.Stack"></a>
+<b>Stack</h3></b>
+<a name="67100"></a>
+..., <i>arrayref</i>, <i>index</i>, <i>value</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="aastore.Description"></a>
+<b>Description </h3></b>
+<a name="92036"></a>
+The <i>arrayref</i> must be of type <code>reference</code> and must refer to an array whose components are of type <code>reference</code>. The <i>index</i> must be of type <code>int</code> and <i>value</i> must be of type <code>reference</code>. The <i>arrayref</i>, <i>index</i>, and <i>value</i> are popped from the operand stack. The <code>reference</code> <i>value</i> is stored as the component of the array at <i>index</i>.<p>
+<a name="67105"></a>
+The type of <i>value</i> must be assignment compatible <a href="Concepts.doc.html#19674">(&#167;2.6.6)</a> with the type of the components of the array referenced by <i>arrayref</i>. Assignment of a value of reference type S (source) to a variable of reference type T (target) is allowed only when the type S supports all the operations defined on type T. The detailed rules follow:<p>
+<ul><a name="67106"></a>
+<li>If S is a class type, then:
+<ul>
+<a name="67107"></a>
+<li>If T is a class type, then S must be the same class <a href="Concepts.doc.html#20389">(&#167;2.8.1)</a> as T, or S must be a subclass of T;
+<a name="67108"></a>
+<li>If T is an interface type, S must implement <a href="Concepts.doc.html#16432">(&#167;2.13)</a> interface T.
+</ul>
+</ul>
+<a name="aastore"></a>
+<ul><a name="158140"></a>
+<li>If S is an array type, namely the type SC<code>[]</code>, that is, an array of components of type SC, then:
+<ul>
+<a name="158144"></a>
+<li>If T is a class type, T must be <code>Object</code> <a href="Concepts.doc.html#27433">(&#167;2.4.6)</a>, or:
+<ul>
+<a name="67112"></a>
+<li>If T is an array type, namely the type TC<code>[]</code>, an array of components of type TC, then eitherTC and SC must be the same primitive type, or
+<a name="67113"></a>
+<li>TC and SC must both be reference types with type SC assignable to TC, by these rules.
+</ul>
+</ul>
+</ul><a name="67114"></a>
+S cannot be an interface type, because there are no instances of interfaces, only instances of classes and arrays.<p>
+<a name="aastore.Runtime"></a>
+<b>Runtime Exceptions</h3></b>
+<a name="67116"></a>
+If <i>arrayref</i><em> </em>is <code>null</code>, <i>aastore</i> throws a <code>NullPointerException</code>.<p>
+<a name="67117"></a>
+Otherwise, if <i>index</i> is not within the bounds of the array referenced by <i>arrayref</i>, the <i>aastore</i> instruction throws an <code>ArrayIndex</code><code>-OutOfBounds-Exception</code>.<p>
+<a name="67118"></a>
+Otherwise, if <i>arrayref</i> is not <code>null</code> and the actual type of <i>value</i> is not assignment compatible <a href="Concepts.doc.html#19674">(&#167;2.6.6)</a> with the actual type of the components of the array, <i>aastore</i> throws an <code>ArrayStoreException</code>. <p>
+<a name="67122"></a>
+<p>
+
+<a name="aconst_null"></a>
+<hr><h2>aconst_null</h2>
+<a name="aconst_null.Operation"></a>
+<b>Operation</h3></b>
+<a name="67132"></a>
+Push <code>null</code><p><Table Border="1">
+<tr><td><a name="67131"></a>
+ <i>aconst_null</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="aconst_null.Forms"></a>
+<b>Forms</h3></b>
+<a name="67133"></a>
+<i>aconst_null</i> = 1 (0x1)	<p>
+<a name="aconst_null.Stack"></a>
+<b>Stack</h3></b>
+<a name="67134"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>null</i><p>
+<a name="aconst_null.Description"></a>
+<b>Description</h3></b>
+<a name="67135"></a>
+Push the <code>null</code> object <code>reference</code> onto the operand stack.<p>
+<a name="aconst_null.Notes"></a>
+<b>Notes</h3></b>
+<a name="67136"></a>
+The Java Virtual Machine does not mandate a concrete value for <code>null</code>.<p>
+
+<a name="aload"></a>
+<hr><h2>aload</h2>
+<a name="aload.Operation"></a>
+<b>Operation</h3></b>
+<a name="67145"></a>
+Load <code>reference</code> from local variable<p><Table Border="1">
+<tr><td><a name="67142"></a>
+ <i>aload</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="67144"></a>
+ <i>index</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="aload.Forms"></a>
+<b>Forms</h3></b>
+<a name="67146"></a>
+<i>aload</i> = 25 (0x19)<p>
+<a name="aload.Stack"></a>
+<b>Stack</h3></b>
+<a name="67147"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>objectref</i><p>
+<a name="aload.Description"></a>
+<b>Description</h3></b>
+<a name="67148"></a>
+The <i>index</i> is an unsigned byte that must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The local variable at <i>index</i> must contain a <code>reference</code>. The <i>objectref</i> in the local variable at <i>index</i> is pushed onto the operand stack.<p>
+<a name="aload.Notes"></a>
+<b>Notes</h3></b>
+<a name="67152"></a>
+The <i>aload</i> instruction cannot be used to load a value of type <code>returnAddress</code> from a local variable onto the operand stack. This asymmetry with the <i>astore</i> instruction is intentional.<p>
+<a name="87844"></a>
+The <i>aload</i> opcode can be used in conjunction with the <i>wide</i> instruction to access a local variable using a two-byte unsigned index.<p>
+
+<a name="aload_n"></a>
+<hr><h2>aload_&lt;n&gt;</h2>
+<a name="aload_n.Operation"></a>
+<b>Operation</h3></b>
+<a name="67163"></a>
+Load <code>reference</code> from local variable<p><Table Border="1">
+<tr><td><a name="67162"></a>
+ <i>aload_&lt;n&gt;</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="aload_n.Forms"></a>
+<b>Forms</h3></b>
+<a name="67164"></a>
+<i>aload_0</i> = 42 (0x2a)<i></i><p>
+<a name="177901"></a>
+<i>aload_1</i> = 43 (0x2b)<i></i><p>
+<a name="177903"></a>
+<i>aload_2</i> = 44 (0x2c)<i></i><p>
+<a name="177905"></a>
+<i>aload_3</i> = 45 (0x2d)<p>
+<a name="aload_n.Stack"></a>
+<b>Stack</h3></b>
+<a name="67165"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>objectref</i><p>
+<a name="aload_n.Description"></a>
+<b>Description</h3></b>
+<a name="67166"></a>
+The <i>&lt;n&gt;</i> must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The local variable at <i>&lt;n&gt;</i> must contain a <code>reference</code>. The <i>objectref</i> in the local variable at <i>index</i> is pushed onto the operand stack.<p>
+<a name="aload_n.Notes"></a>
+<b>Notes</h3></b>
+<a name="67170"></a>
+An <i>aload_&lt;n&gt;</i> instruction cannot be used to load a value of type <code>returnAddress</code> from a local variable onto the operand stack. This asymmetry with the corresponding <i>astore_&lt;n&gt;</i> instruction is intentional. Each of the <i>aload_&lt;n&gt;</i> instructions is the same as <i>aload</i> with an <i>index</i> of <i>&lt;n&gt;</i>, except that the operand <i>&lt;n&gt;</i> is implicit.<p>
+
+<a name="anewarray"></a>
+<hr><h2>anewarray</h2>
+<a name="anewarray.Operation"></a>
+<b>Operation</h3></b>
+<a name="67181"></a>
+Create new array<p><Table Border="1">
+<tr><td><a name="67176"></a>
+ <i>anewarray</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="67178"></a>
+ <i>indexbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="67180"></a>
+ <i>indexbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br> of <code>reference</code><p>
+<a name="anewarray.Forms"></a>
+<b>Forms</h3></b>
+<a name="67182"></a>
+<i>anewarray</i> = 189 (0xbd)<p>
+<a name="anewarray.Stack"></a>
+<b>Stack</h3></b>
+<a name="67183"></a>
+..., <i>count</i> <img src="chars/arrwdbrt.gif"> ..., <i>arrayref</i><p>
+<a name="anewarray.Description"></a>
+<b>Description</h3></b>
+<a name="67184"></a>
+The <i>count</i> must be of type <code>int</code>. It is popped off the operand stack. The <i>count</i> represents the number of components of the array to be created. The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The item at that index in the constant pool must be tagged <code>CONSTANT_Class</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a>, a symbolic reference to a class, array, or interface type. The symbolic reference is resolved <a href="ConstantPool.doc.html#51579">(&#167;5.1)</a>. A new array with components of that type, of length <i>count</i>, is allocated from the garbage-collected heap, and a <code>reference</code> <i>arrayref</i> to this new array object is pushed onto the operand stack. All components of the new array are initialized to <code>null</code>, the default value for <code>reference</code> types <a href="Concepts.doc.html#15858">(&#167;2.5.1)</a>.<p>
+<a name="anewarray.Linking"></a>
+<b>Linking Exceptions</h3></b>
+<a name="109456"></a>
+During resolution of the <code>CONSTANT_Class</code> constant pool item, any of the exceptions documented in <a href="ConstantPool.doc.html#51579">&#167;5.1</a> can be thrown.<p>
+<a name="anewarray.Runtime"></a>
+<b>Runtime Exception</h3></b>
+<a name="67198"></a>
+Otherwise, if <i>count</i><em> </em>is less than zero, the <i>anewarray</i> instruction throws a <code>NegativeArraySizeException</code>. <p>
+<a name="anewarray.Notes"></a>
+<b>Notes</h3></b>
+<a name="109522"></a>
+The <i>anewarray</i> instruction is used to create a single dimension of an array of object references. It can also be used to create part of a multidimensional array.<p>
+
+<a name="areturn"></a>
+<hr><h2>areturn</h2>
+<a name="areturn.Operation"></a>
+<b>Operation</h3></b>
+<a name="67210"></a>
+Return <code>reference</code> from method<p><Table Border="1">
+<tr><td><a name="67209"></a>
+ <i>areturn</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="areturn.Forms"></a>
+<b>Forms</h3></b>
+<a name="67211"></a>
+<i>areturn</i> = 176 (0xb0)<p>
+<a name="areturn.Stack"></a>
+<b>Stack</h3></b>
+<a name="67212"></a>
+..., <i>objectref</i><em> </em><img src="chars/arrwdbrt.gif"> <p>
+<a name="177908"></a>
+[empty]<p>
+<a name="areturn.Description"></a>
+<b>Description</h3></b>
+<a name="67213"></a>
+The <i>objectref</i> must be of type <code>reference</code> and must refer to an object of a type that is assignment compatible <a href="Concepts.doc.html#19674">(&#167;2.6.6)</a> with the type represented by the return descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a> of the returning method. The <i>objectref</i> is popped from the operand stack of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a> and pushed onto the operand stack of the frame of the invoker. Any other values on the operand stack of the current method are discarded. If the returning method is a <code>synchronized</code> method, the monitor acquired or reentered on invocation of the method is released or exited (respectively) as if by execution of a <i>monitorexit</i> instruction.<p>
+<a name="67223"></a>
+The interpreter then reinstates the frame of the invoker and returns control to the invoker.<p>
+
+<a name="arraylength"></a>
+<hr><h2>arraylength</h2>
+<a name="arraylength.Operation"></a>
+<b>Operation</h3></b>
+<a name="67230"></a>
+<p><Table Border="1">
+<tr><td><a name="67229"></a>
+ <i>arraylength</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br>Get length of array<p>
+<a name="arraylength.Forms"></a>
+<b>Forms</h3></b>
+<a name="67231"></a>
+<i>arraylength</i> = 190 (0xbe)<p>
+<a name="arraylength.Stack"></a>
+<b>Stack</h3></b>
+<a name="67232"></a>
+..., <i>arrayref</i><em> </em><img src="chars/arrwdbrt.gif"> ..., <i>length</i><p>
+<a name="arraylength.Description"></a>
+<b>Description</h3></b>
+<a name="67233"></a>
+The <i>arrayref</i> must be of type <code>reference</code> and must refer to an array. It is popped from the operand stack. The <i>length</i> of the array it references is determined. That <i>length</i> is pushed onto the operand stack as an <code>int</code>.<p>
+<a name="arraylength.Runtime"></a>
+<b>Runtime Exception</h3></b>
+<a name="67235"></a>
+If the <i>arrayref</i><em> </em>is <code>null</code>, the <i>arraylength</i> instruction throws a <code>NullPointerException</code>. <p>
+
+<a name="astore"></a>
+<hr><h2>astore</h2>
+<a name="astore.Operation"></a>
+<b>Operation</h3></b>
+<a name="67244"></a>
+Store <code>reference</code> into local variable<p><Table Border="1">
+<tr><td><a name="67241"></a>
+ <i>astore</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="67243"></a>
+ <i>index</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="astore.Forms"></a>
+<b>Forms</h3></b>
+<a name="67245"></a>
+<i>astore</i> = 58 (0x3a)<p>
+<a name="astore.Stack"></a>
+<b>Stack</h3></b>
+<a name="67246"></a>
+..., <i>objectref</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="astore.Description"></a>
+<b>Description</h3></b>
+<a name="67247"></a>
+The <i>index</i> is an unsigned byte that must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The <i>objectref</i> on the top of the operand stack must be of type <code>returnAddress</code> or of type <code>reference</code>. It is popped from the operand stack, and the value of the local variable at <i>index</i> is set to <i>objectref</i>.<p>
+<a name="astore.Notes"></a>
+<b>Notes</h3></b>
+<a name="67251"></a>
+The <i>astore</i> instruction is used with an <i>objectref</i> of type <code>return</code>-<code>Address</code> when implementing Java's <code>finally</code> keyword (see <a href="Compiling.doc.html#13789">Section 7.13, "Compiling finally"</a>). The <i>aload</i> instruction cannot be used to load a value of type <code>returnAddress</code> from a local variable onto the operand stack. This asymmetry with the <i>astore</i> instruction is intentional.<p>
+<a name="67255"></a>
+The <i>astore</i> opcode can be used in conjunction with the <i>wide</i> instruction to access a local variable using a two-byte unsigned index.<p>
+
+<a name="astore_n"></a>
+<hr><h2>astore_&lt;n&gt;</h2>
+<a name="astore_n.Operation"></a>
+<b>Operation</h3></b>
+<a name="67265"></a>
+<p><Table Border="1">
+<tr><td><a name="67264"></a>
+ <i>astore_&lt;n&gt;</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br>Store <code>reference</code> into local variable<p>
+<a name="astore_n.Forms"></a>
+<b>Forms</h3></b>
+<a name="67266"></a>
+<i>astore_0</i> = 75 (0x4b)<i></i><p>
+<a name="177911"></a>
+<i>astore_1</i> = 76 (0x4c)<i></i><p>
+<a name="177913"></a>
+<i>astore_2</i> = 77 (0x4d)<i></i><p>
+<a name="177915"></a>
+<i>astore_3</i> = 78 (0x4e)<p>
+<a name="astore_n.Stack"></a>
+<b>Stack</h3></b>
+<a name="67267"></a>
+..., <i>objectref</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="astore_n.Description"></a>
+<b>Description</h3></b>
+<a name="67268"></a>
+The <i>&lt;n&gt;</i> must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The <i>objectref</i> on the top of the operand stack must be of type <code>returnAddress</code> or of type <code>reference</code>. It is popped from the operand stack, and the value of the local variable at <i>&lt;n&gt;</i> is set to <i>objectref</i>.<p>
+<a name="astore_n.Notes"></a>
+<b>Notes</h3></b>
+<a name="67272"></a>
+An <i>astore_&lt;n&gt;</i> instruction is used with an <i>objectref</i> of type <code>returnAddress</code> when implementing Java's <code>finally</code> keyword (see <a href="Compiling.doc.html#13789">Section 7.13, "Compiling finally"</a>). An <i>aload_&lt;n&gt;</i> instruction cannot be used to load a value of type <code>returnAddress</code> from a local variable onto the operand stack. This asymmetry with the corresponding <i>astore_&lt;n&gt;</i> instruction is intentional.<p>
+<a name="67276"></a>
+Each of the <i>astore_&lt;n&gt;</i> instructions is the same as <i>astore</i> with an <i>index</i> of <i>&lt;n&gt;</i>, except that the operand <i>&lt;n&gt;</i> is implicit.<p>
+
+<a name="athrow"></a>
+<hr><h2>athrow</h2>
+<a name="athrow.Operation"></a>
+<b>Operation</h3></b>
+<a name="67283"></a>
+Throw exception<p><Table Border="1">
+<tr><td><a name="67282"></a>
+ <i>athrow</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br> or error<p>
+<a name="athrow.Forms"></a>
+<b>Forms</h3></b>
+<a name="67284"></a>
+<i>athrow</i> = 191 (0xbf)<p>
+<a name="athrow.Stack"></a>
+<b>Stack</h3></b>
+<a name="67285"></a>
+..., <i>objectref</i><em> </em><img src="chars/arrwdbrt.gif"> <i></i><p>
+<a name="177917"></a>
+<i>objectref</i><p>
+<a name="athrow.Description"></a>
+<b>Description</h3></b>
+<a name="67286"></a>
+The <i>objectref</i> must be of type <code>reference</code> and must refer to an object which is an instance of class <code>Throwable</code> or of a subclass of <code>Throwable</code>. It is popped from the operand stack. The <i>objectref</i> is then thrown by searching the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a> for the most recent <code>catch</code> clause that catches the class of <i>objectref</i> or one of its superclasses. <p>
+<a name="157182"></a>
+If a <code>catch</code> clause is found, it contains the location of the code intended to handle this exception. The <code>pc</code> register is reset to that location, the operand stack of the current frame is cleared, <i>objectref</i> is pushed back onto the operand stack, and execution continues. If no appropriate clause is found in the current frame, that frame is popped, the frame of its invoker is reinstated, and the <i>objectref</i> is rethrown.<p>
+<a name="157183"></a>
+If no <code>catch</code> clause is found that handles this exception, the current thread exits.<p>
+<a name="athrow.Runtime"></a>
+<b>Runtime Exception</h3></b>
+<a name="67293"></a>
+If <i>objectref</i><em> </em>is <code>null</code>, <i>athrow</i> throws a <code>NullPointerException</code> instead of <i>objectref</i>.<p>
+
+<a name="athrow"></a>
+<hr><h2>athrow</h2>
+<a name="athrow.Notes"></a>
+<b>Notes</h3></b>
+<a name="67294"></a>
+The operand stack diagram for the <i>athrow</i> instruction may be misleading: If a handler for this exception is found in the current method, the <i>athrow</i> instruction discards all the words on the operand stack, then pushes the thrown object onto the stack. However, if no handler is found in the current method and the exception is thrown farther up the method invocation chain, then the operand stack of the method (if any) that handles the exception is cleared and objectref is pushed onto that empty operand stack. All intervening stack frames from the method that threw the exception up to, but not including, the method that handles the exception are discarded.<p>
+
+
+<hr> 
+<!-- This inserts footnotes--><p>
+<br>
+<a href="VMSpecTOC.doc.html">Contents</a> | <a href="Instructions.doc.html">Prev</a> | <a href="Instructions2.doc1.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size = -1>Java Virtual Machine Specification <br>
+<!--(HTML generated by dkramer on March 31, 1997)-->
+<!--
+(HTML generated by dkramer on March 25, 1997)-->
+<br>
+<i><a href="copyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:jvm@java.sun.com">jvm@java.sun.com</a>
+</font>
+</body></html>

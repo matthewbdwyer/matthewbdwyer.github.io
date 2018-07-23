@@ -1,0 +1,381 @@
+<html><head><title>Class ImageFilter</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.FilteredImageSource.html">Prev</a>  <a href="java.awt.image.IndexColorModel.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="997569"><h1>	&#167;2.5 Class ImageFilter</h1></a>
+<pre>public &#32;class &#32;java.awt.image.<strong>ImageFilter
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+    implements java.awt.image.<strong>ImageConsumer</strong> &#32;<a href="java.awt.image.ImageConsumer.html#999415">(II-&#167;2.10)</a>,
+               java.lang.<strong>Cloneable</strong> &#32;<a href="java.lang.Cloneable.html#45621">(I-&#167;1.22)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    protected ImageConsumer <strong>consumer</strong>;	<a href="java.awt.image.ImageFilter.html#997654">&#167;2.5.1</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>ImageFilter</strong>();	<a href="java.awt.image.ImageFilter.html#997672">&#167;2.5.2</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public Object <strong>clone</strong>();	<a href="java.awt.image.ImageFilter.html#997679">&#167;2.5.3</a>
+    public ImageFilter <strong>getFilterInstance</strong>(ImageConsumer &#32;ic)	<a href="java.awt.image.ImageFilter.html#997691">&#167;2.5.4</a>
+    public void <strong>imageComplete</strong>(int &#32;status);	<a href="java.awt.image.ImageFilter.html#997705">&#167;2.5.5</a>
+    public void <strong>resendTopDownLeftRight</strong>(ImageProducer &#32;ip);	<a href="java.awt.image.ImageFilter.html#997724">&#167;2.5.6</a>
+    public void <strong>setColorModel</strong>(ColorModel &#32;model);	<a href="java.awt.image.ImageFilter.html#997746">&#167;2.5.7</a>
+    public void <strong>setDimensions</strong>(int &#32;width, int &#32;height);	<a href="java.awt.image.ImageFilter.html#997765">&#167;2.5.8</a>
+    public void <strong>setHints</strong>(int &#32;hints);	<a href="java.awt.image.ImageFilter.html#997780">&#167;2.5.9</a>
+    public void <strong>setPixels</strong>(int &#32;x, int &#32;y, int &#32;w, int &#32;h,	<a href="java.awt.image.ImageFilter.html#997799">&#167;2.5.10</a>
+      &#32; &#32; &#32;ColorModel &#32;model, byte &#32;pixels[],
+    &#32; &#32; &#32; &#32;int &#32;off, int &#32;scansize);
+    public void <strong>setPixels</strong>(int &#32;x, int &#32;y, int &#32;w, int &#32;h,	<a href="java.awt.image.ImageFilter.html#997832">&#167;2.5.11</a>
+  &#32; &#32; &#32; &#32; &#32;ColorModel &#32;model, int &#32;pixels[],
+        &#32; &#32;int &#32;off, int &#32;scansize);
+    public void <strong>setProperties</strong>(Hashtable &#32;props);	<a href="java.awt.image.ImageFilter.html#997865">&#167;2.5.12</a>
+}
+</pre><a name="997638">This class is the superclass of all classes that are meant to filter the data delivered from an 
+ImageProducer <a href="java.awt.image.ImageProducer.html#999977">(II-&#167;2.12)</a> to an ImageConsumer <a href="java.awt.image.ImageConsumer.html#999415">(II-&#167;2.10)</a>.
+</a><p><a name="997645">This class and its subclasses are meant to be used in conjunction with a FilteredImageSource 
+<a href="java.awt.image.FilteredImageSource.html#997374">(II-&#167;2.4)</a> object to produce filtered versions of existing images.
+</a><p><a name="997649">The image filter implemented by this class is the "null filter" which has no effect on the 
+data passing through. Filters should subclass this class and override the methods in order 
+to modify the data as necessary.
+</a><p>
+<hr>
+<a name="997650"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="consumer">
+<a name="997654"><h3>consumer
+</h3></a>
+<a name="997655"><code>protected ImageConsumer consumer
+</code></a>
+<dl>
+<dd><a name="997659">The image consumer <a href="java.awt.image.ImageConsumer.html#999415">(II-&#167;2.10)</a> of the particular image data stream for 
+which this image filter is filtering data.
+<pre>
+</pre></a>
+
+<dd><a name="997660">The field is not initialized by the constructor, but by the call to the getFilterInstance method <a href="java.awt.image.ImageFilter.html#997691">(II-&#167;2.5.4)</a>, when the FilteredImageSource <a href="java.awt.image.FilteredImageSource.html#997374">(II-&#167;2.4)</a> is creating a unique instance of this object for a particular image data stream.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="997668"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="ImageFilter">
+<a name="997672"><h3>ImageFilter
+</h3></a>
+<a name="997673"><code>public ImageFilter()
+</code></a>
+<dl>
+<dd><a name="997674">The default constructor for this method.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="997675"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="clone">
+<a name="997679"><h3>clone
+</h3></a>
+<a name="997680"><code>public Object clone()
+</code></a>
+<dl><dl>
+<dt><a name="997681"><b>Returns:
+</b></a><dd><a name="997682">a clone of this object.
+</a>
+
+<dt><a name="997683"><b>Overrides:
+</b></a><dd><a name="997687">clone in class Object &#32;<a href="java.lang.Object.html#26164">(I-&#167;1.12.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getFilterInstance">
+<a name="997691"><h3>getFilterInstance
+</h3></a>
+<a name="997692"><code>public ImageFilter getFilterInstance(ImageConsumer &#32;ic)
+</code></a>
+<dl>
+<dd><a name="997693">Creates an image filter which filters the image for the specified image consumer.
+<pre>
+</pre></a>
+
+<dd><a name="1000645">The getFilterInstance method of ImageFilter clones the object. and sets its consumer field to the image consumer argument. Subclasses can override this 
+method, if they require more setup than this..
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997694"><b>Parameters:
+</b></a><dd><a name="997695"><code>ic
+- </code></a><a name="997696">the image consumer
+</a>
+
+<dt><a name="997697"><b>Returns:
+</b></a><dd><a name="997698">a unique instance of an image filter object which actually performs the 
+filtering for the specified image consumer 	<a href="java.awt.image.ImageConsumer.html#999415">(II-&#167;2.10)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="imageComplete">
+<a name="997705"><h3>imageComplete
+</h3></a>
+<a name="997706"><code>public void imageComplete(int &#32;status)
+</code></a>
+<dl>
+<dd><a name="997707">The image producer calls the imageComplete method when it has completed 
+an image or it has encountered an error in producing or loading the image. 
+For more information on this method and its status argument, see <a href="java.awt.image.ImageConsumer.html#999592">&#167;2.10.10</a> 
+on <a href="java.awt.image.ImageConsumer.html#999592">page &#32;304</a>.
+<pre>
+</pre></a>
+
+<dd><a name="997714">The imageComplete method of ImageFilter calls the imageComplete method 
+<a href="java.awt.image.ImageConsumer.html#999592">(II-&#167;2.10.10)</a> of the image consumer with the identical argument. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997718"><b>Parameters:
+</b></a><dd><a name="997719"><code>status
+- </code></a><a name="997720">the status of the image
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="resendTopDownLeftRight">
+<a name="997724"><h3>resendTopDownLeftRight
+</h3></a>
+<a name="997725"><code>public void resendTopDownLeftRight(ImageProducer &#32;ip)
+</code></a>
+<dl>
+<dd><a name="997726">An image consumer calls the resendTopDownLeftRight of its producer to 
+request that the pixel data be resent in that order. For more information on 
+this method see <a href="java.awt.image.ImageProducer.html#1000043">&#167;2.12.4</a> on <a href="java.awt.image.ImageProducer.html#1000043">page &#32;314</a>.
+<pre>
+</pre></a>
+
+<dd><a name="997733">An image filter can respond to this request in one of three ways:
+<pre>
+</pre></a>
+<dl><ul><li><a name="997737">The filter can forward this request to the image producer <a href="java.awt.image.ImageProducer.html#1000043">(II-&#167;2.12.4)</a> using 
+itself as the requesting image consumer. This is the default behavior 
+provided by the resendTopDownLeftRight method of ImageFilter.
+</a></ul><ul><li><a name="997738">The filter can resend the pixels in the right order on its own (presumably 
+because the generated pixels have been saved in some sort of buffer).
+</a><li><a name="997739">The filter can ignore this request.
+</a></ul>
+<dt><a name="997740"><b>Parameters:
+</b></a><dd><a name="997741"><code>ip
+- </code></a><a name="997742">the image producer that is feeding this instance of the filter.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setColorModel">
+<a name="997746"><h3>setColorModel
+</h3></a>
+<a name="997747"><code>public void setColorModel(ColorModel &#32;model)
+</code></a>
+<dl>
+<dd><a name="997748">The image producer calls the setColorModel method to specify the color 
+model for the majority of the subsequent setPixels method calls. For more 
+information on this method and its model argument, see <a href="java.awt.image.ImageConsumer.html#999623">&#167;2.10.11</a> on 
+<a href="java.awt.image.ImageConsumer.html#999623">page &#32;305</a>.
+<pre>
+</pre></a>
+
+<dd><a name="997755">The setColorModel method of ImageFilter calls the setColorModel method 
+<a href="java.awt.image.ImageConsumer.html#999623">(II-&#167;2.10.11)</a> of the image consumer with the identical argument. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997759"><b>Parameters:
+</b></a><dd><a name="997760"><code>model
+- </code></a><a name="997761">a color map used in subsequent setPixel calls
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setDimensions">
+<a name="997765"><h3>setDimensions
+</h3></a>
+<a name="997766"><code>public void setDimensions(int &#32;width, int &#32;height)
+</code></a>
+<dl>
+<dd><a name="997767">The image producer calls the setDimensions of the image consumer to tell it 
+the width and height of the image.
+<pre>
+</pre></a>
+
+<dd><a name="997768">The setDimensions method of ImageFilter calls the setDimensions method 
+<a href="java.awt.image.ImageConsumer.html#999637">(II-&#167;2.10.12)</a> of its image consumer with the identical arguments.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997772"><b>Parameters:
+</b></a><dd><a name="997773"><code>width
+- </code></a><a name="997774">the width of the image
+</a>
+<dd><a name="997775"><code>height
+- </code></a><a name="997776">the height of the image
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setHints">
+<a name="997780"><h3>setHints
+</h3></a>
+<a name="997781"><code>public void setHints(int &#32;hints)
+</code></a>
+<dl>
+<dd><a name="997782">The image producer calls the setHints method of the image consumer to 
+indicate the order in which the bits are to be delivered. For more information on the hints passed to the image consumer, see <a href="java.awt.image.ImageConsumer.html#999648">&#167;2.10.13</a> on <a href="java.awt.image.ImageConsumer.html#999648">page &#32;306</a>.
+<pre>
+</pre></a>
+
+<dd><a name="997789">The setHints method of ImageFilter calls the setHints method <a href="java.awt.image.ImageConsumer.html#999648">(II-&#167;2.10.13)</a> of 
+its image consumer with the identical argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997793"><b>Parameters:
+</b></a><dd><a name="997794"><code>hints
+- </code></a><a name="997795">hints about the order in which the bits are to be delivered
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setPixels">
+<a name="997799"><h3>setPixels
+</h3></a>
+<a name="997800"><code>public void<br>
+setPixels(int &#32;x, int &#32;y, int &#32;w, int &#32;h, ColorModel &#32;model,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; byte &#32;pixels[], int &#32;off, int &#32;scansize)
+</code></a>
+<dl>
+<dd><a name="997801">The image producer calls the setPixels method of the image consumer one 
+or more times to deliver the pixels of the image. For more information on 
+this method and its arguments, see <a href="java.awt.image.ImageConsumer.html#999677">&#167;2.10.14</a> on <a href="java.awt.image.ImageConsumer.html#999677">page &#32;307</a>.
+<pre>
+</pre></a>
+
+<dd><a name="997808">The setPixels method of ImageFilter calls the setPixels method <a href="java.awt.image.ImageConsumer.html#999677">(II-&#167;2.10.14)</a> of 
+its image consumer with the identical arguments.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997812"><b>Parameters:
+</b></a><dd><a name="997813"><code>x
+- </code></a><a name="997814">left coordinate of rectangle
+</a>
+<dd><a name="997815"><code>y
+- </code></a><a name="997816">top coordinte of rectangle
+</a>
+<dd><a name="997817"><code>w
+- </code></a><a name="997818">width of rectangle
+</a>
+<dd><a name="997819"><code>h
+- </code></a><a name="997820">height of rectangle
+</a>
+<dd><a name="997821"><code>model
+- </code></a><a name="997822">color model for bits
+</a>
+<dd><a name="997823"><code>pixels
+- </code></a><a name="997824">array of bits
+</a>
+<dd><a name="997825"><code>off
+- </code></a><a name="997826">offset for first element
+</a>
+<dd><a name="997827"><code>scansize
+- </code></a><a name="997828">number of elements per row
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setPixels">
+<a name="997832"><h3>setPixels
+</h3></a>
+<a name="997833"><code>public void<br>
+setPixels(int &#32;x, int &#32;y, int &#32;w, int &#32;h, ColorModel &#32;model,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;pixels[], int &#32;off, int &#32;scansize)
+</code></a>
+<dl>
+<dd><a name="997834">The image producer calls the setPixels method of the image consumer one 
+or more times to deliver the pixels of the image. For more information on 
+this method and its arguments, see <a href="java.awt.image.ImageConsumer.html#999709">&#167;2.10.15</a> on <a href="java.awt.image.ImageConsumer.html#999709">page &#32;308</a>.
+<pre>
+</pre></a>
+
+<dd><a name="997841">The setPixels method of ImageFilter calls the setPixels method <a href="java.awt.image.ImageConsumer.html#999709">(II-&#167;2.10.15)</a> of 
+its image consumer with the identical arguments.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997845"><b>Parameters:
+</b></a><dd><a name="997846"><code>x
+- </code></a><a name="997847">left coordinate of rectangle
+</a>
+<dd><a name="997848"><code>y
+- </code></a><a name="997849">top coordinte of rectangle
+</a>
+<dd><a name="997850"><code>w
+- </code></a><a name="997851">width of rectangle
+</a>
+<dd><a name="997852"><code>h
+- </code></a><a name="997853">height of rectangle
+</a>
+<dd><a name="997854"><code>model
+- </code></a><a name="997855">color model for bits
+</a>
+<dd><a name="997856"><code>pixels
+- </code></a><a name="997857">array of bits
+</a>
+<dd><a name="997858"><code>off
+- </code></a><a name="997859">offset for first element
+</a>
+<dd><a name="997860"><code>scansize
+- </code></a><a name="997861">number of elements per row
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setProperties">
+<a name="997865"><h3>setProperties
+</h3></a>
+<a name="997866"><code>public void setProperties(Hashtable &#32;props)
+</code></a>
+<dl>
+<dd><a name="997867">The image producer calls the setProperties method of the image consumer to 
+let it know of additional properties of the image. For more information on 
+this method and its arguments, see <a href="java.awt.image.ImageConsumer.html#999739">&#167;2.10.16</a> on <a href="java.awt.image.ImageConsumer.html#999739">page &#32;308</a>.
+<pre>
+</pre></a>
+
+<dd><a name="997874">The setProperties method of ImageFilter calls the setProperties method of its 
+image consumer <a href="java.awt.image.ImageConsumer.html#999739">&#167;2.10.16</a> with the properties argument after modifying it 
+slightly:
+<pre>
+</pre></a>
+<dl><ul><li><a name="997878">If the hashtable already has no key "filters", a string representation of the 
+current filter is added to the hashtable under the key "filter".
+</a></ul><ul><li><a name="997879">If such a key is already in the hashtable, a string representation of the 
+current filter is appended to the property (which must be a String) already 
+stored under that key, and stores this value back in the hashtable.
+</a></ul>
+<dt><a name="997880"><b>Parameters:
+</b></a><dd><a name="997881"><code>props
+- </code></a><a name="997882">a hashtable that maps image properties to their value
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.FilteredImageSource.html">Prev</a>  <a href="java.awt.image.IndexColorModel.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

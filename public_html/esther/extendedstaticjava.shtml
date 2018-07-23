@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Compiler Construction</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <meta name="Microsoft Border" content="tlb">
+
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><span style="position: absolute; top: 50px; left: 11px;"> <br>
+
+      </span> </p>
+
+      </td>
+
+    </tr>
+
+<!--msnavigation-->
+  </tbody>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" dir="ltr" width="100%">
+
+  <tbody>
+
+    <tr>
+
+<!--#include file="sidebar.shtml" --> <td valign="top" width="24"></td>
+
+<!--msnavigation--><td valign="top">
+      <p><big style="font-family: Helvetica,Arial,sans-serif; font-weight: bold;"><big>&nbsp;ExtendedStaticJava
+Project</big></big></p>
+
+      <p><font face="Arial" size="2">&nbsp;
+Your job
+is to extend <a href="staticjava.shtml">StaticJava</a>
+to have the following additional features:</font></p>
+
+      <ul>
+
+        <li><small>Class types, i.e., dynamically allocated.</small></li>
+
+        <li><small>One-dimensional array types</small></li>
+
+        <li><small>Only static fields and methods for the
+main (public) class, but public (non-static) fields for the rest of the
+classes.</small></li>
+
+        <li><small><span style="font-style: italic;">for</span>
+and <span style="font-style: italic;">do</span>
+loop statements</small></li>
+
+        <li><small>Increment and decrement expressions for
+use in loop statements</small></li>
+
+        <li><small>Several additional unary and binary
+expression operators</small></li>
+
+        <li><small>Conditional expressions<br>
+
+          </small></li>
+
+      </ul>
+
+      <ul>
+
+      </ul>
+
+      <table style="text-align: left; width: 100%;" cellpadding="2" cellspacing="2">
+
+        <tbody>
+
+          <tr>
+
+            <td style="background-color: rgb(255, 255, 183);"><big style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;">Syntax</big></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><i>&nbsp; Note: Highlighted non-terminals are
+new or
+modified (wrt. </i><a href="staticjava.shtml">StaticJava</a><i>
+concrete syntax)</i></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>program</i>&gt;</b> ::=
+&lt;<i>simple-class-declaration</i>&gt;* &lt;<i>class-declaration</i>&gt;
+&lt;<i>simple-class-declaration</i>&gt;*</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>simple-class-declaration</i>&gt;</b>
+::= "<b>class</b>" <i>ID</i> "<b>{</b>"
+&lt;<i>public-field-declaration</i>&gt;* "<b>}</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>public-field-declaration</i>&gt;</b>
+::= "<b>public</b>" &lt;<i>type</i>&gt;
+      <i>ID</i> "<b>;</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>class-declaration</i>&gt; ::= "<b>public</b>"
+"<b>class</b>" <i>ID</i> "<b>{</b>"
+&lt;<i>main-method-declaration</i>&gt; &lt;<i>field-or-method-declaration</i>&gt;*
+"<b>}</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>main-method-declaration</i>&gt; ::= "<b>public</b>"
+"<b>static</b>" "<b>void</b>" "<b>main</b>"
+"(" "<b>String</b>" "<b>[</b>" "<b>]</b>"
+      <i>ID</i> ")" "<b>{</b>" &lt;<i>method-body</i>&gt;
+"<b>}</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>field-or-method-declaration</i>&gt; ::=
+&lt;<i>field-declaration</i>&gt; | &lt;<i>method-declaration</i>&gt;</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>field-declaration</i>&gt; ::= "<b>static</b>"
+&lt;<i>type</i>&gt; <i>ID</i> "<b>;</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>method-declaration</i>&gt; ::= "<b>static</b>"
+&lt;<i>return-type</i>&gt; <i>ID</i>
+"(" &lt;<i>params</i>&gt;? ")" "<b>{</b>"
+&lt;<i>method-body</i>&gt; "<b>}</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>type</i>&gt;</b> ::= (
+&lt;<i>basic-type</i>&gt; | <i>ID</i>
+) ( "<b>[</b>" "<b>]</b>" )?</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>basic-type</i>&gt; ::= "<b>boolean</b>"
+| "<b>int</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>return-type</i>&gt; ::= &lt;<i>type</i>&gt;
+| "<b>void</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>params</i>&gt; ::= &lt;<i>param</i>&gt;
+( "<b>,</b>" &lt;<i>param</i>&gt; )*</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>param</i>&gt; ::= &lt;<i>type</i>&gt;
+      <i>ID</i></small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>method-body</i>&gt; ::= &lt;<i>local-declaration</i>&gt;*
+&lt;<i>statement</i>&gt;*</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>local-declaration</i>&gt; ::= &lt;<i>type</i>&gt;
+      <i>ID</i> "<b>;</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>statement</i>&gt;</b>
+::= &lt;<i>assign-statement</i>&gt; | &lt;<i>if-statement</i>&gt;
+| &lt;<i>while-statement</i>&gt; | &lt;<i>invoke-exp-statement</i>&gt;
+| &lt;<i>return-statement</i>&gt; | &lt;<i>for-statement</i>&gt;
+| &lt;<i>do-while-statement</i>&gt; | &lt;<i>inc-dec-statement</i>&gt;</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>assign-statement</i>&gt; ::= &lt;<i>assign</i>&gt;
+"<b>;</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>assign</i>&gt;</b> ::=
+&lt;<i>lhs</i>&gt; "<b>=</b>" &lt;<i>exp</i>&gt;</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>lhs</i>&gt;</b> ::= <i>ID</i>
+| &lt;<i>exp</i>&gt; "<b>.</b>" <i>ID</i>
+| &lt;<i>exp</i>&gt; "<b>[</b>" &lt;<i>exp</i>&gt;
+"<b>]</b>" </small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>if-statement</i>&gt; ::= "<b>if</b>"
+"<b>(</b>" &lt;<i>exp</i>&gt; "<b>)</b>"
+"<b>{</b>" &lt;<i>statement</i>&gt;* "<b>}</b>"
+( "<b>else</b>" "<b>{</b>" &lt;<i>statement</i>&gt;*
+"<b>}</b>" )?</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>while-statement</i>&gt; ::= "<b>while</b>"
+"<b>(</b>" &lt;<i>exp</i>&gt; "<b>)</b>"
+"<b>{</b>" &lt;<i>statement</i>&gt;* "<b>}</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>invoke-exp-statement</i>&gt; ::= &lt;<i>invoke-exp</i>&gt;
+"<b>;</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>return-statement</i>&gt; ::= "<b>return</b>"
+&lt;<i>exp</i>&gt; "<b>;</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>for-statement</i>&gt;</b>
+::= "<b>for</b>" "<b>(</b>" &lt;<i>for-inits</i>&gt;?
+"<b>;</b>" &lt;<i>exp</i>&gt;? "<b>;</b>"
+&lt;<i>for-updates</i>&gt;? "<b>)</b>" "<b>{</b>"
+&lt;<i>statement</i>&gt;* "<b>}</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>for-inits</i>&gt;</b>
+::= &lt;<i>assign</i>&gt; ( "<b>,</b>"
+&lt;<i>assign</i>&gt; )*</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>for-updates</i>&gt;</b>
+::= &lt;<i>inc-dec</i>&gt; ( "<b>,</b>"
+&lt;<i>inc-dec</i>&gt; )*</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>inc-dec</i>&gt;</b> ::=
+&lt;<i>lhs</i>&gt; "<b>++</b>" |
+&lt;<i>lhs</i>&gt; "<b>--</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>do-while-statement</i>&gt;</b>
+::= "<b>do</b>" "<b>{</b>" &lt;<i>statement</i>&gt;*
+"<b>}</b>" "<b>while</b>" "<b>(</b>"
+&lt;<i>exp</i>&gt; "<b>)</b>" "<b>;</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>inc-dec-statement</i>&gt;</b> ::=
+&lt;<i>inc-dec</i>&gt; 
+"<b>;</b>"</small></p>
+
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>exp</i>&gt; ::= &lt;<i>literal-exp</i>&gt;
+| &lt;<i>unary-exp</i>&gt; | &lt;<i>binary-exp</i>&gt;
+| &lt;<i>paren-exp</i>&gt; | &lt;<i>invoke-exp</i>&gt;
+| &lt;<i>var-ref</i>&gt; | &lt;<i>new-exp</i>&gt;
+| &lt;<i>array-access-exp</i>&gt; | &lt;<i>field-access-exp</i>&gt;
+| &lt;<i>cond-exp</i>&gt;</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>literal-exp</i>&gt; ::= &lt;<i>boolean-literal</i>&gt;
+| <i>NUM</i> | "<b>null</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>boolean-literal</i>&gt; ::= "<b>true</b>"
+| "<b>false</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>unary-exp</i>&gt; ::= &lt;<i>unary-op</i>&gt;
+&lt;<i>exp</i>&gt;</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>unary-op</i>&gt;</b>
+::= "<b>+</b>" | "<b>-</b>" | "<b>!</b>"
+| "<b>~</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>binary-exp</i>&gt; ::= &lt;<i>exp</i>&gt;
+&lt;<i>binary-op</i>&gt; &lt;<i>exp</i>&gt;</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>binary-op</i>&gt;</b>
+::= "<b>+</b>" | "<b>-</b>" | "<b>*</b>"
+| "<b>/</b>" | "<b>%</b>" | "<b>&gt;</b>"
+| "<b>&gt;=</b>" | "==" | "<b>&lt;</b>"
+| "<b>&lt;=</b>" | "<b>!=</b>" | "<b>&amp;&amp;</b>"
+| "<b>||</b>" | "<b>&lt;&lt;</b>" | "<b>&gt;&gt;</b>"
+| "<b>&gt;&gt;&gt;</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>paren-exp</i>&gt; ::= "<b>(</b>"
+&lt;<i>exp</i>&gt; "<b>)</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>invoke-exp</i>&gt; ::= ( <i>ID</i>
+"<b>.</b>" )? <i>ID</i> "<b>(</b>"
+&lt;<i>args</i>&gt;? "<b>)</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>args</i>&gt; ::= &lt;<i>exp</i>&gt;
+( "<b>,</b>" &lt;<i>exp</i>&gt; )*</small></p>
+
+      <p style="margin-left: 40px;"><small>
+&lt;<i>var-ref</i>&gt; ::= <i>ID</i></small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>cond-exp</i>&gt;</b>
+::= &lt;<i>exp</i>&gt; "<b>?</b>"
+&lt;<i>exp</i>&gt; "<b>:</b>" &lt;<i>exp</i>&gt;</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>new-exp</i>&gt;</b> ::=
+"<b>new</b>" <i>ID</i> "<b>(</b>" "<b>)</b>"
+| "<b>new</b>" &lt;<i>type</i>&gt; "<b>[</b>"
+&lt;<i>exp</i>&gt; "<b>]</b>" | "<b>new</b>"
+&lt;<i>type</i>&gt; "<b>[</b>" "<b>]</b>"
+&lt;<i>array-init</i>&gt;</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>array-init</i>&gt;</b>
+::= "<b>{</b>" &lt;<i>exp</i>&gt; ( "<b>,</b>"
+&lt;<i>exp</i>&gt; )* "<b>}</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>field-access-exp</i>&gt;</b>
+::= &lt;<i>exp</i>&gt; "<b>.</b>" <i>ID</i></small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <b>&lt;<i>array-access-exp</i>&gt;</b>
+::= &lt;<i>exp</i>&gt; "<b>[</b>"
+&lt;<i>exp</i>&gt; "<b>]</b>"</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <i>ID</i> = ( 'a'..'z' | 'A'..'Z' | '_' | '$' ) (
+'a'..'z' | 'A'..'Z' | '_' | '0'..'9' | '$' )*</small></p>
+
+      <p style="margin-left: 40px;"><small>
+      <i>NUM</i> = '0' | ('1'..'9') ('0'..'9')*</small></p>
+
+      <br>
+
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="2">
+
+        <tbody>
+
+          <tr>
+
+            <td style="background-color: rgb(255, 255, 183);"><big><b><font face="Arial" size="2"><big>Examples</big></font></b></big></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <br>
+
+TBD<br>
+
+      <div style="margin-left: 40px;"><br>
+
+      </div>
+
+      </td>
+
+    </tr>
+
+<!--msnavigation-->
+  </tbody>
+</table>
+
+<br>
+
+</body>
+</html>

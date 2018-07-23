@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>VM Spec  </title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+<table width=100%><tr>
+<td><a href="VMSpecTOC.doc.html">Contents</a> | <a href="Copyright.doc.html">Prev</a> | <a href="Introduction.doc.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+
+<hr><br>
+ 
+<a name="4760"></a>
+<h1> Series Foreword</h1>
+<a name="4761"></a>
+<hr><h2> About the Java Series</h2>
+<a name="4762"></a>
+The Java Series books provide definitive reference documentation for Java programmers and end users. They are written by members of the Java team and published 
+under the auspices of JavaSoft, a Sun Microsystems business. The World Wide Web 
+allows Java documentation to be made available over the Internet, either by downloading or as hypertext. Nevertheless, the worldwide interest in Java technology led 
+us to write and publish these books to supplement all of the documentation at our 
+Web site.
+<p><a name="4733"></a>
+To learn the latest about the Java Platform and Environment, or to download the latest Java release, visit our World Wide Web site at <code>http://java.sun.com</code>. For updated information about the Java Series, including sample code, errata, and previews of forthcoming books, visit <code>http://java.sun.com/Series</code>.<p>
+<a name="4734"></a>
+We would like to thank the Corporate and Professional Publishing Group at Addison-Wesley for their partnership in putting together the Series. Our editor Mike Hendrickson and his team have done a superb job of navigating us through the world of publishing. Within Sun, the support of James Gosling, Ruth Hennigar, Jon Kannegaard, and Bill Joy ensured that this series would have the resources it needed to be successful. In addition to the tremendous effort by individual authors, many members of the JavaSoft team have contributed behind the scenes to bring the highest level of quality and engineering to the books in the Series. A personal note of thanks to my children Christopher and James for putting a positive spin on the many trips to my office during the development of the Series.<p>
+<a name="4735"></a>
+Lisa Friendly <p>
+<a name="4736"></a>
+Series Editor<p>
+<a name="4726"></a>
+
+<p><a name="3876"></a>
+<h1> Preface</h1>
+<a name="3279"></a>
+This book has been written as a complete specification for the Java Virtual 
+Machine. It is essential for compiler writers who wish to target a Java Virtual 
+Machine and for programmers who want to implement a compatible Java Virtual Machine. It is also a definitive source for anyone who wants to know 
+exactly how the Java programming language works. 
+<p><a name="3280"></a>
+The Java Virtual Machine is an abstract design. This book serves as documentation for a concrete implementation of Java (including Sun's) only as a blueprint documents a house. Any implementation of Java must embody this specification of the Java Virtual Machine, but is constrained by it only where absolutely necessary.<p>
+<a name="3282"></a>
+This book describes Version 1.0.2 of the Java Virtual Machine, which is compatible with Version 1.0.2 of the Java programming language, as specified in <em>The Java Language Specification</em> (Addison-Wesley, 1996). Future versions of the Java Virtual Machine will be backward compatible with this specification.<p>
+<a name="3286"></a>
+We intend that this specification should sufficiently document the Java Virtual Machine to make possible compatible clean-room implementations. Sun provides tests which verify the proper operation of implementations of the Java Virtual Machine. If you are considering constructing your own implementation, please contact us at the email address below to obtain assistance to ensure the 100% compatibility of your implementation.<p>
+<a name="3291"></a>
+Send comments on this specification or questions about implementing the Java Virtual Machine to our electronic mail address: <code>jvm@java.sun.com</code>. <p>
+<a name="3293"></a>
+The original Java Virtual Machine was designed by James Gosling in 1992. It evolved to its present form through the direct and indirect efforts of many people, spanning Sun's Green Project, FirstPerson, Inc., the LiveOak project, Java Products Group, and JavaSoft. The authors are grateful to the many contributors.<p>
+<a name="3294"></a>
+This book began as internal project documentation. Kathy Walrath edited this early work, helping to give the world its first look at the internals of Java. It was then converted to HTML by Mary Campione and was made available on our Web site before being expanded into book form. <p>
+<a name="4674"></a>
+The present document owes much to the support of the group led by General Manager Ruth Hennigar and to the efforts of series editor Lisa Friendly and Mike Hendrickson of Addison-Wesley. The many criticisms and suggestions received from reviewers of early online drafts, as well as drafts of the book, improved its quality immensely. We owe special thanks to Richard Tuck for his careful review of the manuscript and to the authors of <em>The Java Language Specification</em> for allowing us to quote extensively from that book. Particular thanks to Bill Joy whose comments, reviews, and guidance have contributed greatly to the completeness and accuracy of this book.<p>
+<a name="3504"></a>
+<i>Tim Lindholm</i><p>
+<a name="3506"></a>
+<i>Frank Yellin</i><p>
+<a name="3622"></a>
+<i>JavaSoft</i><p>
+<a name="3502"></a>
+<i>June, 1996</i><p>
+<a name="3309"></a>
+<hr><h2> References</h2>
+<a name="3310"></a>
+<em>IEEE Standard for Binary Floating-Point Arithmetic</em>, ANSI/IEEE Std. 754-1985. Available from Global Engineering Documents, 15 Inverness Way East, Englewood, Colorado 80112-5704 USA, +1 800 854 7179.<p>
+<a name="3312"></a>
+Hoare, C.A.R. <i>Hints on Programming Language Design</i>. Stanford University Computer Science Department Technical Report No CS-73-403, December 1973. Reprinted in Sigact/Sigplan Symposium on Principles of Programming Languages. Association for Computing Machinery, New York, October 1973.<p>
+<a name="4492"></a>
+<em>The Unicode Standard: Worldwide Character Encoding</em>, Version 1.0, Volume 1, ISBN 0-201-56788-1, and Volume 2, ISBN 0-201-60845-6. Additional information about Unicode 1.1 may be found at <code>ftp://unicode.org</code>.<p>
+<a name="3333"></a>
+<p>
+
+
+<hr>
+<!-- This inserts footnotes--><p>
+<br>
+<a href="VMSpecTOC.doc.html">Contents</a> | <a href="Copyright.doc.html">Prev</a> | <a href="Introduction.doc.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size = -1>Java Virtual Machine Specification <br>
+<!--(HTML generated by dkramer on March 31, 1997)-->
+<!--
+(HTML generated by dkramer on March 25, 1997)-->
+<br>
+<i><a href="copyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:jvm@java.sun.com">jvm@java.sun.com</a>
+</font>
+</body></html>

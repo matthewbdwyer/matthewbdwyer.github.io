@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Compiler Construction</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <meta name="Microsoft Border" content="tlb">
+
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><span style="position: absolute; top: 50px; left: 11px;"> <br>
+
+      </span> </p>
+
+      </td>
+
+    </tr>
+
+<!--msnavigation-->
+  </tbody>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" dir="ltr" width="100%">
+
+  <tbody>
+
+    <tr>
+
+<!--#include file="sidebar.shtml" --> <td valign="top" width="24"></td>
+
+      <td valign="top"><big><big style="font-weight: bold;"><span style="font-family: Helvetica,Arial,sans-serif;"> &nbsp;
+Getting Started</span></big></big><br>
+
+      <div style="margin-left: 40px;">The project for this
+course is designed to work in the Eclipse environment. &nbsp; It is
+possible to develop a solution to this project outside of Eclipse but
+relatively littl support will be provided for students who choose to do
+so. &nbsp;In the following the bold arrow separated text indicates
+a series of menu selections in Eclipse, e.g., <span style="font-weight: bold;">X-&gt;Y-&gt;Z </span>means
+select X from the tool bar, then menu selection Y and sub-menu
+selection Z.<br>
+
+      </div>
+
+      <br>
+
+      <big style="font-weight: bold;"><span style="font-family: Helvetica,Arial,sans-serif;">&nbsp;
+&nbsp;Running Eclipse</span></big><br>
+
+      <div style="margin-left: 40px;">The StaticJava
+compiler is implemented using a few Java 1.5 generics. &nbsp;For
+this reason, you must build it using an appropriate SDK and using
+Eclipse 3.2. &nbsp; If you have your own machine it is best to <a href="http://www.eclipse.org/downloads/index.php">download
+Eclipse 3.2</a> and install it yourself. &nbsp; If you use
+CSCE computing labs you can use the installed version of Eclipse 3.2.
+&nbsp;<br>
+
+      <br>
+
+Note that you can always navigate to the actual files in your Eclipse
+workspace via the command line. &nbsp; This is useful for launching
+tools, such as Acrobat, that Eclipse is not configured to launch.</div>
+
+      <br>
+
+&nbsp; &nbsp;<big style="font-weight: bold;"><span style="font-family: Helvetica,Arial,sans-serif;">Setting Up</span></big>
+      <big style="font-family: Helvetica,Arial,sans-serif; font-weight: bold;">Eclipse</big><br>
+
+      <ul>
+
+        <li>Make sure that <b>Project-&gt;Build
+Automatically</b> menu item is checked.</li>
+
+        <li>Change your Java compiler to 5.0: <b>Window-&gt;Preferences...-&gt;Java-&gt;Compiler</b>,
+set <b>Compiler Compliance Setting</b> to 5.0</li>
+
+      </ul>
+
+      <big style="font-family: Helvetica,Arial,sans-serif;"><b>
+&nbsp; &nbsp;Accessing the Compiler Source<br>
+
+      </b></big>
+      <div style="margin-left: 40px;">We are distributing
+the source to the compiler via a SVN site that is shared by students
+taking the course at UNL and KSU. &nbsp;To access the source files
+and other course materials you will need to use an SVN
+plugin for Eclipse; we prefer the 
+<a href="http://www.polarion.org/index.php?page=overview&project=subversive">Subversive</a> plugin.
+You can install it in Eclipse by selecting 
+<b>Help-&gt;Software Updates-&gt;Find and Install</b> and then
+selecting <b>Search for new features to install</b>.  At that
+point you should add a <b>New Remote Site</b> with the address:<br>
+&nbsp;&nbsp;&nbsp;<b>http://www.polarion.org/projects/subversive/download/1.1/update-site/</b><br>
+and then proceed with the instructions.  If you are using a 
+non-Windows system, you need to additionally set the Subversive 
+Preferences to use SVN Kit 1.1.4 (see the bottom of 
+<a href="http://www.polarion.org/index.php?page=installation&project=subversive#notes">this page</a>).
+<p>
+If you have not used an SVN plugin you
+can start by read the CVS Eclipse tutorial (see <b>Help-&gt;Help
+Contents-&gt;Workbench User Guide-&gt;Getting
+started-&gt;Team CVS tutorial</b>).  More specific documentation
+is available at the <a href="http://www.polarion.org/index.php?page=overview&project=subversive">Subversive</a> 
+project home, but the concepts are very similar to CVS.
+If you have never used SVN or CVS before see the Gentoo Linux 
+CVS Tutorial linked
+off of the <a href="collected.shtml">CourseResources</a>
+page for a brief CVS tutorial.<br>
+      </div>
+<p>
+      <div style="margin-left: 40px;">
+      You can access the compiler project using the SVN repository
+      available at:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://robby.user.cis.ksu.edu/courses/compiler">https://robby.user.cis.ksu.edu/courses/compiler</a>
+      <p> 
+      Note that while you can browse the sources at that URL, but you'll want
+      to use Subversive to get a copy of the sources.
+      </div>
+      <div style="margin-left: 40px;">
+      The repository has three modules and you should <b>checkout</b>
+      each of them; to do that you highlight the module name, right click,
+      and select <b>checkout</b>.   The names of the modules are:
+        <ul>
+
+          <li>sjc -- contains the source for the <a href="staticjava.shtml">StaticJava</a>
+Compiler</li>
+
+          <li>slides -- contains the .pdf slides for the
+course lectures</li>
+
+          <li>examples -- contains the examples used in
+the lectures</li>
+
+        </ul>
+	</div>
+
+
+      <div style="margin-left: 40px;">
+You can then enter the java Eclipse view<b> Window-&gt;Show
+View-&gt;Other...-&gt;Java </b>to work with the compiler
+source code.&nbsp;</div>
+      <p>
+
+      <ul>
+
+      </ul>
+
+      <big style="font-weight: bold; font-family: Helvetica,Arial,sans-serif;">&nbsp;
+&nbsp;Installing Plugins</big><br>
+
+      <div style="margin-left: 40px;">There are a number
+of plugins that you will need to work with the compiler; some of the
+plugins you will use later in the course. &nbsp;See the
+documentation given at <a href="collected.shtml">collected
+resources</a> for the URLs of plugin download sites. &nbsp;
+One of the easy ways to install plugins is to use the <span style="font-weight: bold;">Help-&gt;Software
+Updates-&gt;Find and Install </span>feature; many of the
+plugins have step by step directions on how to perform an install.
+      </div>
+
+      <br>
+
+      </div>
+
+      <big style="font-family: Helvetica,Arial,sans-serif; font-weight: bold;">&nbsp;
+&nbsp;JDT AST Viewer Plugin</big>
+      <div style="margin-left: 40px;">To view the JDT AST
+representation of a Java file, you need to open the
+file in Eclipse, and open the AST view: <b>Window-&gt;Show
+View-&gt;Other...-&gt;Java-&gt;ASTView<br>
+
+      <br>
+
+      </b></div>
+
+      <big style="font-family: Helvetica,Arial,sans-serif; font-weight: bold;">&nbsp;
+&nbsp;Bytecode Outline Plugin</big>
+      <div style="margin-left: 40px;">To view the bytecode
+representation of a Java file, you need to open
+the file in Eclipse, and open the Bytecode view: <b>Window-&gt;Show
+View-&gt;Bytecode<br>
+
+      <br>
+
+      </b></div>
+
+      <big style="font-family: Helvetica,Arial,sans-serif; font-weight: bold;">&nbsp;
+&nbsp;Running the sjc
+Compiler</big>
+      <div style="margin-left: 40px;">So now you have the
+source
+folder <span style="font-weight: bold;">compiler-sjc</span>
+module visible in your Java view. &nbsp;Open the source folder <span style="font-weight: bold;">src-sjc </span>which
+contains the <span style="font-weight: bold;">SJC.java</span>
+file -- the main class for running sjc. &nbsp;&nbsp;To run sjc,
+right click on SJC.java, then <b>Run As-&gt;Run...</b>.
+It should open up the Eclipse launcher dialog. &nbsp; Highlight <b>Java
+Application</b> and then click the <b>New</b>
+button. Select the <b>Arguments</b> tab, and fill in the
+full path of the <a href="staticjava.html">StaticJava</a>
+file that you want to compile (e.g., <b>/home/dwyer/workspace/compiler-sjc/src-examples/<a href="http://www.cis.ksu.edu/%7Erobby/courses/cis706f05/workspace/cis706f05/src-examples/Factorial.java.html">Factorial</a>.java</b>),
+and put <b>-ea</b>
+in the VM arguments to enable Java assertion checking. Click run. The
+generated class file will be written in the same directory as the Java
+file. Note that, if the Java file is in an Eclipse Java source folder,
+Eclipse will not show the class file in the <b>Package
+Explorer&nbsp;</b>unless you use the <b>refresh </b>right-click
+selection. To run the program, go to the directory in the command
+shell, and type:</div>
+
+      <p style="margin-left: 80px;">
+java -classpath .:$PATH_TO_STATIC_LIB_CLASS &lt;<i>classname</i>&gt;
+&lt;<i>program arguments</i>&gt;</p>
+
+      <p style="margin-left: 40px;">
+For example, by default the libraries are in the bin directory of the
+compiler module in your installation:</p>
+
+      <p style="margin-left: 80px;">
+java -classpath .:/home/dwyer/workspace/compiler-sjc/bin <a href="http://www.cis.ksu.edu/%7Erobby/courses/cis706f05/workspace/cis706f05/src-examples/Factorial.java.html">Factorial</a>
+3</p>
+
+      <big style="font-family: Helvetica,Arial,sans-serif; font-weight: bold;">
+&nbsp; &nbsp; Running sjc test cases in Eclipse</big>
+      <div style="margin-left: 40px;">The source folder <span style="font-weight: bold;">src-sjc-test</span> in the <span style="font-weight: bold;">compiler-sjc</span> module
+containts
+some JUnit test cases to run sjc. For example, if you want to run the
+test cases in ByteCodeGeneratorTest.java, right click on the file, then
+select <b>Run As-&gt;JUnit Test</b>.</div>
+
+      </td>
+
+    </tr>
+
+<!--msnavigation--> <tr>
+
+      <td valign="top" width="24"></td>
+
+      <td valign="top"></td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+
+</body>
+</html>

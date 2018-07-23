@@ -1,0 +1,631 @@
+<html><head><title>Class Integer</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Float.html">Prev</a>  <a href="java.lang.Long.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="3438"><h1>	&#167;1.8 Class Integer</h1></a>
+<pre>public &#32;final &#32;class &#32;java.lang.<strong>Integer
+</strong>    extends &#32;java.lang.<strong>Number</strong> &#32;<a href="java.lang.Number.html#5764">(I-&#167;1.11)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public final static int <strong>MAX_VALUE</strong>;	<a href="java.lang.Integer.html#3600">&#167;1.8.1</a>
+    public final static int <strong>MIN_VALUE</strong>;	<a href="java.lang.Integer.html#27345">&#167;1.8.2</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Integer</strong>(int &#32;value);	<a href="java.lang.Integer.html#3628">&#167;1.8.3</a>
+    public <strong>Integer</strong>(String &#32;s);	<a href="java.lang.Integer.html#3646">&#167;1.8.4</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public double <strong>doubleValue</strong>();	<a href="java.lang.Integer.html#3680">&#167;1.8.5</a>
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.lang.Integer.html#3702">&#167;1.8.6</a>
+    public float <strong>floatValue</strong>();	<a href="java.lang.Integer.html#3734">&#167;1.8.7</a>
+    public static Integer <strong>getInteger</strong>(String &#32;nm);	<a href="java.lang.Integer.html#3756">&#167;1.8.8</a>
+    public static Integer <strong>getInteger</strong>(String &#32;nm, int &#32;val);	<a href="java.lang.Integer.html#3774">&#167;1.8.9</a>
+    public static Integer <strong>getInteger</strong>(String &#32;nm, Integer &#32;val);	<a href="java.lang.Integer.html#3796">&#167;1.8.10</a>
+    public int <strong>hashCode</strong>();	<a href="java.lang.Integer.html#3820">&#167;1.8.11</a>
+    public int <strong>intValue</strong>();	<a href="java.lang.Integer.html#3842">&#167;1.8.12</a>
+    public long <strong>longValue</strong>();	<a href="java.lang.Integer.html#3864">&#167;1.8.13</a>
+    public static int <strong>parseInt</strong>(String &#32;s);	<a href="java.lang.Integer.html#3886">&#167;1.8.14</a>
+    public static int <strong>parseInt</strong>(String &#32;s, int &#32;radix);	<a href="java.lang.Integer.html#3916">&#167;1.8.15</a>
+ &#32; &#32;public static String <strong>toBinaryString</strong>(int &#32;i);	<a href="java.lang.Integer.html#3952">&#167;1.8.16</a>
+    public static String <strong>toHexString</strong>(int &#32;i);	<a href="java.lang.Integer.html#3966">&#167;1.8.17</a>
+    public static String <strong>toOctalString</strong>(int &#32;i);	<a href="java.lang.Integer.html#3980">&#167;1.8.18</a>
+    public String <strong>toString</strong>();	<a href="java.lang.Integer.html#3994">&#167;1.8.19</a>
+    public static String <strong>toString</strong>(int &#32;i);	<a href="java.lang.Integer.html#4014">&#167;1.8.20</a>
+    public static String &#32;<strong>toString</strong>(int &#32;i, int &#32;radix);	<a href="java.lang.Integer.html#4032">&#167;1.8.21</a>
+ &#32; &#32;public static Integer <strong>valueOf</strong>(String &#32;s);	<a href="java.lang.Integer.html#4068">&#167;1.8.22</a>
+    public static Integer <strong>valueOf</strong>(String &#32;s, int &#32;radix);	<a href="java.lang.Integer.html#4098">&#167;1.8.23</a>
+}
+</pre><a name="36901">This class wraps a value of the primitive type int in an object. An object of type Integer contains a single field whose type is int.
+</a><p><a name="36902">In addition, this class provides a number of methods for converting an int to a String and a 
+String to an int, as well as other constants and methods useful when dealing with an int.
+</a><p>
+<hr>
+<a name="28401"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="MAX_VALUE">
+<a name="3600"><h3>MAX_VALUE
+</h3></a>
+<a name="27340"><code>public final static int MAX_VALUE = 2147483647
+</code></a>
+<dl>
+<dd><a name="27341">The largest value of type int.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MIN_VALUE">
+<a name="27345"><h3>MIN_VALUE
+</h3></a>
+<a name="3614"><code>public final static int MIN_VALUE = -2147483648
+</code></a>
+<dl>
+<dd><a name="3616">The smallest value of type int.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="3620"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Integer">
+<a name="3628"><h3>Integer
+</h3></a>
+<a name="3630"><code>public Integer(int &#32;value)
+</code></a>
+<dl>
+<dd><a name="38962">Constructs a newly allocated Integer object that represents the primitive int argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="38969"><b>Parameters:
+</b></a><dd><a name="38970"><code>value
+- </code></a><a name="38971">the value to be reprsented by the Integer
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Integer">
+<a name="3646"><h3>Integer
+</h3></a>
+<a name="3648"><code>public Integer(String &#32;s)
+</code></a>
+<a name="3650"><code>throws NumberFormatException
+</code></a>
+<dl>
+<dd><a name="38979">Constructs a newly allocated Integer object that represents the value represented by the string The string is converted to an int value as if by the valueOf method <a href="java.lang.Integer.html#4068">(I-&#167;1.8.22)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3654"><b>Parameters:
+</b></a><dd><a name="3656"><code>s
+- </code></a><a name="3658">the String to be converted to an Integer
+</a>
+
+<dt><a name="3660"><b>Throws
+</b></a><dd><a name="3666">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="3668">If the String does not contain a parsable integer.
+</a>
+</dl></dl>
+<hr>
+<a name="3670"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="doubleValue">
+<a name="3680"><h3>doubleValue
+</h3></a>
+<a name="3682"><code>public double doubleValue()
+</code></a>
+<dl><dl>
+<dt><a name="31606"><b>Returns:
+</b></a><dd><a name="31611">The int value represented by this object is converted to type double and 
+the result of the conversion is returned.
+</a>
+
+<dt><a name="31608"><b>Overrides:
+</b></a><dd><a name="3692">doubleValue in class Number &#32;<a href="java.lang.Number.html#5854">(I-&#167;1.11.1)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="equals">
+<a name="3702"><h3>equals
+</h3></a>
+<a name="3704"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="28445">The result is true if and only if the argument is not null and is an Integer object 
+that contains the same int value as this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3708"><b>Parameters:
+</b></a><dd><a name="3710"><code>obj
+- </code></a><a name="3712">the object to compare with
+</a>
+
+<dt><a name="3714"><b>Returns:
+</b></a><dd><a name="3716">true if the objects are the same; false otherwise.
+</a>
+
+<dt><a name="3718"><b>Overrides:
+</b></a><dd><a name="3724">equals in class Object &#32;<a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="floatValue">
+<a name="3734"><h3>floatValue
+</h3></a>
+<a name="31614"><code>public float floatValue()
+</code></a>
+<dl><dl>
+<dt><a name="31617"><b>Returns:
+</b></a><dd><a name="31624">the int value represented by this object is converted to type float and the 
+result of the conversion is returned..
+</a>
+
+<dt><a name="3740"><b>Overrides:
+</b></a><dd><a name="3746">floatValue in class Number &#32;<a href="java.lang.Number.html#5868">(I-&#167;1.11.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getInteger">
+<a name="3756"><h3>getInteger
+</h3></a>
+<a name="3758"><code>public static Integer getInteger(String &#32;nm)
+</code></a>
+<dl>
+<dd><a name="44064">Determines the integer value of the system property with the specified 
+name.
+<pre>
+</pre></a>
+
+<dd><a name="44022">The first argument is treated as the name of a system property to be 
+obtained as if by the method System.getProperty <a href="java.lang.System.html#10938">(I-&#167;1.18.10)</a>. The string value 
+of this property is then interpreted as an integer value and an Integer object 
+representing this value is returned. The full details of the possible numeric 
+formats are given in <a href="java.lang.Integer.html#3796">I</a>-<a href="java.lang.Integer.html#3796">&#167;1.8.10</a>.
+<pre>
+</pre></a>
+
+<dd><a name="39001">If there is no property with the specified name, or if the property does not 
+have the correct numeric format, then null is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27418"><b>Parameters:
+</b></a><dd><a name="3764"><code>nm
+- </code></a><a name="3766">property name
+</a>
+
+<dt><a name="31627"><b>Returns:
+</b></a><dd><a name="31628">the Integer value of the property.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getInteger">
+<a name="3774"><h3>getInteger
+</h3></a>
+<a name="3776"><code>public static Integer getInteger(String &#32;nm, int &#32;val)
+</code></a>
+<dl>
+<dd><a name="44062">Determines the integer value of the system property with the specified 
+name.
+<pre>
+</pre></a>
+
+<dd><a name="28664">The first argument is treated as the name of a system property to be 
+obtained as if by the method System.getProperty <a href="java.lang.System.html#10938">(I-&#167;1.18.10)</a>. The string value 
+of this property is then interpreted as an integer value and an Integer object 
+representing this value is returned. The full details of the possible numeric 
+formats are given in <a href="java.lang.Integer.html#3796">I</a>-<a href="java.lang.Integer.html#3796">&#167;1.8.10</a>.
+<pre>
+</pre></a>
+
+<dd><a name="39013">If there is no property with the specified name, or if the property does not 
+have the correct numeric format, then an Integer object that represents the 
+value of the second argument is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3780"><b>Parameters:
+</b></a><dd><a name="3782"><code>nm
+- </code></a><a name="3784">property name
+</a>
+<dd><a name="3786"><code>val
+- </code></a><a name="3788">default value
+</a>
+
+<dt><a name="31630"><b>Returns:
+</b></a><dd><a name="31631">the Integer value of the property.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getInteger">
+<a name="3796"><h3>getInteger
+</h3></a>
+<a name="3798"><code>public static Integer getInteger(String &#32;nm, Integer &#32;val)
+</code></a>
+<dl>
+<dd><a name="44030">Determines the integer value of the system property with the specified 
+name.
+<pre>
+</pre></a>
+
+<dd><a name="28683">The first argument is treated as the name of a system property to be 
+obtained as if by the method System.getProperty <a href="java.lang.System.html#10938">(I-&#167;1.18.10)</a>. The string value 
+of this property is then interpreted as an integer value and an Integer object 
+representing this value is returned.
+<pre>
+</pre></a>
+
+<dd><a name="28687">If the property value begins with "0x" or "#", not followed by a minus sign, 
+the rest of it is parsed as a hexadecimal integer exactly as for the method 
+Integer.valueOf <a href="java.lang.Integer.html#4098">(I-&#167;1.8.23)</a> with radix 16.
+<pre>
+</pre></a>
+
+<dd><a name="28691">If the property value begins with "0" then it is parsed as an octal integer 
+exactly as for the method Integer.valueOf <a href="java.lang.Integer.html#4098">(I-&#167;1.8.23)</a> with radix 8.
+<pre>
+</pre></a>
+
+<dd><a name="28695">Otherwise the property value is parsed as a decimal integer exactly as for 
+the method Integer.valueOf <a href="java.lang.Integer.html#4098">(I-&#167;1.8.23)</a> with radix 10.
+<pre>
+</pre></a>
+
+<dd><a name="28699">The second argument is the default value. If there is no property of the 
+specified name, or if the property does not have the correct numeric format, then the second argument is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3802"><b>Parameters:
+</b></a><dd><a name="3804"><code>nm
+- </code></a><a name="3806">property name
+</a>
+<dd><a name="3808"><code>val
+- </code></a><a name="3810">default value
+</a>
+
+<dt><a name="31634"><b>Returns:
+</b></a><dd><a name="31635">the Integer value of the property.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="3820"><h3>hashCode
+</h3></a>
+<a name="3822"><code>public int hashCode()
+</code></a>
+<dl><dl>
+<dt><a name="31158"><b>Returns:
+</b></a><dd><a name="31159">a hash code value for this object. 
+</a>
+
+<dt><a name="3826"><b>Overrides:
+</b></a><dd><a name="3832">hashCode in class Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="intValue">
+<a name="3842"><h3>intValue
+</h3></a>
+<a name="3844"><code>public int intValue()
+</code></a>
+<dl><dl>
+<dt><a name="31637"><b>Returns:
+</b></a><dd><a name="31640">The int value represented by this object is returned.
+</a>
+
+<dt><a name="3848"><b>Overrides:
+</b></a><dd><a name="3854">intValue in class Number &#32;<a href="java.lang.Number.html#5882">(I-&#167;1.11.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="longValue">
+<a name="3864"><h3>longValue
+</h3></a>
+<a name="3866"><code>public long longValue()
+</code></a>
+<dl><dl>
+<dt><a name="31642"><b>Returns:
+</b></a><dd><a name="31645">The int value represented by this object is converted to type long and 
+the result of the conversion is returned..
+</a>
+
+<dt><a name="3870"><b>Overrides:
+</b></a><dd><a name="3876">longValue in class Number &#32;<a href="java.lang.Number.html#5896">(I-&#167;1.11.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="parseInt">
+<a name="3886"><h3>parseInt
+</h3></a>
+<a name="3888"><code>public static int parseInt(String &#32;s)
+</code></a>
+<a name="3890"><code>throws NumberFormatException
+</code></a>
+<dl>
+<dd><a name="28541">Parses the string argument as a signed decimal integer. The characters in 
+the string must all be decimal digits, except that the first character may be 
+an ASCII minus sign '-' to indicate a negative value. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3894"><b>Parameters:
+</b></a><dd><a name="3896"><code>s
+- </code></a><a name="3898">a string
+</a>
+
+<dt><a name="31647"><b>Returns:
+</b></a><dd><a name="31648">the integer represented by the argument in decimal.
+</a>
+
+<dt><a name="3900"><b>Throws
+</b></a><dd><a name="3906">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="3908">If the string does not contain a parsable integer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="parseInt">
+<a name="3916"><h3>parseInt
+</h3></a>
+<a name="3918"><code>public static int parseInt(String &#32;s, int &#32;radix)
+</code></a>
+<a name="3920"><code>throws NumberFormatException
+</code></a>
+<dl>
+<dd><a name="28547">Parses the string argument as a signed integer in the radix specified by the 
+second argument. The characters in the string must all be digits of the 
+specified radix (as determined by whether Character.digit <a href="java.lang.Character.html#752">(I-&#167;1.2.7)</a> returns a 
+nonnegative value), except that the first character may be the an ASCII 
+minus sign '-' to indicate a negative value. The resulting integer value is 
+returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3924"><b>Parameters:
+</b></a><dd><a name="3926"><code>s
+- </code></a><a name="3928">the String containing the integer
+</a>
+<dd><a name="3930"><code>radix
+- </code></a><a name="3932">the radix to be used
+</a>
+
+<dt><a name="31650"><b>Returns:
+</b></a><dd><a name="31651">the integer represented by the string argument in the specified radix.
+</a>
+
+<dt><a name="3934"><b>Throws
+</b></a><dd><a name="3940">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="3942">If the string does not contain a parsable integer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toBinaryString">
+<a name="3952"><h3>toBinaryString<a href="#27475"><sup>1</sup></a>
+</h3></a>
+<a name="3954"><code>public static String toBinaryString(int &#32;i)
+</code></a>
+<dl>
+<dd><a name="43310">Creates a string representation of the integer argument as an unsigned integer in base 2.
+<pre>
+</pre></a>
+
+<dd><a name="36618">The unsigned integer value is the argument plus <img src="javaa13.gif"> if the argument is 
+negative; otherwise it is equal to the argument. This value is converted to a 
+string of ASCII digits in binary (base 2) with no extra leading 0's.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31653"><b>Parameters:
+</b></a><dd><a name="31654"><code>i
+- </code></a><a name="31655">an integer
+</a>
+
+<dt><a name="31677"><b>Returns:
+</b></a><dd><a name="36620">the string representation of the unsigned integer value represented by 
+the argument in binary (base 2).
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toHexString">
+<a name="3966"><h3>toHexString<a href="#27478"><sup>2</sup></a>
+</h3></a>
+<a name="3968"><code>public static String toHexString(int &#32;i)
+</code></a>
+<dl>
+<dd><a name="43318">Creates a string representation of the integer argument as an unsigned integer in base 16.
+<pre>
+</pre></a>
+
+<dd><a name="44901">The unsigned integer value is the argument plus <img src="javaa14.gif"> if the argument is 
+negative; otherwise it is equal to the argument. This value is converted to a 
+string of ASCII digits in hexadecimal (base 16) with no extra leading 0's.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="44902"><b>Parameters:
+</b></a><dd><a name="44903"><code>i
+- </code></a><a name="44904">an integer
+</a>
+
+<dt><a name="44905"><b>Returns:
+</b></a><dd><a name="44906">the string representation of the unsigned integer value represented by 
+the argument in hexadecimal (base 16).
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toOctalString">
+<a name="3980"><h3>toOctalString<a href="#27481"><sup>3</sup></a>
+</h3></a>
+<a name="3982"><code>public static String toOctalString(int &#32;i)
+</code></a>
+<dl>
+<dd><a name="43320">Creates a string representation of the integer argument as an unsigned integer in base 8.
+<pre>
+</pre></a>
+
+<dd><a name="44915">The unsigned integer value is the argument plus <img src="javaa15.gif"> if the argument is 
+negative; otherwise it is equal to the argument. This value is converted to a 
+string of ASCII digits in octal (base 8) with no extra leading 0's.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="44916"><b>Parameters:
+</b></a><dd><a name="44917"><code>i
+- </code></a><a name="44918">an integer
+</a>
+
+<dt><a name="44919"><b>Returns:
+</b></a><dd><a name="44920">the string representation of the unsigned integer value represented by 
+the argument in octal (base 8).
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="3994"><h3>toString
+</h3></a>
+<a name="3996"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="31395"><b>Returns:
+</b></a><dd><a name="31396">a string representation of the value of this object in base 10.
+</a>
+
+<dt><a name="4000"><b>Overrides:
+</b></a><dd><a name="4006">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="4014"><h3>toString
+</h3></a>
+<a name="4016"><code>public static String toString(int &#32;i)
+</code></a>
+<dl><dl>
+<dt><a name="4020"><b>Parameters:
+</b></a><dd><a name="4022"><code>i
+- </code></a><a name="4024">an integer to be converted
+</a>
+
+<dt><a name="31403"><b>Returns:
+</b></a><dd><a name="31404">a string representation of the argument in base 10.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="4032"><h3>toString
+</h3></a>
+<a name="4034"><code>public static String toString(int &#32;i, int &#32;radix)
+</code></a>
+<dl>
+<dd><a name="28459">Creates a string representation of the first argument in the radix specified 
+by the second argument.
+<pre>
+</pre></a>
+
+<dd><a name="43333">If the radix is smaller than Character.MIN_RADIX <a href="java.lang.Character.html#680">(I-&#167;1.2.3)</a> or larger than Character.MAX_RADIX <a href="java.lang.Character.html#648">(I-&#167;1.2.1)</a>, then the radix 10 is used instead.
+<pre>
+</pre></a>
+
+<dd><a name="28466">If the first argument is negative, the first element of the result is the ASCII 
+minus characer '-' . If the first argument is not negative, no sign character 
+appears in the result. The following ASCII characters are used as digits:
+<pre>
+</pre></a>
+
+<dd><a name="28469"> &#32; &#32; &#32; &#32;0123456789abcdefghijklmnopqrstuvwxyz
+<pre>
+</pre></a>
+<dl>
+<dt><a name="4038"><b>Parameters:
+</b></a><dd><a name="4040"><code>i
+- </code></a><a name="4042">an integer
+</a>
+<dd><a name="4044"><code>radix
+- </code></a><a name="4046">the radix
+</a>
+
+<dt><a name="31716"><b>Returns:
+</b></a><dd><a name="39058">a string representation of the argument in the specified radix.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="valueOf">
+<a name="4068"><h3>valueOf
+</h3></a>
+<a name="4070"><code>public static Integer valueOf(String &#32;s)
+</code></a>
+<a name="4072"><code>throws NumberFormatException
+</code></a>
+<dl><dl>
+<dt><a name="44051"><b>Parameters:
+</b></a><dd><a name="39108"><code>s
+- </code></a><a name="39109">the string to be parsed
+</a>
+
+<dt><a name="39110"><b>Returns:
+</b></a><dd><a name="39111">a newly constructed Integer initialized to the value represented by the 
+string argument.
+</a>
+
+<dt><a name="4082"><b>Throws
+</b></a><dd><a name="4088">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="4090">If the string does not contain a parsable integer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="valueOf">
+<a name="4098"><h3>valueOf
+</h3></a>
+<a name="4100"><code>public static Integer valueOf(String &#32;s, int &#32;radix)
+</code></a>
+<a name="4102"><code>throws NumberFormatException
+</code></a>
+<dl><dl>
+<dt><a name="39117"><b>Parameters:
+</b></a><dd><a name="39118"><code>s
+- </code></a><a name="39119">the string to be parsed
+</a>
+
+<dt><a name="39120"><b>Returns:
+</b></a><dd><a name="39121">a newly constructed Integer initialized to the value represented by the 
+string argument in the specified radix.
+</a>
+
+<dt><a name="39122"><b>Throws
+</b></a><dd><a name="39126">NumberFormatException &#32;<a href="java.lang.NumberFormatException.html#14456">(I-&#167;1.41)</a>
+</a>
+<dd><a name="39127">If the String does not contain a parsable integer.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="27475">This method is new in Java 1.1
+</a><p><sup>2</sup><!--"Footnote" is same tag as body.-->
+<a name="27478">This method is new in Java 1.1.
+</a><p><sup>3</sup><!--"Footnote" is same tag as body.-->
+<a name="27481">This method is new in Java 1.1.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Float.html">Prev</a>  <a href="java.lang.Long.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

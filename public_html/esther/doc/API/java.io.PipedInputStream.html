@@ -1,0 +1,200 @@
+<html><head><title>Class PipedInputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.OutputStream.html">Prev</a>  <a href="java.io.PipedOutputStream.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="6280"><h1>	&#167;2.16 Class PipedInputStream</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>PipedInputStream
+</strong>    extends &#32;java.io.<strong>InputStream</strong> &#32;<a href="java.io.InputStream.html#5284">(I-&#167;2.13)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>PipedInputStream</strong>();	<a href="java.io.PipedInputStream.html#6350">&#167;2.16.1</a>
+    public <strong>PipedInputStream</strong>(PipedOutputStream &#32;src);	<a href="java.io.PipedInputStream.html#6362">&#167;2.16.2</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+ &#32; &#32;public void <strong>close</strong>();	<a href="java.io.PipedInputStream.html#6386">&#167;2.16.3</a>
+    public void <strong>connect</strong>(PipedOutputStream &#32;src);	<a href="java.io.PipedInputStream.html#6420">&#167;2.16.4</a>
+    public int <strong>read</strong>();	<a href="java.io.PipedInputStream.html#6442">&#167;2.16.5</a>
+    public int <strong>read</strong>(byte &#32;b[], int &#32;off, int &#32;len);	<a href="java.io.PipedInputStream.html#6478">&#167;2.16.6</a>
+}
+</pre><a name="6330">A piped input stream is the receiving end a communications pipe. Two threads can communicate by having one thread send data through a piped output stream <a href="java.io.PipedOutputStream.html#6534">(I-&#167;2.17)</a> and having the other thread read the data through a piped input stream.
+</a><p>
+<hr>
+<a name="6342"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="PipedInputStream">
+<a name="6350"><h3>PipedInputStream
+</h3></a>
+<a name="6352"><code>public PipedInputStream()
+</code></a>
+<dl>
+<dd><a name="29860">Creates a piped input stream that is not yet connected to a piped output 
+stream. It must be connected to a piped output stream, either by the 
+receiver <a href="java.io.PipedInputStream.html#6420">(I-&#167;2.16.4)</a> or the sender <a href="java.io.PipedOutputStream.html#6674">(I-&#167;2.17.4)</a>, before being used.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="PipedInputStream">
+<a name="6362"><h3>PipedInputStream
+</h3></a>
+<a name="6364"><code>public PipedInputStream(PipedOutputStream &#32;src)
+</code></a>
+<a name="6366"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="6368">Creates a piped input stream connected to the specified piped output 
+stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6370"><b>Parameters:
+</b></a><dd><a name="6372"><code>src
+- </code></a><a name="6374">the stream to connect to.
+</a>
+
+<dt><a name="38487"><b>Throws
+</b></a><dd><a name="38491">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="38492">If an I/O error occurs.
+</a>
+</dl></dl>
+<hr>
+<a name="6376"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="close">
+<a name="6386"><h3>close
+</h3></a>
+<a name="6388"><code>public void close()
+</code></a>
+<a name="6390"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="6392">Closes this piped input stream and releases any system resources associated with the stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6394"><b>Throws
+</b></a><dd><a name="6400">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="6402">If an I/O error occurs.
+</a>
+
+<dt><a name="6404"><b>Overrides:
+</b></a><dd><a name="6410">close in class InputStream &#32;<a href="java.io.InputStream.html#5432">(I-&#167;2.13.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="connect">
+<a name="6420"><h3>connect
+</h3></a>
+<a name="6422"><code>public void connect(PipedOutputStream &#32;src)
+</code></a>
+<a name="6424"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="6426">Connects this piped input stream to a sender.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6428"><b>Parameters:
+</b></a><dd><a name="6430"><code>src
+- </code></a><a name="6432">The piped output stream to connect to.
+</a>
+
+<dt><a name="38499"><b>Throws
+</b></a><dd><a name="38503">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="38504">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="6442"><h3>read
+</h3></a>
+<a name="6444"><code>public int read()
+</code></a>
+<a name="36785"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="36786">Reads the next byte of data from this piped input stream. The value byte is 
+returned as an int in the range 0 to 255. If no byte is available because this 
+end of the stream has been reached, the value -1 is returned. This method 
+blocks until either input data is available, the end of the stream is detected, 
+or an exception is thrown.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29793"><b>Returns:
+</b></a><dd><a name="29794">the next byte of data, or -1 if the end of the stream is reached.
+</a>
+
+<dt><a name="6454"><b>Throws
+</b></a><dd><a name="6460">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="6462">If the pipe is broken.
+</a>
+
+<dt><a name="6464"><b>Overrides:
+</b></a><dd><a name="6470">read in class InputStream &#32;<a href="java.io.InputStream.html#5496">(I-&#167;2.13.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="6478"><h3>read
+</h3></a>
+<a name="6480"><code>public int read(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<a name="6482"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="29798">Reads up to len bytes of data from this piped input stream into an array of 
+bytes. This method blocks until at least one byte of input is available.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29799"><b>Parameters:
+</b></a><dd><a name="29800"><code>b
+- </code></a><a name="29801">the buffer into which the data is read
+</a>
+<dd><a name="29802"><code>off
+- </code></a><a name="29803">the start offset of the data
+</a>
+<dd><a name="29804"><code>len
+- </code></a><a name="29805">the maximum number of bytes read
+</a>
+
+<dt><a name="29806"><b>Returns:
+</b></a><dd><a name="29807">the total number of bytes read into the buffer, or -1 is there is no more 
+data because the end of the stream has been reached.
+</a>
+
+<dt><a name="6504"><b>Throws
+</b></a><dd><a name="6510">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="6512">If an I/O error occurs.
+</a>
+
+<dt><a name="6514"><b>Overrides:
+</b></a><dd><a name="6520">read in class InputStream &#32;<a href="java.io.InputStream.html#5558">(I-&#167;2.13.8)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.OutputStream.html">Prev</a>  <a href="java.io.PipedOutputStream.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

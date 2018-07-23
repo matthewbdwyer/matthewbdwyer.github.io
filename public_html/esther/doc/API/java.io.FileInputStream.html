@@ -1,0 +1,373 @@
+<html><head><title>Class FileInputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.FileDescriptor.html">Prev</a>  <a href="java.io.FileOutputStream.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="3704"><h1>	&#167;2.9 Class FileInputStream</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>FileInputStream
+</strong>    extends &#32;java.io.<strong>InputStream</strong> &#32;<a href="java.io.InputStream.html#5284">(I-&#167;2.13)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>FileInputStream</strong>(File &#32;file);	<a href="java.io.FileInputStream.html#3808">&#167;2.9.1</a>
+    public <strong>FileInputStream</strong>(FileDescriptor &#32;fdObj);	<a href="java.io.FileInputStream.html#3838">&#167;2.9.2</a>
+    public <strong>FileInputStream</strong>(String &#32;name);	<a href="java.io.FileInputStream.html#28438">&#167;2.9.3</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public int <strong>available</strong>();	<a href="java.io.FileInputStream.html#3882">&#167;2.9.4</a>
+    public void <strong>close</strong>();	<a href="java.io.FileInputStream.html#3910">&#167;2.9.5</a>
+    protected void <strong>finalize</strong>();	<a href="java.io.FileInputStream.html#3944">&#167;2.9.6</a>
+    public final FileDescriptor <strong>getFD</strong>();	<a href="java.io.FileInputStream.html#3968">&#167;2.9.7</a>
+    public int <strong>read</strong>();	<a href="java.io.FileInputStream.html#3988">&#167;2.9.8</a>
+    public int <strong>read</strong>(byte &#32;b[]);	<a href="java.io.FileInputStream.html#4024">&#167;2.9.9</a>
+    public int <strong>read</strong>(byte &#32;b[], int &#32;off, int &#32;len);	<a href="java.io.FileInputStream.html#4066">&#167;2.9.10</a>
+    public long <strong>skip</strong>(long &#32;n);	<a href="java.io.FileInputStream.html#4118">&#167;2.9.11</a>
+}
+</pre><a name="39403">A file input stream is an input stream for reading data from a File <a href="java.io.File.html#2822">(I-&#167;2.7)</a> or from a FileDescriptor <a href="java.io.FileDescriptor.html#3576">(I-&#167;2.8)</a>.
+</a><p>
+<hr>
+<a name="39408"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="FileInputStream">
+<a name="3808"><h3>FileInputStream
+</h3></a>
+<a name="3810"><code>public FileInputStream(File &#32;file)
+</code></a>
+<a name="3812"><code>throws FileNotFoundException
+</code></a>
+<dl>
+<dd><a name="3814">Creates an input file stream to read from the specified File object
+<pre>
+</pre></a>
+<dl>
+<dt><a name="28387"><b>Parameters:
+</b></a><dd><a name="3818"><code>file
+- </code></a><a name="3820">the file to be opened for reading
+</a>
+
+<dt><a name="3822"><b>Throws
+</b></a><dd><a name="3828">FileNotFoundException &#32;<a href="java.io.FileNotFoundException.html#10204">(I-&#167;2.28)</a>
+</a>
+<dd><a name="3830">If the file is not found.
+</a>
+
+<dt><a name="39436"><b>Throws
+</b></a><dd><a name="39440">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39461">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File argument to see if the 
+application is allowed read access to the file. This may result in a 
+security exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="FileInputStream">
+<a name="3838"><h3>FileInputStream
+</h3></a>
+<a name="28434"><code>public FileInputStream(FileDescriptor &#32;fdObj)
+</code></a>
+<dl>
+<dd><a name="28441">Creates an input file stream to read from the specified file descriptor
+<pre>
+</pre></a>
+<dl>
+<dt><a name="28460"><b>Parameters:
+</b></a><dd><a name="28461"><code>fdObj
+- </code></a><a name="28462">the file descriptor to be opened for reading
+</a>
+
+<dt><a name="39423"><b>Throws
+</b></a><dd><a name="39427">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39476">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#34698">(I-&#167;1.15.18)</a> is 
+called with the file descriptor to see if the application is allowed to 
+read from the specified file descriptor. This may result in a security 
+exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="FileInputStream">
+<a name="28438"><h3>FileInputStream
+</h3></a>
+<a name="28439"><code>public FileInputStream(String &#32;name)
+</code></a>
+<a name="3852"><code>throws FileNotFoundException
+</code></a>
+<dl>
+<dd><a name="28466">Creates an input file stream to read from a file with the specified name.
+<pre>
+</pre></a>
+
+<dd><a name="28470">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is called 
+with the name argument t to see if the application is allowed read access to 
+the file. This may result in a security exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3856"><b>Parameters:
+</b></a><dd><a name="3858"><code>name
+- </code></a><a name="3860">the system dependent file name
+</a>
+
+<dt><a name="3862"><b>Throws
+</b></a><dd><a name="3868">FileNotFoundException &#32;<a href="java.io.FileNotFoundException.html#10204">(I-&#167;2.28)</a>
+</a>
+<dd><a name="3870">If the file is not found.
+</a>
+
+<dt><a name="39410"><b>Throws
+</b></a><dd><a name="39414">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39489">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the name argument t to see if the application is allowed 
+read access to the file. This may result in a security exception 
+<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+</a>
+</dl></dl>
+<hr>
+<a name="3872"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="available">
+<a name="3882"><h3>available
+</h3></a>
+<a name="3884"><code>public int available()
+</code></a>
+<a name="3886"><code>throws IOException
+</code></a>
+<dl><dl>
+<dt><a name="28497"><b>Returns:
+</b></a><dd><a name="28498">the number of bytes that can be read from this file input stream without blocking.
+</a>
+
+<dt><a name="40852"><b>Throws
+</b></a><dd><a name="40856">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="40857">If an I/O error occurs.
+</a>
+
+<dt><a name="3894"><b>Overrides:
+</b></a><dd><a name="3900">available in class InputStream &#32;<a href="java.io.InputStream.html#5412">(I-&#167;2.13.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="close">
+<a name="3910"><h3>close
+</h3></a>
+<a name="3912"><code>public void close()
+</code></a>
+<a name="3914"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="3916">Closes this file input stream and releases any system resources associated 
+with the stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3918"><b>Throws
+</b></a><dd><a name="3924">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="3926">If an I/O error occurs.
+</a>
+
+<dt><a name="3928"><b>Overrides:
+</b></a><dd><a name="3934">close in class InputStream &#32;<a href="java.io.InputStream.html#5432">(I-&#167;2.13.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="finalize">
+<a name="3944"><h3>finalize
+</h3></a>
+<a name="3946"><code>protected void finalize()
+</code></a>
+<a name="3948"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="3950">This finalize method ensures that the close method <a href="java.io.FileInputStream.html#3910">(I-&#167;2.9.5)</a> of this file 
+input stream is called when there are no more references to it.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="40865"><b>Throws
+</b></a><dd><a name="40869">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="40870">If an I/O error occurs.
+</a>
+
+<dt><a name="3952"><b>Overrides:
+</b></a><dd><a name="3958">finalize in class Object &#32;<a href="java.lang.Object.html#6100">(I-&#167;1.12.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getFD">
+<a name="3968"><h3>getFD
+</h3></a>
+<a name="3970"><code>public final FileDescriptor getFD()
+</code></a>
+<a name="3972"><code>throws IOException
+</code></a>
+<dl><dl>
+<dt><a name="3976"><b>Returns:
+</b></a><dd><a name="3978">the file descriptor object <a href="java.io.FileDescriptor.html#3576">(I-&#167;2.8)</a> associated with this stream.
+</a>
+
+<dt><a name="40537"><b>Throws
+</b></a><dd><a name="40541">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="40542">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="3988"><h3>read
+</h3></a>
+<a name="3990"><code>public int read()
+</code></a>
+<a name="3992"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="28553">Reads a byte of data from this input stream. This method blocks if no input 
+is yet available.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="28554"><b>Returns:
+</b></a><dd><a name="28555">the next byte of data, or -1 if the end of the file is reached.
+</a>
+
+<dt><a name="4000"><b>Throws
+</b></a><dd><a name="4006">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="4008">If an I/O error occurs.
+</a>
+
+<dt><a name="4010"><b>Overrides:
+</b></a><dd><a name="4016">read in class InputStream &#32;<a href="java.io.InputStream.html#5496">(I-&#167;2.13.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="4024"><h3>read
+</h3></a>
+<a name="4026"><code>public int read(byte &#32;b[])
+</code></a>
+<a name="4028"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="28572">Reads up to b.length bytes of data from this input stream into an array of 
+bytes. This method blocks until some input is available.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="28573"><b>Parameters:
+</b></a><dd><a name="28574"><code>b
+- </code></a><a name="28575">the buffer into which the data is read
+</a>
+
+<dt><a name="28580"><b>Returns:
+</b></a><dd><a name="28581">the total number of bytes read into the buffer, or -1 is there is no more 
+data because the end of the file has been reached.
+</a>
+
+<dt><a name="4042"><b>Throws
+</b></a><dd><a name="4048">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="4050">If an I/O error occurs.
+</a>
+
+<dt><a name="4052"><b>Overrides:
+</b></a><dd><a name="4058">read in class InputStream &#32;<a href="java.io.InputStream.html#5524">(I-&#167;2.13.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="4066"><h3>read
+</h3></a>
+<a name="4068"><code>public int read(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<a name="4070"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="28583">Reads up to len bytes of data from this input stream into an array of bytes. 
+This method blocks until some input is available.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="28584"><b>Parameters:
+</b></a><dd><a name="28585"><code>b
+- </code></a><a name="28586">the buffer into which the data is read
+</a>
+<dd><a name="28587"><code>off
+- </code></a><a name="28588">the start offset of the data
+</a>
+<dd><a name="28589"><code>len
+- </code></a><a name="28590">the maximum number of bytes read
+</a>
+
+<dt><a name="28591"><b>Returns:
+</b></a><dd><a name="28592">the total number of bytes read into the buffer, or -1 is there is no more 
+data because the end of the file has been reached.
+</a>
+
+<dt><a name="4092"><b>Throws
+</b></a><dd><a name="4098">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="4100">If an I/O error occurs.
+</a>
+
+<dt><a name="4102"><b>Overrides:
+</b></a><dd><a name="4108">read in class InputStream &#32;<a href="java.io.InputStream.html#5558">(I-&#167;2.13.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="skip">
+<a name="4118"><h3>skip
+</h3></a>
+<a name="4120"><code>public long skip(long &#32;n)
+</code></a>
+<a name="4122"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="41337">Skips over and discards n bytes of data from the input stream. The skip 
+method may, for a variety of reasons, end up skipping over some smaller 
+number of bytes, possibly zero. The actual number of bytes skipped is 
+returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="28615"><b>Parameters:
+</b></a><dd><a name="28616"><code>n
+- </code></a><a name="28617">the number of bytes to be skipped
+</a>
+
+<dt><a name="28618"><b>Returns:
+</b></a><dd><a name="28619">the actual number of bytes skipped.
+</a>
+
+<dt><a name="4136"><b>Throws
+</b></a><dd><a name="4142">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="4144">If an I/O error occurs.
+</a>
+
+<dt><a name="4146"><b>Overrides:
+</b></a><dd><a name="4152">skip in class InputStream &#32;<a href="java.io.InputStream.html#5628">(I-&#167;2.13.10)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.FileDescriptor.html">Prev</a>  <a href="java.io.FileOutputStream.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

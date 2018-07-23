@@ -1,0 +1,264 @@
+<html><head><title>Class Choice</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.CheckboxMenuItem.html">Prev</a>  <a href="java.awt.Color.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="1905"><h1>	&#167;1.8 Class Choice</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Choice
+</strong>    extends &#32;java.awt.<strong>Component</strong> &#32;<a href="java.awt.Component.html#3219">(II-&#167;1.10)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Choice</strong>();	<a href="java.awt.Choice.html#1991">&#167;1.8.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addItem</strong>(String &#32;item);	<a href="java.awt.Choice.html#2007">&#167;1.8.2</a>
+    public void <strong>addNotify</strong>();	<a href="java.awt.Choice.html#2037">&#167;1.8.3</a>
+    public int <strong>countItems</strong>();	<a href="java.awt.Choice.html#2059">&#167;1.8.4</a>
+    public String <strong>getItem</strong>(int &#32;index);	<a href="java.awt.Choice.html#49438">&#167;1.8.5</a>
+    public int <strong>getSelectedIndex</strong>();	<a href="java.awt.Choice.html#2117">&#167;1.8.6</a>
+    public String <strong>getSelectedItem</strong>();	<a href="java.awt.Choice.html#2143">&#167;1.8.7</a>
+    protected String <strong>paramString</strong>();	<a href="java.awt.Choice.html#2169">&#167;1.8.8</a>
+    public void <strong>select</strong>(int &#32;pos);	<a href="java.awt.Choice.html#2195">&#167;1.8.9</a>
+    public void <strong>select</strong>(String &#32;str);	<a href="java.awt.Choice.html#2235">&#167;1.8.10</a>
+}
+</pre><a name="1979">The Choice class presents a pop-up menu of choices. The current choice is displayed as 
+the title of the menu.
+</a><p><a name="38878">For example, the code:
+</a><p><pre><hr>
+<a name="38892">Choice ColorChooser = new Choice();
+</a><a name="38887">ColorChooser.addItem("Green");
+</a><a name="38888">ColorChooser.addItem("Red");
+</a><a name="38929">ColorChooser.addItem("Blue");
+</a>
+<hr></pre><a name="38930">produces the following pop-up menu, after it has been added to a panel:<img src="javaae6.gif">.
+</a><p><a name="38960">In the picture, "Green" is the current choice. Pushing the mouse button down on on causes a 
+menu to appear with the current choice highlighted.
+</a><p><a name="41693">After any choice is made,<a href="#46748"><sup>1</sup></a> AWT sends an action event <a href="java.awt.Event.html#7837">(II-&#167;1.14.11)</a> to the choice menu. 
+The event's target is the choice menu, and its object is the string label of the currently 
+selected item. An application should override the action method <a href="java.awt.Component.html#3701">(II-&#167;1.10.1)</a> of the choice 
+menu or of one of its parent containers in order to cause some action to occur.
+</a><p>
+<hr>
+<a name="27413"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Choice">
+<a name="1991"><h3>Choice
+</h3></a>
+<a name="1993"><code>public Choice()
+</code></a>
+<dl>
+<dd><a name="1995">Creates a new choice menu. The menu initially has no items in it.
+<pre>
+</pre></a>
+
+<dd><a name="44783">By default, the first item added to the choice menu becomes the selected 
+item, until a different selection is made by the user or by calling one of the 
+select methods (<a href="java.awt.Choice.html#2195">&#167;1.8.9</a>, <a href="java.awt.Choice.html#2235">&#167;1.8.10</a>).
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="44790"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addItem">
+<a name="2007"><h3>addItem
+</h3></a>
+<a name="2009"><code>public void addItem(String &#32;item)
+</code></a>
+<dl>
+<dd><a name="2011">Adds an item to this choice menu.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2013"><b>Parameters:
+</b></a><dd><a name="2015"><code>item
+- </code></a><a name="2017">the item to be added
+</a>
+
+<dt><a name="2019"><b>Throws
+</b></a><dd><a name="2025">NullPointerException &#32;<a href="java.lang.NullPointerException.html#14382">(I-&#167;1.40)</a>
+</a>
+<dd><a name="2027">If the item's value is equal to null.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="addNotify">
+<a name="2037"><h3>addNotify
+</h3></a>
+<a name="2039"><code>public void addNotify()
+</code></a>
+<dl>
+<dd><a name="26521">This method calls the createChoice method <a href="java.awt.Toolkit.html#22333">(II-&#167;1.41.7)</a> of this object's toolkit <a href="java.awt.Component.html#4237">(II-&#167;1.10.20)</a> in order to create a ChoicePeer &#32;<a href="java.awt.peer.ChoicePeer.html#421">(II-&#167;3.5)</a> for this button. 
+This peer allows the application to change the look of a choice mneu without changing its functionality.
+<pre>
+</pre></a>
+
+<dd><a name="43774">Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2043"><b>Overrides:
+</b></a><dd><a name="2049">addNotify in class Component &#32;<a href="java.awt.Component.html#3737">(II-&#167;1.10.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="countItems">
+<a name="2059"><h3>countItems
+</h3></a>
+<a name="2061"><code>public int countItems()
+</code></a>
+<dl><dl>
+<dt><a name="2065"><b>Returns:
+</b></a><dd><a name="2067">the number of menu items in this choice menu.
+</a>
+
+<dt><a name="49430"><b>See Also:
+</b></a><dd><a name="49434">getItem &#32;<a href="java.awt.Choice.html#49438">(II-&#167;1.8.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getItem">
+<a name="49438"><h3>getItem
+</h3></a>
+<a name="2087"><code>public String getItem(int &#32;index)
+</code></a>
+<dl><dl>
+<dt><a name="2091"><b>Parameters:
+</b></a><dd><a name="2093"><code>index
+- </code></a><a name="2095">the index
+</a>
+
+<dt><a name="2097"><b>Returns:
+</b></a><dd><a name="2099">the string at the specified index in this choice menu
+</a>
+
+<dt><a name="2101"><b>See Also:
+</b></a><dd><a name="2107">countItems &#32;<a href="java.awt.Choice.html#2059">(II-&#167;1.8.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getSelectedIndex">
+<a name="2117"><h3>getSelectedIndex
+</h3></a>
+<a name="2119"><code>public int getSelectedIndex()
+</code></a>
+<dl><dl>
+<dt><a name="27448"><b>Returns:
+</b></a><dd><a name="2125">the index of the currently selected item in this choice menu.
+</a>
+
+<dt><a name="2127"><b>See Also:
+</b></a><dd><a name="2133">getSelectedItem &#32;<a href="java.awt.Choice.html#2143">(II-&#167;1.8.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getSelectedItem">
+<a name="2143"><h3>getSelectedItem
+</h3></a>
+<a name="44799"><code>public String getSelectedItem()
+</code></a>
+<dl><dl>
+<dt><a name="44800"><b>Returns:
+</b></a><dd><a name="44801">a string representation of the currently selected item in this choice 
+menu.
+</a>
+
+<dt><a name="2153"><b>See Also:
+</b></a><dd><a name="2159">getSelectedIndex &#32;<a href="java.awt.Choice.html#2117">(II-&#167;1.8.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="2169"><h3>paramString
+</h3></a>
+<a name="26898"><code>protected String paramString()
+</code></a>
+<dl>
+<dd><a name="54092">Returns the parameter string representing the state of this choice menu. 
+This string is useful for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26900"><b>Returns:
+</b></a><dd><a name="26901">the parameter string of this choice menu.
+</a>
+
+<dt><a name="26902"><b>Overrides:
+</b></a><dd><a name="2185">paramString in class Component &#32;<a href="java.awt.Component.html#5253">(II-&#167;1.10.51)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="select">
+<a name="2195"><h3>select
+</h3></a>
+<a name="2197"><code>public void select(int &#32;pos)
+</code></a>
+<dl>
+<dd><a name="2199">Sets the selected item in this choice menu to be the item at the specified 
+position.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2201"><b>Parameters:
+</b></a><dd><a name="2203"><code>pos
+- </code></a><a name="2205">the selected item position
+</a>
+
+<dt><a name="2207"><b>Throws
+</b></a><dd><a name="2213">IllegalArgumentException &#32;<a href="java.lang.IllegalArgumentException.html#13758">(I-&#167;1.32)</a>
+</a>
+<dd><a name="2215">If the choice item position is invalid.
+</a>
+
+<dt><a name="2217"><b>See Also:
+</b></a><dd><a name="2227">getSelectedItem &#32;<a href="java.awt.Choice.html#2143">(II-&#167;1.8.7)</a><br>
+getSelectedIndex &#32;<a href="java.awt.Choice.html#2117">(II-&#167;1.8.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="select">
+<a name="2235"><h3>select
+</h3></a>
+<a name="2237"><code>public void select(String &#32;str)
+</code></a>
+<dl>
+<dd><a name="2239">Sets the selected item in this choice menu to be the choice whose name is 
+equal <a href="java.lang.String.html#32704">(I-&#167;1.16.14)</a> to the specified string. If more than one choice is equal 
+to the specified string, the one with the smallest index whose name 
+matches is selected.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2241"><b>Parameters:
+</b></a><dd><a name="2243"><code>str
+- </code></a><a name="2245">the string to select
+</a>
+
+<dt><a name="2247"><b>See Also:
+</b></a><dd><a name="47306">getSelectedItem &#32;<a href="java.awt.Choice.html#2143">(II-&#167;1.8.7)</a><br>
+getSelectedIndex &#32;<a href="java.awt.Choice.html#2117">(II-&#167;1.8.6)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="46748">In Java 1.0, the AWT does not send mouse or focus events to a choice menu. In 
+Java 1.1, the AWT sends the cheoice menu all mouse, keyboard, and focus events 
+that occur over it.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.CheckboxMenuItem.html">Prev</a>  <a href="java.awt.Color.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

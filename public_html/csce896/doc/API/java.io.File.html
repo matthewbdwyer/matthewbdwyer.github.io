@@ -1,0 +1,671 @@
+<html><head><title>Class File</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.DataOutputStream.html">Prev</a>  <a href="java.io.FileDescriptor.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="2822"><h1>	&#167;2.7 Class File</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>File
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{<br>
+ &#32; &#32; &#32; &#32;// Fields
+    public final static String <strong>pathSeparator</strong>;	<a href="java.io.File.html#3018">&#167;2.7.1</a>
+    public final static char <strong>pathSeparatorChar</strong>;	<a href="java.io.File.html#3030">&#167;2.7.2</a>
+    public final static String <strong>separator</strong>;	<a href="java.io.File.html#3042">&#167;2.7.3</a>
+    public final static char <strong>separatorChar</strong>;	<a href="java.io.File.html#3054">&#167;2.7.4</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>File</strong>(File &#32;dir, String &#32;name);	<a href="java.io.File.html#3070">&#167;2.7.5</a>
+    public <strong>File</strong>(String &#32;path);	<a href="java.io.File.html#3092">&#167;2.7.6</a>
+    public <strong>File</strong>(String &#32;path, String &#32;name);	<a href="java.io.File.html#3120">&#167;2.7.7</a><br>
+<br>
+ &#32; &#32; &#32; &#32;// Methods
+    public boolean <strong>canRead</strong>();	<a href="java.io.File.html#3146">&#167;2.7.8</a>
+    public boolean <strong>canWrite</strong>();	<a href="java.io.File.html#3164">&#167;2.7.9</a>
+    public boolean <strong>delete</strong>();	<a href="java.io.File.html#3182">&#167;2.7.10</a>
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.io.File.html#3200">&#167;2.7.11</a>
+    public boolean <strong>exists</strong>();	<a href="java.io.File.html#3232">&#167;2.7.12</a>
+    public String <strong>getAbsolutePath</strong>();	<a href="java.io.File.html#3250">&#167;2.7.13</a>
+    public String <strong>getName</strong>();	<a href="java.io.File.html#3268">&#167;2.7.14</a>
+    public String <strong>getParent</strong>();	<a href="java.io.File.html#3286">&#167;2.7.15</a>
+    public String <strong>getPath</strong>();	<a href="java.io.File.html#3304">&#167;2.7.16</a>
+    public int <strong>hashCode</strong>();	<a href="java.io.File.html#3322">&#167;2.7.17</a>
+    public boolean <strong>isAbsolute</strong>();	<a href="java.io.File.html#3348">&#167;2.7.18</a>
+    public boolean <strong>isDirectory</strong>();	<a href="java.io.File.html#3366">&#167;2.7.19</a>
+    public boolean <strong>isFile</strong>();	<a href="java.io.File.html#3384">&#167;2.7.20</a>
+    public long <strong>lastModified</strong>();	<a href="java.io.File.html#3402">&#167;2.7.21</a>
+    public long <strong>length</strong>();	<a href="java.io.File.html#3420">&#167;2.7.22</a>
+    public String[] <strong>list</strong>();	<a href="java.io.File.html#3438">&#167;2.7.23</a>
+    public String[] <strong>list</strong>(FilenameFilter &#32;filter);	<a href="java.io.File.html#3454">&#167;2.7.24</a>
+    public boolean <strong>mkdir</strong>();	<a href="java.io.File.html#3486">&#167;2.7.25</a>
+    public boolean <strong>mkdirs</strong>();	<a href="java.io.File.html#3504">&#167;2.7.26</a>
+    public boolean <strong>renameTo</strong>(File &#32;dest);	<a href="java.io.File.html#39342">&#167;2.7.27</a>
+    public String <strong>toString</strong>();	<a href="java.io.File.html#3546">&#167;2.7.28</a>
+}
+</pre><a name="3004">Instances of this class represent the name of a file or directory on the host file system. A 
+file is specified by a path name, which can either be an absolute path name or a path name 
+relative to the current working directory. The path name must follow the naming conventions of the host platform.
+</a><p><a name="3006">The File class is intended to provide an abstraction that deals with most of the machine-
+dependent complexities of files and path names in a machine-independent fashion.
+</a><p>
+<hr>
+<a name="3010"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="pathSeparator">
+<a name="3018"><h3>pathSeparator
+</h3></a>
+<a name="3020"><code>public final static String pathSeparator 
+</code></a>
+<dl>
+<dd><a name="27710">The system-dependent path separator string. This field is initialized to 
+contain the value of the system property <a href="java.lang.System.html#10920">(I-&#167;1.18.9)</a> "path.-separator".
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="pathSeparatorChar">
+<a name="3030"><h3>pathSeparatorChar
+</h3></a>
+<a name="3032"><code>public final static char pathSeparatorChar
+</code></a>
+<dl>
+<dd><a name="27723">The system-dependent path separator character. This field is initialized to 
+contain the first character of the value of the system property <a href="java.lang.System.html#10920">(I-&#167;1.18.9)</a> 
+"path.separator". This character is often used to separate file names in a 
+sequence of files given as a "path list".
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="separator">
+<a name="3042"><h3>separator
+</h3></a>
+<a name="3044"><code>public final static String separator
+</code></a>
+<dl>
+<dd><a name="27716">The system-dependent path separator string. This field is initialized to 
+contain the value of the system property <a href="java.lang.System.html#10920">(I-&#167;1.18.9)</a> "file.-separator".
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="separatorChar">
+<a name="3054"><h3>separatorChar
+</h3></a>
+<a name="3056"><code>public final static char separatorChar
+</code></a>
+<dl>
+<dd><a name="27735">The system-dependent path separator string. This field is initialized to 
+contain the first character of the value of the system property <a href="java.lang.System.html#10920">(I-&#167;1.18.9)</a> 
+"file.separator".This character separates the directory and file components in 
+a file name.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="3062"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="File">
+<a name="3070"><h3>File
+</h3></a>
+<a name="3072"><code>public File(File &#32;dir, String &#32;name)
+</code></a>
+<dl>
+<dd><a name="3074">Creates a File instance that represents the file with the specified name in 
+the specified directory.
+<pre>
+</pre></a>
+
+<dd><a name="27810">If the directory argument is null. the resulting File instance represents a file 
+in the (system-dependent) current directory whose path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> 
+is the name argument. Otherwise, the File instance represents a file whose 
+path name is the pathname of the directory, followed by the separator character <a href="java.io.File.html#3042">(I-&#167;2.7.3)</a>, followed by the name argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3076"><b>Parameters:
+</b></a><dd><a name="3078"><code>dir
+- </code></a><a name="3080">the directory
+</a>
+<dd><a name="3082"><code>name
+- </code></a><a name="3084">the file path name
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="File">
+<a name="3092"><h3>File
+</h3></a>
+<a name="3094"><code>public File(String &#32;path)
+</code></a>
+<dl>
+<dd><a name="3096">Creates a File instance that represents the file whose path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> 
+is the given path argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3098"><b>Parameters:
+</b></a><dd><a name="3100"><code>path
+- </code></a><a name="3102">the file path name
+</a>
+
+<dt><a name="3104"><b>Throws
+</b></a><dd><a name="3110">NullPointerException &#32;<a href="java.lang.NullPointerException.html#14382">(I-&#167;1.40)</a>
+</a>
+<dd><a name="3112">If the file path is equal to null.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="File">
+<a name="3120"><h3>File
+</h3></a>
+<a name="3122"><code>public File(String &#32;path, String &#32;name)
+</code></a>
+<dl>
+<dd><a name="27752">Creates a File instance whose path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> is the pathname of the 
+specified directory, followed by the separator character <a href="java.io.File.html#3042">(I-&#167;2.7.3)</a>, followed by the name argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3126"><b>Parameters:
+</b></a><dd><a name="3128"><code>path
+- </code></a><a name="3130">the directory path name
+</a>
+<dd><a name="3132"><code>name
+- </code></a><a name="3134">the file path name
+</a>
+</dl></dl>
+<hr>
+<a name="3136"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="canRead">
+<a name="3146"><h3>canRead
+</h3></a>
+<a name="3148"><code>public boolean canRead()
+</code></a>
+<dl>
+<dd><a name="27852">Determines if the application can read from the specified file.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3152"><b>Returns:
+</b></a><dd><a name="3154">true if the file specified by this object exists and the application can 
+read the file; false otherwise
+</a>
+
+<dt><a name="38984"><b>Throws
+</b></a><dd><a name="38988">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39049">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed read access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="canWrite">
+<a name="3164"><h3>canWrite
+</h3></a>
+<a name="3166"><code>public boolean canWrite()
+</code></a>
+<dl>
+<dd><a name="27867">Determines if the application can write to this file.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3170"><b>Returns:
+</b></a><dd><a name="3172">true if the application is allowed to write to a file whose name is specified by this object; false otherwise
+</a>
+
+<dt><a name="38995"><b>Throws
+</b></a><dd><a name="38999">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39079">If a security manager exists, its checkWrite method <a href="java.lang.SecurityManager.html#7860">(I-&#167;1.15.24)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed write access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="delete">
+<a name="3182"><h3>delete
+</h3></a>
+<a name="3184"><code>public boolean delete()
+</code></a>
+<dl>
+<dd><a name="27799">Deletes the file specified by this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3188"><b>Returns:
+</b></a><dd><a name="3190">true if the file is successfully deleted; false otherwise.
+</a>
+
+<dt><a name="39010"><b>Throws
+</b></a><dd><a name="39014">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39101">If a security manager exists, its checkDelete method <a href="java.lang.SecurityManager.html#7444">(I-&#167;1.15.9)</a> is called 
+with with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application 
+is allowed to delete the file.
+</a>
+<dd><a name="39106">
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="equals">
+<a name="3200"><h3>equals
+</h3></a>
+<a name="3202"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="27890">The result is true if and only if the argument is not null and is a File object 
+whose path name is equal to the path name of this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3206"><b>Parameters:
+</b></a><dd><a name="3208"><code>obj
+- </code></a><a name="3210">the object to compare with
+</a>
+
+<dt><a name="3212"><b>Returns:
+</b></a><dd><a name="3214">true if the objects are the same; false otherwise.
+</a>
+
+<dt><a name="3216"><b>Overrides:
+</b></a><dd><a name="3222">equals in class Object &#32;<a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="exists">
+<a name="3232"><h3>exists
+</h3></a>
+<a name="3234"><code>public boolean exists()
+</code></a>
+<dl>
+<dd><a name="27912">Determines if this File exists.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27919"><b>Returns:
+</b></a><dd><a name="27920">true if the file specified by this object exists; false otherwise
+</a>
+
+<dt><a name="39025"><b>Throws
+</b></a><dd><a name="39029">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39114">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed read access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getAbsolutePath">
+<a name="3250"><h3>getAbsolutePath
+</h3></a>
+<a name="27931"><code>public String getAbsolutePath()
+</code></a>
+<dl>
+<dd><a name="41200">If this object represents an absolute path name <a href="java.io.File.html#3348">(I-&#167;2.7.18)</a>, then return the 
+path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a>. Otherwise, return a path name that is a concatenation of the current user directory, the separator character, and the path 
+name of this file object.
+<pre>
+</pre></a>
+
+<dd><a name="41207">The system property <a href="java.lang.System.html#10920">(I-&#167;1.18.9)</a> user.dir contains the current user directory.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27933"><b>Returns:
+</b></a><dd><a name="3258">a system-dependent absolute path name for this File.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getName">
+<a name="3268"><h3>getName
+</h3></a>
+<a name="3270"><code>public String getName()
+</code></a>
+<dl>
+<dd><a name="3272">Returns the name of the file represented by this object. The name is everything in the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> after the last occurrence of the separator 
+character <a href="java.io.File.html#3042">(I-&#167;2.7.3)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3274"><b>Returns:
+</b></a><dd><a name="3276">the name of the file (without any directory components) represented 
+by this File object.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getParent">
+<a name="3286"><h3>getParent
+</h3></a>
+<a name="3288"><code>public String getParent()
+</code></a>
+<dl>
+<dd><a name="28219">Returns the parent directory of the file represented by this object. The parent directory is everything in the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> before the last 
+occurrence of the separator character <a href="java.io.File.html#3042">(I-&#167;2.7.3)</a>, or null if the separator 
+character does not appear in the path name.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3292"><b>Returns:
+</b></a><dd><a name="3294">the name of the directory of the file represented by this File object.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getPath">
+<a name="3304"><h3>getPath
+</h3></a>
+<a name="3306"><code>public String getPath()
+</code></a>
+<dl><dl>
+<dt><a name="3310"><b>Returns:
+</b></a><dd><a name="3312">the path name represented by this File object.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="3322"><h3>hashCode
+</h3></a>
+<a name="3324"><code>public int hashCode()
+</code></a>
+<dl><dl>
+<dt><a name="3328"><b>Returns:
+</b></a><dd><a name="28026">a hash code value for this File object.
+</a>
+
+<dt><a name="3332"><b>Overrides:
+</b></a><dd><a name="3338">hashCode in class Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isAbsolute">
+<a name="3348"><h3>isAbsolute
+</h3></a>
+<a name="3350"><code>public boolean isAbsolute()
+</code></a>
+<dl>
+<dd><a name="3352">Determines if this File represents an absolute path name. The definition of 
+an absolute path name is system-dependent.<a href="#28049"><sup>1</sup></a>
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3354"><b>Returns:
+</b></a><dd><a name="3356">true if the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> indicated by the File object is an absolute path name; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isDirectory">
+<a name="3366"><h3>isDirectory
+</h3></a>
+<a name="3368"><code>public boolean isDirectory()
+</code></a>
+<dl>
+<dd><a name="28057">Determines if the file represented by this File object is a directory.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39158"><b>Returns:
+</b></a><dd><a name="39159">true if this File exists and is a directory; false otherwise.
+</a>
+
+<dt><a name="39140"><b>Throws
+</b></a><dd><a name="39144">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39148">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed read access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isFile">
+<a name="3384"><h3>isFile
+</h3></a>
+<a name="3386"><code>public boolean isFile()
+</code></a>
+<dl>
+<dd><a name="28084">Determines if the file represented by this File object is a "normal" file.
+<pre>
+</pre></a>
+
+<dd><a name="28091">A file is "normal" if it is not a directory and, in addition, satisfies other 
+system-dependent criteria. Any non-directory file created by a Java application is guaranteed to be a normal file.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="28093"><b>Returns:
+</b></a><dd><a name="28092">true if the file specified by this object exists and is a "normal" file; false 
+otherwise.
+</a>
+
+<dt><a name="39198"><b>Throws
+</b></a><dd><a name="39202">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39206">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed read access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="lastModified">
+<a name="3402"><h3>lastModified
+</h3></a>
+<a name="3404"><code>public long lastModified()
+</code></a>
+<dl>
+<dd><a name="28117">Determines the time that the file represented by this File object was last 
+modified.
+<pre>
+</pre></a>
+
+<dd><a name="3406">The return value is system-dependent and should only be used to compare 
+with other values returned by last modified. It should not be interpreted as 
+an absolute time.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3408"><b>Returns:
+</b></a><dd><a name="3410">the time the file specified by this object was last modified, or 0L if the 
+specified file does not exist.
+</a>
+
+<dt><a name="39172"><b>Throws
+</b></a><dd><a name="39176">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39180">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed read access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="length">
+<a name="3420"><h3>length
+</h3></a>
+<a name="3422"><code>public long length()
+</code></a>
+<dl>
+<dd><a name="28128">Determines the length of the file represented by this File object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3426"><b>Returns:
+</b></a><dd><a name="28138">the length, in bytes, of the file specified by this object, or 0L if the 
+specified file does not exist.
+</a>
+
+<dt><a name="39185"><b>Throws
+</b></a><dd><a name="39189">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39193">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed read access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="list">
+<a name="3438"><h3>list
+</h3></a>
+<a name="28164"><code>public String[] list()
+</code></a>
+<dl>
+<dd><a name="28150">Lists the files in the directory specified by this File.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3444"><b>Returns:
+</b></a><dd><a name="3446">an array of file names in the specified directory. This list does not 
+include the current directory or the parent directory ("." and ".." on 
+Unix systems).
+</a>
+
+<dt><a name="39240"><b>Throws
+</b></a><dd><a name="39244">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39248">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed read access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="list">
+<a name="3454"><h3>list
+</h3></a>
+<a name="3456"><code>public String[] list(FilenameFilter &#32;filter)
+</code></a>
+<dl>
+<dd><a name="39258">Lists the files in the directory specified by this File that satisfy the specified 
+filter <a href="java.io.FilenameFilter.html#33537">(I-&#167;2.26)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3460"><b>Parameters:
+</b></a><dd><a name="3462"><code>filter
+- </code></a><a name="3464">a filename filter.
+</a>
+
+<dt><a name="3466"><b>Returns:
+</b></a><dd><a name="3468">an array of file names in the specified directory that satisfy the filter. 
+This list does not include the current directory or the parent directory 
+("." and ".." on Unix systems).
+</a>
+
+<dt><a name="39227"><b>Throws
+</b></a><dd><a name="39231">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39235">If a security manager exists, its checkRead method <a href="java.lang.SecurityManager.html#7736">(I-&#167;1.15.19)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed read access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="mkdir">
+<a name="3486"><h3>mkdir
+</h3></a>
+<a name="3488"><code>public boolean mkdir()
+</code></a>
+<dl>
+<dd><a name="39279">Creates a directory whose path name is specified by this File object. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="39290"><b>Returns:
+</b></a><dd><a name="39291">true if the directory could be created; false otherwise
+</a>
+
+<dt><a name="39265"><b>Throws
+</b></a><dd><a name="39269">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39273">If a security manager exists, its checkWrite method <a href="java.lang.SecurityManager.html#7860">(I-&#167;1.15.24)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this File to see if the application is allowed write access to the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="mkdirs">
+<a name="3504"><h3>mkdirs
+</h3></a>
+<a name="3506"><code>public boolean mkdirs()
+</code></a>
+<dl>
+<dd><a name="3508">Creates a directory whose path name is specified by this File object. In 
+addition, create all parent directories as necessary.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3510"><b>Returns:
+</b></a><dd><a name="3512">true if the directory (or directories) could be created; false otherwise.
+</a>
+
+<dt><a name="39302"><b>Throws
+</b></a><dd><a name="39306">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39335">If a security manager exists, its checkWrite method <a href="java.lang.SecurityManager.html#7860">(I-&#167;1.15.24)</a> is 
+called with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of each of the directories that is 
+to be created, before any of the directores are created.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="renameTo">
+<a name="39342"><h3>renameTo
+</h3></a>
+<a name="39343"><code>public boolean renameTo(File &#32;dest)
+</code></a>
+<dl>
+<dd><a name="28288">Renames the file specified by this File object to have the path name given 
+by the File argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3528"><b>Parameters:
+</b></a><dd><a name="3530"><code>dest
+- </code></a><a name="3532">the new file name
+</a>
+
+<dt><a name="3534"><b>Returns:
+</b></a><dd><a name="3536">true if the renaming succeeds; false otherwise.
+</a>
+
+<dt><a name="39354"><b>Throws
+</b></a><dd><a name="39358">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="39362">If a security manager exists, its checkWrite method <a href="java.lang.SecurityManager.html#7860">(I-&#167;1.15.24)</a> is 
+called both with the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this file object and with 
+the path name of the destination target object to see if the application 
+is allowed to write to both files. 
+</a>
+<dd><a name="39371">
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="3546"><h3>toString
+</h3></a>
+<a name="3548"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="3550">Returns a string representation of this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3552"><b>Returns:
+</b></a><dd><a name="28307">a string giving the path name <a href="java.io.File.html#3304">(I-&#167;2.7.16)</a> of this object. 
+</a>
+
+<dt><a name="3556"><b>Overrides:
+</b></a><dd><a name="3562">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="28049">For example, on Unix, a path name is absolute if its first character is the separator 
+character <a href="java.io.File.html#3042">(I-&#167;2.7.3)</a>. On Windows platforms, an path name is absolute if its first 
+character is an ASCII '\', &#32; '/', or if it begins with a letter followed by a colon.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.DataOutputStream.html">Prev</a>  <a href="java.io.FileDescriptor.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

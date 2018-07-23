@@ -1,0 +1,212 @@
+<html><head><title>Class Window</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Toolkit.html">Prev</a>  <a href="java.awt.LayoutManager.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="22917"><h1>	&#167;1.42 Class Window</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Window
+</strong>    extends &#32;java.awt.<strong>Container</strong> &#32;<a href="java.awt.Container.html#6019">(II-&#167;1.11)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Window</strong>(Frame &#32;parent);	<a href="java.awt.Window.html#22997">&#167;1.42.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addNotify</strong>();	<a href="java.awt.Window.html#23031">&#167;1.42.2</a>
+    public void <strong>dispose</strong>();	<a href="java.awt.Window.html#31499">&#167;1.42.3</a>
+    public Toolkit <strong>getToolkit</strong>();	<a href="java.awt.Window.html#23067">&#167;1.42.4</a>
+    public final String <strong>getWarningString</strong>();	<a href="java.awt.Window.html#23101">&#167;1.42.5</a>
+    public void <strong>pack</strong>();	<a href="java.awt.Window.html#23119">&#167;1.42.6</a>
+    public void <strong>show</strong>();	<a href="java.awt.Window.html#23133">&#167;1.42.7</a>
+    public void <strong>toBack</strong>();	<a href="java.awt.Window.html#23163">&#167;1.42.8</a>
+    public void <strong>toFront</strong>();	<a href="java.awt.Window.html#33385">&#167;1.42.9</a>
+}
+</pre><a name="46487">A Window is a top-level window; it has no borders and no menubar. It could be used, for 
+example, to implement a pop-up menu. The AWT sends the window all mouse, keyboard, 
+and focus events that occur over it.
+</a><p><a name="46491">The default layout for a window is BorderLayout <a href="java.awt.BorderLayout.html#43335">(II-&#167;1.1)</a>.
+</a><p>
+<hr>
+<a name="22989"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Window">
+<a name="22997"><h3>Window
+</h3></a>
+<a name="22999"><code>public Window(Frame &#32;parent)
+</code></a>
+<dl>
+<dd><a name="23001">Constructs a new invisible window
+<pre>
+</pre></a>
+
+<dd><a name="46100">The window behaves as a modal dialog in that it will block input to other 
+application windows when shown.
+<pre>
+</pre></a>
+
+<dd><a name="46112">Use the show method <a href="java.awt.Window.html#23133">(II-&#167;1.42.7)</a> to cause the window to become visible.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="46101"><b>Parameters:
+</b></a><dd><a name="23005"><code>parent
+- </code></a><a name="23007">the main application frame
+</a>
+</dl></dl>
+<hr>
+<a name="23021"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addNotify">
+<a name="23031"><h3>addNotify
+</h3></a>
+<a name="23033"><code>public void addNotify()
+</code></a>
+<dl>
+<dd><a name="26770">This method calls the createWindow method <a href="java.awt.Toolkit.html#22669">(II-&#167;1.41.21)</a> of this object's 
+toolkit <a href="java.awt.Component.html#4237">(II-&#167;1.10.20)</a> in order to create a WindowPeer &#32;<a href="java.awt.peer.WindowPeer.html#2267">(II-&#167;3.22)</a> for this window. This peer allows the application to change the look of a window 
+without changing its functionality.
+<pre>
+</pre></a>
+
+<dd><a name="43848">Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="23037"><b>Overrides:
+</b></a><dd><a name="23043">addNotify in class Container &#32;<a href="java.awt.Container.html#6279">(II-&#167;1.11.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="dispose">
+<a name="31499"><h3>dispose
+</h3></a>
+<a name="23055"><code>public void dispose()
+</code></a>
+<dl>
+<dd><a name="37780">Disposes of this window and any resources used by this window.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="getToolkit">
+<a name="23067"><h3>getToolkit
+</h3></a>
+<a name="23069"><code>public Toolkit getToolkit()
+</code></a>
+<dl>
+<dd><a name="23073">Determines the toolkit of this window. 
+<pre>
+</pre></a>
+
+<dd><a name="52636">The implementation of getToolkit in class Window returns the default 
+toolkit &#32;<a href="java.awt.Toolkit.html#22711">(II-&#167;1.41.23)</a>. However subclasses of Window can override this 
+method in order to create their own toolkits.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="37787"><b>Returns:
+</b></a><dd><a name="23075">the toolkit of this window. .
+</a>
+
+<dt><a name="23077"><b>Overrides:
+</b></a><dd><a name="23083">getToolkit in class Component &#32;<a href="java.awt.Component.html#4237">(II-&#167;1.10.20)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getWarningString">
+<a name="23101"><h3>getWarningString
+</h3></a>
+<a name="23103"><code>public final String getWarningString()
+</code></a>
+<dl>
+<dd><a name="52644">Returns the warning string that is displayed with this window. If this window is insecure, the warning string is displayed somewhere in the visible 
+area of the window. A window is insecure if there is a security manager, 
+and its checkTopLevelWindow method <a href="java.lang.SecurityManager.html#7812">(I-&#167;1.15.22)</a> returns false when passed 
+this window as an argument.
+<pre>
+</pre></a>
+
+<dd><a name="37837">If the window is secure, then the getWarningString method returns null. If the 
+window is insecure, this methods checks for a system property awt.appletWarning and returns the string value of that property. If there is no such 
+property, the default warning string is used instead. The default warning 
+string is "Warning: &#32;Applet Window".
+<pre>
+</pre></a>
+<dl>
+<dt><a name="23107"><b>Returns:
+</b></a><dd><a name="23109">the warning string for this window.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="pack">
+<a name="23119"><h3>pack
+</h3></a>
+<a name="23121"><code>public void pack()
+</code></a>
+<dl>
+<dd><a name="23123">Causes the subcomponents of this window to be laid out at their preferred 
+size.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="show">
+<a name="23133"><h3>show
+</h3></a>
+<a name="23135"><code>public void show()
+</code></a>
+<dl>
+<dd><a name="23137">If this window is not yet visible, make it visible. If this window is already 
+visible, then bring it to the front <a href="java.awt.Window.html#33385">(II-&#167;1.42.9)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="23139"><b>Overrides:
+</b></a><dd><a name="23145">show in class Component &#32;<a href="java.awt.Component.html#5845">(II-&#167;1.10.70)</a>.
+</a>
+
+<dt><a name="23147"><b>See Also:
+</b></a><dd><a name="23153">hide in class &#32;Component &#32;<a href="java.awt.Component.html#53852">(II-&#167;1.10.23)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toBack">
+<a name="23163"><h3>toBack
+</h3></a>
+<a name="23165"><code>public void toBack()
+</code></a>
+<dl>
+<dd><a name="23167">Sends this window to the back.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="toFront">
+<a name="33385"><h3>toFront
+</h3></a>
+<a name="33386"><code>public void toFront()
+</code></a>
+<dl>
+<dd><a name="33387">Brings this window to the front.
+<pre>
+</pre></a>
+</dl><!--"RightPage" is inserted just before the classes begin.  Don't convert its text.-->
+<!--Forces heading to right page-->
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Toolkit.html">Prev</a>  <a href="java.awt.LayoutManager.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

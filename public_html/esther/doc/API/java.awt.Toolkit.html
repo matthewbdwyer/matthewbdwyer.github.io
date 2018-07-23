@@ -1,0 +1,666 @@
+<html><head><title>Class Toolkit</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.TextField.html">Prev</a>  <a href="java.awt.Window.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="21975"><h1>	&#167;1.41 Class Toolkit</h1></a>
+<pre>public &#32;abstract &#32;class &#32;java.awt.<strong>Toolkit
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Toolkit</strong>();	<a href="java.awt.Toolkit.html#22187">&#167;1.41.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public abstract int	<a href="java.awt.Toolkit.html#37095">&#167;1.41.2</a>
+        <strong>checkImage</strong>(Image &#32;image, int &#32;width, int height, 
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;ImageObserver &#32;observer);
+    protected abstract ButtonPeer 	<a href="java.awt.Toolkit.html#22237">&#167;1.41.3</a>
+        <strong>createButton</strong>(Button &#32;target);
+    protected abstract CanvasPeer	<a href="java.awt.Toolkit.html#36018">&#167;1.41.4</a>
+        <strong>createCanvas</strong>(Canvas &#32;target);
+    protected abstract CheckboxPeer	<a href="java.awt.Toolkit.html#22285">&#167;1.41.5</a>
+        <strong>createCheckbox</strong>(Checkbox &#32;target);
+    protected abstract CheckboxMenuItemPeer	<a href="java.awt.Toolkit.html#22309">&#167;1.41.6</a>
+        <strong>createCheckboxMenuItem</strong>(CheckboxMenuItem &#32;target);
+    protected abstract ChoicePeer 	<a href="java.awt.Toolkit.html#22333">&#167;1.41.7</a>
+        <strong>createChoice</strong>(Choice &#32;target);
+    protected abstract DialogPeer	<a href="java.awt.Toolkit.html#22357">&#167;1.41.8</a>
+        <strong>createDialog</strong>(Dialog &#32;target);
+    protected abstract FileDialogPeer	<a href="java.awt.Toolkit.html#22381">&#167;1.41.9</a>
+        <strong>createFileDialog</strong>(FileDialog &#32;target);
+    protected abstract FramePeer <strong>createFrame</strong>(Frame &#32;target);	<a href="java.awt.Toolkit.html#22405">&#167;1.41.10</a>
+ &#32; &#32; &#32; &#32;public abstract Image	<a href="java.awt.Toolkit.html#22429">&#167;1.41.11</a>
+        <strong>createImage</strong>(ImageProducer &#32;producer);
+    protected abstract LabelPeer <strong>createLabel</strong>(Label &#32;target);	<a href="java.awt.Toolkit.html#22453">&#167;1.41.12</a>
+ &#32; &#32; &#32; &#32;protected abstract ListPeer <strong>createList</strong>(List &#32;target);	<a href="java.awt.Toolkit.html#22477">&#167;1.41.13</a>
+ &#32; &#32; &#32; &#32;protected abstract MenuPeer <strong>createMenu</strong>(Menu &#32;target);	<a href="java.awt.Toolkit.html#22501">&#167;1.41.14</a>
+    protected abstract MenuBarPeer	<a href="java.awt.Toolkit.html#22525">&#167;1.41.15</a>
+        <strong>createMenuBar</strong>(MenuBar &#32;target);
+    protected abstract MenuItemPeer	<a href="java.awt.Toolkit.html#22549">&#167;1.41.16</a>
+        <strong>createMenuItem</strong>(MenuItem &#32;target);
+    protected abstract PanelPeer <strong>createPanel</strong>(Panel &#32;target);	<a href="java.awt.Toolkit.html#22573">&#167;1.41.17</a>
+ &#32; &#32; &#32; &#32;protected abstract ScrollbarPeer	<a href="java.awt.Toolkit.html#22597">&#167;1.41.18</a>
+        <strong>createScrollbar</strong>(Scrollbar &#32;target);
+    protected abstract TextAreaPeer	<a href="java.awt.Toolkit.html#53328">&#167;1.41.19</a>
+        <strong>createTextArea</strong>(TextArea &#32;target);
+    protected abstract TextFieldPeer	<a href="java.awt.Toolkit.html#22645">&#167;1.41.20</a>
+        <strong>createTextField</strong>(TextField &#32;target);
+    protected abstract WindowPeer	<a href="java.awt.Toolkit.html#22669">&#167;1.41.21</a>
+        <strong>createWindow</strong>(Window &#32;target);
+    public abstract ColorModel <strong>getColorModel</strong>();	<a href="java.awt.Toolkit.html#22693">&#167;1.41.22</a>
+    public static Toolkit <strong>getDefaultToolkit</strong>();	<a href="java.awt.Toolkit.html#22711">&#167;1.41.23</a>
+    public abstract String[] <strong>getFontList</strong>();	<a href="java.awt.Toolkit.html#22739">&#167;1.41.24</a>
+    public abstract FontMetrics	<a href="java.awt.Toolkit.html#22757">&#167;1.41.25</a>
+        <strong>getFontMetrics</strong>(Font &#32;font);
+    public abstract Image <strong>getImage</strong>(String &#32;filename);	<a href="java.awt.Toolkit.html#22781">&#167;1.41.26</a>
+    public abstract Image <strong>getImage</strong>(URL &#32;url);	<a href="java.awt.Toolkit.html#22803">&#167;1.41.27</a>
+    public abstract int <strong>getScreenResolution</strong>();	<a href="java.awt.Toolkit.html#22827">&#167;1.41.28</a>
+    public abstract Dimension <strong>getScreenSize</strong>();	<a href="java.awt.Toolkit.html#22845">&#167;1.41.29</a>
+    public abstract boolean	<a href="java.awt.Toolkit.html#22863">&#167;1.41.30</a>
+        <strong>prepareImage</strong>(Image &#32;image, int &#32;width, int &#32;height,
+         &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;ImageObserver &#32;observer);
+    public abstract void <strong>sync</strong>();	<a href="java.awt.Toolkit.html#22899">&#167;1.41.31</a>
+}
+</pre><a name="22175">This class is the abstract superclass of all actual implementations of the Abstract Window 
+Toolkit. Subclasses of the class are used to bind the various components to particular 
+native toolkit implementations.
+</a><p><a name="46089">Most applications should not call any of the methods is this class directly. These methods 
+are called by the addNotify methods of the various components in the Abstract Window 
+Toolkit.
+</a><p>
+<hr>
+<a name="22179"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Toolkit">
+<a name="22187"><h3>Toolkit
+</h3></a>
+<a name="22189"><code>public Toolkit()
+</code></a>
+<dl>
+<dd><a name="37089">The default constructor for a toolkit.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="37090"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="checkImage">
+<a name="37095"><h3>checkImage
+</h3></a>
+<a name="22203"><code>public abstract int<br>
+checkImage(Image &#32;image, int &#32;width, int &#32;height,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;ImageObserver &#32;observer)
+</code></a>
+<dl>
+<dd><a name="37158">If the width and height arguments are both -1, this method returns the status of the construction of a screen representaion of the specified image in 
+this toolkit. Otherwise, this method returns the status of the construction of 
+a scaled representation of the specified image at the specified width and 
+height.
+<pre>
+</pre></a>
+
+<dd><a name="37210">This method does not cause the image to begin loading. An application 
+must use the prepareImage <a href="java.awt.Toolkit.html#22863">(II-&#167;1.41.30)</a> method to force the loading of an 
+image.
+<pre>
+</pre></a>
+
+<dd><a name="37217">This toolkit method is used by the checkImage methods (<a href="java.awt.Component.html#49599">II</a>-<a href="java.awt.Component.html#49599">&#167;1.10.4</a>, 
+<a href="java.awt.Component.html#3827">&#167;1.10.5</a>) of Component.
+<pre>
+</pre></a>
+
+<dd><a name="37173">Information on the flags returned by this method can be found in <a href="java.awt.image.ImageObserver.html#999757">II</a>-<a href="java.awt.image.ImageObserver.html#999757">&#167;2.11</a>. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="37226"><b>Parameters:
+</b></a><dd><a name="37227"><code>image
+- </code></a><a name="37228">the image whose status is being checked
+</a>
+<dd><a name="37229"><code>width
+- </code></a><a name="37230">the width of the scaled version to check the status of
+</a>
+<dd><a name="37231"><code>height
+- </code></a><a name="37232">the height of the scaled version to check the status of
+</a>
+<dd><a name="37233"><code>observer
+- </code></a><a name="37234">the ImageObserver object to be notified as the image is being 
+prepared
+</a>
+
+<dt><a name="37179"><b>Returns:
+</b></a><dd><a name="37183">the bitwise inclusive OR of the ImageObserver <a href="java.awt.image.ImageObserver.html#999757">(II-&#167;2.11)</a> flags indicating what information about the image is available.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createButton">
+<a name="22237"><h3>createButton
+</h3></a>
+<a name="22239"><code>protected abstract ButtonPeer createButton(Button &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="22243"><b>Parameters:
+</b></a><dd><a name="22245"><code>target
+- </code></a><a name="22247">the button to be implemented
+</a>
+
+<dt><a name="22249"><b>Returns:
+</b></a><dd><a name="36013">this toolkit's implementation of a Button <a href="java.awt.Button.html#513">(II-&#167;1.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createCanvas">
+<a name="36018"><h3>createCanvas
+</h3></a>
+<a name="36019"><code>protected abstract CanvasPeer createCanvas(Canvas &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="22267"><b>Parameters:
+</b></a><dd><a name="22269"><code>target
+- </code></a><a name="22271">the canvas to be implemented
+</a>
+
+<dt><a name="22273"><b>Returns:
+</b></a><dd><a name="37254">this toolkit's implementation of a Canvas <a href="java.awt.Canvas.html#715">(II-&#167;1.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createCheckbox">
+<a name="22285"><h3>createCheckbox
+</h3></a>
+<a name="22287"><code>protected abstract CheckboxPeer<br>
+createCheckbox(Checkbox &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37258"><b>Parameters:
+</b></a><dd><a name="37259"><code>target
+- </code></a><a name="37260">the check box to be implemented
+</a>
+
+<dt><a name="37261"><b>Returns:
+</b></a><dd><a name="37265">this toolkit's implementation of a Checkbox <a href="java.awt.Checkbox.html#31659">(II-&#167;1.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createCheckboxMenuItem">
+<a name="22309"><h3>createCheckboxMenuItem
+</h3></a>
+<a name="22311"><code>protected abstract CheckboxMenuItemPeer<br>
+createCheckboxMenuItem(CheckboxMenuItem &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37271"><b>Parameters:
+</b></a><dd><a name="37272"><code>target
+- </code></a><a name="37273">the check box menu item to be implemented
+</a>
+
+<dt><a name="37274"><b>Returns:
+</b></a><dd><a name="37278">this toolkit's implementation of a CheckboxMenuItem &#32; <a href="java.awt.CheckboxMenuItem.html#1737">(II-&#167;1.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createChoice">
+<a name="22333"><h3>createChoice
+</h3></a>
+<a name="22335"><code>protected abstract ChoicePeer createChoice(Choice &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37280"><b>Parameters:
+</b></a><dd><a name="37281"><code>target
+- </code></a><a name="37282">the choice list to be implemented
+</a>
+
+<dt><a name="37283"><b>Returns:
+</b></a><dd><a name="37284">this toolkit's implementation of a Choice &#32;<a href="java.awt.Choice.html#1905">(II-&#167;1.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createDialog">
+<a name="22357"><h3>createDialog
+</h3></a>
+<a name="22359"><code>protected abstract DialogPeer createDialog(Dialog &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37293"><b>Parameters:
+</b></a><dd><a name="37294"><code>target
+- </code></a><a name="37295">the dialog window to be implemented
+</a>
+
+<dt><a name="37296"><b>Returns:
+</b></a><dd><a name="37300">this toolkit's implementation of a Dialog &#32;<a href="java.awt.Dialog.html#6901">(II-&#167;1.12)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createFileDialog">
+<a name="22381"><h3>createFileDialog
+</h3></a>
+<a name="22383"><code>protected abstract FileDialogPeer<br>
+createFileDialog(FileDialog &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37309"><b>Parameters:
+</b></a><dd><a name="37310"><code>target
+- </code></a><a name="37311">the filie dialog window to be implemented
+</a>
+
+<dt><a name="37312"><b>Returns:
+</b></a><dd><a name="37316">this toolkit's implementation of a FileDialog &#32;<a href="java.awt.FileDialog.html#8861">(II-&#167;1.15)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createFrame">
+<a name="22405"><h3>createFrame
+</h3></a>
+<a name="22407"><code>protected abstract FramePeer createFrame(Frame &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37318"><b>Parameters:
+</b></a><dd><a name="37319"><code>target
+- </code></a><a name="37320">the frame to be implemented
+</a>
+
+<dt><a name="37321"><b>Returns:
+</b></a><dd><a name="37325">this toolkit's implementation of a Frame &#32;<a href="java.awt.Frame.html#10801">(II-&#167;1.19)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createImage">
+<a name="22429"><h3>createImage
+</h3></a>
+<a name="22431"><code>public abstract Image createImage(ImageProducer &#32;producer)
+</code></a>
+<dl><dl>
+<dt><a name="37331"><b>Parameters:
+</b></a><dd><a name="37332"><code>target
+- </code></a><a name="37333">the image to be implemented
+</a>
+
+<dt><a name="37334"><b>Returns:
+</b></a><dd><a name="37338">this toolkit's implementation of an Image &#32;<a href="java.awt.Image.html#14865">(II-&#167;1.24)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createLabel">
+<a name="22453"><h3>createLabel
+</h3></a>
+<a name="22455"><code>protected abstract LabelPeer createLabel(Label &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37344"><b>Parameters:
+</b></a><dd><a name="37345"><code>target
+- </code></a><a name="37346">the label to be implemented
+</a>
+
+<dt><a name="37347"><b>Returns:
+</b></a><dd><a name="37351">this toolkit's implementation of a Label &#32;<a href="java.awt.Label.html#15373">(II-&#167;1.26)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createList">
+<a name="22477"><h3>createList
+</h3></a>
+<a name="22479"><code>protected abstract ListPeer createList(List &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37364"><b>Parameters:
+</b></a><dd><a name="37365"><code>target
+- </code></a><a name="37366">the scrolling list to be implemented
+</a>
+
+<dt><a name="37367"><b>Returns:
+</b></a><dd><a name="37371">this toolkit's implementation of a List &#32;<a href="java.awt.List.html#15735">(II-&#167;1.27)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createMenu">
+<a name="22501"><h3>createMenu
+</h3></a>
+<a name="22503"><code>protected abstract MenuPeer createMenu(Menu &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37377"><b>Parameters:
+</b></a><dd><a name="37378"><code>target
+- </code></a><a name="37379">the menu to be implemented
+</a>
+
+<dt><a name="37380"><b>Returns:
+</b></a><dd><a name="37384">this toolkit's implementation of a Menu &#32;<a href="java.awt.Menu.html#17647">(II-&#167;1.29)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createMenuBar">
+<a name="22525"><h3>createMenuBar
+</h3></a>
+<a name="22527"><code>protected abstract MenuBarPeer<br>
+createMenuBar(MenuBar &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37390"><b>Parameters:
+</b></a><dd><a name="37391"><code>target
+- </code></a><a name="37392">the menu bar to be implemented
+</a>
+
+<dt><a name="37393"><b>Returns:
+</b></a><dd><a name="37397">this toolkit's implementation of a MenuBar &#32;<a href="java.awt.MenuBar.html#17997">(II-&#167;1.30)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createMenuItem">
+<a name="22549"><h3>createMenuItem
+</h3></a>
+<a name="22551"><code>protected abstract MenuItemPeer<br>
+createMenuItem(MenuItem &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37399"><b>Parameters:
+</b></a><dd><a name="37400"><code>target
+- </code></a><a name="37401">the menu item to be implemented
+</a>
+
+<dt><a name="37402"><b>Returns:
+</b></a><dd><a name="37406">this toolkit's implementation of a MenuItem &#32;<a href="java.awt.MenuItem.html#18549">(II-&#167;1.32)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createPanel">
+<a name="22573"><h3>createPanel
+</h3></a>
+<a name="22575"><code>protected abstract PanelPeer createPanel(Panel &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37410"><b>Parameters:
+</b></a><dd><a name="37411"><code>target
+- </code></a><a name="37412">the panel to be implemented
+</a>
+
+<dt><a name="37413"><b>Returns:
+</b></a><dd><a name="37417">this toolkit's of a Panel &#32;<a href="java.awt.Panel.html#18809">(II-&#167;1.33)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createScrollbar">
+<a name="22597"><h3>createScrollbar
+</h3></a>
+<a name="22599"><code>protected abstract ScrollbarPeer<br>
+createScrollbar(Scrollbar &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37426"><b>Parameters:
+</b></a><dd><a name="37427"><code>target
+- </code></a><a name="37428">the scroll bar to be implemented
+</a>
+
+<dt><a name="53320"><b>Returns:
+</b></a><dd><a name="53321">this toolkit's implementation of a ScrollBar &#32;<a href="java.awt.Scrollbar.html#20135">(II-&#167;1.37)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createTextArea">
+<a name="53328"><h3>createTextArea
+</h3></a>
+<a name="22623"><code>protected abstract TextAreaPeer<br>
+createTextArea(TextArea &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37441"><b>Parameters:
+</b></a><dd><a name="37442"><code>target
+- </code></a><a name="37443">the text area to be implemented
+</a>
+
+<dt><a name="37444"><b>Returns:
+</b></a><dd><a name="37445">this toolkit's implementation of a TextArea &#32;<a href="java.awt.TextArea.html#20687">(II-&#167;1.38)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createTextField">
+<a name="22645"><h3>createTextField
+</h3></a>
+<a name="22647"><code>protected abstract TextFieldPeer<br>
+createTextField(TextField &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37454"><b>Parameters:
+</b></a><dd><a name="37455"><code>target
+- </code></a><a name="37456">the text field to be implemented
+</a>
+
+<dt><a name="37457"><b>Returns:
+</b></a><dd><a name="37461">this toolkit's implementation of a TextField &#32;<a href="java.awt.TextField.html#21533">(II-&#167;1.40)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createWindow">
+<a name="22669"><h3>createWindow
+</h3></a>
+<a name="22671"><code>protected abstract WindowPeer createWindow(Window &#32;target)
+</code></a>
+<dl><dl>
+<dt><a name="37465"><b>Parameters:
+</b></a><dd><a name="37466"><code>target
+- </code></a><a name="37467">the window to be implemented
+</a>
+
+<dt><a name="37468"><b>Returns:
+</b></a><dd><a name="37469">this toolkit's implementation of a Window &#32;<a href="java.awt.Window.html#22917">(II-&#167;1.42)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getColorModel">
+<a name="22693"><h3>getColorModel
+</h3></a>
+<a name="37488"><code>public abstract ColorModel getColorModel()
+</code></a>
+<dl>
+<dd><a name="37509">Determine's the color model of this toolkit's screen.
+<pre>
+</pre></a>
+
+<dd><a name="53337">The ColorModel <a href="java.awt.image.ColorModel.html#996814">(II-&#167;2.1)</a> is an abstract class that encapsulates how to translate between pixel values of an image and its red, green, blue, and alpha 
+components.
+<pre>
+</pre></a>
+
+<dd><a name="37554">This toolkit method is used by the getColorModel method <a href="java.awt.Component.html#4065">(II-&#167;1.10.13)</a> of 
+Component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="37489"><b>Returns:
+</b></a><dd><a name="37493">the color model of the tookit's screen.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getDefaultToolkit">
+<a name="22711"><h3>getDefaultToolkit
+</h3></a>
+<a name="22713"><code>public static Toolkit getDefaultToolkit()
+</code></a>
+<dl>
+<dd><a name="37580">Gets the default toolkit. 
+<pre>
+</pre></a>
+
+<dd><a name="53343">If there is a system property named "awt.toolkit", that property is treated as 
+the name of a class that is a subclass of Toolkit.
+<pre>
+</pre></a>
+
+<dd><a name="37590">If the system property does not exist, then the default toolkit used is the 
+class named "sun.awt.motif.MToolkit", which is a motif implementation of the 
+Abstract Window Toolkit.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="22717"><b>Returns:
+</b></a><dd><a name="22719">the default toolkit.
+</a>
+
+<dt><a name="22721"><b>Throws
+</b></a><dd><a name="22727">AWTError &#32;<a href="java.awt.AWTError.html#53966">(II-&#167;1.46)</a>
+</a>
+<dd><a name="22729">If a toolkit could not be found or could not be instantiated.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getFontList">
+<a name="22739"><h3>getFontList
+</h3></a>
+<a name="22741"><code>public abstract String[] getFontList()
+</code></a>
+<dl><dl>
+<dt><a name="22745"><b>Returns:
+</b></a><dd><a name="22747">the names of the available fonts in this toolkit.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getFontMetrics">
+<a name="22757"><h3>getFontMetrics
+</h3></a>
+<a name="22759"><code>public abstract FontMetrics getFontMetrics(Font &#32;font)
+</code></a>
+<dl><dl>
+<dt><a name="22763"><b>Parameters:
+</b></a><dd><a name="22765"><code>font
+- </code></a><a name="22767">a font
+</a>
+
+<dt><a name="22769"><b>Returns:
+</b></a><dd><a name="22771">the screen metrics of the font argument in this toolkit.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getImage">
+<a name="22781"><h3>getImage
+</h3></a>
+<a name="22783"><code>public abstract Image getImage(String &#32;filename)
+</code></a>
+<dl><dl>
+<dt><a name="22787"><b>Parameters:
+</b></a><dd><a name="22789"><code>filename
+- </code></a><a name="22791">a file containing pixel data in a recognized file format
+</a>
+
+<dt><a name="22793"><b>Returns:
+</b></a><dd><a name="22795">an image which gets its pixel data from the specified file
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getImage">
+<a name="22803"><h3>getImage
+</h3></a>
+<a name="22805"><code>public abstract Image getImage(URL &#32;url)
+</code></a>
+<dl><dl>
+<dt><a name="22809"><b>Parameters:
+</b></a><dd><a name="22811"><code>url
+- </code></a><a name="22813">a URL which specifies an image.
+</a>
+
+<dt><a name="22815"><b>Returns:
+</b></a><dd><a name="37627">an image which gets its pixel data from the specified URL.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getScreenResolution">
+<a name="22827"><h3>getScreenResolution
+</h3></a>
+<a name="22829"><code>public abstract int getScreenResolution()
+</code></a>
+<dl><dl>
+<dt><a name="22833"><b>Returns:
+</b></a><dd><a name="22835">this toolkit's screen resolution in dots-per-inch.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getScreenSize">
+<a name="22845"><h3>getScreenSize
+</h3></a>
+<a name="22847"><code>public abstract Dimension getScreenSize()
+</code></a>
+<dl><dl>
+<dt><a name="22851"><b>Returns:
+</b></a><dd><a name="22853">the size of this toolkit's screen in pixels.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="prepareImage">
+<a name="22863"><h3>prepareImage
+</h3></a>
+<a name="22865"><code>public abstract boolean<br>
+prepareImage(Image &#32;image, int &#32;width, int &#32;height,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;ImageObserver &#32;observer)
+</code></a>
+<dl>
+<dd><a name="37645">Prepares an image for rendering. If the width and height arguments are 
+both -1, this method prepares the image for rendering on the default 
+screen; otherwise, this method prepares an image for rendering on the 
+default screen at the specified width and height.
+<pre>
+</pre></a>
+
+<dd><a name="37687">The image data is downloaded asynchronously in another thread and an 
+appropriately scaled screen representation of the image is generated.
+<pre>
+</pre></a>
+
+<dd><a name="37653">This toolkit method is used by the prepareImage methods (<a href="java.awt.Component.html#54580">II</a>-<a href="java.awt.Component.html#54580">&#167;1.10.54</a>, 
+<a href="java.awt.Component.html#5371">&#167;1.10.55</a>) of Component.
+<pre>
+</pre></a>
+
+<dd><a name="37660">Information on the flags returned by this method can be found in <a href="java.awt.image.ImageObserver.html#999757">II</a>-<a href="java.awt.image.ImageObserver.html#999757">&#167;2.11</a>. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="37700"><b>Parameters:
+</b></a><dd><a name="37701"><code>image
+- </code></a><a name="37702">the image to prepare a screen representation for
+</a>
+<dd><a name="37703"><code>width
+- </code></a><a name="37704">the width of the desired screen representation
+</a>
+<dd><a name="37705"><code>height
+- </code></a><a name="37706">the height of the desired screen representation
+</a>
+<dd><a name="37707"><code>observer
+- </code></a><a name="37708">the ImageObserver object to be notified as the image is being 
+prepared
+</a>
+
+<dt><a name="37709"><b>Returns:
+</b></a><dd><a name="37710">true if the image has already been fully prepared; false otherwise
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="sync">
+<a name="22899"><h3>sync
+</h3></a>
+<a name="22901"><code>public abstract void sync()
+</code></a>
+<dl>
+<dd><a name="22903">Synchronizes this toolkit's graphics state. Some window systems may do 
+buffering of graphics events. This method ensures that the display is up to 
+date.	
+<pre>
+</pre></a>
+</dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.TextField.html">Prev</a>  <a href="java.awt.Window.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

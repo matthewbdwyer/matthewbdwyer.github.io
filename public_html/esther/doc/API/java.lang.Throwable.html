@@ -1,0 +1,164 @@
+<html><head><title>Class Throwable</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.ThreadGroup.html">Prev</a>  <a href="java.lang.Cloneable.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="41663"><h1>	&#167;1.21 Class Throwable</h1></a>
+<pre>public &#32;class &#32;java.lang.<strong>Throwable
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Throwable</strong>();	<a href="java.lang.Throwable.html#13008">&#167;1.21.1</a>
+    public <strong>Throwable</strong>(String &#32;message);	<a href="java.lang.Throwable.html#13020">&#167;1.21.2</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public Throwable <strong>fillInStackTrace</strong>();	<a href="java.lang.Throwable.html#13042">&#167;1.21.3</a>
+    public String <strong>getMessage</strong>();	<a href="java.lang.Throwable.html#13070">&#167;1.21.4</a>
+    public void <strong>printStackTrace</strong>();	<a href="java.lang.Throwable.html#13088">&#167;1.21.5</a>
+    public void <strong>printStackTrace</strong>(PrintStream &#32;s);	<a href="java.lang.Throwable.html#13100">&#167;1.21.6</a>
+    public String <strong>toString</strong>();	<a href="java.lang.Throwable.html#41710">&#167;1.21.7</a>
+}
+</pre><a name="12994">The Throwable class is the superclass of all errors and exceptions in the Java language. Only 
+objects that are instances of this class (or of one of its subclasses) are thrown by the Java 
+Virtual Machine or can be thrown by the Java throw statement. Similarly, only this class or 
+one of its subclasses can be the argument type in a catch clause.
+</a><p><a name="41666">A Throwable contains a snapshot of the execution stack of its thread at the time it was created. It can also contain a message string that gives more information about the error.
+</a><p><a name="41669">Here is one example of catching an exception: 
+</a><p><ul><a name="12996">
+<code>try &#32;{<br>
+ &#32; &#32; &#32; &#32;int &#32;a[] &#32;= &#32;new &#32;int[2];<br>
+ &#32; &#32; &#32; &#32;a[4];<br>
+} &#32;catch &#32;(ArrayIndexOutOfBoundsException &#32;e) &#32;{<br>
+ &#32; &#32; &#32; &#32;System.out.println("exception: &#32;" &#32;+ &#32;e.getMessage());<br>
+ &#32; &#32; &#32; &#32;e.printStackTrace();<br>
+}
+</code>
+</a></ul>
+<hr>
+<a name="13000"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Throwable">
+<a name="13008"><h3>Throwable
+</h3></a>
+<a name="13010"><code>public Throwable()
+</code></a>
+<dl>
+<dd><a name="13012">Constructs a new Throwable with no detail message. The stack trace is automatically filled in.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="Throwable">
+<a name="13020"><h3>Throwable
+</h3></a>
+<a name="13022"><code>public Throwable(String &#32;message)
+</code></a>
+<dl>
+<dd><a name="13024">Constructs a new Throwable with the specified detail message. The stack 
+trace is automatically filled in.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="13026"><b>Parameters:
+</b></a><dd><a name="13028"><code>message
+- </code></a><a name="13030">the detail message
+</a>
+</dl></dl>
+<hr>
+<a name="13032"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="fillInStackTrace">
+<a name="13042"><h3>fillInStackTrace
+</h3></a>
+<a name="13044"><code>public Throwable fillInStackTrace()
+</code></a>
+<dl>
+<dd><a name="13046">Fills in the execution stack trace. This method is useful when an application is re-throwing an error or exception. For example:
+<pre>
+</pre></a>
+<ul><a name="13048">
+<code>	try &#32;{<br>
+	 &#32; &#32; &#32; &#32;a &#32;= &#32;b &#32;/ &#32;c;<br>
+	} &#32;catch(ArithmeticThrowable &#32;e) &#32;{<br>
+ &#32;	 &#32; &#32; &#32;a &#32;= &#32;Number.MAX_VALUE;<br>
+ &#32;	 &#32; &#32; &#32;throw &#32;e.fillInStackTrace();<br>
+	}
+</code>
+</a>
+<dt><a name="13050"><b>Returns:
+</b></a><dd><a name="13052">this Throwable object.
+</a>
+
+<dt><a name="13054"><b>See Also:
+</b></a><dd><a name="13060">printStackTrace &#32;<a href="java.lang.Throwable.html#13088">(I-&#167;1.21.5)</a>.
+</a>
+</ul></dl>
+
+<META NAME="keywords" CONTENT="getMessage">
+<a name="13070"><h3>getMessage
+</h3></a>
+<a name="13072"><code>public String getMessage()
+</code></a>
+<dl><dl>
+<dt><a name="13076"><b>Returns:
+</b></a><dd><a name="13078">the detail message of this Throwable, or null if this Throwable does not 
+have a detailed message.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="printStackTrace">
+<a name="13088"><h3>printStackTrace
+</h3></a>
+<a name="13090"><code>public void printStackTrace()
+</code></a>
+<dl>
+<dd><a name="13092">Prints this Throwable and its backtrace to the standard error <a href="java.lang.System.html#10714">(I-&#167;1.18.1)</a> output stream.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="printStackTrace">
+<a name="13100"><h3>printStackTrace
+</h3></a>
+<a name="13102"><code>public void printStackTrace(PrintStream &#32;s)
+</code></a>
+<dl>
+<dd><a name="13112">Prints this Throwable and its backtrace to the specified print stream.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="41710"><h3>toString
+</h3></a>
+<a name="13114"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="31463"><b>Returns:
+</b></a><dd><a name="31464">a string representation of this Throwable.
+</a>
+
+<dt><a name="13118"><b>Overrides:
+</b></a><dd><a name="45606">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl><!--"RightPage" is inserted just before the classes begin.  Don't convert its text.-->
+<!--Forces heading to right page-->
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.ThreadGroup.html">Prev</a>  <a href="java.lang.Cloneable.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

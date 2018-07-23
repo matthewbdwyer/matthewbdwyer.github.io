@@ -1,0 +1,266 @@
+<html><head><title>Interface ImageObserver</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.ImageConsumer.html">Prev</a>  <a href="java.awt.image.ImageProducer.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="999757"><h1>	&#167;2.11 Interface ImageObserver</h1></a>
+<pre>public &#32;interface &#32;java.awt.image.<strong>ImageObserver
+</strong>{
+ &#32; &#32; &#32; &#32;// flags for the infoflags argument to <strong>imageUpdate
+</strong> &#32; &#32;public final static int <strong>ABORT</strong>;	<a href="java.awt.image.ImageObserver.html#999806">&#167;2.11.1</a>
+    public final static int <strong>ALLBITS</strong>;	<a href="java.awt.image.ImageObserver.html#999817">&#167;2.11.2</a>
+    public final static int <strong>ERROR</strong>;	<a href="java.awt.image.ImageObserver.html#999832">&#167;2.11.3</a>
+    public final static int <strong>FRAMEBITS</strong>;	<a href="java.awt.image.ImageObserver.html#999842">&#167;2.11.4</a>
+    public final static int <strong>HEIGHT</strong>;	<a href="java.awt.image.ImageObserver.html#999857">&#167;2.11.5</a>
+    public final static int <strong>PROPERTIES</strong>;	<a href="java.awt.image.ImageObserver.html#999871">&#167;2.11.6</a>
+    public final static int <strong>SOMEBITS</strong>;	<a href="java.awt.image.ImageObserver.html#999885">&#167;2.11.7</a>
+    public final static int <strong>WIDTH</strong>;	<a href="java.awt.image.ImageObserver.html#999900">&#167;2.11.8</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+ &#32; &#32;public abstract boolean	<a href="java.awt.image.ImageObserver.html#999915">&#167;2.11.9</a>
+            <strong>imageUpdate</strong>(Image &#32;img, int &#32;infoflags,
+         &#32; &#32;int &#32;x, int &#32;y, int &#32;width, int &#32;height);
+}
+</pre><a name="999800">The image observer interface specifies the methods that all image observers must implement. 
+</a><p><a name="999801">An image observer is interested in receiving asynchronous notifications about the image as 
+the image is being constructed.
+</a><p>
+<hr>
+<a name="999802"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="ABORT">
+<a name="999806"><h3>ABORT
+</h3></a>
+<a name="999807"><code>public final static int ABORT = 128
+</code></a>
+<dl>
+<dd><a name="999811">This flag in the infoflags argument to imageUpdate <a href="java.awt.image.ImageObserver.html#999915">(II-&#167;2.11.9)</a> indicates that 
+the image was aborted before production was complete.
+<pre>
+</pre></a>
+
+<dd><a name="999812">No more information will become available without further action to trigger another image production sequence. 
+<pre>
+</pre></a>
+
+<dd><a name="999813">If the ERROR flag was not also set in this image update, then accessing any 
+of the data in the image restarts the production again, possibly from the 
+beginning.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="ALLBITS">
+<a name="999817"><h3>ALLBITS
+</h3></a>
+<a name="999818"><code>public final static int ALLBITS = 32
+</code></a>
+<dl>
+<dd><a name="999822">This flag in the infoflags argument to imageUpdate <a href="java.awt.image.ImageObserver.html#999915">(II-&#167;2.11.9)</a> indicates that 
+a static image is now complete and can be drawn in its final form. 
+<pre>
+</pre></a>
+
+<dd><a name="999823">The x, y, width, and height arguments to the imageUpdate method should be 
+ignored when this flag is set in the status.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="999824"><b>See Also:
+</b></a><dd><a name="999828">drawImage in class &#32;Graphics &#32;<a href="java.awt.Graphics.html#12199">(II-&#167;1.20.12)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="ERROR">
+<a name="999832"><h3>ERROR
+</h3></a>
+<a name="999833"><code>public final static int ERROR = 64
+</code></a>
+<dl>
+<dd><a name="999837">This flag in the infoflags argument to imageUpdate <a href="java.awt.image.ImageObserver.html#999915">(II-&#167;2.11.9)</a> indicates that 
+an image which was being tracked asynchronously has encountered an 
+error. No further information will become available, and drawing the 
+image will fail. 
+<pre>
+</pre></a>
+
+<dd><a name="999838">Whenever this flag is set, the ABORT flag must also be set.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="FRAMEBITS">
+<a name="999842"><h3>FRAMEBITS
+</h3></a>
+<a name="999843"><code>public final static int FRAMEBITS = 16
+</code></a>
+<dl>
+<dd><a name="999847">This flag in the infoflags argument to imageUpdate <a href="java.awt.image.ImageObserver.html#999915">(II-&#167;2.11.9)</a> indicates that 
+another complete frame of a multi-frame image can now be drawn. 
+<pre>
+</pre></a>
+
+<dd><a name="999848">The x, y, width, and height arguments to the imageUpdate method should be 
+ignored when this flag is set in the status.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="999849"><b>See Also:
+</b></a><dd><a name="999853">drawImage in class &#32;Graphics &#32;<a href="java.awt.Graphics.html#12199">(II-&#167;1.20.12)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="HEIGHT">
+<a name="999857"><h3>HEIGHT
+</h3></a>
+<a name="999858"><code>public final static int HEIGHT = 2
+</code></a>
+<dl>
+<dd><a name="999862">This flag in the infoflags argument to imageUpdate <a href="java.awt.image.ImageObserver.html#999915">(II-&#167;2.11.9)</a> indicates that 
+the height of the base image is now available and can be taken from the 
+height argument to the imageUpdate method.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="999863"><b>See Also:
+</b></a><dd><a name="999867">getHeight in class &#32;Image &#32;<a href="java.awt.Image.html#15007">(II-&#167;1.24.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="PROPERTIES">
+<a name="999871"><h3>PROPERTIES
+</h3></a>
+<a name="999872"><code>public final static int PROPERTIES = 4
+</code></a>
+<dl>
+<dd><a name="999876">This flag in the infoflags argument to imageUpdate <a href="java.awt.image.ImageObserver.html#999915">(II-&#167;2.11.9)</a> indicates that 
+the properties of the image are now available.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="999877"><b>See Also:
+</b></a><dd><a name="999881">getProperty in class &#32;Image &#32;<a href="java.awt.Image.html#15043">(II-&#167;1.24.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="SOMEBITS">
+<a name="999885"><h3>SOMEBITS
+</h3></a>
+<a name="999886"><code>public final static int SOMEBITS = 8
+</code></a>
+<dl>
+<dd><a name="999890">This flag in the infoflags argument to imageUpdate <a href="java.awt.image.ImageObserver.html#999915">(II-&#167;2.11.9)</a> indicates that 
+the pixels needed for drawing a scaled variation of the image are now 
+available. 
+<pre>
+</pre></a>
+
+<dd><a name="999891">The bounding box of the new pixels can be taken from the x, y, width, and 
+height arguments to the imageUpdate method.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="999892"><b>See Also:
+</b></a><dd><a name="999896">drawImage in class &#32;Graphics &#32;<a href="java.awt.Graphics.html#12199">(II-&#167;1.20.12)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="WIDTH">
+<a name="999900"><h3>WIDTH
+</h3></a>
+<a name="999901"><code>public final static int WIDTH
+</code></a>
+<dl>
+<dd><a name="999905">This flag in the infoflags argument to imageUpdate <a href="java.awt.image.ImageObserver.html#999915">(II-&#167;2.11.9)</a> indicates that 
+the width of the base image is now available and can be taken from the 
+width argument to the imageUpdate method.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="999906"><b>See Also:
+</b></a><dd><a name="999910">getWidth in class &#32;Image &#32;<a href="java.awt.Image.html#15109">(II-&#167;1.24.8)</a>.
+</a>
+</dl></dl>
+<hr>
+<a name="999911"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="imageUpdate">
+<a name="999915"><h3>imageUpdate
+</h3></a>
+<a name="999916"><code>public abstract boolean<br>
+imageUpdate(Image &#32;img, int &#32;infoflags, int &#32;x, int &#32;y,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;width, int &#32;height)
+</code></a>
+<dl>
+<dd><a name="999917">This image observer method is called when previously requested information about an image becomes available.
+<pre>
+</pre></a>
+
+<dd><a name="999921">Asynchronous interfaces are method calls such as getWidth <a href="java.awt.Image.html#15109">(II-&#167;1.24.8)</a>, 
+getHeight <a href="java.awt.Image.html#15007">(II-&#167;1.24.5)</a>,and drawImage <a href="java.awt.Graphics.html#12199">(II-&#167;1.20.12)</a> which take an image 
+observer as an argument. These methods register the caller as being interested either in information about the image or about an output version of 
+the image.
+<pre>
+</pre></a>
+
+<dd><a name="999928">This method should return true if further calls to imageUpdate are needed by 
+this image observer; false if it needs no more information.
+<pre>
+</pre></a>
+
+<dd><a name="999929">The infoflags argument should be the OR of the following flags:
+<pre>
+</pre></a>
+<a name="999936">
+ WIDTH <a href="java.awt.image.ImageObserver.html#999900">(II-&#167;2.11.8)</a>		HEIGHT <a href="java.awt.image.ImageObserver.html#999857">(II-&#167;2.11.5)</a><br>PROPERTIES <a href="java.awt.image.ImageObserver.html#999871">(II-&#167;2.11.6)</a>		SOMEBITS <a href="java.awt.image.ImageObserver.html#999885">(II-&#167;2.11.7)</a><br>FRAMEBITS <a href="java.awt.image.ImageObserver.html#999842">(II-&#167;2.11.4)</a>		ALLBITS <a href="java.awt.image.ImageObserver.html#999817">(II-&#167;2.11.2)</a><br>ERROR <a href="java.awt.image.ImageObserver.html#999832">(II-&#167;2.11.3)</a>		ABORT <a href="java.awt.image.ImageObserver.html#999806">(II-&#167;2.11.1)</a>
+</a>
+<p>
+<dd><a name="999955">The interpretation of the x, y, width, and height arguments depends on the 
+infoflags argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="999956"><b>Parameters:
+</b></a><dd><a name="999957"><code>img
+- </code></a><a name="999958">The image being observed
+</a>
+<dd><a name="999959"><code>infoflags
+- </code></a><a name="999960">the OR of the above flags
+</a>
+<dd><a name="999961"><code>x
+- </code></a><a name="999962">an x coordinate
+</a>
+<dd><a name="999963"><code>y
+- </code></a><a name="999964">a y coordinate
+</a>
+<dd><a name="999965"><code>width
+- </code></a><a name="999966">the width
+</a>
+<dd><a name="999967"><code>height
+- </code></a><a name="999968">the height
+</a>
+
+<dt><a name="999969"><b>Returns:
+</b></a><dd><a name="999970">true if further calls to imageUpdate are needed by this image observer; 
+false otherwise.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.ImageConsumer.html">Prev</a>  <a href="java.awt.image.ImageProducer.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

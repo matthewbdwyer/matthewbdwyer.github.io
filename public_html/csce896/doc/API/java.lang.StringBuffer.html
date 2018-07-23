@@ -1,0 +1,998 @@
+<html><head><title>Class StringBuffer</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.String.html">Prev</a>  <a href="java.lang.System.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="9500"><h1>	&#167;1.17 Class StringBuffer</h1></a>
+<pre>public &#32;class &#32;java.lang.<strong>StringBuffer
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>StringBuffer</strong>();	<a href="java.lang.StringBuffer.html#9738">&#167;1.17.1</a>
+    public <strong>StringBuffer</strong>(int &#32;length);	<a href="java.lang.StringBuffer.html#9750">&#167;1.17.2</a>
+    public <strong>StringBuffer</strong>(String &#32;str);	<a href="java.lang.StringBuffer.html#9768">&#167;1.17.3</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public StringBuffer <strong>append</strong>(boolean &#32;b);	<a href="java.lang.StringBuffer.html#9790">&#167;1.17.4</a>
+    public StringBuffer <strong>append</strong>(char &#32;c);	<a href="java.lang.StringBuffer.html#9812">&#167;1.17.5</a>
+    public StringBuffer <strong>append</strong>(char &#32;str[]);	<a href="java.lang.StringBuffer.html#9834">&#167;1.17.6</a>
+    public StringBuffer 	<a href="java.lang.StringBuffer.html#33249">&#167;1.17.7</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;<strong>append</strong>(char &#32;str[], int &#32;offset, int &#32;len);
+    public StringBuffer <strong>append</strong>(double &#32;d);	<a href="java.lang.StringBuffer.html#9886">&#167;1.17.8</a>
+    public StringBuffer <strong>append</strong>(float &#32;f);	<a href="java.lang.StringBuffer.html#9908">&#167;1.17.9</a>
+    public StringBuffer <strong>append</strong>(int &#32;i);	<a href="java.lang.StringBuffer.html#9930">&#167;1.17.10</a>
+    public StringBuffer <strong>append</strong>(long &#32;l);	<a href="java.lang.StringBuffer.html#9952">&#167;1.17.11</a>
+    public StringBuffer <strong>append</strong>(Object &#32;obj);	<a href="java.lang.StringBuffer.html#9974">&#167;1.17.12</a>
+    public StringBuffer <strong>append</strong>(String &#32;str);	<a href="java.lang.StringBuffer.html#9996">&#167;1.17.13</a>
+    public int <strong>capacity</strong>();	<a href="java.lang.StringBuffer.html#10020">&#167;1.17.14</a>
+    public char <strong>charAt</strong>(int &#32;index);	<a href="java.lang.StringBuffer.html#10034">&#167;1.17.15</a>
+ &#32; &#32;public void <strong>ensureCapacity</strong>(int &#32;minimumCapacity);	<a href="java.lang.StringBuffer.html#10078">&#167;1.17.16</a>
+ &#32; &#32;public void <strong>getChars</strong>(int &#32;srcBegin, int &#32;srcEnd,	<a href="java.lang.StringBuffer.html#10098">&#167;1.17.17</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;char &#32;dst[], int &#32;dstBegin);
+    public StringBuffer <strong>insert</strong>(int &#32;offset, boolean &#32;b);	<a href="java.lang.StringBuffer.html#10140">&#167;1.17.18</a>
+    public StringBuffer <strong>insert</strong>(int &#32;offset, char &#32;c);	<a href="java.lang.StringBuffer.html#10176">&#167;1.17.19</a>
+    public StringBuffer <strong>insert</strong>(int &#32;offset, char &#32;str[]);	<a href="java.lang.StringBuffer.html#10212">&#167;1.17.20</a>
+    public StringBuffer <strong>insert</strong>(int &#32;offset, double &#32;d);	<a href="java.lang.StringBuffer.html#10248">&#167;1.17.21</a>
+    public StringBuffer <strong>insert</strong>(int &#32;offset, float &#32;f);	<a href="java.lang.StringBuffer.html#10284">&#167;1.17.22</a>
+ &#32; &#32;public StringBuffer <strong>insert</strong>(int &#32;offset, int &#32;i);	<a href="java.lang.StringBuffer.html#10320">&#167;1.17.23</a> 
+    public StringBuffer <strong>insert</strong>(int &#32;offset, long &#32;l);	<a href="java.lang.StringBuffer.html#10356">&#167;1.17.24</a>
+    public StringBuffer <strong>insert</strong>(int &#32;offset, Object &#32;obj);	<a href="java.lang.StringBuffer.html#10392">&#167;1.17.25</a>
+    public StringBuffer <strong>insert</strong>(int &#32;offset, String &#32;str);	<a href="java.lang.StringBuffer.html#44906">&#167;1.17.26</a>
+    public int <strong>length</strong>();	<a href="java.lang.StringBuffer.html#10466">&#167;1.17.27</a>
+    public StringBuffer <strong>reverse</strong>();	<a href="java.lang.StringBuffer.html#10480">&#167;1.17.28</a>
+    public void <strong>setCharAt</strong>(int &#32;index, char &#32;ch);	<a href="java.lang.StringBuffer.html#10494">&#167;1.17.29</a>
+    public void <strong>setLength</strong>(int &#32;newLength);	<a href="java.lang.StringBuffer.html#10528">&#167;1.17.30</a>
+    public String <strong>toString</strong>();	<a href="java.lang.StringBuffer.html#10558">&#167;1.17.31</a>
+}
+</pre><a name="9706">A string buffer implements a mutable sequence of characters.
+</a><p><a name="33084">String buffers are safe for use by multiple threads. The methods are synchronized where 
+necessary so that all the operations on any particular instance behave as if they occur in 
+some serial order.
+</a><p><a name="33085">String buffers are used by the compiler to implement the binary string concatentation 
+operator +. For example the code 
+</a><p><ul><a name="9708">
+<code>x = "a" &#32;+ &#32;4 &#32;+ &#32;"c"
+</code>
+</a></ul><a name="9710">is compiled to the equivalent of: 
+</a><p><ul><a name="9712">
+<code>x = new &#32;StringBuffer().append("a").append(4).append("c").toString()
+</code>
+</a></ul><a name="33102">The principal operations on a StringBuffer are the append and insert methods, which are overloaded so as to accept data of any type. Each effectively converts a given datum to a string 
+and then appends or inserts the characters of that string to the string buffer. The append 
+method always adds these characters at the end of the buffer; the insert method adds the 
+characters at a specified point.
+</a><p><a name="33103">For example, if z refers to a string buffer object whose current contents are "start" then the 
+method call z.append("le") would cause the string buffer to contain "startle" while z.insert(4, "le") 
+would alter the string buffer to contain "starlet".
+</a><p><a name="33121">Every string buffer has a capacity. As long as the length of the character sequence contained in the string buffer does not exceed the capacity, it is not necessary to allocate a new 
+internal buffer array. If the internal buffer overflows, it is automatically made larger.
+</a><p><dl><dt><a name="33119"><b>
+</b></a><dt><a name="33134"><b>See Also:
+</b></a><dd><a name="9726">String &#32;<a href="java.lang.String.html#8016">(I-&#167;1.16)</a><br>
+ByteArrayOutputStream &#32;<a href="java.io.ByteArrayOutputStream.html#1260">(I-&#167;2.4)</a>.
+</a>
+</dl>
+<hr>
+<a name="9730"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="StringBuffer">
+<a name="9738"><h3>StringBuffer
+</h3></a>
+<a name="9740"><code>public StringBuffer()
+</code></a>
+<dl>
+<dd><a name="9742">Constructs a string buffer with no characters in it, and an initial capacity 
+of &#32;16 characters.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="StringBuffer">
+<a name="9750"><h3>StringBuffer
+</h3></a>
+<a name="9752"><code>public StringBuffer(int &#32;length)
+</code></a>
+<dl>
+<dd><a name="33145">Constructs a string buffer with no characters in it, and an initial capacity 
+specified by the length argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9756"><b>Parameters:
+</b></a><dd><a name="9758"><code>length
+- </code></a><a name="9760">the initial capacity
+</a>
+
+<dt><a name="33149"><b>Throws
+</b></a><dd><a name="33153">NegativeArraySizeException &#32;<a href="java.lang.NegativeArraySizeException.html#14234">(I-&#167;1.38)</a>
+</a>
+<dd><a name="33154">If the length argument is less than zero.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="StringBuffer">
+<a name="9768"><h3>StringBuffer
+</h3></a>
+<a name="9770"><code>public StringBuffer(String &#32;str)
+</code></a>
+<dl>
+<dd><a name="9772">Constructs a string buffer so that it represents the same sequence of characters as the string argument. The initial capacity of the string buffer is 16 
+plus the length of the string argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9774"><b>Parameters:
+</b></a><dd><a name="9776"><code>str
+- </code></a><a name="9778">the initial contents of the buffer
+</a>
+</dl></dl>
+<hr>
+<a name="9780"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="append">
+<a name="9790"><h3>append
+</h3></a>
+<a name="9792"><code>public StringBuffer append(boolean &#32;b)
+</code></a>
+<dl>
+<dd><a name="33166">Appends the string representation of the boolean argument to the string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="43303">The argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#9320">(I-&#167;1.16.41)</a>, and the characters of that string are then 
+appended <a href="java.lang.StringBuffer.html#9996">(I-&#167;1.17.13)</a> to this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9796"><b>Parameters:
+</b></a><dd><a name="9798"><code>b
+- </code></a><a name="9800">a boolean
+</a>
+
+<dt><a name="9802"><b>Returns:
+</b></a><dd><a name="9804">this string buffer
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="9812"><h3>append
+</h3></a>
+<a name="9814"><code>public StringBuffer append(char &#32;c)
+</code></a>
+<dl>
+<dd><a name="43305">Appends the string representation of the char argument to this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="9816">The argument is appended to the contents of this string buffer. The length 
+of this string buffer increases by one.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9818"><b>Parameters:
+</b></a><dd><a name="9820"><code>ch
+- </code></a><a name="9822">a char
+</a>
+
+<dt><a name="9824"><b>Returns:
+</b></a><dd><a name="33200">this string buffer
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="9834"><h3>append
+</h3></a>
+<a name="9836"><code>public StringBuffer append(char &#32;str[])
+</code></a>
+<dl>
+<dd><a name="43309">Appends the string representation of the char array argument to this string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33205">The characters of the array argument are appended, in order, to the contents of this string buffer. The length of this string buffer increases by the 
+length of the argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9840"><b>Parameters:
+</b></a><dd><a name="9842"><code>str
+- </code></a><a name="9844">the characters to be appended
+</a>
+
+<dt><a name="33244"><b>Returns:
+</b></a><dd><a name="33245">this string buffer
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="33249"><h3>append
+</h3></a>
+<a name="9858"><code>public StringBuffer append(char &#32;str[], int &#32;offset, int &#32;len)
+</code></a>
+<dl>
+<dd><a name="43313">Appends the string representation of a subarray of the char array argument 
+to this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33220">Characters of the character array str, starting at index offset, are appended, in 
+order, to the contents of this string buffer. The length of this string buffer 
+increases by the value of len.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9862"><b>Parameters:
+</b></a><dd><a name="9864"><code>str
+- </code></a><a name="9866">the characters to be appended
+</a>
+<dd><a name="9868"><code>offset
+- </code></a><a name="9870">index of first character to append
+</a>
+<dd><a name="9872"><code>len
+- </code></a><a name="9874">the number of characters to aappend
+</a>
+
+<dt><a name="9876"><b>Returns:
+</b></a><dd><a name="36339">this string buffer
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="9886"><h3>append
+</h3></a>
+<a name="9888"><code>public StringBuffer append(double &#32;d)
+</code></a>
+<dl>
+<dd><a name="43317">Appends the string representation of the double argument to this string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33231">The argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#9404">(I-&#167;1.16.45)</a>, and the characters of that string are then 
+appended <a href="java.lang.StringBuffer.html#9996">(I-&#167;1.17.13)</a> to this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9892"><b>Parameters:
+</b></a><dd><a name="9894"><code>d
+- </code></a><a name="9896">a double
+</a>
+
+<dt><a name="9898"><b>Returns:
+</b></a><dd><a name="33251">this string buffer
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="9908"><h3>append
+</h3></a>
+<a name="9910"><code>public StringBuffer append(float &#32;f)
+</code></a>
+<dl>
+<dd><a name="43322">Appends the string representation of the float argument to this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33253">The argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#44765">(I-&#167;1.16.46)</a>, and the characters of that string are then 
+appended <a href="java.lang.StringBuffer.html#9996">(I-&#167;1.17.13)</a> to this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9914"><b>Parameters:
+</b></a><dd><a name="9916"><code>f
+- </code></a><a name="9918">a float
+</a>
+
+<dt><a name="9920"><b>Returns:
+</b></a><dd><a name="9922">this string buffer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="9930"><h3>append
+</h3></a>
+<a name="9932"><code>public StringBuffer append(int &#32;i)
+</code></a>
+<dl>
+<dd><a name="43328">Appends the string representation of the int argument to this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33271">The argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#9440">(I-&#167;1.16.47)</a>, and the characters of that string are then 
+appended <a href="java.lang.StringBuffer.html#9996">(I-&#167;1.17.13)</a> to this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9936"><b>Parameters:
+</b></a><dd><a name="9938"><code>i
+- </code></a><a name="9940">an int
+</a>
+
+<dt><a name="9942"><b>Returns:
+</b></a><dd><a name="9944">this string buffer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="9952"><h3>append
+</h3></a>
+<a name="9954"><code>public StringBuffer append(long &#32;l)
+</code></a>
+<dl>
+<dd><a name="43332">Appends the string representation of the long argument to this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33283">The argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#32957">(I-&#167;1.16.48)</a>, and the characters of that string are then 
+appended <a href="java.lang.StringBuffer.html#9996">(I-&#167;1.17.13)</a> to this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9958"><b>Parameters:
+</b></a><dd><a name="9960"><code>l
+- </code></a><a name="9962">a long
+</a>
+
+<dt><a name="9964"><b>Returns:
+</b></a><dd><a name="9966">this string buffer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="9974"><h3>append
+</h3></a>
+<a name="9976"><code>public StringBuffer append(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="43351">Appends the string representation of the Object argument to this string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33295">The argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.StringBuffer.html#9768">(I-&#167;1.17.3)</a>, and the characters of that string are then 
+appended <a href="java.lang.StringBuffer.html#9996">(I-&#167;1.17.13)</a> to this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9980"><b>Parameters:
+</b></a><dd><a name="9982"><code>obj
+- </code></a><a name="9984">an Object
+</a>
+
+<dt><a name="9986"><b>Returns:
+</b></a><dd><a name="9988">this string buffer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="append">
+<a name="9996"><h3>append
+</h3></a>
+<a name="9998"><code>public StringBuffer append(String &#32;str)
+</code></a>
+<dl>
+<dd><a name="43355">Appends the string to this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33309">The characters of the String argument are appended, in order, to the contents 
+of this string buffer, increasing the length of this string buffer by the length 
+of the argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10002"><b>Parameters:
+</b></a><dd><a name="10004"><code>str
+- </code></a><a name="10006">a string
+</a>
+
+<dt><a name="10008"><b>Returns:
+</b></a><dd><a name="10010">this string buffer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="capacity">
+<a name="10020"><h3>capacity
+</h3></a>
+<a name="33338"><code>public int capacity()
+</code></a>
+<dl><dl>
+<dt><a name="33339"><b>Returns:
+</b></a><dd><a name="33340">the current capacity of this string buffer. 
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="charAt">
+<a name="10034"><h3>charAt
+</h3></a>
+<a name="10036"><code>public char charAt(int &#32;index)
+</code></a>
+<dl>
+<dd><a name="10038">Determines the character at a specific index in this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="43282">The first character of a string buffer is at index 0, the next at index 1, and so 
+on, for array indexing.
+<pre>
+</pre></a>
+
+<dd><a name="33355">The index argument must be greater than or equal to 0, and less than the 
+length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10040"><b>Parameters:
+</b></a><dd><a name="10042"><code>index
+- </code></a><a name="10044">the index of the desired character
+</a>
+
+<dt><a name="33350"><b>Returns:
+</b></a><dd><a name="33351">the character at the specified index of this string buffer.
+</a>
+
+<dt><a name="10046"><b>Throws
+</b></a><dd><a name="10052">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="10054">If the index is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="ensureCapacity">
+<a name="10078"><h3>ensureCapacity
+</h3></a>
+<a name="10080"><code>public void ensureCapacity(int &#32;minimumCapacity)
+</code></a>
+<dl>
+<dd><a name="33370">If the current capacity of this string buffer is less than the argument, then a 
+new internal buffer is allocated with greater capacity. The new capacity is 
+the larger of:
+<pre>
+</pre></a>
+<dl><ul><li><a name="33371">the minimumCapacity argument
+</a></ul><ul><li><a name="33372">twice the old capacity, plus 2
+</a></ul></dl>
+<dd><a name="33373">If the minimumCapacity argument is nonpositive, this method takes no 
+action and simply returns.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10084"><b>Parameters:
+</b></a><dd><a name="10086"><code>minimumCapacity
+- </code></a><a name="10088">the minimum desired capacity
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getChars">
+<a name="10098"><h3>getChars
+</h3></a>
+<a name="10100"><code>public void getChars(int &#32;srcBegin, int &#32;srcEnd,  &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;char &#32;dst[], &#32;int &#32;dstBegin)
+</code></a>
+<dl>
+<dd><a name="33375">Characters are copied from this string buffer into the destination character 
+array dst. The first character to be copied is at index srcBegin; the last character to be copied is at index srcEnd-1. The total number of characters to be 
+copied is srcEnd-srcBegin. The characters are copied into the subarray of dst 
+starting at index dstBegin and ending at index dstbegin+(srcEnd-srcBegin)-1.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10104"><b>Parameters:
+</b></a><dd><a name="10106"><code>srcBegin
+- </code></a><a name="10108">begin copy at this offset in the string buffer
+</a>
+<dd><a name="10110"><code>srcEnd
+- </code></a><a name="10112">stop copying at this offset in the string buffer
+</a>
+<dd><a name="10114"><code>dst
+- </code></a><a name="10116">the array to copy the data into
+</a>
+<dd><a name="10118"><code>dstBegin
+- </code></a><a name="10120">offset into dst
+</a>
+
+<dt><a name="10122"><b>Throws
+</b></a><dd><a name="10128">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="10130">If there is an invalid index into the buffer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="10140"><h3>insert
+</h3></a>
+<a name="10142"><code>public StringBuffer insert(int &#32;offset, boolean &#32;b)
+</code></a>
+<dl>
+<dd><a name="43360">Inserts the string representation of the boolean argument into this string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33379">The second argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#9320">(I-&#167;1.16.41)</a>, and the characters of that string are then 
+inserted <a href="java.lang.StringBuffer.html#44906">(I-&#167;1.17.26)</a> into this string buffer at the indicated offset.
+<pre>
+</pre></a>
+
+<dd><a name="33401">The offset argument must be greater than or equal to 0, and less than or 
+equal to the length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33399"><b>Parameters:
+</b></a><dd><a name="10148"><code>offset
+- </code></a><a name="10150">the offset
+</a>
+<dd><a name="10152"><code>b
+- </code></a><a name="10154">a boolean
+</a>
+
+<dt><a name="10156"><b>Returns:
+</b></a><dd><a name="10158">this string buffer.
+</a>
+
+<dt><a name="10160"><b>Throws
+</b></a><dd><a name="10166">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44925">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="10176"><h3>insert
+</h3></a>
+<a name="10178"><code>public StringBuffer &#32;insert(int &#32;offset, char &#32;c)
+</code></a>
+<dl>
+<dd><a name="43366">Inserts the string representation of the char argument into this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33552">The second argument is inserted into the contents of this string buffer at 
+the position indicated by offset. The length of this string buffer increases by 
+one. 
+<pre>
+</pre></a>
+
+<dd><a name="33557">The offset argument must be greater than or equal to 0, and less than or 
+equal to the length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10182"><b>Parameters:
+</b></a><dd><a name="10184"><code>offset
+- </code></a><a name="10186">the offset
+</a>
+<dd><a name="10188"><code>ch
+- </code></a><a name="10190">a char
+</a>
+
+<dt><a name="10192"><b>Returns:
+</b></a><dd><a name="10194">this string buffer.
+</a>
+
+<dt><a name="10196"><b>Throws
+</b></a><dd><a name="10202">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44923">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="10212"><h3>insert
+</h3></a>
+<a name="10214"><code>public StringBuffer insert(int &#32;offset, char &#32;str[])
+</code></a>
+<dl>
+<dd><a name="43370">Inserts the string representation of the char array argument into this string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33572">The characters of the array argument are inserted into the contents of this 
+string buffer at the position indicated by offset. The length of this string 
+buffer increases by the length of the argument. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10218"><b>Parameters:
+</b></a><dd><a name="33577"><code>offset
+- </code></a><a name="33578">the offset
+</a>
+<dd><a name="33579"><code>ch
+- </code></a><a name="33580">a character array
+</a>
+
+<dt><a name="33582"><b>Returns:
+</b></a><dd><a name="33583">this string buffer.
+</a>
+
+<dt><a name="33584"><b>Throws
+</b></a><dd><a name="33588">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44921">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="10248"><h3>insert
+</h3></a>
+<a name="10250"><code>public StringBuffer insert(int &#32;offset, double &#32;d)
+</code></a>
+<dl>
+<dd><a name="43372">Inserts the string representation of the double argument into this string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33423">The second argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#9404">(I-&#167;1.16.45)</a>, and the characters of that string are then 
+inserted <a href="java.lang.StringBuffer.html#44906">(I-&#167;1.17.26)</a> into this string buffer at the indicated offset.
+<pre>
+</pre></a>
+
+<dd><a name="33430">The offset argument must be greater than or equal to 0, and less than or 
+equal to the length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33434"><b>Parameters:
+</b></a><dd><a name="33435"><code>offset
+- </code></a><a name="33436">the offset
+</a>
+<dd><a name="33437"><code>b
+- </code></a><a name="33438">a double
+</a>
+
+<dt><a name="33439"><b>Returns:
+</b></a><dd><a name="33440">this string buffer.
+</a>
+
+<dt><a name="33441"><b>Throws
+</b></a><dd><a name="33445">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44919">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="10284"><h3>insert
+</h3></a>
+<a name="10286"><code>public StringBuffer insert(int &#32;offset, float &#32;f)
+</code></a>
+<dl>
+<dd><a name="43376">Inserts the string representation of the float argument into this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33448">The second argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#44765">(I-&#167;1.16.46)</a>, and the characters of that string are then 
+inserted <a href="java.lang.StringBuffer.html#44906">(I-&#167;1.17.26)</a> into this string buffer at the indicated offset.
+<pre>
+</pre></a>
+
+<dd><a name="33455">The offset argument must be greater than or equal to 0, and less than or 
+equal to the length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33459"><b>Parameters:
+</b></a><dd><a name="33460"><code>offset
+- </code></a><a name="33461">the offset
+</a>
+<dd><a name="33462"><code>b
+- </code></a><a name="33463">a float
+</a>
+
+<dt><a name="33464"><b>Returns:
+</b></a><dd><a name="33465">this string buffer.
+</a>
+
+<dt><a name="33466"><b>Throws
+</b></a><dd><a name="33470">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44915">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="10320"><h3>insert
+</h3></a>
+<a name="10322"><code>public StringBuffer insert(int &#32;offset, int &#32;i)
+</code></a>
+<dl>
+<dd><a name="43380">Inserts the string representation of the second int argument into this string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33473">The second argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#9440">(I-&#167;1.16.47)</a>, and the characters of that string are then 
+inserted <a href="java.lang.StringBuffer.html#44906">(I-&#167;1.17.26)</a> into this string buffer at the indicated offset.
+<pre>
+</pre></a>
+
+<dd><a name="33480">The offset argument must be greater than or equal to 0, and less than or 
+equal to the length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33484"><b>Parameters:
+</b></a><dd><a name="33485"><code>offset
+- </code></a><a name="33486">the offset
+</a>
+<dd><a name="33487"><code>b
+- </code></a><a name="33488">an int
+</a>
+
+<dt><a name="33489"><b>Returns:
+</b></a><dd><a name="33490">this string buffer.
+</a>
+
+<dt><a name="33491"><b>Throws
+</b></a><dd><a name="33495">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44917">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="10356"><h3>insert
+</h3></a>
+<a name="10358"><code>public StringBuffer insert(int &#32;offset, long &#32;l)
+</code></a>
+<dl>
+<dd><a name="43384">Inserts the string representation of the long argument into this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33498">The second argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#32957">(I-&#167;1.16.48)</a>, and the characters of that string are then 
+inserted <a href="java.lang.StringBuffer.html#44906">(I-&#167;1.17.26)</a> into this string buffer at the indicated offset.
+<pre>
+</pre></a>
+
+<dd><a name="33505">The offset argument must be greater than or equal to 0, and less than or 
+equal to the length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33509"><b>Parameters:
+</b></a><dd><a name="33510"><code>offset
+- </code></a><a name="33511">the offset
+</a>
+<dd><a name="33512"><code>b
+- </code></a><a name="33513">a long
+</a>
+
+<dt><a name="33514"><b>Returns:
+</b></a><dd><a name="33515">this string buffer.
+</a>
+
+<dt><a name="33516"><b>Throws
+</b></a><dd><a name="33520">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44911">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="10392"><h3>insert
+</h3></a>
+<a name="10394"><code>public StringBuffer &#32;insert(int &#32;offset, Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="43388">Inserts the string representation of the Object argument into this string 
+buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33523">The second argument is converted to a string as if by the method 
+String.valueOf &#32;<a href="java.lang.String.html#9476">(I-&#167;1.16.49)</a>, and the characters of that string are then 
+inserted <a href="java.lang.StringBuffer.html#44906">(I-&#167;1.17.26)</a> into this string buffer at the indicated offset.
+<pre>
+</pre></a>
+
+<dd><a name="33530">The offset argument must be greater than or equal to 0, and less than or 
+equal to the length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33534"><b>Parameters:
+</b></a><dd><a name="33535"><code>offset
+- </code></a><a name="33536">the offset
+</a>
+<dd><a name="33537"><code>b
+- </code></a><a name="33538">an Object
+</a>
+
+<dt><a name="33539"><b>Returns:
+</b></a><dd><a name="33540">this string buffer.
+</a>
+
+<dt><a name="33541"><b>Throws
+</b></a><dd><a name="44901">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44909">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insert">
+<a name="44906"><h3>insert
+</h3></a>
+<a name="44907"><code>public StringBuffer &#32;insert(int &#32;offset, String &#32;str)
+</code></a>
+<dl>
+<dd><a name="43393">Inserts the string into this string buffer.
+<pre>
+</pre></a>
+
+<dd><a name="33607">The characters of the String argument are inserted, in order, into this string 
+buffer at the indicated offset. The length of the of this string buffer is 
+increased by the length of the argument.
+<pre>
+</pre></a>
+
+<dd><a name="33622">The offset argument must be greater than or equal to 0, and less than or 
+equal to the length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33608"><b>Parameters:
+</b></a><dd><a name="33619"><code>offset
+- </code></a><a name="33620">the offset
+</a>
+<dd><a name="33609"><code>str
+- </code></a><a name="33610">a string
+</a>
+
+<dt><a name="33611"><b>Returns:
+</b></a><dd><a name="33612">this string buffer.
+</a>
+
+<dt><a name="10448"><b>Throws
+</b></a><dd><a name="10454">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="10456">If the offset is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="length">
+<a name="10466"><h3>length
+</h3></a>
+<a name="10468"><code>public int length()
+</code></a>
+<dl><dl>
+<dt><a name="33629"><b>Returns:
+</b></a><dd><a name="33630">the number of characters in this string buffer..
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="reverses">
+<a name="10480"><h3>reverses<a href="#33646"><sup>1</sup></a>
+</h3></a>
+<a name="10482"><code>public StringBuffer reverse()
+</code></a>
+<dl>
+<dd><a name="33638">The character sequence contained in this string buffer is replaced by the 
+reverse of the sequence.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33641"><b>Returns:
+</b></a><dd><a name="33642">this string buffer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setCharAt">
+<a name="10494"><h3>setCharAt
+</h3></a>
+<a name="10496"><code>public void &#32;setCharAt(int &#32;index, char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="33654">The character at the specified index of this string buffer is set to ch.
+<pre>
+</pre></a>
+
+<dd><a name="33666">The offset argument must be greater than or equal to 0, and less than the 
+length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of this string buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10500"><b>Parameters:
+</b></a><dd><a name="10502"><code>index
+- </code></a><a name="10504">the index of the character to modify
+</a>
+<dd><a name="10506"><code>ch
+- </code></a><a name="10508">the new character
+</a>
+
+<dt><a name="10510"><b>Throws
+</b></a><dd><a name="10516">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44938">If the index is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setLength">
+<a name="10528"><h3>setLength
+</h3></a>
+<a name="10530"><code>public void setLength(int &#32;newLength)
+</code></a>
+<dl>
+<dd><a name="33693">If the newLength argument is less than the current length <a href="java.lang.StringBuffer.html#10466">(I-&#167;1.17.27)</a> of the 
+string buffer, the string buffer is truncated to contain exactly the number of 
+characters given by the newLength argument.
+<pre>
+</pre></a>
+
+<dd><a name="33688">If the newLength argument is greater than or equal to the current length, sufficient null characters ('\u0000') are appended to the string buffer so that 
+length becomes the newLength argument.
+<pre>
+</pre></a>
+
+<dd><a name="33698">The newLength argument must be greater than or equal to zero.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10534"><b>Parameters:
+</b></a><dd><a name="10536"><code>newLength
+- </code></a><a name="10538">the new length of the buffer
+</a>
+
+<dt><a name="10540"><b>Throws
+</b></a><dd><a name="10546">StringIndexOutOfBoundsException &#32;<a href="java.lang.StringIndexOutOfBoundsException.html#14686">(I-&#167;1.44)</a>
+</a>
+<dd><a name="44942">If the newLength argument is invalid.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="10558"><h3>toString
+</h3></a>
+<a name="10560"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="33704">A new String object is allocated and initialized to contain the character 
+sequence currently represented by this string buffer. This String is then 
+returned. Subsequent changes to the string buffer do not affect the contents 
+of the String.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31445"><b>Returns:
+</b></a><dd><a name="31446">a string representation of the string buffer.
+</a>
+
+<dt><a name="10564"><b>Overrides:
+</b></a><dd><a name="10570">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="33646">This method is new in Java 1.1.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.String.html">Prev</a>  <a href="java.lang.System.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

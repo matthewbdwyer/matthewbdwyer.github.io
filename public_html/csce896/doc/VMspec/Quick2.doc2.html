@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>VM Spec  </title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+<table width=600><tr>
+<td><a href="Copyright.doc.html">Contents</a> | <a href="Quick2.doc1.html">Prev</a> | <a href="Quick2.doc3.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+
+<hr><br>
+ 
+
+<a name="getfield_quick"></a>
+<h2>getfield_quick</h2>
+<a name="getfield_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="5081"></a>
+Fetch field from object<p>
+<Table Border="0">
+<tr><td><a name="5076"></a>
+ <i>getfield_quick</i>
+<td><a name="222"></a>
+ 
+
+<tr><td><a name="5078"></a>
+ <i>offset</i>
+<td><a name="229"></a>
+ 
+
+<tr><td><a name="5080"></a>
+ <i>&lt;unused&gt;</i>
+<td><a name="236"></a>
+ 
+
+</Table>
+<p>
+<a name="getfield_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12450"></a>
+<i>getfield_quick</i> = 206 (0xce)<p>
+<a name="getfield_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="5082"></a>
+..., <i>objectref</i><em> </em><img src="chars/arrwdbrt.gif">  ..., <i>value</i> <p>
+<a name="getfield_quick.Description"></a>
+<b>Description</b><br>
+<a name="5083"></a>
+The <i>objectref</i>, which must be of type <code>reference</code>, is popped from the operand stack. The <i>value</i> of the one-word field at <i>offset</i> into the class instance referenced by <i>objectref</i> is fetched and pushed onto the operand stack.<p>
+<a name="getfield_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="12066"></a>
+If <i>objectref</i> is <code>null</code>, the <i>getfield_quick</i> instruction throws a <code>NullPointerException</code>.<p>
+<a name="getfield_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="6425"></a>
+The opcode of this instruction was originally <i>getfield</i>, operating on a field determined dynamically to have an offset into the class instance data of 255 words or less and to have a width of one word. <p>
+<a name="17428"></a>
+When the constant pool entry referenced by a <i>getfield</i> instruction is resolved, the offset for the field it references is generated. That offset replaces the first operand byte of the original <i>getfield</i> instruction. The second operand byte of the <i>getfield</i> is unused by <i>getfield_quick</i>. <p>
+<a name="6618"></a>
+ <a href="Quick2.doc.html#">getfield_quick_w		getfield_quick_w</a><p>
+<a name="getfield_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="6628"></a>
+Fetch field from object<p>
+<Table Border="0">
+<tr><td><a name="6623"></a>
+ <i>getfield_quick_w</i>
+<td><a name="553"></a>
+ 
+
+<tr><td><a name="6625"></a>
+ <i>indexbyte1</i>
+<td><a name="560"></a>
+ 
+
+<tr><td><a name="6627"></a>
+ <i>indexbyte2</i>
+<td><a name="567"></a>
+ 
+
+</Table>
+<p>
+<a name="getfield_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12451"></a>
+<i>getfield_quick_w</i> = 227 (0xe3)<p>
+<a name="getfield_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="6629"></a>
+..., <i>objectref</i><em> </em><img src="chars/arrwdbrt.gif">  ..., <i>value</i> <p>
+<a name="17034"></a>
+OR<p>
+<a name="getfield_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="14768"></a>
+..., <i>objectref</i><em> </em><img src="chars/arrwdbrt.gif"> ..., <i>value.word1</i>, <i>value.word2</i><p>
+<a name="getfield_quick.Description"></a>
+<b>Description</b><br>
+<a name="6630"></a>
+The <i>objectref</i>, which must be of type <code>reference</code>, is popped from the operand stack. The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The constant pool item at the index must be a <code>CONSTANT_Fieldref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> which must already have been resolved and must not be a class (<code>static</code>) field. A field offset must have been stored in the constant pool. The <i>value</i> at that offset into the class instance referenced by <i>objectref</i> is fetched and pushed onto the operand stack.<p>
+<a name="getfield_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="12069"></a>
+If <i>objectref</i> is <code>null</code>, the <i>getfield_quick_w</i> instruction throws a <code>NullPointerException</code>.<p>
+<a name="getfield_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="6632"></a>
+The opcode of this instruction was originally <i>getfield</i>, operating on a field determined dynamically to have an offset into the class instance data of more than 255 words. <p>
+<a name="22100"></a>
+ <a href="Quick2.doc.html#">getfield_quick_w (cont.)		getfield_quick_w (cont.)</a><p>
+<a name="17427"></a>
+The operands of the <i>getfield</i> instruction are not modified. Because the <i>getfield_quick_w</i> instruction operates on both one- and two-word wide fields, it needs to know both the field offset and the type of that field. Because the original <i>getfield</i> instruction needed a 16-bit index, the field offset may be 16 bits wide. As there is insufficient space in the instruction to store both a 16-bit offset and a field type, <i>getfield_quick_w</i> retains its original operands and uses them to index into the constant pool, where the offset and field type are available in the resolved entry.<p>
+<a name="5089"></a>
+ <a href="Quick2.doc.html#">getfield2_quick		getfield2_quick</a><p>
+<a name="getfield_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="5099"></a>
+Fetch <code>long</code> or <code>double</code> field from object<p>
+<Table Border="0">
+<tr><td><a name="5094"></a>
+ <i>getfield2_quick</i>
+<td><a name="475"></a>
+ 
+
+<tr><td><a name="5096"></a>
+ <i>offset</i>
+<td><a name="482"></a>
+ 
+
+<tr><td><a name="5098"></a>
+ <i>&lt;unused&gt;</i>
+<td><a name="489"></a>
+ 
+
+</Table>
+<p>
+<a name="getfield_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12452"></a>
+<i>getfield2_quick</i> = 208 (0xd0)<p>
+<a name="getfield_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="8389"></a>
+..., <i>objectref</i> <img src="chars/arrwdbrt.gif">  ..., <i>value.word1</i>, <i>value.word2</i><p>
+<a name="getfield_quick.Description"></a>
+<b>Description</b><br>
+<a name="8391"></a>
+The <i>objectref</i>, which must be of type <code>reference</code>, is popped from the operand stack. The <i>value</i> of the two-word field at <i>offset</i> into the class instance referenced by <i>objectref</i> is fetched and pushed onto the operand stack.<p>
+<a name="getfield_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="12072"></a>
+If <i>objectref</i> is <code>null</code>, the <i>getfield2_quick</i> instruction throws a <code>NullPointerException</code>.<p>
+<a name="getfield_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="8918"></a>
+The opcode of this instruction was originally <i>getfield</i>, operating on a field determined dynamically to have an offset into the class instance data of 255 words or less and to have a width of two words. <p>
+<a name="17426"></a>
+When the constant pool entry referenced by a <i>getfield</i> instruction is resolved, the offset for the field it references is generated. That offset replaces the first operand of the original <i>getfield</i> instruction. The second operand of the <i>getfield</i> is unused by <i>getfield2_quick</i>. <p>
+<a name="8922"></a>
+ <a href="Quick2.doc.html#">getstatic_quick		getstatic_quick</a><p>
+<a name="getfield_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="8932"></a>
+Get static field from class<p>
+<Table Border="0">
+<tr><td><a name="8927"></a>
+ <i>getstatic_quick</i>
+<td><a name="300"></a>
+ 
+
+<tr><td><a name="8929"></a>
+ <i>indexbyte1</i>
+<td><a name="307"></a>
+ 
+
+<tr><td><a name="8931"></a>
+ <i>indexbyte2</i>
+<td><a name="314"></a>
+ 
+
+</Table>
+<p>
+<a name="getfield_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12453"></a>
+<i>getstatic_quick</i> = 210 (0xd2)<p>
+<a name="getfield_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="5122"></a>
+..., <img src="chars/arrwdbrt.gif">  ..., <i>value</i> <p>
+<a name="getfield_quick.Description"></a>
+<b>Description</b><br>
+<a name="5123"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The constant pool item at that index must be a <code>CONSTANT_Fieldref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> which must already have been resolved and must be a class (<code>static</code>) field that is one word wide. The <i>value</i> of that class field is fetched and pushed onto the operand stack.<p>
+<a name="getfield_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="5127"></a>
+The opcode of this instruction was originally <i>getstatic</i>, operating on a <code>static</code> field determined dynamically to be one word wide. The operands of the <i>getstatic</i> instruction are not modified. There is no equivalent to the <i>getfield_quick</i> instruction, storing a class offset as an instruction operand, for one-word <code>static</code> fields.<p>
+<a name="5131"></a>
+ <a href="Quick2.doc.html#">getstatic2_quick		getstatic2_quick</a><p>
+<a name="getfield_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="5141"></a>
+Get static field from class<p>
+<Table Border="0">
+<tr><td><a name="5136"></a>
+ <i>getstatic2_quick</i>
+<td><a name="527"></a>
+ 
+
+<tr><td><a name="5138"></a>
+ <i>indexbyte1</i>
+<td><a name="534"></a>
+ 
+
+<tr><td><a name="5140"></a>
+ <i>indexbyte2</i>
+<td><a name="541"></a>
+ 
+
+</Table>
+<p>
+<a name="getfield_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12454"></a>
+<i>getstatic2_quick</i> = 212 (0xd4)<p>
+<a name="getfield_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="5142"></a>
+...,<em> </em><img src="chars/arrwdbrt.gif">  ..., <i>value.word1</i>, <i>value.word2</i><p>
+<a name="getfield_quick.Description"></a>
+<b>Description</b><br>
+<a name="5143"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The constant pool item at that index must be a <code>CONSTANT_Fieldref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> which must already have been resolved and must be a class (<code>static</code>) field that is two words wide. The <i>value</i> of that class field is fetched and pushed onto the operand stack.<p>
+<a name="8437"></a>
+The constant pool item is a field reference to a static field of a class. The type of the field must be <code>long</code> or <code>double</code>. The value of that field is pushed onto the stack.<p>
+<a name="getfield_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="8485"></a>
+The opcode of this instruction was originally <i>getstatic</i>, operating on a class field determined dynamically to be two words wide. The operands of the <i>getstatic</i> instruction are not modified. There is no equivalent to the <i>getfield2_quick</i> instruction, storing a class offset as an instruction operand, for two-word <code>static</code> fields.<p>
+
+
+<hr>
+<!-- This inserts footnotes--><p><br>
+<a href="Copyright.doc.html">Contents</a> | <a href="Quick2.doc1.html">Prev</a> | <a href="Quick2.doc3.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size=-1>Java Virtual Machine Specification (HTML generated by chsieh on March 13, 1997)<br>
+<i><a href="jcopyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

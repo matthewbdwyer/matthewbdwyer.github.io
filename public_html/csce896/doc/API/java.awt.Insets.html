@@ -1,0 +1,159 @@
+<html><head><title>Class Insets</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Image.html">Prev</a>  <a href="java.awt.Label.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="15149"><h1>	&#167;1.25 Class Insets</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Insets
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+    implements java.lang.<strong>Cloneable</strong> &#32;<a href="java.lang.Cloneable.html#45621">(I-&#167;1.22)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public int <strong>bottom</strong>;	<a href="java.awt.Insets.html#15233">&#167;1.25.1</a>
+    public int <strong>left</strong>;	<a href="java.awt.Insets.html#15245">&#167;1.25.2</a>
+    public int <strong>right</strong>;	<a href="java.awt.Insets.html#15257">&#167;1.25.3</a>
+    public int <strong>top</strong>;	<a href="java.awt.Insets.html#15269">&#167;1.25.4</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Insets</strong>(int &#32;top, int &#32;left, int &#32;bottom, int right);	<a href="java.awt.Insets.html#15285">&#167;1.25.5</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public Object <strong>clone</strong>();	<a href="java.awt.Insets.html#15319">&#167;1.25.6</a>
+    public String <strong>toString</strong>();	<a href="java.awt.Insets.html#15343">&#167;1.25.7</a>
+}
+</pre><a name="34573">The Insets object is a representation of the borders of a container. It specifies the space that 
+a container must leave at each of its edges. The space can either be a border, blank space, 
+or a title.
+</a><p><dl><dt><a name="15213"><b>See Also:
+</b></a><dd><a name="15223">LayoutManager &#32;<a href="java.awt.LayoutManager.html#51689">(II-&#167;1.43)</a><br>
+Container &#32;<a href="java.awt.Container.html#6019">(II-&#167;1.11)</a>.
+</a>
+</dl>
+<hr>
+<a name="15225"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="bottom">
+<a name="15233"><h3>bottom
+</h3></a>
+<a name="15235"><code>public int bottom
+</code></a>
+<dl>
+<dd><a name="15237">The inset from the bottom.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="left">
+<a name="15245"><h3>left
+</h3></a>
+<a name="15247"><code>public int left
+</code></a>
+<dl>
+<dd><a name="15249">The inset from the left.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="right">
+<a name="15257"><h3>right
+</h3></a>
+<a name="15259"><code>public int right
+</code></a>
+<dl>
+<dd><a name="15261">The inset from the right.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="top">
+<a name="15269"><h3>top
+</h3></a>
+<a name="15271"><code>public int top
+</code></a>
+<dl>
+<dd><a name="15273">The inset from the top.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="15277"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Insets">
+<a name="15285"><h3>Insets
+</h3></a>
+<a name="15287"><code>public Insets(int &#32;top, int &#32;left, int &#32;bottom, int &#32;right)
+</code></a>
+<dl>
+<dd><a name="15289">Creates and initializes a new Inset with the specified top, left, bottom, and 
+right insets.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="15291"><b>Parameters:
+</b></a><dd><a name="15293"><code>top
+- </code></a><a name="15295">the inset from the top
+</a>
+<dd><a name="15297"><code>left
+- </code></a><a name="15299">the inset from the left
+</a>
+<dd><a name="15301"><code>bottom
+- </code></a><a name="15303">the inset from the bottom
+</a>
+<dd><a name="15305"><code>right
+- </code></a><a name="15307">the inset from the right
+</a>
+</dl></dl>
+<hr>
+<a name="15309"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="clone">
+<a name="15319"><h3>clone
+</h3></a>
+<a name="15321"><code>public Object clone()
+</code></a>
+<dl><dl>
+<dt><a name="15323"><b>Returns:
+</b></a><dd><a name="15325">a copy of this inset.
+</a>
+
+<dt><a name="15327"><b>Overrides:
+</b></a><dd><a name="15333">clone in class Object &#32;<a href="java.lang.Object.html#26164">(I-&#167;1.12.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="15343"><h3>toString
+</h3></a>
+<a name="15345"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="27270"><b>Returns:
+</b></a><dd><a name="27271">a string representation of this inset.
+</a>
+
+<dt><a name="15353"><b>Overrides:
+</b></a><dd><a name="15359">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Image.html">Prev</a>  <a href="java.awt.Label.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

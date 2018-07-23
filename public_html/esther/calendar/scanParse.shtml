@@ -1,0 +1,95 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Compiler Construction</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<table border="1" cellspacing="0" bordercolor="#0066FF" width="100%" id="AutoNumber3" bgcolor="#FFFFFF" style="border-collapse: collapse" cellpadding="0">
+  <tr>
+    <td width="100%" bgcolor="#B3B3FF" bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF">
+    <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler Construction</font></b></td>
+  </tr>
+  </table>
+
+<p><span style="position: absolute; top: 50; left: 11">
+
+<img border="0" src="../images/12x12spacer.gif" width="12" height="12"></span> </p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+
+<!--#include file="sidebar.shtml" -->
+
+<td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+<p><b><font face="Arial" size="5">Scanners and Parsers</font></b></p>
+<h1><font face="Arial" size="2">Exercises</font></h1>
+<ol>
+  <li><font size="2" face="Arial">Implement and test a </font>
+  <font face="Arial" size="2">flex 
+  based scanner that: </font>
+  <ul>
+    <li><font face="Arial" size="2">formats text in 80-column blocks, while 
+    removing multiple, leading, or trailing blanks; </font></li>
+    <li><font face="Arial" size="2">removes all tags from an HTML document; or
+    </font></li>
+    <li><font face="Arial" size="2">introduces plausible spelling errors. </font>
+    </li>
+  </ul>
+  <p><font size="2" face="Arial">If you have trouble with unresolved references 
+  to </font><font face="Arial" size="2">yywrap 
+  try using </font><font face="Fixedsys" size="2">%option noyywrap</font><font face="Arial" size="2"> 
+  at the top of your flex input file. <br>
+&nbsp;</font></li>
+  <li><font size="2" face="Arial">Read the </font>
+  <font face="Arial" size="2">flex 
+  documentation and discuss the full syntax for regular expression. Describe the 
+  differences for JLex (if any). <br>
+&nbsp;</font></li>
+  <li><font size="2" face="Arial">Find out about &quot;start conditions&quot; in </font>
+  <font face="Arial" size="2">flex.
+  <br>
+&nbsp;</font></li>
+  <li><font face="Arial" size="2">Solve Exercise 3.3 in Appel's book (page 85).
+  <br>
+&nbsp;</font></li>
+  <li><font face="Arial" size="2">Solve Exercise 3.12 in Appel's book (page 87).
+  <br>
+&nbsp;</font></li>
+  <li><font size="2" face="Arial">Trace the action of the example parser from 
+  class on the input </font><font face="Fixedsys" size="2">x + x + x</font><font face="Arial" size="2">. </font></li>
+</ol>
+<h1><font face="Arial" size="2">Recommended Reading</font></h1>
+<ul>
+  <li><font face="Arial" size="2">Appel, Chapter 2 (skip whatever you know from 
+  previous courses). </font></li>
+  <li><font face="Arial" size="2">Appel, Sections 3.1, 3.3 (skip SLR), 3.4.</font></li>
+</ul>
+<p><font face="Arial" size="2"><b>Materials</b></font></p>
+<p><font face="Arial" size="2">
+<a href="resources/scanparse.ps">Slides</a>, <a href="resources/scanparse-4.ps">4-on-1</a><br>
+<a href="resources/parse-example.ps">Parsing example</a>, <font color="#C0C0C0">4-on-1</font><br>
+<a href="resources/moreparse.ps">Supplementary Parsing Slides</a>,
+<a href="resources/moreparse-4.ps">4-on-1</a>,<br>
+<font color="#C0C0C0">Code 
+for example scanners</font></font></p>
+
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d">
+</head>
+
+<body>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d, %Y" startspan -->
+September 10, 2003</font></font></p>
+
+</td></tr><!--msnavigation--></table></body></html>

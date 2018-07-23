@@ -1,0 +1,694 @@
+<html><head><title>Class Date</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.BitSet.html">Prev</a>  <a href="java.util.Dictionary.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="608"><h1>	&#167;3.2 Class Date</h1></a>
+<pre>public &#32;class &#32;java.util.<strong>Date
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Date</strong>();	<a href="java.util.Date.html#830">&#167;3.2.1</a>
+    public <strong>Date</strong>(int &#32;year, int &#32;month, int &#32;date);	<a href="java.util.Date.html#842">&#167;3.2.2</a>
+    public <strong>Date</strong>(int &#32;year, int &#32;month, int &#32;date,	<a href="java.util.Date.html#868">&#167;3.2.3</a>
+     &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;hrs, int &#32;min);
+    public <strong>Date</strong>(int &#32;year, int &#32;month, int &#32;date,	<a href="java.util.Date.html#902">&#167;3.2.4</a>
+     &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;hrs, int &#32;min, int &#32;sec);
+    public <strong>Date</strong>(long &#32;date);	<a href="java.util.Date.html#940">&#167;3.2.5</a>
+    public <strong>Date</strong>(String &#32;s);	<a href="java.util.Date.html#26636">&#167;3.2.6</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public boolean <strong>after</strong>(Date &#32;when);	<a href="java.util.Date.html#980">&#167;3.2.7</a>
+    public boolean <strong>before</strong>(Date &#32;when);	<a href="java.util.Date.html#1004">&#167;3.2.8</a>
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.util.Date.html#1028">&#167;3.2.9</a>
+    public int <strong>getDate</strong>();	<a href="java.util.Date.html#1060">&#167;3.2.10</a>
+    public int <strong>getDay</strong>();	<a href="java.util.Date.html#1078">&#167;3.2.11</a>
+    public int <strong>getHours</strong>();	<a href="java.util.Date.html#1096">&#167;3.2.12</a>
+    public int <strong>getMinutes</strong>();	<a href="java.util.Date.html#1114">&#167;3.2.13</a>
+    public int <strong>getMonth</strong>();	<a href="java.util.Date.html#1132">&#167;3.2.14</a>
+    public int <strong>getSeconds</strong>();	<a href="java.util.Date.html#1150">&#167;3.2.15</a>
+    public long <strong>getTime</strong>();	<a href="java.util.Date.html#1168">&#167;3.2.16</a>
+    public int <strong>getTimezoneOffset</strong>();	<a href="java.util.Date.html#1186">&#167;3.2.17</a>
+    public int <strong>getYear</strong>();	<a href="java.util.Date.html#1204">&#167;3.2.18</a>
+    public int <strong>hashCode</strong>();	<a href="java.util.Date.html#1222">&#167;3.2.19</a>
+    public static long <strong>parse</strong>(String &#32;s);	<a href="java.util.Date.html#1248">&#167;3.2.20</a>
+    public void <strong>setDate</strong>(int &#32;date);	<a href="java.util.Date.html#1272">&#167;3.2.21</a>
+    public void <strong>setHours</strong>(int &#32;hours);	<a href="java.util.Date.html#1292">&#167;3.2.22</a>
+    public void <strong>setMinutes</strong>(int &#32;minutes);	<a href="java.util.Date.html#1312">&#167;3.2.23</a>
+    public void <strong>setMonth</strong>(int &#32;month);	<a href="java.util.Date.html#1332">&#167;3.2.24</a>
+    public void <strong>setSeconds</strong>(int &#32;seconds);	<a href="java.util.Date.html#1352">&#167;3.2.25</a>
+    public void <strong>setTime</strong>(long &#32;time);	<a href="java.util.Date.html#1372">&#167;3.2.26</a>
+    public void <strong>setYear</strong>(int &#32;year);	<a href="java.util.Date.html#1392">&#167;3.2.27</a>
+    public String <strong>toGMTString</strong>();	<a href="java.util.Date.html#1412">&#167;3.2.28</a>
+    public String <strong>toLocaleString</strong>();	<a href="java.util.Date.html#1430">&#167;3.2.29</a>
+    public String <strong>toString</strong>();	<a href="java.util.Date.html#1448">&#167;3.2.30</a>
+    public static long <strong>UTC</strong>(int &#32;year, int &#32;month, int &#32;date,	<a href="java.util.Date.html#1474">&#167;3.2.31</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;hrs, int &#32;min, int &#32;sec);
+}
+</pre><a name="28329">The class Date provides anabstraction of dates and times. Dates may be constructed from a 
+year, month, date (day of month), hour, minute, and second. Those six components, as 
+well as the day of the week, may be extracted from a date. Dates may also be compared 
+and converted to a readable string form. A date is represented to a precision of one millisecond.
+</a><p><a name="26256">To print today's date:
+</a><p><ul><a name="26257">
+<code>System.out.println("today = " + new Date());
+</code>
+</a></ul><a name="26258">To find out the day of the week for some particular date, for example, January 16, 1963:
+</a><p><ul><a name="26259">
+<code>new Date(63, 0, 16).getDay()
+</code>
+</a></ul><a name="26260">While the Date class is intended to reflect UTC (Coordinated Universal Time), it may not 
+do so exactly, depending on the host environment of the Java Virtual Machine. Nearly all 
+modern operating systems assume that 1 day = 	<img src="javaae1.gif"> = 86400 seconds in all cases. 
+In UTC, however, about once every year or two there is an extra second, called a "leap 
+second." The leap second is always added as the last second of the day, and always on 
+December 31 or June 30. For example, the last minute of the year 1995 was 61 seconds 
+long, thanks to an added leap second. Most computer clocks are not accurate enough to be 
+able to reflect the leap-second distinction. 
+</a><p><a name="31187">Some computer standards are defined in terms of GMT (Greenwich Mean Time), which is 
+equivalent to UT (Universal Time).  GMT is the "civil" name for the standard; UT is the 
+"scientific" name for the same standard. The distinction between UTC and UT is that UTC 
+is based on an atomic clock and UT is based on astronomical observations, which for all 
+practical purposes is an invisibly fine hair to split. Because the earth's rotation is not uniform-it slows down and speeds up in complicated ways-UT does not always flow uniformly. Leap seconds are introduced as needed into UTC so as to keep UTC within 0.9 
+seconds of UT1, which is a version of UT with certain corrections applied. There are other 
+time and date systems as well; for example, the time scale used by GPS (the satellite-based 
+Global Positioning System) is synchronized to UTC but is not adjusted for leap seconds. 
+An interesting source of further information is the US Naval Observatory, particularly the 
+Directorate of Time at
+</a><p><ul><a name="31188">
+<code>http://tycho.usno.navy.mil
+</code>
+</a></ul><a name="31189">and their definitions of "Systems of Time" at
+</a><p><ul><a name="26266">
+<code>http://tycho.usno.navy.mil/systime.html
+</code>
+</a></ul><a name="26267">In all methods of class Date that accept or return year, month, date, hours, minutes, and 
+seconds values, the following representations are used:
+</a><p><ul><li><a name="26271">A year <img src="javaae2.gif"> is represented by the integer <img src="javaad3.gif">.
+</a><li><a name="26272">A month is represented by an integer form 0 to 11; 0 is January, 1 is February, and so 
+on; thus 11 is December.
+</a><li><a name="26273">A date (day of month) is represented by an integer from 1 to 31 in the usual manner.
+</a><li><a name="26274">An hour is represented by an integer from 0 to 23. Thus the hour from midnight to 1 
+AM is hour 0, and the hour from noon to 1 PM is hour 12.
+</a><li><a name="26275">A minute is represented by an integer from 0 to 59 in the usual manner.
+</a><li><a name="26276">A second is represented by an integer from 0 to 60; the value 60 occurs only for leap 
+seconds and even then only in Java implementations that actually track leap seconds 
+correctly.
+</a></ul><a name="26277">In all cases, arguments given to methods for these purposes need not fall within the indicated ranges; for example, a date may be specified as January 32 and is interpreted as 
+meaning February 1.
+</a><p>
+<hr>
+<a name="822"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Date">
+<a name="830"><h3>Date
+</h3></a>
+<a name="832"><code>public Date()
+</code></a>
+<dl>
+<dd><a name="26291">Allocates a Date object and initializes it so that it represents the time at 
+which it was allocated measured to the nearest millisecond.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26654"><b>See Also:
+</b></a><dd><a name="26658">currentTimeMillis <a href="java.lang.System.html#10810">(I-&#167;1.18.5)</a> in class System.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Date">
+<a name="842"><h3>Date
+</h3></a>
+<a name="844"><code>public Date(int &#32;year, int &#32;month, int &#32;date)
+</code></a>
+<dl>
+<dd><a name="26552">Allocates a Date object and initializes it so that it represents midnight, local 
+time, at the beginning of the day specified by the year, month, and date arguments.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="848"><b>Parameters:
+</b></a><dd><a name="850"><code>year
+- </code></a><a name="852">the year minus 1900
+</a>
+<dd><a name="854"><code>month
+- </code></a><a name="856">a month between 0-11
+</a>
+<dd><a name="858"><code>date
+- </code></a><a name="860">day of the month between 1-31
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Date">
+<a name="868"><h3>Date
+</h3></a>
+<a name="870"><code>public Date(int &#32;year, int &#32;month, int &#32;date, int &#32;hrs,  &#32;int &#32;min)
+</code></a>
+<dl>
+<dd><a name="26301">Allocates a Date object and initializes it so that it represents the specified 
+hour and minute, local time, of the date specified by the year, month, and 
+date arguments.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="874"><b>Parameters:
+</b></a><dd><a name="876"><code>year
+- </code></a><a name="878">the year minus 1900
+</a>
+<dd><a name="880"><code>month
+- </code></a><a name="882">a month between 0-11
+</a>
+<dd><a name="884"><code>date
+- </code></a><a name="886">day of the month between 1-31
+</a>
+<dd><a name="888"><code>hrs
+- </code></a><a name="890">hours between 0-23
+</a>
+<dd><a name="892"><code>min
+- </code></a><a name="894">minutes between 0-59
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Date">
+<a name="902"><h3>Date
+</h3></a>
+<a name="904"><code>public Date(int &#32;year, int &#32;month, int &#32;date, int &#32;hrs,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;min, int &#32;sec)
+</code></a>
+<dl>
+<dd><a name="26602">Allocates a Date object and initializes it so that it represents the specified 
+hour, minute, and second, local time of the date specified by the year, 
+month, and date arguments.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="908"><b>Parameters:
+</b></a><dd><a name="910"><code>year
+- </code></a><a name="912">the year minus 1900
+</a>
+<dd><a name="914"><code>month
+- </code></a><a name="916">a month between 0-11
+</a>
+<dd><a name="918"><code>date
+- </code></a><a name="920">day of the month between 1-31
+</a>
+<dd><a name="922"><code>hrs
+- </code></a><a name="924">hours between 0-23
+</a>
+<dd><a name="926"><code>min
+- </code></a><a name="928">minutes between 0-59
+</a>
+<dd><a name="930"><code>sec
+- </code></a><a name="932">seconds between 0-59
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Date">
+<a name="940"><h3>Date
+</h3></a>
+<a name="942"><code>public Date(long &#32;date)
+</code></a>
+<dl>
+<dd><a name="26605">Allocates a Date object and initializes it to represent the specified number 
+of milliseconds since January 1, 1970, 00:00:00GMT.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="946"><b>Parameters:
+</b></a><dd><a name="948"><code>date
+- </code></a><a name="26632">milliseconds since January 1, 1970, 00:00:00 GMT
+</a>
+
+<dt><a name="26639"><b>See Also:
+</b></a><dd><a name="26643">currentTimeMillis <a href="java.lang.System.html#10810">(I-&#167;1.18.5)</a> in class System.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Date">
+<a name="26636"><h3>Date
+</h3></a>
+<a name="26637"><code>public Date(String &#32;s)
+</code></a>
+<dl>
+<dd><a name="26321">Allocates a Date object and initializes it that that it represents the date and 
+time indicated by the string s, which is interpreted as if by the parse method 
+<a href="java.util.Date.html#1248">(I-&#167;3.2.20)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="964"><b>Parameters:
+</b></a><dd><a name="966"><code>s
+- </code></a><a name="968">a string representation of the date.
+</a>
+</dl></dl>
+<hr>
+<a name="970"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="after">
+<a name="980"><h3>after
+</h3></a>
+<a name="982"><code>public boolean after(Date &#32;when)
+</code></a>
+<dl><dl>
+<dt><a name="986"><b>Parameters:
+</b></a><dd><a name="988"><code>when
+- </code></a><a name="990">a date
+</a>
+
+<dt><a name="992"><b>Returns:
+</b></a><dd><a name="994">true if this date is after the argument date; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="before">
+<a name="1004"><h3>before
+</h3></a>
+<a name="1006"><code>public boolean before(Date &#32;when)
+</code></a>
+<dl><dl>
+<dt><a name="26681"><b>Parameters:
+</b></a><dd><a name="26682"><code>when
+- </code></a><a name="26683">a date
+</a>
+
+<dt><a name="26684"><b>Returns:
+</b></a><dd><a name="26685">true if this date is before the argument date; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="equals">
+<a name="1028"><h3>equals
+</h3></a>
+<a name="1030"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="26345">The result is true if and only if the argument is not null and is a Date object 
+that represents the same point in time, to the millisecond, as this object. 
+<pre>
+</pre></a>
+
+<dd><a name="26714">Thus two Date objects are equal if and only if the getTime method 
+<a href="java.util.Date.html#1168">(I-&#167;3.2.16)</a> returns the same long value for both.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1034"><b>Parameters:
+</b></a><dd><a name="1036"><code>obj
+- </code></a><a name="1038">the object to compare with
+</a>
+
+<dt><a name="1040"><b>Returns:
+</b></a><dd><a name="1042">true if the objects are the same; false otherwise.
+</a>
+
+<dt><a name="1044"><b>Overrides:
+</b></a><dd><a name="1050">equals in class Object &#32;<a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getDate">
+<a name="1060"><h3>getDate
+</h3></a>
+<a name="1062"><code>public int getDate()
+</code></a>
+<dl><dl>
+<dt><a name="1066"><b>Returns:
+</b></a><dd><a name="1068">the day of the month represented by this date. The value returned is 
+between 1 and 31.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getDay">
+<a name="1078"><h3>getDay
+</h3></a>
+<a name="1080"><code>public int getDay()
+</code></a>
+<dl><dl>
+<dt><a name="1084"><b>Returns:
+</b></a><dd><a name="1086">the day of the week represented by this date. The value returned is 
+between 0 and 6, where 0 represents Sunday.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getHours">
+<a name="1096"><h3>getHours
+</h3></a>
+<a name="1098"><code>public int getHours()
+</code></a>
+<dl><dl>
+<dt><a name="1102"><b>Returns:
+</b></a><dd><a name="1104">the hour represented by this date. The value returned is between 0 and 
+23, where 0 represents midnight.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getMinutes">
+<a name="1114"><h3>getMinutes
+</h3></a>
+<a name="1116"><code>public int getMinutes()
+</code></a>
+<dl><dl>
+<dt><a name="1120"><b>Returns:
+</b></a><dd><a name="1122">the number of minutes past the hour represented by this date. The 
+value returned is between 0 and 59.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getMonth">
+<a name="1132"><h3>getMonth
+</h3></a>
+<a name="1134"><code>public int getMonth()
+</code></a>
+<dl><dl>
+<dt><a name="1138"><b>Returns:
+</b></a><dd><a name="1140">the month represented by this date. The value returned is between 0 
+and 11, with the value 0 representing January.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getSeconds">
+<a name="1150"><h3>getSeconds
+</h3></a>
+<a name="1152"><code>public int getSeconds()
+</code></a>
+<dl><dl>
+<dt><a name="1156"><b>Returns:
+</b></a><dd><a name="1158">the number of seconds past the minute represented by this date. The 
+value returned is between 0 and 60. The value 60 can only occur on 
+those Java Virtual Machines that take leap seconds into account.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getTime">
+<a name="1168"><h3>getTime
+</h3></a>
+<a name="1170"><code>public long getTime()
+</code></a>
+<dl><dl>
+<dt><a name="1174"><b>Returns:
+</b></a><dd><a name="1176">the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this date.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getTimezoneOffset">
+<a name="1186"><h3>getTimezoneOffset
+</h3></a>
+<a name="1188"><code>public int getTimezoneOffset()
+</code></a>
+<dl>
+<dd><a name="1190">Determines the local time zone offset. The time zone noffset is the number 
+of minutes that must be added to Greenwich Mean Time to give the local 
+time zone. This value includes the correction, if necessary, for daylight 
+savings time.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1192"><b>Returns:
+</b></a><dd><a name="1194">the time zone offset, in minutes, for the current locale. 
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getYear">
+<a name="1204"><h3>getYear
+</h3></a>
+<a name="1206"><code>public int getYear()
+</code></a>
+<dl><dl>
+<dt><a name="1210"><b>Returns:
+</b></a><dd><a name="26361">the year represented by this date, minus 1900.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="1222"><h3>hashCode
+</h3></a>
+<a name="1224"><code>public int hashCode()
+</code></a>
+<dl><dl>
+<dt><a name="26350"><b>Returns:
+</b></a><dd><a name="26351">a hash code value for this object. 
+</a>
+
+<dt><a name="1232"><b>Overrides:
+</b></a><dd><a name="1238">hashCode in class Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="parse">
+<a name="1248"><h3>parse
+</h3></a>
+<a name="1250"><code>public static long parse(String &#32;s)
+</code></a>
+<dl>
+<dd><a name="1252">Given a string representing a time, parse it and return the time value. This 
+method recognizes most standard syntaxes.
+<pre>
+</pre></a>
+
+<dd><a name="31031">It accepts many syntaxes; in particular, it recognizes the IETF standard 
+date syntax: "Sat, 12 Aug 1995 13:30:00 GMT". It also understands the 
+continental US time zone abbreviations, but for general use, a timezone 
+offset should be used: "Sat, 12 Aug 1995 13:30:00 GMT+0430" (4 hours, 
+30 minutes west of the Greenwich meridian). If no time zone is specified, 
+the local time zone is assumed. GMT and UTC are considered equivalent.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1254"><b>Parameters:
+</b></a><dd><a name="1256"><code>s
+- </code></a><a name="1258">a string to be parsed as a date
+</a>
+
+<dt><a name="1260"><b>Returns:
+</b></a><dd><a name="1262">the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by the string argument
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setDate">
+<a name="1272"><h3>setDate
+</h3></a>
+<a name="1274"><code>public void setDate(int &#32;date)
+</code></a>
+<dl>
+<dd><a name="1276">Sets the day of the month of this date to the specified value
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1278"><b>Parameters:
+</b></a><dd><a name="1280"><code>date
+- </code></a><a name="1282">the day value
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setHours">
+<a name="1292"><h3>setHours
+</h3></a>
+<a name="1294"><code>public void setHours(int &#32;hours)
+</code></a>
+<dl>
+<dd><a name="1296">Sets the hour of this date to the specified value
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1298"><b>Parameters:
+</b></a><dd><a name="1300"><code>hours
+- </code></a><a name="1302">the hour value
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setMinutes">
+<a name="1312"><h3>setMinutes
+</h3></a>
+<a name="1314"><code>public void setMinutes(int &#32;minutes)
+</code></a>
+<dl>
+<dd><a name="1316">Sets the minutes of this date to the specified value
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1318"><b>Parameters:
+</b></a><dd><a name="1320"><code>minutes
+- </code></a><a name="1322">the value of the minutes
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setMonth">
+<a name="1332"><h3>setMonth
+</h3></a>
+<a name="1334"><code>public void setMonth(int &#32;month)
+</code></a>
+<dl>
+<dd><a name="26835">Sets the month of this date to the specified value.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1338"><b>Parameters:
+</b></a><dd><a name="1340"><code>month
+- </code></a><a name="1342">the month value (0-11)
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setSeconds">
+<a name="1352"><h3>setSeconds
+</h3></a>
+<a name="1354"><code>public void setSeconds(int &#32;seconds)
+</code></a>
+<dl>
+<dd><a name="1356">Sets the seconds of this date to the specified value.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1358"><b>Parameters:
+</b></a><dd><a name="1360"><code>seconds
+- </code></a><a name="1362">the second value
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setTime">
+<a name="1372"><h3>setTime
+</h3></a>
+<a name="1374"><code>public void setTime(long &#32;time)
+</code></a>
+<dl>
+<dd><a name="1376">Sets this date to represent the specified number of milliseconds since January 1, 1970 00:00:00 GMT.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1378"><b>Parameters:
+</b></a><dd><a name="1380"><code>time
+- </code></a><a name="1382">A number of milliseconds
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setYear">
+<a name="1392"><h3>setYear
+</h3></a>
+<a name="1394"><code>public void setYear(int &#32;year)
+</code></a>
+<dl>
+<dd><a name="1396">Sets the year of this date to be the specified value plus 1900.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1398"><b>Parameters:
+</b></a><dd><a name="1400"><code>year
+- </code></a><a name="1402">the year value
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toGMTString">
+<a name="1412"><h3>toGMTString
+</h3></a>
+<a name="1414"><code>public String toGMTString()
+</code></a>
+<dl>
+<dd><a name="30993">Creates a string representation of this date. The result is of the form
+<pre>
+</pre></a>
+<ul><a name="31023">
+<code>	"12 Aug 1995 02:30:00 GMT"
+</code>
+</a></ul>
+<dd><a name="31011">the day of the month is always one or two digits. The other fields have 
+exactly the width shown. The timezone is always given as "GMT".<br>
+
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1418"><b>Returns:
+</b></a><dd><a name="1420">A string represention of this date, using the Internet GMT conventions.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toLocaleString">
+<a name="1430"><h3>toLocaleString
+</h3></a>
+<a name="1432"><code>public String toLocaleString()
+</code></a>
+<dl>
+<dd><a name="31029">Creates a string representation of this date is an implementation-dependent 
+form. The intent is that the form should be familiar to the user of the Java 
+application, wherever it may happen to be running. The intent is comparible to that of the %c format supported by the strftime() function of ISO &#32;C.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1436"><b>Returns:
+</b></a><dd><a name="1438">A string representation of this date, using the locale conventions.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="1448"><h3>toString
+</h3></a>
+<a name="1450"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="26860"><b>Creates a canonical string representation of the date. The result is of the 
+form "Sat Aug 12 02:30:00 PDT 1995".
+</b></a>
+<dt><a name="26868"><b>Returns:
+</b></a><dd><a name="26861">A string representation of this date. 
+</a>
+
+<dt><a name="1458"><b>Overrides:
+</b></a><dd><a name="1464">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="UTC">
+<a name="1474"><h3>UTC
+</h3></a>
+<a name="1476"><code>public static long 
+</code></a>
+<a name="31260"><code>UTC(int &#32;year, int &#32;month, int &#32;date, &#32;int &#32;hrs, int &#32;min, &#32;int &#32;sec)
+</code></a>
+<dl>
+<dd><a name="26892">Determines the date and time based on the arguments. The arguments are 
+interpreted in UTC, not in the local time zone<em>.
+</em><pre>
+</pre></a>
+<dl>
+<dt><a name="1480"><b>Parameters:
+</b></a><dd><a name="1482"><code>year
+- </code></a><a name="1484">the year minus 1900
+</a>
+<dd><a name="1486"><code>month
+- </code></a><a name="1488">a month between 0-11
+</a>
+<dd><a name="1490"><code>date
+- </code></a><a name="1492">day of the month between 1-31
+</a>
+<dd><a name="1494"><code>hrs
+- </code></a><a name="1496">hours between 0-23
+</a>
+<dd><a name="1498"><code>min
+- </code></a><a name="1500">minutes between 0-59
+</a>
+<dd><a name="1502"><code>sec
+- </code></a><a name="1504">seconds between 0-59
+</a>
+
+<dt><a name="26877"><b>Returns:
+</b></a><dd><a name="26878">the number of seconds since January 1, 1970, 00:00:00 GMT for the 
+date and time specified by the arguments. 
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.BitSet.html">Prev</a>  <a href="java.util.Dictionary.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

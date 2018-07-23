@@ -1,0 +1,184 @@
+<html><head><title>Class Polygon</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Point.html">Prev</a>  <a href="java.awt.Rectangle.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="19151"><h1>	&#167;1.35 Class Polygon</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Polygon
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public int <strong>npoints</strong>;	<a href="java.awt.Polygon.html#19223">&#167;1.35.1</a>
+    public int <strong>xpoints</strong>[];	<a href="java.awt.Polygon.html#19235">&#167;1.35.2</a>
+    public int <strong>ypoints</strong>[];	<a href="java.awt.Polygon.html#19247">&#167;1.35.3</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Polygon</strong>();	<a href="java.awt.Polygon.html#19263">&#167;1.35.4</a>
+    public <strong>Polygon</strong>(int &#32;xpoints[], int &#32;ypoints[],	<a href="java.awt.Polygon.html#53734">&#167;1.35.5</a>
+      &#32; &#32; &#32; &#32; &#32;int &#32;npoints);
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addPoint</strong>(int &#32;x, int &#32;y);	<a href="java.awt.Polygon.html#19305">&#167;1.35.6</a>
+    public Rectangle <strong>getBoundingBox</strong>();	<a href="java.awt.Polygon.html#19329">&#167;1.35.7</a>
+    public boolean <strong>inside</strong>(int &#32;x, int &#32;y);	<a href="java.awt.Polygon.html#19347">&#167;1.35.8</a>
+}
+</pre><a name="19213">A polygon consists of a list of <img src="javaag6.gif">, where each successive pair of coordinates defines a 
+side of the polygon
+</a><p>
+<hr>
+<a name="19215"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="npoints">
+<a name="19223"><h3>npoints
+</h3></a>
+<a name="19225"><code>public int npoints
+</code></a>
+<dl>
+<dd><a name="19227">The total number of points.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="xpoints">
+<a name="19235"><h3>xpoints
+</h3></a>
+<a name="19237"><code>public int xpoints[]
+</code></a>
+<dl>
+<dd><a name="19239">The array of x coordinates.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="ypoints">
+<a name="19247"><h3>ypoints
+</h3></a>
+<a name="19249"><code>public int ypoints[]
+</code></a>
+<dl>
+<dd><a name="19251">The array of y coordinates.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="19255"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Polygon">
+<a name="19263"><h3>Polygon
+</h3></a>
+<a name="19265"><code>public Polygon()
+</code></a>
+<dl>
+<dd><a name="19267">Creates an empty polygon.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="Polygon">
+<a name="53734"><h3>Polygon
+</h3></a>
+<a name="53735"><code>public Polygon(int &#32;xpoints[], int &#32;ypoints[], int &#32;npoints)
+</code></a>
+<dl>
+<dd><a name="19279">Constructs and initializes a polygon from the specified parameters.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="19281"><b>Parameters:
+</b></a><dd><a name="19283"><code>xpoints
+- </code></a><a name="19285">an array of x coordinates
+</a>
+<dd><a name="19287"><code>ypoints
+- </code></a><a name="19289">an array of y coordinates
+</a>
+<dd><a name="19291"><code>npoints
+- </code></a><a name="19293">the total number of points in the polygon
+</a>
+</dl></dl>
+<hr>
+<a name="19295"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addPoint">
+<a name="19305"><h3>addPoint
+</h3></a>
+<a name="19307"><code>public void addPoint(int &#32;x, int &#32;y)
+</code></a>
+<dl>
+<dd><a name="19309">Appends a point to this polygon.
+<pre>
+</pre></a>
+
+<dd><a name="36101">If an operation that calculates the bounding box of this polygon (getBoundingBox <a href="java.awt.Polygon.html#19329">(II-&#167;1.35.7)</a> or inside <a href="java.awt.Polygon.html#19347">(II-&#167;1.35.8)</a>) has already been performed, this 
+method updates the bounding box.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="19311"><b>Parameters:
+</b></a><dd><a name="19313"><code>x
+- </code></a><a name="19315">the x coordinate of the point
+</a>
+<dd><a name="19317"><code>y
+- </code></a><a name="19319">the y coordinate of the point
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getBoundingBox">
+<a name="19329"><h3>getBoundingBox
+</h3></a>
+<a name="19331"><code>public Rectangle getBoundingBox()
+</code></a>
+<dl><dl>
+<dt><a name="19335"><b>Returns:
+</b></a><dd><a name="19337">the smallest rectangle than contains this polygon
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="inside">
+<a name="19347"><h3>inside
+</h3></a>
+<a name="19349"><code>public boolean inside(int &#32;x, int &#32;y)
+</code></a>
+<dl>
+<dd><a name="19351">Determines if the specified point is inside this polygon. This method uses 
+an even-odd insideness rule (also known as an "alternating rule") to determine whether the pont <img src="javaaf7.gif"> is inside this polygon.
+<pre>
+</pre></a>
+
+<dd><a name="36146">It is based on code by Hanpeter van Vliet (hvvliet@inter.nl.net).
+<pre>
+</pre></a>
+<dl>
+<dt><a name="19353"><b>Parameters:
+</b></a><dd><a name="19355"><code>x
+- </code></a><a name="19357">the xcoordinate of the point to be tested
+</a>
+<dd><a name="19359"><code>y
+- </code></a><a name="19361">the y coordinate of the point to be tested 
+</a>
+
+<dt><a name="19367"><b>Returns:
+</b></a><dd><a name="19369">true if the point <img src="javaaf8.gif"> is inside this polygon; false otherwise.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Point.html">Prev</a>  <a href="java.awt.Rectangle.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

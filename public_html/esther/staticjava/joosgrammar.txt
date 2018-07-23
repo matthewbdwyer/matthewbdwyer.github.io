@@ -1,0 +1,223 @@
+classfile : imports class | externclasses
+;
+
+imports : /* empty */ | imports "import" path file ";"
+;
+
+path : /* empty */ | path identifier "."
+;
+
+file : "*" | identifier
+;
+
+class : "public" classmods "class" identifier extension 
+        "{" fields constructor methods "}"
+;
+
+classmods : /* empty */ | "final" | "abstract"
+;
+
+externclasses : externclass
+              | externclasses externclass
+;
+
+externclass : "extern" "public" classmods "class" identifier extension 
+              "in" "stringconst" "{" externconstructor externmethods "}"
+;
+
+extension : /* empty */ | "extends" identifier
+;
+
+type : identifier | "boolean" | "int"
+;
+
+fields : /* empty */ | nefields
+;
+
+nefields : field | nefields field
+;
+
+field : "protected" type idlist ";" 
+;
+
+idlist : identifier | idlist "," identifier
+;
+
+constructor : "public" identifier "(" formals ")" 
+              "{" "super" "(" arguments ")" ";" statements "}"
+;
+
+externconstructor : "public" identifier "(" formals ")" ";"
+;
+
+formals : /* empty */ | neformals
+;
+
+neformals : formal | neformals "," formal
+;
+
+formal : type identifier
+;
+
+methods : /* empty */ | nemethods
+;
+
+nemethods : method | nemethods method
+;
+
+method : "public" methodmods returntype identifier "(" formals ")" "{" statements "}"
+       | "public" "abstract" returntype identifier "(" formals ")" ";"
+       | "public" "static" "void" "main" "(" mainargv ")" "{" statements "}"
+;
+
+mainargv : "String" identifier "[" "]" | "String" "[" "]" identifier
+;
+
+methodmods : /* empty */ | "final" | "synchronized"
+;
+
+externmethods : /* empty */ | externnemethods
+;
+ 
+externnemethods : externmethod | externnemethods externmethod
+;
+ 
+externmethod : "public" externmods returntype identifier "(" formals ")" ";"
+;
+
+externmods : /* empty */ | "final" | "abstract" | "synchronized"
+;
+
+
+returntype : "void" | type
+;
+
+statements : /* empty */ | nestatements
+;
+
+nestatements : statement | nestatements statement
+;
+
+statement : simplestatement 
+          | declaration
+          | ifthenstatement 
+          | ifthenelsestatement 
+          | whilestatement
+;
+
+declaration : type idlist ";"
+;
+
+simplestatement : ";" 
+                | "{" statements "}"
+                | expressionstatement 
+                | returnstatement
+;
+
+ifthenstatement : "if" "(" expression ")" statement
+;
+
+ifthenelsestatement : "if" "(" expression ")" statementnoshortif "else" statement
+;
+
+statementnoshortif : simplestatement 
+                   | ifthenelsestatementnoshortif 
+                   | whilestatementnoshortif
+;
+
+ifthenelsestatementnoshortif : "if" "(" expression ")" statementnoshortif
+                               "else" statementnoshortif
+;
+
+whilestatement : "while" "(" expression ")" statement
+;
+
+whilestatementnoshortif : "while" "(" expression ")" statementnoshortif
+;
+
+expressionstatement : statementexpression ";"
+;
+
+statementexpression : assignment | methodinvocation | classinstancecreation
+;
+
+returnstatement : "return" returnexpression ";"
+;
+
+returnexpression : /* empty */ | expression
+;
+
+assignment : identifier "=" expression
+;
+
+expression : orexpression | assignment
+;
+
+orexpression : andexpression | orexpression "||" andexpression
+;
+
+andexpression : eqexpression | andexpression "&&" eqexpression
+;
+
+eqexpression : relexpression 
+             | eqexpression "==" relexpression 
+             | eqexpression "!=" relexpression
+;
+
+relexpression : addexpression 
+              | relexpression "<" addexpression 
+              | relexpression ">" addexpression 
+              | relexpression "<=" addexpression 
+              | relexpression ">=" addexpression 
+              | relexpression "instanceof" identifier
+;
+
+addexpression : multexpression 
+              | addexpression "+" multexpression 
+              | addexpression "-" multexpression
+;
+
+multexpression : unaryexpression 
+               | multexpression "*" unaryexpression 
+               | multexpression "/" unaryexpression 
+               | multexpression "%" unaryexpression
+;
+
+unaryexpression : unaryexpressionnotminus | "-" unaryexpression 
+;
+
+unaryexpressionnotminus : 
+                  postfixexpression
+                | "!" unaryexpression
+                | castexpression
+
+castexpression : "(" identifier ")" unaryexpressionnotminus
+;
+
+postfixexpression : identifier | primaryexpression
+;
+
+primaryexpression : literal 
+                  | "this"
+                  | "(" expression ")" 
+                  | classinstancecreation 
+                  | methodinvocation
+;
+
+classinstancecreation : "new" identifier "(" arguments ")"
+;
+
+methodinvocation : receiver "." identifier "(" arguments ")"
+;
+
+receiver : identifier | primaryexpression | "super"
+;
+ 
+arguments : /* empty */ | nearguments
+;
+
+nearguments : expression | nearguments "," expression
+;
+
+literal : intconst | boolconst | "stringconst" | "null"
+;

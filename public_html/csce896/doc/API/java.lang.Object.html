@@ -1,0 +1,452 @@
+<html><head><title>Class Object</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Number.html">Prev</a>  <a href="java.lang.Process.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="5914"><h1>	&#167;1.12 Class Object</h1></a>
+<pre>public &#32;class &#32;java.lang.<strong>Object
+</strong>{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Object</strong>();	<a href="java.lang.Object.html#6014">&#167;1.12.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    protected Object <strong>clone</strong>();	<a href="java.lang.Object.html#26164">&#167;1.12.2</a>
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.lang.Object.html#6068">&#167;1.12.3</a>
+    protected void <strong>finalize</strong>();	<a href="java.lang.Object.html#6100">&#167;1.12.4</a>
+    public final Class <strong>getClass</strong>();	<a href="java.lang.Object.html#6116">&#167;1.12.5</a>
+    public int <strong>hashCode</strong>();	<a href="java.lang.Object.html#6130">&#167;1.12.6</a>
+    public final void <strong>notify</strong>();	<a href="java.lang.Object.html#6152">&#167;1.12.7</a>
+    public final void <strong>notifyAll</strong>();	<a href="java.lang.Object.html#6190">&#167;1.12.8</a>
+    public String <strong>toString</strong>();	<a href="java.lang.Object.html#6228">&#167;1.12.9</a>
+    public final void <strong>wait</strong>();	<a href="java.lang.Object.html#6242">&#167;1.12.10</a>
+    public final void <strong>wait</strong>(long &#32;timeout);	<a href="java.lang.Object.html#6278">&#167;1.12.11</a>
+    public final void <strong>wait</strong>(long &#32;timeout, int &#32;nanos);	<a href="java.lang.Object.html#6320">&#167;1.12.12</a>
+}
+</pre><a name="5994">Class Object is the root of the class hierarchy. Every class has Object as a superclass. parent. 
+All objects, including arrays, implement the methods of this class.
+</a><p>
+<hr>
+<a name="6006"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Object">
+<a name="6014"><h3>Object
+</h3></a>
+<a name="26157"><code>public Object()
+</code></a>
+<dl>
+<dd><a name="26158">Allocates a new instance of class Object.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="26159"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="clone">
+<a name="26164"><h3>clone
+</h3></a>
+<a name="6030"><code>protected Object clone()
+</code></a>
+<a name="6032"><code>throws CloneNotSupportedException
+</code></a>
+<dl>
+<dd><a name="6034">The clone method of class Object creates a new object of the same class as 
+this object. It then initializes each of the new object's fields by assigning it 
+the same value as the corresponding field in this object. No constructor is 
+called.
+<pre>
+</pre></a>
+
+<dd><a name="26190">The clone method of class Object will only clone an object whose class indicates that it is willing for its instances to be cloned. A class indicates that 
+its instances can be cloned by declaring that it implements the Cloneable 
+<a href="java.lang.Cloneable.html#45621">(I-&#167;1.22)</a> interface.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6036"><b>Returns:
+</b></a><dd><a name="6038">a clone of this instance.
+</a>
+
+<dt><a name="6040"><b>Throws
+</b></a><dd><a name="6046">OutOfMemoryError &#32;<a href="java.lang.OutOfMemoryError.html#15682">(I-&#167;1.57)</a>
+</a>
+<dd><a name="6048">If there is not enough memory.
+</a>
+
+<dt><a name="6050"><b>Throws
+</b></a><dd><a name="6056">CloneNotSupportedException &#32;<a href="java.lang.CloneNotSupportedException.html#13536">(I-&#167;1.29)</a>
+</a>
+<dd><a name="6058">The object's class does not support the Cloneable interface. Subclasses 
+that override the clone method can also throw this exception to indicate 
+that an instance cannot be cloned.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="equals">
+<a name="6068"><h3>equals
+</h3></a>
+<a name="6070"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="28141">Indicates whether some other object is "equal to" this one.
+<pre>
+</pre></a>
+
+<dd><a name="28142">The equals method implements an equivalence relation:
+<pre>
+</pre></a>
+<dl><ul><li><a name="28143">It is reflexive: for any reference value x, x.equals(x) should return true.
+</a></ul><ul><li><a name="28144">It is symmetric: for any reference values x and y, x.equals(y) should return true 
+if and only if y.equals(x) returns true.
+</a><li><a name="28145">It is transitive: for any reference values x, y, and z, if x.equals(y) returns true 
+and y.equals(z) returns true then x.equals(z) should return true.
+</a><li><a name="28146">It is consistent: for any reference values x and y, multiple invocations of 
+x.equals(y) consistently return true or consistently return false.
+</a><li><a name="28147">For any reference value x, x.equals(null) should return false.
+</a></ul></dl>
+<dd><a name="28148">The equals method for class Object implements the most discriminating 
+possible equivalence relation on objects; that is, for any reference values x 
+and y, this method returns true if and only if x and y refer to the same object 
+(x==y has the value true).
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6074"><b>Parameters:
+</b></a><dd><a name="6076"><code>obj
+- </code></a><a name="6078">the reference object with which to compare
+</a>
+
+<dt><a name="6080"><b>Returns:
+</b></a><dd><a name="44318">true if this object is the same as the obj argument; false otherwise.
+</a>
+
+<dt><a name="6084"><b>See Also:
+</b></a><dd><a name="6090">Hashtable &#32;<a href="java.util.Hashtable.html#1828">(I-&#167;3.4)</a>
+</a>
+<dd><a name="26239">hashCode &#32;(<a href="java.lang.Object.html#6130">&#167;1.12.6</a>).
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="finalize">
+<a name="6100"><h3>finalize
+</h3></a>
+<a name="6102"><code>protected void finalize()
+</code></a>
+<a name="6104"><code>throws Throwable
+</code></a>
+<dl>
+<dd><a name="6106">The finalize method is called by the garbage collector on an object when 
+garbage collection determines that there are no more references to the 
+object. A subclass overrides the finalize method in order to dispose of system resources or to perform other cleanup.
+<pre>
+</pre></a>
+
+<dd><a name="26293">Any exception thrown by the finalize method causes the finalization of this 
+object to be halted, but is otherwise ignored.
+<pre>
+</pre></a>
+
+<dd><a name="26295">The finalize method in Object does nothing.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="getClass">
+<a name="6116"><h3>getClass
+</h3></a>
+<a name="6118"><code>public final Class getClass()
+</code></a>
+<dl>
+<dd><a name="28083">Determines the run-time class of an object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43771"><b>Returns:
+</b></a><dd><a name="26310">the object of type Class <a href="java.lang.Class.html#1594">(I-&#167;1.3)</a> that represents the run-time class of 
+the object.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="6130"><h3>hashCode
+</h3></a>
+<a name="6132"><code>public int hashCode()
+</code></a>
+<dl>
+<dd><a name="28171">Calculates a hash code value for the object. This method is supported for 
+the benefit of hash tables such as those provided by java.util.Hashtable <a href="java.util.Hashtable.html#1828">(I-&#167;3.4)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="28172">The general contract of hashCode is:
+<pre>
+</pre></a>
+<dl><ul><li><a name="28158">Whenever invoked on the same object more than once during an execution 
+of a Java application, the hashCode method must consistently return the same 
+integer. This integer need not remain consistent from one execution of an 
+application to another execution of the same application.
+</a></ul><ul><li><a name="28162">If two objects are equal according to the equals method <a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>, then 
+calling the hashCode method on each of the two objects must produce the 
+same integer result.
+</a></ul>
+<dt><a name="31173"><b>Returns:
+</b></a><dd><a name="31174">a hash code value for this object. 
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="notify">
+<a name="6152"><h3>notify
+</h3></a>
+<a name="6154"><code>public final void notify()
+</code></a>
+<dl>
+<dd><a name="26393">Wakes up a single thread that is waiting on this object's monitor. A thread 
+waits on an object's monitor by calling one of the wait methods 
+(<a href="java.lang.Object.html#6242">I</a>-<a href="java.lang.Object.html#6242">&#167;1.12.10</a>-<a href="java.lang.Object.html#6320">&#167;1.12.12</a>).
+<pre>
+</pre></a>
+
+<dd><a name="39725">This method should only be called by a thread that is the owner of this 
+object's monitor. A thread becomes the owner of the object's monitor in 
+one of three ways:
+<pre>
+</pre></a>
+<dl><ul><li><a name="39734">By executing a synchronized instance method of that object.
+</a></ul><ul><li><a name="39735">By executing the body of a synchronized statement that synchronizes on the 
+object.
+</a><li><a name="39736">For objects of type Class, by executing a synchronized static method of that 
+class.
+</a></ul></dl>
+<dd><a name="39800">Only one thread at a time can only an object's monitor.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6160"><b>Throws
+</b></a><dd><a name="6166">IllegalMonitorStateException &#32;<a href="java.lang.IllegalMonitorStateException.html#13840">(I-&#167;1.33)</a>
+</a>
+<dd><a name="6168">If the current thread is not the owner of this object's monitor.
+</a>
+
+<dt><a name="39760"><b>See Also:
+</b></a><dd><a name="39767">notifyAll &#32;<a href="java.lang.Object.html#6190">(I-&#167;1.12.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="notifyAll">
+<a name="6190"><h3>notifyAll
+</h3></a>
+<a name="6192"><code>public final void notifyAll()
+</code></a>
+<dl>
+<dd><a name="39769">Wakes up all threads that are waiting on this object's monitor. A thread 
+waits on an object's monitor by calling one of the wait methods 
+(<a href="java.lang.Object.html#6242">I</a>-<a href="java.lang.Object.html#6242">&#167;1.12.10</a>-<a href="java.lang.Object.html#6320">&#167;1.12.12</a>).
+<pre>
+</pre></a>
+
+<dd><a name="39783">This method should only be called by a thread that is the owner of this 
+object's monitor. See the notify method <a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a> for a description of the 
+ways in which a thread can become the owner of a monitor.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6198"><b>Throws
+</b></a><dd><a name="6204">IllegalMonitorStateException &#32;<a href="java.lang.IllegalMonitorStateException.html#13840">(I-&#167;1.33)</a>
+</a>
+<dd><a name="6206">If the current thread is not the owner of this object's monitor.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="6228"><h3>toString
+</h3></a>
+<a name="6230"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="39713">Creates a string representation of the object. In general, the toString method 
+returns a string that "textually represents" this object. The result should be 
+a concise but informative representation that is easy for a person to read.
+<pre>
+</pre></a>
+
+<dd><a name="28092">The toString method for class Object returns a string consisting of the name 
+of the class of which the object is an instance, the at-sign character `@', 
+and the unsigned hexadecimal representation of the hash code of the 
+object<a href="#28176"><sup>1</sup></a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26434"><b>Returns:
+</b></a><dd><a name="26435">A string representation of the object.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="wait">
+<a name="6242"><h3>wait
+</h3></a>
+<a name="6244"><code>public final void wait()
+</code></a>
+<a name="6246"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="6248">Waits to be notified by another thread of a change in this object. 
+<pre>
+</pre></a>
+
+<dd><a name="43775">The current thread must own this object's monitor. The thread releases 
+ownership of this monitor and waits until another thread notifies threads 
+waiting on this object's monitor to wake up either through a call to the 
+notify method <a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a> or the notifyAll method<a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a>. The thread 
+then waits until it can re-obtain ownership of the monitor and resumes execution.
+<pre>
+</pre></a>
+
+<dd><a name="39807">This method should only be called by a thread that is the owner of this 
+object's monitor. See the notify method <a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a> for a description of the 
+ways in which a thread can become the owner of a monitor.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6252"><b>Throws
+</b></a><dd><a name="6258">IllegalMonitorStateException &#32;<a href="java.lang.IllegalMonitorStateException.html#13840">(I-&#167;1.33)</a>
+</a>
+<dd><a name="6260">If the current thread is not the owner of the object's monitor.
+</a>
+
+<dt><a name="6262"><b>Throws
+</b></a><dd><a name="6268">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="6270">Another thread has interrupted this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="wait">
+<a name="6278"><h3>wait
+</h3></a>
+<a name="6280"><code>public final void wait(long &#32;timeout)
+</code></a>
+<a name="6282"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="39837">Waits to be notified by another thread of a change in this object. 
+<pre>
+</pre></a>
+
+<dd><a name="43776">The current thread must own this object's monitor. The thread releases 
+ownership of this monitor and waits until either of the following two conditions has occurred:
+<pre>
+</pre></a>
+<dl><ul><li><a name="39850">Another thread notifies threads waiting on this object's monitor to wake up 
+either through a call to the notify method <a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a> or the notifyAll 
+method<a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a>.
+</a></ul><ul><li><a name="39862">The timeout period, specified by the timeout argument is milliseconds, has 
+elapsed.
+</a></ul></dl>
+<dd><a name="39851">The thread then waits until it can re-obtain ownership of the monitor and 
+resumes execution
+<pre>
+</pre></a>
+
+<dd><a name="39859">This method should only be called by a thread that is the owner of this 
+object's monitor. See the notify method <a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a> for a description of the 
+ways in which a thread can become the owner of a monitor.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6288"><b>Parameters:
+</b></a><dd><a name="6290"><code>timeout
+- </code></a><a name="6292">the maximum time to wait in milliseconds
+</a>
+
+<dt><a name="6294"><b>Throws
+</b></a><dd><a name="6300">IllegalMonitorStateException &#32;<a href="java.lang.IllegalMonitorStateException.html#13840">(I-&#167;1.33)</a>
+</a>
+<dd><a name="6302">If the current thread is not the owner of the object's monitor.
+</a>
+
+<dt><a name="6304"><b>Throws
+</b></a><dd><a name="6310">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a><br>
+Another thread has interrupted this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="wait">
+<a name="6320"><h3>wait
+</h3></a>
+<a name="6322"><code>public final void wait(long &#32;timeout, int &#32;nanos)
+</code></a>
+<a name="6324"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="39865">Waits to be notified by another thread of a change in this object. 
+<pre>
+</pre></a>
+
+<dd><a name="43777">This method is similar to the wait method <a href="java.lang.Object.html#6278">(I-&#167;1.12.11)</a> of one argument, 
+but it allows finer control over the amount of time to wait for a notification 
+before giving up.
+<pre>
+</pre></a>
+
+<dd><a name="39881">The current thread must own this object's monitor. The thread releases 
+ownership of this monitor and waits until either of the following two conditions has occurred:
+<pre>
+</pre></a>
+<dl><ul><li><a name="39866">Another thread notifies threads waiting on this object's monitor to wake up 
+either through a call to the notify method <a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a> or the notifyAll 
+method<a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a>.
+</a></ul><ul><li><a name="39873">The timeout period, specified by timeout milliseconds plus nanos 
+nanoseconds arguments has elapsed.
+</a></ul></dl>
+<dd><a name="39874">The thread then waits until it can re-obtain ownership of the monitor and 
+resumes execution
+<pre>
+</pre></a>
+
+<dd><a name="44399">This method should only be called by a thread that is the owner of this 
+object's monitor. See the notify method <a href="java.lang.Object.html#6152">(I-&#167;1.12.7)</a> for a description of the 
+ways in which a thread can become the owner of a monitor.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6328"><b>Parameters:
+</b></a><dd><a name="6330"><code>timeout
+- </code></a><a name="6332">the maximum time to wait in milliseconds
+</a>
+<dd><a name="6334"><code>nano
+- </code></a><a name="6336">additional time, in nanoseconds range 0-999999
+</a>
+
+<dt><a name="6338"><b>Throws
+</b></a><dd><a name="6344">IllegalMonitorStateException &#32;<a href="java.lang.IllegalMonitorStateException.html#13840">(I-&#167;1.33)</a>
+</a>
+<dd><a name="6346">If the current thread is not the owner of this object's monitor.
+</a>
+
+<dt><a name="6348"><b>Throws
+</b></a><dd><a name="39896">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="39928">Another thread has interrupted this thread.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="28176">In Java 1.0, the hexidecimal string printed after the `@' is based on the hash code 
+value, but may not be the actual hash code value.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Number.html">Prev</a>  <a href="java.lang.Process.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

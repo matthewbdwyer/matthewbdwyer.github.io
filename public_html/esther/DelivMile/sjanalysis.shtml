@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>CSCE 425/825</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <meta name="Microsoft Border" content="tlb, default">
+
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><span style="position: absolute; top: 50px; left: 11px;"> <img src="../images/12x12spacer.gif" border="0" height="12" width="12"></span> </p>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+<!--#include file="sidebar.shtml" --> <td valign="top" width="24"></td>
+
+<td valign="top">
+      <h1><font face="Arial" size="5">Milestone
+4 : Static Analysis for Error Reporting</font></h1>
+
+<font face="Arial" size="2">
+      <p>Your
+task in this milestone is set in the context of the StaticJava compiler;
+you will not be dealing with the language features in 
+<a href="../extendedstaticjava.shtml">ExtendedStaticJava</a>.
+You will implement a static analysis and use the results of
+the reaching definitions (RD) analyses to provide reports of
+potential errors in the program.
+These will be implemented using the 
+control flow graph (CFG) and monotone dataflow framework (MDF)
+components in the SJC compiler.</p>
+<p>
+Specifically, you are to extend the <code>main</code> method of
+the SJC compiler so that it
+<ul>
+<li> reports unreachable statements in SJ programs;
+<li> reports references to potentially unitialized variables
+references; and
+<li> reports unused assignment statements.
+</ul>
+The first two of these features use existing analyses, e.g., CFG and
+RD, whereas the third one requires you to implement a new analysis,  
+live variables (LV).  The last two features will require that you
+implement post-processing of the program and analysis results
+to issue error reports.</p>
+<p>
+Your extended SJC compiler should issue error messages of the form: 
+<ul>
+<li> "unreachable statement : " concatenated with the string for the JDT statement node.  For compound statements, you need only list the entire compound once do not list all of the contained statements as well.</li>
+<li> "uninitialized variable <em>x</em> in statement : " concatenated with the string for the JDT statement and where <em>x</em> is the string for the variable name.</li>
+<li> "unused assignment : " concatenated with the string for the JDT assignment statement.</li>
+</ul>
+To provide a consistent output format across all solutions, we have created
+a JUnit test driver, <code>StaticErrorDetectionTest.java</code>, and an analysis class, <code>StaticErrorDetection.java</code>, that you should use (unchanged) in your implementation.  These will format the output as described but they require you to meet the APIs used in the analysis class.
+</p>
+<p>
+For extra credit, you can implement available expressions (AE),
+as discussed in class, and/or constant propagation (CP).
+CP calculates whether a variable reference must
+produce a single constant value.
+You are free to choose a convenient format for presenting the results
+of AE and CP applied to an input program.
+You can receive up to 25 additional points for completing this extra
+credit.
+</p>
+
+      <p>You must submit
+your assignment through the course <a href="http://cse.unl.edu/~cse425/handin">Project Upload</a> site
+by 11:59pm CDT on Friday Nov 16, 2007.
+Solutions submitted after the deadline will have their score reduced by
+10% for each hour that they are late; late times will be rounded up to the 
+next highest hour for this calculation.
+      </p>
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">Setup</font></h3>
+
+<font face="Arial" size="2">
+      <p>
+      Download the file <a href="myname-milestone4.zip">myname-milestone4.zip</a
+>
+      <p>
+      This contains a skeletal implementation of the milestone with a JUnit test
+ing framework for your use. 
+      <p>
+In order to import the projects into your workspace, do the following:
+<p>
+Goto the "File" menu, select "Import". Expand "General" and select "Existing Pro
+jects into Workspace". Click "Next". Select "Select archive file:" and click the
+ "Browse" button associated with it. In the file browser, points to the myname-m
+ilestone4.zip that you downloaded.
+<p>
+You should see "myname-milestone4", check the box,
+and click "Finish".
+<p>
+If you run Eclipse appropriately (i.e., using Java 5.0 and the right versions of
+ plugins and by following the instructions in the course quick notes website), y
+our workspace should be set. 
+<p>
+Make sure you rename "myname" in the project's name into your CIS username by ri
+ght clicking the project, select "Refactor" -> "Rename...".
+<p>    
+</font>
+
+
+      <hr>
+      <h3><font face="Arial" size="4">Hints</font></h3>
+<font face="Arial" size="2">
+<ul>
+<li> Remember that in RD we represent that memory locations 
+are initialized elsewhere in the program as
+either the FieldDeclaration (for
+fields) or SingleVariableDeclaration (for meethod parameters)
+and we represent that a local variable is uninitialized
+using VariableDeclarationStatement (for local variables).</li>
+<li> You will find it convenient for a number of analyses to implement
+a customized ASTNode visitor to gather all of the necessary data
+for producing your gen/kill sets.   For example, you may need
+gather the variables or expressions that are referenced, but not assigned to,
+in statements (e.g., assignments, method calls, if, while, ...).
+Given that statements may contain arbitrarily complex expression
+a visitor is the best way to traverse the expression structure.
+When gathering expressions, make sure that syntactically identical
+expressions are mapped to the same <em>value</em> in your representation,
+i.e., don't use the expression JDT node to represent the expression.</li>
+<li> If you are trying to test your unreachable code detector you can
+compare to the output calculated by Eclipse itself (it underlines unreachable
+code in red).  Note that our implementation shows all unreachable
+statements whereas Eclipse only shows the first in a 
+sequential block of unreachable statements - so ours is a bit nicer!
+Eclipse will also show you potentially uninitialized variable references.
+Eclipse does not currently show you unused assignment statements.
+</li>
+<li> When processing statements in your analyses, recall that JDT
+Blocks are considered statements.  In fact, they will be considered
+the "extremal" statements for the method body, so the MDF "init"
+value will be applied to the input of that block.  You should
+take care when generating gen/kill sets for blocks so that you
+don't unintentionally gather facts for blocks that will be redundant
+with respect to the statements contained within the block.  One way
+to protect against this is to only generate an non-empty gen/kill
+set for the specific type of statement that your analysis targets (i.e.,
+actually test the type of statement and then generate the return set).
+</li>
+</ul>
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">What To Submit</font></h3>
+
+<font face="Arial" size="2">
+      <p>You are to implement your solution as an extension to
+      the sjc compiler.  Submit the entire project as a zip file
+      so that we can unzip your project and execute the SJC
+      compiler with your extensions.  Put the analysis driver and output
+      producing files into the appropriate directories, i.e., 
+      <code>StaticErrorDetection.java</code> goes in <code>src-sjc/sjc/analysis</code>, and 
+      <code>StaticErrorDetectionTest.java</code> goes in <code>src-sjc-test/sjc/test</code>.  Please do not modify these files except to add new test cases to the JUnit test.
+      <p>Your solution should consist of the following :</p>
+
+      <ul>
+
+        <li>your extended SJC analysis components;</li>
+
+        <li>test cases for each of the different error reports that your compiler can produce that illustrates the functionality of your error checks installed in <code>src-sjc/src-examples</code>;</li>
+
+        <li>an extended version of the JUnit test driver <code>StaticErrorDetection.java</code>, located under the src-sjc-test directory of the project structure, that runs your test cases and including Factorial.java and
+Power.java</li>
+
+      </ul>
+</p>
+Export your solution to a single archive file
+named <em>yourname</em>-milestone4.zip.
+Upload that archive using the handin program.
+<p>
+As with all programming, I expect that you provide reasonable
+internal documentation describing
+tricky/subtle parts of your
+implementation.  If you have any limitations in your implementation
+you should include documentation describing those as well, since if
+we find them we will assume that you did not.  In addition, if you
+solve the extra credit, I expect you to describe your analysis output
+format.
+</p>
+<p>
+This project will be graded in large part by subjecting
+it to a large number of tests.
+It is in your best interest to do a good job of testing. </p>
+</font>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+
+<br>
+
+</body>
+</html>

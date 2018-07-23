@@ -1,0 +1,73 @@
+The basics
+  flow analysis, frameworks
+
+  soundness, safety, pessimism, conservativeness
+
+  cfgs, call graphs, ssa
+
+  sensitivity
+
+* Context-sensitive Analysis
+
+Sharir-pnueli
+
+CFL reachability
+  ist 1997
+
+modular approaches
+  parametric
+
+* Analyzing Heap Structure
+
+Points-to and alias analyses
+
+Shape analysis
+
+OUGs
+
+von Praun
+PLDI'03
+
+Milanova et. al
+Parameterized Object Sensitivity for Points-to Analysis of Java
+TOSEM'05
+
+* Analyzing Multi-threaded Programs
+
+escape analysis 
+
+race detection
+
+atomicity
+
+PPOPP'03
+
+PPOPP'05
+
+
+* BDDs in Program Analysis
+
+Whaley et. al.,
+Using Datalog with Binady Decision Diagrams for Program Analysis
+Third Asian Symposium on Programming Languages and Systems (APLAS'05)
+
+Lam et. al.,
+Context-sensitive Program Analysis as Database Queries
+PODS'05
+
+Whaley et. al., 
+Cloning-based Context-sensitive Pointer Alias Analysis using Binary Decision Diagrams
+PLDI'04
+
+Whaley thesis?
+
+Lohtek
+Jedd
+PLDI'04
+
+Lohtek thesis
+
+Berndl et. al.
+Points-to Analysis using BDDs
+PLDI'03
+

@@ -1,0 +1,182 @@
+<html><head><title>Class SequenceInputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.RandomAccessFile.html">Prev</a>  <a href="java.io.StreamTokenizer.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="9010"><h1>	&#167;2.21 Class SequenceInputStream</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>SequenceInputStream
+</strong>    extends &#32;java.io.<strong>InputStream</strong> &#32;<a href="java.io.InputStream.html#5284">(I-&#167;2.13)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>SequenceInputStream</strong>(Enumeration &#32;e);	<a href="java.io.SequenceInputStream.html#9066">&#167;2.21.1</a>
+    public <strong>SequenceInputStream</strong>(InputStream &#32;s1, InputStream &#32;s2); <a href="java.io.SequenceInputStream.html#9084">&#167;2.21.2</a>
+     
+ &#32; &#32; &#32; &#32;// Methods
+ &#32; &#32;public void <strong>close</strong>();	<a href="java.io.SequenceInputStream.html#9110">&#167;2.21.3</a>
+    public int <strong>read</strong>();	<a href="java.io.SequenceInputStream.html#9144">&#167;2.21.4</a>
+    public int <strong>read</strong>(byte &#32;buf[], int &#32;pos, int &#32;len);	<a href="java.io.SequenceInputStream.html#9170">&#167;2.21.5</a><br>
+}
+</pre><a name="9054">The sequence input stream class allows an application to combine several input streams 
+serially and make them appear as if they were a single input stream. Each input stream is 
+read from, in turn, until it reaches the end of the stream. The sequence input stream class 
+then closes that stream and automatically switches to the next input stream.
+</a><p>
+<hr>
+<a name="9058"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="SequenceInputStream">
+<a name="9066"><h3>SequenceInputStream
+</h3></a>
+<a name="9068"><code>public SequenceInputStream(Enumeration &#32;e)
+</code></a>
+<dl>
+<dd><a name="9070">Constructs a new sequence input stream initialized to the specified enumeration <a href="java.util.Enumeration.html#29289">(I-&#167;3.11)</a> of input streams. Each object in the enumeration must 
+be an InputStream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9072"><b>Parameters:
+</b></a><dd><a name="9074"><code>e
+- </code></a><a name="9076">an enumeration of input streams.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="SequenceInputStream">
+<a name="9084"><h3>SequenceInputStream
+</h3></a>
+<a name="9086"><code>public SequenceInputStream(InputStream &#32;s1, InputStream &#32;s2)
+</code></a>
+<dl>
+<dd><a name="9088">Constructs a new sequence input stream initialized to read first from the 
+input stream s1, and then from the input stream s2.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="9100"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="close">
+<a name="9110"><h3>close
+</h3></a>
+<a name="9112"><code>public void close()
+</code></a>
+<a name="9114"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="32139">Closes this input stream and releases any system resources associated with 
+the stream.
+<pre>
+</pre></a>
+
+<dd><a name="32140">The close method of SequenceInputStream calls the close method of both the 
+substream from which it is currently reading and the close method of all the 
+substreams that it has not yet begun to read from.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9118"><b>Throws
+</b></a><dd><a name="9124">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="9126">If an I/O error occurs.
+</a>
+
+<dt><a name="9128"><b>Overrides:
+</b></a><dd><a name="9134">close in class InputStream &#32;<a href="java.io.InputStream.html#5432">(I-&#167;2.13.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="9144"><h3>read
+</h3></a>
+<a name="9146"><code>public int read()
+</code></a>
+<a name="9148"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="36779">Reads the next byte of data from this input stream. The byte is returned as 
+an int in the range 0 to 255. If no byte is available because the end of the 
+stream has been reached, the value -1 is returned. This method blocks until 
+either input data is available, the end of the stream is detected, or an exception is thrown.
+<pre>
+</pre></a>
+
+<dd><a name="32161">The read method of SequenceInputStream tries to read one character from the 
+current substream. If it reaches the end of the stream, it calls the close 
+method of the current substream and begins reading from the next substream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="32157"><b>Returns:
+</b></a><dd><a name="32158">the next byte of data, or -1 if the end of the stream is reached.
+</a>
+
+<dt><a name="38665"><b>Throws
+</b></a><dd><a name="38669">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="38670">If an I/O error occurs.
+</a>
+
+<dt><a name="9156"><b>Overrides:
+</b></a><dd><a name="9162">read in class InputStream &#32;<a href="java.io.InputStream.html#5496">(I-&#167;2.13.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="9170"><h3>read
+</h3></a>
+<a name="9172"><code>public int read(byte &#32;buf[], int &#32;pos, int &#32;len)
+</code></a>
+<a name="9174"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="32173">Reads up to len bytes of data from this input stream into an array of bytes. 
+This method blocks until at least one byte of input is available. If the first 
+argument is null, up to len bytes are read and discarded.
+<pre>
+</pre></a>
+
+<dd><a name="32190">The read method of SequenceInputStream tries to read the data from the current substream. If it fails to read any characters because the substream has 
+reached the end of the stream, it calls the close method of the current substream and begins reading from the next substream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="32178"><b>Parameters:
+</b></a><dd><a name="32179"><code>b
+- </code></a><a name="32180">the buffer into which the data is read
+</a>
+<dd><a name="32181"><code>off
+- </code></a><a name="32182">the start offset of the data
+</a>
+<dd><a name="32183"><code>len
+- </code></a><a name="32184">the maximum number of bytes read
+</a>
+
+<dt><a name="9196"><b>Throws
+</b></a><dd><a name="9202">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="9204">If an I/O error occurs.
+</a>
+
+<dt><a name="9206"><b>Overrides:
+</b></a><dd><a name="9212">read in class InputStream &#32;<a href="java.io.InputStream.html#5558">(I-&#167;2.13.8)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.RandomAccessFile.html">Prev</a>  <a href="java.io.StreamTokenizer.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

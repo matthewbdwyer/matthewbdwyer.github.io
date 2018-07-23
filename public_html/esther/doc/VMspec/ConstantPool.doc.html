@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>VM Spec  Constant Pool Resolution</title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+<table width=100%><tr>
+<td><a href="VMSpecTOC.doc.html">Contents</a> | <a href="ClassFile.doc.html">Prev</a> | <a href="Instructions.doc.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+
+<hr><br>
+ 
+<a name="67469"></a>
+<p><strong>CHAPTER 5 </strong></p>
+<a name="67499"></a>
+<h1>Constant Pool Resolution</h1>
+<hr><p>
+<a name="67509"></a>
+Java classes and interfaces are dynamically loaded <a href="Concepts.doc.html#19175">(&#167;2.16.2)</a>, linked <a href="Concepts.doc.html#22574">(&#167;2.16.3)</a>, and 
+initialized <a href="Concepts.doc.html#19075">(&#167;2.16.4)</a>. Loading is the process of finding the binary form of a class or 
+interface type with a particular name and constructing, from that binary form, a <code>Class</code> 
+object to represent the class or interface. Linking is the process of taking a binary 
+form of a class or interface type and combining it into the runtime state of the Java 
+Virtual Machine so that it can be executed. Initialization of a class consists of executing its static initializers and the initializers for static fields declared in the class. 
+<p><a name="65509"></a>
+The Java Virtual Machine performs most aspects of these procedures through operations on a constant pool <a href="ClassFile.doc.html#20080">(&#167;4.4)</a>, a per-type runtime data structure that serves many of the purposes of the symbol table of a conventional language. For example, Java Virtual Machine instructions that might otherwise have been designed to take immediate numeric or string operands instead fetch their operands from the constant pool. Classes, methods, and fields, whether referenced from Java Virtual Machine instructions or from other constant pool entries, are named using the constant pool.<p>
+<a name="65422"></a>
+A Java compiler does not presume to know the way in which a Java Virtual Machine lays out classes, interfaces, class instances, or arrays. References in the constant pool are always initially symbolic. At run time, the symbolic representation of the reference in the constant pool is used to work out the actual location of the referenced entity. The process of dynamically determining concrete values from symbolic references in the constant pool is known as <i>constant pool resolution</i>. Constant pool resolution may involve loading one or more classes or interfaces, linking several types, and initializing types. There are several kinds of constant pool entries, and the details of resolution differ with the kind of entry to be resolved.<p>
+<a name="65405"></a>
+Individual Java Virtual Machine instructions that reference entities in the constant pool are responsible for resolving the entities they reference. Constant pool entries that are referenced from other constant pool entries are resolved when the referring entry is resolved. <p>
+<a name="67067"></a>
+A given constant pool entry may be referred to from any number of Java Virtual Machine instructions or other constant pool entries; thus, constant pool resolution can be attempted on a constant pool entry that is already resolved. An attempt to resolve a constant pool entry that has already been successfully resolved always succeeds trivially, and always results in the same entity produced by the initial resolution of that entry.<p>
+<a name="66684"></a>
+Constant pool resolution is normally initiated by the execution of a Java Virtual Machine instruction that references the constant pool. Rather than give the full description of the resolution process performed by Java Virtual Machine instructions in their individual descriptions, we will use this chapter to summarize the constant pool resolution process. We will specify the errors that must be detected when resolving each kind of constant pool entry, the order in which those errors must be responded to, and the errors thrown in response.<p>
+<a name="50875"></a>
+When referenced from the context of certain Java Virtual Machine instructions, additional constraints are put on linking operations. For instance, the <i>getfield</i> instruction requires not only that the constant pool entry for the field it references can be successfully resolved, but also that the resolved field is not a class (<code>static</code>) field. If it is a class field, an exception must be thrown. Linking exceptions that are specific to the execution of a particular Java Virtual Machine instruction are given in the description of that instruction and are not covered in this general discussion of constant pool resolution. Note that such exceptions, although described as part of the execution of Java Virtual Machine instructions rather than constant pool resolution, are still properly considered failure of the linking phase of Java Virtual Machine execution.<p>
+<a name="61405"></a>
+The Java Virtual Machine specification documents and orders all exceptions that can arise as a result of constant pool resolution. It does not mandate how they should be detected, only that they must be. In addition, as mentioned in <a href="Instructions.doc.html#66654">&#167;6.3</a>, any of the virtual machine errors listed as subclasses of <code>VirtualMachineError</code> may be thrown at any time during constant pool resolution.<p>
+<a name="51579"></a>
+<hr><h2>5.1	 Class and Interface Resolution</h2>
+<a name="49434"></a>
+A constant pool entry tagged as <code>CONSTANT_Class</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> represents a class or 
+interface. Various Java Virtual Machine instructions reference <code>CONSTANT_Class</code> 
+entries in the constant pool of the class that is current upon their execution 
+<a href="Overview.doc.html#17257">(&#167;3.6)</a>. Several other kinds of constant pool entries <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> reference 
+<code>CONSTANT_Class</code> entries and cause those class or interface references to be 
+resolved when the referencing entries are resolved. For instance, before a 
+method reference (a <code>CONSTANT_Methodref</code> constant pool entry) can be resolved, 
+the reference it makes to the class of the method (via the <code>class_index</code> item of the 
+constant pool entry) must first be resolved.
+<p><a name="66210"></a>
+If a class or interface has not been resolved already, the details of the resolution process depend on what kind of entity is represented by the <code>CONSTANT_Class</code> entry being resolved. Array classes are handled differently from non-array classes and from interfaces. Details of the resolution process also depend on whether the reference prompting the resolution of this class or interface is from a class or interface that was loaded using a class loader <a href="Concepts.doc.html#19175">(&#167;2.16.2)</a>.<p>
+<a name="66845"></a>
+The <code>name_index</code> item of a <code>CONSTANT_Class</code> constant pool entry is a reference to a <code>CONSTANT_Utf8</code> constant pool entry <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> for a UTF-8 string that represents the fully qualified name <a href="Concepts.doc.html#20207">(&#167;2.7.9)</a> of the class or interface to be resolved. What kind of entity is represented by a <code>CONSTANT_Class</code> constant pool entry, and how to resolve that entry, is determined as follows:<p>
+<ul><a name="66184"></a>
+<li>If the first character of the fully qualified name of the constant pool entry to be resolved is not a left bracket ("<code>[</code>"), then the entry is a reference to a non-array class or to an interface.
+<a name="66858"></a>
+<li>If the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a> has not been loaded by a class loader, then "normal" class resolution is used <a href="ConstantPool.doc.html#65190">(&#167;5.1.1)</a>.
+<a name="66773"></a>
+<li>If the current class has been loaded by a class loader, then application-defined code is used <a href="ConstantPool.doc.html#67374">(&#167;5.1.2)</a> to resolve the class. 
+<a name="66780"></a>
+<li>If the first character of the fully qualified name of the constant pool entry to be resolved is a left bracket ("<code>[</code>"), then the entry is a reference to an array class. Array classes are resolved specially <a href="ConstantPool.doc.html#65204">(&#167;5.1.3)</a>.
+</ul><a name="65190"></a>
+<h3>5.1.1	 Current Class or Interface Not Loaded by a Class Loader</h3>
+<a name="67598"></a>
+If a class or interface that has been loaded, and that was not loaded using a class 
+loader, references a non-array class or interface C, then the following steps are performed to resolve the reference to C:
+<p><ol>
+<a name="67945"></a>
+<li>The class or interface C and its superclasses are first loaded <a href="Concepts.doc.html#19175">(&#167;2.16.2)</a>.
+<a name="67947"></a>
+<li>If class or interface C<code> </code>has not been loaded yet, the Java Virtual Machine will search for a file C<code>.class</code> and attempt to load class or interface C from that file. Note that there is no guarantee that the file C<code>.class</code> will actually contain the class or interface C, or that the file C<code>.class</code> is even a valid <code>class</code> file. It is also possible that class or interface C might have already been loaded, but not yet initialized. This phase of loading must detect the following errors:
+<ul>
+<a name="51442"></a>
+<li>If no file with the appropriate name can be found and read, class or interface resolution throws a <code>NoClassDefFoundError</code>.
+<a name="51449"></a>
+<li>Otherwise, if it is determined that the selected file is not a well-formed <code>class</code> file (pass 1 of <a href="ClassFile.doc.html#9766">&#167;4.9.1</a>), or is not a <code>class</code> file of a supported major or minor version (<a href="ClassFile.doc.html#21045">&#167;4.1)</a>, class or interface resolution throws a <code>NoClassDefFoundError</code>. 
+<a name="51459"></a>
+<li>Otherwise, if the selected <code>class</code> file did not actually contain the desired class or interface, class or interface resolution throws a <code>NoClassDefFoundError</code>.
+<a name="51469"></a>
+<li>Otherwise, if the selected <code>class</code> file does not specify a superclass and is not the <code>class</code> file for class <code>Object</code>, class or interface resolution throws a <code>ClassFormat-Error</code>. 
+</ul>
+<a name="38907"></a>
+<li>If the superclass of the class being loaded has not yet been loaded, it is loaded using this step 1 recursively. Loading a superclass must detect any of the errors in step 1a, where this superclass is considered to be the class being loaded. Note that all interfaces must have <code>java.lang.Object</code> as their superclass, which must already have been loaded.
+<a name="66889"></a>
+<li>If loading class C and its superclasses was successful, the superclass (and thus its superclasses, if any) of class C is linked and initialized by applying steps -2-4 recursively.
+<a name="65953"></a>
+<li>The class C is linked <a href="Concepts.doc.html#22574">(&#167;2.16.3)</a>, that is, it is verified <a href="ClassFile.doc.html#8051">(&#167;4.9)</a> and prepared.
+<a name="65959"></a>
+<li>First, the class or interface C is verified to ensure that its binary representation is structurally valid (passes 2 and 3 of <a href="ClassFile.doc.html#9766">&#167;4.9.1</a>).<a href="#67167"><sup>1</sup></a> Verification may itself cause classes and interfaces to be loaded, but not initialized (to avoid circularity), using the procedure in step 1.
+<ul>
+<a name="65571"></a>
+<li>If the class or interface C contained in <code>class</code> file C<code>.class</code> does not satisfy the static or structural constraints on valid <code>class</code> files listed in <a href="ClassFile.doc.html#8771">Section 4.8, "Constraints on Java Virtual Machine Code,"</a> class or interface resolution throws a <code>VerifyError</code>.
+</ul>
+<a name="65572"></a>
+<li>If the <code>class</code> file for class or interface C is successfully verified, the class or interface is prepared. Preparation involves creating the static fields for the class or interface and initializing those fields to their standard default values <a href="Concepts.doc.html#15858">(&#167;2.5.1)</a>. Preparation should not be confused with the execution of static initializers <a href="Concepts.doc.html#16396">(&#167;2.11)</a>; unlike execution of static initializers, preparation does not require the execution of any Java code. During preparation:
+<ul>
+<a name="65579"></a>
+<li>If a class that is not declared <code>abstract</code> has an <code>abstract</code> method, class resolution throws an <code>AbstractMethodError</code>. 
+</ul>
+<a name="67250"></a>
+<li>	Certain checks that are specific to individual Java Virtual Machine instructions, but that are logically related to this phase of constant pool resolution, are described in the documentation of those instructions. For instance, the <i>getfield</i> instruction resolves its field reference, and only afterward checks to see whether that field is an instance field (that is, it is not <code>static</code>). Such exceptions are still considered and documented to be linking, not runtime, exceptions.
+<a name="66906"></a>
+<li>Next, the class is initialized. Details of the initialization procedure are given in <a href="Concepts.doc.html#24237">&#167;2.16.5</a> and in <i>The Java Language Specification</i>.
+<ul>
+<a name="65629"></a>
+<li>If an initializer completes abruptly by throwing some exception E, and if the class of E is not <code>Error</code> or one of its subclasses, then a new instance of the class <code>ExceptionInInitializerError</code>, with E as the argument, is created and used in place of E.
+<a name="67315"></a>
+<li>If the Java Virtual Machine attempts to create a new instance of the class <code>ExceptionInInitializerError</code> but is unable to do so because an <code>Out-Of--Memory-Error</code> occurs, then the <code>OutOfMemoryError</code> object is thrown instead.
+</ul>
+<a name="51507"></a>
+<li>Finally, access permissions to the class being resolved are checked:
+<ul>
+<a name="67569"></a>
+<li>If the current class or interface does not have permission to access the class or interface being resolved, class or interface resolution throws an <code>Illegal-Access-Error</code>. This condition can occur, for example, if a class that is originally declared <code>public</code> is changed to be <code>private</code> after another class that refers to the class has been compiled.
+</ul>
+</ol>
+<a name="67561"></a>
+If none of the preceding errors were detected, constant pool resolution of the class or interface reference must have completed successfully. However, if an error was detected, one of the following must be true.<p>
+<ul><a name="67630"></a>
+<li>If some exception is thrown in steps 1-4, the class being resolved must have been marked as unusable or must have been discarded.
+<a name="67631"></a>
+<li>If an exception is thrown in step 5, the class being resolved is still valid and usable.
+</ul><a name="67641"></a>
+In either case, the resolution fails, and the class or interface attempting to perform 
+the resolution is prohibited from accessing the referenced class or interface.
+<p><a name="67374"></a>
+<h3>5.1.2	 Current Class or Interface Loaded by a Class Loader</h3>
+<a name="67375"></a>
+If a class or interface, loaded using a class loader, references a non-array class or 
+interface C, then that same class loader is used to load C. The <code>loadClass</code> method of 
+that class loader is invoked on the fully qualified path name <a href="Concepts.doc.html#20207">(&#167;2.7.9)</a> of the class to 
+be resolved. The value returned by the <code>loadClass</code> method is the resolved class. The 
+remainder of the section describes this process in more detail. 
+<p><a name="63496"></a>
+Every class loader is an instance of a subclass of the abstract class <code>ClassLoader</code>. Applications implement subclasses of <code>ClassLoader</code> in order to extend the manner in which the Java Virtual Machine dynamically loads classes. Class loaders can be used to create classes that originate from sources other than files. For example, a class could be downloaded across a network, it could be generated on the fly, or it could be decrypted from a scrambled file.<p>
+<a name="63724"></a>
+The Java Virtual Machine invokes the <code>loadClass</code> method of a class loader in order to cause it to load (and optionally link and initialize) a class. The first argument to <code>loadClass</code> is the fully qualified name of the class to be loaded. The second argument is a boolean. The value <code>false</code> indicates that the specified class must be loaded, but not linked or initialized; the value <code>true</code> indicates the class must be loaded, linked, and initialized.<p>
+<a name="63719"></a>
+Implementations of class loaders are required to keep track of which classes they have already loaded, linked, and initialized:<a href="#63902"><sup>2</sup></a><p>
+<ul><a name="63735"></a>
+<li>If a class loader is asked to load (but not link or initialize) a class or interface that it has already loaded (and possibly already linked and initialized), then it should simply return that class or interface.
+<a name="63739"></a>
+<li>If a class loader is asked to load, link, and initialize a class or interface that it has already loaded but not yet linked and initialized, the class loader should not reload the class or interface, but should only link and initialize it.
+<a name="63748"></a>
+<li>If a class loader is asked to load, link, and initialize a class or interface that it has already loaded, linked, and initialized, the class loader should simply return that class or interface.
+</ul><a name="63764"></a>
+When the class loader's <code>loadClass</code> method is invoked with the name of a class or interface that it has not yet loaded, the class loader must perform one of the following two operations in order to load the class or interface:<p>
+<ul><a name="66454"></a>
+<li>The class loader can create an array of bytes representing the bytes of a file of <code>class</code> file format; it then must invoke the method <code>defineClass</code> of class <code>ClassLoader</code> on those bytes to convert them into a class or interface with this class loader as the class loader for the newly defined class. Invoking <code>define-Class</code> causes the Java Virtual Machine to perform step 1<a href="ConstantPool.doc.html#67947">a</a> of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a>. 
+<a name="66461"></a>
+<li>Invoking <code>defineClass</code> then causes the <code>loadClass</code> method of the class loader to be invoked recursively in order to load the superclass of the newly defined class or interface. The fully qualified path name of the superclass is derived from the <code>super_class</code> item in the <code>class</code> file format. When the superclass is loaded in, the second argument to <code>loadClass</code> is <code>false</code>, indicating that the superclass is not to be linked and initialized immediately.
+<a name="66247"></a>
+<li>The class loader can also invoke the static method <code>findSystemClass</code> in class <code>ClassLoader</code> with the fully qualified name of the class or interface to be loaded. Invoking this method causes the Java Virtual Machine to perform step &#32;<a href="ConstantPool.doc.html#67945">1</a> of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a>. The resulting <code>class</code> file is not marked as having been loaded by a class loader.
+</ul><a name="66248"></a>
+After the class or interface and its superclasses have been loaded successfully, if the second argument to <code>loadClass</code> is <code>true</code> the class or interface is linked and initialized. This second argument is always <code>true</code> if the class loader is being called upon to resolve an entry in the constant pool of a class or interface. The class loader links and initializes a class or interface by invoking the method <code>resolveClass</code> in the class <code>ClassLoader</code>. Linking and initializing a class or interface created by a class loader is very similar to linking and initializing a class or interface without a class loader (steps 2-4 of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a>):<p>
+<a name="63839"></a>
+First, the superclass of the class or interface is linked and initialized by calling the <code>loadClass</code> method of the class loader with the fully qualified name of the superclass as the first argument, and <code>true</code> as the second argument. Linking and initialization may result in the superclass's own superclass being linked and initialized. Linking and initialization of a superclass must detect any of the errors of step 3 of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a>.<p>
+<a name="66360"></a>
+Next, the bytecode verifier is run on the class or interface being linked and initialized. The verifier may itself need classes or interfaces to be loaded, and if so, it loads them by invoking the <code>loadClass</code> method of the same class loader with the second argument being <code>false</code>. Since verification may itself cause classes or interfaces to be loaded (but not linked or initialized, to avoid circularity), it must detect the errors of step 1 of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a> for any classes or interfaces it attempts to load. Running the verifier may also cause the errors of step &#32;3a of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a>.<p>
+<a name="66373"></a>
+If the class file is successfully verified, the class or interface is then prepared (step 3b of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a>) and initialized (step &#32;4 of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a>).<p>
+<a name="66416"></a>
+Finally, access permissions to the class or interface are checked (step 5 of <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a>). If the current class or interface does not have permission to access the class being resolved, class resolution throws an <code>IllegalAccessError</code> exception.<p>
+<a name="66419"></a>
+If none of the preceding errors were detected, loading, linking, and initialization of the class or interface must have completed successfully. <p>
+<a name="65204"></a>
+<h3>5.1.3	 Array Classes</h3>
+<a name="65747"></a>
+A constant pool entry tagged as <code>CONSTANT_Class</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> represents an array class 
+if the first character of the UTF-8 string <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> referenced by the <code>name_index</code> item 
+of that constant pool entry is a left bracket ("<code>[</code>"). The number of initial consecutive 
+left brackets in the name represents the number of dimensions of the array class. 
+Following the one or more initial consecutive left brackets is a field descriptor 
+<a href="ClassFile.doc.html#14152">(&#167;4.3.2)</a> representing either a primitive type or a non-array reference type; this field 
+descriptor represents the <i>base type</i> of the array class.
+<p><a name="65673"></a>
+The following steps are performed to resolve an array class referenced from the constant pool of a class or interface:<p>
+<ol>
+<a name="65665"></a>
+<li>Determine the number of dimensions of the array class and the field descriptor that represents the base type of the array class.
+<a name="67653"></a>
+<li>Determine the base type of the array class:
+</ol>
+<ul><a name="67654"></a>
+<li>If the field descriptor represents a primitive type (its first character is not "<code>L</code>"), that primitive type is the base type of the array class.
+<a name="67655"></a>
+<li>If the field descriptor represents a non-array reference type (its first character is "<code>L</code>"), that reference type is the base type of the array class. The reference type is itself resolved using the procedures indicated above in <a href="ConstantPool.doc.html#65190">&#167;5.1.1</a> or in <a href="ConstantPool.doc.html#67374">&#167;5.1.2</a>.
+</ul><ol>
+<a name="65711"></a>
+<li>If an array class representing the same base type and the same number of dimensions has already been created, the result of the resolution is that array class. Otherwise, a new array class representing the indicated base type and number of dimensions is created.
+</ol>
+<a name="49425"></a>
+<hr><h2>5.2	 Field and Method Resolution</h2>
+<a name="61431"></a>
+A constant pool entry tagged as <code>CONSTANT_Fieldref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> represents a class or 
+instance variable <a href="Concepts.doc.html#16338">(&#167;2.9)</a> or a (constant) field of an interface <a href="Concepts.doc.html#18349">(&#167;2.13.4)</a>. Note that 
+interfaces do not have instance variables. A constant pool entry tagged as 
+<code>CONSTANT_Methodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> represents a method of a class (a <code>static</code> method) or of a 
+class instance (an instance method). References to interface methods are made using 
+<code>CONSTANT_InterfaceMethodref</code> constant pool entries; resolution of such entries is 
+described in <a href="ConstantPool.doc.html#64064">&#167;5.3</a>.
+<p><a name="51523"></a>
+To resolve a field reference or a method reference, the <code>CONSTANT_Class</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> entry representing the class of which the field or method is a member must first be successfully resolved (<a href="ConstantPool.doc.html#51579">&#167;5.1)</a>. Thus, any exception that can be thrown when resolving a <code>CONSTANT_Class</code> constant pool entry can also be thrown as a result of resolving a <code>CONSTANT_Fieldref</code> or <code>CONSTANT_Methodref</code> entry. If the <code>CONSTANT_Class</code> entry representing the class or interface can be successfully resolved, exceptions relating to the linking of the method or field itself can be thrown. When resolving a field reference:<p>
+<ul><a name="51536"></a>
+<li>If the referenced field does not exist in the specified class or interface, field resolution throws a <code>NoSuchFieldError</code>.
+<a name="51537"></a>
+<li>Otherwise, if the current class does not have permission to access the referenced field, field resolution throws an <code>IllegalAccessError</code> exception.
+</ul><a name="51544"></a>
+If resolving a method:
+<p><ul><a name="51548"></a>
+<li>If the referenced method does not exist in the specified class or interface, field resolution throws a <code>NoSuchMethodError</code>.
+<a name="51549"></a>
+<li>Otherwise, if the current class does not have permission to access the method being resolved, method resolution throws an <code>IllegalAccessError</code> exception.
+</ul><a name="64064"></a>
+<hr><h2>5.3	 Interface Method Resolution</h2>
+<a name="64062"></a>
+A constant pool entry tagged as <code>CONSTANT_InterfaceMethodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> represents a 
+call to an instance method declared by an interface. Such a constant pool entry is 
+resolved by converting it into a machine-dependent internal format. No error or 
+exception is possible except for those documented in <a href="Instructions.doc.html#66654">&#167;6.3</a>.
+<p><a name="38759"></a>
+<hr><h2>5.4	 String Resolution</h2>
+<a name="38811"></a>
+A constant pool entry tagged as <code>CONSTANT_String</code> (<a href="ClassFile.doc.html#8794">&#167;4.4.3)</a> represents an instance of 
+a string literal <a href="Concepts.doc.html#23152">(&#167;2.3)</a>, that is, a literal of the built-in type <code>java.lang.String</code>. The Unicode 
+characters <a href="Concepts.doc.html#25310">(&#167;2.1)</a> of the string literal represented by the <code>CONSTANT_String</code> entry are 
+found in the <code>CONSTANT_Utf8</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> constant pool entry that the <code>CONSTANT_String</code> 
+entry references.
+<p><a name="65142"></a>
+The Java language requires that identical string literals (that is, literals that contain the same sequence of Unicode characters) must reference the same instance of class <code>String</code>. In addition, if the method <code>intern</code> is called on any string, the result is a reference to the same class instance that would be returned if that string appeared as a literal. Thus,<p>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;("a" + "b" + "c").intern() == "abc"
+</pre><a name="65011"></a>
+must have the value <code>true</code>.<a href="#65169"><sup>3</sup></a>
+<p><a name="64955"></a>
+To resolve a constant pool entry tagged <code>CONSTANT_String</code>, the Java Virtual Machine examines the series of Unicode characters represented by the UTF-8 string that the <code>CONSTANT_String</code> entry references. <p>
+<ul><a name="64977"></a>
+<li>If another constant pool entry tagged <code>CONSTANT_String</code> and representing the identical sequence of Unicode characters has already been resolved, then the result of resolution is a reference to the instance of class <code>String</code> created for that earlier constant pool entry.
+<a name="65026"></a>
+<li>Otherwise, if the method <code>intern</code> has previously been called on an instance of class <code>String</code> containing a sequence of Unicode characters identical to that represented by the constant pool entry, then the result of resolution is a reference to that same instance of class <code>String</code>.
+<a name="64978"></a>
+<li>Otherwise, a new instance of class <code>String</code> is created containing the sequence of Unicode characters represented by the <code>CONSTANT_String</code> entry; that class instance is the result of resolution.
+</ul><a name="65122"></a>
+No error or exception is possible during string resolution except for those documented in <a href="Instructions.doc.html#66654">&#167;6.3</a>.<p>
+<a name="49466"></a>
+<hr><h2>5.5	 Resolution of Other Constant Pool Items</h2>
+<a name="51636"></a>
+Constant pool entries that are tagged <code>CONSTANT_Integer</code> or <code>CONSTANT_Float</code> 
+(<a href="ClassFile.doc.html#21942">&#167;4.4.4)</a>, <code>CONSTANT_Long</code> or <code>CONSTANT_Double</code> (<a href="ClassFile.doc.html#1348">&#167;4.4.5)</a> all have values that are 
+directly represented within the constant pool. Their resolution cannot throw exceptions except for those documented in <a href="Instructions.doc.html#66654">&#167;6.3</a>.
+<p><a name="64112"></a>
+Constant pool entries that are tagged <code>CONSTANT_NameAndType</code> <a href="ClassFile.doc.html#1327">(&#167;4.4.6)</a>, and <code>CONSTANT_Utf8</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> are never resolved directly. They are only referenced directly or indirectly by other constant pool entries.<p>
+<a name="60091"></a>
+
+<p>
+
+<hr>
+<sup>1</sup><a name="67167"></a>
+ Sun's JDK release 1.0.2 only verifies <code>class</code> files that have class loaders; it assumes that <code>class</code> files loaded locally are trusted and do not need verification.<p>
+<a name="65949"></a>
+ <p>
+<sup>2</sup><a name="63902"></a>
+ Future implementations may change the API between the Java Virtual Machine and the class <code>ClassLoader</code>. Specifically, the Java Virtual Machine rather than the class loader will keep track of which classes and interfaces have been loaded by a particular class loader. 		One possibility is that the <code>loadClass</code> method will be called with a single argument indicating the class or interface to be loaded. The virtual machine will handle the details of linking and initialization and ensure that the class loader is not invoked with the same class or interface name multiple times.<p>
+<sup>3</sup><a name="65169"></a>
+ String literal resolution is not implemented correctly in Sun's JDK release 1.0.2. In that implementation of the Java Virtual Machine, resolving a <code>CONSTANT_String</code> in the constant pool always allocates a new string. Two string literals in two different classes, even if they contained the identical sequence of characters, would never be <code>==</code> to each other. A string literal could never be <code>==</code> to a result of the <code>intern</code> method.<p>
+<!-- This inserts footnotes--><p>
+<br>
+<a href="VMSpecTOC.doc.html">Contents</a> | <a href="ClassFile.doc.html">Prev</a> | <a href="Instructions.doc.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size = -1>Java Virtual Machine Specification <br>
+<!--(HTML generated by dkramer on March 31, 1997)-->
+<!--
+(HTML generated by dkramer on March 25, 1997)-->
+<br>
+<i><a href="copyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:jvm@java.sun.com">jvm@java.sun.com</a>
+</font>
+</body></html>

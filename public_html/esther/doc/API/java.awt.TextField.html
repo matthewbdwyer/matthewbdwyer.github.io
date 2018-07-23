@@ -1,0 +1,360 @@
+<html><head><title>Class TextField</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.TextComponent.html">Prev</a>  <a href="java.awt.Toolkit.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="21533"><h1>	&#167;1.40 Class TextField</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>TextField
+</strong>    extends &#32;java.awt.<strong>TextComponent</strong> &#32;<a href="java.awt.TextComponent.html#21181">(II-&#167;1.39)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>TextField</strong>();	<a href="java.awt.TextField.html#21643">&#167;1.40.1</a>
+    public <strong>TextField</strong>(int &#32;cols);	<a href="java.awt.TextField.html#21655">&#167;1.40.2</a>
+    public <strong>TextField</strong>(String &#32;text);	<a href="java.awt.TextField.html#21673">&#167;1.40.3</a>
+    public <strong>TextField</strong>(String &#32;text, int &#32;cols);	<a href="java.awt.TextField.html#21691">&#167;1.40.4</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addNotify</strong>();	<a href="java.awt.TextField.html#21717">&#167;1.40.5</a>
+    public boolean <strong>echoCharIsSet</strong>();	<a href="java.awt.TextField.html#21739">&#167;1.40.6</a>
+    public int <strong>getColumns</strong>();	<a href="java.awt.TextField.html#21769">&#167;1.40.7</a>
+    public char <strong>getEchoChar</strong>();	<a href="java.awt.TextField.html#21787">&#167;1.40.8</a>
+    public Dimension <strong>minimumSize</strong>();	<a href="java.awt.TextField.html#21817">&#167;1.40.9</a>
+    public Dimension <strong>minimumSize</strong>(int &#32;cols);	<a href="java.awt.TextField.html#21841">&#167;1.40.10</a>
+    protected String <strong>paramString</strong>();	<a href="java.awt.TextField.html#49107">&#167;1.40.11</a>
+    public Dimension <strong>preferredSize</strong>();	<a href="java.awt.TextField.html#21891">&#167;1.40.12</a>
+    public Dimension <strong>preferredSize</strong>(int &#32;cols);	<a href="java.awt.TextField.html#21915">&#167;1.40.13</a>
+    public void <strong>setEchoCharacter</strong>(char &#32;c);	<a href="java.awt.TextField.html#21939">&#167;1.40.14</a>
+}
+</pre><a name="21631">A text field is a component that presents the user with a single editable line of text.
+</a><p><a name="39217">For example, the following code code:
+</a><p><pre><hr>
+<a name="39281">TextField tf1, tf2, tf3, tf4; 
+</a><a name="39283">// a blank text field
+</a><a name="39284">tf1 = new TextField(); &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;
+</a><a name="39285">// blank field of 20 columns
+</a><a name="39286">tf2 = new TextField(20); &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;
+</a><a name="39288">// Predefined text displayed
+</a><a name="39289">tf3 = new TextField("Hello!");
+</a><a name="39290">// Predefined text in 30 columns
+</a><a name="39291">tf4 = new TextField("Hello", 30);
+</a>
+<hr></pre><a name="39248">produces the text fields shown below<img src="javaab26.gif">:
+</a><p><a name="39342">Every time the user types a key<a href="#46715"><sup>1</sup></a> in the text field, AWT sends a key press event 
+<a href="java.awt.Event.html#30571">(II-&#167;1.14.15)</a> and a key release event <a href="java.awt.Event.html#30577">(II-&#167;1.14.16)</a> to the text field. These events' target 
+field is the button, and their key field is the key typed.
+</a><p><a name="39365">In addition, whether the user types the return key, AWT sends an action event 
+<a href="java.awt.Event.html#7837">(II-&#167;1.14.11)</a> to the text field. This event's target is the text field, and its object is the string 
+contents of the text field; the string will not have a return character as its last character. An 
+application should override the action method <a href="java.awt.Component.html#3701">(II-&#167;1.10.1)</a> of the text field or of one of its 
+containing windows in order to cause some action to occur.
+</a><p>
+<hr>
+<a name="21635"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="TextField">
+<a name="21643"><h3>TextField
+</h3></a>
+<a name="21645"><code>public TextField()
+</code></a>
+<dl>
+<dd><a name="21647">Constructs a new text field.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="TextField">
+<a name="21655"><h3>TextField
+</h3></a>
+<a name="21657"><code>public TextField(int &#32;cols)
+</code></a>
+<dl>
+<dd><a name="21659">Constructs a new text field the specified number of characters wide.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="21661"><b>Parameters:
+</b></a><dd><a name="21663"><code>cols
+- </code></a><a name="21665">the number of character 
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="TextField">
+<a name="21673"><h3>TextField
+</h3></a>
+<a name="21675"><code>public TextField(String &#32;text)
+</code></a>
+<dl>
+<dd><a name="21677">Constructs a new text field initialized with the specified text.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="21679"><b>Parameters:
+</b></a><dd><a name="21681"><code>text
+- </code></a><a name="21683">the text to be displayed
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="TextField">
+<a name="21691"><h3>TextField
+</h3></a>
+<a name="21693"><code>public TextField(String &#32;text, int &#32;cols)
+</code></a>
+<dl>
+<dd><a name="36893">Constructs a new text field initialized with the specified text and wide 
+enough to hold the specified number of characters.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="21697"><b>Parameters:
+</b></a><dd><a name="21699"><code>text
+- </code></a><a name="21701">the text to be displayed
+</a>
+<dd><a name="21703"><code>cols
+- </code></a><a name="21705">the number of characters
+</a>
+</dl></dl>
+<hr>
+<a name="21707"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addNotify">
+<a name="21717"><h3>addNotify
+</h3></a>
+<a name="21719"><code>public void addNotify()
+</code></a>
+<dl>
+<dd><a name="26755">This method calls the createTextField method <a href="java.awt.Toolkit.html#22645">(II-&#167;1.41.20)</a> of this object's 
+toolkit <a href="java.awt.Component.html#4237">(II-&#167;1.10.20)</a> in order to create a TextFieldPeer &#32;<a href="java.awt.peer.TextFieldPeer.html#2185">(II-&#167;3.21)</a> for this text 
+field. This peer allows the application to change the look of a text field 
+without changing its functionality.
+<pre>
+</pre></a>
+
+<dd><a name="43843">Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="21723"><b>Overrides:
+</b></a><dd><a name="21729">addNotify in class Component &#32;<a href="java.awt.Component.html#3737">(II-&#167;1.10.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="echoCharIsSet">
+<a name="21739"><h3>echoCharIsSet
+</h3></a>
+<a name="21741"><code>public boolean echoCharIsSet()
+</code></a>
+<dl><dl>
+<dt><a name="21745"><b>Returns:
+</b></a><dd><a name="21747">true if this text field has a character set for echoing; false otherwise.
+</a>
+
+<dt><a name="21749"><b>See Also:
+</b></a><dd><a name="21759">setEchoCharacter &#32;<a href="java.awt.TextField.html#21939">(II-&#167;1.40.14)</a><br>
+getEchoChar &#32;<a href="java.awt.TextField.html#21787">(II-&#167;1.40.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getColumns">
+<a name="21769"><h3>getColumns
+</h3></a>
+<a name="21771"><code>public int getColumns()
+</code></a>
+<dl><dl>
+<dt><a name="21775"><b>Returns:
+</b></a><dd><a name="21777">the number of columns in this text field.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getEchoChar">
+<a name="21787"><h3>getEchoChar
+</h3></a>
+<a name="21789"><code>public char getEchoChar()
+</code></a>
+<dl><dl>
+<dt><a name="21793"><b>Returns:
+</b></a><dd><a name="21795">the echo character for this text field.
+</a>
+
+<dt><a name="21797"><b>See Also:
+</b></a><dd><a name="21807">setEchoCharacter &#32;<a href="java.awt.TextField.html#21939">(II-&#167;1.40.14)</a><br>
+echoCharIsSet &#32;<a href="java.awt.TextField.html#21739">(II-&#167;1.40.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="minimumSize">
+<a name="21817"><h3>minimumSize
+</h3></a>
+<a name="21819"><code>public Dimension minimumSize()
+</code></a>
+<dl>
+<dd><a name="36935">Determines the minimum size of this text field. If the application has specified the number of columns for this text field, and it is greater than zero, 
+then this text field's peer's minimumSize method <a href="java.awt.peer.TextFieldPeer.html#2227">(II-&#167;3.21.1)</a> is called with 
+the number columns in order to determine the minimum size.
+<pre>
+</pre></a>
+
+<dd><a name="36939">If this text field does not have a peer, or if the number of columns specified 
+by the application is less than or equal to zero, the superclass's minimumSize method <a href="java.awt.Component.html#4865">(II-&#167;1.10.40)</a> is called to determine the minimum size.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="36943"><b>Returns:
+</b></a><dd><a name="36944">the minimum dimensions needed for this text area.
+</a>
+
+<dt><a name="21827"><b>Overrides:
+</b></a><dd><a name="21833">minimumSize in class Component &#32;<a href="java.awt.Component.html#4865">(II-&#167;1.10.40)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="minimumSize">
+<a name="21841"><h3>minimumSize
+</h3></a>
+<a name="21843"><code>public Dimension minimumSize(int &#32;cols)
+</code></a>
+<dl>
+<dd><a name="36972">Determines the minimum size of a text field with the specified number of 
+columns. This text field's peer's minimumSize method <a href="java.awt.peer.TextFieldPeer.html#2227">(II-&#167;3.21.1)</a> is called 
+with the number of columns in order to determine the minimum size.
+<pre>
+</pre></a>
+
+<dd><a name="36973">If this text field does not have a peer the superclass's minimumSize method 
+<a href="java.awt.Component.html#4865">(II-&#167;1.10.40)</a> is called to determine the minimum size.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="36978"><b>Parameters:
+</b></a><dd><a name="36981"><code>cols
+- </code></a><a name="36982">the number of columns
+</a>
+
+<dt><a name="21845"><b>Returns:
+</b></a><dd><a name="49102">the minimum dimensions needed to display a text area with the specified number of columns.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="49107"><h3>paramString
+</h3></a>
+<a name="49108"><code>protected String paramString()
+</code></a>
+<dl>
+<dd><a name="53464">Returns the parameter string representing the state of this text field. This 
+string is useful for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27050"><b>Returns:
+</b></a><dd><a name="27051">the parameter string of this text field.
+</a>
+
+<dt><a name="21875"><b>Overrides:
+</b></a><dd><a name="21881">paramString in class TextComponent &#32;<a href="java.awt.TextComponent.html#21387">(II-&#167;1.39.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="preferredSize">
+<a name="21891"><h3>preferredSize
+</h3></a>
+<a name="21893"><code>public Dimension preferredSize()
+</code></a>
+<dl>
+<dd><a name="53987">Determines the preferred size of this text field. If the application has specified the number of columns for this text field, and it is greater than zero, 
+then this text field's peer's preferredSize method <a href="java.awt.peer.TextFieldPeer.html#2239">(II-&#167;3.21.2)</a> is called with 
+the number of columns in order to determine the preferred size.
+<pre>
+</pre></a>
+
+<dd><a name="53991">If this text field does not have a peer, or if the number of columns specified 
+by the application is less than or equal to zero, the superclass's preferredSize 
+method <a href="java.awt.Component.html#5307">(II-&#167;1.10.53)</a> is called to determine the preferred size.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="37014"><b>Returns:
+</b></a><dd><a name="37015">the preferred dimensions needed for this text field.
+</a>
+
+<dt><a name="21901"><b>Overrides:
+</b></a><dd><a name="21907">preferredSize in class Component &#32;<a href="java.awt.Component.html#5307">(II-&#167;1.10.53)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="preferredSize">
+<a name="21915"><h3>preferredSize
+</h3></a>
+<a name="21917"><code>public Dimension preferredSize(int &#32;cols)
+</code></a>
+<dl>
+<dd><a name="37032">Determines the preferred size of a text field with the specified number of 
+columns. This text field's peer's preferredSize method <a href="java.awt.peer.TextFieldPeer.html#2239">(II-&#167;3.21.2)</a> is called 
+with the number columns in order to determine the preferred size.
+<pre>
+</pre></a>
+
+<dd><a name="37033">If this text field does not have a peer the superclass's preferredSize method 
+<a href="java.awt.Component.html#5307">(II-&#167;1.10.53)</a> is called to determine the preferred size.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="37037"><b>Parameters:
+</b></a><dd><a name="37038"><code>cols
+- </code></a><a name="37039">the number of columns
+</a>
+
+<dt><a name="37040"><b>Returns:
+</b></a><dd><a name="37041">the preferred dimensions needed to display the text field with the 
+specified number of columns.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setEchoCharacter">
+<a name="21939"><h3>setEchoCharacter
+</h3></a>
+<a name="21941"><code>public void setEchoCharacter(char &#32;c)
+</code></a>
+<dl>
+<dd><a name="21943">Sets the echo character for this text field. Any character that the user types 
+in the text field is echoed in this text field as the echo character.
+<pre>
+</pre></a>
+
+<dd><a name="37064">An echo character is useful for fields where the user input shouldn't be 
+echoed to the screen such as in the case of a text field for typing in a password.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="21945"><b>Parameters:
+</b></a><dd><a name="21947"><code>c
+- </code></a><a name="21949">the echo character for this text field
+</a>
+
+<dt><a name="21951"><b>See Also:
+</b></a><dd><a name="21961">echoCharIsSet &#32;<a href="java.awt.TextField.html#21739">(II-&#167;1.40.6)</a><br>
+getEchoChar &#32;<a href="java.awt.TextField.html#21787">(II-&#167;1.40.8)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="46715">In Java 1.0, the AWT does not send mouse or focus events to a text area. In Java 
+1.1, the AWT sends the text area all mouse, keyboard, and focus events that occur 
+over it.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.TextComponent.html">Prev</a>  <a href="java.awt.Toolkit.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

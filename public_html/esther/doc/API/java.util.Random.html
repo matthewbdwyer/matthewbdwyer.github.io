@@ -1,0 +1,160 @@
+<html><head><title>Class Random</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.Properties.html">Prev</a>  <a href="java.util.Stack.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="2994"><h1>	&#167;3.7 Class Random</h1></a>
+<pre>public &#32;class &#32;java.util.<strong>Random
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Random</strong>();	<a href="java.util.Random.html#28597">&#167;3.7.1</a>
+    public <strong>Random</strong>(long &#32;seed);	<a href="java.util.Random.html#3102">&#167;3.7.2</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public double <strong>nextDouble</strong>();	<a href="java.util.Random.html#3132">&#167;3.7.3</a>
+    public float <strong>nextFloat</strong>();	<a href="java.util.Random.html#27551">&#167;3.7.4</a>
+    public double <strong>nextGaussian</strong>();	<a href="java.util.Random.html#3168">&#167;3.7.5</a>
+    public int <strong>nextInt</strong>();	<a href="java.util.Random.html#3186">&#167;3.7.6</a>
+    public long <strong>nextLong</strong>();	<a href="java.util.Random.html#3204">&#167;3.7.7</a>
+    public void <strong>setSeed</strong>(long &#32;seed);	<a href="java.util.Random.html#27596">&#167;3.7.8</a>
+}
+</pre><a name="31103">An instance of this class is used to generate a stream of pseudo-random numbers. The 
+class uses a 48-bit seed, which is modified using a linear congruential formula. See 
+Donald Knuth, <em>The Art of Computer Programming, Volume 2</em>, Section 3.2.1. 
+</a><p><a name="31113">If two instances of Random are created with the same seed, and the same sequence of 
+method calls is made for each, they will generate and return identical sequences of numbers. 
+</a><p><a name="31117">Many applications will find the random method <a href="java.lang.Math.html#5610">(I-&#167;1.10.26)</a> in class Math simpler to use.
+</a><p>
+<hr>
+<a name="28593"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Random">
+<a name="28597"><h3>Random
+</h3></a>
+<a name="3092"><code>public Random()
+</code></a>
+<dl>
+<dd><a name="3094">Creates a new random number generator. Its seed is initialized to a value 
+based on the current time <a href="java.lang.System.html#10810">(I-&#167;1.18.5)</a>.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="Random">
+<a name="3102"><h3>Random
+</h3></a>
+<a name="3104"><code>public Random(long &#32;seed)
+</code></a>
+<dl>
+<dd><a name="3106">Creates a new random number generator using a single long seed.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3108"><b>Parameters:
+</b></a><dd><a name="3110"><code>seed
+- </code></a><a name="3112">the initial seed
+</a>
+
+<dt><a name="3114"><b>See Also:
+</b></a><dd><a name="3120">setSeed &#32;<a href="java.util.Random.html#27596">(I-&#167;3.7.8)</a>.
+</a>
+</dl></dl>
+<hr>
+<a name="3122"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="nextDouble">
+<a name="3132"><h3>nextDouble
+</h3></a>
+<a name="3134"><code>public double nextDouble()
+</code></a>
+<dl><dl>
+<dt><a name="27545"><b>Returns:
+</b></a><dd><a name="27546">the next pseudorandom, uniformally distributed double value 
+between 0.0 and 1.0 from this random number generator's sequence.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextFloat">
+<a name="27551"><h3>nextFloat
+</h3></a>
+<a name="27552"><code>public float nextFloat()
+</code></a>
+<dl><dl>
+<dt><a name="3156"><b>Returns:
+</b></a><dd><a name="27564">the next pseudorandom, uniformally distributed float value 
+between 0.0 and 1.0 from this random number generator's sequence.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextGaussian">
+<a name="3168"><h3>nextGaussian
+</h3></a>
+<a name="3170"><code>public double nextGaussian()
+</code></a>
+<dl><dl>
+<dt><a name="3174"><b>Returns:
+</b></a><dd><a name="3176">the next pseudorandom, Gaussian ("normally") distributed double 
+value with mean 0.0 and standard deviation 1.0 from this random 
+number generator's sequence.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextInt">
+<a name="3186"><h3>nextInt
+</h3></a>
+<a name="3188"><code>public int nextInt()
+</code></a>
+<dl><dl>
+<dt><a name="3192"><b>Returns:
+</b></a><dd><a name="3194">the next pseudorandom, uniformally distributed int value from this 
+random number generator's sequence.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextLong">
+<a name="3204"><h3>nextLong
+</h3></a>
+<a name="3206"><code>public long nextLong()
+</code></a>
+<dl><dl>
+<dt><a name="27590"><b>Returns:
+</b></a><dd><a name="27591">the nextpseudorandom, uniformally distributed long value from this 
+random number generator's sequence.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setSeed">
+<a name="27596"><h3>setSeed
+</h3></a>
+<a name="3224"><code>public void setSeed(long &#32;seed)
+</code></a>
+<dl>
+<dd><a name="3226">Sets the seed of this random number generator using a single long seed.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3228"><b>Parameters:
+</b></a><dd><a name="3230"><code>seed
+- </code></a><a name="3232">the initial seed
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.Properties.html">Prev</a>  <a href="java.util.Stack.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

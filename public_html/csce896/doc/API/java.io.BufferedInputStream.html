@@ -1,0 +1,393 @@
+<html><head><title>Class BufferedInputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="Package-java.io.html">Prev</a>  <a href="java.io.BufferedOutputStream.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="210"><h1>	&#167;2.1 Class BufferedInputStream</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>BufferedInputStream
+</strong>    extends &#32;java.io.<strong>FilterInputStream</strong> &#32;<a href="java.io.FilterInputStream.html#4538">(I-&#167;2.11)</a>
+{
+       // Fields
+ &#32; &#32;protected byte <strong>buf</strong>[];	<a href="java.io.BufferedInputStream.html#318">&#167;2.1.1</a>
+    protected int <strong>count</strong>;	<a href="java.io.BufferedInputStream.html#330">&#167;2.1.2</a>
+    protected int <strong>marklimit</strong>;	<a href="java.io.BufferedInputStream.html#342">&#167;2.1.3</a>
+    protected int <strong>markpos</strong>;	<a href="java.io.BufferedInputStream.html#354">&#167;2.1.4</a>
+    protected int <strong>pos</strong>;	<a href="java.io.BufferedInputStream.html#366">&#167;2.1.5</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>BufferedInputStream</strong>(InputStream &#32;in);	<a href="java.io.BufferedInputStream.html#382">&#167;2.1.6</a>
+    public <strong>BufferedInputStream</strong>(InputStream &#32;in, int size);	<a href="java.io.BufferedInputStream.html#400">&#167;2.1.7</a>
+ &#32; &#32;public int <strong>available</strong>();	<a href="java.io.BufferedInputStream.html#426">&#167;2.1.8</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>mark</strong>(int &#32;readlimit);	<a href="java.io.BufferedInputStream.html#454">&#167;2.1.9</a>
+    public boolean <strong>markSupported</strong>();	<a href="java.io.BufferedInputStream.html#482">&#167;2.1.10</a>
+    public int <strong>read</strong>();	<a href="java.io.BufferedInputStream.html#508">&#167;2.1.11</a>
+    public int <strong>read</strong>(byte &#32;b[], int &#32;off, int &#32;len);	<a href="java.io.BufferedInputStream.html#544">&#167;2.1.12</a>
+    public void <strong>reset</strong>();	<a href="java.io.BufferedInputStream.html#596">&#167;2.1.13</a>
+    public long <strong>skip</strong>(long &#32;n);	<a href="java.io.BufferedInputStream.html#630">&#167;2.1.14</a>
+}
+</pre><a name="308">The class implements a buffered input stream. By setting up a such an input stream, an 
+application can read bytes from a stream without necessarily causing a call to the underlying system for each byte read. The data is read by blocks into a buffer; subsequent reads 
+can access the data directly from the buffer.
+</a><p>
+<hr>
+<a name="36501"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="buf">
+<a name="318"><h3>buf
+</h3></a>
+<a name="320"><code>protected byte buf[]
+</code></a>
+<dl>
+<dd><a name="322">The buffer where data is stored.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="count">
+<a name="330"><h3>count
+</h3></a>
+<a name="332"><code>protected int count
+</code></a>
+<dl>
+<dd><a name="334">The index one greater than the index of the last valid byte in the buffer.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="marklimit">
+<a name="342"><h3>marklimit
+</h3></a>
+<a name="344"><code>protected int marklimit
+</code></a>
+<dl>
+<dd><a name="346">The maximum read ahead allowed after a call to the mark method 
+<a href="java.io.BufferedInputStream.html#454">(I-&#167;2.1.9)</a> before subsequent calls to the reset method <a href="java.io.BufferedInputStream.html#596">(I-&#167;2.1.13)</a> fail.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="markpos">
+<a name="354"><h3>markpos
+</h3></a>
+<a name="356"><code>protected int markpos
+</code></a>
+<dl>
+<dd><a name="358">The value of the pos field <a href="java.io.BufferedInputStream.html#366">(I-&#167;2.1.5)</a> at the time the last mark method 
+<a href="java.io.BufferedInputStream.html#454">(I-&#167;2.1.9)</a> was called. The value of this field is -1 if there is no current 
+mark.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="pos">
+<a name="366"><h3>pos
+</h3></a>
+<a name="368"><code>protected int pos
+</code></a>
+<dl>
+<dd><a name="370">The current position in the buffer. This is the index of the next character to 
+be read from the buf <a href="java.io.BufferedInputStream.html#318">(I-&#167;2.1.1)</a> array.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="374"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="BufferedInputStream">
+<a name="382"><h3>BufferedInputStream
+</h3></a>
+<a name="384"><code>public BufferedInputStream(InputStream &#32;in)
+</code></a>
+<dl>
+<dd><a name="386">Creates a new buffered input stream to read data from the specified input 
+stream with a default 512-byte buffer size.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="388"><b>Parameters:
+</b></a><dd><a name="390"><code>in
+- </code></a><a name="392">the underlying input stream
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="BufferedInputStream">
+<a name="400"><h3>BufferedInputStream
+</h3></a>
+<a name="402"><code>public BufferedInputStream(InputStream &#32;in, int &#32;size)
+</code></a>
+<dl>
+<dd><a name="404">Creates a new buffered input stream to read data from the specified input 
+stream with the specified buffer size.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="406"><b>Parameters:
+</b></a><dd><a name="408"><code>in
+- </code></a><a name="410">the underlying input stream
+</a>
+<dd><a name="412"><code>size
+- </code></a><a name="414">the buffer size
+</a>
+</dl></dl>
+<hr>
+<a name="416"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="available">
+<a name="426"><h3>available
+</h3></a>
+<a name="428"><code>public int available()
+</code></a>
+<a name="430"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="432">Determines the number of bytes that can be read from this input stream 
+without blocking.
+<pre>
+</pre></a>
+
+<dd><a name="36522">The available method of BufferedInputStream returns the sum of the the number of bytes remaining to be read in the buffer (<img src="javaac1.gif">) and the result 
+of calling the available method of the underlying input stream <a href="java.io.FilterInputStream.html#4628">(I-&#167;2.11.1)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="434"><b>Returns:
+</b></a><dd><a name="26505">the number of bytes that can be read from this input stream without 
+blocking.
+</a>
+
+<dt><a name="40760"><b>Throws
+</b></a><dd><a name="40764">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="40765">If an I/O error occurs.
+</a>
+
+<dt><a name="438"><b>Overrides:
+</b></a><dd><a name="444">available in class FilterInputStream &#32;<a href="java.io.FilterInputStream.html#4666">(I-&#167;2.11.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="mark">
+<a name="454"><h3>mark
+</h3></a>
+<a name="456"><code>public void mark(int &#32;readlimit)
+</code></a>
+<dl>
+<dd><a name="458">Marks the current position in this input stream. A subsequent call to the 
+reset method <a href="java.io.BufferedInputStream.html#596">(I-&#167;2.1.13)</a> repositions the stream at the last marked position 
+so that subsequent reads re-read the same bytes. 
+<pre>
+</pre></a>
+
+<dd><a name="26275">The readlimit arguments tells the input stream to allow that many bytes to 
+be read before the mark position gets invalidated.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="460"><b>Parameters:
+</b></a><dd><a name="462"><code>readlimit
+- </code></a><a name="464">the maximum limit of bytes that can be read before the mark 
+position becomes invalid.
+</a>
+
+<dt><a name="466"><b>Overrides:
+</b></a><dd><a name="472">mark in class FilterInputStream &#32;<a href="java.io.FilterInputStream.html#4728">(I-&#167;2.11.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="markSupported">
+<a name="482"><h3>markSupported
+</h3></a>
+<a name="484"><code>public boolean markSupported()
+</code></a>
+<dl>
+<dd><a name="486">Determines if this input stream supports the mark <a href="java.io.InputStream.html#5458">(I-&#167;2.13.4)</a> and reset 
+<a href="java.io.InputStream.html#5602">(I-&#167;2.13.9)</a> methods. The markSupported method of Buffered-Input-Stream 
+returns true.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="488"><b>Returns:
+</b></a><dd><a name="490">a boolean indicating if this stream type supports the mark and reset 
+methods.
+</a>
+
+<dt><a name="492"><b>Overrides:
+</b></a><dd><a name="498">markSupported in class FilterInputStream &#32;<a href="java.io.FilterInputStream.html#4756">(I-&#167;2.11.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="508"><h3>read
+</h3></a>
+<a name="510"><code>public int read()
+</code></a>
+<a name="512"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="37877">Reads the next byte of data from this buffered input stream. The value byte 
+is returned as an int in the range 0 to 255. If no byte is available because the 
+end of the stream has been reached, the value -1 is returned. This method 
+blocks until either input data is available, the end of the stream is detected, 
+or an exception is thrown.
+<pre>
+</pre></a>
+
+<dd><a name="36692">The read method of BufferedInputStream returns the next byte of data from its 
+buffer if the buffer isn't empty. Otherwise, it refills the buffer from the 
+underlying input stream <a href="java.io.FilterInputStream.html#4628">(I-&#167;2.11.1)</a> and returns the next character, if the 
+underlying stream hasn't returned an end-of-stream indicator.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="516"><b>Returns:
+</b></a><dd><a name="518">the next byte of data, or -1 if the end of the stream is reached.
+</a>
+
+<dt><a name="520"><b>Throws
+</b></a><dd><a name="526">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="528">If an I/O error occurs.
+</a>
+
+<dt><a name="530"><b>Overrides:
+</b></a><dd><a name="536">read in class FilterInputStream &#32;<a href="java.io.FilterInputStream.html#4782">(I-&#167;2.11.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="544"><h3>read
+</h3></a>
+<a name="546"><code>public int read(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<a name="548"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="26549">Reads up to len bytes of data from this buffered input stream into an array 
+of bytes. This method blocks until some input is available.
+<pre>
+</pre></a>
+
+<dd><a name="36706">The read method of BufferedInputStream copies bytes from its buffer into the 
+array argument if the buffer isn't empty. Otherwise, it refills the buffer 
+from the underlying input stream <a href="java.io.FilterInputStream.html#4628">(I-&#167;2.11.1)</a> and unless the underlying 
+stream returns an end-of-stream indicator, it fills the array argument with 
+characters from the newly filled buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="552"><b>Parameters:
+</b></a><dd><a name="554"><code>b
+- </code></a><a name="556">the buffer into which the data is read
+</a>
+<dd><a name="558"><code>off
+- </code></a><a name="560">the start offset of the data
+</a>
+<dd><a name="562"><code>len
+- </code></a><a name="564">the maximum number of bytes read
+</a>
+
+<dt><a name="566"><b>Returns:
+</b></a><dd><a name="568">the total number of bytes read into the buffer, or -1 is there is no more 
+data because the end of the stream has been reached.
+</a>
+
+<dt><a name="570"><b>Throws
+</b></a><dd><a name="576">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="578">If an I/O error occurs.
+</a>
+
+<dt><a name="580"><b>Overrides:
+</b></a><dd><a name="586">read in class FilterInputStream &#32;<a href="java.io.FilterInputStream.html#4860">(I-&#167;2.11.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="reset">
+<a name="596"><h3>reset
+</h3></a>
+<a name="598"><code>public void reset()
+</code></a>
+<a name="600"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="602">Repositions this stream to the position at the time the mark method 
+<a href="java.io.BufferedInputStream.html#454">(I-&#167;2.1.9)</a> was last called on this input stream
+<pre>
+</pre></a>
+<dl>
+<dt><a name="604"><b>Throws
+</b></a><dd><a name="610">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="612">If this stream has not been marked or if the mark has been invalidated.
+</a>
+
+<dt><a name="614"><b>Overrides:
+</b></a><dd><a name="620">reset in class FilterInputStream &#32;<a href="java.io.FilterInputStream.html#4912">(I-&#167;2.11.10)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="skip">
+<a name="630"><h3>skip
+</h3></a>
+<a name="632"><code>public long skip(long &#32;n)
+</code></a>
+<a name="634"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="41329">Skips over and discards n bytes of data from the input stream. The skip 
+method may, for a variety of reasons, end up skipping over some smaller 
+number of bytes, possibly zero. The actual number of bytes skipped is 
+returned.
+<pre>
+</pre></a>
+
+<dd><a name="41365">The skip method of BufferedInputStream compares the number of bytes it has 
+available in its buffer, <img src="javaac2.gif">, where <img src="javaab3.gif">, with n. If <img src="javaab4.gif">, then 
+the pos field is incremented by n. Otherwise, the pos field is incremented to 
+have the value count, and the remaining bytes (if any) are skipped by calling the underlying input stream's <a href="java.io.FilterInputStream.html#4628">(I-&#167;2.11.1)</a> skip method with the argument <img src="javaab5.gif">.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="41369"><b>Parameters:
+</b></a><dd><a name="640"><code>n
+- </code></a><a name="642">the number of bytes to be skipped
+</a>
+
+<dt><a name="644"><b>Returns:
+</b></a><dd><a name="646">the actual number of bytes skipped.
+</a>
+
+<dt><a name="648"><b>Throws
+</b></a><dd><a name="654">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="656">If an I/O error occurs.
+</a>
+
+<dt><a name="658"><b>Overrides:
+</b></a><dd><a name="664">skip in class FilterInputStream &#32;<a href="java.io.FilterInputStream.html#4936">(I-&#167;2.11.11)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="Package-java.io.html">Prev</a>  <a href="java.io.BufferedOutputStream.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

@@ -1,0 +1,62 @@
+<title>CSE 990 Homework 1</title>
+
+<h1>CSE 990 : HW #1</h1>
+
+<h2>Purpose</h2>
+The goal of this requirement is for you to become more familiar
+with writing BIR models and using Bogor to "reason" about model 
+behavior.  In this assignment, you will create a model, encode
+several correctness properties and then attempt to determine
+whether those properties are satisfied.  
+<p>
+
+<h2>Problem</h2>
+You are to define a model of multi-way barrier synchronization with
+information exchange.  
+<p>
+A barrier synchronization serves to block
+each thread in a group of client threads until all threads have "contact"ed
+the barrier at which point all clients involved in the current round of
+synchronization are "release"d.
+Your model should allow "M" client threads to be created the
+and barrier should allow "N" client threads to synchronize,
+where "M" and "N" are parameter that can be varied across runs.
+You may use 
+any mechanism you choose to implement the notions of "contact" 
+and "release".
+<p>
+A barrier with information exchange is one where each client "deliver"s
+data to the barrier when it arrives.  The barrier then performs a
+calculation with all of the data items when all clients have arrived
+and delivers to the clients a value (usually calculated from the supplied
+client data).  You will have each client deliver an integer value to the barrier;
+the barrier will deliver the maximum value back to the
+clients.  You may use any mechanism you choose to implement the 
+notion of "deliver".
+<p>
+Your model should use client and barrier threads that repeatedly 
+execute rounds of barrier synchronizations.
+<p>
+Your model should satisfy the following correctness properties:
+<ul>
+<li> No more than "N" threads may be blocked at the barrier at any time
+<li> The barrier does not release a participant until all have arrived
+</ul>
+You are free to use any mechanism to check the validity of those
+properties (e.g., including adding additional state variables to
+monitor program behavior).
+
+<h2>Requirements</h2>
+You are to submit a working BIR model for the multi-way barrier with
+information exchange.  You must include a short writeup describing
+your model and how you checked the desired correctness properties.
+If you find errors in the BIR model as you explore it's behavior with
+Bogor, please describe those as well.
+
+<h2>Due Date</h2>
+This assignment is due on Sept. 30, 2004 at 5pm Central Standard Time.
+I will setup an electronic submission system.
+<p>
+
+</td></tr>
+</table>

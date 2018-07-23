@@ -1,0 +1,393 @@
+<html><head><title>Interface DataOutput</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.DataInput.html">Prev</a>  <a href="java.io.FilenameFilter.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="33299"><h1>	&#167;2.25 Interface DataOutput</h1></a>
+<pre>public &#32;interface &#32;java.io.<strong>DataOutput
+</strong>{
+ &#32; &#32; &#32; &#32;// Methods
+    public abstract void <strong>write</strong>(byte &#32;b[]);	<a href="java.io.DataOutput.html#33372">&#167;2.25.1</a>
+    public abstract void <strong>write</strong>(byte &#32;b[], int &#32;off, int &#32;len)	<a href="java.io.DataOutput.html#33388">&#167;2.25.2</a>
+    public abstract void <strong>write</strong>(int &#32;b);	<a href="java.io.DataOutput.html#33408">&#167;2.25.3</a>
+    public abstract void <strong>writeBoolean</strong>(boolean &#32;v);	<a href="java.io.DataOutput.html#33424">&#167;2.25.4</a>
+    public abstract void <strong>writeByte</strong>(int &#32;v);	<a href="java.io.DataOutput.html#33434">&#167;2.25.5</a>
+    public abstract void <strong>writeBytes</strong>(String &#32;s);	<a href="java.io.DataOutput.html#33444">&#167;2.25.6</a>
+    public abstract void <strong>writeChar</strong>(int &#32;v);	<a href="java.io.DataOutput.html#36311">&#167;2.25.7</a>
+    public abstract void <strong>writeChars</strong>(String &#32;s);	<a href="java.io.DataOutput.html#33464">&#167;2.25.8</a>
+    public abstract void <strong>writeDouble</strong>(double &#32;v);	<a href="java.io.DataOutput.html#33474">&#167;2.25.9</a>
+    public abstract void <strong>writeFloat</strong>(float &#32;v);	<a href="java.io.DataOutput.html#33484">&#167;2.25.10</a>
+    public abstract void <strong>writeInt</strong>(int &#32;v);	<a href="java.io.DataOutput.html#33494">&#167;2.25.11</a>
+    public abstract void <strong>writeLong</strong>(long &#32;v);	<a href="java.io.DataOutput.html#33504">&#167;2.25.12</a>
+    public abstract void <strong>writeShort</strong>(int &#32;v);	<a href="java.io.DataOutput.html#33514">&#167;2.25.13</a>
+    public abstract void <strong>writeUTF</strong>(String &#32;str);	<a href="java.io.DataOutput.html#33524">&#167;2.25.14</a>
+}
+</pre><a name="34831">The data output interface is implemented by streams that can write primitive Java data 
+types to an output stream in a machine-independent manner.
+</a><p><dl><dt><a name="33360"><b>
+</b></a><dt><a name="34834"><b>See Also:
+</b></a><dd><a name="33364">DataOutputStream &#32;<a href="java.io.DataOutputStream.html#2268">(I-&#167;2.6)</a><br>
+DataInput &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>.
+</a>
+</dl>
+<hr>
+<a name="33368"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="write">
+<a name="33372"><h3>write
+</h3></a>
+<a name="33373"><code>public abstract void write(byte &#32;b[])
+</code></a>
+<a name="33374"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34839">Writes b.length bytes from the specified byte array to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34840"><b>Parameters:
+</b></a><dd><a name="34841"><code>b
+- </code></a><a name="34842">the data 
+</a>
+
+<dt><a name="33379"><b>Throws
+</b></a><dd><a name="33383">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="33384">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="33388"><h3>write
+</h3></a>
+<a name="33389"><code>public abstract void write(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<a name="33390"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34859">Writes len bytes from the specified byte array starting at offset off to this 
+output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34860"><b>Parameters:
+</b></a><dd><a name="34861"><code>b
+- </code></a><a name="34862">the data 
+</a>
+<dd><a name="34863"><code>off
+- </code></a><a name="34864">the start offset in the data
+</a>
+<dd><a name="34865"><code>len
+- </code></a><a name="34866">the number of bytes to write
+</a>
+
+<dt><a name="33399"><b>Throws
+</b></a><dd><a name="33403">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="33404">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="33408"><h3>write
+</h3></a>
+<a name="33409"><code>public abstract void write(int &#32;b)
+</code></a>
+<a name="33410"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34871">Writes the specified byte to this data output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34872"><b>Parameters:
+</b></a><dd><a name="34873"><code>b
+- </code></a><a name="34874">the byte to be written
+</a>
+
+<dt><a name="33415"><b>Throws
+</b></a><dd><a name="33419">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="33420">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeBoolean">
+<a name="33424"><h3>writeBoolean
+</h3></a>
+<a name="33425"><code>public abstract void writeBoolean(boolean &#32;v)
+</code></a>
+<a name="34877"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34878">Writes a boolean value to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34879"><b>Parameters:
+</b></a><dd><a name="34880"><code>v
+- </code></a><a name="33430">the boolean to be written
+</a>
+
+<dt><a name="36288"><b>Throws
+</b></a><dd><a name="36292">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36293">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeByte">
+<a name="33434"><h3>writeByte
+</h3></a>
+<a name="33435"><code>public abstract void writeByte(int &#32;v)
+</code></a>
+<a name="33436"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34889">Writes an 8-bit value to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33438"><b>Parameters:
+</b></a><dd><a name="33439"><code>v
+- </code></a><a name="33440">the byte value to be written
+</a>
+
+<dt><a name="36295"><b>Throws
+</b></a><dd><a name="36299">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36300">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeBytes">
+<a name="33444"><h3>writeBytes
+</h3></a>
+<a name="33445"><code>public abstract void writeBytes(String &#32;s)
+</code></a>
+<a name="33446"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34941">Writes out the string to this output stream as a sequence of bytes.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33448"><b>Parameters:
+</b></a><dd><a name="33449"><code>s
+- </code></a><a name="33450">the string of bytes to be written
+</a>
+
+<dt><a name="36315"><b>Throws
+</b></a><dd><a name="36319">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36320">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeChar">
+<a name="36311"><h3>writeChar
+</h3></a>
+<a name="36312"><code>public abstract void writeChar(int &#32;v)
+</code></a>
+<a name="36313"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34894">Writes a char value to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33458"><b>Parameters:
+</b></a><dd><a name="33459"><code>v
+- </code></a><a name="33460">the char value to be written
+</a>
+
+<dt><a name="36322"><b>Throws
+</b></a><dd><a name="36326">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36327">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeChars">
+<a name="33464"><h3>writeChars
+</h3></a>
+<a name="33465"><code>public abstract void writeChars(String &#32;s)
+</code></a>
+<a name="33466"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34955">Writes a string to this output stream as a sequence of characters.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33468"><b>Parameters:
+</b></a><dd><a name="33469"><code>s
+- </code></a><a name="33470">the string value to be written
+</a>
+
+<dt><a name="36329"><b>Throws
+</b></a><dd><a name="36333">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36334">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeDouble">
+<a name="33474"><h3>writeDouble
+</h3></a>
+<a name="33475"><code>public abstract void writeDouble(double &#32;v)
+</code></a>
+<a name="33476"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34898">Writes a double value to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33478"><b>Parameters:
+</b></a><dd><a name="33479"><code>v
+- </code></a><a name="33480">the double value to be written
+</a>
+
+<dt><a name="36336"><b>Throws
+</b></a><dd><a name="36340">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36341">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeFloat">
+<a name="33484"><h3>writeFloat
+</h3></a>
+<a name="33485"><code>public abstract void writeFloat(float &#32;v)
+</code></a>
+<a name="33486"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34914">Writes a float value to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33488"><b>Parameters:
+</b></a><dd><a name="33489"><code>v
+- </code></a><a name="33490">the float value to be written
+</a>
+
+<dt><a name="36343"><b>Throws
+</b></a><dd><a name="36347">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36348">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeInt">
+<a name="33494"><h3>writeInt
+</h3></a>
+<a name="33495"><code>public abstract void writeInt(int &#32;v)
+</code></a>
+<a name="34908"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34912">Writes an int value to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34910"><b>Parameters:
+</b></a><dd><a name="33499"><code>v
+- </code></a><a name="33500">the int value to be written
+</a>
+
+<dt><a name="36350"><b>Throws
+</b></a><dd><a name="36354">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36355">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeLong">
+<a name="33504"><h3>writeLong
+</h3></a>
+<a name="33505"><code>public abstract void writeLong(long &#32;v)
+</code></a>
+<a name="33506"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34920">Writes a long value to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33508"><b>Parameters:
+</b></a><dd><a name="33509"><code>v
+- </code></a><a name="33510">the long value to be written
+</a>
+
+<dt><a name="36357"><b>Throws
+</b></a><dd><a name="36361">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36362">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeShort">
+<a name="33514"><h3>writeShort
+</h3></a>
+<a name="33515"><code>public abstract void writeShort(int &#32;v)
+</code></a>
+<a name="33516"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34924">Writes a 16-bit value to this output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33518"><b>Parameters:
+</b></a><dd><a name="33519"><code>v
+- </code></a><a name="33520">the short value to be written
+</a>
+
+<dt><a name="36364"><b>Throws
+</b></a><dd><a name="36368">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36369">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeUTF">
+<a name="33524"><h3>writeUTF
+</h3></a>
+<a name="33525"><code>public abstract void writeUTF(String &#32;str)
+</code></a>
+<a name="33526"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34931">Writes out a Unicode string that by encoded it using modified UTF-8 format. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33528"><b>Parameters:
+</b></a><dd><a name="33529"><code>str
+- </code></a><a name="33530">the string value to be written
+</a>
+
+<dt><a name="36372"><b>Throws
+</b></a><dd><a name="36376">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="36377">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.DataInput.html">Prev</a>  <a href="java.io.FilenameFilter.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

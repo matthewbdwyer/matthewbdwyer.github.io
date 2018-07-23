@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>VM Spec  </title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+<table width=100%><tr>
+<td><a href="VMSpecTOC.doc.html">Contents</a> | <a href="Instructions2.doc12.html">Prev</a> | <a href="Instructions2.doc14.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+
+<hr><br>
+ 
+
+<a name="saload">
+</a><h2>saload</h2>
+<a name="saload.Operation"></a>
+<b>Operation</h3></b>
+<a name="70033"></a>
+Load <code>short</code> from array<p><Table Border="1">
+<tr><td><a name="70032"></a>
+ <i>saload</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="saload.Forms"></a>
+<b>Forms</h3></b>
+<a name="70034"></a>
+<i>saload</i> = 53 (0x35)<p>
+<a name="saload.Stack"></a>
+<b>Stack</h3></b>
+<a name="70035"></a>
+..., <i>arrayref</i>, <i>index</i> <img src="chars/arrwdbrt.gif"> ..., <i>value</i><p>
+<a name="saload.Description"></a>
+<b>Description</h3></b>
+<a name="70036"></a>
+The <i>arrayref</i> must be of type <code>reference</code> and must refer to an array whose components are of type <code>short</code>. The <i>index</i> must be of type <code>int</code>. Both <i>arrayref</i> and <i>index</i> are popped from the operand stack. The <code>short</code> <i>value</i> in the component of the array at <i>index</i> is retrieved, sign-extended to an <code>int</code> <i>value</i>, and pushed onto the top of the operand stack.<p>
+<a name="saload.Runtime"></a>
+<b>Runtime Exceptions</h3></b>
+<a name="70038"></a>
+If <i>arrayref</i><em> </em>is <code>null</code>, <i>saload</i> throws a <code>NullPointerException</code>. <p>
+<a name="70039"></a>
+Otherwise, if <i>index</i> is not within the bounds of the array referenced by <i>arrayref</i>, the <i>saload</i> instruction throws an <code>ArrayIndexOutOfBoundsException</code>.<p>
+
+<a name="sastore"></a>
+<hr><h2>sastore</h2>
+<a name="sastore.Operation"></a>
+<b>Operation</h3></b>
+<a name="70049"></a>
+<p><Table Border="1">
+<tr><td><a name="70048"></a>
+ <i>sastore</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br>Store into <code>short</code> array<p>
+<a name="sastore.Forms"></a>
+<b>Forms</h3></b>
+<a name="70050"></a>
+<i>sastore</i> = 86 (0x56)<p>
+<a name="sastore.Stack"></a>
+<b>Stack</h3></b>
+<a name="70051"></a>
+..., <i>array</i>, <i>index</i>, <i>value</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="sastore.Description"></a>
+<b>Description</h3></b>
+<a name="70052"></a>
+The <i>arrayref</i> must be of type <code>reference</code> and must refer to an array whose components are of type <code>short</code>. Both <i>index</i> and <i>value</i> must be of type <code>int</code>. The <i>arrayref</i>, <i>index</i>, and <i>value</i> are popped from the operand stack. The <code>int</code> <i>value</i> is truncated to a <code>short</code> and stored as the component of the array indexed by <i>index</i>. <p>
+<a name="sastore.Runtime"></a>
+<b>Runtime Exceptions</h3></b>
+<a name="70054"></a>
+If <i>arrayref</i><em> </em>is <code>null</code>, <i>sastore</i> throws a <code>NullPointerException</code>. <p>
+<a name="70055"></a>
+Otherwise, if <i>index</i> is not within the bounds of the array referenced by <i>arrayref</i>, the <i>sastore</i> instruction throws an <code>ArrayIndexOutOfBoundsException</code>.<p>
+
+<a name="sipush"></a>
+<hr><h2>sipush</h2>
+<a name="sipush.Operation"></a>
+<b>Operation</h3></b>
+<a name="70066"></a>
+Push <code>short</code><p><Table Border="1">
+<tr><td><a name="70061"></a>
+ <i>sipush</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="70063"></a>
+ <i>byte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="70065"></a>
+ <i>byte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="sipush.Forms"></a>
+<b>Forms</h3></b>
+<a name="70067"></a>
+<i>sipush</i> = 17 (0x11)<p>
+<a name="sipush.Stack"></a>
+<b>Stack</h3></b>
+<a name="70068"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>value</i><p>
+<a name="sipush.Description"></a>
+<b>Description</h3></b>
+<a name="70069"></a>
+The immediate unsigned <i>byte1</i> and <i>byte2</i> values are assembled into an intermediate <code>short</code> where the value of the short is (<i>byte1</i> << 8) | <i>byte2</i>. The intermediate value is then sign-extended to an <code>int</code>, and the resulting <i>value</i> is pushed onto the operand stack.<p>
+
+<a name="swap"></a>
+<hr><h2>swap</h2>
+<a name="swap.Operation"></a>
+<b>Operation</h3></b>
+<a name="70084"></a>
+Swap top two operand stack words<p><Table Border="1">
+<tr><td><a name="70083"></a>
+ <i>swap</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="swap.Forms"></a>
+<b>Forms</h3></b>
+<a name="70085"></a>
+<i>swap</i> = 95 (0x5f)<p>
+<a name="swap.Stack"></a>
+<b>Stack</h3></b>
+<a name="70086"></a>
+...,<em> </em><i>word2</i>, <i>word1</i> <img src="chars/arrwdbrt.gif"> ...<em>, </em><i>word1</i>, <i>word2</i><p>
+<a name="swap.Description"></a>
+<b>Description</h3></b>
+<a name="70087"></a>
+The top two words on the operand stack are swapped.<p>
+<a name="70088"></a>
+The <i>swap</i> instruction must not be used unless each of <i>word2</i> and <i>word1</i> is a word that contains a 32-bit data type.<p>
+<a name="swap.Notes"></a>
+<b>Notes</h3></b>
+<a name="70089"></a>
+Except for restrictions preserving the integrity of 64-bit data types, the <i>swap</i> instruction operates on untyped words, ignoring the types of the data they contain.<p>
+
+
+<hr>
+<!-- This inserts footnotes--><p>
+<a href="VMSpecTOC.doc.html">Contents</a> | <a href="Instructions2.doc12.html">Prev</a> | <a href="Instructions2.doc14.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size = -1>Java Virtual Machine Specification <br>
+<!--(HTML generated by dkramer on March 31, 1997)-->
+<!--
+(HTML generated by dkramer on March 25, 1997)-->
+<br>
+<i><a href="copyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:jvm@java.sun.com">jvm@java.sun.com</a>
+</font>
+</body></html>

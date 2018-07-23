@@ -1,0 +1,304 @@
+<html><head><title>Class DirectColorModel</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.CropImageFilter.html">Prev</a>  <a href="java.awt.image.FilteredImageSource.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="997158"><h1>	&#167;2.3 Class DirectColorModel</h1></a>
+<pre>public &#32;class &#32;java.awt.image.<strong>DirectColorModel
+</strong>    extends &#32;java.awt.image.<strong>ColorModel</strong> &#32;<a href="java.awt.image.ColorModel.html#996814">(II-&#167;2.1)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>DirectColorModel</strong>(int &#32;bits, int &#32;rmask, int gmask, 	<a href="java.awt.image.DirectColorModel.html#997222">&#167;2.3.1</a>
+    &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;bmask);
+    public <strong>DirectColorModel</strong>(int &#32;bits, int &#32;rmask, int gmask,	<a href="java.awt.image.DirectColorModel.html#997242">&#167;2.3.2</a>
+&#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;bmask, int &#32;amask);
+
+ &#32; &#32; &#32; &#32;// Methods
+    public final int <strong>getAlpha</strong>(int &#32;pixel);	<a href="java.awt.image.DirectColorModel.html#997264">&#167;2.3.3</a>
+    public final int <strong>getAlphaMask</strong>();	<a href="java.awt.image.DirectColorModel.html#997275">&#167;2.3.4</a>
+    public final int <strong>getBlue</strong>(int &#32;pixel);	<a href="java.awt.image.DirectColorModel.html#997282">&#167;2.3.5</a>
+    public final int <strong>getBlueMask</strong>();	<a href="java.awt.image.DirectColorModel.html#997298">&#167;2.3.6</a>
+    public final int <strong>getGreen</strong>(int &#32;pixel);	<a href="java.awt.image.DirectColorModel.html#997305">&#167;2.3.7</a>
+    public final int <strong>getGreenMask</strong>();	<a href="java.awt.image.DirectColorModel.html#997321">&#167;2.3.8</a>
+    public final int <strong>getRed</strong>(int &#32;pixel);	<a href="java.awt.image.DirectColorModel.html#997328">&#167;2.3.9</a>
+    public final int <strong>getRedMask</strong>();	<a href="java.awt.image.DirectColorModel.html#997344">&#167;2.3.10</a>
+    public final int <strong>getRGB</strong>(int &#32;pixel);	<a href="java.awt.image.DirectColorModel.html#997351">&#167;2.3.11</a>
+}
+</pre><a name="997215">The direct color model is a color model <a href="java.awt.image.ColorModel.html#996814">(II-&#167;2.1)</a> which specifies a translation from pixel 
+values to alpha, red, green, and blue components using the actual bits of the pixel value. 
+This color model is similar to an X11 TrueColor visual.
+</a><p><a name="997216">Many of the methods in this class are final: the underlying native graphics code makes 
+assumptions about the layout and operation of this class and those assumptions are 
+reflected in the implementations of the methods here that are marked final. Applications 
+can subclass this class for other reaons, but they cannot override or modify the behavior of 
+the final methods.
+</a><p>
+<hr>
+<a name="997218"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="DirectColorModel">
+<a name="997222"><h3>DirectColorModel
+</h3></a>
+<a name="997223"><code>public DirectColorModel(int &#32;bits, int &#32;rmask,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;gmask, int &#32;bmask)
+</code></a>
+<dl>
+<dd><a name="997224">Constructs a direct color model in which each of the given masks specify 
+which bits in the pixels contain the red, green, and blue components.
+<pre>
+</pre></a>
+
+<dd><a name="997225">Pixels described by this color model all have alpha components of 255, 
+indicating that they are fully opaque.
+<pre>
+</pre></a>
+
+<dd><a name="997229">Each of the bit masks must be contigous, and must be smaller than <img src="javaak1.gif">.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997230"><b>Parameters:
+</b></a><dd><a name="997231"><code>bits
+- </code></a><a name="997232">the number of bits in a pixel
+</a>
+<dd><a name="997233"><code>rmask
+- </code></a><a name="997234">the bits in the pixel representing the red component
+</a>
+<dd><a name="997235"><code>gmask
+- </code></a><a name="997236">the bits in the pixel representing the green component
+</a>
+<dd><a name="997237"><code>bmask
+- </code></a><a name="997238">the bits in the pixel representing the blue component
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="DirectColorModel">
+<a name="997242"><h3>DirectColorModel
+</h3></a>
+<a name="997243"><code>public<br>
+DirectColorModel(int &#32;bits, int &#32;rmask, int &#32;gmask,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;bmask, int &#32;amask)
+</code></a>
+<dl>
+<dd><a name="997244">Constructs a direct color model in which each of the given masks specify 
+which bits in the pixels contain the alpha, red, green, and blue components.
+<pre>
+</pre></a>
+
+<dd><a name="997248">Each of the bit masks must be contigous, and must be smaller than <img src="javaak2.gif">.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997249"><b>Parameters:
+</b></a><dd><a name="997250"><code>bits
+- </code></a><a name="997251">the number of bits in a pixel
+</a>
+<dd><a name="997252"><code>rmask
+- </code></a><a name="997253">the bits in the pixel representing the red component
+</a>
+<dd><a name="997254"><code>gmask
+- </code></a><a name="997255">the bits in the pixel representing the green component
+</a>
+<dd><a name="997256"><code>bmask
+- </code></a><a name="997257">the bits in the pixel representing the blue component
+</a>
+<dd><a name="997258"><code>amask
+- </code></a><a name="997259">the bits in the pixel representing the alpha component
+</a>
+</dl></dl>
+<hr>
+<a name="997260"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="getAlpha">
+<a name="997264"><h3>getAlpha
+</h3></a>
+<a name="997265"><code>public final int getAlpha(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="997266">Determines the alpha transparency of a pixel in this color model. The 
+value ranges from 0 to 255. The value 0 indicates that the pixel is completely transparent. The value 255 indicates that the pixel is opaque.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997267"><b>Parameters:
+</b></a><dd><a name="997268"><code>pixel
+- </code></a><a name="997269">a pixel value
+</a>
+
+<dt><a name="997270"><b>Returns:
+</b></a><dd><a name="997271">the alpha transparency represented by the pixel value.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getAlphaMask">
+<a name="997275"><h3>getAlphaMask
+</h3></a>
+<a name="997276"><code>public final int getAlphaMask()
+</code></a>
+<dl><dl>
+<dt><a name="997277"><b>Returns:
+</b></a><dd><a name="997278">a mask indicating which bits in a pixel contain the alpha transparency 
+component in this color model.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getBlue">
+<a name="997282"><h3>getBlue
+</h3></a>
+<a name="997283"><code>public final int getBlue(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="997284">Determines the blue component of a pixel in this color model. The value 
+ranges from 0 to 255. The value 0 indicates no contribution from this primary color. The value 255 indicates the maximum intensity of this color 
+component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997285"><b>Parameters:
+</b></a><dd><a name="997286"><code>pixel
+- </code></a><a name="997287">a pixel value
+</a>
+
+<dt><a name="997288"><b>Returns:
+</b></a><dd><a name="997289">the blue color component represented by the pixel value.
+</a>
+
+<dt><a name="997290"><b>Overrides:
+</b></a><dd><a name="997294">getBlue in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996904">(II-&#167;2.1.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getBlueMask">
+<a name="997298"><h3>getBlueMask
+</h3></a>
+<a name="997299"><code>public final int getBlueMask()
+</code></a>
+<dl><dl>
+<dt><a name="997300"><b>Returns:
+</b></a><dd><a name="997301">a mask indicating which bits in a pixel contain the blue color component in this color model..
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getGreen">
+<a name="997305"><h3>getGreen
+</h3></a>
+<a name="997306"><code>public final int getGreen(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="997307">Determines the green component of a pixel in this color model. The value 
+ranges from 0 to 255. The value 0 indicates no contribution from this primary color. The value 255 indicates the maximum intensity of this color 
+component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997308"><b>Parameters:
+</b></a><dd><a name="997309"><code>pixel
+- </code></a><a name="997310">a pixel value
+</a>
+
+<dt><a name="997311"><b>Returns:
+</b></a><dd><a name="997312">the blue color component represented by the pixel value.
+</a>
+
+<dt><a name="997313"><b>Overrides:
+</b></a><dd><a name="997317">getGreen in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996915">(II-&#167;2.1.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getGreenMask">
+<a name="997321"><h3>getGreenMask
+</h3></a>
+<a name="997322"><code>public final int getGreenMask()
+</code></a>
+<dl><dl>
+<dt><a name="997323"><b>Returns:
+</b></a><dd><a name="997324">a mask indicating which bits in a pixel contain the green color component in this color model.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getRed">
+<a name="997328"><h3>getRed
+</h3></a>
+<a name="997329"><code>public final int getRed(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="997330">Determines the red component of a pixel in this color model. The value 
+ranges from 0 to 255. The value 0 indicates no contribution from this primary color. The value 255 indicates the maximum intensity of this color 
+component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997331"><b>Parameters:
+</b></a><dd><a name="997332"><code>pixel
+- </code></a><a name="997333">a pixel value
+</a>
+
+<dt><a name="997334"><b>Returns:
+</b></a><dd><a name="997335">the red color component represented by the pixel value.
+</a>
+
+<dt><a name="997336"><b>Overrides:
+</b></a><dd><a name="997340">getRed in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996933">(II-&#167;2.1.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getRedMask">
+<a name="997344"><h3>getRedMask
+</h3></a>
+<a name="997345"><code>public final int getRedMask()
+</code></a>
+<dl><dl>
+<dt><a name="997346"><b>Returns:
+</b></a><dd><a name="997347">a mask indicating which bits in a pixel contain the red color component in this color model.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getRGB">
+<a name="997351"><h3>getRGB
+</h3></a>
+<a name="997352"><code>public final int getRGB(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="1000682">Calculates a single integer representing the alpha, red, green, and blue 
+components of the pixel in this color model. The components are each 
+scaled to be a value between 0 and 255 . The integer returned is the number such that bits &#32;24-31 are the alpha value, 16-23 are the red value, bits 
+8-15 are the green value, and bits 0-7 are the blue value. 
+<pre>
+</pre></a>
+
+<dd><a name="997357">This format is the pixel format of the default RGB colormodel <a href="java.awt.image.ColorModel.html#1001364">(II-&#167;2.1.9)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997358"><b>Parameters:
+</b></a><dd><a name="997359"><code>pixel
+- </code></a><a name="997360">a pixel value
+</a>
+
+<dt><a name="997361"><b>Returns:
+</b></a><dd><a name="997362">an integer representing this color in RGB format.
+</a>
+
+<dt><a name="997363"><b>Overrides:
+</b></a><dd><a name="997367">getRGB in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996944">(II-&#167;2.1.8)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.CropImageFilter.html">Prev</a>  <a href="java.awt.image.FilteredImageSource.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

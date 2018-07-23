@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Compiler Construction</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<meta name="Microsoft Border" content="tlb, default">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<table border="1" cellspacing="0" bordercolor="#0066FF" width="100%" id="AutoNumber3" bgcolor="#FFFFFF" style="border-collapse: collapse" cellpadding="0">
+  <tr>
+    <td width="100%" bgcolor="#B3B3FF" bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF">
+    <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler Construction</font></b></td>
+  </tr>
+  </table>
+
+<p><span style="position: absolute; top: 50; left: 11">
+
+<img border="0" src="../images/12x12spacer.gif" width="12" height="12"></span> </p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+
+<!--#include file="sidebar.shtml" -->
+
+<td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+<p><font face="Arial" size="5"><b>Optimization</b></font></p>
+<p><b><font face="Arial" size="2">Exercises on Optimization</font></b></p>
+<ol>
+  <li><font face="Arial" size="2">Consider the following two proposals for new 
+  peephole patterns. Are they sound? How would those that are sound look as 
+  C-code? Would they ever be relevant? </font>
+  <ul>
+    <li><font face="Arial" size="2">Replace </font>
+    <pre><font face="Fixedsys">ldc_string &quot;...&quot;
+dup
+ifnull L</font></pre>
+    <p><font face="Arial" size="2">by </font></p>
+    <pre><font face="Fixedsys">ldc_string &quot;...&quot;</font></pre>
+    </li>
+    <li><font face="Arial" size="2">Replace </font>
+    <pre><font face="Fixedsys">return
+&lt;&lt;anything&gt;&gt;</font></pre>
+    <p><font face="Arial" size="2">by </font></p>
+    <pre><font face="Fixedsys">return
+</font></pre>
+    </li>
+  </ul>
+  </li>
+  <li><font size="2" face="Arial">Study and discuss the contents of the WIG 
+  run-time library </font><font size="2">
+  <font face="Fixedsys"><a href="resources/runwig.c">runwig.c</a></font></font><font size="2" face="Arial">.
+  <br>
+&nbsp;</font></li>
+  <li><font face="Arial" size="2">Discuss general aspects of WIG code 
+  generation. <br>
+&nbsp;</font></li>
+  <li><font face="Arial" size="2">What kinds of optimizations would be relevant 
+  for WIG programs? <br>
+&nbsp;</font></li>
+  <li><font face="Arial" size="2">Study the code for optimizing JOOS programs.</font></li>
+</ol>
+<p><font face="Arial" size="2"><b>Materials</b></font></p>
+<p><font face="Arial" size="2">
+<a href="resources/Optimization.pdf">Optimization</a><br>
+<a href="resources/Optimization.zip">Optimization WebLecture</a></font><p>
+
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d">
+</head>
+
+<body>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d, %Y" startspan -->
+September 10, 2003</font></font></p>
+
+</td></tr><!--msnavigation--></table></body></html>

@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+  
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+
+  
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+  
+
+
+  
+  <title>Compiler Construction</title>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+
+  
+  <meta name="Microsoft Border" content="tlb">
+</head>
+
+
+<body>
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td>
+      
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+
+        <tbody>
+
+
+          <tr>
+
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+
+            </td>
+
+
+          </tr>
+
+
+        
+        </tbody>
+      
+      </table>
+
+
+      
+      <p><span style="position: absolute; top: 50px; left: 11px;">
+      <img src="../images/12x12spacer.gif" border="0" height="12" width="12"></span> </p>
+
+
+      </td>
+
+
+    </tr>
+
+
+<!--msnavigation-->
+  
+  </tbody>
+</table>
+
+
+<table border="0" cellpadding="0" cellspacing="0" dir="ltr" width="100%">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+<!--#include file="sidebar.shtml" -->
+      <td valign="top" width="24"></td>
+
+
+<!--msnavigation--><td valign="top">
+      
+      <p><b><font face="Arial" size="5">Introduction</font></b></p>
+
+
+      
+      <h1><font face="Arial" size="2">Introductory
+exercises</font></h1>
+
+
+      
+      <ol>
+
+
+        <li><font face="Arial" size="2">Pick
+your favorite Java program: list three aspects of it's implementation
+that can easily be known at compile time, list three aspects that
+cannot easily be known at compile time.
+&nbsp;<br>
+
+
+&nbsp;</font></li>
+
+
+        <li><font face="Arial" size="2">Read
+the </font><font size="2"><code> <font face="Arial">man</font></code><font face="Arial">-pages for </font> <code><font face="Arial">gcc</font></code></font><font face="Arial" size="2"> and discuss the different
+compiler optimizations that are offered. What must the compiler know to
+use them safely? How could it find out? <br>
+
+
+&nbsp;</font></li>
+
+
+        <li><font face="Arial" size="2">Get
+the course project tools setup. &nbsp;&nbsp;</font><font face="Arial" size="2">See <a href="../gettingstarted.shtml">these notes</a> to get started with the <a href="../staticjava.shtml">StaticJava</a> compiler.</font></li>
+
+
+      
+      </ol>
+
+
+      
+      <h1><font face="Arial" size="2">Reading</font></h1>
+
+
+      
+      <ul>
+
+
+        <li>The first 2 chapters of the text provide motivation and a comprehensive overview of modern compilers.  Start reading through <font face="Arial" size="2">Dragon,
+Chapter 1, 2.</font></li>
+
+
+      
+      </ul>
+
+
+      
+      <p><b><font face="Arial" size="2">Materials</font></b></p>
+
+
+      
+      <p><font face="Arial" size="2">
+      <a href="resources/01-course-overview-UNL.pdf">Introductory
+Slides</a></font></p>
+
+
+      
+
+      </td>
+
+
+    </tr>
+
+
+<!--msnavigation-->
+  
+  </tbody>
+</table>
+
+
+<br>
+
+
+<br>
+
+
+</body>
+</html>

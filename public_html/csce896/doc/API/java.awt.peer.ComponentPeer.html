@@ -1,0 +1,550 @@
+<html><head><title>Interface ComponentPeer</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.peer.html">This Package</a>  <a href="java.awt.peer.ChoicePeer.html">Prev</a>  <a href="java.awt.peer.ContainerPeer.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="485"><h1>	&#167;3.6 Interface ComponentPeer</h1></a>
+<a name="26136">The component peer interface specifies the methods that all implementations of Abstract 
+Window Toolkit components must define.
+</a><p><pre>public &#32;interface &#32;java.awt.peer.<strong>ComponentPeer
+</strong>{
+ &#32; &#32; &#32; &#32;// Methods
+    public abstract int	<a href="java.awt.peer.ComponentPeer.html#653">&#167;3.6.1</a>
+        <strong>checkImage</strong>(Image &#32;img, int &#32;w, int &#32;h, ImageObserver &#32;o);
+    public abstract Image	<a href="java.awt.peer.ComponentPeer.html#665">&#167;3.6.2</a>
+        <strong>createImage</strong>(ImageProducer &#32;producer);
+    public abstract Image 	<a href="java.awt.peer.ComponentPeer.html#675">&#167;3.6.3</a>
+        <strong>createImage</strong>(int &#32;width, int &#32;height);
+    public abstract void <strong>disable</strong>();	<a href="java.awt.peer.ComponentPeer.html#687">&#167;3.6.4</a>
+    public abstract void <strong>dispose</strong>();	<a href="java.awt.peer.ComponentPeer.html#699">&#167;3.6.5</a>
+    public abstract void <strong>enable</strong>();	<a href="java.awt.peer.ComponentPeer.html#711">&#167;3.6.6</a>
+    public abstract ColorModel <strong>getColorModel</strong>();	<a href="java.awt.peer.ComponentPeer.html#723">&#167;3.6.7</a>
+    public abstract FontMetrics <strong>getFontMetrics</strong>(Font &#32;font);	<a href="java.awt.peer.ComponentPeer.html#735">&#167;3.6.8</a>
+    public abstract Graphics <strong>getGraphics</strong>();	<a href="java.awt.peer.ComponentPeer.html#747">&#167;3.6.9</a>
+    public abstract Toolkit <strong>getToolkit</strong>();	<a href="java.awt.peer.ComponentPeer.html#759">&#167;3.6.10</a>
+    public abstract boolean <strong>handleEvent</strong>(Event &#32;e);	<a href="java.awt.peer.ComponentPeer.html#771">&#167;3.6.11</a>
+    public abstract void <strong>hide</strong>();	<a href="java.awt.peer.ComponentPeer.html#783">&#167;3.6.12</a>
+    public abstract Dimension <strong>minimumSize</strong>();	<a href="java.awt.peer.ComponentPeer.html#795">&#167;3.6.13</a>
+    public abstract void <strong>nextFocus</strong>();	<a href="java.awt.peer.ComponentPeer.html#807">&#167;3.6.14</a>
+    public abstract void <strong>paint</strong>(Graphics &#32;g);	<a href="java.awt.peer.ComponentPeer.html#819">&#167;3.6.15</a>
+    public abstract Dimension <strong>preferredSize</strong>();	<a href="java.awt.peer.ComponentPeer.html#28523">&#167;3.6.16</a>
+    public abstract boolean	<a href="java.awt.peer.ComponentPeer.html#843">&#167;3.6.17</a>
+        <strong>prepareImage</strong>(Image &#32;img, int &#32;w, int &#32;h, ImageObserver &#32;o);
+    public abstract void <strong>print</strong>(Graphics &#32;g);	<a href="java.awt.peer.ComponentPeer.html#855">&#167;3.6.18</a>
+    public abstract void <strong>repaint</strong>(long &#32;tm, int &#32;x, int &#32;y,	<a href="java.awt.peer.ComponentPeer.html#867">&#167;3.6.19</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;width, int &#32;height);
+    public abstract void <strong>requestFocus</strong>();	<a href="java.awt.peer.ComponentPeer.html#26704">&#167;3.6.21</a>
+    public abstract void <strong>reshape</strong>(int &#32;x, int &#32;y, int width, 	<a href="java.awt.peer.ComponentPeer.html#26716">&#167;3.6.22</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;height);
+    public abstract void <strong>setBackground</strong>(Color &#32;c);	<a href="java.awt.peer.ComponentPeer.html#903">&#167;3.6.23</a>
+    public abstract void <strong>setFont</strong>(Font &#32;f);	<a href="java.awt.peer.ComponentPeer.html#915">&#167;3.6.24</a>
+    public abstract void <strong>setForeground</strong>(Color &#32;c);	<a href="java.awt.peer.ComponentPeer.html#927">&#167;3.6.25</a>
+    public abstract void <strong>show</strong>();	<a href="java.awt.peer.ComponentPeer.html#939">&#167;3.6.26</a>
+}
+</pre>
+<hr>
+<a name="643"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="checkImage">
+<a name="653"><h3>checkImage
+</h3></a>
+<a name="655"><code>public abstract int<br>
+checkImage(Image &#32;img, int &#32;w, int &#32;h, ImageObserver &#32;o)
+</code></a>
+<dl>
+<dd><a name="26337">Returns the status of the construction of a scaled screen representation of 
+the specified image. 
+<pre>
+</pre></a>
+
+<dd><a name="26338">This method does not cause the image to begin loading. An application 
+must use the prepareImage <a href="java.awt.peer.ComponentPeer.html#843">(II-&#167;3.6.17)</a> method to force the loading of an 
+image.
+<pre>
+</pre></a>
+
+<dd><a name="26352">Information on the flags returned by this method can be found 
+in &#32;<a href="java.awt.image.ImageObserver.html#999757">(II-&#167;2.11)</a>. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26353"><b>Parameters:
+</b></a><dd><a name="26354"><code>img
+- </code></a><a name="26355">the Image whose status is being checked
+</a>
+<dd><a name="26356"><code>w
+- </code></a><a name="26357">the width of the scaled version to check the status of
+</a>
+<dd><a name="26358"><code>h
+- </code></a><a name="26359">the height of the scaled version to check the status of
+</a>
+<dd><a name="26360"><code>o
+- </code></a><a name="26361">the ImageObserver object to be notified as the image is being 
+prepared
+</a>
+
+<dt><a name="26367"><b>Returns:
+</b></a><dd><a name="26368">the bitwise inclusive OR of the ImageObserver <a href="java.awt.image.ImageObserver.html#999757">(II-&#167;2.11)</a> flags for the 
+data that is currently available
+</a>
+
+<dt><a name="26733"><b>See Also:
+</b></a><dd><a name="26737">prepareImage &#32;<a href="java.awt.peer.ComponentPeer.html#843">(II-&#167;3.6.17)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createImage">
+<a name="665"><h3>createImage
+</h3></a>
+<a name="667"><code>public abstract Image createImage(ImageProducer &#32;producer)
+</code></a>
+<dl>
+<dd><a name="26627">Creates an image from the specified image producer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26628"><b>Parameters:
+</b></a><dd><a name="26629"><code>producer
+- </code></a><a name="26630">the image producer
+</a>
+
+<dt><a name="26631"><b>Returns:
+</b></a><dd><a name="26632">the image produced
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="createImage">
+<a name="675"><h3>createImage
+</h3></a>
+<a name="677"><code>public abstract Image createImage(int &#32;width, int &#32;height)
+</code></a>
+<dl>
+<dd><a name="26640">Creates an off-screen drawable image to be used for double buffering.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26641"><b>Parameters:
+</b></a><dd><a name="26642"><code>width
+- </code></a><a name="26643">the specified width
+</a>
+<dd><a name="26644"><code>height
+- </code></a><a name="26645">the specified height
+</a>
+
+<dt><a name="26646"><b>Returns:
+</b></a><dd><a name="26647">an off-screen drawable image.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="disable">
+<a name="687"><h3>disable
+</h3></a>
+<a name="689"><code>public abstract void disable()
+</code></a>
+<dl>
+<dd><a name="26389">Makes the component insensitive to user input.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26739"><b>See Also:
+</b></a><dd><a name="26743">enable &#32;<a href="java.awt.peer.ComponentPeer.html#711">(II-&#167;3.6.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="dispose">
+<a name="699"><h3>dispose
+</h3></a>
+<a name="701"><code>public abstract void dispose()
+</code></a>
+<dl>
+<dd><a name="27144">Disposes of the component peer and any resources used by it
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="enable">
+<a name="711"><h3>enable
+</h3></a>
+<a name="713"><code>public abstract void enable()
+</code></a>
+<dl>
+<dd><a name="26395">Makes the component sensitive to user input. This is the default.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26750"><b>See Also:
+</b></a><dd><a name="26754">disable &#32;<a href="java.awt.peer.ComponentPeer.html#687">(II-&#167;3.6.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getColorModel">
+<a name="723"><h3>getColorModel
+</h3></a>
+<a name="725"><code>public abstract ColorModel getColorModel()
+</code></a>
+<dl>
+<dd><a name="26652">Gets the component's color model <a href="java.awt.image.ColorModel.html#996814">(II-&#167;2.1)</a>, which is an abstract class that 
+encapsulates how to translate between pixel values of an image and its red, 
+green, blue, and alpha components.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26680"><b>Returns:
+</b></a><dd><a name="26681">the color model of the component.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getFontMetrics">
+<a name="735"><h3>getFontMetrics
+</h3></a>
+<a name="737"><code>public abstract FontMetrics getFontMetrics(Font &#32;font)
+</code></a>
+<dl><dl>
+<dt><a name="26415"><b>Parameters:
+</b></a><dd><a name="26416"><code>font
+- </code></a><a name="26417">the font
+</a>
+
+<dt><a name="26418"><b>Returns:
+</b></a><dd><a name="26419">the font metrics for this component; if the component is not currently 
+on the screen, this method returns null.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getGraphics">
+<a name="747"><h3>getGraphics
+</h3></a>
+<a name="749"><code>public abstract Graphics getGraphics()
+</code></a>
+<dl><dl>
+<dt><a name="26421"><b>Returns:
+</b></a><dd><a name="26422">the graphics context of this component; this method returns null if the 
+component is not currently on the screen.
+</a>
+
+<dt><a name="26764"><b>See Also:
+</b></a><dd><a name="26768">paint &#32;<a href="java.awt.peer.ComponentPeer.html#819">(II-&#167;3.6.15)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getToolkit">
+<a name="759"><h3>getToolkit
+</h3></a>
+<a name="761"><code>public abstract Toolkit getToolkit()
+</code></a>
+<dl><dl>
+<dt><a name="26432"><b>Returns:
+</b></a><dd><a name="26433">the toolkit that component peer is part of.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="handleEvent">
+<a name="771"><h3>handleEvent
+</h3></a>
+<a name="773"><code>public abstract boolean handleEvent(Event &#32;e)
+</code></a>
+<dl>
+<dd><a name="26435">This method is called when any event occurs inside the component.
+<pre>
+</pre></a>
+
+<dd><a name="26436">The method must return true to indicate that it has successfully handled the 
+action; or false if the event that triggered the action should be passed up to 
+the component's containing object. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26462"><b>Parameters:
+</b></a><dd><a name="26463"><code>e
+- </code></a><a name="26464">the event
+</a>
+
+<dt><a name="26465"><b>Returns:
+</b></a><dd><a name="26466">false if the event is to be given to the component's containing object; 
+true if the event has been handled and no further action is necessary.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hide">
+<a name="783"><h3>hide
+</h3></a>
+<a name="785"><code>public abstract void hide()
+</code></a>
+<dl>
+<dd><a name="26468">Hides the component. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26775"><b>See Also:
+</b></a><dd><a name="26779">show &#32;<a href="java.awt.peer.ComponentPeer.html#939">(II-&#167;3.6.26)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="minimumSize">
+<a name="795"><h3>minimumSize
+</h3></a>
+<a name="797"><code>public abstract Dimension minimumSize()
+</code></a>
+<dl><dl>
+<dt><a name="26484"><b>Returns:
+</b></a><dd><a name="26485">the minimum size of this component.
+</a>
+
+<dt><a name="26781"><b>See Also:
+</b></a><dd><a name="26785">preferredSize &#32;<a href="java.awt.peer.ComponentPeer.html#28523">(II-&#167;3.6.16)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextFocus">
+<a name="807"><h3>nextFocus
+</h3></a>
+<a name="809"><code>public abstract void nextFocus()
+</code></a>
+<dl>
+<dd><a name="26487">Moves the focus to the next component.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="paint">
+<a name="819"><h3>paint
+</h3></a>
+<a name="821"><code>public abstract void paint(Graphics &#32;g)
+</code></a>
+<dl>
+<dd><a name="26493">Paints the component. 
+<pre>
+</pre></a>
+
+<dd><a name="26501">The <img src="javaal1.gif"> coordinate of the graphics context is the top-left corner of the 
+components. The clipping region of the graphics context is the rectangle of 
+the component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26502"><b>Parameters:
+</b></a><dd><a name="26503"><code>g
+- </code></a><a name="26504">the graphics context to use for painting.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="preferredSize">
+<a name="28523"><h3>preferredSize
+</h3></a>
+<a name="28524"><code>public abstract Dimension preferredSize()
+</code></a>
+<dl><dl>
+<dt><a name="28525"><b>Returns:
+</b></a><dd><a name="26521">the preferred size of this component.
+</a>
+
+<dt><a name="26787"><b>See Also:
+</b></a><dd><a name="26791">minimumSize &#32;<a href="java.awt.peer.ComponentPeer.html#795">(II-&#167;3.6.13)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="prepareImage">
+<a name="843"><h3>prepareImage
+</h3></a>
+<a name="845"><code>public abstract boolean<br>
+prepareImage(Image &#32;img, int &#32;w, int &#32;h, ImageObserver &#32;o)
+</code></a>
+<dl>
+<dd><a name="26527">Prepares an image for rendering on this component at the specified width 
+and height. 
+<pre>
+</pre></a>
+
+<dd><a name="26528">The image data is downloaded asynchronously in another thread and an 
+appropriately scaled screen representation of the image is generated.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26529"><b>Parameters:
+</b></a><dd><a name="26530"><code>image
+- </code></a><a name="26531">the Image to prepare a screen representation for
+</a>
+<dd><a name="26532"><code>width
+- </code></a><a name="26533">the width of the desired screen representation
+</a>
+<dd><a name="26534"><code>height
+- </code></a><a name="26535">the height of the desired screen representation
+</a>
+<dd><a name="26536"><code>observer
+- </code></a><a name="26537">the ImageObserver object to be notified as the image is being 
+prepared
+</a>
+
+<dt><a name="26538"><b>Returns:
+</b></a><dd><a name="26539">true if the image has already been fully prepared; false otherwise.
+</a>
+
+<dt><a name="26795"><b>See Also:
+</b></a><dd><a name="26799">ImageObserver &#32;<a href="java.awt.image.ImageObserver.html#999757">(II-&#167;2.11)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="print">
+<a name="855"><h3>print
+</h3></a>
+<a name="857"><code>public abstract void print(Graphics &#32;g)
+</code></a>
+<dl>
+<dd><a name="26541">Prints this component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26550"><b>The <img src="javaal2.gif"> coordinate of the graphics context is the top-left corner of the 
+components. The clipping region of the graphics context is the rectangle of 
+the component
+</b></a>
+<dt><a name="26801"><b>See Also:
+</b></a><dd><a name="26805">paint &#32;<a href="java.awt.peer.ComponentPeer.html#819">(II-&#167;3.6.15)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="repaint">
+<a name="867"><h3>repaint
+</h3></a>
+<a name="869"><code>public abstract void repaint(long &#32;tm, int &#32;x, int &#32;y,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;width, int &#32;height)
+</code></a>
+<dl>
+<dd><a name="26552">Repaints the specified rectangle of the component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26557"><b>Parameters:
+</b></a><dd><a name="26558"><code>x
+- </code></a><a name="26559">the x coordinate
+</a>
+<dd><a name="26560"><code>y
+- </code></a><a name="26561">the y coordinate
+</a>
+<dd><a name="26562"><code>width
+- </code></a><a name="26563">the width
+</a>
+<dd><a name="26564"><code>height
+- </code></a></dl></dl>
+
+<META NAME="keywords" CONTENT="the height">
+<a name="879"><h3>the height
+</h3></a>
+<dl><dl>
+<dt><a name="26809"><b>See Also:
+</b></a><dd><a name="26813">paint &#32;<a href="java.awt.peer.ComponentPeer.html#819">(II-&#167;3.6.15)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="requestFocus">
+<a name="26704"><h3>requestFocus
+</h3></a>
+<a name="26711"><code>public abstract void requestFocus()
+</code></a>
+<dl>
+<dd><a name="26719">Requests the input focus. 
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="reshape">
+<a name="26716"><h3>reshape
+</h3></a>
+<a name="26717"><code>public abstract void<br>
+reshape(int &#32;x, int &#32;y, int &#32;width, int &#32;height)
+</code></a>
+<dl>
+<dd><a name="26566">Reshapes the component to the specified bounding rectangle.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26567"><b>Parameters:
+</b></a><dd><a name="26568"><code>x
+- </code></a><a name="26569">the x coordinate
+</a>
+<dd><a name="26570"><code>y
+- </code></a><a name="26571">the y coordinate
+</a>
+<dd><a name="26572"><code>width
+- </code></a><a name="26573">the width of the component
+</a>
+<dd><a name="26574"><code>height
+- </code></a><a name="26575">the height of the component
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setBackground">
+<a name="903"><h3>setBackground
+</h3></a>
+<a name="905"><code>public abstract void setBackground(Color &#32;c)
+</code></a>
+<dl>
+<dd><a name="26577">Sets the background color for the component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26582"><b>Parameters:
+</b></a><dd><a name="26583"><code>c
+- </code></a><a name="26584">the color
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setFont">
+<a name="915"><h3>setFont
+</h3></a>
+<a name="917"><code>public abstract void setFont(Font &#32;f)
+</code></a>
+<dl>
+<dd><a name="26590">Sets the font of the component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26595"><b>Parameters:
+</b></a><dd><a name="26596"><code>f
+- </code></a><a name="26597">the font
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setForeground">
+<a name="927"><h3>setForeground
+</h3></a>
+<a name="929"><code>public abstract void setForeground(Color &#32;c)
+</code></a>
+<dl>
+<dd><a name="26599">Sets the foreground color for the component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26604"><b>Parameters:
+</b></a><dd><a name="26605"><code>c
+- </code></a><a name="26606">the color
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="show">
+<a name="939"><h3>show
+</h3></a>
+<a name="941"><code>public abstract void show()
+</code></a>
+<dl>
+<dd><a name="26609">Shows the component: if the component had been made invisible by a call 
+to the hide method &#32;<a href="java.awt.peer.ComponentPeer.html#783">(II-&#167;3.6.12)</a>, make the component visible again.
+<pre>
+</pre></a>
+</dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.peer.html">This Package</a>  <a href="java.awt.peer.ChoicePeer.html">Prev</a>  <a href="java.awt.peer.ContainerPeer.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

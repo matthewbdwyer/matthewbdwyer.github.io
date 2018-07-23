@@ -1,0 +1,611 @@
+<html><head><title>Class Container</title></head>
+<!--Last split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Component.html">Prev</a>  <a href="java.awt.Dialog.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="6019"><h1>	&#167;1.11 Class Container</h1></a>
+<pre>public &#32;abstract &#32;class &#32;java.awt.<strong>Container
+</strong>    extends &#32;java.awt.<strong>Component</strong> &#32;<a href="java.awt.Component.html#3219">(II-&#167;1.10)</a>
+{
+ &#32; &#32; &#32; &#32;// Methods
+    public Component <strong>add</strong>(Component &#32;comp);	<a href="java.awt.Container.html#6183">&#167;1.11.1</a>
+    public Component <strong>add</strong>(Component &#32;comp, int &#32;pos);	<a href="java.awt.Container.html#6205">&#167;1.11.2</a>
+ &#32; &#32;public Component <strong>add</strong>(String &#32;name, Component &#32;comp);	<a href="java.awt.Container.html#6239">&#167;1.11.3</a>
+    public void <strong>addNotify</strong>();	<a href="java.awt.Container.html#6279">&#167;1.11.4</a>
+    public int <strong>countComponents</strong>();	<a href="java.awt.Container.html#6309">&#167;1.11.5</a>
+    public void <strong>deliverEvent</strong>(Event &#32;evt);	<a href="java.awt.Container.html#6335">&#167;1.11.6</a>
+    public Component <strong>getComponent</strong>(int &#32;n);	<a href="java.awt.Container.html#6375">&#167;1.11.7</a>
+    public Component[] <strong>getComponents</strong>();	<a href="java.awt.Container.html#6409">&#167;1.11.8</a>
+    public LayoutManager <strong>getLayout</strong>();	<a href="java.awt.Container.html#6427">&#167;1.11.9</a>
+    public Insets <strong>insets</strong>();	<a href="java.awt.Container.html#6457">&#167;1.11.10</a>
+    public void <strong>layout</strong>();	<a href="java.awt.Container.html#6483">&#167;1.11.11</a>
+    public void &#32;<strong>list</strong>(PrintStream &#32;out, int &#32;indent);	<a href="java.awt.Container.html#6513">&#167;1.11.12</a>
+    public Component <strong>locate</strong>(int &#32;x, int &#32;y);	<a href="java.awt.Container.html#6545">&#167;1.11.13</a>
+    public Dimension <strong>minimumSize</strong>();	<a href="java.awt.Container.html#6589">&#167;1.11.14</a>
+    public void <strong>paintComponents</strong>(Graphics &#32;g);	<a href="java.awt.Container.html#6623">&#167;1.11.15</a>
+    protected String <strong>paramString</strong>();	<a href="java.awt.Container.html#6655">&#167;1.11.16</a>
+    public Dimension <strong>preferredSize</strong>();	<a href="java.awt.Container.html#6681">&#167;1.11.17</a>
+    public void <strong>printComponents</strong>(Graphics &#32;g);	<a href="java.awt.Container.html#6715">&#167;1.11.18</a>
+    public void <strong>remove</strong>(Component &#32;comp);	<a href="java.awt.Container.html#6747">&#167;1.11.19</a>
+    public void <strong>removeAll</strong>();	<a href="java.awt.Container.html#6775">&#167;1.11.20</a>
+    public void <strong>removeNotify</strong>();	<a href="java.awt.Container.html#6801">&#167;1.11.21</a>
+    public void <strong>setLayout</strong>(LayoutManager &#32;mgr);	<a href="java.awt.Container.html#6831">&#167;1.11.22</a>
+    public void <strong>validate</strong>();	<a href="java.awt.Container.html#6863">&#167;1.11.23</a>
+}
+</pre><a name="29243">Container is the abstract superclass representing all components that can hold other components.
+</a><p><a name="29244">Each container may be associated with a LayoutManager instance <a href="java.awt.LayoutManager.html#51689">(II-&#167;1.43)</a> that determines 
+the position of each of the container's subcomponents.
+</a><p>
+<hr>
+<a name="6173"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="add">
+<a name="6183"><h3>add
+</h3></a>
+<a name="6185"><code>public Component add(Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="6187">Adds the specified component to the end of this container.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6189"><b>Parameters:
+</b></a><dd><a name="6191"><code>comp
+- </code></a><a name="6193">the component to be added
+</a>
+
+<dt><a name="6195"><b>Returns:
+</b></a><dd><a name="6197">the component argument.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="add">
+<a name="6205"><h3>add
+</h3></a>
+<a name="6207"><code>public Component add(Component &#32;comp, int &#32;pos)
+</code></a>
+<dl>
+<dd><a name="6209">Adds the specified component to this container at the given position.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6211"><b>Parameters:
+</b></a><dd><a name="6213"><code>comp
+- </code></a><a name="6215">the component to be added
+</a>
+<dd><a name="6217"><code>pos
+- </code></a><a name="6219">the position at which to insert the component; or -1 to insert at the 
+end
+</a>
+
+<dt><a name="6221"><b>Returns:
+</b></a><dd><a name="6223">the component argument.
+</a>
+
+<dt><a name="6225"><b>See Also:
+</b></a><dd><a name="6231">remove &#32;<a href="java.awt.Container.html#6747">(II-&#167;1.11.19)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="add">
+<a name="6239"><h3>add
+</h3></a>
+<a name="6241"><code>public Component add(String &#32;name, Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="6243">Adds the specified component to the end of this container. Also add the 
+component to the layout manager using the name specified.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6245"><b>Parameters:
+</b></a><dd><a name="6247"><code>name
+- </code></a><a name="6249">a tag understood by the layout manager 
+</a>
+<dd><a name="6251"><code>comp
+- </code></a><a name="6253">the component to be added
+</a>
+
+<dt><a name="6255"><b>Returns:
+</b></a><dd><a name="6257">the component argument.
+</a>
+
+<dt><a name="6259"><b>See Also:
+</b></a><dd><a name="6269">remove &#32;<a href="java.awt.Container.html#6747">(II-&#167;1.11.19)</a><br>
+LayoutManager &#32;<a href="java.awt.LayoutManager.html#51689">(II-&#167;1.43)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="addNotify">
+<a name="6279"><h3>addNotify
+</h3></a>
+<a name="6281"><code>public void addNotify()
+</code></a>
+<dl>
+<dd><a name="29288">Notifies this container to create a peer.
+<pre>
+</pre></a>
+
+<dd><a name="29289">The addNotify method of Container calls the addNotify method for each of the 
+components in this container. It then calls its superclass's addNotify method 
+<a href="java.awt.Component.html#3737">(II-&#167;1.10.2)</a>, to indicate that the container needs to be laid out again since 
+its size may have changed.
+<pre>
+</pre></a>
+
+<dd><a name="43785">Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6285"><b>Overrides:
+</b></a><dd><a name="6291">addNotify in class Component &#32;<a href="java.awt.Component.html#3737">(II-&#167;1.10.2)</a>.
+</a>
+
+<dt><a name="6293"><b>See Also:
+</b></a><dd><a name="6299">removeNotify &#32;<a href="java.awt.Container.html#6801">(II-&#167;1.11.21)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="countComponents">
+<a name="6309"><h3>countComponents
+</h3></a>
+<a name="6311"><code>public int countComponents()
+</code></a>
+<dl><dl>
+<dt><a name="6315"><b>Returns:
+</b></a><dd><a name="29316">the number of components in this container.
+</a>
+
+<dt><a name="6319"><b>See Also:
+</b></a><dd><a name="6325">getComponent &#32;<a href="java.awt.Container.html#6335">(II-&#167;1.11.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="deliverEvent">
+<a name="6335"><h3>deliverEvent
+</h3></a>
+<a name="6337"><code>public void deliverEvent(Event &#32;evt)
+</code></a>
+<dl>
+<dd><a name="6339">Delivers an event to this component or one of its subcomponents.
+<pre>
+</pre></a>
+
+<dd><a name="29325">The deliverEvent method of Container determines	 whether this event properly 
+belongs to one of its subcomponents. If so, it translates the event into the 
+subcomponent's coordinate system and delivers the event to it by calling 
+its deliverEvent method <a href="java.awt.Component.html#3925">(II-&#167;1.10.8)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="29339">If the event doesn't properly belong to one of the container's subcomponents, it calls this container's postEvent method <a href="java.awt.Component.html#5271">(II-&#167;1.10.52)</a> on the event.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6341"><b>Parameters:
+</b></a><dd><a name="6343"><code>evt
+- </code></a><a name="6345">the event
+</a>
+
+<dt><a name="6347"><b>Overrides:
+</b></a><dd><a name="6353">deliverEvent in class Component &#32;<a href="java.awt.Component.html#3925">(II-&#167;1.10.8)</a>.
+</a>
+
+<dt><a name="6355"><b>See Also:
+</b></a><dd><a name="6365">handleEvent in class &#32;Component &#32;<a href="java.awt.Component.html#4295">(II-&#167;1.10.22)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getComponent">
+<a name="6375"><h3>getComponent
+</h3></a>
+<a name="6377"><code>public Component getComponent(int &#32;n)
+</code></a>
+<dl><dl>
+<dt><a name="6381"><b>Parameters:
+</b></a><dd><a name="6383"><code>n
+- </code></a><a name="6385">the index of the component to get
+</a>
+
+<dt><a name="6387"><b>Returns:
+</b></a><dd><a name="6389">the nth component in this container.
+</a>
+
+<dt><a name="6391"><b>Throws
+</b></a><dd><a name="6397">ArrayIndexOutOfBoundsException &#32;<a href="java.lang.ArrayIndexOutOfBoundsException.html#43280">(I-&#167;1.25)</a>
+</a>
+<dd><a name="6399">If the nth value does not exist.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getComponents">
+<a name="6409"><h3>getComponents
+</h3></a>
+<a name="6411"><code>public Component[] getComponents()
+</code></a>
+<dl><dl>
+<dt><a name="6415"><b>Returns:
+</b></a><dd><a name="6417">an array of all the component in this container.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getLayout">
+<a name="6427"><h3>getLayout
+</h3></a>
+<a name="6429"><code>public LayoutManager getLayout()
+</code></a>
+<dl><dl>
+<dt><a name="6433"><b>Returns:
+</b></a><dd><a name="6435">the layout manager for this container.
+</a>
+
+<dt><a name="50211"><b>See Also:
+</b></a><dd><a name="50215">layout &#32;<a href="java.awt.Container.html#6483">(II-&#167;1.11.11)</a><br>
+setLayout &#32;<a href="java.awt.Container.html#6831">(II-&#167;1.11.22)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="insets">
+<a name="6457"><h3>insets
+</h3></a>
+<a name="6459"><code>public Insets insets()
+</code></a>
+<dl>
+<dd><a name="6461">Determines the insets of this container, which indicate the size of the container's border.
+<pre>
+</pre></a>
+
+<dd><a name="29421">A Frame, for example, has a top inset that corresponds to the height of the 
+frame's title bar.
+<pre>
+</pre></a>
+
+<dd><a name="29440">The insets method of Container calls the insets method <a href="java.awt.peer.ContainerPeer.html#985">(II-&#167;3.7.1)</a> of this container's peer, if the container has a peer. Otherwise it returns the inset new 
+Inset(0, 0, 0, 0), which indicates that the container has no border.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6463"><b>Returns:
+</b></a><dd><a name="6465">the insets of this container
+</a>
+
+<dt><a name="6467"><b>See Also:
+</b></a><dd><a name="6473">LayoutManager &#32;<a href="java.awt.LayoutManager.html#51689">(II-&#167;1.43)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="layout">
+<a name="6483"><h3>layout
+</h3></a>
+<a name="6485"><code>public void layout()
+</code></a>
+<dl>
+<dd><a name="6487">Lays out this container.
+<pre>
+</pre></a>
+
+<dd><a name="29454">The layout method of Container calls the layoutContainer method <a href="java.awt.LayoutManager.html#51737">(II-&#167;1.43.2)</a> 
+of the container's layout manager.
+<pre>
+</pre></a>
+
+<dd><a name="40569">Most applications do not call this method directly. This method is called 
+when a container calls its validate method <a href="java.awt.Container.html#6863">(II-&#167;1.11.23)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6489"><b>Overrides:
+</b></a><dd><a name="6495">layout in class Component &#32;<a href="java.awt.Component.html#4683">(II-&#167;1.10.33)</a>.
+</a>
+
+<dt><a name="6497"><b>See Also:
+</b></a><dd><a name="6503">setLayout &#32;<a href="java.awt.Container.html#6831">(II-&#167;1.11.22)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="list">
+<a name="6513"><h3>list
+</h3></a>
+<a name="6515"><code>public void list(PrintStream &#32;out, int &#32;indent)
+</code></a>
+<dl>
+<dd><a name="29472">Prints a listing of this container to the specified output stream. The listing 
+starts at the specified indentation.
+<pre>
+</pre></a>
+
+<dd><a name="29476">The list method of Container prints itself by calling its superclass's list 
+method <a href="java.awt.Component.html#4739">(II-&#167;1.10.36)</a> and then calls list on each of its subcomponents with 
+and indentation of <img src="javaa28.gif">.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29477"><b>Parameters:
+</b></a><dd><a name="29478"><code>out
+- </code></a><a name="29479">a print stream
+</a>
+<dd><a name="29480"><code>indent
+- </code></a><a name="29481">the number of spaces to indent
+</a>
+
+<dt><a name="6529"><b>Overrides:
+</b></a><dd><a name="6535">list in class Component &#32;<a href="java.awt.Component.html#4739">(II-&#167;1.10.36)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="locate">
+<a name="6545"><h3>locate
+</h3></a>
+<a name="6547"><code>public Component locate(int &#32;x, int &#32;y)
+</code></a>
+<dl>
+<dd><a name="30444">Determines the component or subcomponent of this container that contains the <img src="javaa29.gif"> coordinate. This method only looks one level deep. If the 
+point <img src="javaa30.gif"> is inside a subcomponent that itself has subcomponents, it 
+does not go looking down the subcomponent tree.
+<pre>
+</pre></a>
+
+<dd><a name="30448">The locate method of Container first determines if the <img src="javaa31.gif"> coordinate is 
+inside <a href="java.awt.Component.html#4425">(II-&#167;1.10.25)</a> its own boundaries. If not, it returns null immediately. If 
+the coordinate is inside its boundaries, it calls inside <a href="java.awt.Component.html#4425">(II-&#167;1.10.25)</a> on each 
+of the subcomponents; if any of those calls to returns true, that subcomponent is returned; otherwise the container target object is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29543"><b>Parameters:
+</b></a><dd><a name="29512"><code>x
+- </code></a><a name="6555">the x coordinate
+</a>
+<dd><a name="6557"><code>y
+- </code></a><a name="6559">the y coordinate
+</a>
+
+<dt><a name="6561"><b>Returns:
+</b></a><dd><a name="29552">this container or one of its subcomponent that contains the <img src="javaa32.gif"> 
+coordinate; null if the coordinate is outside this container.
+</a>
+
+<dt><a name="6565"><b>Overrides:
+</b></a><dd><a name="6571">locate in class Component &#32;<a href="java.awt.Component.html#4763">(II-&#167;1.10.37)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="minimumSize">
+<a name="6589"><h3>minimumSize
+</h3></a>
+<a name="29562"><code>public Dimension minimumSize()
+</code></a>
+<dl>
+<dd><a name="29566">Determines the minimum size of this container.
+<pre>
+</pre></a>
+
+<dd><a name="52594">The minimumSize method of Container checks to see if this container has a 
+layout manager <a href="java.awt.Container.html#6427">(II-&#167;1.11.9)</a>. If so, its minimumLayoutSize 
+method &#32;<a href="java.awt.LayoutManager.html#51751">(II-&#167;1.43.3)</a> is called. Otherwise, its superclass's minimumSize 
+method <a href="java.awt.Component.html#4865">(II-&#167;1.10.40)</a> is called.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29580"><b>Returns:
+</b></a><dd><a name="29581">the minimum size of this container.
+</a>
+
+<dt><a name="6599"><b>Overrides:
+</b></a><dd><a name="6605">minimumSize in class Component &#32;<a href="java.awt.Component.html#4865">(II-&#167;1.10.40)</a>.
+</a>
+
+<dt><a name="6607"><b>See Also:
+</b></a><dd><a name="6613">preferredSize &#32;<a href="java.awt.Container.html#6681">(II-&#167;1.11.17)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paintComponents">
+<a name="6623"><h3>paintComponents
+</h3></a>
+<a name="6625"><code>public void paintComponents(Graphics &#32;g)
+</code></a>
+<dl>
+<dd><a name="6627">Paints each of the components in th	is container.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6629"><b>Parameters:
+</b></a><dd><a name="6631"><code>g
+- </code></a><a name="6633">the graphics context
+</a>
+
+<dt><a name="6635"><b>See Also:
+</b></a><dd><a name="6645">paint in class &#32;Component &#32;<a href="java.awt.Component.html#5197">(II-&#167;1.10.49)</a><br>
+paintAll in class &#32;Component &#32;<a href="java.awt.Component.html#5225">(II-&#167;1.10.50)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="6655"><h3>paramString
+</h3></a>
+<a name="6657"><code>protected String paramString()
+</code></a>
+<dl>
+<dd><a name="54105">Returns the parameter string representing the state of this container. This 
+string is useful for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26925"><b>Returns:
+</b></a><dd><a name="26926">the parameter string of this container.
+</a>
+
+<dt><a name="6665"><b>Overrides:
+</b></a><dd><a name="6671">paramString in class Component &#32;<a href="java.awt.Component.html#5253">(II-&#167;1.10.51)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="preferredSize">
+<a name="6681"><h3>preferredSize
+</h3></a>
+<a name="6683"><code>public Dimension preferredSize()
+</code></a>
+<dl>
+<dd><a name="29611">Determines the preferred size of this container.
+<pre>
+</pre></a>
+
+<dd><a name="52595">The preferredSize method of Container checks to see if this container has a 
+layout manager <a href="java.awt.Container.html#6427">(II-&#167;1.11.9)</a>. If so, its preferredLayoutSize 
+method &#32;<a href="java.awt.LayoutManager.html#51770">(II-&#167;1.43.4)</a> is called. Otherwise, its superclass's preferredSize 
+method <a href="java.awt.Component.html#5307">(II-&#167;1.10.53)</a> is called.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29621"><b>Returns:
+</b></a><dd><a name="29622">the minimum size of this container.
+</a>
+
+<dt><a name="6691"><b>Overrides:
+</b></a><dd><a name="6697">preferredSize in class Component &#32;<a href="java.awt.Component.html#5307">(II-&#167;1.10.53)</a>.
+</a>
+
+<dt><a name="6699"><b>See Also:
+</b></a><dd><a name="6705">minimumSize &#32;<a href="java.awt.Container.html#6589">(II-&#167;1.11.14)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="printComponents">
+<a name="6715"><h3>printComponents
+</h3></a>
+<a name="6717"><code>public void printComponents(Graphics &#32;g)
+</code></a>
+<dl>
+<dd><a name="6719">Prints each of the components in this container.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6721"><b>Parameters:
+</b></a><dd><a name="6723"><code>g
+- </code></a><a name="6725">the graphics context
+</a>
+
+<dt><a name="6727"><b>See Also:
+</b></a><dd><a name="6737">print in class &#32;Component &#32;<a href="java.awt.Component.html#5415">(II-&#167;1.10.56)</a><br>
+printAll in class &#32;Component &#32;<a href="java.awt.Component.html#5443">(II-&#167;1.10.57)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="remove">
+<a name="6747"><h3>remove
+</h3></a>
+<a name="6749"><code>public void remove(Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="6751">Removes the specified component from this container. This method also 
+causes the component to call its removeNotify method <a href="java.awt.Component.html#5471">(II-&#167;1.10.58)</a> to 
+remove its peer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6753"><b>Parameters:
+</b></a><dd><a name="6755"><code>comp
+- </code></a><a name="6757">the component to be removed
+</a>
+
+<dt><a name="6759"><b>See Also:
+</b></a><dd><a name="6765">add &#32;<a href="java.awt.Container.html#6183">(II-&#167;1.11.1)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="removeAll">
+<a name="6775"><h3>removeAll
+</h3></a>
+<a name="6777"><code>public void removeAll()
+</code></a>
+<dl>
+<dd><a name="45208">Removes all the components from this container. This method also causes 
+all the components in the container to call their removeNotify method 
+<a href="java.awt.Component.html#5471">(II-&#167;1.10.58)</a> to remove their peers.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6781"><b>See Also:
+</b></a><dd><a name="6791">add &#32;<a href="java.awt.Container.html#6183">(II-&#167;1.11.1)</a><br>
+remove &#32;<a href="java.awt.Container.html#6747">(II-&#167;1.11.19)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="removeNotify">
+<a name="6801"><h3>removeNotify
+</h3></a>
+<a name="6803"><code>public void removeNotify()
+</code></a>
+<dl>
+<dd><a name="29647">Notifies this container and all its subcomponents to destroy their peers.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6807"><b>Overrides:
+</b></a><dd><a name="6813">removeNotify in class Component &#32;<a href="java.awt.Component.html#5471">(II-&#167;1.10.58)</a>.
+</a>
+
+<dt><a name="6815"><b>See Also:
+</b></a><dd><a name="6821">addNotify &#32;<a href="java.awt.Container.html#6279">(II-&#167;1.11.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setLayout">
+<a name="6831"><h3>setLayout
+</h3></a>
+<a name="6833"><code>public void setLayout(LayoutManager &#32;mgr)
+</code></a>
+<dl>
+<dd><a name="6835">Sets the layout manager for this container.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6837"><b>Parameters:
+</b></a><dd><a name="6839"><code>mgr
+- </code></a><a name="6841">the new layout manager
+</a>
+
+<dt><a name="6843"><b>See Also:
+</b></a><dd><a name="6853">layout &#32;<a href="java.awt.Container.html#6483">(II-&#167;1.11.11)</a><br>
+getLayout &#32;<a href="java.awt.Container.html#6427">(II-&#167;1.11.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="validate">
+<a name="6863"><h3>validate
+</h3></a>
+<a name="6865"><code>public void validate()
+</code></a>
+<dl>
+<dd><a name="6867">Validates this container and all of its subcomponents. The AWT uses this 
+method to have a container be laid out again after adding or otherwise 
+changing the components it contains.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6869"><b>Overrides:
+</b></a><dd><a name="6875">validate in class Component &#32;<a href="java.awt.Component.html#5985">(II-&#167;1.10.75)</a>.
+</a>
+
+<dt><a name="6877"><b>See Also:
+</b></a><dd><a name="6887">invalidate in class &#32;Component &#32;<a href="java.awt.Component.html#4461">(II-&#167;1.10.26)</a>.
+</a>
+</dl></dl>
+<p></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Component.html">Prev</a>  <a href="java.awt.Dialog.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

@@ -1,0 +1,545 @@
+<html><head><title>Class URL</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.net.html">This Package</a>  <a href="java.net.SocketImpl.html">Prev</a>  <a href="java.net.URLConnection.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="2073"><h1>	&#167;4.8 Class URL</h1></a>
+<pre>public &#32;final &#32;class &#32;java.net.<strong>URL
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>URL</strong>(String &#32;spec);	<a href="java.net.URL.html#2213">&#167;4.8.1</a>
+    public <strong>URL</strong>(String &#32;protocol, String &#32;host,	<a href="java.net.URL.html#2233">&#167;4.8.2</a>
+     &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;port, String &#32;file);
+    public <strong>URL</strong>(String &#32;protocol, String &#32;host, String &#32;file);	<a href="java.net.URL.html#2275">&#167;4.8.3</a>
+    public <strong>URL</strong>(URL &#32;context, String &#32;spec);	<a href="java.net.URL.html#2313">&#167;4.8.4</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.net.URL.html#2351">&#167;4.8.5</a>
+    public final Object <strong>getContent</strong>();	<a href="java.net.URL.html#2383">&#167;4.8.6</a>
+    public String <strong>getFile</strong>();	<a href="java.net.URL.html#2409">&#167;4.8.7</a>
+    public String <strong>getHost</strong>();	<a href="java.net.URL.html#2423">&#167;4.8.8</a>
+    public int <strong>getPort</strong>();	<a href="java.net.URL.html#2437">&#167;4.8.9</a>
+    public String <strong>getProtocol</strong>();	<a href="java.net.URL.html#2451">&#167;4.8.10</a>
+    public String <strong>getRef</strong>();	<a href="java.net.URL.html#2465">&#167;4.8.11</a>
+    public int <strong>hashCode</strong>();	<a href="java.net.URL.html#2479">&#167;4.8.12</a>
+    public URLConnection <strong>openConnection</strong>();	<a href="java.net.URL.html#2501">&#167;4.8.13</a>
+    public final InputStream <strong>openStream</strong>();	<a href="java.net.URL.html#2535">&#167;4.8.14</a>
+    public boolean <strong>sameFile</strong>(URL &#32;other);	<a href="java.net.URL.html#2561">&#167;4.8.15</a>
+ &#32; &#32;public static void	<a href="java.net.URL.html#2621">&#167;4.8.16</a>
+ &#32; &#32; &#32; &#32; &#32;<strong>setURLStreamHandlerFactory</strong>(URLStreamHandlerFactory &#32;fac);
+ &#32; &#32;public String <strong>toExternalForm</strong>();	<a href="java.net.URL.html#27406">&#167;4.8.17</a>
+    public String <strong>toString</strong>();	<a href="java.net.URL.html#2669">&#167;4.8.18</a>
+}
+</pre><a name="26942">Class URL represents a Uniform Resource Locator-a pointer to a "resource" on the 
+World Wide Web. A resource can be something as simple as a file or a directory, or it can 
+be a reference to a more complicated object, such as a query to a database or to a search 
+engine. More information on the types of URLs and their format can be found at:
+</a><p><ul><a name="32620">
+<code>http://www.ncsa.uiuc.edu/demoweb/url-primer.html
+</code>
+</a></ul><a name="32637">In general, an URL can be broken into several parts. The above URL indicates that the 
+protocol to use is http ("HyperText Transport Protocol"), that the information resides on a 
+host whose name is www.ncsa.uiuc.edu. The information on that host machine is named 
+demoweb/url--primer.html. The exact meaning of is name on the host machine is both protocol- and host-dependent. The information could reside in a file or could be generated on-
+the-fly.
+</a><p><a name="32638">A URL can optionally contain a "port," which is the port number to which the connection 
+is made on the remote host. &#32; If the port is not specified, the default port for the URL is 
+used instead. For example, the default port for http, is 80. An alternative port could be specified as:
+</a><p><ul><a name="32643">
+<code>http://www.ncsa.uiuc.edu:8080/demoweb/url-primer.html
+</code>
+</a></ul><a name="32646">A URL may have appended to it an "anchor", which is indicated by the sharp sign character "#" followed by more characters. For example 
+</a><p><ul><a name="32667">
+<code>http://local/demo/information#myinfo
+</code>
+</a></ul><a name="34441">This is not technically part of the URL. Rather, it indicates that after the specified 
+"resource" is retrieved, the application is specifically interested in that part of the document that has the tag "myinfo" attached to it. The meaning of a tag is resource specific.
+</a><p><a name="32660">An application can also specify a "relative URL", which contains only enough information to reach the resource relative to another URL. Relative URLs are frequently used 
+within HTML pages. For example, if the URL 
+</a><p><ul><a name="33868">
+<code>http://java.sun.com/index.html
+</code>
+</a></ul><a name="33869">contained within it a reference to the URL "FAQ.html", it would be a shorthand for 
+</a><p><ul><a name="33867">
+<code>http://java/sun.com/FAQ.html
+</code>
+</a></ul><a name="33861">The relative URL need not specify all the components of a URL. Missing components are 
+inherited from the fully specified URL.
+</a><p>
+<hr>
+<a name="2205"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="URL">
+<a name="2213"><h3>URL
+</h3></a>
+<a name="2215"><code>public URL(String &#32;spec)
+</code></a>
+<a name="2217"><code>throws MalformedURLException
+</code></a>
+<dl>
+<dd><a name="2219">Creates a URL object from the String representation.
+<pre>
+</pre></a>
+
+<dd><a name="29464">This constructor is equivalent to a call to the two-argument constructor 
+<a href="java.net.URL.html#2313">(I-&#167;4.8.4)</a> with a null first argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2221"><b>Parameters:
+</b></a><dd><a name="2223"><code>spec
+- </code></a><a name="2225">the String to parse as a URL
+</a>
+
+<dt><a name="27452"><b>Throws
+</b></a><dd><a name="27456">MalformedURLException &#32;<a href="java.net.MalformedURLException.html#33806">(I-&#167;4.15)</a>
+</a>
+<dd><a name="27457">If the string specifies an unknown protocol.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="URL">
+<a name="2233"><h3>URL
+</h3></a>
+<a name="2235"><code>public URL(String &#32;protocol, String &#32;host, int &#32;port,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;String &#32;file)
+</code></a>
+<a name="2237"><code>throws MalformedURLException
+</code></a>
+<dl>
+<dd><a name="2239">Creates a URL object from the specified protocol, host, port number, and file.
+<pre>
+</pre></a>
+
+<dd><a name="27470">If this is the first URL object being created with the specified protocol, a 
+stream protocol handler object, an instance of class URL-Stream-Handler 
+<a href="java.net.URLStreamHandler.html#3785">(I-&#167;4.11)</a>, is created for that protocol:
+<pre>
+</pre></a>
+<ol>
+<li><a name="27485">If the application has previously set up an instance of 
+URL--Stream--Handler--Factory as the stream handler factory <a href="java.net.URL.html#2621">(I-&#167;4.8.16)</a>, then the 
+createURLStreamHandler <a href="java.net.URLStreamHandlerFactory.html#31342">(I-&#167;4.14.1)</a> method of that instance is called with the 
+protocol string as an argument to create the stream protocol handler.
+</a></ol>
+<ol>
+<li><a name="27184">If no URLStreamHandlerFactory has yet been set up, or if the factory's 
+createURLStreamHandler method returns null, then the constructor finds the 
+value of the system property <a href="java.lang.System.html#10920">(I-&#167;1.18.9)</a><br>
+ &#32;	 &#32; &#32;java.handler.protol.pkgs<br>
+If the value of that system property is not null, it is interpreted as a list of 
+packages separated by a vertical slash character '|'. The constructor tries to 
+load the class named <br>
+ &#32; &#32; &#32; &#32;<em>&lt;package</em>&gt;.<em>&lt;protocol&gt;</em>.Handler &#32; &#32; &#32; &#32;<br>
+where <em>&lt;package&gt;</em> is replaced by the name of the package and <em>&lt;protocol</em>&gt; 
+is replaced by the name of the protocol. If this class does not exists, or if it 
+the class exists but it is not a subclass of URL-Stream-Handler, then the next 
+package in the list is tried.<a href="#34447"><sup>1</sup></a>
+</a><li><a name="33471">If the previous step fails to find a protocol handler, then the constructor tries 
+to load the class named<br>
+ &#32; &#32; &#32; &#32; &#32; &#32;sun.net.www.protocol.&lt;protocol&gt;.Handler<br>
+If this class does not exist, or if t the class exists but it is not a subclass of 
+URL-Stream-Handler, then a MalformedURLException is thrown.
+</a>
+<dt><a name="27501"><b>Parameters:
+</b></a><dd><a name="2243"><code>protocol
+- </code></a><a name="2245">the name of the protocol
+</a>
+<dd><a name="2247"><code>host
+- </code></a><a name="2249">the name of the host
+</a>
+<dd><a name="2251"><code>port
+- </code></a><a name="2253">the port number
+</a>
+<dd><a name="2255"><code>file
+- </code></a><a name="2257">the name of the information
+</a>
+
+<dt><a name="2259"><b>Throws
+</b></a><dd><a name="2265">MalformedURLException &#32;<a href="java.net.MalformedURLException.html#33806">(I-&#167;4.15)</a>
+</a>
+<dd><a name="2267">if an unknown protocol is specified.
+</a>
+</ol>
+</dl>
+
+<META NAME="keywords" CONTENT="URL">
+<a name="2275"><h3>URL
+</h3></a>
+<a name="2277"><code>public URL(String &#32;protocol, String &#32;host, String &#32;file)
+</code></a>
+<a name="2279"><code>throws MalformedURLException
+</code></a>
+<dl>
+<dd><a name="2281">Creates an absolute URL from the specified protocol name, host name, and 
+file name. The default port for the specified protocol is used.
+<pre>
+</pre></a>
+
+<dd><a name="27195">The constructor searches for an appropriate URLStreamHandler <a href="java.net.URLStreamHandler.html#3785">(I-&#167;4.11)</a> 
+as outlined above in <a href="java.net.URL.html#2233">I</a>--<a href="java.net.URL.html#2233">&#167;4.8.2</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2283"><b>Parameters:
+</b></a><dd><a name="2285"><code>protocol
+- </code></a><a name="2287">the protocol to use
+</a>
+<dd><a name="2289"><code>host
+- </code></a><a name="2291">the host to connect to
+</a>
+<dd><a name="2293"><code>file
+- </code></a><a name="2295">the name of the information
+</a>
+
+<dt><a name="2297"><b>Throws
+</b></a><dd><a name="2303">MalformedURLException &#32;<a href="java.net.MalformedURLException.html#33806">(I-&#167;4.15)</a>
+</a>
+<dd><a name="2305">if an unknown protocol is specified.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="URL">
+<a name="2313"><h3>URL
+</h3></a>
+<a name="2315"><code>public URL(URL &#32;context, String &#32;spec)
+</code></a>
+<a name="2317"><code>throws MalformedURLException
+</code></a>
+<dl>
+<dd><a name="2319">Creates a URL by parsing the String specification within a specified context: If the context argument is not null and the spec argument is a partial 
+URL specification, then any of the strings missing components are inherited from the context argument.
+<pre>
+</pre></a>
+
+<dd><a name="27216">The specification given by the String argument is parsed to determine if it 
+specifies a protocol. If the String contains an ASCII colon ':' character 
+before the first occurrence of of an ASCII slash character '/', then the characters before the colon comprise the protocol.
+<pre>
+</pre></a>
+<dl><ul><li><a name="27253">If the spec argument does not specify a protocol:
+</a></ul><li><a name="29494">If the context argument isn't null, then the protocol is copied from the 
+context argument.
+</a><li><a name="29501">If the context argument is null, then a MalformedURLException is thrown.
+</a><ul><li><a name="27255">If the spec argument does specify a protocol:
+</a></ul><li><a name="29510">If the context argument is null, or specifies a different protocol than the 
+specification argument, the context argument is ignored.
+</a><li><a name="29511">If the context argument isn't null and specifies the same protocol as the 
+specification, the host, port number, and file are copied from the context 
+argument into the newly created URL.
+</a></dl>
+<dd><a name="27299">The constructor then searches for an appropriate stream protocol handler 
+of type URLStreamHandler <a href="java.net.URLStreamHandler.html#3785">(I-&#167;4.11)</a> as outlined above in <a href="java.net.URL.html#2233">I</a>--<a href="java.net.URL.html#2233">&#167;4.8.2</a>. The 
+stream protocol handler's parseURL method <a href="java.net.URLStreamHandler.html#28367">(I-&#167;4.11.3)</a> is called to parse 
+the remaining fields of the specification that override any defaults set by 
+the context argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2321"><b>Parameters:
+</b></a><dd><a name="2323"><code>context:
+- </code></a><a name="27228">the context in which to parse the specification
+</a>
+<dd><a name="2327"><code>spec
+- </code></a><a name="2329">a String representation of a URL
+</a>
+
+<dt><a name="2331"><b>Throws
+</b></a><dd><a name="2337">MalformedURLException &#32;<a href="java.net.MalformedURLException.html#33806">(I-&#167;4.15)</a>
+</a>
+<dd><a name="2339">If no protocol is specified, or an unknown protocol is found.
+</a>
+</dl></dl>
+<hr>
+<a name="2341"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="equals">
+<a name="2351"><h3>equals
+</h3></a>
+<a name="2353"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="27074">The result is true if and only if the argument is not null and is a URL object 
+that represents the same URL as this object. Two URL objects are equal if 
+they have the same protocol, reference the same host, the same port number on the host, and the same information on the host.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2357"><b>Parameters:
+</b></a><dd><a name="2359"><code>obj
+- </code></a><a name="2361">the URL to compare against
+</a>
+
+<dt><a name="2363"><b>Returns:
+</b></a><dd><a name="27084">true if the objects are the same; false otherwise.
+</a>
+
+<dt><a name="2367"><b>Overrides:
+</b></a><dd><a name="2373">equals in class Object &#32;<a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getContent">
+<a name="2383"><h3>getContent
+</h3></a>
+<a name="2385"><code>public final Object getContent()
+</code></a>
+<a name="34461"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34462">Determines the contents of this URL. This method is a shorthand for
+<pre>
+</pre></a>
+<ul><a name="34468">
+<code>	openConnection().getContent()
+</code>
+</a>
+<dt><a name="34463"><b>Returns:
+</b></a><dd><a name="27085">the contents of this URL.
+</a>
+
+<dt><a name="2391"><b>Throws
+</b></a><dd><a name="2397">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="2399">if an I/O exception occurs.
+</a>
+
+<dt><a name="30469"><b>See Also:
+</b></a><dd><a name="30473">getContent in class URLConnection <a href="java.net.URLConnection.html#3123">(I-&#167;4.9.11)</a>.
+</a>
+</ul></dl>
+
+<META NAME="keywords" CONTENT="getFile">
+<a name="2409"><h3>getFile
+</h3></a>
+<a name="2411"><code>public String getFile()
+</code></a>
+<dl><dl>
+<dt><a name="2413"><b>Returns:
+</b></a><dd><a name="27095">the information field of this URL.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getHost">
+<a name="2423"><h3>getHost
+</h3></a>
+<a name="2425"><code>public String getHost()
+</code></a>
+<dl><dl>
+<dt><a name="2427"><b>Returns:
+</b></a><dd><a name="27100">the host name field of this URL.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getPort">
+<a name="2437"><h3>getPort
+</h3></a>
+<a name="2439"><code>public int getPort()
+</code></a>
+<dl><dl>
+<dt><a name="2441"><b>Returns:
+</b></a><dd><a name="27102">the port number of this URL.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getProtocol">
+<a name="2451"><h3>getProtocol
+</h3></a>
+<a name="2453"><code>public String getProtocol()
+</code></a>
+<dl><dl>
+<dt><a name="2455"><b>Returns:
+</b></a><dd><a name="27104">the 									name of the protocol of this URL.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getRef">
+<a name="2465"><h3>getRef
+</h3></a>
+<a name="2467"><code>public String getRef()
+</code></a>
+<dl><dl>
+<dt><a name="2469"><b>Returns: 
+</b></a><dd><a name="27109">the anchor (also known as the "reference") of this URL.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="2479"><h3>hashCode
+</h3></a>
+<a name="2481"><code>public int hashCode()
+</code></a>
+<dl><dl>
+<dt><a name="2483"><b>Returns:
+</b></a><dd><a name="27112">a hash code for this URL.
+</a>
+
+<dt><a name="2485"><b>Overrides:
+</b></a><dd><a name="2491">hashCode in class Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="openConnection">
+<a name="2501"><h3>openConnection
+</h3></a>
+<a name="2503"><code>public URLConnection openConnection()
+</code></a>
+<a name="2505"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2507">Creates (if not already in existence) a URLConnection object that represents 
+a connection to the remote object referred to by the URL.
+<pre>
+</pre></a>
+
+<dd><a name="34481">The connection is opened by calling the openConnection method &#32;<a href="java.net.URLStreamHandler.html#3855">(I-&#167;4.11.2)</a> 
+of the protocol handler &#32;<a href="java.net.URL.html#2233">(I-&#167;4.8.2)</a> for this URL.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27123"><b>Returns:
+</b></a><dd><a name="27127">a URLConnection <a href="java.net.URLConnection.html#2699">(I-&#167;4.9)</a> to the URL.
+</a>
+
+<dt><a name="27120"><b>Throws
+</b></a><dd><a name="2515">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="2517">If an I/O exception occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="openStream">
+<a name="2535"><h3>openStream
+</h3></a>
+<a name="2537"><code>public final InputStream openStream()
+</code></a>
+<a name="2539"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2541">Opens a connection to this URL and return a stream for reading from that 
+connection. This method is a shorthand for
+<pre>
+</pre></a>
+<ul><a name="27553">
+<code>	openConnection().getInputStream()
+</code>
+</a>
+<dt><a name="27361"><b>Returns:
+</b></a><dd><a name="27362">a stream for reading from the URL connection.
+</a>
+
+<dt><a name="2543"><b>Throws
+</b></a><dd><a name="2549">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="2551">If an I/O exception occurs.
+</a>
+</ul></dl>
+
+<META NAME="keywords" CONTENT="sameFile">
+<a name="2561"><h3>sameFile
+</h3></a>
+<a name="2563"><code>public boolean sameFile(URL &#32;other)
+</code></a>
+<dl>
+<dd><a name="2565">Returns true if the this URL and the other argument both refer to the same 
+resource; the two URLs might not both contain the same anchor.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="30481"><b>Parameters:
+</b></a><dd><a name="30482"><code>other
+- </code></a><a name="30483">the URL to compare against
+</a>
+
+<dt><a name="2573"><b>Returns:
+</b></a><dd><a name="2575">true if they reference the same remote object; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setURLStreamHandlerFactory">
+<a name="2621"><h3>setURLStreamHandlerFactory
+</h3></a>
+<a name="2623"><code>public static void 
+</code></a>
+<a name="33689"><code>setURLStreamHandlerFactory(URLStreamHandlerFactory &#32;fac)
+</code></a>
+<dl>
+<dd><a name="2625">Sets an application's URLStreamHandlerFactory &#32;<a href="java.net.URLStreamHandlerFactory.html#31322">(I-&#167;4.14)</a>. This method can 
+be called at most once by an application.
+<pre>
+</pre></a>
+
+<dd><a name="27562">The URLStreamHandlerFactory instance is used to construct a stream protocol 
+handler &#32;<a href="java.net.URL.html#2233">(I-&#167;4.8.2)</a> from a protocol name.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2627"><b>Parameters:
+</b></a><dd><a name="2629"><code>fac
+- </code></a><a name="2631">the desired factory
+</a>
+
+<dt><a name="2633"><b>Throws
+</b></a><dd><a name="27400">Error &#32;<a href="java.lang.Error.html#15018">(I-&#167;1.48)</a>
+</a>
+<dd><a name="27401">If the application has already set a factory.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toExternalForm">
+<a name="27406"><h3>toExternalForm
+</h3></a>
+<a name="2653"><code>public String toExternalForm()
+</code></a>
+<dl>
+<dd><a name="27586">Constructs a string representation of this URL. The string is created by 
+calling the toExternalForm method &#32;<a href="java.net.URLStreamHandler.html#3931">(I-&#167;4.11.5)</a> of the stream protocol handler <a href="java.net.URL.html#2233">(I-&#167;4.8.2)</a> for this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27410"><b>Returns:
+</b></a><dd><a name="2659">a string representation of this object.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="2669"><h3>toString
+</h3></a>
+<a name="2671"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="2675">Creates a string representation of this object. This method calls the 
+to-External-Form method <a href="java.net.URL.html#27406">(I-&#167;4.8.17)</a> and returns its value.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27439"><b>Returns:
+</b></a><dd><a name="2677">a string representation of this object.
+</a>
+
+<dt><a name="2679"><b>Overrides:
+</b></a><dd><a name="2685">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="34447">Step 2 is new in Java 1.1.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.net.html">This Package</a>  <a href="java.net.SocketImpl.html">Prev</a>  <a href="java.net.URLConnection.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

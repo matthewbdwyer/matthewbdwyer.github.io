@@ -1,0 +1,139 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Compiler Construction</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<meta name="Microsoft Border" content="tlb">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<table border="1" cellspacing="0" bordercolor="#0066FF" width="100%" id="AutoNumber3" bgcolor="#FFFFFF" style="border-collapse: collapse" cellpadding="0">
+  <tr>
+    <td width="100%" bgcolor="#B3B3FF" bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF">
+    <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler Construction</font></b></td>
+  </tr>
+  </table>
+
+<p><span style="position: absolute; top: 50; left: 11">
+
+<img border="0" src="../images/12x12spacer.gif" width="12" height="12"></span> </p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; position:relative; left:2" bordercolor="#0066FF" width="1%" id="AutoNumber2">
+  <tr>
+    <td width="100%" nowrap align="center" bgcolor="#B3B3FF"><b>
+    <font face="Arial" size="2">CSCE 425/825</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../index.htm">Course Home Page</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../describe.shtml">Course Description</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../calendar/index.htm">Calendar</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="peephole/peephole.htm">Peephole Contest</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2" color="#C0C0C0">
+    <a class="nav" href="http://www.cse.unl.edu/~cthiel/cgi-bin/submit.cgi">Project Upload</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap align="center" bgcolor="#B3B3FF"><b>
+    <font face="Arial" size="2">Resources</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="index.htm">Project JOOS</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font color="#C0C0C0" face="Arial" size="2">
+    <a class="nav" href="../wig/index.htm">Project WIG</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../java.shtml">Java</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../jasmine/jasmine.htm">Jasmin</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../scaningparsing.shtml">Tools</a></font></td>
+  </tr>
+  </table>
+
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+<h1><font face="Arial" size="5">The <img border="0" src="images/a+small.gif" width="29" height="24"> 
+Project</font></h1>
+<p><font face="Arial" size="2">Michael Schwartzbach and Laurie Hendren's 
+solution is very nice indeed and has received an excellent grade of A-; however, 
+there is room for improvement, which may elevate their grade to an amazing A+. 
+This project focuses on four such improvements.</font></p>
+<h3><font face="Arial" size="2">C-style comments</font></h3>
+<p><font face="Arial" size="2">The A- implementation only allows one-line 
+comments such as: </font></p>
+<pre><font face="Arial">// this is a comment
+</font></pre>
+<p><font face="Arial" size="2">I would be nice to additionally allow multi-line 
+comments such as: </font></p>
+<pre><font face="Arial">/* this is a
+   somewhat
+   longer comment */
+</font></pre>
+<p><font size="2" face="Arial">This improvement can be implemented by only 
+making changes to the file </font><font size="2">
+<font face="Arial"><a href="a-/joos.l">joos.l</a></font></font><font size="2" face="Arial">. </font>
+</p>
+<h3><font face="Arial" size="2">Increments and for-loops</font></h3>
+<p><font face="Arial" size="2">It would be very nice to include standard 
+increments and for-loops such as: </font></p>
+<pre><font face="Arial">for (i=0; i&lt;10; i++) k=k*i;
+</font></pre>
+<p><font size="2" face="Arial">These construct may be introduced as mere 
+syntactic sugar, since they can readily be expressed in the JOOS language 
+itself. This improvement can be implemented by only making changes to the files
+</font><font size="2">
+<font face="Arial"><a href="a-/joos.l">joos.l</a> and </font>
+<font face="Arial"><a href="a-/joos.y">joos.y</a></font></font><font size="2" face="Arial">. </font>
+</p>
+<h3><font face="Arial" size="2">Correct stack limits</font></h3>
+<p><font size="2" face="Arial">The weakest point of the A- implementation is the 
+stupid computation of stack limits, which are always assumed to equal 25. It 
+would be much nicer to compute the exact limit. This improvement can be 
+implemented by only making changes to the files </font><font size="2">
+<font face="Arial"><a href="a-/resource.h">resource.h</a> and </font>
+<font face="Arial"><a href="a-/resource.c">resource.c</a></font></font><font size="2" face="Arial">.
+</font></p>
+<h3><font face="Arial" size="2">More peephole patterns</font></h3>
+<p><font size="2" face="Arial">The peephole optimizer provides a very nice 
+framework, but the A- implementation only includes four peephole patterns. 
+Surely, many more can be discovered. This improvement can be implemented by only 
+making changes to the file </font><font size="2">
+<font face="Arial"><a href="a-/optimize.c">optimize.c</a></font></font><font size="2" face="Arial">.</font></p>
+
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d">
+</head>
+
+<body>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d, %Y" startspan -->
+September 10, 2003</font></font></p>
+
+</td></tr><!--msnavigation--></table></body></html>

@@ -1,0 +1,199 @@
+<html><head><title>Class OutputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.LineNumberInputStream.html">Prev</a>  <a href="java.io.PipedInputStream.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="6024"><h1>	&#167;2.15 Class OutputStream</h1></a>
+<pre>public &#32;abstract &#32;class &#32;java.io.<strong>OutputStream
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>OutputStream</strong>();	<a href="java.io.OutputStream.html#6110">&#167;2.15.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>close</strong>();	<a href="java.io.OutputStream.html#29608">&#167;2.15.2</a>
+    public void <strong>flush</strong>();	<a href="java.io.OutputStream.html#6150">&#167;2.15.3</a>
+    public void <strong>write</strong>(byte &#32;b[]);	<a href="java.io.OutputStream.html#6176">&#167;2.15.4</a>
+    public void <strong>write</strong>(byte &#32;b[], int &#32;off, int &#32;len);	<a href="java.io.OutputStream.html#6206">&#167;2.15.5</a>
+    public abstract void <strong>write</strong>(int &#32;b);	<a href="java.io.OutputStream.html#29691">&#167;2.15.6</a>
+}
+</pre><a name="29569">This class is an abstract class that is the superclass of all classes representing an output 
+stream of bytes.
+</a><p><a name="35756">Applications that need to define a subclass of OutputStream must always provide at least a 
+method that writes one byte of output <a href="java.io.OutputStream.html#29691">(I-&#167;2.15.6)</a>. 
+</a><p>
+<hr>
+<a name="6102"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="OutputStream">
+<a name="6110"><h3>OutputStream
+</h3></a>
+<a name="6112"><code>public OutputStream()
+</code></a>
+<dl>
+<dd><a name="29602">The default constructor.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="29603"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="close">
+<a name="29608"><h3>close
+</h3></a>
+<a name="6126"><code>public void close()
+</code></a>
+<a name="6128"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="29610">Closes this output stream and releases any system resources associated 
+with this stream.
+<pre>
+</pre></a>
+
+<dd><a name="29611">The close method of OutputStream does nothing.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6132"><b>Throws
+</b></a><dd><a name="6138">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="6140">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="flush">
+<a name="6150"><h3>flush
+</h3></a>
+<a name="6152"><code>public void flush()
+</code></a>
+<a name="6154"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="29620">Flushes this output stream and forces any buffered output bytes to be written out.
+<pre>
+</pre></a>
+
+<dd><a name="29628">The flush method of OutputStream does nothing.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6158"><b>Throws
+</b></a><dd><a name="6164">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="6166">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="6176"><h3>write
+</h3></a>
+<a name="6178"><code>public void write(byte &#32;b[])
+</code></a>
+<a name="6180"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="29650">Writes b.length bytes from the specified byte array to this output stream. 
+<pre>
+</pre></a>
+
+<dd><a name="29659">The write method of OutputStream calls the write method of three arguments 
+<a href="java.io.OutputStream.html#6206">(I-&#167;2.15.5)</a> with the three arguments b, 0, and b.length.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29651"><b>Parameters:
+</b></a><dd><a name="29652"><code>b
+- </code></a><a name="29653">the data 
+</a>
+
+<dt><a name="6190"><b>Throws
+</b></a><dd><a name="6196">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="6198">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="6206"><h3>write
+</h3></a>
+<a name="6208"><code>public void write(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<a name="6210"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="29664">Writes len bytes from the specified byte array starting at offset off to this 
+output stream.
+<pre>
+</pre></a>
+
+<dd><a name="29694">The write method of OutputStream calls the write method of one argument 
+on each of the bytes to be written out. Subclasses are encouraged to override this method and provide a more efficient implementation.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29665"><b>Parameters:
+</b></a><dd><a name="29666"><code>b
+- </code></a><a name="29667">the data 
+</a>
+<dd><a name="29668"><code>off
+- </code></a><a name="29669">the start offset in the data
+</a>
+<dd><a name="29670"><code>len
+- </code></a><a name="29674">the number of bytes to write
+</a>
+
+<dt><a name="29682"><b>Throws
+</b></a><dd><a name="29686">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="29687">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="29691"><h3>write
+</h3></a>
+<a name="6246"><code>public abstract void write(int &#32;b)
+</code></a>
+<a name="6248"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="29696">Writes the specified byte to this output stream.
+<pre>
+</pre></a>
+
+<dd><a name="29697">Subclasses of OutputStream must provide an implementation for this 
+method.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6252"><b>Parameters:
+</b></a><dd><a name="6254"><code>b
+- </code></a><a name="6256">the byte
+</a>
+
+<dt><a name="6258"><b>Throws
+</b></a><dd><a name="6264">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="6266">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.LineNumberInputStream.html">Prev</a>  <a href="java.io.PipedInputStream.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

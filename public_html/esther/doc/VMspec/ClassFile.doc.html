@@ -1,0 +1,1745 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>VM Spec  The class File Format</title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+<table width=100%><tr>
+<td><a href="VMSpecTOC.doc.html">Contents</a> | <a href="Overview.doc.html">Prev</a> | <a href="ConstantPool.doc.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+
+<hr><br>
+ 
+<a name="3660"></a>
+<p><strong>CHAPTER 4 </strong></p>
+<a name="4639"></a>
+<h1>The class File Format</h1>
+<hr><p>
+<a name="3661"></a>
+This chapter describes the Java Virtual Machine <code>class</code> file format. Each <code>class</code> file 
+contains one Java type, either a class or an interface. Compliant Java Virtual 
+Machine implementations must be capable of dealing with all <code>class</code> files that conform to the specification provided by this book. 
+<p><a name="14580"></a>
+A <code>class</code> file consists of a stream of 8-bit bytes. All 16-bit, 32-bit, and 64-bit quantities are constructed by reading in two, four, and eight consecutive 8-bit bytes, respectively. Multibyte data items are always stored in big-endian order, where the high bytes come first. In Java, this format is supported by inter-faces <code>java.io.DataInput</code> and <code>java.io.DataOutput</code> and classes such as <code>java.io.DataInputStream</code> and <code>java.io.DataOutputStream</code>.<p>
+<a name="6289"></a>
+This chapter defines its own set of data types representing Java <code>class</code> file data: The types <code>u1</code>, <code>u2</code>, and <code>u4</code> represent an unsigned one-, two-, or four-byte quantity, respectively. In Java, these types may be read by methods such as <code>readUnsignedByte</code>, <code>readUnsignedShort</code>, and <code>readInt</code> of the interface <code>java.io.DataInput</code>.<p>
+<a name="7076"></a>
+The Java <code>class</code> file format is presented using pseudostructures written in a C-like structure notation. To avoid confusion with the fields of Java Virtual Machine classes and class instances, the contents of the structures describing the Java <code>class</code> file format are referred to as <em>items</em>. Unlike the fields of a C structure, successive items are stored in the Java <code>class</code> file sequentially, without padding or alignment. <p>
+<a name="13303"></a>
+Variable-sized <i>tables</i>, consisting of variable-sized items, are used in several <code>class</code> file structures. Although we will use C-like array syntax to refer to table items, the fact that tables are streams of varying-sized structures means that it is not possible to directly translate a table index into a byte offset into the table. <p>
+<a name="15336"></a>
+Where we refer to a data structure as an array, it is literally an array.<p>
+<a name="21045"></a>
+<hr><h2>4.1	 <em>ClassFile</em></h2>
+<a name="21068"></a>
+A <code>class</code> file contains a single <code>ClassFile</code> structure:
+<p><pre><br><a name="19050"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>ClassFile {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 magic;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 minor_version;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 major_version;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 constant_pool_count;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	cp_info constant_pool[constant_pool_count-1];
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 access_flags;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 this_class;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 super_class;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 interfaces_count;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 interfaces[interfaces_count];
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 fields_count;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	field_info fields[fields_count];
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 methods_count;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	method_info methods[methods_count];
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attributes_count;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	attribute_info attributes[attributes_count];
+</code><a name="19084"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="7456"></a>
+The items in the <code>ClassFile</code> structure are as follows:
+<p><a name="19719"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;magic</b><br><blockquote><a name="21106"></a>
+The <code>magic</code> item supplies the magic number identifying the <code>class</code> file format; it has the value <code>0xCAFEBABE</code>.<p>
+</blockquote><a name="13448"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;minor_version, major_version</b><br><blockquote><a name="2929"></a>
+The values of the <code>minor_version</code> and <code>major_version</code> items are the minor and major version numbers of the compiler that produced this <code>class</code> file. An implementation of the Java Virtual Machine normally supports <code>class</code> files having a given major version number and minor version numbers <code>0</code> through some particular <code>minor_version</code>.<p>
+<a name="4983"></a>
+If an implementation of the Java Virtual Machine supports some range of minor version numbers and a <code>class</code> file of the same major version but a higher minor version is encountered, the Java Virtual Machine must not attempt to run the newer code. However, unless the major version number differs, it will be feasible to implement a new Java Virtual Machine that can run code of minor versions up to and including that of the newer code.<p>
+<a name="2930"></a>
+A Java Virtual Machine must not attempt to run code with a different major version. A change of the major version number indicates a major incompatible change, one that requires a fundamentally different Java Virtual Machine. <p>
+<a name="6539"></a>
+In Sun's Java Developer's Kit (JDK) 1.0.2 release, documented by this book, the value of <code>major_version</code> is <code>45</code>. The value of <code>minor_version</code> is <code>3</code>. Only Sun may define the meaning of new <code>class</code> file version numbers.<p>
+</blockquote><a name="13480"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;constant_pool_count</b><br><blockquote><a name="19092"></a>
+The value of the <code>constant_pool_count</code> item must be greater than zero. It gives the number of entries in the <code>constant_pool</code> table of the <code>class</code> file, where the <code>constant_pool</code> entry at index zero is included in the count but is not present in the <code>constant_pool</code> table of the class file. A <code>constant_pool</code> index is considered valid if it is greater than zero and less than <code>constant_pool_count</code>.<p>
+</blockquote><a name="19093"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;constant_pool[]</b><br><blockquote><a name="19096"></a>
+The <code>constant_pool</code> is a table of variable-length structures <a href="ClassFile.doc.html#20080">(&#167;4.4)</a> representing various string constants, class names, field names, and other constants that are referred to within the <code>ClassFile</code> structure and its substructures.<p>
+<a name="13295"></a>
+The first entry of the <code>constant_pool</code> table, <code>constant_pool[0]</code>, is reserved for internal use by a Java Virtual Machine implementation. That entry is <i>not</i> present in the <code>class</code> file. The first entry in the <code>class</code> file is <code>constant_pool[1]</code>. <p>
+<a name="11856"></a>
+Each of the <code>constant_pool</code> table entries at indices <code>1</code> through <code>constant_pool_count-1</code> is a variable-length structure <a href="ClassFile.doc.html#20080">(&#167;4.4)</a> whose format is indicated by its first "tag" byte.<p>
+</blockquote><a name="13484"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;access_flags</b><br><blockquote><a name="23242"></a>
+The value of the <code>access_flags</code> item is a mask of modifiers used with class and interface declarations. The <code>access_flags</code> modifiers are shown in Table 4.1.<p><Table Border="0">
+<tr><td><a name="23254"></a>
+Flag Name
+<td><a name="23256"></a>
+Value
+<td><a name="23258"></a>
+Meaning
+<td><a name="23260"></a>
+Used By
+
+<tr><td><a name="23262"></a>
+<code>ACC_PUBLIC</code>
+<td><a name="23264"></a>
+<code>0x0001</code>
+<td><a name="23266"></a>
+Is public; may be accessed from outside its package. 
+<td><a name="23268"></a>
+Class, interface
+
+<tr><td><a name="23270"></a>
+<code>ACC_FINAL</code>
+<td><a name="23272"></a>
+<code>0x0010</code>
+<td><a name="23274"></a>
+Is final; no subclasses allowed.
+<td><a name="23276"></a>
+Class
+
+<tr><td><a name="23278"></a>
+<code>ACC_SUPER</code>
+<td><a name="23280"></a>
+0x0020
+<td><a name="23282"></a>
+Treat superclass methods specially in <i>invokespecial</i>.
+<td><a name="23284"></a>
+Class, interface
+
+<tr><td><a name="23286"></a>
+<code>ACC_INTERFACE</code>
+<td><a name="23288"></a>
+<code>0x0200</code>
+<td><a name="23290"></a>
+Is an interface. 
+<td><a name="23292"></a>
+Interface
+
+<tr><td><a name="23294"></a>
+<code>ACC_ABSTRACT</code>
+<td><a name="23296"></a>
+<code>0x0400</code>
+<td><a name="23298"></a>
+Is abstract; may not be instantiated.
+<td><a name="23300"></a>
+Class, interface
+
+</Table><br><br><p>
+<a name="23301"></a>
+An interface is distinguished by its <code>ACC_INTERFACE</code> flag being set. If <code>ACC_INTERFACE</code> is not set, this class file defines a class, not an interface.<p>
+<a name="14189"></a>
+Interfaces may only use flags indicated in <a href="ClassFile.doc.html#23242">Table 4.1</a> as used by interfaces. Classes may only use flags indicated in <a href="ClassFile.doc.html#23242">Table 4.1</a> as used by classes. An interface is implicitly <code>abstract</code> <a href="Concepts.doc.html#18339">(&#167;2.13.1)</a>; its <code>ACC_ABSTRACT</code> flag must be set. An interface cannot be <code>final</code>; its implementation could never be completed <a href="Concepts.doc.html#18339">(&#167;2.13.1)</a> if it were, so it could not have its <code>ACC_FINAL</code> flag set.<p>
+<a name="22069"></a>
+The flags <code>ACC_FINAL</code> and <code>ACC_ABSTRACT</code> cannot both be set for a class; the implementation of such a class could never be completed <a href="Concepts.doc.html#20340">(&#167;2.8.2)</a>.<p>
+<a name="22165"></a>
+The setting of the <code>ACC_SUPER</code> flag directs the Java Virtual Machine which of two alternative semantics for its <i>invokespecial</i> instruction to express; it exists for backward compatibility for code compiled by Sun's older Java compilers. All new implementations of the Java Virtual Machine should implement the semantics for <i>invokespecial</i> documented in Chapter <a href="Instructions.doc.html#13311">6</a>, <a href="Instructions.doc.html#13312">"Java Virtual Machine Instruction Set."</a> All new compilers to the Java Virtual Machine's instruction set should set the <code>ACC_SUPER</code> flag. Sun's older Java compilers generate <code>ClassFile</code> flags with <code>ACC_SUPER</code> unset. Sun's older Java Virtual Machine implementations ignore the flag if it is set.<p>
+<a name="22118"></a>
+All unused bits of the <code>access_flags</code> item, including those not assigned in <a href="ClassFile.doc.html#23242">Table 4.1</a>, are reserved for future use. They should be set to zero in generated <code>class</code> files and should be ignored by Java Virtual Machine implementations.<p>
+</blockquote><a name="13052"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;this_class</b><br><blockquote><a name="2115"></a>
+The value of the <code>this_class</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Class_info</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> structure representing the class or interface defined by this <code>class</code> file.<p>
+</blockquote><a name="18651"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;super_class</b><br><blockquote><a name="19632"></a>
+For a class, the value of the <code>super_class</code> item either must be zero or must be a valid index into the <code>constant_pool</code> table. If the value of the <code>super_class</code> item is nonzero, the <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Class_info</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> structure representing the superclass of the class defined by this <code>class</code> file. Neither the superclass nor any of its superclasses may be a <code>final</code> class.<p>
+<a name="21130"></a>
+If the value of <code>super_class</code> is zero, then this <code>class</code> file must represent the class <code>java.lang.Object</code>, the only class or interface without a superclass.<p>
+<a name="11369"></a>
+For an interface, the value of <code>super_class</code> must always be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Class_info</code> structure representing the class <code>java.lang.Object</code>.<p>
+</blockquote><a name="18662"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;interfaces_count</b><br><blockquote><a name="19639"></a>
+The value of the <code>interfaces_count</code> item gives the number of direct superinterfaces of this class or interface type.<p>
+</blockquote><a name="18665"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;interfaces[]</b><br><blockquote><a name="6757"></a>
+Each value in the <code>interfaces</code> array must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at each value of <code>interfaces[</code><i>i</i><code>]</code>, where <code>0</code> &#163; i < <code>interfaces_count</code>, must be a <code>CONSTANT_Class_info</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> structure representing an interface which is a direct superinterface of this class or interface type, in the left-to-right order given in the source for the type.<p>
+</blockquote><a name="6758"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;fields_count</b><br><blockquote><a name="23377"></a>
+The value of the <code>fields_count</code> item gives the number of <code>field_info</code> structures in the <code>fields</code> table. The <code>field_info </code><a href="ClassFile.doc.html#2877">(&#167;4.5)</a> structures represent all fields, both class variables and instance variables, declared by this class or interface type.<p>
+</blockquote><a name="19653"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;fields[]</b><br><blockquote><a name="19655"></a>
+Each value in the <code>fields</code> table must be a variable-length <code>field_info</code> <a href="ClassFile.doc.html#2877">(&#167;4.5)</a> structure giving a complete description of a field in the class or interface type. The <code>fields</code> table includes only those fields that are declared by this class or interface. It does not include items representing fields that are inherited from superclasses or superinterfaces.<p>
+</blockquote><a name="19656"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;methods_count</b><br><blockquote><a name="19657"></a>
+The value of the <code>methods_count</code> item gives the number of <code>method_info</code> structures in the <code>methods</code> table. <p>
+</blockquote><a name="19659"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;methods[]</b><br><blockquote><a name="7189"></a>
+Each value in the <code>methods</code> table must be a variable-length <code>method_info</code> <a href="ClassFile.doc.html#1513">(&#167;4.6)</a> structure giving a complete description of and Java Virtual Machine code for a method in the class or interface. <p>
+<a name="18125"></a>
+The <code>method_info</code> structures represent all methods, both instance methods and, for classes, class (<code>static</code>) methods, declared by this class or interface type. The <code>methods</code> table only includes those methods that are explicitly declared by this class. Interfaces have only the single method <code>&lt;clinit&gt;</code>, the interface initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>. The <code>methods</code> table does not include items representing methods that are inherited from superclasses or superinterfaces.<p>
+</blockquote><a name="7193"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attributes_count</b><br><blockquote><a name="18668"></a>
+The value of the <code>attributes_count</code> item gives the number of attributes <a href="ClassFile.doc.html#1442">(&#167;4.7)</a> in the <code>attributes</code> table of this class.<p>
+</blockquote><a name="19684"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attributes[]</b><br><blockquote><a name="19685"></a>
+Each value of the <code>attributes</code> table must be a variable-length attribute structure. A <code>ClassFile</code> structure can have any number of attributes <a href="ClassFile.doc.html#1442">(&#167;4.7)</a> associated with it. <p>
+<a name="14273"></a>
+The only attribute defined by this specification for the <code>attributes</code> table of a <code>ClassFile</code> structure is the <code>SourceFile</code> attribute <a href="ClassFile.doc.html#1365">(&#167;4.7.2)</a>.<p>
+<a name="14249"></a>
+A Java Virtual Machine implementation is required to silently ignore any or all attributes in the <code>attributes</code> table of a <code>ClassFile</code> structure that it does not recognize. Attributes not defined in this specification are not allowed to affect the semantics of the <code>class</code> file, but only to provide additional descriptive information <a href="ClassFile.doc.html#16733">(&#167;4.7.1)</a>.<p>
+</blockquote><a name="14757"></a>
+<hr><h2>4.2	 Internal Form of Fully Qualified Class Names</h2>
+<a name="14894"></a>
+Class names that appear in <code>class</code> file structures are always represented in a fully 
+qualified form <a href="Concepts.doc.html#20207">(&#167;2.7.9)</a>. These class names are always represented as 
+<code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structures, and they are referenced from those 
+<code>CONSTANT_NameAndType_info</code> <a href="ClassFile.doc.html#1327">(&#167;4.4.6)</a> structures that have class names as part of 
+their descriptor <a href="ClassFile.doc.html#1169">(&#167;4.3)</a>, as well as from all <code>CONSTANT_Class_info</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> structures.
+<p><a name="14922"></a>
+For historical reasons the exact syntax of fully qualified class names that appear in <code>class</code> file structures differs from the familiar Java fully qualified class name documented in <a href="Concepts.doc.html#20207">&#167;2.7.9</a>. In the internal form, the ASCII periods (<code>'</code>.<code>'</code>) that normally separate the identifiers <a href="Concepts.doc.html#25339">(&#167;2.2)</a> that make up the fully qualified name are replaced by ASCII forward slashes (<code>'/'</code>). For example, the normal fully qualified name of class <code>Thread</code> is <code>java.lang.Thread</code>. In the form used in descriptors in <code>class</code> files, a reference to the name of class <code>Thread</code> is implemented using a <code>CONSTANT_Utf8_info</code> structure representing the string <code>"java/lang/Thread"</code>.<p>
+<a name="1169"></a>
+<hr><h2>4.3	 Descriptors</h2>
+<a name="1170"></a>
+A descriptor is a string representing the type of a field or method. 
+<p><a name="13972"></a>
+<h3>4.3.1	 Grammar Notation</h3>
+<a name="14150"></a>
+Descriptors are specified using a grammar. This grammar is a set of productions that 
+describe how sequences of characters can form syntactically correct descriptors of 
+various types. Terminal symbols of the grammar are shown in bold fixed-width font. 
+Nonterminal symbols are shown in <i>italic</i> type. The definition of a nonterminal is 
+introduced by the name of the nonterminal being defined, followed by a colon. One 
+or more alternative right-hand sides for the nonterminal then follow on succeeding 
+lines. A nonterminal symbol on the right-hand side of a production that is followed 
+by an asterisk (*) represents zero or more possibly different values produced from 
+that nonterminal, appended without any intervening space.
+<p><a name="14152"></a>
+<h3>4.3.2	 Field Descriptors</h3>
+<a name="7028"></a>
+A <i>field descriptor</i> represents the type of a class or instance variable. It is a series of 
+characters generated by the grammar:
+<p><a name="23538"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>FieldDescriptor:</i><br><blockquote><a name="23539"></a>
+	<i>FieldType</i><p>
+</blockquote><a name="23540"></a>
+<p>
+<a name="23546"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>ComponentType:</i><br><blockquote><a name="13979"></a>
+	<i>FieldType</i><p>
+</blockquote><a name="23520"></a>
+<p>
+<a name="23545"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>FieldType:</i><br><blockquote><a name="13982"></a>
+	<i>BaseType</i><p>
+<a name="14135"></a>
+	<i>ObjectType</i><p>
+<a name="13983"></a>
+	<i>ArrayType</i>	<p>
+</blockquote><a name="13984"></a>
+<p>
+<a name="23547"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>BaseType:</i><br><blockquote><a name="13985"></a>
+	B<p>
+<a name="13986"></a>
+	C<p>
+<a name="13987"></a>
+	D<p>
+<a name="13988"></a>
+	F<p>
+<a name="13989"></a>
+	I<p>
+<a name="13990"></a>
+	J<p>
+<a name="13991"></a>
+	S<p>
+<a name="13992"></a>
+	Z<p>
+<a name="14125"></a>
+<p>
+</blockquote><a name="23548"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>ObjectType:</i><br><blockquote><a name="14126"></a>
+	L &lt;classname&gt; ;<p>
+</blockquote><a name="14127"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>ArrayType:</i><br><blockquote><a name="14128"></a>
+	[ <i>ComponentType</i><p>
+</blockquote><a name="14019"></a>
+The characters of <i>BaseType</i>, the L and ; of <i>ObjectType</i>, and the [ of <i>ArrayType</i> are all ASCII characters. The &lt;classname&gt; represents a fully qualified class name, for instance, <code>java.lang.Thread</code>. For historical reasons it is stored in a <code>class</code> file in a modified internal form (<a href="ClassFile.doc.html#14757">&#167;4.2)</a>.<p>
+<a name="16252"></a>
+The meaning of the field types is as follows:
+<p>
+<pre>
+<a name="16253"></a>
+ B	      <code>byte	</code>		signed byte <br>
+ C	      <code>char</code>			character <br>
+ D	      <code>double	</code>		double-precision IEEE 754 float <br>
+ F	      <code>float	</code>		single-precision IEEE 754 float <br>
+ I	      <code>int	</code>		integer <br>
+ J	      <code>long	</code>		long integer <br>
+ L&lt;classname&gt;;<code>	</code>...			an instance of the class <br> 
+ S	      <code>short</code>			signed short <br>
+ Z	      <code>boolean	</code>		<code>true</code> or <code>false </code> <br>
+ [<code>	      </code>...			one array dimension<p><br>
+</pre>
+<a name="23302"></a>
+For example, the descriptor of an <code>int</code> instance variable is simply I. The descriptor of 
+an instance variable of type <code>Object</code> is Ljava/lang/Object;. Note that the internal form of 
+the fully qualified class name for class <code>Object</code> is used. The descriptor of an instance 
+variable that is a multidimensional <code>double</code> array,
+<p><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>double d[][][];
+</code></pre><a name="12776"></a>
+is
+<p><pre>&nbsp;&nbsp;&nbsp;&nbsp;<strong>[[[D
+</strong></pre><a name="7035"></a>
+<h3>4.3.3	 Method Descriptors</h3>
+<a name="7597"></a>
+A <i>parameter descriptor </i>represents a parameter passed to a method:
+<p><a name="23526"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>ParameterDescriptor:</i><br><blockquote><a name="23527"></a>
+	<i>FieldType</i><p>
+</blockquote><a name="23528"></a>
+A <i>method descriptor</i> represents the parameters that the method takes and the value that it returns:<p>
+<a name="14037"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>MethodDescriptor:</i><br><blockquote><a name="14038"></a>
+	( <i>ParameterDescriptor * </i>) <i>ReturnDescriptor</i><p>
+</blockquote><a name="7585"></a>
+A <i>return descriptor </i>represents the return value from a method. It is a series of characters generated by the grammar:<p>
+<a name="14049"></a>
+&nbsp; &nbsp; &nbsp; &nbsp;<i>ReturnDescriptor:</i><br><blockquote><a name="14050"></a>
+	<i>FieldType</i><p>
+<a name="14051"></a>
+	V<p>
+</blockquote><a name="7587"></a>
+The character V indicates that the method returns no value (its return type is <code>void</code>). Otherwise, the descriptor indicates the type of the return value.<p>
+<a name="11151"></a>
+A valid Java method descriptor must represent 255 or fewer words of method parameters, where that limit includes the word for <code>this</code> in the case of instance method invocations. The limit is on the number of words of method parameters and not on the number of parameters themselves; parameters of type <code>long</code> and <code>double</code> each use two words.<p>
+<a name="12746"></a>
+For example, the method descriptor for the method<p>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>Object mymethod(int i, double d, Thread t)
+</code></pre><a name="12751"></a>
+is
+<p><pre>&nbsp;&nbsp;&nbsp;&nbsp;<strong>(IDLjava/lang/Thread;)Ljava/lang/Object;
+</strong></pre><a name="18238"></a>
+Note that internal forms of the fully qualified class names of <code>Thread</code> and <code>Object</code> are 
+used in the method descriptor.
+<p><a name="15525"></a>
+The method descriptor for <code>mymethod</code> is the same whether <code>mymethod</code> is <code>static</code> or is an instance method. Although an instance method is passed <code>this</code>, a reference to the current class instance, in addition to its intended parameters, that fact is not reflected in the method descriptor. (A reference to <code>this</code> is not passed to a <code>static</code> method.) The reference to <code>this</code> is passed implicitly by the method invocation instructions of the Java Virtual Machine used to invoke instance methods.<p>
+<a name="20080"></a>
+<hr><h2>4.4	 Constant Pool</h2>
+<a name="9597"></a>
+All <code>constant_pool</code> table entries have the following general format:
+<p><pre><br><a name="9604"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>cp_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 info[];
+</code><a name="9689"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9691"></a>
+Each item in the <code>constant_pool</code> table must begin with a 1-byte tag indicating the kind 
+of <code>cp_info</code> entry. The contents of the <code>info</code> array varies with the value of <code>tag</code>. The valid 
+tags and their values are listed in <a href="ClassFile.doc.html#9691">Table 4.2</a><p><Table Border="0">
+<tr><th><b><i>Constant Type
+</i></b>
+<th><b><i>Value
+</i></b>
+<tr><td><a name="9646"></a>
+<code>CONSTANT_Class</code>
+<td><a name="9648"></a>
+<code>7</code>
+
+<tr><td><a name="9650"></a>
+<code>CONSTANT_Fieldref</code>
+<td><a name="9652"></a>
+<code>9</code>
+
+<tr><td><a name="9654"></a>
+<code>CONSTANT_Methodref</code>
+<td><a name="9656"></a>
+<code>10</code>
+
+<tr><td><a name="9658"></a>
+<code>CONSTANT_InterfaceMethodref</code>
+<td><a name="9660"></a>
+<code>11</code>
+
+<tr><td><a name="9662"></a>
+<code>CONSTANT_String</code>
+<td><a name="9664"></a>
+<code>8</code>
+
+<tr><td><a name="9666"></a>
+<code>CONSTANT_Integer</code>
+<td><a name="9668"></a>
+<code>3</code>
+
+<tr><td><a name="9670"></a>
+<code>CONSTANT_Float</code>
+<td><a name="9672"></a>
+<code>4</code>
+
+<tr><td><a name="9674"></a>
+<code>CONSTANT_Long</code>
+<td><a name="9676"></a>
+<code>5</code>
+
+<tr><td><a name="9678"></a>
+<code>CONSTANT_Double</code>
+<td><a name="9680"></a>
+<code>6</code>
+
+<tr><td><a name="9682"></a>
+<code>CONSTANT_NameAndType</code>
+<td><a name="9684"></a>
+<code>12</code>
+
+<tr><td><a name="9686"></a>
+<code>CONSTANT_Utf8</code>
+<td><a name="9688"></a>
+<code>1</code>
+
+</Table><br><br>. Each tag byte must be followed by two 
+or more bytes giving information about the specific constant. The format of the 
+additional information varies with the tag value.
+<p><a name="1221"></a>
+<h3>4.4.1	 <em>CONSTANT_Class</em></h3>
+<a name="1222"></a>
+The <code>CONSTANT_Class_info</code> structure is used to represent a class or an interface:
+<p><pre><br><a name="1223"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_Class_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 name_index;
+</code><a name="1226"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9357"></a>
+The items of the <code>CONSTANT_Class_info</code> structure are the following:
+<p><a name="1228"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;tag</b><br><blockquote><a name="1229"></a>
+The <code>tag</code> item has the value <code>CONSTANT_Class</code> (<code>7</code>).<p>
+</blockquote><a name="8829"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;name_index</b><br><blockquote><a name="8830"></a>
+The value of the <code>name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing a valid fully qualified Java class name <a href="Concepts.doc.html#20389">(&#167;2.8.1)</a> that has been converted to the <code>class</code> file's internal form (<a href="ClassFile.doc.html#14757">&#167;4.2)</a>. <p>
+</blockquote><a name="1232"></a>
+Because arrays are objects, the opcodes <i>anewarray</i> and <i>multianewarray</i> can reference array "classes" via <code>CONSTANT_Class_info</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> structures in the <code>constant_pool</code> table. In this case, the name of the class is the descriptor of the array type. For example, the class name representing a two-dimensional <code>int</code> array type;<p>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>int[][] 
+</code></pre><a name="1234"></a>
+is 
+<p><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>[[I
+</code></pre><a name="1237"></a>
+The class name representing the type array of class <code>Thread</code>;
+<p><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>Thread[] 
+</code></pre><a name="1239"></a>
+is 
+<p><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>[Ljava.lang.Thread;
+</code></pre><a name="11150"></a>
+A valid Java array type descriptor must have 255 or fewer array dimensions.
+<p><a name="4723"></a>
+<h3>4.4.2	 <em>CONSTANT_Fieldref</em>, <em>CONSTANT_Methodref</em>, and <em>CONSTANT_InterfaceMethodref</em></h3>
+<a name="1253"></a>
+Fields, methods, and interface methods are represented by similar structures:
+<p><pre><br><a name="1254"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_Fieldref_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 class_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 name_and_type_index;
+</code><a name="1258"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br><br><a name="1260"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_Methodref_info {
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 class_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 name_and_type_index;
+</code><a name="1264"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br><br><a name="1266"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_InterfaceMethodref_info {
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 class_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 name_and_type_index;
+</code><a name="1270"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9360"></a>
+The items of these structures are as follows:
+<p><a name="6689"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;tag</b><br><blockquote><a name="6690"></a>
+The <code>tag</code> item of a <code>CONSTANT_Fieldref_info</code> structure has the value <code>CONSTANT_Fieldref</code> (<code>9</code>). <p>
+<a name="6698"></a>
+The <code>tag</code> item of a <code>CONSTANT_Methodref_info</code> structure has the value <code>CONSTANT_Methodref</code> (<code>10</code>).<p>
+<a name="6701"></a>
+The <code>tag</code> item of a <code>CONSTANT_InterfaceMethodref_info</code> structure has the value <code>CONSTANT_InterfaceMethodref</code> (<code>11</code>).<p>
+</blockquote><a name="1273"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;class_index</b><br><blockquote><a name="1274"></a>
+The value of the <code>class_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Class_info</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> structure representing the class or interface type that contains the declaration of the field or method.<p>
+<a name="7650"></a>
+The <code>class_index</code> item of a <code>CONSTANT_Fieldref_info</code> or a <code>CONSTANT_Methodref_info</code> structure must be a class type, not an interface type. The <code>class_index</code> item of a <code>CONSTANT_InterfaceMethodref_info</code> structure must be an interface type that declares the given method.<p>
+</blockquote><a name="1276"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;name_and_type_index</b><br><blockquote><a name="1277"></a>
+The value of the <code>name_and_type_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_NameAndType_info</code> <a href="ClassFile.doc.html#1327">(&#167;4.4.6)</a> structure. This <code>constant_pool</code> entry indicates the name and descriptor of the field or method.<p>
+<a name="8792"></a>
+If the name of the method of a <code>CONSTANT_Methodref_info</code> or <code>CONSTANT_InterfaceMethodref_info</code> begins with a <code>'&lt;'</code> (<code>'\u003c'</code>), then the name must be one of the special internal methods <a href="Overview.doc.html#12174">(&#167;3.8)</a>, either <code>&lt;init&gt;</code> or <code>&lt;clinit&gt;</code>. In this case, the method must return no value.<p>
+</blockquote><a name="8794"></a>
+<h3>4.4.3	 <em>CONSTANT_String </em></h3>
+<a name="21417"></a>
+The <code>CONSTANT_String_info</code> structure is used to represent constant objects of the type 
+<code>java.lang.String</code>:
+<p><pre><br><a name="21424"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_String_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 string_index;
+</code><a name="21426"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9366"></a>
+The items of the <code>CONSTANT_String_info</code> structure are as follows:
+<p><a name="21646"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;tag</b><br><blockquote><a name="21647"></a>
+The <code>tag</code> item of the <code>CONSTANT_String_info</code> structure has the value <code>CONSTANT_String</code> (<code>8</code>).<p>
+</blockquote><a name="6663"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;string_index</b><br><blockquote><a name="6664"></a>
+The value of the <code>string_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#8794">(&#167;4.4.3)</a> structure representing the sequence of characters to which the <code>java.lang.String</code> object is to be initialized.<p>
+</blockquote><a name="21942"></a>
+<h3>4.4.4	 <i></i><i>CONSTANT_Integer</i> and <i>CONSTANT_Float </i></h3>
+<a name="20768"></a>
+The <code>CONSTANT_Integer_info</code> and <code>CONSTANT_Float_info</code> structures represent four-byte 
+numeric (<code>int</code> and <code>float</code>) constants:
+<p><pre><br><a name="20560"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_Integer_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 bytes;
+</code><a name="20497"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br><br><a name="20499"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_Float_info {
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 bytes;
+</code><a name="9373"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9376"></a>
+The items of these structures are as follows:
+<p><a name="9375"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;tag</b><br><blockquote><a name="21652"></a>
+The <code>tag</code> item of the <code>CONSTANT_Integer_info</code> structure has the value <code>CONSTANT_Integer</code> (<code>3</code>).<p>
+<a name="7297"></a>
+The <code>tag</code> item of the <code>CONSTANT_Float_info</code> structure has the value <code>CONSTANT_Float</code> (<code>4</code>).<p>
+</blockquote><a name="20502"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;bytes</b><br><blockquote><a name="20668"></a>
+The <code>bytes</code> item of the <code>CONSTANT_Integer_info</code> structure contains the value of the <code>int</code> constant. The bytes of the value are stored in big-endian (high byte first) order.<p>
+<a name="22609"></a>
+The <code>bytes</code> item of the <code>CONSTANT_Float_info</code> structure contains the value of the <code>float</code> constant in IEEE 754 floating-point "single format" bit layout. The bytes of the value are stored in big-endian (high byte first) order, and are first converted into an <code>int</code> argument. Then:<p>
+<ul>
+<a name="22610"></a>
+<li>If the argument is <code>0x7f800000</code>, the <code>float</code> value will be positive infinity.
+<a name="22611"></a>
+<li>If the argument is <code>0xff800000</code>, the <code>float</code> value will be negative infinity.
+<a name="22612"></a>
+<li>If the argument is in the range <code>0x7f800001</code> through <code>0x7fffffff</code> or in the range <code>0xff800001</code> through <code>0xffffffff</code>, the <code>float</code> value will be NaN. 
+<a name="22613"></a>
+<li>In all other cases, let <code>s</code>, <code>e</code>, and <code>m</code> be three values that might be computed by
+</ul>
+</blockquote><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>int s = ((bytes &gt;&gt; 31) == 0) ? 1 : -1;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>int e = ((bytes &gt;&gt; 23) &amp; 0xff);
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>int m = (e == 0) ?
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>		(bytes &amp; 0x7fffff) &lt;&lt; 1 :
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>		(bytes &amp; 0x7fffff) | 0x800000;
+</code></pre><blockquote><a name="13707"></a>
+Then the <code>float</code> value equals the result of the mathematical expression <br><br><img src="ClassFile.doc.anc.gif">
+<br><br>.<p>
+</blockquote><a name="1348"></a>
+<h3>4.4.5	 <em>CONSTANT_Long</em> and <em>CONSTANT_Double </em></h3>
+<a name="20772"></a>
+The <code>CONSTANT_Long_info</code> and <code>CONSTANT_Double_info</code> represent eight-byte numeric 
+(<code>long</code> and <code>double</code>) constants:
+<p><pre><br><a name="20787"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_Long_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 high_bytes;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 low_bytes;
+</code><a name="20790"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br><br><a name="21702"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_Double_info {
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 high_bytes;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 low_bytes;
+</code><a name="21696"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="16625"></a>
+All eight-byte constants take up two entries in the <code>constant_pool</code> table of the <code>class</code> file, as well as in the in-memory version of the constant pool that is constructed when a <code>class</code> file is read. If a <code>CONSTANT_Long_info</code> or <code>CONSTANT_Double_info</code> structure is the item in the <code>constant_pool</code> table at index n, then the next valid item in the pool is located at index n+2. The <code>constant_pool</code> index n+1 must be considered invalid and must not be used.<a href="#16628"><sup>1</sup></a><p>
+<a name="9381"></a>
+The items of these structures are as follows:
+<p><a name="7309"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;tag</b><br><blockquote><a name="7310"></a>
+The <code>tag</code> item of the <code>CONSTANT_Long_info</code> structure has the value <code>CONSTANT_Long</code> (<code>5</code>).<p>
+<a name="7313"></a>
+The <code>tag</code> item of the <code>CONSTANT_Double_info</code> structure has the value <code>CONSTANT_Double</code> (<code>6</code>).<p>
+</blockquote><a name="20793"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;high_bytes, low_bytes</b><br><blockquote><a name="20794"></a>
+The unsigned <code>high_bytes</code> and <code>low_bytes</code> items of the <code>CONSTANT_Long</code> structure together contain the value of the <code>long</code> constant ((<code>long</code>)<code>high_bytes</code> << 32) + <code>low_bytes</code>, where the bytes of each of <code>high_bytes</code> and <code>low_bytes</code> are stored in big-endian (high byte first) order.<p>
+<a name="20795"></a>
+The <code>high_bytes</code> and <code>low_bytes</code> items of the <code>CONSTANT_Double_info</code> structure contain the <code>double</code> value in IEEE 754 floating-point "double format" bit layout. The bytes of each item are stored in big-endian (high byte first) order. The <code>high_bytes</code> and <code>low_bytes</code> items are first converted into a <code>long</code> argument. Then:<p>
+<ul>
+<a name="13750"></a>
+<li>If the argument is <code>0x7f80000000000000L</code>, the <code>double</code> value will be positive infinity.
+<a name="13751"></a>
+<li>If the argument is <code>0xff80000000000000L</code>, the <code>double</code> value will be negative infinity.
+<a name="13752"></a>
+<li>If the argument is in the range <code>0x7ff0000000000001L</code> through <code>0x7fffffffffffffffL</code> or in the range <code>0xfff0000000000001L</code> through <code>0xffffffffffffffffL</code>, the <code>double</code> value will be NaN.
+<a name="13753"></a>
+<li>In all other cases, let <code>s</code>, <code>e</code>, and <code>m</code> be three values that might be computed from the argument:
+</ul>
+</blockquote><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>int s = ((bits &gt;&gt; 63) == 0) ? 1 : -1;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>int e = (int)((bits &gt;&gt; 52) &amp; 0x7ffL);
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>long m = (e == 0) ?
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	(bits &amp; 0xfffffffffffffL) &lt;&lt; 1 :
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	(bits &amp; 0xfffffffffffffL) | 0x10000000000000L;
+</code></pre><blockquote><a name="13772"></a>
+Then the floating-point value equals the <code>double</code> value of the mathematical expression <br><br><img src="ClassFile.doc.anc1.gif">
+<br><br>.<p>
+</blockquote><a name="1327"></a>
+<h3>4.4.6	 <em>CONSTANT_NameAndType </em></h3>
+<a name="5970"></a>
+The <code>CONSTANT_NameAndType_info</code> structure is used to represent a field or method, 
+without indicating which class or interface type it belongs to:
+<p><pre><br><a name="1328"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_NameAndType_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 descriptor_index;
+</code><a name="1332"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9390"></a>
+The items of the <code>CONSTANT_NameAndType_info</code> structure are as follows:
+<p><a name="1334"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;tag</b><br><blockquote><a name="1335"></a>
+The <code>tag</code> item of the <code>CONSTANT_NameAndType_info</code> structure has the value <code>CONSTANT_NameAndType</code> (<code>12</code>).<p>
+</blockquote><a name="1336"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;name_index</b><br><blockquote><a name="1337"></a>
+The value of the <code>name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing a valid Java field name or method name <a href="Concepts.doc.html#21272">(&#167;2.7)</a> stored as a simple (not fully qualified) name <a href="Concepts.doc.html#21410">(&#167;2.7.1)</a>, that is, as a Java identifier.<p>
+</blockquote><a name="1338"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;descriptor_index</b><br><blockquote><a name="7955"></a>
+The value of the <code>descriptor_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing a valid Java field descriptor <a href="ClassFile.doc.html#14152">(&#167;4.3.2)</a> or method descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a>.<p>
+</blockquote><a name="7963"></a>
+<h3>4.4.7	 <em>CONSTANT_Utf8 </em></h3>
+<a name="1297"></a>
+The <code>CONSTANT_Utf8_info</code> structure is used to represent constant string values.
+<p><a name="3310"></a>
+UTF-8 strings are encoded so that character sequences that contain only non-null ASCII characters can be represented using only one byte per character, but characters of up to 16 bits can be represented. All characters in the range <code>'\u0001'</code> to <code>'\u007F'</code> are represented by a single byte:<p>
+<a name="17394"></a>
+<p><Table Border="0">
+<tr><td><a name="17389"></a>
+ 
+<td><a name="17391"></a>
+ 0
+<td><a name="17393"></a>
+ bits 0-7
+
+</Table><br><br><p>
+<a name="17395"></a>
+<p>
+<a name="23575"></a>
+The seven bits of data in the byte give the value of the character represented. The 
+null character (<code>'\u0000'</code>) and characters in the range <code>'\u0080'</code> to <code>'\u07FF'</code> are represented 
+by a pair of bytes x and y:
+<p><a name="23595"></a>
+<p><Table Border="0">
+<tr><td><a name="23599"></a>
+ x: 
+<td><a name="23580"></a>
+ 1
+<td><a name="23582"></a>
+ 1
+<td><a name="23584"></a>
+ 0
+<td><a name="23586"></a>
+ bits 6-10
+<td><a name="23588"></a>
+ y:
+<td><a name="23590"></a>
+ 1
+<td><a name="23592"></a>
+ 0
+<td><a name="23594"></a>
+ bits 0-5
+
+</Table><br><br><p>
+<a name="23596"></a>
+<p>
+<a name="3319"></a>
+The bytes represent the character with the value ((x & <code>0x1f</code>) << <code>6</code>) + (y & <code>0x3f</code>).
+<p><a name="12876"></a>
+Characters in the range <code>'\u0800'</code> to <code>'\uFFFF'</code> are represented by three bytes x, y, and z:<p>
+<a name="15268"></a>
+<p><Table Border="0">
+<tr><td><a name="13601"></a>
+ x:
+<td><a name="5200"></a>
+ 1
+<td><a name="5202"></a>
+ 1
+<td><a name="5204"></a>
+ 1
+<td><a name="5206"></a>
+ 0
+<td><a name="5208"></a>
+ bits 12-15
+<td><a name="5210"></a>
+ y:
+<td><a name="5212"></a>
+ 1
+<td><a name="5214"></a>
+ 0
+<td><a name="5216"></a>
+ bits 6-11
+<td><a name="5218"></a>
+ z:
+<td><a name="5220"></a>
+ 1
+<td><a name="5222"></a>
+ 0
+<td><a name="5224"></a>
+ bits 0-5
+
+</Table><br><br><p>
+<a name="15575"></a>
+<p>
+<a name="15576"></a>
+The character with the value ((x & <code>0xf</code>) << <code>12</code>) + ((y & <code>0x3f</code>) << <code>6</code>) + (z & <code>0x3f</code>) is represented by the bytes.
+<p><a name="12887"></a>
+The bytes of multibyte characters are stored in the <code>class</code> file in big-endian (high byte first) order.<p>
+<a name="6111"></a>
+There are two differences between this format and the "standard" UTF-8 format. First, the null byte <code>(byte)0</code> is encoded using the two-byte format rather than the one-byte format, so that Java Virtual Machine UTF-8 strings never have embedded nulls. Second, only the one-byte, two-byte, and three-byte formats are used. The Java Virtual Machine does not recognize the longer UTF-8 formats.<p>
+<a name="14071"></a>
+For more information regarding the UTF-8 format, see <i>File System Safe UCS Transformation Format (FSS_UTF)</i>, X/Open Preliminary Specification, X/Open Company Ltd., Document Number: P316. This information also appears in ISO/IEC 10646, Annex P.<p>
+<a name="7715"></a>
+The <code>CONSTANT_Utf8_info</code> structure is<p>
+<pre><br><a name="1298"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>CONSTANT_Utf8_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 tag;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 bytes[length];
+</code><a name="9399"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9402"></a>
+The items of the <code>CONSTANT_Utf8_info</code> structure are the following:
+<p><a name="9401"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;tag</b><br><blockquote><a name="1311"></a>
+The <code>tag</code> item of the <code>CONSTANT_Utf8_info</code> structure has the value <code>CONSTANT_Utf8</code> (<code>1</code>).<p>
+</blockquote><a name="1312"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;length</b><br><blockquote><a name="1313"></a>
+The value of the <code>length</code> item gives the number of bytes in the <code>bytes</code> array (not the length of the resulting string). The strings in the <code>CONSTANT_Utf8_info</code> structure are not null-terminated.<p>
+</blockquote><a name="2874"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;bytes[]</b><br><blockquote><a name="2875"></a>
+The <code>bytes</code> array contains the bytes of the string. No byte may have the value <code>(byte)0</code> or <code>(byte)0xf0</code>-<code>(byte)0xff</code>.<p>
+</blockquote><a name="2877"></a>
+<hr><h2>4.5	 Fields</h2>
+<a name="1480"></a>
+Each field is described by a variable-length <code>field_info</code> structure. The format of this 
+structure is
+<p><pre><br><a name="1481"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>field_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 access_flags;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 descriptor_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attributes_count;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	attribute_info attributes[attributes_count];
+</code><a name="1487"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9407"></a>
+The items of the <code>field_info</code> structure are as follows:
+<p><a name="1488"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;access_flags</b><br><blockquote><a name="23392"></a>
+The value of the <code>access_flags</code> item is a mask of modifiers used to describe access permission to and properties of a field. The <code>access_flags</code> modifiers are shown in Table 4.3. <p><Table Border="0">
+<tr><td><a name="23398"></a>
+Flag Name
+<td><a name="23400"></a>
+Value
+<td><a name="23402"></a>
+Meaning
+<td><a name="23404"></a>
+Used By
+
+<tr><td><a name="23406"></a>
+<code>ACC_PUBLIC</code>
+<td><a name="23408"></a>
+<code>0x0001</code>
+<td><a name="23410"></a>
+Is <code>public</code>; may be accessed from outside its package. 
+<td><a name="23412"></a>
+Any field
+
+<tr><td><a name="23414"></a>
+<code>ACC_PRIVATE</code>
+<td><a name="23416"></a>
+<code>0x0002</code>
+<td><a name="23418"></a>
+Is <code>private</code>; usable only within the defining class.
+<td><a name="23420"></a>
+Class field
+
+<tr><td><a name="23422"></a>
+<code>ACC_PROTECTED</code>
+<td><a name="23424"></a>
+<code>0x0004</code>
+<td><a name="23426"></a>
+Is <code>protected</code>; may be accessed within subclasses.
+<td><a name="23428"></a>
+Class field
+
+<tr><td><a name="23430"></a>
+<code>ACC_STATIC</code>
+<td><a name="23432"></a>
+<code>0x0008</code>
+<td><a name="23434"></a>
+Is <code>static</code>. 
+<td><a name="23436"></a>
+Any field
+
+<tr><td><a name="23438"></a>
+<code>ACC_FINAL</code>
+<td><a name="23440"></a>
+<code>0x0010</code>
+<td><a name="23442"></a>
+Is <code>final</code>; no further overriding or assignment after initialization.
+<td><a name="23444"></a>
+Any field
+
+<tr><td><a name="23446"></a>
+<code>ACC_VOLATILE</code>
+<td><a name="23448"></a>
+<code>0x0040</code>
+<td><a name="23450"></a>
+Is <code>volatile;</code> cannot be cached. 
+<td><a name="23452"></a>
+Class field
+
+<tr><td><a name="23454"></a>
+<code>ACC_TRANSIENT</code>
+<td><a name="23456"></a>
+<code>0x0080</code>
+<td><a name="23458"></a>
+Is <code>transient</code>; not written or read by a persistent object manager. 
+<td><a name="23460"></a>
+Class field
+
+</Table><br><br><p>
+<a name="23473"></a>
+Fields of interfaces may only use flags indicated in <a href="ClassFile.doc.html#23392">Table 4.3</a> as used by any field. Fields of classes may use any of the flags in <a href="ClassFile.doc.html#23392">Table 4.3</a>. <p>
+<a name="23057"></a>
+All unused bits of the <code>access_flags</code> item, including those not assigned in <a href="ClassFile.doc.html#23392">Table 4.3</a>, are reserved for future use. They should be set to zero in generated <code>class</code> files and should be ignored by Java Virtual Machine implementations.<p>
+<a name="23061"></a>
+Class fields may have at most one of flags <code>ACC_PUBLIC</code>, <code>ACC_PROTECTED</code>, and <code>ACC_PRIVATE</code> set <a href="Concepts.doc.html#18914">(&#167;2.7.8)</a>. A class field may not have both <code>ACC_FINAL</code> and <code>ACC_VOLATILE</code> set <a href="Concepts.doc.html#16297">(&#167;2.9.1)</a>.<p>
+<a name="22231"></a>
+Each interface field is implicitly <code>static</code> and <code>final</code> <a href="Concepts.doc.html#18349">(&#167;2.13.4)</a> and must have both its <code>ACC_STATIC</code> and <code>ACC_FINAL</code> flags set. Each interface field is implicitly <code>public</code> <a href="Concepts.doc.html#18349">(&#167;2.13.4)</a> and must have its <code>ACC_PUBLIC</code> flag set.<p>
+</blockquote><a name="22218"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;name_index</b><br><blockquote><a name="3976"></a>
+The value of the <code>name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure which must represent a valid Java field name <a href="Concepts.doc.html#21272">(&#167;2.7)</a> stored as a simple (not fully qualified) name <a href="Concepts.doc.html#21410">(&#167;2.7.1)</a>, that is, as a Java identifier.<p>
+</blockquote><a name="1497"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;descriptor_index</b><br><blockquote><a name="1498"></a>
+The value of the <code>descriptor_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure which must represent a valid Java field descriptor <a href="ClassFile.doc.html#14152">(&#167;4.3.2)</a>.<p>
+</blockquote><a name="1499"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attributes_count</b><br><blockquote><a name="1500"></a>
+The value of the <code>attributes_count</code> item indicates the number of additional attributes <a href="ClassFile.doc.html#1442">(&#167;4.7)</a> of this field.<p>
+</blockquote><a name="1501"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attributes[]</b><br><blockquote><a name="1502"></a>
+Each value of the <code>attributes</code> table must be a variable-length attribute structure. A field can have any number of attributes <a href="ClassFile.doc.html#1442">(&#167;4.7)</a> associated with it. <p>
+<a name="14292"></a>
+The only attribute defined for the <code>attributes</code> table of a <code>field_info</code> structure by this specification is the <code>ConstantValue</code> attribute <a href="ClassFile.doc.html#1405">(&#167;4.7.3)</a>. <p>
+<a name="14304"></a>
+A Java Virtual Machine implementation must recognize <code>ConstantValue</code> attributes in the <code>attributes</code> table of a <code>field_info</code> structure. A Java Virtual Machine implementation is required to silently ignore any or all other attributes in the <code>attributes</code> table that it does not recognize. Attributes not defined in this specification are not allowed to affect the semantics of the <code>class</code> file, but only to provide additional descriptive information <a href="ClassFile.doc.html#16733">(&#167;4.7.1)</a>.<p>
+</blockquote><a name="1513"></a>
+<hr><h2>4.6	 Methods</h2>
+<a name="1514"></a>
+Each method, and each instance initialization method <code>&lt;init&gt;</code>, is described by a variable-length <code>method_info</code> structure. The structure has the following format:
+<p><pre><br><a name="1515"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>method_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 access_flags;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 descriptor_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attributes_count;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	attribute_info attributes[attributes_count];
+</code><a name="1521"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9412"></a>
+The items of the <code>method_info</code> structure are as follows:
+<p><a name="1522"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;access_flags</b><br><blockquote><a name="12725"></a>
+The value of the <code>access_flags</code> item is a mask of modifiers used to describe access permission to and properties of a method or instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>. The <code>access_flags</code> modifiers are shown in Table 4.4. <p><Table Border="0">
+<tr><td><a name="12562"></a>
+Flag Name
+<td><a name="12564"></a>
+Value
+<td><a name="12566"></a>
+Meaning
+<td><a name="12568"></a>
+Used By
+
+<tr><td><a name="12570"></a>
+<code>ACC_PUBLIC</code>
+<td><a name="12572"></a>
+<code>0x0001</code>
+<td><a name="12574"></a>
+Is <code>public</code>; may be accessed from outside its package. 
+<td><a name="12576"></a>
+Any method
+
+<tr><td><a name="12578"></a>
+<code>ACC_PRIVATE</code>
+<td><a name="12580"></a>
+<code>0x0002</code>
+<td><a name="12582"></a>
+Is <code>private</code>; usable only within the defining class.
+<td><a name="12584"></a>
+Class/instance method
+
+<tr><td><a name="12586"></a>
+<code>ACC_PROTECTED</code>
+<td><a name="12588"></a>
+<code>0x0004</code>
+<td><a name="12590"></a>
+Is <code>protected</code>; may be accessed within subclasses.
+<td><a name="12592"></a>
+Class/instance method
+
+<tr><td><a name="12594"></a>
+<code>ACC_STATIC</code>
+<td><a name="12596"></a>
+<code>0x0008</code>
+<td><a name="12598"></a>
+Is <code>static</code>. 
+<td><a name="12600"></a>
+Class/instance method
+
+<tr><td><a name="12602"></a>
+<code>ACC_FINAL</code>
+<td><a name="12604"></a>
+<code>0x0010</code>
+<td><a name="12606"></a>
+Is <code>final</code>; no overriding is allowed.
+<td><a name="12608"></a>
+Class/instance method
+
+<tr><td><a name="12610"></a>
+<code>ACC_SYNCHRONIZED</code>
+<td><a name="12612"></a>
+<code>0x0020</code>
+<td><a name="12614"></a>
+Is <code>synchronized</code>; wrap use in monitor lock.
+<td><a name="12616"></a>
+Class/instance method
+
+<tr><td><a name="12634"></a>
+<code>ACC_NATIVE</code>
+<td><a name="12636"></a>
+<code>0x0100</code>
+<td><a name="12638"></a>
+Is <code>native</code>; implemented in a language other than Java.
+<td><a name="12640"></a>
+Class/instance method
+
+<tr><td><a name="12650"></a>
+<code>ACC_ABSTRACT</code>
+<td><a name="12652"></a>
+<code>0x0400</code>
+<td><a name="12654"></a>
+Is <code>abstract</code>; no implementation is provided. 
+<td><a name="12656"></a>
+Any method
+
+</Table><br><br><p>
+<a name="13091"></a>
+Methods in interfaces may only use flags indicated in <a href="ClassFile.doc.html#12725">Table 4.4</a> as used by any method. Class and instance methods <a href="Concepts.doc.html#16348">(&#167;2.10.3)</a> may use any of the flags in <a href="ClassFile.doc.html#12725">Table 4.4</a>. Instance initialization methods <a href="Overview.doc.html#12174">(&#167;3.8)</a> may only use <code>ACC_PUBLIC</code>, <code>ACC_PROTECTED</code>, and <code>ACC_PRIVATE</code>. <p>
+<a name="23221"></a>
+All unused bits of the <code>access_flags</code> item, including those not assigned in <a href="ClassFile.doc.html#12725">Table 4.4</a>, are reserved for future use. They should be set to zero in generated <code>class</code> files and should be ignored by Java Virtual Machine implementations.<p>
+<a name="1528"></a>
+At most one of the flags <code>ACC_PUBLIC</code>, <code>ACC_PROTECTED</code>, and <code>ACC_PRIVATE</code> may be set for any method. Class and instance methods may not use <code>ACC_ABSTRACT</code> together with <code>ACC_FINAL</code>, <code>ACC_NATIVE</code>, or <code>ACC_SYNCHRONIZED</code> (that is, <code>native</code> and <code>synchronized</code> methods require an implementation). A class or instance method may not use <code>ACC_PRIVATE</code> with <code>ACC_ABSTRACT</code> (that is, a <code>private</code> method cannot be overridden, so such a method could never be implemented or used). A class or instance method may not use <code>ACC_STATIC</code> with <code>ACC_ABSTRACT</code> (that is, a <code>static</code> method is implicitly <code>final</code> and thus cannot be overridden, so such a method could never be implemented or used).<p>
+<a name="22379"></a>
+Class and interface initialization methods <a href="Overview.doc.html#12174">(&#167;3.8)</a>, that is, methods named <code>&lt;clinit&gt;</code>, are called implicitly by the Java Virtual Machine; the value of their <code>access_flags</code> item is ignored.<p>
+<a name="13128"></a>
+Each interface method is implicitly <code>abstract</code>, and so must have its <code>ACC_ABSTRACT</code> flag set. Each interface method is implicitly <code>public</code> <a href="Concepts.doc.html#20648">(&#167;2.13.5)</a>, and so must have its <code>ACC_PUBLIC</code> flag set.<p>
+</blockquote><a name="1529"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;name_index</b><br><blockquote><a name="1530"></a>
+The value of the <code>name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing either one of the special internal method names <a href="Overview.doc.html#12174">(&#167;3.8)</a>, either <code>&lt;init&gt;</code> or <code>&lt;clinit&gt;</code>, or a valid Java method name <a href="Concepts.doc.html#21272">(&#167;2.7)</a>, stored as a simple (not fully qualified) name <a href="Concepts.doc.html#21410">(&#167;2.7.1)</a>.<p>
+</blockquote><a name="1531"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;descriptor_index</b><br><blockquote><a name="1532"></a>
+The value of the <code>descriptor_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing a valid Java method descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a>.<p>
+</blockquote><a name="1533"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attributes_count</b><br><blockquote><a name="1534"></a>
+The value of the <code>attributes_count</code> item indicates the number of additional attributes <a href="ClassFile.doc.html#1442">(&#167;4.7)</a> of this method.<p>
+</blockquote><a name="1535"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attributes[]</b><br><blockquote><a name="3097"></a>
+Each value of the <code>attributes</code> table must be a variable-length attribute structure. A method can have any number of optional attributes <a href="ClassFile.doc.html#1442">(&#167;4.7)</a> associated with it. <p>
+<a name="15279"></a>
+The only attributes defined by this specification for the <code>attributes</code> table of a <code>method_info</code> structure are the <code>Code</code> <a href="ClassFile.doc.html#1546">(&#167;4.7.4)</a> and <code>Exceptions</code> <a href="ClassFile.doc.html#3129">(&#167;4.7.5)</a> attributes. <p>
+<a name="14336"></a>
+A Java Virtual Machine implementation must recognize <code>Code</code> <a href="ClassFile.doc.html#1546">(&#167;4.7.4)</a> and <code>Exceptions</code> <a href="ClassFile.doc.html#3129">(&#167;4.7.5)</a> attributes. A Java Virtual Machine implementation is required to silently ignore any or all other attributes in the <code>attributes</code> table of a <code>method_info</code> structure that it does not recognize. Attributes not defined in this specification are not allowed to affect the semantics of the <code>class</code> file, but only to provide additional descriptive information <a href="ClassFile.doc.html#16733">(&#167;4.7.1)</a>.<p>
+</blockquote><a name="1442"></a>
+<hr><h2>4.7	 Attributes</h2>
+<a name="1711"></a>
+Attributes are used in the <code>ClassFile</code> <a href="ClassFile.doc.html#21045">(&#167;4.1)</a>, <code>field_info</code> <a href="ClassFile.doc.html#2877">(&#167;4.5)</a>, <code>method_info</code> <a href="ClassFile.doc.html#1513">(&#167;4.6)</a>, and 
+<code>Code_attribute</code> <a href="ClassFile.doc.html#1546">(&#167;4.7.4)</a> structures of the <code>class</code> file format. All attributes have the following general format:
+<p><pre><br><a name="1712"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>attribute_info {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attribute_name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 attribute_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 info[attribute_length];
+</code><a name="1716"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="4750"></a>
+For all attributes, the <code>attribute_name_index</code> must be a valid unsigned 16-bit index into the constant pool of the class. The <code>constant_pool</code> entry at <code>attribute_name_index</code> must be a <code>CONSTANT_Utf8</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> string representing the name of the attribute. The value of the <code>attribute_length</code> item indicates the length of the subsequent information in bytes. The length does not include the initial six bytes that contain the <code>attribute_name_index</code> and <code>attribute_length</code> items.<p>
+<a name="14354"></a>
+Certain attributes are predefined as part of the <code>class</code> file specification. The predefined attributes are the <code>SourceFile</code> <a href="ClassFile.doc.html#1365">(&#167;4.7.2)</a>, <code>ConstantValue</code> <a href="ClassFile.doc.html#1405">(&#167;4.7.3)</a>, <code>Code</code> <a href="ClassFile.doc.html#1546">(&#167;4.7.4)</a>, <code>Exceptions</code> <a href="ClassFile.doc.html#3129">(&#167;4.7.5)</a>, <code>LineNumberTable</code> <a href="ClassFile.doc.html#22856">(&#167;4.7.6)</a>, and <code>Local</code>-<code>VariableTable</code> <a href="ClassFile.doc.html#5956">(&#167;4.7.7)</a> attributes. Within the context of their use in this specification, that is, in the <code>attributes</code> tables of the <code>class</code> file structures in which they appear, the names of these predefined attributes are reserved. <p>
+<a name="14381"></a>
+Of the predefined attributes, the <code>Code</code>, <code>ConstantValue</code>, and <code>Exceptions</code> attributes must be recognized and correctly read by a <code>class</code> file reader for correct interpretation of the <code>class</code> file by a Java Virtual Machine. Use of the remaining predefined attributes is optional; a <code>class</code> file reader may use the information they contain, and otherwise must silently ignore those attributes.<p>
+<a name="16733"></a>
+<h3>4.7.1	 Defining and Naming New Attributes</h3>
+<a name="14388"></a>
+Compilers for Java source code are permitted to define and emit <code>class</code> files containing new attributes in the <code>attributes</code> tables of <code>class</code> file structures. Java Virtual Machine 
+implementations are permitted to recognize and use new attributes found in the 
+<code>attributes</code> tables of <code>class</code> file structures. However, all attributes not defined as part of 
+this Java Virtual Machine specification must not affect the semantics of class or 
+interface types. Java Virtual Machine implementations are required to silently 
+ignore attributes they do not recognize.
+<p><a name="14402"></a>
+For instance, defining a new attribute to support vendor-specific debugging is permitted. Because Java Virtual Machine implementations are required to ignore attributes they do not recognize, <code>class</code> files intended for that particular Java Virtual Machine implementation will be usable by other implementations even if those implementations cannot make use of the additional debugging information that the <code>class</code> files contain. <p>
+<a name="18262"></a>
+Java Virtual Machine implementations are specifically prohibited from throwing an exception or otherwise refusing to use <code>class</code> files simply because of the presence of some new attribute. Of course, tools operating on <code>class</code> files may not run correctly if given <code>class</code> files that do not contain all the attributes they require.<p>
+<a name="18289"></a>
+Two attributes that are intended to be distinct, but that happen to use the same attribute name and are of the same length, will conflict on implementations that recognize either attribute. Attributes defined other than by Sun must have names chosen according to the package naming convention defined by <i>The Java Language Specification</i>. For instance, a new attribute defined by Netscape might have the name <code>"COM.Netscape.new-attribute"</code>. <p>
+<a name="14445"></a>
+Sun may define additional attributes in future versions of this <code>class</code> file specification. <p>
+<a name="1365"></a>
+<h3>4.7.2	 <em>SourceFile</em> Attribute</h3>
+<a name="1366"></a>
+The <code>SourceFile</code> attribute is an optional fixed-length attribute in the <code>attributes</code> table of 
+the <code>ClassFile</code> <a href="ClassFile.doc.html#21045">(&#167;4.1)</a> structure. There can be no more than one <code>SourceFile</code> &#32;attribute in 
+the <code>attributes</code> table of a given <code>ClassFile</code> structure. 
+<p><a name="17794"></a>
+The <code>SourceFile</code> attribute has the format<p>
+<pre><br><a name="1367"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>SourceFile_attribute {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attribute_name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 attribute_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 sourcefile_index;
+</code><a name="1371"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9417"></a>
+The items of the <code>SourceFile_attribute</code> structure are as follows:
+<p><a name="1372"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_name_index</b><br><blockquote><a name="1373"></a>
+The 	 value of the <code>attribute_name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing the string <code>"SourceFile"</code>.<p>
+</blockquote><a name="1374"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_length</b><br><blockquote><a name="1375"></a>
+The value of the <code>attribute_length</code> item of a <code>SourceFile_attribute</code> structure must be <code>2</code>.<p>
+</blockquote><a name="1376"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;sourcefile_index</b><br><blockquote><a name="1377"></a>
+The value of the <code>sourcefile_index</code> item must be a valid index into the <code>constant_pool</code> table. The constant pool entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing the string giving the name of the source file from which this <code>class</code> file was compiled. <p>
+<a name="13968"></a>
+Only the name of the source file is given by the <code>SourceFile</code> attribute. It never represents the name of a directory containing the file or an absolute path name for the file. For instance, the <code>SourceFile</code> attribute might contain the file name <code>foo.java</code> but not the UNIX pathname<code> /home/lindholm/foo.java</code>.<p>
+</blockquote><a name="1405"></a>
+<h3>4.7.3	 <em>ConstantValue</em> Attribute</h3>
+<a name="1406"></a>
+The <code>ConstantValue</code> attribute is a fixed-length attribute used in the <code>attributes</code> table of the 
+<code>field_info</code> <a href="ClassFile.doc.html#2877">(&#167;4.5)</a> structures. A <code>ConstantValue</code> attribute represents the value of a constant 
+field that must be (explicitly or implicitly) <code>static</code>; that is, the <code>ACC_STATIC</code> bit <a href="ClassFile.doc.html#23392">(&#167;Table 
+4.3)</a> in the <code>flags</code> item of the <code>field_info</code> structure must be set. The field is not required 
+to be <code>final</code>. There can be no more than one <code>ConstantValue</code> attribute in the <code>attributes</code> 
+table of a given <code>field_info</code> structure. The constant field represented by the <code>field_info</code> 
+structure is assigned the value referenced by its <code>ConstantValue</code> attribute as part of its 
+initialization <a href="Concepts.doc.html#19075">(&#167;2.16.4)</a>.
+<p><a name="21981"></a>
+Every Java Virtual Machine implementation must recognize <code>ConstantValue</code> attributes. <p>
+<a name="17795"></a>
+The <code>ConstantValue</code> attribute has the format<p>
+<pre><br><a name="1407"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>ConstantValue_attribute {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attribute_name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 attribute_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 constantvalue_index;
+</code><a name="1411"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9422"></a>
+The items of the <code>ConstantValue_attribute</code> structure are as follows:
+<p><a name="1412"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_name_index</b><br><blockquote><a name="1413"></a>
+	The value of the <code>attribute_name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing the string <code>"ConstantValue"</code>.<p>
+</blockquote><a name="1414"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_length</b><br><blockquote><a name="1415"></a>
+The value of the <code>attribute_length</code> item of a <code>ConstantValue_attribute</code> structure must be <code>2</code>.<p>
+</blockquote><a name="1416"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;constantvalue_index</b><br><blockquote><a name="1417"></a>
+The value of the <code>constantvalue_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must give the constant value represented by this attribute. <p>
+<a name="1418"></a>
+The <code>constant_pool</code> entry must be of a type appropriate to the field, as shown by Table 4.5. <p><Table Border="0">
+<tr><td><b><i>Field Type
+</i></b>
+<td><a name="7793"></a>
+Entry Type
+
+<tr><td><b><i><code>long
+</code></i></b>
+<td><a name="1423"></a>
+<code>CONSTANT_Long</code>
+
+<tr><td><b><i><code>float
+</code></i></b>
+<td><a name="1427"></a>
+<code>CONSTANT_Float</code>
+
+<tr><td><b><i><code>double
+</code></i></b>
+<td><a name="1431"></a>
+<code>CONSTANT_Double</code>
+
+<tr><td><b><i><code>int</code>, <code>short</code>, <code>char</code>, <code>byte</code>, <code>boolean
+</code></i></b>
+<td><a name="1435"></a>
+<code>CONSTANT_Integer</code>
+
+<tr><td><b><i><code>java.lang.String
+</code></i></b>
+<td><a name="23487"></a>
+<code>CONSTANT_String</code>
+
+</Table><br><br><p>
+</blockquote><a name="1546"></a>
+<h3>4.7.4	 <em>Code</em> Attribute</h3>
+<a name="22508"></a>
+The <code>Code</code> attribute is a variable-length attribute used in the <code>attributes</code> table of 
+<code>method_info</code> structures. A <code>Code</code> attribute contains the Java Virtual Machine instructions and auxiliary information for a single Java method, instance initialization 
+method <a href="Overview.doc.html#12174">(&#167;3.8)</a>, or class or interface initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>. Every Java Virtual 
+Machine implementation must recognize <code>Code</code> attributes. There must be exactly one 
+<code>Code</code> attribute in each <code>method_info</code> structure. 
+<p><a name="17796"></a>
+The <code>Code</code> attribute has the format<p>
+<pre><br><a name="1548"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>Code_attribute {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attribute_name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 attribute_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 max_stack;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 max_locals;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 code_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u1 code[code_length];
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 exception_table_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	{ &#32; &#32;	u2 start_pc;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	 &#32; &#32; &#32;	u2 end_pc;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	 &#32; &#32; &#32;	u2 &#32;handler_pc;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	 &#32; &#32; &#32;	u2 &#32;catch_type;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	}	exception_table[exception_table_length];
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attributes_count;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	attribute_info attributes[attributes_count];
+</code><a name="1564"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9427"></a>
+The items of the <code>Code_attribute</code> structure are as follows:
+<p><a name="1565"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_name_index</b><br><blockquote><a name="1566"></a>
+The value of the <code>attribute_name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing the string <code>"Code"</code>.<p>
+</blockquote><a name="1567"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_length</b><br><blockquote><a name="1568"></a>
+The value of the <code>attribute_length</code> item indicates the length of the attribute, excluding the initial six bytes.<p>
+</blockquote><a name="1569"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;max_stack</b><br><blockquote><a name="1570"></a>
+The value of the <code>max_stack</code> item gives the maximum number of words on the operand stack at any point during execution of this method.<p>
+</blockquote><a name="1571"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;max_locals</b><br><blockquote><a name="6514"></a>
+The value of the <code>max_locals</code> item gives the number of local variables used by this method, including the parameters passed to the method on invocation. The index of the first local variable is <code>0</code>. The greatest local variable index for a one-word value is <code>max_locals-1</code>. The greatest local variable index for a two-word value is <code>max_locals-2</code>.<p>
+</blockquote><a name="6515"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;code_length</b><br><blockquote><a name="1574"></a>
+The value of the <code>code_length</code> item gives the number of bytes in the <code>code</code> array for this method. The value of <code>code_length</code> must be greater than zero; the <code>code</code> array must not be empty.<p>
+</blockquote><a name="1575"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;code[]</b><br><blockquote><a name="1576"></a>
+The <code>code</code> array gives the actual bytes of Java Virtual Machine code that implement the method. <p>
+<a name="11572"></a>
+When the <code>code</code> array is read into memory on a byte addressable machine, if the first byte of the array is aligned on a 4-byte boundary, the <i>tableswitch</i> and <i>lookupswitch</i> 32-bit offsets will be 4-byte aligned; refer to the descriptions of those instructions for more information on the consequences of <code>code</code> array alignment.<p>
+<a name="10993"></a>
+The detailed constraints on the contents of the <code>code</code> array are extensive and are given in a separate section <a href="ClassFile.doc.html#8771">(&#167;4.8)</a>.<p>
+</blockquote><a name="10996"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;exception_table_length</b><br><blockquote><a name="10997"></a>
+The value of the <code>exception_table_length</code> item gives the number of entries in the <code>exception_table</code> table.<p>
+</blockquote><a name="1579"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;exception_table[]</b><br><blockquote><a name="6509"></a>
+Each entry in the <code>exception_table</code> array describes one exception handler in the <code>code</code> array. Each <code>exception_table</code> entry contains the following items:<p>
+</blockquote><a name="6510"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;start_pc, end_pc</b><br><blockquote><a name="6511"></a>
+The values of the two items <code>start_pc</code> and <code>end_pc</code> indicate the ranges in the <code>code</code> array at which the exception handler is active. The value of <code>start_pc</code> must be a valid index into the <code>code</code> array of the opcode of an instruction. The value of <code>end_pc</code> either must be a valid index into the <code>code</code> array of the opcode of an instruction, or must be equal to <code>code_length</code>, the length of the <code>code</code> array. The value of <code>start_pc</code> must be less than the value of <code>end_pc</code>. <p>
+<a name="10976"></a>
+The <code>start_pc</code> is inclusive and <code>end_pc</code> is exclusive; that is, the exception handler must be active while the program counter is within the interval [<code>start_pc,</code> <code>end_pc</code>).<a href="#17078"><sup>2</sup></a><p>
+</blockquote><a name="1583"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;handler_pc</b><br><blockquote><a name="1584"></a>
+The value of the <code>handler_pc</code> item indicates the start of the exception handler. The value of the item must be a valid index into the <code>code</code> array, must be the index of the opcode of an instruction, and must be less than the value of the <code>code_length</code> item.<p>
+</blockquote><a name="1585"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;catch_type</b><br><blockquote><a name="1586"></a>
+If the value of the <code>catch_type</code> item is nonzero, it must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Class_info</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> structure representing a class of exceptions that this exception handler is designated to catch. This class must be the class <code>Throwable</code> or one of its subclasses. The exception handler will be called only if the thrown exception is an instance of the given class or one of its subclasses.<p>
+<a name="1587"></a>
+If the value of the <code>catch_type</code> item is zero, this exception handler is called for all exceptions. This is used to implement <code>finally</code> (see <a href="Compiling.doc.html#13789">Section 7.13, "Compiling finally"</a>).<p>
+</blockquote><a name="1588"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attributes_count</b><br><blockquote><a name="1589"></a>
+The value of the <code>attributes_count</code> item indicates the number of attributes of the <code>Code</code> attribute. <p>
+</blockquote><a name="1590"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attributes[]</b><br><blockquote><a name="1591"></a>
+Each value of the <code>attributes</code> table must be a variable-length attribute structure. A <code>Code</code> attribute can have any number of optional attributes associated with it. <p>
+<a name="16978"></a>
+Currently, the <code>LineNumberTable</code> <a href="ClassFile.doc.html#22856">(&#167;4.7.6)</a> and <code>LocalVariableTable</code> <a href="ClassFile.doc.html#5956">(&#167;4.7.7)</a> attributes, both of which contain debugging information, are defined and used with the <code>Code</code> attribute.<p>
+<a name="16950"></a>
+A Java Virtual Machine implementation is permitted to silently ignore any or all attributes in the <code>attributes</code> table of a <code>Code</code> attribute. Attributes not defined in this specification are not allowed to affect the semantics of the <code>class</code> file, but only to provide additional descriptive information <a href="ClassFile.doc.html#16733">(&#167;4.7.1)</a>.<p>
+</blockquote><a name="3129"></a>
+<h3>4.7.5	 <em>Exceptions</em> Attribute</h3>
+<a name="3130"></a>
+The <code>Exceptions</code> attribute is a variable-length attribute used in the <code>attributes</code> table of a 
+<code>method_info</code> <a href="ClassFile.doc.html#1513">(&#167;4.6)</a> structure. The <code>Exceptions</code> attribute indicates which checked exceptions a method may throw. There must be exactly one <code>Exceptions</code> attribute in each 
+<code>method_info</code> structure. 
+<p><a name="17797"></a>
+The <code>Exceptions</code> attribute has the format<p>
+<pre><br><a name="5929"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>Exceptions_attribute {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attribute_name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 attribute_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 number_of_exceptions;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 exception_index_table[number_of_exceptions];
+</code><a name="3138"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9432"></a>
+The items of the <code>Exceptions_attribute</code> structure are as follows:
+<p><a name="3139"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_name_index</b><br><blockquote><a name="3140"></a>
+The value of the <code>attribute_name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be <code>	</code>the <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing the string <code>"Exceptions"</code>.<p>
+</blockquote><a name="3141"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_length</b><br><blockquote><a name="3142"></a>
+The value of the <code>attribute_length</code> item indicates the attribute length, excluding the initial six bytes.<p>
+</blockquote><a name="3143"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;number_of_exceptions</b><br><blockquote><a name="3144"></a>
+The value of the <code>number_of_exceptions</code> item indicates the number of entries in the <code>exception_index_table</code>.<p>
+</blockquote><a name="3145"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;exception_index_table[]</b><br><blockquote><a name="22763"></a>
+Each nonzero value in the <code>exception_index_table</code> array must be a valid index into the <code>constant_pool</code> table. For each table item, if <code>exception_index_table[</code><i>i</i><code>] != 0</code>, where <code>0</code> &#163; <i>i</i> &lt; <code>number_of_exceptions</code>, then the <code>constant_pool</code> entry at index <code>exception_index_table[</code>i<code>]</code> must be a <code>CONSTANT_Class_info</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a> structure representing a class type that this method is declared to throw.<p>
+</blockquote><a name="22778"></a>
+A method should only throw an exception if at least one of the following three criteria is met:<p>
+<ul><a name="22786"></a>
+<li>The exception is an instance of <code>RuntimeException</code> or one of its subclasses.
+<a name="22787"></a>
+<li>The exception is an instance of <code>Error </code>or one of its subclasses.
+<a name="22788"></a>
+<li>The exception is an instance of one of the exception classes specified in the <code>exception_index_table</code> above, or one of their subclasses.
+</ul><a name="22792"></a>
+The above requirements are not currently enforced by the Java Virtual 
+Machine; they are only enforced at compile time. Future versions of the Java 
+language may require more rigorous checking of <code>throws</code> clauses when classes 
+are verified.
+<p><a name="22856"></a>
+<h3>4.7.6	 <em>LineNumberTable</em> Attribute</h3>
+<a name="23308"></a>
+The <code>LineNumberTable</code> attribute is an optional variable-length attribute in the <code>attributes</code> 
+table of a <code>Code</code> <a href="ClassFile.doc.html#1546">(&#167;4.7.4)</a> attribute. It may be used by debuggers to determine which 
+part of the Java Virtual Machine <code>code</code> array corresponds to a given line number in the 
+original Java source file. If <code>LineNumberTable</code> attributes are present in the <code>attributes</code> 
+table of a given <code>Code</code> attribute, then they may appear in any order. Furthermore, multiple <code>LineNumberTable</code> attributes may together represent a given line of a Java source 
+file; that is, <code>LineNumberTable</code> attributes need not be one-to-one with source lines.<a href="#23314"><sup>3</sup></a> 
+<p><a name="23315"></a>
+The <code>LineNumberTable</code> attribute has the format<p>
+<pre><br><a name="23316"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>LineNumberTable_attribute {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attribute_name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 attribute_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 line_number_table_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	{ &#32;u2 start_pc;	 &#32;  &#32;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	  &#32;u2 line_number;	 &#32;  &#32;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	} line_number_table[line_number_table_length];
+</code><a name="1602"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><br></pre><a name="9437"></a>
+The items of the <code>LineNumberTable_attribute</code> structure are as follows:
+<p><a name="1603"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_name_index</b><br><blockquote><a name="1604"></a>
+<code>	</code>The value of the <code>attribute_name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing the string <code>"LineNumberTable"</code>.<p>
+</blockquote><a name="1605"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_length</b><br><blockquote><a name="1606"></a>
+The value of the <code>attribute_length</code> item indicates the length of the attribute, excluding the initial six bytes.<p>
+</blockquote><a name="1607"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;line_number_table_length</b><br><blockquote><a name="1608"></a>
+The value of the <code>line_number_table_length</code> item indicates the number of entries in the <code>line_number_table</code> array.<p>
+</blockquote><a name="1609"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;line_number_table[]</b><br><blockquote><a name="1610"></a>
+Each entry in the <code>line_number_table</code> array indicates that the line number in the original Java source file changes at a given point in the <code>code</code> array. Each entry must contain the following items:<p>
+</blockquote><a name="1611"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;start_pc</b><br><blockquote><a name="1612"></a>
+The value of the <code>start_pc</code> item must indicate the index into the <code>code</code> array at which the code for a new line in the original Java source file begins. The value of <code>start_pc</code> must be less than the value of the <code>code_length</code> item of the <code>Code</code> attribute of which this <code>LineNumberTable</code> is an attribute.<p>
+</blockquote><a name="5953"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;line_number</b><br><blockquote><a name="5954"></a>
+The value of the <code>line_number</code> item must give the corresponding line number in the original Java source file.<p>
+</blockquote><a name="5956"></a>
+<h3>4.7.7	 <em>LocalVariableTable</em> Attribute</h3>
+<a name="5957"></a>
+The <code>LocalVariableTable</code> attribute is an optional variable-length attribute of a <code>Code</code> 
+<a href="ClassFile.doc.html#1546">(&#167;4.7.4)</a> attribute. It may be used by debuggers to determine the value of a given 
+local variable during the execution of a method. If <code>LocalVariableTable</code> attributes are 
+present in the <code>attributes</code> table of a given <code>Code</code> attribute, then they may appear in any 
+order. There may be no more than one <code>LocalVariableTable</code> attribute per local variable 
+in the <code>Code</code> attribute.
+<p><a name="17799"></a>
+The <code>LocalVariableTable</code> attribute has the format<p>
+<pre><br><a name="1617"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>LocalVariableTable_attribute {
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 attribute_name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u4 attribute_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	u2 local_variable_table_length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	{ &#32;u2 start_pc;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	 &#32; &#32;u2 length;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	 &#32; &#32;u2 name_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	 &#32; &#32;u2 descriptor_index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	 &#32; &#32;u2 index;
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>	} local_variable_table[
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>			local_variable_table_length];
+</code><a name="5938"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>}	
+</code><br></pre><a name="9442"></a>
+The items of the <code>LocalVariableTable_attribute</code> structure are as follows:
+<p><a name="1628"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_name_index</b><br><blockquote><a name="7895"></a>
+The value of the <code>attribute_name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must be a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing the string <code>"LocalVariableTable"</code>.<p>
+</blockquote><a name="1630"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;attribute_length</b><br><blockquote><a name="1631"></a>
+The value of the <code>attribute_length</code> item indicates the length of the attribute, excluding the initial six bytes.<p>
+</blockquote><a name="1632"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;local_variable_table_length</b><br><blockquote><a name="1633"></a>
+The value of the <code>local_variable_table_length</code> item indicates the number of entries in the <code>local_variable_table</code> array.<p>
+</blockquote><a name="1634"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;local_variable_table[]</b><br><blockquote><a name="1635"></a>
+Each entry in the <code>local_variable_table</code> array indicates a range of <code>code</code> array offsets within which a local variable has a value. It also indicates the index into the local variables of the current frame at which that local variable can be found. Each entry must contain the following items:<p>
+</blockquote><a name="1636"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;start_pc, length</b><br><blockquote><a name="16777"></a>
+The given local variable must have a value at indices into the <code>code</code> array in the interval [<code>start_pc</code>, <code>start_pc+length</code>], that is, between <code>start_pc</code> and <code>start_pc+length</code> inclusive. The value of <code>start_pc</code> must be a valid index into the <code>code</code> array of this <code>Code</code> attribute of the opcode of an instruction. The value of <code>start_pc+length</code> must be either a valid index into the <code>code</code> array of this <code>Code</code> attribute of the opcode of an instruction, or the first index beyond the end of that <code>code</code> array.<p>
+</blockquote><a name="1638"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;name_index, descriptor_index</b><br><blockquote><a name="1639"></a>
+The value of the <code>name_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must contain a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a><code> </code>structure representing a valid Java local variable name stored as a simple name <a href="Concepts.doc.html#21410">(&#167;2.7.1)</a>.<p>
+<a name="14811"></a>
+The value of the <code>descriptor_index</code> item must be a valid index into the <code>constant_pool</code> table. The <code>constant_pool</code> entry at that index must contain a <code>CONSTANT_Utf8_info</code> <a href="ClassFile.doc.html#7963">(&#167;4.4.7)</a> structure representing a valid descriptor for a Java local variable. Java local variable descriptors have the same form as field descriptors <a href="ClassFile.doc.html#14152">(&#167;4.3.2)</a>.<p>
+</blockquote><a name="1640"></a>
+<b>&nbsp; &nbsp; &nbsp; &nbsp;index</b><br><blockquote><a name="1641"></a>
+The given local variable must be at <code>index</code><em> </em>in its method's local variables. If the local variable at <code>index</code> is a two-word type (<code>double</code> or <code>long</code>), it occupies both <code>index</code> and <code>index+1</code>. <p>
+</blockquote><a name="8771"></a>
+<hr><h2>4.8	 Constraints on Java Virtual Machine Code</h2>
+<a name="8772"></a>
+The Java Virtual Machine code for a method, instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>, 
+or class or interface initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a> is stored in the <code>code</code> array of the 
+<code>Code</code> attribute of a <code>method_info</code> structure of a <code>class</code> file. This section describes the constraints associated with the contents of the <code>Code_attribute</code> structure.
+<p><a name="9279"></a>
+<h3>4.8.1	 Static Constraints</h3>
+<a name="11830"></a>
+The <i>static constraints</i> on a <code>class</code> file are those defining the well-formedness of the 
+file. With the exception of the static constraints on the Java Virtual Machine code of 
+the <code>class</code> file, these constraints have been given in the previous section. The static 
+constraints on the Java Virtual Machine code in a <code>class</code> file specify how Java Virtual 
+Machine instructions must be laid out in the <code>code</code> array, and what the operands of 
+individual instructions must be.
+<p><a name="11915"></a>
+The static constraints on the instructions in the <code>code</code> array are as follows:<p>
+<ul><a name="9146"></a>
+<li>The <code>code</code> array must not be empty, so the <code>code_length</code> attribute cannot have the value <code>0</code>.
+<a name="9301"></a>
+<li>The opcode of the first instruction in the <code>code</code> array begins at index <code>0</code>. 
+<a name="9281"></a>
+<li>Only instances of the instructions documented in <a href="Instructions.doc.html#66646">(&#167;6.4)</a> may appear in the <code>code</code> array. Instances of instructions using the reserved opcodes <a href="Instructions.doc.html#60105">(&#167;6.2)</a>, the <i>_quick</i> opcodes documented in Chapter <a href="Quick.doc.html#2488">9</a>, <a href="Quick.doc.html#6997">"An Optimization,"</a> or any opcodes not documented in this specification may not appear in the <code>code</code> array. 
+<a name="9282"></a>
+<li>For each instruction in the <code>code</code> array except the last, the index of the opcode of the next instruction equals the index of the opcode of the current instruction plus the length of that instruction, including all its operands. The <i>wide</i> instruction is treated like any other instruction for these purposes; the opcode specifying the operation that a <i>wide</i> instruction is to modify is treated as one of the operands of that <i>wide</i> instruction. That opcode must never be directly reachable by the computation.
+<a name="9283"></a>
+<li>The last byte of the last instruction in the <code>code</code> array must be the byte at index <code>code_length-1</code>.
+</ul><a name="9277"></a>
+The static constraints on the operands of instructions in the <code>code</code> array are as follows:
+<p><ul><a name="9160"></a>
+<li>The target of each jump and branch instruction (<i>jsr</i>, <i>jsr_w</i>, <i>goto</i>, <i>goto_w</i>, <i>ifeq</i>, <i>ifne</i>, <i>iflt</i>, <i>ifge</i>, <i>ifgt</i>, <i>ifle</i>, <i>ifnull</i>, <i>ifnonnull</i>, <i>if_icmpeq</i>, <i>if_icmpne</i>, <i>if_icmplt</i>, <i>if_icmpge</i>, <i>if_icmpgt</i>, <i>if_icmple</i>, <i>if_acmpeq</i>, <i>if_acmpne</i>) must be the opcode of an instruction within this method. The target of a jump or branch instruction must never be the opcode used to specify the operation to be modified by a <i>wide</i> instruction; a jump or branch target may be the <i>wide</i> instruction itself.
+<a name="9161"></a>
+<li>Each target, including the default, of each <i>tableswitch</i> instruction must be the opcode of an instruction within this method. Each <i>tableswitch</i> instruction must have a number of entries in its jump table that is consistent with its <i>low</i> and <i>high</i> jump table operands, and its <i>low</i> value must be less than or equal to its <i>high</i> value. No target of a <i>tableswitch</i> instruction may be the opcode used to specify the operation to be modified by a <i>wide</i> instruction; a <i>tableswitch</i> target may be a <i>wide</i> instruction itself.
+<a name="11019"></a>
+<li>Each target, including the default, of each <i>lookupswitch</i> instruction must be the opcode of an instruction within this method. Each <i>lookupswitch</i> instruction must have a number of <i>match-offset</i> pairs that is consistent with its <i>npairs</i> operand. The <i>match-offset</i> pairs must be sorted in increasing numerical order by signed <i>match</i> value. No target of a <i>lookupswitch</i> instruction may be the opcode used to specify the operation to be modified by a <i>wide</i> instruction; a <i>lookupswitch</i> target may be a <i>wide</i> instruction itself
+<a name="9163"></a>
+<li>The operand of each <i>ldc</i> and <i>ldc_w</i> instruction must be a valid index into the <code>constant_pool</code> table. The constant pool entry referenced by that index must be of type <code>CONSTANT_Integer</code>, <code>CONSTANT_Float</code>, or <code>CONSTANT_String</code>. 
+<a name="11234"></a>
+<li>The operand of each <i>ldc2_w</i> instruction must be a valid index into the <code>constant_pool</code> table. The constant pool entry referenced by that index must be of type <code>CONSTANT_Long</code> or <code>CONSTANT_double</code>. In addition, the subsequent constant pool index must also be a valid index into the constant pool, and the constant pool entry at that index must not be used. 
+<a name="9164"></a>
+<li>The operand of each <i>getfield</i>, <i>putfield</i>, <i>getstatic</i>, and <i>putstatic</i> instruction must be a valid index into the <code>constant_pool</code> table. The constant pool entry referenced by that index must be of type <code>CONSTANT_Fieldref</code>. 
+<a name="9175"></a>
+<li>The index operand of each <i>invokevirtual</i>, <i>invokespecial</i>, and <i>invokestatic</i> instruction must be a valid index into the <code>constant_pool</code> table. The constant pool entry referenced by that index must be of type <code>CONSTANT_Methodref</code>. 
+<a name="12402"></a>
+<li>Only the <i>invokespecial</i> instruction is allowed to invoke the method <code>&lt;init&gt;</code>, the instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>. No other method whose name begins with the character <code>'&lt;'</code> (<code>'\u003c'</code>) may be called by the method invocation instructions. In particular, the class initialization method <code>&lt;clinit&gt;</code> is never called explicitly from Java Virtual Machine instructions, but only implicitly by the Java Virtual Machine itself.
+<a name="9182"></a>
+<li>The index operand of each <i>invokeinterface</i> instruction must be a valid index into the <code>constant_pool</code> table. The constant pool entry referenced by that index must be of type <code>CONSTANT_InterfaceMethodref</code>. The value of the <i>nargs</i> operand of each <i>invokeinterface</i> instruction must be the same as the number of argument words implied by the descriptor of the <code>CONSTANT_NameAndType_info</code> structure referenced by the <code>CONSTANT_InterfaceMethodref</code> constant pool entry. The fourth operand byte of each <i>invokeinterface</i> instruction must have the value zero.
+<a name="9194"></a>
+<li>The index operand of each <i>instanceof</i>, <i>checkcast</i>, <i>new</i>, <i>anewarray</i>, and <i>multi-anewarray</i> instruction must be a valid index into the <code>constant_pool</code> table. The constant pool entry referenced by that index must be of type <code>CONSTANT_Class</code>.
+<a name="10793"></a>
+<li>No <i>anewarray</i> instruction may be used to create an array of more than 255 dimensions.
+<a name="10794"></a>
+<li>No <i>new</i> instruction may reference a <code>CONSTANT_Class</code> <code>constant_pool</code> table entry representing an array class. The <i>new</i> instruction cannot be used to create an array. The <i>new</i> instruction also cannot be used to create an interface or an instance of an <code>abstract</code> class, but those checks are performed at link time.
+<a name="12405"></a>
+<li>A <i>multianewarray</i> instruction must only be used to create an array of a type that has at least as many dimensions as the value of its <i>dimensions</i> operand. That is, while a <i>multianewarray</i> instruction is not required to create all of the dimensions of the array type referenced by its <code>CONSTANT_Class</code> operand, it must not attempt to create more dimensions than are in the array type. The <i>dimensions</i> operand of each <i>multianewarray</i> instruction must not be zero.
+<a name="15818"></a>
+<li>The <i>atype</i> operand of each <i>newarray</i> instruction must take one of the values <code>T_BOOLEAN</code> (<code>4</code>), <code>T_CHAR</code> (<code>5</code>), <code>T_FLOAT</code> (<code>6</code>), <code>T_DOUBLE</code> (<code>7</code>), <code>T_BYTE</code> (<code>8</code>), <code>T_SHORT</code> (<code>9</code>), <code>T_INT</code> (<code>10</code>), or <code>T_LONG</code> (<code>11</code>).
+<a name="9199"></a>
+<li>The index operand of each <i>iload</i>, <i>fload</i>, <i>aload</i>, <i>istore</i>, <i>fstore</i>, <i>astore</i>, <i>wide</i>, <i>iinc</i>, and <i>ret</i> instruction must be a natural number no greater than <code>max_locals-1</code>.
+<a name="11102"></a>
+<li>The implicit index of each <i>iload_&lt;n&gt;</i>, <i>fload_&lt;n&gt;</i>, <i>aload_&lt;n&gt;</i>, <i>istore_&lt;n&gt;</i>, <i>fstore_&lt;n&gt;</i>, and <i>astore_&lt;n&gt;</i> instruction must be no greater than the value of <code>max_locals-1</code>.
+<a name="11109"></a>
+<li>The index operand of each <i>lload</i>, <i>dload</i>, <i>lstore</i>, and <i>dstore</i> instruction must be no greater than the value of <code>max_locals-2</code>.
+<a name="11110"></a>
+<li>The implicit index of each <i>lload_&lt;n&gt;</i>, <i>dload_&lt;n&gt;</i>, <i>lstore_&lt;n&gt;</i>, and <i>dstore_&lt;n&gt;</i> instruction must be no greater than the value of <code>max_locals-2</code>.
+</ul><a name="9308"></a>
+<h3>4.8.2	 Structural Constraints</h3>
+<a name="11914"></a>
+The structural constraints on the <code>code</code> array specify constraints on relationships 
+between Java Virtual Machine instructions. The structural constraints are as follows:
+<p><ul><a name="9294"></a>
+<li>Each instruction must only be executed with the appropriate type and number of arguments in the operand stack and local variables, regardless of the execution path that leads to its invocation. An instruction operating on values of type <code>int</code> is also permitted to operate on values of type <code>byte</code>, <code>char</code>, and <code>short</code>. (As noted in <a href="Overview.doc.html#7565">&#167;3.11.1</a>, the Java Virtual Machine internally converts values of types <code>byte</code>, <code>char</code>, and <code>short</code> to type <code>int</code>.)
+<a name="10682"></a>
+<li>Where an instruction can be executed along several different execution paths, the operand stack must have the same size prior to the execution of the instruction, regardless of the path taken.
+<a name="10664"></a>
+<li>At no point during execution can the order of the words of a two-word type (<code>long</code> or <code>double</code>) be reversed or split up. At no point can the words of a two-word type be operated on individually.
+<a name="10665"></a>
+<li>No local variable (or local variable pair, in the case of a two-word type) can be accessed before it is assigned a value.
+<a name="10672"></a>
+<li>At no point during execution can the operand stack grow to contain more than <code>max_stack</code> words. 
+<a name="10673"></a>
+<li>At no point during execution can more words be popped from the operand stack than it contains.
+<a name="17896"></a>
+<li>Each <i>invokespecial</i> instruction must name only an instance initialization method <code>&lt;init&gt;</code>, a method in <code>this</code>, a <code>private</code> method, or a method in a superclass of <code>this</code>. 
+<a name="11121"></a>
+<li>When the instance initialization method <code>&lt;init&gt;</code> is invoked, an uninitialized class instance must be in an appropriate position on the operand stack. The <code>&lt;init&gt;</code> method must never be invoked on an initialized class instance.
+<a name="11124"></a>
+<li>When any instance method is invoked, or when any instance variable is accessed, the class instance that contains the instance method or instance variable must already be initialized.
+<a name="10697"></a>
+<li>There must never be an uninitialized class instance on the operand stack or in a local variable when any backwards branch is taken. There must never be an uninitialized class instance in a local variable in code protected by an exception handler or a <code>finally</code> clause. However, an uninitialized class instance may be on the operand stack in code protected by an exception handler or a <code>finally</code> clause. When an exception is thrown, the contents of the operand stack are discarded.
+<a name="11204"></a>
+<li>Each instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>, except for the instance initialization method derived from the constructor of class <code>Object</code>, must call either another instance initialization method of <code>this</code> or an instance initialization method of its immediate superclass <code>super</code> before its instance members are accessed. However, this is not necessary in the case of class <code>Object</code>, which does not have a superclass <a href="Concepts.doc.html#27433">(&#167;2.4.6)</a>.
+<a name="11205"></a>
+<li>The arguments to each method invocation must be method invocation compatible <a href="Concepts.doc.html#19685">(&#167;2.6.7)</a> with the method descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a>.
+<a name="11993"></a>
+<li>An <code>abstract</code> method must never be invoked.
+<a name="17672"></a>
+<li>Each return instruction must match its method's return type. If the method returns a <code>byte</code>, <code>char</code>, <code>short</code>, or <code>int</code>, only the <i>ireturn</i> instruction may be used. If the method returns a <code>float</code>, <code>long</code>, or <code>double</code>, only an <i>freturn</i>, <i>lreturn</i>, or<i> dreturn </i>instruction, respectively, may be used. If the method returns a <code>reference</code> &#32;type, it must do so using an <i>areturn</i> instruction, and the returned value must be assignment compatible <a href="Concepts.doc.html#19674">(&#167;2.6.6)</a> with the return descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a> of the method. All instance initialization methods, static initializers, and methods declared to return <code>void</code> must only use the <i>return</i> instruction.
+<a name="10737"></a>
+<li>If <i>getfield or putfield</i> is used to access a <code>protected</code> field of a superclass, then the type of the class instance being accessed must be the same as or a subclass of the current class. If <i>invokevirtual</i> is used to access a <code>protected</code> method of a superclass, then the type of the class instance being accessed must be the same as or a subclass of the current class.
+<a name="10934"></a>
+<li>The type of every class instance loaded from or stored into by a <i>getfield</i> or <i>putfield</i> &#32;instruction must be an instance of the class type or a subclass of the class type.
+<a name="17686"></a>
+<li>The type of every value stored by a <i>putfield</i> or <i>putstatic</i> instruction must be compatible with the descriptor of the field <a href="ClassFile.doc.html#14152">(&#167;4.3.2)</a> of the class instance or class being stored into. If the descriptor type is <code>byte</code>, <code>char</code>, <code>short</code>, or <code>int</code>, then the value must be an <code>int</code>. If the descriptor type is <code>float</code>, <code>long</code>, or <code>double</code>, then the value must be a <code>float</code>, <code>long</code>, or <code>double</code>, respectively. If the descriptor type is a <code>reference</code> type, then the value must be of a type that is assignment compatible <a href="Concepts.doc.html#19674">(&#167;2.6.6)</a> with the descriptor type.
+<a name="16491"></a>
+<li>The type of every value stored into an array of type <code>reference</code> by an <i>aastore</i> instruction must be assignment compatible <a href="Concepts.doc.html#19674">(&#167;2.6.6)</a> with the component type of the array.
+<a name="11167"></a>
+<li>Each <i>athrow</i> instruction must only throw values that are instances of class <code>Throwable</code> or of subclasses of <code>Throwable</code>.
+<a name="11199"></a>
+<li>Execution never falls off the bottom of the <code>code</code> array.
+<a name="11160"></a>
+<li>No return address (a value of type <code>returnAddress</code>) may be loaded from a local variable.
+<a name="10896"></a>
+<li>The instruction following each <i>jsr</i> or <i>jsr_w</i> instruction only may be returned to by a single <i>ret</i> instruction. 
+<a name="16565"></a>
+<li>No <i>jsr</i> or <i>jsr_w</i> instruction may be used to recursively call a subroutine if that subroutine is already present in the subroutine call chain. (Subroutines can be nested when using <code>try</code>-<code>finally</code> constructs from within a <code>finally</code> clause. For more information on Java Virtual Machine subroutines, see <a href="ClassFile.doc.html#9862">&#167;4.9.6</a>.)
+<a name="11144"></a>
+<li>Each instance of type <code>returnAddress</code> can be returned to at most once. If a <i>ret</i> instruction returns to a point in the subroutine call chain above the <i>ret</i> instruction corresponding to a given instance of type <code>returnAddress</code>, then that instance can never be used as a return address.
+</ul><a name="8051"></a>
+<hr><h2>4.9	 Verification of class Files</h2>
+<a name="10037"></a>
+Even though Sun's Java compiler attempts to produce only class files that satisfy all 
+the static constraints in the previous sections, the Java Virtual Machine has no guarantee that any file it is asked to load was generated by that compiler, or is properly 
+formed. Applications such as Sun's HotJava World Wide Web browser do not download source code which they then compile; these applications download already-
+compiled <code>class</code> files. The HotJava browser needs to determine whether the <code>class</code> file 
+was produced by a trustworthy Java compiler or by an adversary attempting to 
+exploit the interpreter. 
+<p><a name="17902"></a>
+An additional problem with compile-time checking is version skew. A user may have successfully compiled a class, say <code>PurchaseStockOptions</code>, to be a subclass of <code>TradingClass</code>. But the definition of <code>TradingClass</code> might have changed in a way that is not compatible with preexisting binaries since the time the class was compiled. Methods might have been deleted, or had their return types or modifiers changed. Fields might have changed types or changed from instance variables to class variables. The access modifiers of a method or variable may have changed from <code>public</code> to <code>private</code>. For a discussion of these issues, see Chapter 13, "Binary Compatibility," in <i>The Java Language Specification</i>.<p>
+<a name="17903"></a>
+Because of these potential problems, the Java Virtual Machine needs to verify for itself that the desired constraints hold on the <code>class</code> files it attempts to incorporate. A well-written Java Virtual Machine emulator could reject poorly formed instructions when a <code>class</code> file is loaded. Other constraints could be checked at run time. For example, a Java Virtual Machine implementation could tag runtime data and have each instruction check that its operands are of the right type.<p>
+<a name="11946"></a>
+Instead, Sun's Java Virtual Machine implementation verifies that each <code>class</code> file it considers untrustworthy satisfies the necessary constraints at linking time <a href="Concepts.doc.html#22574">(&#167;2.16.3)</a>. Structural constraints on the Java Virtual Machine code are checked using a simple theorem prover.<p>
+<a name="9757"></a>
+Linking-time verification enhances the performance of the interpreter. Expensive checks that would otherwise have to be performed to verify constraints at run time for each interpreted instruction can be eliminated. The Java Virtual Machine can assume that these checks have already been performed. For example, the Java Virtual Machine will already know the following:<p>
+<ul><a name="9759"></a>
+<li>There are no operand stack overflows or underflows.      
+<a name="9760"></a>
+<li>All local variable uses and stores are valid.      
+<a name="9761"></a>
+<li>The arguments to all the Java Virtual Machine instructions are of valid types.
+</ul><a name="9763"></a>
+Sun's <code>class</code> file verifier is independent of any Java compiler. It should certify all code generated by Sun's current Java compiler; it should also certify code that other compilers can generate, as well as code that the current compiler could not possibly generate. Any <code>class</code> file that satisfies the structural criteria and static constraints will be certified by the verifier.<p>
+<a name="9765"></a>
+The <code>class</code> file verifier is also independent of the Java language. Other languages can be compiled into the <code>class</code> format, but will only pass verification if they satisfy the same constraints as a <code>class</code> file compiled from Java source.<p>
+<a name="9766"></a>
+<h3>4.9.1	 The Verification Process</h3>
+<a name="10145"></a>
+The <code>class</code> file verifier operates in four passes:
+<p><a name="23555"></a>
+<strong>Pass 1: </strong>When a prospective <code>class</code> file is loaded <a href="Concepts.doc.html#19175">(&#167;2.16.2)</a> by the Java Virtual 
+Machine, the Java Virtual Machine first ensures that the file has the basic format of a 
+Java <code>class</code> file. The first four bytes must contain the right magic number. All recognized attributes must be of the proper length. The <code>class</code> file must not be truncated or 
+have extra bytes at the end. The constant pool must not contain any superficially 
+unrecognizable information. 
+<p><a name="23016"></a>
+While <code>class</code> file verification properly occurs during class linking <a href="Concepts.doc.html#22574">(&#167;2.16.3)</a>, this check for basic <code>class</code> file integrity is necessary for any interpretation of the <code>class</code> file contents and can be considered to be logically part of the verification process.<p>
+<a name="9770"></a>
+<strong>Pass 2: </strong>When the <code>class</code> file is linked, the verifier performs all additional verification 
+that can be done without looking at the <code>code</code> array of the <code>Code</code> attribute (<a href="ClassFile.doc.html#1546">&#167;4.7.4)</a>. The 
+checks performed by this pass include the following:
+<p><ul><a name="9772"></a>
+<li>Ensuring that <code>final</code> classes are not subclassed, and that <code>final</code> methods are not overridden.
+<a name="9773"></a>
+<li>Checking that every class (except <code>Object)</code> has a superclass.
+<a name="9774"></a>
+<li>Ensuring that the constant pool satisfies the documented static constraints; for example, class references in the constant pool must contain a field that points to a <code>CONSTANT_Utf8</code> string reference in the constant pool. 
+<a name="9775"></a>
+<li>Checking that all field references and method references in the constant pool have valid names, valid classes, and a valid type descriptor.
+</ul><a name="23570"></a>
+Note that when it looks at field and method references, this pass does not check to 
+make sure that the given field or method actually exists in the given class; nor does it 
+check that the type descriptors given refer to real classes. It only checks that these 
+items are well formed. More detailed checking is delayed until passes 3 and 4.
+<p><a name="23571"></a>
+<strong>Pass 3:</strong> Still during linking, the verifier checks the <code>code</code> array of the <code>Code</code> attribute for 
+each method of the <code>class</code> file by performing data-flow analysis on each method. The 
+verifier ensures that at any given point in the program, no matter what code path is 
+taken to reach that point:
+<p><ul><a name="9779"></a>
+<li>The operand stack is always the same size and contains the same types of objects.
+<a name="9780"></a>
+<li>No local variable is accessed unless it is known to contain a value of an appropriate type.
+<a name="9781"></a>
+<li>Methods are invoked with the appropriate arguments.
+<a name="9782"></a>
+<li>Fields are assigned only using values of appropriate types.
+<a name="9783"></a>
+<li>All opcodes have appropriate type arguments on the operand stack and in the local variables.
+</ul><a name="10178"></a>
+For further information on this pass, see <a href="ClassFile.doc.html#9801">Section 4.9.2, "The Bytecode Verifier."</a>
+<p><a name="10179"></a>
+<strong>Pass 4: </strong>For efficiency reasons, certain tests that could in principle be performed in 
+Pass 3 are delayed until the first time the code for the method is actually invoked. In 
+so doing, Pass 3 of the verifier avoids loading <code>class</code> files unless it has to. 
+<p><a name="9790"></a>
+For example, if a method invokes another method that returns an instance of class <code>A</code>, and that instance is only assigned to a field of the same type, the verifier does not bother to check if the class <code>A</code> actually exists. However, if it is assigned to a field of the type <code>B</code>, the definitions of both <code>A</code> and <code>B</code> must be loaded in to ensure that <code>A</code> is a subclass of <code>B</code>.<p>
+<a name="9791"></a>
+Pass 4 is a virtual pass whose checking is done by the appropriate Java Virtual Machine instructions. The first time an instruction that references a type is executed, the executing instruction does the following:<p>
+<ul><a name="9792"></a>
+<li>Loads in the definition of the referenced type if it has not already been loaded.
+<a name="9793"></a>
+<li>Checks that the currently executing type is allowed to reference the type.
+<a name="15956"></a>
+<li>Initializes the class, if this has not already been done.
+</ul><a name="9794"></a>
+The first time an instruction invokes a method, or accesses or modifies a field, the 
+executing instruction does the following:
+<p><ul><a name="9795"></a>
+<li>Ensures that the referenced method or field exists in the given class.
+<a name="9796"></a>
+<li>Checks that the referenced method or field has the indicated descriptor.
+<a name="9797"></a>
+<li>Checks that the currently executing method has access to the referenced method or field. 
+</ul><a name="11934"></a>
+The Java Virtual Machine does not have to check the type of the object on the operand stack. That check has already been done by Pass 3. Errors that are detected in 
+Pass 4 cause instances of subclasses of <code>LinkageError</code> to be thrown.
+<p><a name="23175"></a>
+A Java Virtual Machine is allowed to perform any or all of the Pass 4 steps, except for class or interface initialization, as part of Pass 3; see <a href="Concepts.doc.html#19042">2.16.1, "Virtual Machine Start-up"</a> for an example and more discussion.<p>
+<a name="11935"></a>
+In Sun's Java Virtual Machine implementation, after the verification has been performed, the instruction in the Java Virtual Machine code is replaced with an alternative form of the instruction (see Chapter <a href="Quick.doc.html#2488">9</a>, <a href="Quick.doc.html#6997">"An Optimization"</a>). For example, the opcode <code>new</code> is replaced with <code>new_quick</code>. This alternative instruction indicates that the verification needed by this instruction has taken place and does not need to be performed again. Subsequent invocations of the method will thus be faster. It is illegal for these alternative instruction forms to appear in <code>class</code> files, and they should never be encountered by the verifier.<p>
+<a name="9801"></a>
+<h3>4.9.2	 The Bytecode Verifier</h3>
+<a name="9802"></a>
+As indicated earlier, Pass 3 of the verification process is the most complex of the 
+four passes of <code>class</code> file verification. This section looks at the verification of Java Virtual Machine code in more detail.
+<p><a name="9803"></a>
+The code for each method is verified independently. First, the bytes that make up the code are broken up into a sequence of instructions, and the index into the <code>code</code> array of the start of each instruction is placed in an array. The verifier then goes through the code a second time and parses the instructions. During this pass a data structure is built to hold information about each Java Virtual Machine instruction in the method. The operands, if any, of each instruction are checked to make sure they are valid. For instance:<p>
+<ul><a name="18031"></a>
+<li>Branches must be within the bounds of the <code>code</code> array for the method.
+<a name="9804"></a>
+<li>The targets of all control-flow instructions are each the start of an instruction. In the case of a <i>wide</i> instruction, the <i>wide</i> opcode is considered the start of the instruction, and the opcode giving the operation modified by that <i>wide</i> instruction is not considered to start an instruction. Branches into the middle of an instruction are disallowed. 
+<a name="9805"></a>
+<li>No instruction can access or modify a local variable at an index greater than the number of local variables that its method indicates it uses.
+<a name="9806"></a>
+<li>All references to the constant pool must be to an entry of the appropriate type. For example: the instruction <i>ldc</i> can only be used for data of type <code>int</code> or<code> float</code>, or for instances of class <code>String</code>; the instruction <i>getfield</i> must reference a field.
+<a name="9807"></a>
+<li>The code does not end in the middle of an instruction. 
+<a name="17911"></a>
+<li>Execution cannot fall off the end of the code.
+<a name="9808"></a>
+<li>For each exception handler, the starting and ending point of code protected by the handler must be at the beginning of an instruction. The starting point must be before the ending point. The exception handler code must start at a valid instruction, and it may not start at an opcode being modified by the <i>wide</i> instruction. 
+</ul><a name="9809"></a>
+For each instruction of the method, the verifier records the contents of the operand stack and the contents of the local variables prior to the execution of that instruction. For the operand stack, it needs to know the stack height and the type of each value on it. For each local variable, it needs to know either the type of the contents of that local variable, or that the local variable contains an unusable or unknown value (it might be uninitialized). The bytecode verifier does not need to distinguish between the integral types (e.g., <code>byte</code>, <code>short</code>, <code>char</code>) when determining the value types on the operand stack. <p>
+<a name="9813"></a>
+Next, a data-flow analyzer is initialized. For the first instruction of the method, the local variables which represent parameters initially contain values of the types indicated by the method's type descriptor; the operand stack is empty. All other local variables contain an illegal value. For the other instructions, which have not been examined yet, no information is available regarding the operand stack or local variables.<p>
+<a name="9814"></a>
+Finally, the data-flow analyzer is run. For each instruction, a "changed" bit indicates whether this instruction needs to be looked at. Initially, the "changed" bit is only set for the first instruction. The data-flow analyzer executes the following loop:<p>
+<ol>
+<a name="9815"></a>
+<li>Select a virtual machine instruction whose "changed" bit is set. If no instruction remains whose "changed" bit is set, the method has successfully been verified. Otherwise, turn off the "changed" bit of the selected instruction.
+<a name="9816"></a>
+<li>Model the effect of the instruction on the operand stack and local variables:
+<ul>
+<a name="9817"></a>
+<li>If the instruction uses values from the operand stack, ensure that there are a sufficient number of values on the stack and that the top values on the stack are of an appropriate type. Otherwise, verification fails.
+<a name="10286"></a>
+<li>If the instruction uses a local variable, ensure that the specified local variable contains a value of the appropriate type. Otherwise, verification fails.
+<a name="10287"></a>
+<li>If the instruction pushes values onto the operand stack, ensure that there is sufficient room on the operand stack for the new values. Add the indicated types to the top of the modeled operand stack.
+<a name="9820"></a>
+<li>If the instruction modifies a local variable, record that the local variable now contains the new type.
+</ul>
+<a name="9821"></a>
+<li>Determine the instructions that can follow the current instruction. Successor instructions can be one of the following:
+<ul>
+<a name="9822"></a>
+<li>The next instruction, if the current instruction is not an unconditional control transfer instruction (for instance <i>goto, return </i>or <i>athrow</i>). Verification fails if it is possible to "fall off" the last instruction of the method.
+<a name="9823"></a>
+<li>The target(s) of a conditional or unconditional branch or switch.
+<a name="9824"></a>
+<li>Any exception handlers for this instruction. 
+</ul>
+<a name="9825"></a>
+<li>Merge the state of the operand stack and local variables at the end of the execution of the current instruction into each of the successor instructions. In the special case of control transfer to an exception handler, the operand stack is set to contain a single object of the exception type indicated by the exception handler information.
+<ul>
+<a name="9826"></a>
+<li>If this is the first time the successor instruction has been visited, record that the operand stack and local variables values calculated in steps 2 and 3 are the state of the operand stack and local variables prior to executing the successor instruction. Set the "changed" bit for the successor instruction.
+<a name="9827"></a>
+<li>If the successor instruction has been seen before, merge the operand stack and local variable values calculated in steps 2 and 3 into the values already there. Set the "changed" bit if there is any modification to the values.
+</ul>
+<a name="9828"></a>
+<li>Continue at step 1.
+</ol>
+<a name="9829"></a>
+To merge two operand stacks, the number of values on each stack must be identical. The types of values on the stacks must also be identical, except that differently typed <code>reference</code> values may appear at corresponding places on the two stacks. In this case, the merged operand stack contains a <code>reference</code> to an instance of the first common superclass or common superinterface of the two types. Such a reference type always exists because the type <code>Object</code> is a supertype of all class and interface types. If the operand stacks cannot be merged, verification of the method fails.<p>
+<a name="9830"></a>
+To merge two local variable states, corresponding pairs of local variables are compared. If the two types are not identical, then unless both contain <code>reference</code> values, the verifier records that the local variable contains an unusable value. If both of the pair of local variables contain <code>reference</code> values, the merged state contains a <code>reference</code> to an instance of the first common superclass of the two types.<p>
+<a name="9831"></a>
+If the data-flow analyzer runs on a method without reporting a verification failure, then the method has been successfully verified by Pass 3 of the <code>class</code> file verifier.<p>
+<a name="9832"></a>
+Certain instructions and data types complicate the data-flow analyzer. We now examine each of these in more detail.<p>
+<a name="9833"></a>
+<h3>4.9.3	 Long Integers and Doubles</h3>
+<a name="9834"></a>
+Values of the <code>long</code> and <code>double</code> types each take two consecutive words on the operand 
+stack and in the local variables.
+<p><a name="9835"></a>
+Whenever a <code>long</code> or <code>double</code> is moved into a local variable, the subsequent local variable is marked as containing the second half of a <code>long</code> or <code>double</code>. This special value indicates that all references to the <code>long</code> or <code>double</code> must be through the index of the lower-numbered local variable.<p>
+<a name="9836"></a>
+Whenever any value is moved to a local variable, the preceding local variable is examined to see if it contains the first word of a <code>long</code> or a <code>double</code>. If so, that preceding local variable is changed to indicate that it now contains an unusable value. Since half of the <code>long</code> or <code>double</code> has been overwritten, the other half must no longer be used. <p>
+<a name="9837"></a>
+Dealing with 64-bit quantities on the operand stack is simpler; the verifier treats them as single units on the stack. For example, the verification code for the <i>dadd</i> opcode (add two <code>double</code> values) checks that the top two items on the stack are both of type <code>double</code>. When calculating operand stack length, values of type <code>long</code> and <code>double</code> have length two.<p>
+<a name="9838"></a>
+Untyped instructions that manipulate the operand stack must treat values of type <code>double</code> and <code>long</code> as atomic. For example, the verifier reports a failure if the top value on the stack is a <code>double</code> and it encounters an instruction such as <i>pop</i> or <i>dup</i>. The instructions <i>pop2</i> or <i>dup2</i> must be used instead.<p>
+<a name="9839"></a>
+<h3>4.9.4	 Instance Initialization Methods and Newly Created Objects</h3>
+<a name="9840"></a>
+Creating a new class instance is a multistep process. The Java statement
+<p><pre><br><a name="9841"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>...
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>new myClass(i, j, k);
+</code><a name="10517"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>...
+</code><br></pre><a name="10420"></a>
+can be implemented by the following:
+<p><pre><br><a name="15996"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>...
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<i>new</i> 	#1	<i>	// Allocate uninitialized space for </i><code>myClass
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<i>dup</i>			<i>// Duplicate object on the operand stack
+</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>iload_1			// Push i
+</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>iload_2			// Push j
+</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>iload_3			// Push k
+</i>&nbsp;&nbsp;&nbsp;&nbsp;<i>invokespecial</i> <code>myClass.&lt;init&gt;</code><i>	  &#32; &#32; &#32; &#32;// Initialize </i>object
+<a name="10515"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>...
+</code><br></pre><a name="9846"></a>
+This instruction sequence leaves the newly created and initialized object on top of 
+the operand stack. (More examples of compiling Java code to the instruction set of 
+the Java Virtual Machine are given in Chapter <a href="Compiling.doc.html#2839">7</a>, <a href="Compiling.doc.html#2989">"Compiling for the Java Virtual 
+Machine."</a>)
+<p><a name="9847"></a>
+The instance initialization method <code>&lt;init&gt;</code> for class <code>myClass</code> sees the new uninitialized object as its <code>this</code> argument in local variable <code>0</code>. It must either invoke an alternative instance initialization method for class <code>myClass</code> or invoke the initialization method of a superclass on the <code>this</code> object before it is allowed to do anything else with <code>this</code>.<p>
+<a name="9848"></a>
+When doing dataflow analysis on instance methods, the verifier initializes local variable <code>0</code> to contain an object of the current class, or, for instance initialization methods, local variable <code>0</code> contains a special type indicating an uninitialized object. After an appropriate initialization method is invoked (from the current class or the current superclass) on this object, all occurrences of this special type on the verifier's model of the operand stack and in the local variables are replaced by the current class type. The verifier rejects code that uses the new object before it has been initialized or that initializes the object twice. In addition, it ensures that every normal return of the method has either invoked an initialization method in the class of this method or in the direct superclass.<p>
+<a name="9849"></a>
+Similarly, a special type is created and pushed on the verifier's model of the operand stack as the result of the Java Virtual Machine instruction <i>new</i>. The special type indicates the instruction by which the class instance was created and the type of the uninitialized class instance created. When an initialization method is invoked on that class instance, all occurrences of the special type are replaced by the intended type of the class instance. This change in type may propagate to subsequent instructions as the dataflow analysis proceeds.<p>
+<a name="22736"></a>
+The instruction number needs to be stored as part of the special type, as there may be multiple not-yet-initialized instances of a class in existence on the operand stack at one time. For example, the Java Virtual Machine instruction sequence that implements <p>
+<a name="22737"></a>
+<code>new InputStream(new 						Foo(), new &#32;InputStream("foo"))</code><p>
+<a name="22738"></a>
+may have two uninitialized instances of <code>InputStream</code> on the operand stack at once. 
+When an initialization method is invoked on a class instance, only those occurrences of the special type on the operand stack or in the registers that are the <em>same 
+object</em> as the class instance are replaced.
+<p><a name="22722"></a>
+A valid instruction sequence must not have an uninitialized object on the operand stack or in a local variable during a backwards branch, or in a local variable in code protected by an exception handler or a <code>finally</code> clause. Otherwise, a devious piece of code might fool the verifier into thinking it had initialized a class instance when it had, in fact, initialized a class instance created in a previous pass through the loop.<p>
+<a name="9855"></a>
+<h3>4.9.5	 Exception Handlers</h3>
+<a name="9856"></a>
+Java Virtual Machine code produced from Sun's Java compiler always generates 
+exception handlers such that: 
+<p><ul><a name="9857"></a>
+<li>The ranges of instructions protected by two different exception handlers always are either completely disjoint, or else one is a subrange of the other. There is never a partial overlap of ranges.
+<a name="9858"></a>
+<li>The handler for an exception will never be inside the code that is being protected.
+<a name="9859"></a>
+<li>The only entry to an exception handler is through an exception. It is impossible to fall through or "goto" the exception handler.
+</ul><a name="9860"></a>
+These restrictions are not enforced by the <code>class</code> file verifier since they do not pose a 
+threat to the integrity of the Java Virtual Machine. As long as every nonexceptional 
+path to the exception handler causes there to be a single object on the operand stack, 
+and as long as all other criteria of the verifier are met, the verifier will pass the code.
+<p><a name="9862"></a>
+<h3>4.9.6	 Exceptions and <code>finally</code></h3>
+<a name="9863"></a>
+Given the fragment of Java code
+<p><pre><br><a name="10497"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>...
+</code></pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;<code>try {
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>    startFaucet();
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>    waterLawn();
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>} finally {
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>    stopFaucet();
+</code>&nbsp;&nbsp;&nbsp;&nbsp;<code>}
+</code><a name="10513"></a>&nbsp;&nbsp;&nbsp;&nbsp;<code>...
+</code><br></pre><a name="14583"></a>
+the Java language guarantees that <code>stopFaucet</code> is invoked (the faucet is turned off) 
+whether we finish watering the lawn or whether an exception occurs while starting 
+the faucet or watering the lawn. That is, the <code>finally</code> clause is guaranteed to be executed whether its <code>try</code> clause completes normally, or completes abruptly by throwing an exception.
+<p><a name="9867"></a>
+To implement the <code>try-finally</code> construct, the Java compiler uses the exception-handling facilities together with two special instructions <i>jsr</i> ("jump to subroutine") and <i>ret</i> ("return from subroutine"). The <code>finally</code> clause is compiled as a subroutine within the Java Virtual Machine code for its method, much like the code for an exception handler. When a <i>jsr</i> instruction that invokes the subroutine is executed, it pushes its return address, the address of the instruction after the <i>jsr</i> that is being executed, onto the operand stack as a value of type <code>returnAddress</code>. The code for the subroutine stores the return address in a local variable. At the end of the subroutine, a <i>ret</i> instruction fetches the return address from the local variable and transfers control to the instruction at the return address.<p>
+<a name="15008"></a>
+Control can be transferred to the <code>finally</code> clause (the <code>finally</code> subroutine can be invoked) in several different ways. If the <code>try</code> clause completes normally, the <code>finally</code> subroutine is invoked via a <i>jsr</i> instruction before evaluating the next Java expression. A <code>break</code> or <code>continue</code> inside the <code>try</code> clause that transfers control outside the <code>try</code> clause executes a <i>jsr</i> to the code for the <code>finally</code> clause first. If the <code>try</code> clause executes a <code>return</code>, the compiled code does the following:<p>
+<ol>
+<a name="15009"></a>
+<li>Saves the return value (if any) in a local variable.
+<a name="15010"></a>
+<li>Executes a <i>jsr</i> to the code for the <code>finally</code> clause.
+<a name="15011"></a>
+<li>Upon return from the <code>finally</code> clause, returns the value saved in the local variable.
+</ol>
+<a name="17627"></a>
+The compiler sets up a special exception handler which catches any exception 
+thrown by the <code>try</code> clause. If an exception is thrown in the <code>try</code> clause, this exception 
+handler does the following:
+<p><ol>
+<a name="9869"></a>
+<li>Saves the exception in a local variable.
+<a name="9870"></a>
+<li>Executes a <i>jsr</i> to the <code>finally</code> clause.
+<a name="14674"></a>
+<li>Upon return from the <code>finally</code> clause, rethrows the exception.
+</ol>
+<a name="14679"></a>
+For more information about the implementation of Java's <code>try-finally</code> construct, see 
+<a href="Compiling.doc.html#13789">Section 7.13, "Compiling finally."</a>
+<p><a name="9877"></a>
+The code for the <code>finally</code> clause presents a special problem to the verifier. Usually, if a particular instruction can be reached via multiple paths and a particular local variable contains incompatible values through those multiple paths, then the local variable becomes unusable. However, a <code>finally</code> clause might be called from several different places, yielding several different circumstances:<p>
+<ul><a name="9878"></a>
+<li>The invocation from the exception handler may have a certain local variable that contains an exception. 
+<a name="9879"></a>
+<li>The invocation to implement <code>return</code> may have some local variable that contains the return value. 
+<a name="9880"></a>
+<li>The invocation from the bottom of the <code>try</code> clause may have an indeterminate value in that same local variable. 
+</ul><a name="9881"></a>
+The code for the <code>finally</code> clause itself might pass verification, but after updating 
+all the successors of the <i>ret</i> instruction, the verifier would note that the local 
+variable that the exception handler expects to hold an exception, or that the 
+return code expects to hold a return value, now contains an indeterminate 
+value.
+<p><a name="9882"></a>
+Verifying code that contains a <code>finally</code> clause is complicated. The basic idea is the following:<p>
+<ul><a name="9883"></a>
+<li>Each instruction keeps track of the list of <i>jsr</i> targets needed to reach that instruction. For most code, this list is empty. For instructions inside code for the <code>finally</code> clause, it is of length one. For multiply nested <code>finally</code> code (extremely rare!), it may be longer than one.
+<a name="9884"></a>
+<li>For each instruction and each <i>jsr</i> needed to reach that instruction, a bit vector is maintained of all local variables accessed or modified since the execution of the <i>jsr</i> instruction.
+<a name="9885"></a>
+<li>When executing the <i>ret</i> instruction, which implements a return from a subroutine, there must be only one possible subroutine from which the instruction can be returning. Two different subroutines cannot "merge" their execution to a single <i>ret</i> instruction.
+<a name="9886"></a>
+<li>To perform the data-flow analysis on a <i>ret</i> instruction, a special procedure is used. Since the verifier knows the subroutine from which the instruction must be returning, it can find all the <i>jsr</i> instructions that call the subroutine and merge the state of the operand stack and local variables at the time of the <i>ret</i> instruction into the operand stack and local variables of the instructions following the <i>jsr</i>. Merging uses a special set of values for the local variables:
+<a name="9887"></a>
+<li>For any local variable for which the bit vector (constructed above) indicates that the subroutine has accessed or modified, use the type of the local variable at the time of the <i>ret</i>.
+<a name="9888"></a>
+<li>For other local variables, use the type of the local variable before the <i>jsr</i> instruction.
+</ul><a name="6253"></a>
+<hr><h2>4.10	 Limitations of the Java Virtual Machine and  <code>class</code> File Format</h2>
+<a name="6254"></a>
+The following limitations in the Java Virtual Machine are imposed by this version of 
+the Java Virtual Machine specification:
+<p><ul><a name="6255"></a>
+<li>The per-class constant pool is limited to 65535 entries by the 16-bit <code>constant_pool_count</code> field of the <code>ClassFile</code> structure <a href="ClassFile.doc.html#21045">(&#167;4.1)</a>. This acts as an internal limit on the total complexity of a single class.
+<a name="6259"></a>
+<li>The amount of code per method is limited to 65535 bytes by the sizes of the indices in the <code>exception_table</code> of the <code>Code</code> attribute (<a href="ClassFile.doc.html#1546">&#167;4.7.4)</a>, in the <code>LineNumberTable</code> attribute <a href="ClassFile.doc.html#22856">(&#167;4.7.6)</a>, and in the <code>LocalVariableTable</code> attribute <a href="ClassFile.doc.html#5956">(&#167;4.7.7)</a>. 
+<a name="6269"></a>
+<li>The number of local variables in a method is limited to 65535 by the two-byte index operand of many Java Virtual Machine instructions and the size of the <code>max_locals</code> item of the <code>ClassFile</code> structure <a href="ClassFile.doc.html#21045">(&#167;4.1)</a>. (Recall that values of type <code>long</code> and <code>double</code> are considered to occupy two local variables.)
+<a name="16521"></a>
+<li>The number of fields of a class is limited to 65535 by the size of the <code>fields_count</code> item of the <code>ClassFile</code> structure <a href="ClassFile.doc.html#21045">(&#167;4.1)</a>.
+<a name="16522"></a>
+<li>The number of methods of a class is limited to 65535 by the size of the <code>methods_count</code> item of the <code>ClassFile</code> structure <a href="ClassFile.doc.html#21045">(&#167;4.1)</a>.
+<a name="15102"></a>
+<li>The size of an operand stack is limited to 65535 words by the <code>max_stack</code> field of the <code>Code_attribute</code> structure <a href="ClassFile.doc.html#1546">(&#167;4.7.4)</a>.
+<a name="17825"></a>
+<li>The number of dimensions in an array is limited to 255 by the size of the <i>dimensions</i> opcode of the <i>multianewarray</i> instruction, and by the constraints imposed on the <i>multianewarray</i>, <i>anewarray</i>, and <i>newarray</i> instructions by <a href="ClassFile.doc.html#9308">&#167;4.8.2</a>.
+<a name="15109"></a>
+<li>A valid Java method descriptor (<a href="ClassFile.doc.html#7035">&#167;4.3.3)</a> must require 255 or fewer words of method arguments, where that limit includes the word for <code>this</code> in the case of instance method invocations. Note that the limit is on the number of words of method arguments, and not on number of arguments themselves. Arguments of type <code>long</code> and <code>double</code> are two words long; arguments of all other types are one word long.
+</ul>
+
+<hr>
+<sup>1</sup><a name="16628"></a>
+ In retrospect, making eight-byte constants take two constant pool entries was a poor choice.<p>
+<sup>2</sup><a name="17078"></a>
+ The fact that <code>end_pc</code> is exclusive is an historical mistake in the Java Virtual Machine: if the Java Virtual Machine code for a method is exactly 65535 bytes long and ends with an instruction that is one byte long, then that instruction cannot be protected by an exception handler. A compiler writer can work around this bug by limiting the maximum size of the generated Java Virtual Machine code for any method, instance initialization method, or static initializer (the size of any <code>code</code> array) to 65534 bytes.<p>
+<sup>3</sup><a name="23314"></a>
+ The <code>javac</code> compiler in Sun's JDK 1.0.2 release can in fact generate <code>LineNumberTable</code> attributes which are not in line number order and which are not one-to-one with source lines. This is unfortunate, as we would prefer to specify a one-to-one, ordered mapping of <code>LineNumberTable</code> attributes to source lines, but must yield to backward compatibility.<p>
+<!-- This inserts footnotes--><p>
+<br>
+<a href="VMSpecTOC.doc.html">Contents</a> | <a href="Overview.doc.html">Prev</a> | <a href="ConstantPool.doc.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size = -1>Java Virtual Machine Specification <br>
+<!--(HTML generated by dkramer on March 31, 1997)-->
+<!--
+(HTML generated by dkramer on March 25, 1997)-->
+<br>
+<i><a href="copyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:jvm@java.sun.com">jvm@java.sun.com</a>
+</font>
+</body></html>

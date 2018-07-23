@@ -1,0 +1,487 @@
+<html><head><title>Class DataOutputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.DataInputStream.html">Prev</a>  <a href="java.io.File.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="2268"><h1>	&#167;2.6 Class DataOutputStream</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>DataOutputStream
+</strong>    extends &#32;java.io.<strong>FilterOutputStream</strong> &#32;<a href="java.io.FilterOutputStream.html#4984">(I-&#167;2.12)</a>
+    implements java.io.<strong>DataOutput</strong> &#32;<a href="java.io.DataOutput.html#33299">(I-&#167;2.25)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    protected int <strong>written</strong>;	<a href="java.io.DataOutputStream.html#2400">&#167;2.6.1</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>DataOutputStream</strong>(OutputStream &#32;out);	<a href="java.io.DataOutputStream.html#2416">&#167;2.6.2</a><br>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>flush</strong>();	<a href="java.io.DataOutputStream.html#2438">&#167;2.6.3</a>
+    public final int <strong>size</strong>();	<a href="java.io.DataOutputStream.html#2472">&#167;2.6.4</a>
+    public void <strong>write</strong>(byte &#32;b[], int &#32;off, int &#32;len);	<a href="java.io.DataOutputStream.html#2490">&#167;2.6.5</a>
+    public void <strong>write</strong>(int &#32;b);	<a href="java.io.DataOutputStream.html#2536">&#167;2.6.6</a>
+    public final void <strong>writeBoolean</strong>(boolean &#32;v);	<a href="java.io.DataOutputStream.html#2576">&#167;2.6.7</a>
+    public final void <strong>writeByte</strong>(int &#32;v);	<a href="java.io.DataOutputStream.html#2598">&#167;2.6.8</a>
+    public final void <strong>writeBytes</strong>(String &#32;s);	<a href="java.io.DataOutputStream.html#2620">&#167;2.6.9</a>
+    public final void <strong>writeChar</strong>(int &#32;v);	<a href="java.io.DataOutputStream.html#2642">&#167;2.6.10</a>
+    public final void <strong>writeChars</strong>(String &#32;s);	<a href="java.io.DataOutputStream.html#2664">&#167;2.6.11</a>
+    public final void <strong>writeDouble</strong>(double &#32;v);	<a href="java.io.DataOutputStream.html#2686">&#167;2.6.12</a>
+    public final void <strong>writeFloat</strong>(float &#32;v);	<a href="java.io.DataOutputStream.html#2708">&#167;2.6.13</a>
+    public final void <strong>writeInt</strong>(int &#32;v);	<a href="java.io.DataOutputStream.html#2730">&#167;2.6.14</a>
+    public final void <strong>writeLong</strong>(long &#32;v);	<a href="java.io.DataOutputStream.html#2752">&#167;2.6.15</a>
+    public final void <strong>writeShort</strong>(int &#32;v);	<a href="java.io.DataOutputStream.html#27608">&#167;2.6.16</a>
+    public final void <strong>writeUTF</strong>(String &#32;str);	<a href="java.io.DataOutputStream.html#2796">&#167;2.6.17</a>
+}
+</pre><a name="27407">A data input stream lets an application write primitive Java data types to an output stream 
+in a portable way. An application can then use a data input stream <a href="java.io.DataInputStream.html#1604">(I-&#167;2.5)</a> to read the data 
+back in.
+</a><p>
+<hr>
+<a name="2392"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="written">
+<a name="2400"><h3>written
+</h3></a>
+<a name="2402"><code>protected int written
+</code></a>
+<dl>
+<dd><a name="2404">The number of bytes written to the data output stream.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="2408"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="DataOutputStream">
+<a name="2416"><h3>DataOutputStream
+</h3></a>
+<a name="2418"><code>public DataOutputStream(OutputStream &#32;out)
+</code></a>
+<dl>
+<dd><a name="27446">Creates a new data output stream to write data to the specified underlying 
+output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2422"><b>Parameters:
+</b></a><dd><a name="2424"><code>out
+- </code></a><a name="2426">the underlying output stream
+</a>
+</dl></dl>
+<hr>
+<a name="2428"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="flush">
+<a name="2438"><h3>flush
+</h3></a>
+<a name="2440"><code>public void flush()
+</code></a>
+<a name="2442"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="27457">Flushes this data output stream. This forces any buffered output bytes to 
+be written out to the stream.
+<pre>
+</pre></a>
+
+<dd><a name="36980">The flush method of DataOuputStream calls the flush method <a href="java.io.OutputStream.html#6150">(I-&#167;2.15.3)</a> of its 
+underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2446"><b>Throws
+</b></a><dd><a name="2452">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="2454">If an I/O error occurs.
+</a>
+
+<dt><a name="2456"><b>Overrides:
+</b></a><dd><a name="2462">flush in class FilterOutputStream &#32;<a href="java.io.FilterOutputStream.html#39645">(I-&#167;2.12.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="size">
+<a name="2472"><h3>size
+</h3></a>
+<a name="2474"><code>public final int size()
+</code></a>
+<dl>
+<dd><a name="27472">Determines the number of bytes written to this data output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27473"><b>Returns:
+</b></a><dd><a name="38940">The value of the written field <a href="java.io.DataOutputStream.html#2400">(I-&#167;2.6.1)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="2490"><h3>write
+</h3></a>
+<a name="2492"><code>public void write(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<a name="2494"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="27494">Writes len bytes from the specified byte array starting at offset off to the 
+underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27495"><b>Parameters:
+</b></a><dd><a name="27496"><code>b
+- </code></a><a name="27497">the data 
+</a>
+<dd><a name="27498"><code>off
+- </code></a><a name="27499">the start offset in the data
+</a>
+<dd><a name="27500"><code>len
+- </code></a><a name="27501">the number of bytes to write
+</a>
+
+<dt><a name="2512"><b>Throws
+</b></a><dd><a name="2518">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="2520">If an I/O error occurs.
+</a>
+
+<dt><a name="2522"><b>Overrides:
+</b></a><dd><a name="2528">write in class FilterOutputStream &#32;<a href="java.io.FilterOutputStream.html#5194">(I-&#167;2.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="2536"><h3>write
+</h3></a>
+<a name="2538"><code>public void write(int &#32;b)
+</code></a>
+<a name="27512"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="27518">Writes the specified byte to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27519"><b>Parameters:
+</b></a><dd><a name="27520"><code>b
+- </code></a><a name="27521">the byte to be written
+</a>
+
+<dt><a name="2550"><b>Throws
+</b></a><dd><a name="2556">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="2558">If an I/O error occurs.
+</a>
+
+<dt><a name="2560"><b>Overrides:
+</b></a><dd><a name="2566">write in class FilterOutputStream &#32;<a href="java.io.FilterOutputStream.html#5240">(I-&#167;2.12.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeBoolean">
+<a name="2576"><h3>writeBoolean
+</h3></a>
+<a name="2578"><code>public final void writeBoolean(boolean &#32;v)
+</code></a>
+<a name="2580"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2582">Writes a boolean to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as a one-byte 
+value. The value true is written out as the value (byte)1; the value false is 
+written out as the value (byte)0.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2584"><b>Parameters:
+</b></a><dd><a name="2586"><code>v
+- </code></a><a name="2588">a boolean value to be written
+</a>
+
+<dt><a name="40489"><b>Throws
+</b></a><dd><a name="40493">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="40494">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeByte">
+<a name="2598"><h3>writeByte
+</h3></a>
+<a name="2600"><code>public final void writeByte(int &#32;v)
+</code></a>
+<a name="2602"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2604">Writes out a byte to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as a one-byte 
+value.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2606"><b>Parameters:
+</b></a><dd><a name="2608"><code>v
+- </code></a><a name="2610">a byte value to be written
+</a>
+
+<dt><a name="39895"><b>Throws
+</b></a><dd><a name="39899">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39900">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeBytes">
+<a name="2620"><h3>writeBytes
+</h3></a>
+<a name="2622"><code>public final void writeBytes(String &#32;s)
+</code></a>
+<a name="2624"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2626">Writes out the string to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as a 
+sequence of bytes. Each character in the string is written out, in sequence, 
+by discarding its high eight bits.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2628"><b>Parameters:
+</b></a><dd><a name="2630"><code>s
+- </code></a><a name="2632">a string of bytes to be written
+</a>
+
+<dt><a name="39902"><b>Throws
+</b></a><dd><a name="39906">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39907">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeChar">
+<a name="2642"><h3>writeChar
+</h3></a>
+<a name="2644"><code>public final void writeChar(int &#32;v)
+</code></a>
+<a name="2646"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2648">Writes a char to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as a two-byte 
+value, high byte first.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2650"><b>Parameters:
+</b></a><dd><a name="2652"><code>v
+- </code></a><a name="2654">a char value to be written
+</a>
+
+<dt><a name="39909"><b>Throws
+</b></a><dd><a name="39913">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39914">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeChars">
+<a name="2664"><h3>writeChars
+</h3></a>
+<a name="2666"><code>public final void writeChars(String &#32;s)
+</code></a>
+<a name="2668"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2670">Writes a string to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as a sequence 
+of characters. Each character is written to the data output stream as if by 
+the writeChar method <a href="java.io.DataOutputStream.html#2642">(I-&#167;2.6.10)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2672"><b>Parameters:
+</b></a><dd><a name="2674"><code>s
+- </code></a><a name="2676">a String value to be written
+</a>
+
+<dt><a name="39916"><b>Throws
+</b></a><dd><a name="39920">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39921">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeDouble">
+<a name="2686"><h3>writeDouble
+</h3></a>
+<a name="2688"><code>public final void writeDouble(double &#32;v)
+</code></a>
+<a name="2690"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="27548">Converts the double argument to a long using the doubleToLongBits method 
+<a href="java.lang.Double.html#2522">(I-&#167;1.6.8)</a> in class Double, and then writes that long value to the underlying 
+output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as an eight-byte quantity, high-byte first.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2694"><b>Parameters:
+</b></a><dd><a name="2696"><code>v
+- </code></a><a name="2698">a double value to be written
+</a>
+
+<dt><a name="39923"><b>Throws
+</b></a><dd><a name="39927">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39928">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeFloat">
+<a name="2708"><h3>writeFloat
+</h3></a>
+<a name="2710"><code>public final void writeFloat(float &#32;v)
+</code></a>
+<a name="2712"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="27574">Converts the float argument to an int using the floatToIntBits method 
+<a href="java.lang.Float.html#3182">(I-&#167;1.7.11)</a> in class Float, and then writes that int value to the underlying 
+output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as a four-byte quantity, high-byte first
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2716"><b>Parameters:
+</b></a><dd><a name="2718"><code>v
+- </code></a><a name="2720">a float value to be written
+</a>
+
+<dt><a name="39930"><b>Throws
+</b></a><dd><a name="39934">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39935">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeInt">
+<a name="2730"><h3>writeInt
+</h3></a>
+<a name="2732"><code>public final void writeInt(int &#32;v)
+</code></a>
+<a name="2734"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2736">Writes an int to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as four bytes, 
+high-byte first.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2738"><b>Parameters:
+</b></a><dd><a name="2740"><code>v
+- </code></a><a name="2742">an int to be written
+</a>
+
+<dt><a name="39937"><b>Throws
+</b></a><dd><a name="39941">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39942">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeLong">
+<a name="2752"><h3>writeLong
+</h3></a>
+<a name="2754"><code>public final void writeLong(long &#32;v)
+</code></a>
+<a name="2756"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2758">Writes a long to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as eight bytes, 
+high-byte first.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2760"><b>Parameters:
+</b></a><dd><a name="2762"><code>v
+- </code></a><a name="2774">a long to be written
+</a>
+
+<dt><a name="39944"><b>Throws
+</b></a><dd><a name="39948">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39949">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeShort">
+<a name="27608"><h3>writeShort
+</h3></a>
+<a name="2776"><code>public final void writeShort(int &#32;v)
+</code></a>
+<a name="2778"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="27610">Writes a short to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> as two bytes, 
+high-byte first.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2782"><b>Parameters:
+</b></a><dd><a name="2784"><code>v
+- </code></a><a name="2786">a short to be written
+</a>
+
+<dt><a name="39951"><b>Throws
+</b></a><dd><a name="39955">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39956">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeUTF">
+<a name="2796"><h3>writeUTF
+</h3></a>
+<a name="2798"><code>public final void writeUTF(String &#32;str)
+</code></a>
+<a name="2800"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="2802">Writes out a string to the underlying output stream <a href="java.io.FilterOutputStream.html#5050">(I-&#167;2.12.1)</a> using 
+UTF-8 encoding in a machine-independent manner.
+<pre>
+</pre></a>
+
+<dd><a name="27625">First, two bytes are written to the output stream as if by the writeShort 
+method <a href="java.io.DataOutputStream.html#27608">(I-&#167;2.6.16)</a> giving the number of bytes to follow. This value is the 
+number of bytes actually written out, not the length of the string. Following the length, each character of the string is output, in sequence, using the 
+UTF-8 encoding <a href="java.io.DataInputStream.html#27157">(page &#32;I-225)</a> for each character.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2804"><b>Parameters:
+</b></a><dd><a name="2806"><code>str
+- </code></a><a name="2808">a string to be written
+</a>
+
+<dt><a name="39958"><b>Throws
+</b></a><dd><a name="39962">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39963">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.DataInputStream.html">Prev</a>  <a href="java.io.File.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

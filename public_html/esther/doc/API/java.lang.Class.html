@@ -1,0 +1,226 @@
+<html><head><title>Class Class</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Character.html">Prev</a>  <a href="java.lang.ClassLoader.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="1594"><h1>	&#167;1.3 Class Class</h1></a>
+<pre>public &#32;final &#32;class &#32;java.lang.<strong>Class
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Methods
+    public static Class <strong>forName</strong>(String &#32;className);	<a href="java.lang.Class.html#1670">&#167;1.3.1</a>
+    public ClassLoader <strong>getClassLoader</strong>();	<a href="java.lang.Class.html#1708">&#167;1.3.2</a>
+    public Class[] <strong>getInterfaces</strong>();	<a href="java.lang.Class.html#1730">&#167;1.3.3</a>
+    public String <strong>getName</strong>();	<a href="java.lang.Class.html#1744">&#167;1.3.4</a>
+    public Class <strong>getSuperclass</strong>();	<a href="java.lang.Class.html#1764">&#167;1.3.5</a>
+    public boolean <strong>isInterface</strong>();	<a href="java.lang.Class.html#1784">&#167;1.3.6</a>
+    public Object <strong>newInstance</strong>();	<a href="java.lang.Class.html#1798">&#167;1.3.7</a>
+    public String <strong>toString</strong>();	<a href="java.lang.Class.html#1840">&#167;1.3.8</a>
+}
+</pre><a name="28181">Instances of the class Class represent classes and interfaces in a running Java application.
+</a><p><a name="43125">There is no public constructor for the class Class. Class objects are constructed automatically 
+by the Java Virtual Machine as classes are loaded and or by calls to the defineClass method 
+<a href="java.lang.ClassLoader.html#1956">(I-&#167;1.4.2)</a> in the class loader.
+</a><p>
+<hr>
+<a name="1660"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="forName">
+<a name="1670"><h3>forName
+</h3></a>
+<a name="1672"><code>public static Class forName(String &#32;className)
+</code></a>
+<a name="1674"><code>throws ClassNotFoundException
+</code></a>
+<dl>
+<dd><a name="1676">Returns the Class object associated with the class with the given string 
+name.
+<pre>
+</pre></a>
+
+<dd><a name="26540">For example, the following code fragment returns the runtime Class 
+descriptor for the class named java.lang.Thread: 
+<pre>
+</pre></a>
+
+<dd><a name="1678"> &#32; &#32; &#32; &#32;		Class &#32;t &#32;= &#32;Class.forName("java.lang.Thread")
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1680"><b>Parameters:
+</b></a><dd><a name="1682"><code>className
+- </code></a><a name="1684">the fully qualified name of the desired class
+</a>
+
+<dt><a name="1686"><b>Returns:
+</b></a><dd><a name="1688">the Class descriptor for the class with the specified name
+</a>
+
+<dt><a name="1690"><b>Throws
+</b></a><dd><a name="1696">ClassNotFoundException &#32;<a href="java.lang.ClassNotFoundException.html#13462">(I-&#167;1.28)</a>
+</a>
+<dd><a name="1698">If the class could not be found.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getClassLoader">
+<a name="1708"><h3>getClassLoader
+</h3></a>
+<a name="43991"><code>public ClassLoader getClassLoader()
+</code></a>
+<dl>
+<dd><a name="43992">Determines the class loader <a href="java.lang.ClassLoader.html#1866">(I-&#167;1.4)</a> for the class. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43993"><b>Returns:
+</b></a><dd><a name="31191">The class loader that created the class or interface represented by this 
+object, or null if the class was not created by a class loader.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getInterfaces">
+<a name="1730"><h3>getInterfaces
+</h3></a>
+<a name="1732"><code>public Class[] getInterfaces()
+</code></a>
+<dl>
+<dd><a name="28200">Determines the interfaces implemented by the class or interface represented by this object.. 
+<pre>
+</pre></a>
+
+<dd><a name="28201">If this object represents a class, the return value is an array containing 
+objects representing all interfaces implemented by the class. The order of 
+the interface objects in the array corresponds to the order of the interface 
+names in the implements clause of the declaration of the class represented by 
+this object. 
+<pre>
+</pre></a>
+
+<dd><a name="28208">If this object represents an interface, the array contains objects representing all interfaces extended by the interface. The order of the interface 
+objects in the array corresponds to the order of the interface names in the 
+extends clause of the declaration of the interface represented by this object.
+<pre>
+</pre></a>
+
+<dd><a name="31197">If the class or interface implements no interfaces, the method returns an 
+array of length 0.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43139"><b>Returns:
+</b></a><dd><a name="31198">an array of interfaces implemented by this class.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getName">
+<a name="1744"><h3>getName
+</h3></a>
+<a name="1746"><code>public String getName()
+</code></a>
+<dl><dl>
+<dt><a name="28190"><b>Returns:
+</b></a><dd><a name="1754">the fully qualified name of the class or interface represented by this 
+object..
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getSuperclass">
+<a name="1764"><h3>getSuperclass
+</h3></a>
+<a name="1766"><code>public Class getSuperclass()
+</code></a>
+<dl>
+<dd><a name="28196">If this object represents any class other than the class Object, then the object 
+that represents the superclass of that class is returned.
+<pre>
+</pre></a>
+
+<dd><a name="28197">If this object is the one that represents the class Object or this object represents an interface, null is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1772"><b>Returns:
+</b></a><dd><a name="1774">the superclass of the class represented by this object.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isInterface">
+<a name="1784"><h3>isInterface
+</h3></a>
+<a name="44002"><code>public boolean isInterface()
+</code></a>
+<dl><dl>
+<dt><a name="44003"><b>Returns:
+</b></a><dd><a name="44004">true if this object represents an interface; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="newInstance">
+<a name="1798"><h3>newInstance
+</h3></a>
+<a name="1800"><code>public Object newInstance()
+</code></a>
+<a name="1802"><code>throws InstantiationException, IllegalAccessException
+</code></a>
+<dl>
+<dd><a name="1808">Creates a new instance of a class.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43140"><b>Returns:
+</b></a><dd><a name="1810">A newly allocated instance of the class represented by this object. 
+This is done exactly as if by a new expression with an empty argument 
+list.
+</a>
+
+<dt><a name="1812"><b>Throws
+</b></a><dd><a name="1818">InstantiationException &#32;<a href="java.lang.InstantiationException.html#14074">(I-&#167;1.36)</a>
+</a>
+<dd><a name="1820">If an application tries to instantiate an abstract class or an interface, or 
+if the instantiation fails for some other reason.
+</a>
+
+<dt><a name="1822"><b>Throws
+</b></a><dd><a name="1828">IllegalAccessException &#32;<a href="java.lang.IllegalAccessException.html#13684">(I-&#167;1.31)</a>
+</a>
+<dd><a name="1830">If the class or initializer is not accessible.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="1840"><h3>toString
+</h3></a>
+<a name="1842"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="31206">Converts the object to a string. The string representation is the string "class" 
+or "interface" followed by a space and then the fully qualified name of the 
+class.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="38040"><b>Returns:
+</b></a><dd><a name="31207">a string representation of the class object. 
+</a>
+
+<dt><a name="1846"><b>Overrides:
+</b></a><dd><a name="1852">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Character.html">Prev</a>  <a href="java.lang.ClassLoader.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

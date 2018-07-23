@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <title>Compiler Construction</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+
+  <tbody>
+    <tr>
+      <td>
+      
+      
+      
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+
+
+
+        <tbody>
+
+
+
+
+          <tr>
+
+
+
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            
+            
+            
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+        
+        
+        
+        </tbody>
+      
+      
+      
+      </table>
+
+
+
+
+      
+      
+      
+      <p><span style="position: absolute; top: 50px; left: 11px;"> <br>
+      </span> </p>
+
+
+
+
+      </td>
+
+
+
+
+    </tr>
+
+
+
+
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+<table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+
+
+
+  <tbody>
+
+
+
+
+    <tr>
+
+
+
+
+<!--#include file="sidebar.shtml" --> <td valign="top" width="24"></td>
+
+
+
+
+      <td valign="top">
+      
+      
+      
+      <p><b><font face="Arial" size="5">Calendar (Fall 2007)<br>
+
+      <font face="Arial" size="2"> The links to
+weekly course content will be enabled as the semester progresses.<br><br>
+      </font>
+      
+      
+      
+      <table style="border-collapse: collapse;" id="AutoNumber4" border="0" bordercolor="#111111" cellpadding="10" cellspacing="0" width="60%">
+
+        <tbody>
+
+          <tr>
+            <td align="left" bgcolor="#b3b3ff" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="3">Week</font></td>
+            <td align="left" bgcolor="#b3b3ff" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="3">Lecture Topics</font></td>
+            <td align="left" bgcolor="#b3b3ff" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="3">Milestones and Quizzes</font></td>
+          </tr>
+
+          <tr> 
+	    <br>
+          <tr> 
+
+          <tr>
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 1</font></td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2"><a href="intro.shtml">Introduction</a></font><font face="Arial" size="2"> &nbsp;Aug. 28<br>
+
+            <font face="Arial" size="2"> <span style="color: rgb(255, 0, 0);">no class &nbsp;Aug. 30</span> </font>
+
+           </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2"></font></td>
+
+          </tr>
+
+          <tr>
+            <td align="left" nowrap="nowrap" valign="top" width="1%"><font face="Arial" size="2">Week 2</font></td>
+
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> 
+            <font face="Arial" size="2"> 
+                <a href="scanning.shtml">Scanning</a> Sep. 4<br>
+                <a href="parsing.shtml">Parsing</a> Sep. 6
+              </font>
+            </td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2"></font>
+
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 3</font></td>
+
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> 
+              <font face="Arial" size="2"> 
+                <a href="parsing.shtml">Parsing</a> Sep. 11<br>
+                <a href="../staticjava.shtml">Project</a> Sep. 13
+              </font>
+
+            </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            </font><font face="Arial" size="5"><font style="color: rgb(0, 0, 0);" color="red" face="Arial" size="2"><a href="../DelivMile/scanparse.shtml">Milestone 1 - Parsing</a> (due Sep. 28)</font></font><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" nowrap="nowrap" valign="top" width="1%"><font face="Arial" size="2"> Week 4</font></td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"><small><font face="Arial" size="2"></font><span style="color: rgb(0, 0, 0);"><a href="ast.shtml">Abstract Syntax Trees</a> Sept. 18, 20</span></small><br>
+
+            </td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> 
+            <font face="Arial" size="2"><a href="end.shtml">Quiz 1 - Scanning and Parsing</a> Sept. 20</font><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 5</font></td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> 
+
+            <font face="Arial" size="2"> <span style="color: rgb(255, 0, 0);">no class &nbsp;Sep. 25, 27</span> </font>
+
+            </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" nowrap="nowrap" valign="top" width="1%"><font face="Arial" size="2"> Week 6</font></td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> 
+
+              <font face="Arial" size="2"><a href="symTab.shtml">Symbol Processing</a> Oct. 2, 4<br> </font>
+
+
+             </td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+              <font face="Arial" size="2"> <a href="../DelivMile/esjast.shtml">Milestone 2 - AST</a> (due Oct. 19) </font><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 7</font></td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> 
+
+              <font face="Arial" size="2"> <a href="typeCheck.shtml">Type Checking</a> Oct. 9, 11 </font><br>
+
+
+            </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            <font face="Arial" size="2"><a href="end.shtml">Quiz 2 - AST and Symbols</a> Oct. 11</font><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" nowrap="nowrap" valign="top" width="1%"><font face="Arial" size="2"> Week 8</font></td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> 
+
+            <font face="Arial" size="2"><a href="static.shtml">Static Analysis</a> &nbsp; Oct. 16, 18</font><br>
+
+            </td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+              <font face="Arial" size="2"><a href="../DelivMile/esjtype.shtml">Milestone 3 - Type Checking</a> (due Nov. 2)</font><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 9</font></td>
+
+
+            <td style="background-color: rgb(255, 255, 183);" align="left" nowrap="nowrap" valign="top" width="1%"> 
+<font face="Arial" size="2">
+<span style="color: rgb(255, 0, 0);">no class &nbsp;Oct. 23</span>
+</font><br>
+
+            <font face="Arial" size="2"><a href="static.shtml">Static Analysis</a> &nbsp; Oct. 25</font><br>
+
+            </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 10</font></td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> 
+
+              <font face="Arial" size="2"><a href="vmasm.shtml">Virtual Machines</a> Oct. 30, Nov. 1<br></font>
+
+            </td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            <font face="Arial" size="2"><a href="end.shtml">Quiz 3 - Type Checking</a> Oct. 30</font><br>
+              <font face="Arial" size="2"><a href="../DelivMile/sjanalysis.shtml"> Milestone 4 - Static Analysis</a> (due Nov. 16)</font><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"><font face="Arial" size="2"> Week 11</font></td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> 
+
+<font face="Arial" size="2"> <a href="codeGen.shtml">Code Generation</a> Nov. 6<br></font>
+
+            <font face="Arial" size="2"> <span style="color: rgb(255, 0, 0);">no class &nbsp;Nov. 8</span> </font>
+
+            </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 12</font></td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> 
+
+<font face="Arial" size="2"> <a href="codeGen.shtml">Code Generation</a> Nov. 13, 15<br></font>
+            </td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            <font face="Arial" size="2"><a href="end.shtml">Quiz 4 - Static Analysis</a> Nov. 13<br>
+               <a href="../DelivMile/esjcodegen.shtml">Milestone 5 - Code Generation</a> (due Nov. 30)</font>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"><font face="Arial" size="2"> Week 13</font></td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%">
+             <font face="Arial" size="2">
+               <a href="garbage.shtml">Garbage Collection</a> Nov. 20<br>
+             <span style="color: rgb(255, 0, 0);">no class &nbsp;Nov. 22</span> </font>
+
+            </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+             <font face="Arial" size="2">
+
+
+             </font>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 14</font></td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> 
+		      <font face="Arial" size="2">
+
+                       <a href="garbage.shtml">Garbage Collection</a> Nov. 27<br>
+                       <a href="optimize.shtml">Optimization</a> Nov. 29<br>
+
+		      </font>
+
+		    </td>
+
+		    <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+		      <font face="Arial" size="2"> 
+               <a href="../DelivMile/esjprofiling.shtml">Milestone Grad - Profiling</a> (due Dec. 21)<br>
+		      </font>
+		    </td>
+		  </tr>
+
+          <tr>
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"><font face="Arial" size="2"> Week 15</font></td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%">
+              <font face="Arial" size="2">
+
+               <a href="optimize.shtml">Optimization</a> Dec. 4<br>
+
+		<span style="color: rgb(255, 0, 0);">no class Dec. 6</span>
+
+              </font> 
+
+            </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            <font face="Arial" size="2"><a href="end.shtml">Quiz 5 - Code Generation</a> Dec. 4</font><br>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Week 16</font></td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> 
+              <font face="Arial" size="2">
+		<a href="native.shtml">Native Code Generation</a> Dec. 11<br>
+		<a href="end.shtml">Review and Final Exam Prep</a> Dec. 13
+              </font> 
+            </td>
+
+            <td align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            </td>
+          </tr>
+
+          <tr>
+            <td style="background-color: rgb(255, 255, 183);" align="left" nowrap="nowrap" valign="top" width="1%"><small>&nbsp;Exam Week</small></td>
+
+            <td style="background-color: rgb(255, 255, 183);" align="left" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">Final Exam: Fri., 7:30am-9:30am, Dec. 21, 2007</font>
+            </td>
+
+            <td align="left" bgcolor="#ffffb7" nowrap="nowrap" valign="top" width="1%"> <font face="Arial" size="2">
+            </td>
+          </tr>
+
+
+
+
+        
+        
+        
+        </tbody>
+      
+      
+      
+      </table>
+
+
+
+
+<!--msnavigation--></font></p>
+
+
+
+
+      </td>
+
+
+
+
+    </tr>
+
+
+
+
+<!--msnavigation-->
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+</body>
+</html>

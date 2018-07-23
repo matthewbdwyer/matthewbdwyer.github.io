@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Compiler Construction</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<br>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+          <tr>
+
+    <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+    
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler Construction</font></b></p>
+            </td>
+
+  </tr>
+
+  
+        </tbody>
+      </table>
+
+
+      <p><span style="position: absolute; top: 50px; left: 11px;">
+
+      <img src="images/12x12spacer.gif" border="0" height="12" width="12"></span> </p>
+
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<table border="0" cellpadding="0" cellspacing="0" dir="ltr" width="100%">
+  <tbody>
+    <tr>
+
+<!--#include file="sidebar.shtml" -->
+
+      <td valign="top" width="24"></td>
+      <td valign="top">
+      <h1><font face="Arial" size="5">Course Announcements</font><h1>
+
+
+      <table id="AutoNumber4" border="0" cellspacing="1" width="100%">
+
+  <tbody>
+          <tr>
+    
+ 	<td align="left" valign="top">
+          <font face="Arial" size="2"> 
+            <ul>
+
+    <li> Aug. 27 : Course web-site has been updated for 2007.  Report problems to the instructor.
+    <li> Sep. 12 : No office hours today since the instructor is home sick.
+    <li> Sep. 13 : Here is the blog entry 
+on <a href="http://parallelbrowser.blogspot.com/2007/09/hello-world.html">parallel parsing of DOM</a>.  You should
+be able to understand the basic idea of slides at this point in the course if you want to flip through them.
+    <li> Sep. 25 : In response to a question by a student regarding milestone 1 I wrote this:
+<p>
+If you want to test a grammar fragment then use the ANTLRWorks Debugger.
+It will generate a grammar, execute it on your input and show you the syntax
+tree generated (as well as allow you to step back and forth during the parse).
+You need to configure some preferences in ANTLRWorks to get this to work, e.g.,
+java compiler.    Note that you can either debug fragments of input programs or
+entire test cases, by pointing ANTLRWorks at the JUnit test input files.
+Once you are happy with this debugging phase, then generate  the entire parser 
+into the proper directory and it should be ready for JUnit testing.
+</p>
+<p>
+Second, you can sometimes see subtle differences between parsing of sub-grammars
+extracted from a large grammar and the action of that sub-grammar in the context of
+a larger parse.   
+While I cannot find any documention about the differences in behavior, I now believe
+that it is due to the processing of EOF.    The way that I have been successful in
+resolving this issue is by always having EOF in the production rule that I 
+use as the <em>start rule</em>.
+For example, if I only want to parse exp, I will create a new production called 
+expFile as follows:
+<pre>
+expFile
+  : exp EOF
+  ;
+</pre>
+I then use expFile rather than exp to avoid the issue. Also, what I did is to override 
+reportError method to store all raised exceptions in a set field, and later on query 
+whether the set is empty or not.
+</p>
+    <li> Oct. 15 : A new version of milestone 2 has been deployed.  It fixes a bug in
+the JUnit test driver which obscured the fact that the JDT implementation has fixed a
+bug in it's pretty printing functionality from last year.   If you download the new 
+milestone all you need to update are the .ast files and the ExtendedASTParserTest.java
+file.
+   <li> Oct. 17 : A number of you are using the grammar file deployed with 
+milestone 2.  Note that in processing field and array access expressions you
+should feel free to restructure the grammar if it simplifies your work.  
+Currently the rule is of the form:
+<pre>primaryExp : primaryPrefix (primarySuffix)*</pre>
+but there are advantages to explicitly separating the field and array accesses
+as follows:
+<pre>primaryExp : primaryPrefix (arrayAccess | fieldAccess)*</pre>
+since this will allow you to customize the semantic actions to process values
+of the appropriate JDT types that represent array and field access expressions.
+
+<li> Oct. 19 : When <em>exporting</em> your solution to an archive file, you can test that it was done correctly by <em>importing</em> it into your workspace again.   Note that you will only be able to perform this import if you rename the project in your workspace, since eclipse will not overwrite a project when importing - in fact it won't even appear that the project is available for import.
+
+<li> Nov. 1 : A new version of the .etc files for milestone 3 is available <a href="./src-examples.zip">here</a>.   This fixes the two files I mentioned in class that have output formats based on an old JDT implementation's traversal order.
+These will be used to evaluate your solution.
+
+<!--
+    <li> Aug. 22 : TA office hours now available.  Note that the TA's office hours should be used for answering questions about the logistics of submitting milestones, e.g., formatting, etc.
+
+    </li>
+    <li> Aug. 26 : Thanks to Brian Bockelman for hosting a local ANTLR eclipse plugin update site <a href="http://math.unl.edu/~bbockelm/antlreclipse">here</a>.<br>  
+It should be much faster than the standard site.</li>
+    <li> Aug. 26 : See the scanners lecture page for some notes on order of
+operations in regular expressions.</li>
+    <li> Aug. 29 : The parsing lecture page is enabled.<br>  
+I'll be updating it with some ANTLR examples in the next couple of days.</li> 
+    <li> Aug. 30 : The definition of a left (right) recursive grammar is as stated in the
+lecture slides,<br> 
+i.e., that a non-terminal can derive in 1 more more steps a sentential form beginning
+(ending) with that non-terminal.<br>   
+It is important to distinguish between the notion of a
+recursive grammar (above) and a recursive production,<br> 
+since the former may happen without the latter.<br>
+We will study techniques for eliminating certain forms of recursion from grammars.</li>
+	<li> Aug. 31 : Updates to the parsing content are now available including: more slides, more exercises, and some examples.</li>
+	<li> Sep. 6 : The remaining parsing slides are posted.  The first assignment is now available; it's linked from the page in<br>
+multiple places, e.g., the project resource link, deliverables and milestons, and calendar.</li>
+        <li> Sep. 8 : Be sure to update your SJC compiler from the class CVS repository.  Someone spotted a bug in the<br> 
+sjc.g file (the presence of a "null"
+literal) that you are basing your work on.  A fix has been posted.</li>
+	<li> Sep. 9 : Next week during class time the TA will be holding office
+hours in his office in Avery 103D<br>
+from 11am through noon.  Stop by his office to ask questions about the homework.
+He'll also have his normal<br> 
+Monday 10:30am office hour.</li>
+	<li> Sep. 10 : Note that the EBNF grammars for ESJ and SJ are written
+to make it easy for you to read.   They are not precise<br>
+in terms of defining precedence, associativity, etc.  You should assume
+that the operators and statements should function<br>
+as they do in Java, unless the rules of ESJ explicitly define
+otherwise, for example, the constraints on local declarations strictly<br>
+preceding statements.</li>
+	<li> Sep. 14 : The EBNF for ESJ and SJ has a few inconsistencies
+with respect to the SJ grammar (sorry about that).<br>
+For example, the grammar requires that a value be returned in a 
+return statement, but the EBNF allows for void returns;<br> you should
+trust the EBNF on this one.  There
+was also a question about empty parameter lists; these should be allowed<br>
+as stated in the EBNF.</li>
+	<li> Sep. 29 : The JDT examples in the repository work.  Actually
+they should have worked in class.  The problem was that I<br> 
+had made some local
+changes in compiler-sjc and that project was not built, so the sjc classes
+could not be resolved.  This should work for you just fine.</li>
+	<li> Oct. 5 : On October 6 our class is scheduled to meet in Avery 020 (the compuer lab).</li>
+	<li> Oct. 6 : Yet another update to the Milestone 2 setup.  You should
+download the latest version of the zip file<br> 
+from the milestone page.  You can forget about the build script 
+since it is now integrated into the Eclipse-ready<br>
+project as an ANT script (thanks to Ian and Chris).  Due to the multiple
+project setup issues, I feel it's only fair to delay the due date to
+Oct. 13.</li>
+
+	<li> Oct. 12 : Milestone 3 is now available <a href="DelivMile/esjtype.shtml">here</a></li>
+
+	<li> Oct. 24 : Milestone 3 is now due on Nov. 1.</li>
+	<li> Nov. 3 : Milestone 4 is now available <a href="DelivMile/sjanalysis.shtml">here</a></li>
+	<li> Nov. 3 : Milestone schedule for the rest of the semester has
+been modified slightly (to your advantage) providing a bit<br> 
+more time for you to do required assignments and giving you a bit less required work (and an opportunity for extra credit).</li>
+	<li> Nov. 17 : Milestone's 5 and Grad have now been posted.  If you finish up 5 quickly you should have time to work on 6 to earn some extra credit.
+	</li>
+	<li> Nov. 21 : Grades for Milestone 3 will be returned this week.
+	</li>
+        <li> Nov. 30 : Final milestone, numeber 6, is now available.
+        </li>
+-->
+
+            </ul>
+       </font>
+    </td>
+
+  </tr>
+
+  
+        </tbody>
+      </table>
+
+
+      <br>
+      </td>
+    </tr>
+<!--msnavigation-->
+  </tbody>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,559 @@
+<html><head><title>Class System</title></head>
+<!--Last split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.StringBuffer.html">Prev</a>  <a href="java.lang.Thread.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="10584"><h1>	&#167;1.18 Class System</h1></a>
+<pre>public &#32;final &#32;class &#32;java.lang.<strong>System
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public static PrintStream <strong>err</strong>;	<a href="java.lang.System.html#10714">&#167;1.18.1</a>
+    public static InputStream <strong>in</strong>;	<a href="java.lang.System.html#10726">&#167;1.18.2</a>
+    public static PrintStream <strong>out</strong>;	<a href="java.lang.System.html#10738">&#167;1.18.3</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public static void	<a href="java.lang.System.html#42763">&#167;1.18.4</a>
+        <strong>arraycopy</strong>(Object &#32;src, int &#32;src_position,
+         &#32; &#32; &#32; &#32;Object &#32;dst, int &#32;dst_position, int &#32;length);
+    public static long <strong>currentTimeMillis</strong>();	<a href="java.lang.System.html#10810">&#167;1.18.5</a>
+    public static void <strong>exit</strong>(int &#32;status);	<a href="java.lang.System.html#10832">&#167;1.18.6</a>
+    public static void <strong>gc</strong>();	<a href="java.lang.System.html#10860">&#167;1.18.7</a>
+ &#32; &#32;public static Properties <strong>getProperties</strong>();	<a href="java.lang.System.html#10906">&#167;1.18.8</a>
+    public static String <strong>getProperty</strong>(String &#32;key);	<a href="java.lang.System.html#10920">&#167;1.18.9</a>
+    public static String <strong>getProperty</strong>(String &#32;key, String &#32;def);	<a href="java.lang.System.html#10938">&#167;1.18.10</a>
+ &#32; &#32;public static SecurityManager <strong>getSecurityManager</strong>();	<a href="java.lang.System.html#10962">&#167;1.18.11</a>
+    public static void <strong>load</strong>(String &#32;filename);	<a href="java.lang.System.html#10976">&#167;1.18.12</a>
+    public static void <strong>loadLibrary</strong>(String &#32;libname);	<a href="java.lang.System.html#11014">&#167;1.18.13</a>
+    public static void <strong>runFinalization</strong>();	<a href="java.lang.System.html#11052">&#167;1.18.14</a>
+    public static void <strong>setProperties</strong>(Properties &#32;props);	<a href="java.lang.System.html#11074">&#167;1.18.15</a>
+    public static void <strong>setSecurityManager</strong>(SecurityManager &#32;s);	<a href="java.lang.System.html#11094">&#167;1.18.16</a>
+}
+</pre><a name="34981">The System class contains a number of useful class fields and methods. It cannot be instantiated. 
+</a><p><a name="40807">Among the facilities provided by the System class are standard input, standard output, and 
+error output streams, access to externally defined "properties", a means of loading files 
+and libraries, and a utility method for quickly copying a portion of an array.
+</a><p>
+<hr>
+<a name="10706"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="err">
+<a name="10714"><h3>err
+</h3></a>
+<a name="10716"><code>public static PrintStream err
+</code></a>
+<dl>
+<dd><a name="35001">The "standard" output stream. This stream is already open and ready to 
+accept output data. 
+<pre>
+</pre></a>
+
+<dd><a name="40815">Typically this stream corresponds to display output or another output destination specified by the host environment or user. By convention, this output stream is used to display error messages or other information that 
+should come to the immediate attention of a user even if the principal output stream, the value of the variable out, has been redirected to a file or 
+other destination that is typically not continuously monitored.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="in">
+<a name="10726"><h3>in
+</h3></a>
+<a name="10728"><code>public static InputStream in
+</code></a>
+<dl>
+<dd><a name="34989">The "standard" input stream. This stream is already open and ready to supply input data. Typically this stream corresponds to keyboard input or 
+another input source specified by the host environment or user.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="out">
+<a name="10738"><h3>out
+</h3></a>
+<a name="10740"><code>public static PrintStream out
+</code></a>
+<dl>
+<dd><a name="34993">The "standard" output stream. This stream is already open and ready to 
+accept output data. Typically this stream corresponds to display output or 
+another output destination specified by the host environment or user.
+<pre>
+</pre></a>
+
+<dd><a name="34994">For simple standalone Java applications, a typical way to write a line of 
+output data is
+<pre>
+</pre></a>
+<ul><a name="34995">
+<code>	System.out.println(data)
+</code>
+</a></ul>
+<dd><a name="42757">See the println methods (<a href="java.io.PrintStream.html#7244">&#167;2.18.15</a>-<a href="java.io.PrintStream.html#7400">&#167;2.18.24</a>) in class PrintStream.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="42758"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="arraycopy">
+<a name="42763"><h3>arraycopy
+</h3></a>
+<a name="10756"><code>public static void<br>
+arraycopy(Object &#32;src, int &#32;src_position, Object &#32;dst,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;dst_position, int &#32;length)
+</code></a>
+<dl>
+<dd><a name="35285">A subsequence of array components arecopied from the source array referenced by src to the destination array referenced by dst. The number of components copied is equal to the length argument. The components at positions 
+srcOffset through srcOffset+length-1 in the source array are copied into positions 
+dstOffset through dstOffset+length-1, respectively, of the destination array. 
+<pre>
+</pre></a>
+
+<dd><a name="40828">If the src and dst arguments refer to the same array object, then the copying 
+is performed as if the components at positions srcOffset through srcOffset+length-1 were first copied to a temporary array with length components and 
+then the contents of the temporary array were copied into positions dstOffset 
+through dstOffset+length-1 of the argument array.
+<pre>
+</pre></a>
+
+<dd><a name="35287">If any of the following is true, an ArrayStoreException is thrown and the destination is not modified:
+<pre>
+</pre></a>
+<dl><ul><li><a name="35288">The src argument refers to an object that is not an array.
+</a></ul><ul><li><a name="35289">The dst argument refers to an object that is not an array.
+</a><li><a name="35290">The src argument and dst argument refer to arrays whose component types 
+are different primitive types.
+</a><li><a name="35291">The src argument refers to an array with a primitive component type and the 
+dst argument refers to an array with a reference component type.
+</a><li><a name="35292">The src argument refers to an array with a reference component type and the 
+dst argument refers to an array with a primitive component type.
+</a></ul></dl>
+<dd><a name="35293">Otherwise, if any of the following is true, an ArrayIndex-Out-Of-Bounds-Exception is 
+thrown and the destination is not modified:
+<pre>
+</pre></a>
+<dl><ul><li><a name="35294">The srcOffset argument is negative.
+</a></ul><ul><li><a name="35295">The dstOffset argument is negative.
+</a><li><a name="35296">The length argument is negative.
+</a><li><a name="35297">srcOffset+length is greater than src.length, the length of the source array.
+</a><li><a name="35298">dstOffset+length is greater than dst.length, the length of the destination array.
+</a></ul></dl>
+<dd><a name="35299">Otherwise, if any actual component of the source array from position 
+srcOffset through srcOffset+length-1 cannot be converted to the component type 
+of the destination array by assignment conversion, an ArrayStoreException is 
+thrown. In this case, let k be the smallest nonnegative integer less than 
+length such that src[srcOffset+k] cannot be converted to the component type 
+of the destination array; when the exception is thrown, source array components from positions srcOffset through srcOffset+k-1 will already have been 
+copied to destination array positions dstOffset through dstOffset+k-1 and no 
+other positions of the destination array will have been modified. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10760"><b>Parameters:
+</b></a><dd><a name="10762"><code>src
+- </code></a><a name="10764">the source array
+</a>
+<dd><a name="10766"><code>srcpos
+- </code></a><a name="10768">start position in the source array
+</a>
+<dd><a name="10770"><code>dest
+- </code></a><a name="10772">the destination array
+</a>
+<dd><a name="10774"><code>destpos
+- </code></a><a name="10776">start position in the destination data
+</a>
+<dd><a name="10778"><code>length
+- </code></a><a name="10780">the number of array elements to be copied
+</a>
+
+<dt><a name="10782"><b>Throws
+</b></a><dd><a name="10788">ArrayIndexOutOfBoundsException &#32;<a href="java.lang.ArrayIndexOutOfBoundsException.html#43280">(I-&#167;1.25)</a>
+</a>
+<dd><a name="10790">If copy would cause access of data outside array bounds.
+</a>
+
+<dt><a name="10792"><b>Throws
+</b></a><dd><a name="10798">ArrayStoreException &#32;<a href="java.lang.ArrayStoreException.html#13314">(I-&#167;1.26)</a>
+</a>
+<dd><a name="10800">If an element in the src array could could not be stored into the dest 
+array due to a type mismatch
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="currentTimeMillis">
+<a name="10810"><h3>currentTimeMillis
+</h3></a>
+<a name="10812"><code>public static long currentTimeMillis()
+</code></a>
+<dl>
+<dd><a name="35020">Gets the current time.
+<pre>
+</pre></a>
+
+<dd><a name="43406">See the description of the class Date <a href="java.util.Date.html#608">(I-&#167;3.2)</a> for a discussion of slight discrepancies that may arise between "computer time" and UTC (Coordinated Universal Time).
+<pre>
+</pre></a>
+<dl>
+<dt><a name="35031"><b>Returns:
+</b></a><dd><a name="35044">the difference, measured in milliseconds, between the current time 
+and midnight, January 1, 1970 UTC.
+</a>
+<dd><a name="35032">
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="exit">
+<a name="10832"><h3>exit
+</h3></a>
+<a name="10834"><code>public static void exit(int &#32;status)
+</code></a>
+<dl>
+<dd><a name="35224">Terminates the currently running Java Virtual Machine. The argument 
+serves as a status code; by convention, a nonzero status code indicates 
+abnormal termination.
+<pre>
+</pre></a>
+
+<dd><a name="35225">This method calls the exit method <a href="java.lang.Runtime.html#6790">(I-&#167;1.14.5)</a> in class Runtime. This method 
+never returns normally.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10838"><b>Parameters:
+</b></a><dd><a name="10840"><code>status
+- </code></a><a name="10842">exit status
+</a>
+
+<dt><a name="45111"><b>Throws
+</b></a><dd><a name="45115">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45116">If the current thread cannot exit with the specified status.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="gc">
+<a name="10860"><h3>gc
+</h3></a>
+<a name="10862"><code>public static void gc()
+</code></a>
+<dl>
+<dd><a name="35249">This method alls the gc method <a href="java.lang.Runtime.html#6824">(I-&#167;1.14.7)</a> in class Runtime.
+<pre>
+</pre></a>
+
+<dd><a name="40840">Calling this method suggests that the Java Virtual Machine expend effort 
+toward recycling unused objects in order to make the memory they currently occupy available for quick reuse. When control returns from the 
+method call, the Java Virtual Machine has made a best effort to reclaim 
+space from all unused objects.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="getProperties">
+<a name="10906"><h3>getProperties
+</h3></a>
+<a name="10908"><code>public static Properties getProperties()
+</code></a>
+<dl>
+<dd><a name="35132">Determines the current system properties. 
+<pre>
+</pre></a>
+
+<dd><a name="43844">If there is a security manager, its checkPropertiesAccess method <a href="java.lang.SecurityManager.html#7622">(I-&#167;1.15.16)</a> is 
+called with no arguments. This may result in a security exception 
+<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="35136">The current set of system properties is returned as a Properties object 
+<a href="java.util.Properties.html#2720">(I-&#167;3.6)</a>. If there is no current set of system properties, a set of system 
+properties is first created and initialized. 
+<pre>
+</pre></a>
+
+<dd><a name="40851">This set of system properties always includes values for the following 
+keys:
+<pre>
+</pre></a>
+
+<dd><a name="35140">Key				Description of associated value
+<pre>
+</pre></a>
+
+<dd><a name="35146">java.version	Java version number<br>
+java.vendor	Java-vendor-specific string<br>
+java.vendor.url	Java vendor URL<br>
+java.home	Java installation directory<br>
+java.class.version	Java class format version number<br>
+java.class.path	Java classpath<br>
+os.name	Operating system name<br>
+os.arch	Operating system architecture<br>
+os.version	Operating system version<br>
+file.separator	File separator ("/" on Unix)<br>
+path.separator	Path separator (":" on Unix)<br>
+line.separator	Line separator ("\n" on Unix)<br>
+user.name	User account name<br>
+user.home	User home directory<br>
+user.dir	User's current working directory
+<pre>
+</pre></a>
+<dl>
+<dt><a name="45042"><b>Throws
+</b></a><dd><a name="45046">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45047">If the current thread cannot access the system properties.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getProperty">
+<a name="10920"><h3>getProperty
+</h3></a>
+<a name="10922"><code>public static String getProperty(String &#32;key)
+</code></a>
+<dl>
+<dd><a name="40860">Gets the system property indicated by the specified key.
+<pre>
+</pre></a>
+
+<dd><a name="35171">First, if there is a security manager, its checkPropertyAccess method 
+<a href="java.lang.SecurityManager.html#7646">(I-&#167;1.15.17)</a> is called with the key as its argument. This may result in a 
+system exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="35178">If there is no current set of system properties, a set of system properties is 
+first created and initialized in the same manner as for the getProperties 
+method <a href="java.lang.System.html#10906">(I-&#167;1.18.8)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10926"><b>Parameters:
+</b></a><dd><a name="10928"><code>key
+- </code></a><a name="10930">the name of the system property
+</a>
+
+<dt><a name="35184"><b>Returns:
+</b></a><dd><a name="35186">the string value of the system property, or null if there is no property 
+with that key.
+</a>
+
+<dt><a name="45125"><b>Throws
+</b></a><dd><a name="45129">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45130">If the current thread cannot access the system properties or the specified property.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getProperty">
+<a name="10938"><h3>getProperty
+</h3></a>
+<a name="10940"><code>public static String getProperty(String &#32;key, String &#32;def)
+</code></a>
+<dl>
+<dd><a name="10942">Gets the system property indicated by the specified key.
+<pre>
+</pre></a>
+
+<dd><a name="35198">First, if there is a security manager, its checkPropertyAccess method 
+<a href="java.lang.SecurityManager.html#7646">(I-&#167;1.15.17)</a> is called with the key as its argument.
+<pre>
+</pre></a>
+
+<dd><a name="35199">If there is no current set of system properties, a set of system properties is 
+first created and initialized in the same manner as for the getProperties 
+method <a href="java.lang.System.html#10906">(I-&#167;1.18.8)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10944"><b>Parameters:
+</b></a><dd><a name="10946"><code>key
+- </code></a><a name="10948">the name of the system property
+</a>
+<dd><a name="10950"><code>def
+- </code></a><a name="10952">a default value
+</a>
+
+<dt><a name="35215"><b>Returns:
+</b></a><dd><a name="35216">the string value of the system property, or the default value if there is 
+no property with that key.
+</a>
+
+<dt><a name="45141"><b>Throws
+</b></a><dd><a name="45145">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45146">If the current thread cannot access the system properties or the specified property.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getSecurityManager">
+<a name="10962"><h3>getSecurityManager
+</h3></a>
+<a name="10964"><code>public static SecurityManager getSecurityManager()
+</code></a>
+<dl><dl>
+<dt><a name="35007"><b>Returns:
+</b></a><dd><a name="35010">if a security manager has already been established for the current 
+application, then that security manager is returned; Otherwise, null is 
+returned.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="load">
+<a name="10976"><h3>load
+</h3></a>
+<a name="10978"><code>public static void load(String &#32;filename)
+</code></a>
+<dl>
+<dd><a name="45177">Loads the given filename as a dynamic library. The filename argument 
+must be a complete path name.
+<pre>
+</pre></a>
+
+<dd><a name="43852">This method calls the load method <a href="java.lang.Runtime.html#6880">(I-&#167;1.14.11)</a> in class Runtime.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="10982"><b>Parameters:
+</b></a><dd><a name="10984"><code>filename
+- </code></a><a name="10986">the file to load
+</a>
+
+<dt><a name="45164"><b>Throws
+</b></a><dd><a name="45168">UnsatisfiedLinkError &#32;<a href="java.lang.UnsatisfiedLinkError.html#15952">(I-&#167;1.61)</a>
+</a>
+<dd><a name="45169">If the file does not exist.
+</a>
+
+<dt><a name="45170"><b>Throws
+</b></a><dd><a name="45174">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45175">If the current thread cannot load the specified dynamic library.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="loadLibrary">
+<a name="11014"><h3>loadLibrary
+</h3></a>
+<a name="11016"><code>public static void loadLibrary(String &#32;libname)
+</code></a>
+<dl>
+<dd><a name="45210">Loads the system library specified by the libname argument. The manner in 
+which a library name is mapped to the actual system library is system 
+dependent.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="45190"><b>Parameters:
+</b></a><dd><a name="45191"><code>libname
+- </code></a><a name="45192">the name of the library
+</a>
+
+<dt><a name="45193"><b>Throws
+</b></a><dd><a name="45197">UnsatisfiedLinkError &#32;<a href="java.lang.UnsatisfiedLinkError.html#15952">(I-&#167;1.61)</a>
+</a>
+<dd><a name="45198">If the library does not exist.
+</a>
+
+<dt><a name="45199"><b>Throws
+</b></a><dd><a name="45203">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45204">If the current thread cannot load the specified dynamic library.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="runFinalization">
+<a name="11052"><h3>runFinalization
+</h3></a>
+<a name="11054"><code>public static void runFinalization()
+</code></a>
+<dl>
+<dd><a name="40897">This method calls the runFinalization method <a href="java.lang.Runtime.html#6948">(I-&#167;1.14.13)</a> in class Runtime.
+<pre>
+</pre></a>
+
+<dd><a name="45216">Calling this method suggests that the Java Virtual Machine expend effort 
+toward running the finalize methods of objects that have been found to be 
+discarded but whose finalize methods have not yet been run. When control 
+returns from the method call, the Java Virtual Machine has made a best 
+effort to complete all outstanding finalizations.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="setProperties">
+<a name="11074"><h3>setProperties
+</h3></a>
+<a name="11076"><code>public static void setProperties(Properties &#32;props)
+</code></a>
+<dl>
+<dd><a name="35154">Sets the system properties to the Properties argument.
+<pre>
+</pre></a>
+
+<dd><a name="43863">First, if there is a security manager, its checkPropertiesAccess method 
+<a href="java.lang.SecurityManager.html#7622">(I-&#167;1.15.16)</a> is called with no arguments. This may result in a security 
+exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="35164">The argument becomes the current set of system properties for use by the 
+getProperty method. If the argument is null, then the current set of system 
+properties is forgotten.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11080"><b>Parameters:
+</b></a><dd><a name="11082"><code>props
+- </code></a><a name="11084">the new system properties.
+</a>
+
+<dt><a name="45221"><b>Throws
+</b></a><dd><a name="45225">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45226">If the current thread cannot set the system properties.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setSecurityManager">
+<a name="11094"><h3>setSecurityManager
+</h3></a>
+<a name="11096"><code>public static void setSecurityManager(SecurityManager &#32;s)
+</code></a>
+<dl>
+<dd><a name="35012">If a security manager has already been established for the currently running Java application, a SecurityException is thrown. Otherwise, the argument 
+is established as the current security manager. If the argument is null and 
+no security manager has been established, then no action is taken and the 
+method simply returns.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11100"><b>Parameters:
+</b></a><dd><a name="11102"><code>s
+- </code></a><a name="11104">the security manager
+</a>
+
+<dt><a name="11106"><b>Throws
+</b></a><dd><a name="11112">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="11114">If the security manager has already been set.
+</a>
+</dl></dl>
+<p></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.StringBuffer.html">Prev</a>  <a href="java.lang.Thread.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

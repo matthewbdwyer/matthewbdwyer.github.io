@@ -1,0 +1,20 @@
+method max2(V:array<int>) returns (max : int)
+  requires V != null;
+  requires V.Length > 0;
+  ensures forall i :: 0 <= i < V.Length ==> max >= V[i];
+{
+  var pos := 0;
+  max := V[pos];
+  while (pos < V.Length) 
+    invariant pos <= V.Length;
+    invariant forall i :: 0 <= i < pos ==> max >= V[i];
+    decreases V.Length - pos;
+  {
+    if (V[pos] > max) {
+      max := V[pos];
+    }
+    pos := pos + 1;
+  }
+  return max;
+}
+

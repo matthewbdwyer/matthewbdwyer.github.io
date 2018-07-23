@@ -1,0 +1,261 @@
+<html><head><title>Class ByteArrayInputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.BufferedOutputStream.html">Prev</a>  <a href="java.io.ByteArrayOutputStream.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="940"><h1>	&#167;2.3 Class ByteArrayInputStream</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>ByteArrayInputStream
+</strong>    extends &#32;java.io.<strong>InputStream</strong> &#32;<a href="java.io.InputStream.html#5284">(I-&#167;2.13)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    protected byte <strong>buf</strong>[];	<a href="java.io.ByteArrayInputStream.html#1024">&#167;2.3.1</a>
+    protected int <strong>count</strong>;	<a href="java.io.ByteArrayInputStream.html#1036">&#167;2.3.2</a>
+    protected int <strong>pos</strong>;	<a href="java.io.ByteArrayInputStream.html#1048">&#167;2.3.3</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+ &#32; &#32;public <strong>ByteArrayInputStream</strong>(byte &#32;buf[]);	<a href="java.io.ByteArrayInputStream.html#1064">&#167;2.3.4</a>
+    public <strong>ByteArrayInputStream</strong>(byte &#32;buf[], int offset, int &#32;length);
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;<a href="java.io.ByteArrayInputStream.html#1082">&#167;2.3.5</a>
+ 
+ &#32; &#32; &#32; &#32;// Methods
+    public int <strong>available</strong>();	<a href="java.io.ByteArrayInputStream.html#1112">&#167;2.3.6</a>
+    public int <strong>read</strong>();	<a href="java.io.ByteArrayInputStream.html#1138">&#167;2.3.7</a>
+    public int <strong>read</strong>(byte &#32;b[], int &#32;off, int &#32;len);	<a href="java.io.ByteArrayInputStream.html#1162">&#167;2.3.8</a>
+    public void <strong>reset</strong>();	<a href="java.io.ByteArrayInputStream.html#1202">&#167;2.3.9</a>
+    public long <strong>skip</strong>(long &#32;n);	<a href="java.io.ByteArrayInputStream.html#1224">&#167;2.3.10</a>
+}
+</pre><a name="36746">This class allows an application to create an input stream in which the bytes read are supplied by the contents of a byte array. Applications can also read bytes from a string by 
+using a StringBufferInputStream <a href="java.io.StringBufferInputStream.html#9826">(I-&#167;2.23)</a>.
+</a><p>
+<hr>
+<a name="1016"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="buf">
+<a name="1024"><h3>buf
+</h3></a>
+<a name="36757"><code>protected byte buf[]
+</code></a>
+<dl>
+<dd><a name="1028">The byte array containing the data.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="count">
+<a name="1036"><h3>count
+</h3></a>
+<a name="1038"><code>protected int count
+</code></a>
+<dl>
+<dd><a name="1040">The index one greater than the last valid character in the input stream 
+buffer.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="pos">
+<a name="1048"><h3>pos
+</h3></a>
+<a name="1050"><code>protected int pos
+</code></a>
+<dl>
+<dd><a name="1052">The index of the next character to read from the input stream buffer.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="1056"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="ByteArrayInputStream">
+<a name="1064"><h3>ByteArrayInputStream
+</h3></a>
+<a name="1066"><code>public ByteArrayInputStream(byte &#32;buf[])
+</code></a>
+<dl>
+<dd><a name="26462">Creates a new byte array input stream which reads data from the specified 
+byte array. The byte array is not copied.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1070"><b>Parameters:
+</b></a><dd><a name="1072"><code>buf
+- </code></a><a name="1074">the input buffer
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="ByteArrayInputStream">
+<a name="1082"><h3>ByteArrayInputStream
+</h3></a>
+<a name="1084"><code>public ByteArrayInputStream(byte &#32;buf[], int &#32;offset,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;length)
+</code></a>
+<dl>
+<dd><a name="26474">Creates a new byte array input stream which reads data from the specified 
+byte array. Up to length characters are to be read from the byte array, starting at the indicated offset.
+<pre>
+</pre></a>
+
+<dd><a name="26475">The byte array is not copied.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1088"><b>Parameters:
+</b></a><dd><a name="1090"><code>buf
+- </code></a><a name="1092">the input buffer
+</a>
+<dd><a name="1094"><code>offset
+- </code></a><a name="1096">the offset in the buffer of the first byte to read
+</a>
+<dd><a name="1098"><code>length
+- </code></a><a name="1100">the maximum number of bytes to read from the buffer.
+</a>
+</dl></dl>
+<hr>
+<a name="1102"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="available">
+<a name="1112"><h3>available
+</h3></a>
+<a name="1114"><code>public int available()
+</code></a>
+<dl>
+<dd><a name="36534">Determines the number of bytes that can be read from this input stream 
+without blocking.
+<pre>
+</pre></a>
+
+<dd><a name="26483">The available method of ByteArrayInputStream returns the value of 
+<img src="javaab6.gif">, which is the number of bytes remaining to be read from the 
+input buffer. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26484"><b>Returns:
+</b></a><dd><a name="26485">the number of bytes that can be read from the input stream without 
+blocking.
+</a>
+
+<dt><a name="1122"><b>Overrides:
+</b></a><dd><a name="1128">available in class InputStream &#32;<a href="java.io.InputStream.html#5412">(I-&#167;2.13.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="1138"><h3>read
+</h3></a>
+<a name="36788"><code>public int read()
+</code></a>
+<dl>
+<dd><a name="36789">Reads the next byte of data from this input stream. The value byte is 
+returned as an int in the range 0 to 255. If no byte is available because the 
+the end of the stream has been reached, the value -1 is returned. 
+<pre>
+</pre></a>
+
+<dd><a name="36791">The read method of ByteArrayInputStream cannot block.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="37852"><b>Returns:
+</b></a><dd><a name="36790">the next byte of data, or -1 if the end of the stream has been reached.
+</a>
+
+<dt><a name="1148"><b>Overrides:
+</b></a><dd><a name="1154">read in class InputStream &#32;<a href="java.io.InputStream.html#5496">(I-&#167;2.13.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="1162"><h3>read
+</h3></a>
+<a name="1164"><code>public int read(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<dl>
+<dd><a name="26522">Reads up to len bytes of data into an array of bytes from this input stream. 
+This read method cannot block.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26523"><b>Parameters:
+</b></a><dd><a name="26524"><code>b
+- </code></a><a name="26525">the buffer into which the data is read
+</a>
+<dd><a name="26526"><code>off
+- </code></a><a name="26527">the start offset of the data
+</a>
+<dd><a name="26528"><code>len
+- </code></a><a name="26529">the maximum number of bytes read
+</a>
+
+<dt><a name="26530"><b>Returns:
+</b></a><dd><a name="26531">the total number of bytes read into the buffer, or -1 is there is no more 
+data because the end of the stream has been reached.
+</a>
+
+<dt><a name="1186"><b>Overrides:
+</b></a><dd><a name="1192">read in class InputStream &#32;<a href="java.io.InputStream.html#5558">(I-&#167;2.13.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="reset">
+<a name="1202"><h3>reset
+</h3></a>
+<a name="1204"><code>public void reset()
+</code></a>
+<dl>
+<dd><a name="1206">Resets this input stream to begin reading from the same position at which 
+it first started reading from the buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1208"><b>Overrides:
+</b></a><dd><a name="1214">reset in class InputStream &#32;<a href="java.io.InputStream.html#5602">(I-&#167;2.13.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="skip">
+<a name="1224"><h3>skip
+</h3></a>
+<a name="1226"><code>public long skip(long &#32;n)
+</code></a>
+<dl>
+<dd><a name="41418">Skips n bytes of input from this input stream. Fewer bytes might be 
+skipped if the end of the input stream is reached.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26564"><b>Parameters:
+</b></a><dd><a name="26565"><code>n
+- </code></a><a name="26566">the number of bytes to be skipped
+</a>
+
+<dt><a name="26567"><b>Returns:
+</b></a><dd><a name="26568">the actual number of bytes skipped.
+</a>
+
+<dt><a name="1240"><b>Overrides:
+</b></a><dd><a name="1246">skip in class InputStream &#32;<a href="java.io.InputStream.html#5628">(I-&#167;2.13.10)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.BufferedOutputStream.html">Prev</a>  <a href="java.io.ByteArrayOutputStream.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

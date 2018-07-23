@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>CSCE 425/825</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <meta name="Microsoft Border" content="tlb, default">
+
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><span style="position: absolute; top: 50px; left: 11px;"> <img src="../images/12x12spacer.gif" border="0" height="12" width="12"></span> </p>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+<!--#include file="sidebar.shtml" --> <td valign="top" width="24"></td>
+
+<td valign="top">
+      <h1><font face="Arial" size="5">Milestone
+Grad : Profiling for ESJ</font></h1>
+
+<font face="Arial" size="2">
+<p>Your task in this milestone is to extend the existing code
+generation support for ESJ developed in Milestone 5 to
+achieve rudimentary performance profiling support.
+Tools like <a href="http://www.ej-technologies.com/products/jprofiler/overview.html">jProfiler</a> provide sophisticated mechanisms for recording
+information about a program's execution behavior and presenting
+that information to developers so that they can detect, for example,
+performance hot-spots and memory leaks.
+</p>
+<p>
+This milestone consists of two parts.
+</p>
+<p>
+First, you will implement a much more rudimentary capability much like
+that in <em>gprof</em>.
+More specifically, you will modify your code generator to insert
+bytecodes that record
+the number of times that each <em>block of code</em> in the
+code is executed.  A block of code is a sequential run of statements.
+Control structures like, <em>if</em> and <em>for</em>, introduce
+branches that interrupt sequential runs of statements.  
+Your solution must print a list of blocks that is
+ordered based on execution count - from high to low.
+</p>
+<p> 
+Second, you will optimize your code generation strategy to minimize
+the number of inserted bytecodes.  This optimization will be driven
+by an analysis of statement <em>dominator</em> information; see the
+Dragon book Chapter 9.6.1 for a definition.  By calculating dominators,
+you will be able to determine whether some of the inserted bytecodes
+can be removed without losing any block execution count information.
+</p>
+<p>
+Finally, you will develope a set of test programs that illustrate
+the correctness and effectiveness of your solution.  For each test
+program, you will provide the number of bytecodes generated and the
+ordered list of blocks; the latter information should be identical
+for both unoptimized and optimized code generation strategies. 
+</p>
+      <p>You must submit
+your assignment through the course <a href="http://cse.unl.edu/~cse425/handin">Project Upload</a> site
+by 11:59pm CDT on Friday Dec 21, 2007.
+      </p>
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">Setup</font></h3>
+
+<font face="Arial" size="2">
+      <p>
+      Download the file <a href="myname-milestoneGrad.zip">myname-milestoneGrad.zip</a
+>
+      <p>
+      This contains a solution for milestone 5 which will serve
+as your starting point.
+      <p>
+In order to import the projects into your workspace, do the following:
+<p>
+Goto the "File" menu, select "Import". Expand "General" and select "Existing Pro
+jects into Workspace". Click "Next". Select "Select archive file:" and click the
+ "Browse" button associated with it. In the file browser, points to the mileston
+e2.zip that you downloaded.
+<p>
+You should see "solution-milestone5", check the box,
+and click "Finish".
+<p>
+If you run Eclipse appropriately (i.e., using Java 5.0 and the right versions of
+ plugins and by following the instructions in the course quick notes website), y
+our workspace should be set. 
+<p>
+Make sure you rename the project appropriately, e.g.,
+use your CIS username and change the "5" to "Grad", by
+ght clicking the project, select "Refactor" -> "Rename...".
+<p>    
+</font>
+
+</ul>
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">Instructions and Hints</font></h3>
+
+<font face="Arial" size="2">
+      <p>You are provided with a working version of an ESJ code generator
+         as a starting point.</p>
+
+      <p>You are expected to operate more independently on this project.
+         In particular, no JUnit test driver is provided - you must construct
+         one.</p>
+
+      <p>It is possible to calculate dominator information in several different
+         ways, e.g., the algorithm in the book, or using an instance of the 
+         MDF.
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">What To Submit</font></h3>
+
+<font face="Arial" size="2">
+      <p>Your solution should consist of the following :</p>
+
+      <ul>
+
+<li>Unlike the other projects, for this one I expect you to explain
+at a reasonable level of detail what you implemented.  Think of it
+as providing documentation that you could come back to in 6 months and
+be able to pick up where you left off, e.g., include design decisions,
+alternatives skipped and why, etc.  This documentation should
+summarize your findings for your test cases (see below).</li>
+
+<li>An extended bytecode generator that generates code for performance
+profiling with optional optimization.</li>
+
+<li>At least four non-trivial tests that exercise the functionality
+of your solution.  Tests with significant overlap will not count
+towards the total of four.</li>
+
+      </ul>
+</p>
+Export your solution project as a single file named 
+<em>yourname</em>-milestoneGrad.zip, including your documentation
+in the root directory of the project, and upload that file.
+<p>
+Your Grading will be based on your solution (60%), your tests (20%),
+and your documentation (20%).
+</font>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+
+<br>
+
+</body>
+</html>

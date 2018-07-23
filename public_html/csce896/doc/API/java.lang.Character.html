@@ -1,0 +1,739 @@
+<html><head><title>Class Character</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Boolean.html">Prev</a>  <a href="java.lang.Class.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="480"><h1>	&#167;1.2 Class Character</h1></a>
+<pre>public &#32;final &#32;class &#32;java.lang.<strong>Character
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public final static int <strong>MAX_RADIX</strong>;	<a href="java.lang.Character.html#648">&#167;1.2.1</a>
+    public final static char <strong>MAX_VALUE</strong>;	<a href="java.lang.Character.html#668">&#167;1.2.2</a>
+    public final static int <strong>MIN_RADIX</strong>;	<a href="java.lang.Character.html#680">&#167;1.2.3</a>
+    public final static char <strong>MIN_VALUE</strong>;	<a href="java.lang.Character.html#700">&#167;1.2.4</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Character</strong>(char &#32;value);	<a href="java.lang.Character.html#716">&#167;1.2.5</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public char <strong>charValue</strong>();	<a href="java.lang.Character.html#738">&#167;1.2.6</a>
+    public static int <strong>digit</strong>(char &#32;ch, int &#32;radix);	<a href="java.lang.Character.html#752">&#167;1.2.7</a>
+    public boolean <strong>equals</strong>(Object &#32;obj);	<a href="java.lang.Character.html#794">&#167;1.2.8</a>
+    public static char <strong>forDigit</strong>(int &#32;digit, int &#32;radix);	<a href="java.lang.Character.html#826">&#167;1.2.9</a>
+    public int <strong>hashCode</strong>();	<a href="java.lang.Character.html#850">&#167;1.2.10</a>
+    public static boolean <strong>isDefined</strong>(char &#32;ch);	<a href="java.lang.Character.html#872">&#167;1.2.11</a>
+    public static boolean <strong>isDigit</strong>(char &#32;ch);	<a href="java.lang.Character.html#924">&#167;1.2.12</a>
+    public static boolean <strong>isJavaLetter</strong>(char &#32;ch);	<a href="java.lang.Character.html#1028">&#167;1.2.13</a>
+    public static boolean <strong>isJavaLetterOrDigit</strong>(char &#32;ch);	<a href="java.lang.Character.html#1070">&#167;1.2.14</a>
+    public static boolean <strong>isLetter</strong>(char &#32;ch);	<a href="java.lang.Character.html#1112">&#167;1.2.15</a>
+    public static boolean <strong>isLetterOrDigit</strong>(char &#32;ch);	<a href="java.lang.Character.html#1172">&#167;1.2.16</a>
+    public static boolean <strong>isLowerCase</strong>(char &#32;ch);	<a href="java.lang.Character.html#37434">&#167;1.2.17</a>
+    public static boolean <strong>isSpace</strong>(char &#32;ch);	<a href="java.lang.Character.html#44774">&#167;1.2.18</a>
+    public static boolean <strong>isTitleCase</strong>(char &#32;ch);	<a href="java.lang.Character.html#1348">&#167;1.2.19</a>
+    public static boolean <strong>isUpperCase</strong>(char &#32;ch);	<a href="java.lang.Character.html#44853">&#167;1.2.20</a>
+    public static char <strong>toLowerCase</strong>(char &#32;ch);	<a href="java.lang.Character.html#27137">&#167;1.2.21</a>
+    public String <strong>toString</strong>();	<a href="java.lang.Character.html#37974">&#167;1.2.22</a>
+    public static char <strong>toTitleCase</strong>(char &#32;ch);	<a href="java.lang.Character.html#1538">&#167;1.2.23</a>
+    public static char <strong>toUpperCase</strong>(char &#32;ch);	<a href="java.lang.Character.html#27159">&#167;1.2.24</a>
+}
+</pre><a name="36870">This class wraps a value of the primitive type char in an object. An object of type Character 
+contains a single field whose type is char.
+</a><p><a name="36871">In addition, this class provides a number of methods for determining the type of a character, and converting characters from uppercase to lowercase and vice versa.
+</a><p><a name="30281">Many of the methods of class Character are defined in terms of a "Unicode attribute table" 
+that specifies a name for every defined Unicode code point. The table also includes other 
+attributes, such as a decimal value, an uppercase equivalent, a lowercase equivalent, and/or 
+a titlecase equivalent. The Unicode attribute table is available on the World Wide Web as 
+the file
+</a><p><ul><a name="30282">
+<code>ftp://unicode.org/pub/MappingTables/UnicodeData1.1.5.txt
+</code>
+</a></ul>
+<hr>
+<a name="640"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="MAX_RADIX">
+<a name="648"><h3>MAX_RADIX
+</h3></a>
+<a name="650"><code>public final static int MAX_RADIX = 36
+</code></a>
+<dl>
+<dd><a name="652">The constant value of this field is the largest value permitted for the radix 
+argument in radix-conversion methods such as the digit &#32;<a href="java.lang.Character.html#752">(I-&#167;1.2.7)</a> method, 
+the forDigit &#32;<a href="java.lang.Character.html#826">(I-&#167;1.2.9)</a> method, and the toString <a href="java.lang.Integer.html#4032">(I-&#167;1.8.21)</a> method of class 
+Integer.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MAX_VALUE">
+<a name="668"><h3>MAX_VALUE<a href="#28305"><sup>1</sup></a>
+</h3></a>
+<a name="670"><code>public final static char MAX_VALUE = '\uffff'
+</code></a>
+<dl>
+<dd><a name="672">The constant value of this field is the largest value of type char.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MIN_RADIX">
+<a name="680"><h3>MIN_RADIX
+</h3></a>
+<a name="682"><code>public final static int MIN_RADIX = 2
+</code></a>
+<dl>
+<dd><a name="28339">The constant value of this field is the smallest value permitted for the radix 
+argument in radix-conversion methods such as the digit &#32;<a href="java.lang.Character.html#752">(I-&#167;1.2.7)</a> method, 
+the forDigit &#32;<a href="java.lang.Character.html#826">(I-&#167;1.2.9)</a> method, and the toString <a href="java.lang.Integer.html#4032">(I-&#167;1.8.21)</a> method of class 
+Integer.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MIN_VALUE">
+<a name="700"><h3>MIN_VALUE<a href="#28354"><sup>2</sup></a>
+</h3></a>
+<a name="702"><code>public final static char MIN_VALUE = '\u0000'
+</code></a>
+<dl>
+<dd><a name="28307">The constant value of this field is the smallest value of type char.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="708"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Character">
+<a name="716"><h3>Character
+</h3></a>
+<a name="718"><code>public Character(char &#32;value)
+</code></a>
+<dl>
+<dd><a name="28361">Constructs a Character object and initializes it so that it represents the primitive value argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="722"><b>Parameters:
+</b></a><dd><a name="724"><code>value
+- </code></a><a name="726">value for the new Character object
+</a>
+</dl></dl>
+<hr>
+<a name="728"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="charValue">
+<a name="738"><h3>charValue
+</h3></a>
+<a name="740"><code>public char charValue()
+</code></a>
+<dl><dl>
+<dt><a name="31058"><b>Returns:
+</b></a><dd><a name="31059">The primitive char value represented by this object.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="digit">
+<a name="752"><h3>digit
+</h3></a>
+<a name="754"><code>public static int digit(char &#32;ch, int &#32;radix)
+</code></a>
+<dl>
+<dd><a name="756">Returns the numeric value of the character ch in the specified radix. 
+<pre>
+</pre></a>
+
+<dd><a name="37548">If the radix is not in the range <img src="javaa1.gif"> or 
+if the ch is not a valid digit in the specified radix, -1 is returned. A character 
+is a valid digit if either of the following is true:
+<pre>
+</pre></a>
+<dl><ul><li><a name="760">The method isDigit &#32;<a href="java.lang.Character.html#924">(I-&#167;1.2.12)</a> is true of the character and the Unicode 
+decimal digit value of the character (or its single-character decomposition) 
+is less than the specified radix. In this case the decimal digit value is 
+returned.
+</a></ul><ul><li><a name="45290">The character is one of the uppercase Latin letters 'A' through 'Z' and its code 
+is less that <img src="javaa2.gif">. In this case, <img src="javaa3.gif">is returned.
+</a><li><a name="45311">The character is one of the lowercase Latin letters 'a' through 'z' and its code 
+is less that <img src="javaa4.gif">. In this case, <img src="javaa5.gif">is returned.
+</a></ul>
+<dt><a name="764"><b>Parameters:
+</b></a><dd><a name="766"><code>ch
+- </code></a><a name="768">the character to be converted
+</a>
+<dd><a name="770"><code>radix
+- </code></a><a name="772">the radix
+</a>
+
+<dt><a name="31053"><b>Returns:
+</b></a><dd><a name="31054">the numeric value represented by the character in the specified radix.
+</a>
+
+<dt><a name="36505"><b>See Also:
+</b></a><dd><a name="36506">forDigit &#32;<a href="java.lang.Character.html#826">(I-&#167;1.2.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="equals">
+<a name="794"><h3>equals
+</h3></a>
+<a name="796"><code>public boolean equals(Object &#32;obj)
+</code></a>
+<dl>
+<dd><a name="37568">The result is true if and only if the argument is not null and is a Character 
+object that represents the same char value as this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="800"><b>Parameters:
+</b></a><dd><a name="802"><code>obj
+- </code></a><a name="804">the object to compare with
+</a>
+
+<dt><a name="806"><b>Returns:
+</b></a><dd><a name="808">true if the objects are the same; false otherwise.
+</a>
+
+<dt><a name="810"><b>Overrides:
+</b></a><dd><a name="816">equals in class Object &#32;<a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="forDigit">
+<a name="826"><h3>forDigit
+</h3></a>
+<a name="828"><code>public static char forDigit(int &#32;digit, int &#32;radix)
+</code></a>
+<dl>
+<dd><a name="45321">Determines the character representation for a specific digit in the specified 
+radix. If the value of radix is not a valid radix, or the value of digit is not a 
+valid digit in the specified radix, the null character ('\u0000') is returned.
+<pre>
+</pre></a>
+
+<dd><a name="45333">The radix argument is valid if it is greater than or equal to MIN_RADIX 
+<a href="java.lang.Character.html#680">(I-&#167;1.2.3)</a> and less than or equal to MAX_RADIX <a href="java.lang.Character.html#648">(I-&#167;1.2.1)</a>. The digit argument is valid if <img src="javaa6.gif">. 
+<pre>
+</pre></a>
+
+<dd><a name="45350">If the digit is less than 10, then <img src="javaa7.gif"> is returned. Otherwise, the 
+value <img src="javaa8.gif"> is returned.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="45322"><b>Parameters:
+</b></a><dd><a name="834"><code>digit
+- </code></a><a name="836">the number to convert to a character
+</a>
+<dd><a name="838"><code>radix
+- </code></a><a name="840">the radix.
+</a>
+
+<dt><a name="31064"><b>Returns:
+</b></a><dd><a name="31065">the char representation of the specified digit in the specified radix. 
+</a>
+
+<dt><a name="36958"><b>See Also:
+</b></a><dd><a name="36962">digit &#32;<a href="java.lang.Character.html#752">(I-&#167;1.2.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hashCode">
+<a name="850"><h3>hashCode
+</h3></a>
+<a name="852"><code>public int hashCode()
+</code></a>
+<dl><dl>
+<dt><a name="31138"><b>Returns:
+</b></a><dd><a name="31139">a hash code value for this object. 
+</a>
+
+<dt><a name="31123"><b>Overrides:
+</b></a><dd><a name="31127">hashCode in class Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isDefined">
+<a name="872"><h3>isDefined<a href="#26905"><sup>3</sup></a>
+</h3></a>
+<a name="874"><code>public static boolean isDefined(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="878">Determines if a character has a defined meaning in Unicode. A character is 
+defined if at least one of the following is true:
+<pre>
+</pre></a>
+<dl><ul><li><a name="45372">It has an entry in the Unicode attribute table.
+</a></ul><ul><li><a name="45373">Its value is in the range <img src="javaa9.gif">
+</a><li><a name="45378">Its value is in the range <img src="javaa10.gif">
+</a></ul>
+<dt><a name="43974"><b>Parameters:
+</b></a><dd><a name="880"><code>ch
+- </code></a><a name="882">the character to be tested
+</a>
+
+<dt><a name="884"><b>Returns:
+</b></a><dd><a name="886">true if the character has a defined meaning in Unicode; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isDigit">
+<a name="924"><h3>isDigit<a href="#45391"><sup>4</sup></a>
+</h3></a>
+<a name="926"><code>public static boolean isDigit(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="928">Determines whether the specified character is a digit. A character is considered to be a digit if it is not in the range '\u2000' through '\uu2000' and its 
+Unicode name contains the word "DIGIT".
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43064"><b>Parameters:
+</b></a><dd><a name="37579"><code>ch
+- </code></a><a name="1002">the character to be tested
+</a>
+
+<dt><a name="1004"><b>Returns:
+</b></a><dd><a name="1006">true if the character is a digit; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isJavaLetter">
+<a name="1028"><h3>isJavaLetter<a href="#27091"><sup>5</sup></a>
+</h3></a>
+<a name="1030"><code>public static boolean isJavaLetter(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="1032">Determines whether the specified character is a "Java" letter, that is, the 
+character is permissible as the first character in an identifier in the Java 
+language..
+<pre>
+</pre></a>
+
+<dd><a name="1034">A character is considered to be a Java letter if and only if it is a letter, the 
+ASCII dollar sign character '$', or the underscore character '_'.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1036"><b>Parameters:
+</b></a><dd><a name="1038"><code>ch
+- </code></a><a name="1040">the character to be tested
+</a>
+
+<dt><a name="1042"><b>Returns:
+</b></a><dd><a name="1044">true if the character is a Java letter; false otherwise.
+</a>
+
+<dt><a name="1046"><b>See Also:
+</b></a><dd><a name="1060">isLetter &#32;<a href="java.lang.Character.html#1112">(I-&#167;1.2.15)</a><br>
+isLetterOrDigit &#32;<a href="java.lang.Character.html#1172">(I-&#167;1.2.16)</a><br>
+isJavaLetterOrDigit &#32;<a href="java.lang.Character.html#1070">(I-&#167;1.2.14)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isJavaLetterOrDigit">
+<a name="1070"><h3>isJavaLetterOrDigit<a href="#27097"><sup>6</sup></a>
+</h3></a>
+<a name="1072"><code>public static boolean isJavaLetterOrDigit(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="1074">Determines whether the specified character is a "Java" letter or digit, that 
+is, the character is permissible as a non-initial character in an identifier in 
+the Java language.. 
+<pre>
+</pre></a>
+
+<dd><a name="1076">A character is considered to be a Java letter or digit if and only if it is a letter, a digit, the ASCII dollar sign character '$', or the underscore character 
+'_'.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1078"><b>Parameters:
+</b></a><dd><a name="1080"><code>ch
+- </code></a><a name="1082">the character to be tested
+</a>
+
+<dt><a name="1084"><b>Returns:
+</b></a><dd><a name="1086">true if the character is a Java letter or digit; false otherwise.
+</a>
+
+<dt><a name="1088"><b>See Also:
+</b></a><dd><a name="1102">isLetter &#32;<a href="java.lang.Character.html#1112">(I-&#167;1.2.15)</a><br>
+isLetterOrDigit &#32;<a href="java.lang.Character.html#1172">(I-&#167;1.2.16)</a><br>
+isJavaLetter &#32;<a href="java.lang.Character.html#1028">(I-&#167;1.2.13)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isLetter">
+<a name="1112"><h3>isLetter
+</h3></a>
+<a name="1114"><code>public static boolean isLetter(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="1116">Determines whether the specified character is a letter. 
+<pre>
+</pre></a>
+
+<dd><a name="45403">Note to the editor. Guy's book describes letter and letter/digit in excruciating detail. Do I need to do so also?
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1122"><b>Parameters:
+</b></a><dd><a name="1124"><code>ch
+- </code></a><a name="1126">the character to be tested
+</a>
+
+<dt><a name="1128"><b>Returns:
+</b></a><dd><a name="1130">true if the character is a letter; false otherwise.
+</a>
+
+<dt><a name="1132"><b>See Also:
+</b></a><dd><a name="1162">isJavaLetter &#32;<a href="java.lang.Character.html#1028">(I-&#167;1.2.13)</a><br>
+isJavaLetterOrDigit &#32;<a href="java.lang.Character.html#1070">(I-&#167;1.2.14)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isLetterOrDigit">
+<a name="1172"><h3>isLetterOrDigit<a href="#27100"><sup>7</sup></a>
+</h3></a>
+<a name="37597"><code>public static boolean isLetterOrDigit(char &#32;ch)
+</code></a>
+<dl><dl>
+<dt><a name="37661"><b>Parameters:
+</b></a><dd><a name="30672"><code>ch
+- </code></a><a name="1234">the character to be tested
+</a>
+
+<dt><a name="1236"><b>Returns:
+</b></a><dd><a name="1238">true if the character is a letter or digit; false otherwise.
+</a>
+
+<dt><a name="1240"><b>See Also:
+</b></a><dd><a name="1258">isDigit &#32;<a href="java.lang.Character.html#924">(I-&#167;1.2.12)</a><br>
+isLetter &#32;<a href="java.lang.Character.html#1112">(I-&#167;1.2.15)</a><br>
+isJavaLetter &#32;<a href="java.lang.Character.html#1028">(I-&#167;1.2.13)</a><br>
+isJavaLetterOrDigit &#32;<a href="java.lang.Character.html#1070">(I-&#167;1.2.14)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isLowerCase">
+<a name="37434"><h3>isLowerCase<a href="#27167"><sup>8</sup></a>
+</h3></a>
+<a name="1270"><code>public static boolean isLowerCase(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="1272">Determines whether the specified character is a lowercase character. 
+<pre>
+</pre></a>
+
+<dd><a name="1274">A character is lowercase if it is not in the range '\u2000' through '\u2FFF', the 
+Unicode attribute table does not specify a mapping to lowercase for the 
+character, and at least one of the following is true: 
+<pre>
+</pre></a>
+<dl><ul><li><a name="43087">the attribute table specifies a mapping to uppercase for the character.
+</a></ul><ul><li><a name="43088">the name for the character contains the words "SMALL LETTER" .
+</a><li><a name="43090">the name for the character contains the words "SMALL LIGATURE".
+</a></ul>
+<dt><a name="1290"><b>Parameters:
+</b></a><dd><a name="1292"><code>ch
+- </code></a><a name="1294">the character to be tested
+</a>
+
+<dt><a name="1296"><b>Returns:
+</b></a><dd><a name="1298">true if the character is lowercase; false otherwise.
+</a>
+
+<dt><a name="1300"><b>See Also:
+</b></a><dd><a name="44767">isUpperCase &#32;<a href="java.lang.Character.html#44853">(I-&#167;1.2.20)</a><br>
+isTitleCase &#32;<a href="java.lang.Character.html#1348">(I-&#167;1.2.19)</a><br>
+toLowerCase &#32;<a href="java.lang.Character.html#27137">(I-&#167;1.2.21)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isSpace">
+<a name="44774"><h3>isSpace
+</h3></a>
+<a name="44775"><code>public static boolean isSpace(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="43980">Determines if a character is white space. 
+<pre>
+</pre></a>
+
+<dd><a name="45541">This method returns true for the following five characters only:
+<pre>
+</pre></a>
+
+<dd><a name="45558">	'\t'	\u0009		HORIZONTAL TABULATION<br>
+	'\n'	\u000A		NEW LINE<br>
+	'\f'	\u000C		FORM FEED<br>
+	'\r'	\u000D		CARRIAGE RETURN<br>
+	' '	\u0020		SPACE
+<pre>
+</pre></a>
+<dl>
+<dt><a name="45593"><b>Parameters:
+</b></a><dd><a name="1332"><code>ch
+- </code></a><a name="1334">the character to be tested
+</a>
+
+<dt><a name="1336"><b>Returns:
+</b></a><dd><a name="1338">true if the character is ISO-LATIN-1 white space; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isTitleCase">
+<a name="1348"><h3>isTitleCase<a href="#27111"><sup>9</sup></a>
+</h3></a>
+<a name="1350"><code>public static boolean isTitleCase(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="1362">Determines if the character is a titlecase character. 
+<pre>
+</pre></a>
+
+<dd><a name="43114">There are four Unicode characters whose printed representations look like 
+pairs of Latin letters. For example, there is an uppercase letter that looks 
+like "LJ" and the corresponding lowercase letter looks like "lj". A third 
+form, which looks like "Lj" that is the appropriate form to use when rendering a word in lowercase with initial capitals, as for a book title. 
+<pre>
+</pre></a>
+
+<dd><a name="45605">These are the Unicode characters for which this method returns true: 
+<pre>
+</pre></a>
+<dl><ul><li><a name="45606">LATIN CAPITAL LETTER D WITH SMALL LETTER Z <br>
+WITH CARON
+</a></ul><ul><li><a name="45607">LATIN CAPITAL LETTER L WITH SMALL LETTER J 
+</a><li><a name="45608">LATIN CAPITAL LETTER N WITH SMALL LETTER J 
+</a><li><a name="45611">LATIN CAPITAL LETTER D WITH SMALL LETTER Z
+</a></ul>
+<dt><a name="1382"><b>Parameters:
+</b></a><dd><a name="1384"><code>ch
+- </code></a><a name="1386">the character to be tested
+</a>
+
+<dt><a name="1388"><b>Returns:
+</b></a><dd><a name="1390">true if the character is titlecase; false otherwise.
+</a>
+
+<dt><a name="1392"><b>See Also:
+</b></a><dd><a name="44839">isUpperCase &#32;<a href="java.lang.Character.html#44853">(I-&#167;1.2.20)</a><br>
+isLowerCase &#32;<a href="java.lang.Character.html#37434">(I-&#167;1.2.17)</a><br>
+toTitleCase &#32;<a href="java.lang.Character.html#1538">(I-&#167;1.2.23)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isUpperCase">
+<a name="44853"><h3>isUpperCase<a href="#44852"><sup>10</sup></a>
+</h3></a>
+<a name="44854"><code>public static boolean isUpperCase(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="1420">Determines whether the specified character is an uppercase character. 
+<pre>
+</pre></a>
+
+<dd><a name="37800">A character is uppercase if it is not in the range '\u2000' through '\u2FFF', the 
+Unicode attribute table does not specify a mapping to uppercase for the 
+character, and at least one of the following is true: 
+<pre>
+</pre></a>
+<dl><ul><li><a name="43101">the attribute table specifies a mapping to lowercase for the character.
+</a></ul><ul><li><a name="43102">the name for the character contains the words "CAPITAL LETTER".
+</a><li><a name="43103">or the name for the character contains the words "CAPITAL LIGATURE".
+</a></ul>
+<dt><a name="1438"><b>Parameters:
+</b></a><dd><a name="1440"><code>ch
+- </code></a><a name="1442">the character to be tested
+</a>
+
+<dt><a name="1444"><b>Returns:
+</b></a><dd><a name="1446">true if the character is uppercase; false otherwise.
+</a>
+
+<dt><a name="1448"><b>See Also:
+</b></a><dd><a name="1462">isLowerCase &#32;<a href="java.lang.Character.html#37434">(I-&#167;1.2.17)</a><br>
+isTitleCase &#32;<a href="java.lang.Character.html#1348">(I-&#167;1.2.19)</a><br>
+toUpperCase &#32;<a href="java.lang.Character.html#27159">(I-&#167;1.2.24)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toLowerCase">
+<a name="27137"><h3>toLowerCase<a href="#27136"><sup>11</sup></a>
+</h3></a>
+<a name="1474"><code>public static char toLowerCase(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="1476">The given character is mapped to its lowercase equivalent; if the character 
+has no lowercase equivalent, the character itself is returned.
+<pre>
+</pre></a>
+
+<dd><a name="27198">A character has a lowercase equivalent if and only if a lowercase mapping 
+is specified for the character in the Unicode attribute table. 
+<pre>
+</pre></a>
+
+<dd><a name="27201">Note that some Unicode characters in the range '\u2000' through '\u2FFF' 
+have lowercase mappings; this method does map such characters to their 
+lowercase equivalents even though the method isUpperCase <a href="java.lang.Character.html#44853">(I-&#167;1.2.20)</a> does 
+not return true for such characters.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1478"><b>Parameters:
+</b></a><dd><a name="1480"><code>ch
+- </code></a><a name="1482">the character to be converted
+</a>
+
+<dt><a name="1484"><b>Returns:
+</b></a><dd><a name="1486">the lowercase equivalent of the character, if any; otherwise the character itself.
+</a>
+
+<dt><a name="1488"><b>See Also:
+</b></a><dd><a name="37969">isLowerCase &#32;<a href="java.lang.Character.html#37434">(I-&#167;1.2.17)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="37974"><h3>toString
+</h3></a>
+<a name="37975"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="28363">Converts this Character object to a string. The result is a string whose length 
+is 1 and whose sole component is the primitive char value represented by 
+this object.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31110"><b>Returns:
+</b></a><dd><a name="31111">a string representation of this object.
+</a>
+
+<dt><a name="31112"><b>Overrides:
+</b></a><dd><a name="1528">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toTitleCase">
+<a name="1538"><h3>toTitleCase<a href="#27161"><sup>12</sup></a>
+</h3></a>
+<a name="1540"><code>public static char toTitleCase(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="37851">Converts the character argument to titlecase. A character has a titlecase 
+equivalent if and only if a titlecase mapping is specified for the character 
+in the Unicode attribute table. 
+<pre>
+</pre></a>
+
+<dd><a name="37855">Note that some Unicode characters in the range '\u2000' through '\u2FFF' 
+have titlecase mappings; this method does map such characters to their 
+titlecase equivalents even though the method isTitleCase <a href="java.lang.Character.html#1348">(I-&#167;1.2.19)</a> does 
+not return true for such characters.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1544"><b>Parameters:
+</b></a><dd><a name="1546"><code>ch
+- </code></a><a name="1548">the character to be converted
+</a>
+
+<dt><a name="1550"><b>Returns:
+</b></a><dd><a name="1552">the titlecase equivalent of the character, if any; otherwise the character 
+itself.
+</a>
+
+<dt><a name="1554"><b>See Also:
+</b></a><dd><a name="1568">isTitleCase &#32;<a href="java.lang.Character.html#1348">(I-&#167;1.2.19)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toUpperCase">
+<a name="27159"><h3>toUpperCase<a href="#44616"><sup>13</sup></a>
+</h3></a>
+<a name="1580"><code>public static char toUpperCase(char &#32;ch)
+</code></a>
+<dl>
+<dd><a name="37886">Converts the character argument to uppercase. A character has an uppercase equivalent if and only if a titlecase mapping is specified for the character in the Unicode attribute table. 
+<pre>
+</pre></a>
+
+<dd><a name="37887">Note that some Unicode characters in the range '\u2000' through '\u2000FFF' 
+have uppercase mappings; this method does map such characters to their 
+titlecase equivalents even though the method isLowerCase <a href="java.lang.Character.html#37434">(I-&#167;1.2.17)</a> does 
+not return true for such characters.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="36884"><b>Parameters:
+</b></a><dd><a name="27243"><code>ch
+- </code></a><a name="27244">the character to be converted
+</a>
+
+<dt><a name="27245"><b>Returns:
+</b></a><dd><a name="27246">the uppercase equivalent of the character, if any; otherwise the character itself.
+</a>
+
+<dt><a name="27247"><b>See Also:
+</b></a><dd><a name="27251">isUpperCase &#32;<a href="java.lang.Character.html#44853">(I-&#167;1.2.20)</a>.
+</a>
+</dl></dl><a name="27217"><code>
+</code></a>
+
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="28305">This field is new in Java 1.1.
+</a><p><sup>2</sup><!--"Footnote" is same tag as body.-->
+<a name="28354">This field is new in Java 1.1.
+</a><p><sup>3</sup><!--"Footnote" is same tag as body.-->
+<a name="26905">This method is new in Java 1.1.
+</a><p><sup>4</sup><!--"Footnote" is same tag as body.-->
+<a name="45391">In Version 1.0, this version returns true only for the ten ASCII digits `0' through 
+'9'.
+</a><p><sup>5</sup><!--"Footnote" is same tag as body.-->
+<a name="27091">This method is new in Java 1.1
+</a><p><sup>6</sup><!--"Footnote" is same tag as body.-->
+<a name="27097">This method is new in Java 1.1
+</a><p><sup>7</sup><!--"Footnote" is same tag as body.-->
+<a name="27100">This method is new in Java 1.1
+</a><p><sup>8</sup><!--"Footnote" is same tag as body.-->
+<a name="27167">In Version 1.0, this version returns true only for lowercase characters in the range 
+'\u0000' to '\u00FF'.
+</a><p><sup>9</sup><!--"Footnote" is same tag as body.-->
+<a name="27111">This method is new in Java 1.1.
+</a><p><sup>10</sup><!--"Footnote" is same tag as body.-->
+<a name="44852">In Java 1.0, this method returns true only for uppercase characters in the range 
+'\u0000' to '\u00FF'.
+</a><p><sup>11</sup><!--"Footnote" is same tag as body.-->
+<a name="27136">In Java 1.0, this method only works on characters in the range '\u0000' to '\u00FF'. 
+For characters outisde this range, the method returns its argument unchanged.
+</a><p><sup>12</sup><!--"Footnote" is same tag as body.-->
+<a name="27161">This method is new in Java 1.1
+</a><p><sup>13</sup><!--"Footnote" is same tag as body.-->
+<a name="44616">In Java 1.0, this method only works on characters in the range '\u0000' to '\u00FF'. 
+For characters outside this range, the method returns its argument unchanged.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Boolean.html">Prev</a>  <a href="java.lang.Class.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

@@ -1,0 +1,270 @@
+<html><head><title>Class Label</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Insets.html">Prev</a>  <a href="java.awt.List.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="15373"><h1>	&#167;1.26 Class Label</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Label
+</strong>    extends &#32;java.awt.<strong>Component</strong> &#32;<a href="java.awt.Component.html#3219">(II-&#167;1.10)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public final static int <strong>CENTER</strong>;	<a href="java.awt.Label.html#15469">&#167;1.26.1</a>
+    public final static int <strong>LEFT</strong>;	<a href="java.awt.Label.html#15481">&#167;1.26.2</a>
+    public final static int <strong>RIGHT</strong>;	<a href="java.awt.Label.html#15493">&#167;1.26.3</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Label</strong>();	<a href="java.awt.Label.html#15509">&#167;1.26.4</a>
+    public <strong>Label</strong>(String &#32;label);	<a href="java.awt.Label.html#15521">&#167;1.26.5</a>
+    public <strong>Label</strong>(String &#32;label, int &#32;alignment);	<a href="java.awt.Label.html#15539">&#167;1.26.6</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addNotify</strong>();	<a href="java.awt.Label.html#15565">&#167;1.26.7</a>
+    public int <strong>getAlignment</strong>();	<a href="java.awt.Label.html#15587">&#167;1.26.8</a>
+    public String <strong>getText</strong>();	<a href="java.awt.Label.html#15613">&#167;1.26.9</a>
+    protected String <strong>paramString</strong>();	<a href="java.awt.Label.html#15639">&#167;1.26.10</a>
+    public void <strong>setAlignment</strong>(int &#32;alignment);	<a href="java.awt.Label.html#15665">&#167;1.26.11</a>
+    public void <strong>setText</strong>(String &#32;label);	<a href="java.awt.Label.html#15703">&#167;1.26.12</a>
+}
+</pre><a name="53232">A label is a component for placing text in a container. The text can be changed by the 
+application, but a user cannot edit it directly.<a href="#45835"><sup>1</sup></a>
+</a><p><a name="39600">For example, the code:
+</a><p><ul><a name="39645">
+<code>setLayout(new FlowLayout(FlowLayout.CENTER,10,10));<br>
+add(new Label("Hi There!"));<br>
+add(new Label("Another Label"));
+</code>
+</a></ul><a name="39608">produces the following:<img src="javaa42.gif">
+</a><p>
+<hr>
+<a name="15461"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="CENTER">
+<a name="15469"><h3>CENTER
+</h3></a>
+<a name="15471"><code>public final static int CENTER
+</code></a>
+<dl>
+<dd><a name="15473">Indicates that the label should be centered.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="LEFT">
+<a name="15481"><h3>LEFT
+</h3></a>
+<a name="15483"><code>public final static int LEFT
+</code></a>
+<dl>
+<dd><a name="15485">Indicates that the label should be left justified.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="RIGHT">
+<a name="15493"><h3>RIGHT
+</h3></a>
+<a name="15495"><code>public final static int RIGHT
+</code></a>
+<dl>
+<dd><a name="15497">Indicates that the label should be right justified.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="15501"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Label">
+<a name="15509"><h3>Label
+</h3></a>
+<a name="15511"><code>public Label()
+</code></a>
+<dl>
+<dd><a name="15513">Constructs an empty label with whose text is left justified.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="Label">
+<a name="15521"><h3>Label
+</h3></a>
+<a name="15523"><code>public Label(String &#32;label)
+</code></a>
+<dl>
+<dd><a name="15525">Constructs a new label with the specified string of text left justified.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="15527"><b>Parameters:
+</b></a><dd><a name="15529"><code>label
+- </code></a><a name="15531">the text that makes up the label
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Label">
+<a name="15539"><h3>Label
+</h3></a>
+<a name="15541"><code>public Label(String &#32;label, int &#32;alignment)
+</code></a>
+<dl>
+<dd><a name="15543">Constructs a new label with the specified string of text and the specified 
+alignment.
+<pre>
+</pre></a>
+
+<dd><a name="34598">The alignment value must be one of Label.LEFT, Label.RIGHT, or Label.CENTER.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="15545"><b>Parameters:
+</b></a><dd><a name="15547"><code>label
+- </code></a><a name="15549">the string that makes up the label
+</a>
+<dd><a name="15551"><code>alignment
+- </code></a><a name="15553">the alignment value
+</a>
+</dl></dl>
+<hr>
+<a name="15555"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addNotify">
+<a name="15565"><h3>addNotify
+</h3></a>
+<a name="15567"><code>public void addNotify()
+</code></a>
+<dl>
+<dd><a name="26589">This method calls the createLabel method <a href="java.awt.Toolkit.html#22453">(II-&#167;1.41.12)</a> of this object's toolkit <a href="java.awt.Component.html#4237">(II-&#167;1.10.20)</a> in order to create a LabelPeer &#32;<a href="java.awt.peer.LabelPeer.html#1265">(II-&#167;3.11)</a> for this label. This 
+peer allows the application to change the look of a label without changing 
+its functionality.
+<pre>
+</pre></a>
+
+<dd><a name="43806">Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="15571"><b>Overrides:
+</b></a><dd><a name="15577">addNotify in class Component &#32;<a href="java.awt.Component.html#3737">(II-&#167;1.10.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getAlignment">
+<a name="15587"><h3>getAlignment
+</h3></a>
+<a name="15589"><code>public int getAlignment()
+</code></a>
+<dl><dl>
+<dt><a name="15593"><b>Returns:
+</b></a><dd><a name="15595">the current alignment of this label.
+</a>
+
+<dt><a name="15597"><b>See Also:
+</b></a><dd><a name="15603">setAlignment &#32;<a href="java.awt.Label.html#15665">(II-&#167;1.26.11)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getText">
+<a name="15613"><h3>getText
+</h3></a>
+<a name="15615"><code>public String getText()
+</code></a>
+<dl><dl>
+<dt><a name="15619"><b>Returns:
+</b></a><dd><a name="15621">the text of this label.
+</a>
+
+<dt><a name="15623"><b>See Also:
+</b></a><dd><a name="15629">setText &#32;<a href="java.awt.Label.html#15703">(II-&#167;1.26.12)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="15639"><h3>paramString
+</h3></a>
+<a name="15641"><code>protected String paramString()
+</code></a>
+<dl>
+<dd><a name="52931">Returns the parameter string representing the state of this label. This string 
+is useful for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26966"><b>Returns:
+</b></a><dd><a name="26967">the parameter string of this label.
+</a>
+
+<dt><a name="15649"><b>Overrides:
+</b></a><dd><a name="15655">paramString in class Component &#32;<a href="java.awt.Component.html#5253">(II-&#167;1.10.51)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setAlignment">
+<a name="15665"><h3>setAlignment
+</h3></a>
+<a name="15667"><code>public void setAlignment(int &#32;alignment)
+</code></a>
+<dl>
+<dd><a name="15669">Sets the alignment for this label to the specified alignment.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="15671"><b>Parameters:
+</b></a><dd><a name="15673"><code>alignment
+- </code></a><a name="15675">the alignment value
+</a>
+
+<dt><a name="15677"><b>Throws
+</b></a><dd><a name="15683">IllegalArgumentException &#32;<a href="java.lang.IllegalArgumentException.html#13758">(I-&#167;1.32)</a>
+</a>
+<dd><a name="15685">If an improper alignment was given.
+</a>
+
+<dt><a name="15687"><b>See Also:
+</b></a><dd><a name="15693">getAlignment &#32;<a href="java.awt.Label.html#15587">(II-&#167;1.26.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setText">
+<a name="15703"><h3>setText
+</h3></a>
+<a name="15705"><code>public void setText(String &#32;label)
+</code></a>
+<dl>
+<dd><a name="15707">Sets the text for this label to the specified text.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="15709"><b>Parameters:
+</b></a><dd><a name="15711"><code>label
+- </code></a><a name="15713">the text that makes up the label
+</a>
+
+<dt><a name="15715"><b>See Also:
+</b></a><dd><a name="15721">getText &#32;<a href="java.awt.Label.html#15613">(II-&#167;1.26.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="45835">In Java 1.0, the AWT does not send mouse, keyboard, or focus events to a label. 
+In Java 1.1, the AWT sends to the label all mouse, keyboard, and focus events that 
+occur over it.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Insets.html">Prev</a>  <a href="java.awt.List.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

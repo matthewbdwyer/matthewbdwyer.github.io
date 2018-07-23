@@ -1,0 +1,272 @@
+<html><head><title>Class ByteArrayOutputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.ByteArrayInputStream.html">Prev</a>  <a href="java.io.DataInputStream.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="1260"><h1>	&#167;2.4 Class ByteArrayOutputStream</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>ByteArrayOutputStream
+</strong>    extends &#32;java.io.<strong>OutputStream</strong> &#32;<a href="java.io.OutputStream.html#6024">(I-&#167;2.15)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    protected byte <strong>buf</strong>[];	<a href="java.io.ByteArrayOutputStream.html#38109">&#167;2.4.1</a>
+    protected int <strong>count</strong>;	<a href="java.io.ByteArrayOutputStream.html#1368">&#167;2.4.2</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>ByteArrayOutputStream</strong>();	<a href="java.io.ByteArrayOutputStream.html#1384">&#167;2.4.3</a>
+    public <strong>ByteArrayOutputStream</strong>(int &#32;size);	<a href="java.io.ByteArrayOutputStream.html#1396">&#167;2.4.4</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>reset</strong>();	<a href="java.io.ByteArrayOutputStream.html#1418">&#167;2.4.5</a>
+    public int <strong>size</strong>();	<a href="java.io.ByteArrayOutputStream.html#1432">&#167;2.4.6</a>
+    public byte[] <strong>toByteArray</strong>();	<a href="java.io.ByteArrayOutputStream.html#1450">&#167;2.4.7</a>
+    public String <strong>toString</strong>();	<a href="java.io.ByteArrayOutputStream.html#1468">&#167;2.4.8</a>
+    public String <strong>toString</strong>(int &#32;hibyte);	<a href="java.io.ByteArrayOutputStream.html#1492">&#167;2.4.9</a>
+    public void <strong>write</strong>(byte &#32;b[], int &#32;off, int &#32;len);	<a href="java.io.ByteArrayOutputStream.html#1516">&#167;2.4.10</a>
+    public void <strong>write</strong>(int &#32;b);	<a href="java.io.ByteArrayOutputStream.html#1550">&#167;2.4.11</a>
+    public void <strong>writeTo</strong>(OutputStream &#32;out);	<a href="java.io.ByteArrayOutputStream.html#1578">&#167;2.4.12</a>
+}
+</pre><a name="38105">This class implements an output stream in which the data is written into a byte array. The 
+buffer automatically grows as data is written to it.
+</a><p>
+<hr>
+<a name="38113"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="buf">
+<a name="38109"><h3>buf
+</h3></a>
+<a name="38110"><code>protected byte buf[]
+</code></a>
+<dl>
+<dd><a name="26588">The buffer where data is stored.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="count">
+<a name="1368"><h3>count
+</h3></a>
+<a name="1370"><code>protected int count
+</code></a>
+<dl>
+<dd><a name="26594">The number of valid bytes in the buffer.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="1376"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="ByteArrayOutputStream">
+<a name="1384"><h3>ByteArrayOutputStream
+</h3></a>
+<a name="1386"><code>public ByteArrayOutputStream()
+</code></a>
+<dl>
+<dd><a name="26596">Creates a new byte array output stream.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="ByteArrayOutputStream">
+<a name="1396"><h3>ByteArrayOutputStream
+</h3></a>
+<a name="1398"><code>public ByteArrayOutputStream(int &#32;size)
+</code></a>
+<dl>
+<dd><a name="1400">Creates a new byte array output stream. The buffer capacity is initially 32 
+bytes, though its size increases if necessary.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1402"><b>Parameters:
+</b></a><dd><a name="1404"><code>size
+- </code></a><a name="1406">the initial size
+</a>
+</dl></dl>
+<hr>
+<a name="1408"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="reset">
+<a name="1418"><h3>reset
+</h3></a>
+<a name="1420"><code>public void reset()
+</code></a>
+<dl>
+<dd><a name="1422">Resets the count field <a href="java.io.ByteArrayInputStream.html#1036">(I-&#167;2.3.2)</a> of this byte array output stream to zero, so 
+that all currently accumulated output in the ouput stream is discarded. The 
+output stream can be used again, reusing the already allocated buffer 
+space.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="size">
+<a name="1432"><h3>size
+</h3></a>
+<a name="1434"><code>public int size()
+</code></a>
+<dl><dl>
+<dt><a name="1438"><b>Returns:
+</b></a><dd><a name="1440">the value of the count field <a href="java.io.ByteArrayOutputStream.html#1368">(I-&#167;2.4.2)</a>, which is the number of valid 
+bytes in this output stream.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toByteArray">
+<a name="1450"><h3>toByteArray
+</h3></a>
+<a name="1452"><code>public byte[] toByteArray()
+</code></a>
+<dl>
+<dd><a name="1454">Creates a newly allocated byte array whose size is the current size of this 
+output stream <a href="java.io.ByteArrayOutputStream.html#1432">(I-&#167;2.4.6)</a> and into which the valid contents of the buffer 
+have been copied.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1456"><b>Returns:
+</b></a><dd><a name="1458">the current contents of this output stream, as a byte array.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="1468"><h3>toString
+</h3></a>
+<a name="1470"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="38137">Creates a newly allocated string whose size is the current size of this output stream <a href="java.io.ByteArrayOutputStream.html#1432">(I-&#167;2.4.6)</a> and into which the valid contents of the buffer have 
+been copied. Each character <em>c </em>in the resulting string is constructed from 
+the corresponding element <em>b</em> in the byte array such that 
+<pre>
+</pre></a>
+<ul><a name="38138">
+<code> &#32; &#32; &#32;	c == (char)(b &amp; 0xff)
+</code>
+</a>
+<dt><a name="1474"><b>Returns:
+</b></a><dd><a name="1476">the current contents of this output stream, as a string.
+</a>
+
+<dt><a name="1478"><b>Overrides:
+</b></a><dd><a name="1484">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</ul></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="1492"><h3>toString
+</h3></a>
+<a name="1494"><code>public String toString(int &#32;hibyte)
+</code></a>
+<dl>
+<dd><a name="26671">Creates a newly allocated string whose size is the current size of the output 
+stream <a href="java.io.ByteArrayOutputStream.html#1432">(I-&#167;2.4.6)</a> and into which the valid contents of the buffer have been 
+copied. Each character <em>c </em>in the resulting string is constructed from the corresponding element <em>b</em> in the byte array such that 
+<pre>
+</pre></a>
+<ul><a name="38165">
+<code> &#32; &#32; &#32;	c == (char)(((hibyte &amp; 0xff) &lt;&lt; 8) | (b &amp; 0xff))
+</code>
+</a>
+<dt><a name="1498"><b>Parameters:
+</b></a><dd><a name="1500"><code>hibyte
+- </code></a><a name="1502">the bits set
+</a>
+
+<dt><a name="1504"><b>Returns:
+</b></a><dd><a name="26679">the current contents of the output stream, as a string.
+</a>
+</ul></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="1516"><h3>write
+</h3></a>
+<a name="1518"><code>public void write(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<dl>
+<dd><a name="26681">Writes len bytes from the specified byte array starting at offset off to this 
+byte array output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26682"><b>Parameters:
+</b></a><dd><a name="26683"><code>b
+- </code></a><a name="26684">the data 
+</a>
+<dd><a name="26685"><code>off
+- </code></a><a name="26686">the start offset in the data
+</a>
+<dd><a name="26687"><code>len
+- </code></a><a name="26688">the number of bytes to write
+</a>
+
+<dt><a name="1536"><b>Overrides:
+</b></a><dd><a name="1542">write in class OutputStream &#32;<a href="java.io.OutputStream.html#6206">(I-&#167;2.15.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="write">
+<a name="1550"><h3>write
+</h3></a>
+<a name="1552"><code>public void write(int &#32;b)
+</code></a>
+<dl>
+<dd><a name="26694">Writes the specified byte to this byte array output stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26695"><b>Parameters:
+</b></a><dd><a name="26696"><code>b
+- </code></a><a name="26697">the byte to be written
+</a>
+
+<dt><a name="1562"><b>Overrides:
+</b></a><dd><a name="1568">write in class OutputStream &#32;<a href="java.io.OutputStream.html#29691">(I-&#167;2.15.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="writeTo">
+<a name="1578"><h3>writeTo
+</h3></a>
+<a name="1580"><code>public void writeTo(OutputStream &#32;out)
+</code></a>
+<a name="1582"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="1584">Writes the complete contents of this byte array output stream to the specified output stream argument, as if by calling the output stream's write 
+method using out.write(buf, 0, count).
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1586"><b>Parameters:
+</b></a><dd><a name="1588"><code>out
+- </code></a><a name="1590">the output stream to which to write the data
+</a>
+
+<dt><a name="40400"><b>Throws
+</b></a><dd><a name="40404">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="40405">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.ByteArrayInputStream.html">Prev</a>  <a href="java.io.DataInputStream.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

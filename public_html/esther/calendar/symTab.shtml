@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Compiler Construction</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <meta name="Microsoft Border" content="tlb, default">
+
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><span style="position: absolute; top: 50px; left: 11px;">
+      <img src="../images/12x12spacer.gif" border="0" height="12" width="12"></span> </p>
+
+      </td>
+
+    </tr>
+
+<!--msnavigation-->
+  </tbody>
+</table>
+
+<table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+<!--#include file="sidebar.shtml" -->
+      <td valign="top" width="24"></td>
+
+<!--msnavigation--><td valign="top">
+      <p><b><font face="Arial" size="5">Symbol Tables</font></b></p>
+
+      <h1><font face="Arial" size="2">Exercises</font></h1>
+
+      <ol>
+      <li> Hash functions are essential in implementing efficient symbol tables and
+      the effectiveness of different hashing schemes<br> 
+      can vary widely across different sets of words.  
+      Consider <a href="resources/identifiers.txt">this collection</a> of identifiers and evaluate the following<br> 
+      has functions to see how evenly they distribute the words.</font>
+      <ul>    
+      <li><code><font size="2" face="Fixedsys">hash = *str;</font></code><font size="2" face="Fixedsys">    </font></li>    
+      <li><code><font size="2" face="Fixedsys">while (*str) hash = hash + *str++;</font></code><font size="2" face="Fixedsys">    </font></li>
+    <li><code><font size="2" face="Fixedsys">while (*str) hash = hash * *str++;</font></code><font size="2" face="Fixedsys">    </font></li>
+    <li><code><font size="2" face="Fixedsys">while (*str) hash = (hash &lt;&lt; 1) + *str++;</font></code><font size="2" face="Fixedsys">     </font></li>
+    <li><code><font size="2" face="Fixedsys">while (*str) hash = (hash * 65599) + *str++;</font></code><font size="2" face="Fixedsys">
+    </font></li>
+  </ul>
+  <p>Can you invent an even better hash function?</p>
+  </li>
+
+  <li>Argue that the collection of
+  correct ESJ programs does not define a context-free language.</li>
+
+  <li>Study the code for symbol table construction
+  in the SJC compiler.  Consider a simple program and draw both the AST<br> 
+  and symbol table illustrating the cross-referencing between the structures.</li>
+
+      </ol>
+
+
+
+      <h1><font face="Arial" size="2">Reading</font></h1>
+
+      <ul>
+
+        <li><font face="Arial" size="2">Dragon,
+Chapter 2.7 (not much in the book on this)</font></li>
+
+      </ul>
+
+      <p><font face="Arial" size="2"><b>Materials</b></font></p>
+
+      <p><font face="Arial" size="2">
+      <a href="resources/08-symbol-processing.pdf">Symbol Processsing</a><br>
+
+      </font></p>
+
+
+      <font face="Arial" size="2"><br>
+      </font>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+</body>
+</html>

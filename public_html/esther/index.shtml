@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Compiler Construction</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <meta name="Microsoft Border" content="tlb">
+
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><span style="position: absolute; top: 50px; left: 11px;"> <br>
+
+      </span> </p>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" dir="ltr" width="100%">
+
+  <tbody>
+
+    <tr>
+
+<!--#include file="sidebar.shtml" --> <td valign="top" width="24"></td>
+
+      <td valign="top">
+      <p><b><font face="Arial" size="5">Course
+Home Page</font></b></p>
+
+      <table id="AutoNumber4" style="border-collapse: collapse;" border="0" bordercolor="#111111" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td align="left" nowrap="nowrap" valign="top" width="40%"> <font face="Arial" size="2"><a href="http://www.cse.unl.edu/%7Edwyer/">Lecturer
+(Matthew B. Dwyer)</a><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; Lectures : 108 Avery Hall, Tue./Thurs. 12:30pm-13:45pm<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; Office Hour : 365 Avery Hall, Wed. 11am-noon<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; e-mail: dwyer@cse.unl.edu</font>
+
+            <p><font face="Arial" size="2"><b>Course
+Guidelines</b><br>
+
+            <a href="describe.shtml">Course Description</a><br>
+
+            <a href="delivAndMile.shtml">Deliverables and Milestones</a><br>
+
+            <a href="conduct.shtml">Academic Conduct</a><br>
+
+            <a href="announcements.shtml">Course Announcements</a> <font color=red>New on 11/1/07</font></font></p>
+
+            </td>
+
+            <td align="left" valign="top" width="80%">
+            <font face="Arial" size="2"> <img src="images/cover30.jpg" border="0" height="203" width="154"></font></td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Compiler Construction</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<meta name="Microsoft Border" content="tlb">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<table border="1" cellspacing="0" bordercolor="#0066FF" width="100%" id="AutoNumber3" bgcolor="#FFFFFF" style="border-collapse: collapse" cellpadding="0">
+  <tr>
+    <td width="100%" bgcolor="#B3B3FF" bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF">
+    <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler Construction</font></b></td>
+  </tr>
+  </table>
+
+<p><span style="position: absolute; top: 50; left: 11">
+
+<img border="0" src="../images/12x12spacer.gif" width="12" height="12"></span> </p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; position:relative; left:2" bordercolor="#0066FF" width="1%" id="AutoNumber2">
+  <tr>
+    <td width="100%" nowrap align="center" bgcolor="#B3B3FF"><b>
+    <font face="Arial" size="2">CSCE 425/825</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../index.htm">Course Home Page</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../describe.shtml">Course Description</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../calendar/index.htm">Calendar</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="peephole/peephole.htm">Peephole Contest</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2" color="#C0C0C0">
+    <a class="nav" href="http://www.cse.unl.edu/~cthiel/cgi-bin/submit.cgi">Project Upload</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap align="center" bgcolor="#B3B3FF"><b>
+    <font face="Arial" size="2">Resources</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="index.htm">Project JOOS</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font color="#C0C0C0" face="Arial" size="2">
+    <a class="nav" href="../wig/index.htm">Project WIG</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../java.shtml">Java</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../jasmine/jasmine.htm">Jasmin</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../scaningparsing.shtml">Tools</a></font></td>
+  </tr>
+  </table>
+
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+<h1><font face="Arial" size="5"><img border="0" src="images/joos32.gif" width="64" height="32"> 
+Examples</font></h1>
+<p><font face="Arial" size="2">The following directories contain programs 
+written in the JOOS language. In each directory you will find a Makefile which 
+shows how make the programs in the directory (i.e. which .java files go together 
+to form an application). The following directories contain Java applications 
+(not applets). </font></p>
+<ul>
+  <li>
+  <code><font size="2" face="Arial">
+  <a href="Progs/AwtDemos">AwtDemos</a></font></code><font size="2" face="Arial">: 
+  examples of using the Abstract Windows Toolkit. </font></li>
+  <li>
+  <code><font size="2" face="Arial">
+  <a href="Progs/Network">Network</a></font></code><font size="2" face="Arial">: 
+  simple examples of interacting over the network. </font></li>
+  <li>
+  <code><font size="2" face="Arial">
+  <a href="Progs/Simple">Simple</a></font></code><font size="2" face="Arial">: 
+  a relatively large collection of simple Java programs. </font></li>
+  <li>
+  <code><font size="2" face="Arial">
+  <a href="Progs/Threads">Threads</a></font></code><font size="2" face="Arial">: 
+  simple, multi-thread programs. </font></li>
+</ul>
+<p><font size="2" face="Arial">The following directories contain Java applets. 
+You may run any of the </font><font size="2"><code><font face="Arial">.html</font></code><font face="Arial"> 
+files in the first two directories via the JDK </font><code><font face="Arial">
+appletviewer</font></code></font><font size="2" face="Arial">, or via a browser 
+that supports Java. </font></p>
+<ul>
+  <li>
+  <code><font size="2" face="Arial">
+  <a href="Progs/AppletGraphics">AppletGraphics</a></font></code><font size="2" face="Arial">: 
+  simple graphics program to be displayed via a browser. </font></li>
+  <li>
+  <code><font size="2" face="Arial">
+  <a href="Progs/ImageDemos">ImageDemos</a></font></code><font size="2" face="Arial">: 
+  two techniques for displaying an animation. </font></li>
+  <li>
+  <code><font size="2" face="Arial">
+  <a href="Progs/WIGapplets">WIGapplets</a></font></code><font size="2" face="Arial">: 
+  examples of WIG applets. </font></li>
+</ul>
+<p><font face="Arial" size="2">Most examples have been taken from textbooks and 
+modified so that they are written in JOOS. The changes made to make them into 
+JOOS program includes: </font></p>
+<ul>
+  <li><font size="2" face="Arial">Making the constructors explicit, and 
+  conforming to JOOS specifications with an explicit call to the </font>
+  <font size="2"><code><font face="Arial">super</font></code></font><font size="2" face="Arial"> 
+  constructor. </font></li>
+  <li><font size="2" face="Arial">Since JOOS does not support constants, all 
+  constants (particularly those from the Java </font><font size="2"><code>
+  <font face="Arial">awt</font></code><font face="Arial"> libraries) must be 
+  accessed via nullary functions found in the JOOS libarary class called </font>
+  <code><font face="Arial">JoosConstants</font></code><font face="Arial">. You 
+  may refer to the file </font><code><font face="Arial">$JOOSDIR/Lib/joos/lib/JoosConstants.java</font></code></font><font size="2" face="Arial"> 
+  to see all of the constants supported in this manner. </font></li>
+  <li><font size="2" face="Arial">Since JOOS does not support overloading, the
+  <a href="extern.htm">JOOS external 
+  declarations </a>only support one alternative (usually the most general one) 
+  for each method in Java libraries. In some cases, for example the </font>
+  <font size="2"><code><font face="Arial">add</font></code><font face="Arial"> 
+  method in the </font><code><font face="Arial">Container</font></code><font face="Arial"> 
+  class, both alternatives are really needed. In this case there is a JOOS 
+  wrapper class called </font><code><font face="Arial">JoosContainer</font></code><font face="Arial"> 
+  that provided a new name for each kind of </font><code><font face="Arial">add</font></code><font face="Arial"> 
+  (</font><code><font face="Arial">addString</font></code><font face="Arial"> 
+  and </font><code><font face="Arial">addPosition</font></code></font><font size="2" face="Arial">).
+  </font></li>
+  <li><font size="2" face="Arial">Some Java libarary classes have static members 
+  and/or classes. In order to get this functionality, one needs to use the 
+  appropriate wrapper JOOS class. A good example of this is the </font>
+  <font size="2"><code><font face="Arial">JoosDimension</font></code><font face="Arial"> 
+  class that provides a wrapper to the Java </font><code><font face="Arial">
+  Dimension</font></code></font><font size="2" face="Arial"> class. </font></li>
+  <li><font size="2" face="Arial">Java has quite a rich class structure to 
+  support various kinds of I/O. All JOOS I/O is simple, and is done using the 
+  functions found in the </font><font size="2"><code><font face="Arial">JoosIO</font></code></font><font size="2" face="Arial"> 
+  class. </font></li>
+  <li><font face="Arial"><font size="2">JOOS does not support exceptions, and so 
+  it is not possible to directly call Java library methods that raise exceptions 
+  that must be caught (i.e exceptions that are not </font></font><font size="2">
+  <code><font face="Arial">Runtime</font></code><font face="Arial"> exceptions). 
+  Thus, some JOOS libarary classes are provided that wrap the exception raising 
+  methods inside a method that catches the exception and returns true if an 
+  exception was caught (for example, </font><code><font face="Arial">sleep</font></code><font face="Arial"> 
+  in </font><code><font face="Arial">JoosThread</font></code></font><font size="2" face="Arial">).
+  </font></li>
+  <li><font size="2" face="Arial">Since JOOS does not support real numbers, and 
+  some </font><font size="2"><code><font face="Arial">awt</font></code><font face="Arial"> 
+  functions require real numbers as input (</font><code><font face="Arial">GridBagConstraints</font></code><font face="Arial">), 
+  there is a JOOS version (</font><code><font face="Arial">JoosGridBagConstraints</font></code><font face="Arial">), 
+  that uses </font><code><font face="Arial">JoosFractions</font></code></font><font size="2" face="Arial"> 
+  to represent non-integers.</font></li>
+</ul>
+
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d">
+</head>
+
+<body>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d, %Y" startspan -->
+September 10, 2003</font></font></p>
+
+</td></tr><!--msnavigation--></table></body></html>

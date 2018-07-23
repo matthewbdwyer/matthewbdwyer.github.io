@@ -1,0 +1,195 @@
+<html><head><title>Class Dictionary</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.Date.html">Prev</a>  <a href="java.util.Hashtable.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="26885"><h1>	&#167;3.3 Class Dictionary</h1></a>
+<pre>public &#32;abstract &#32;class &#32;java.util.<strong>Dictionary
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Dictionary</strong>();	<a href="java.util.Dictionary.html#1612">&#167;3.3.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public abstract Enumeration <strong>elements</strong>();	<a href="java.util.Dictionary.html#1626">&#167;3.3.2</a>
+    public abstract Object <strong>get</strong>(Object &#32;key);	<a href="java.util.Dictionary.html#1656">&#167;3.3.3</a>
+    public abstract boolean <strong>isEmpty</strong>();	<a href="java.util.Dictionary.html#29230">&#167;3.3.4</a>
+    public abstract Enumeration <strong>keys</strong>();	<a href="java.util.Dictionary.html#1706">&#167;3.3.5</a>
+    public abstract Object <strong>put</strong>(Object &#32;key, Object &#32;value)	<a href="java.util.Dictionary.html#27004">&#167;3.3.6</a>
+    public abstract Object <strong>remove</strong>(Object &#32;key);	<a href="java.util.Dictionary.html#1782">&#167;3.3.7</a>
+    public abstract int <strong>size</strong>();	<a href="java.util.Dictionary.html#1806">&#167;3.3.8</a>
+}
+</pre><a name="26942">The Dictionary class is the abstract parent of any class, such as Hashtable <a href="java.util.Hashtable.html#1828">(I-&#167;3.4)</a>, which 
+maps keys to values. Any non-null object can be used as a key and as a value.
+</a><p><a name="31043">As a rule, the equals method <a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a> should be used by implements of this class to 
+decide if two keys are the same.
+</a><p><dl><dt><a name="1586"><b>
+</b></a><dt><a name="26957"><b>See Also:
+</b></a><dd><a name="31054">hashCode in class &#32;Object &#32;<a href="java.lang.Object.html#6130">(I-&#167;1.12.6)</a>.
+</a>
+</dl>
+<hr>
+<a name="31059"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Dictionary">
+<a name="1612"><h3>Dictionary
+</h3></a>
+<a name="1614"><code>public Dictionary()
+</code></a>
+<dl>
+<dd><a name="26963">The default constructor.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="26962"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="elements">
+<a name="1626"><h3>elements
+</h3></a>
+<a name="1628"><code>public abstract Enumeration elements()
+</code></a>
+<dl><dl>
+<dt><a name="1632"><b>Returns:
+</b></a><dd><a name="1634">An enumeration <a href="java.util.Enumeration.html#29289">(I-&#167;3.11)</a> of the values in the dictionary.
+</a>
+
+<dt><a name="1636"><b>See Also:
+</b></a><dd><a name="1646">keys &#32;<a href="java.util.Dictionary.html#1706">(I-&#167;3.3.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="get">
+<a name="1656"><h3>get
+</h3></a>
+<a name="1658"><code>public abstract Object get(Object &#32;key)
+</code></a>
+<dl><dl>
+<dt><a name="1662"><b>Parameters:
+</b></a><dd><a name="1664"><code>key
+- </code></a><a name="1666">a key in this dictionary
+</a>
+
+<dt><a name="1668"><b>Returns:
+</b></a><dd><a name="1670">the value to which the key is mapped in this dictionary; null if the key 
+is not mapped to any value is thise dictionary.
+</a>
+
+<dt><a name="29222"><b>See Also:
+</b></a><dd><a name="29226">put &#32;<a href="java.util.Dictionary.html#27004">(I-&#167;3.3.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isEmpty">
+<a name="29230"><h3>isEmpty
+</h3></a>
+<a name="1690"><code>public abstract boolean isEmpty()
+</code></a>
+<dl><dl>
+<dt><a name="1694"><b>Returns:
+</b></a><dd><a name="1696">true if this dictionary maps no keys to values; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="keys">
+<a name="1706"><h3>keys
+</h3></a>
+<a name="1708"><code>public abstract Enumeration keys()
+</code></a>
+<dl><dl>
+<dt><a name="1712"><b>Returns:
+</b></a><dd><a name="26989">An enumeration <a href="java.util.Enumeration.html#29289">(I-&#167;3.11)</a> of the keys in this dictionary.
+</a>
+
+<dt><a name="1716"><b>See Also:
+</b></a><dd><a name="26999">elements &#32;<a href="java.util.Dictionary.html#1626">(I-&#167;3.3.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="put">
+<a name="27004"><h3>put
+</h3></a>
+<a name="27005"><code>public abstract Object put(Object &#32;key, Object &#32;value)
+</code></a>
+<dl>
+<dd><a name="1740">Maps the specified key to the specified value in this dictionary. Neither the 
+key nor the value can be null.
+<pre>
+</pre></a>
+
+<dd><a name="27028">The value can be retrieved by calling the the get method <a href="java.util.Dictionary.html#1656">(I-&#167;3.3.3)</a> with a 
+key that is equal <a href="java.lang.Object.html#6068">(I-&#167;1.12.3)</a> to the original key.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1742"><b>Parameters:
+</b></a><dd><a name="1744"><code>key
+- </code></a><a name="1746">the hashtable key
+</a>
+<dd><a name="1748"><code>value
+- </code></a><a name="1750">the value.
+</a>
+
+<dt><a name="1752"><b>Returns:
+</b></a><dd><a name="1754">the previous value to which the key was mapped in the dictionary, or 
+null if the key did not have a previous mapping.
+</a>
+
+<dt><a name="1756"><b>Throws
+</b></a><dd><a name="1762">NullPointerException &#32;<a href="java.lang.NullPointerException.html#14382">(I-&#167;1.40)</a>
+</a>
+<dd><a name="1764">If the key or value is null.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="remove">
+<a name="1782"><h3>remove
+</h3></a>
+<a name="1784"><code>public abstract Object remove(Object &#32;key)
+</code></a>
+<dl>
+<dd><a name="1786">Removes the key (and its corresponding value) from this dictionary. This 
+method does nothing if the key is not in this dictionary.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1788"><b>Parameters:
+</b></a><dd><a name="1790"><code>key
+- </code></a><a name="1792">the key that needs to be removed
+</a>
+
+<dt><a name="1794"><b>Returns:
+</b></a><dd><a name="28413">the value to which the key had been mapped in this dictionary, or null if 
+the key did not have a mapping.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="size">
+<a name="1806"><h3>size
+</h3></a>
+<a name="1808"><code>public abstract int size()
+</code></a>
+<dl><dl>
+<dt><a name="1812"><b>Returns:
+</b></a><dd><a name="1814">the number of keys in this dictionary.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.Date.html">Prev</a>  <a href="java.util.Hashtable.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

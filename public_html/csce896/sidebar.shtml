@@ -1,0 +1,73 @@
+      <td valign="top" width="1%">
+      <table style="border-collapse: collapse; position: relative; left: 2px;" id="AutoNumber2" border="1" bordercolor="#0066ff" cellpadding="5" cellspacing="0" width="1%">
+
+        <tbody>
+
+          <tr>
+
+            <td align="center" bgcolor="#b3b3ff" nowrap="nowrap" width="100%"><b> <font face="Arial" size="2">CSCE 496/896</font></b></td>
+
+          </tr>
+
+          <tr>
+
+            <td nowrap="nowrap" width="100%"><font face="Arial" size="2"> <a class="nav" href="index.shtml">Course Home Page</a></font></td>
+
+          </tr>
+
+          <tr>
+
+            <td nowrap="nowrap" width="100%"><font face="Arial" size="2"> <a class="nav" href="describe.shtml">Course Description</a></font></td>
+
+          </tr>
+
+          <tr>
+
+            <td nowrap="nowrap" width="100%"><font face="Arial" size="2"> <a class="nav" href="calendar/index.shtml">Calendar</a></font></td>
+
+          </tr>
+
+          <tr>
+
+            <td align="center" bgcolor="#b3b3ff" nowrap="nowrap" width="100%"><b> <font face="Arial" size="2">Resources</font></b></td>
+
+          </tr>
+
+          <tr>
+
+            <td nowrap="nowrap" width="100%"><font face="Arial" size="2"> <a class="nav" href="java.shtml">Java</a></font></td>
+
+          </tr>
+
+          <tr>
+            <td><font face="Arial" size="2"><a class="nav" href="http://www.sable.mcgill.ca/soot">SOOT</a></font></td>
+          </tr>
+
+          <tr>
+            <td><font face="Arial" size="2"><a class="nav" href="http://indus.projects.cis.ksu.edu">Indus</a></font></td>
+          </tr>
+
+          <tr>
+            <td><font face="Arial" size="2"><a class="nav" href="http://gcc.gnu.org">GCC</a></font></td>
+          </tr>
+
+          <tr>
+            <td><font face="Arial" size="2"><a class="nav" href="http://www.sable.mcgill.ca/paddle">Paddle</a></font></td>
+          </tr>
+
+          <tr>
+            <td><font face="Arial" size="2"><a class="nav" href="http://www.sable.mcgill.ca/jedd">Jedd</a></font></td>
+          </tr>
+
+          <tr>
+            <td><font face="Arial" size="2"><a class="nav" href="jvmasm.shtml">JVM and ASM</a></font></td>
+          </tr>
+
+          <tr>
+            <td nowrap="nowrap" width="100%"><font face="Arial" size="2"> <a class="nav" href="collected.shtml">Eclipse and Plugins</a></font></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      </td>

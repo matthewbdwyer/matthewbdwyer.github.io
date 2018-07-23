@@ -1,0 +1,178 @@
+<html><head><title>Class MenuComponent</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.MenuBar.html">Prev</a>  <a href="java.awt.MenuItem.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="18295"><h1>	&#167;1.31 Class MenuComponent</h1></a>
+<pre>public &#32;abstract &#32;class &#32;java.awt.<strong>MenuComponent
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>MenuComponent</strong>();	<a href="java.awt.MenuComponent.html#18375">&#167;1.31.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public Font <strong>getFont</strong>();	<a href="java.awt.MenuComponent.html#18389">&#167;1.31.2</a>
+    public MenuContainer <strong>getParent</strong>();	<a href="java.awt.MenuComponent.html#18407">&#167;1.31.3</a>
+    public MenuComponentPeer <strong>getPeer</strong>();	<a href="java.awt.MenuComponent.html#45973">&#167;1.31.4</a>
+    protected String <strong>paramString</strong>();	<a href="java.awt.MenuComponent.html#18443">&#167;1.31.5</a>
+    public boolean <strong>postEvent</strong>(Event &#32;evt);	<a href="java.awt.MenuComponent.html#26991">&#167;1.31.6</a>
+    public void <strong>removeNotify</strong>();	<a href="java.awt.MenuComponent.html#18485">&#167;1.31.7</a>
+    public void <strong>setFont</strong>(Font &#32;f);	<a href="java.awt.MenuComponent.html#18499">&#167;1.31.8</a>
+ &#32; &#32;public String <strong>toString</strong>();	<a href="java.awt.MenuComponent.html#18519">&#167;1.31.9</a>
+}
+</pre><a name="18363">The abstract class MenuComponent is the superclass of all menu related components.
+</a><p>
+<hr>
+<a name="18367"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="MenuComponent">
+<a name="18375"><h3>MenuComponent
+</h3></a>
+<a name="18377"><code>public MenuComponent()
+</code></a>
+<dl>
+<dd><a name="35857">The default constructor.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="18379"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="getFont">
+<a name="18389"><h3>getFont
+</h3></a>
+<a name="18391"><code>public Font getFont()
+</code></a>
+<dl><dl>
+<dt><a name="18395"><b>Returns:
+</b></a><dd><a name="18397">the font used in this menu component, if there is one; null otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getParent">
+<a name="18407"><h3>getParent
+</h3></a>
+<a name="18409"><code>public MenuContainer getParent()
+</code></a>
+<dl><dl>
+<dt><a name="18413"><b>Returns:
+</b></a><dd><a name="45968">returns the menu component containing this menu component; null if 
+this is the outermost component, the menu bar itself.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getPeer">
+<a name="45973"><h3>getPeer
+</h3></a>
+<a name="18427"><code>public MenuComponentPeer getPeer()
+</code></a>
+<dl>
+<dd><a name="35887">Returns this menu component's peer. Every menu component has a peer 
+associated with it. This peer allows the application to change the look of a 
+menu component without changing its functionality.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="18431"><b>Returns:
+</b></a><dd><a name="18433">the menu component's peer.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="18443"><h3>paramString
+</h3></a>
+<a name="26983"><code>protected String paramString()
+</code></a>
+<dl>
+<dd><a name="53430">Returns the parameter string representing the state of this menu component. This string is useful for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26993"><b>Returns:
+</b></a><dd><a name="26994">the parameter string of this menu component.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="postEvent">
+<a name="26991"><h3>postEvent
+</h3></a>
+<a name="18463"><code>public boolean postEvent(Event &#32;evt)
+</code></a>
+<dl>
+<dd><a name="35916">Posts an event to this menu component, by calling its handleEvent method. 
+If handleEvent returns false, then post the event to the menu component's 
+parent.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="35917"><b>Parameters:
+</b></a><dd><a name="35918"><code>evt
+- </code></a><a name="35919">the event
+</a>
+
+<dt><a name="35920"><b>Returns:
+</b></a><dd><a name="35921">true if this menu component or one of its parents handled the event; 
+false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="removeNotify">
+<a name="18485"><h3>removeNotify
+</h3></a>
+<a name="18487"><code>public void removeNotify()
+</code></a>
+<dl>
+<dd><a name="34970">Notifies this menu component to destroy its peer.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="setFont">
+<a name="18499"><h3>setFont
+</h3></a>
+<a name="18501"><code>public void setFont(Font &#32;f)
+</code></a>
+<dl>
+<dd><a name="18503">Sets the font to be used for this menu component to the specified font. This 
+font is also used by all subcomponents of the menu component, unless 
+those subcomponents specify a different font.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="18505"><b>Parameters:
+</b></a><dd><a name="18507"><code>f
+- </code></a><a name="18509">the font to be set
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="18519"><h3>toString
+</h3></a>
+<dl><dl>
+<dt><a name="27278"><b>Returns:
+</b></a><dd><a name="27279">a string representation of this menu component.
+</a>
+
+<dt><a name="18529"><b>Overrides:
+</b></a><dd><a name="18535">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.MenuBar.html">Prev</a>  <a href="java.awt.MenuItem.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

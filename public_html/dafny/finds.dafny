@@ -1,0 +1,28 @@
+method finds(A:array<int>) returns (k:int)
+  requires A != null && A.Length > 0;
+  requires A[0] < A[A.Length-1];
+  ensures 0 <= k < A.Length-1;
+  ensures A[k] < A[k+1];
+{
+  k := findsSubArray(A,0,A.Length-1);
+}
+
+method findsSubArray(A:array<int>, lo:int, hi:int) returns (k:int)
+  requires A != null && A.Length > 0;
+  requires 0 <= lo < hi < A.Length;
+  requires A[lo] < A[hi];
+  ensures lo <= k < hi;
+  ensures A[k] < A[k+1];
+  decreases hi - lo;
+{
+  if (hi-lo == 1) {
+    k := lo;
+  } else {
+    var mid := lo+((hi - lo)/2);
+    if (A[lo] < A[mid]) {
+       k := findsSubArray(A,lo,mid);
+    } else {
+       k := findsSubArray(A,mid,hi);
+    }
+  }
+}

@@ -1,0 +1,254 @@
+<html><head><title>Class StringTokenizer</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.Stack.html">Prev</a>  <a href="java.util.Vector.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="27656"><h1>	&#167;3.9 Class StringTokenizer</h1></a>
+<pre>public &#32;class &#32;java.util.<strong>StringTokenizer
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+    implements java.util.<strong>Enumeration</strong> &#32;<a href="java.util.Enumeration.html#29289">(I-&#167;3.11)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>StringTokenizer</strong>(String &#32;str);	<a href="java.util.StringTokenizer.html#3542">&#167;3.9.1</a>
+    public <strong>StringTokenizer</strong>(String &#32;str, String &#32;delim);	<a href="java.util.StringTokenizer.html#3560">&#167;3.9.2</a>
+    public <strong>StringTokenizer</strong>(String &#32;str, String &#32;delim,	<a href="java.util.StringTokenizer.html#3582">&#167;3.9.3</a>
+     &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;boolean &#32;returnTokens);
+ &#32; &#32; &#32; &#32;// Methods
+    public int <strong>countTokens</strong>();	<a href="java.util.StringTokenizer.html#3612">&#167;3.9.4</a>
+    public boolean <strong>hasMoreElements</strong>();	<a href="java.util.StringTokenizer.html#3630">&#167;3.9.5</a>
+    public boolean <strong>hasMoreTokens</strong>();	<a href="java.util.StringTokenizer.html#3648">&#167;3.9.6</a>
+    public Object <strong>nextElement</strong>();	<a href="java.util.StringTokenizer.html#3666">&#167;3.9.7</a>
+    public String <strong>nextToken</strong>();	<a href="java.util.StringTokenizer.html#3694">&#167;3.9.8</a>
+    public String <strong>nextToken</strong>(String &#32;delim);	<a href="java.util.StringTokenizer.html#3720">&#167;3.9.9</a>
+}
+</pre><a name="3522">The string tokenizer class allows an application to break a string into tokens. The tokenization method is much simpler than the one used by the StreamTokenizer class <a href="java.io.StreamTokenizer.html#9226">(I-&#167;2.22)</a>. 
+The StringTokenizer methods do not distinguish among identifiers, numbers, and quoted 
+strings, not does it recognize and skip comments.
+</a><p><a name="31140">The set of delimiters (the characters that separate tokens) may be specified either at creation time or on a per-token basis.
+</a><p><a name="31124">An instance of StringTokenizer behaves in one of two ways, depending on whether it was 
+created with the returnTokens flag having the value true or false:
+</a><p><ul><li><a name="31132">If the flag is false, delimiter characters merely serve to separate tokens. A token is a 
+maximal sequence of consecutive characters that are delimiters.
+</a><li><a name="31133">If the flag is true, delimiters characters are considered to be tokens. A token is either 
+one delimiter character, or a maximal sequence of consecutive characters that are not 
+delimiters.
+</a></ul><a name="27658">The following is one example of the use of the tokenizer. The code 
+</a><p><ul><a name="3526">
+<code>StringTokenizer &#32;st &#32;= &#32;new &#32;StringTokenizer("this &#32;is &#32;a &#32;test");<br>
+while &#32;(st.hasMoreTokens()) &#32;{<br>
+ &#32; &#32; &#32; &#32;println(st.nextToken());<br>
+}
+</code>
+</a></ul><a name="3528">Prints the following output:
+</a><p><ul><a name="3530">
+<code>this<br>
+is<br>
+a<br>
+test
+</code>
+</a></ul>
+<hr>
+<a name="3534"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="StringTokenizer">
+<a name="3542"><h3>StringTokenizer
+</h3></a>
+<a name="3544"><code>public StringTokenizer(String &#32;str)
+</code></a>
+<dl>
+<dd><a name="3546">Constructs a string tokenizer for the specified string. The tokenizer uses 
+the default delimiter set, which is " \t\n\r", the space character, the tab character, the newline character, and the carriage return character.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3548"><b>Parameters:
+</b></a><dd><a name="3550"><code>str
+- </code></a><a name="3552">a string to be parsed
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="StringTokenizer">
+<a name="3560"><h3>StringTokenizer
+</h3></a>
+<a name="3562"><code>public StringTokenizer(String &#32;str, String &#32;delim)
+</code></a>
+<dl>
+<dd><a name="27695">Constructs a string tokenizer for the specified string. The characters in the 
+delim argument are the delimiters for separating tokens.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3566"><b>Parameters:
+</b></a><dd><a name="3568"><code>str
+- </code></a><a name="3570">a string to be parsed
+</a>
+<dd><a name="3572"><code>delim
+- </code></a><a name="3574">the delimiters
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="StringTokenizer">
+<a name="3582"><h3>StringTokenizer
+</h3></a>
+<a name="3584"><code>public StringTokenizer(String &#32;str, String &#32;delim,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;boolean &#32;returnTokens)
+</code></a>
+<dl>
+<dd><a name="27712">Constructs a string tokenizer for the specified string. The characters in the 
+delim argument are the delimiters for separating tokens.
+<pre>
+</pre></a>
+
+<dd><a name="27713">If the returnTokens flag is true, then the delimiter characters are also returned 
+as tokens. Each delimiter is returned as a string of length one. If the flag is 
+false, the delimiter characters are skipped and only serve as separators 
+between tokens.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3588"><b>Parameters:
+</b></a><dd><a name="3590"><code>str
+- </code></a><a name="3592">a string to be parsed
+</a>
+<dd><a name="3594"><code>delim
+- </code></a><a name="3596">the delimiters
+</a>
+<dd><a name="3598"><code>returnTokens
+- </code></a><a name="3600">flag indicating whether to return the delimiters as tokens.
+</a>
+</dl></dl>
+<hr>
+<a name="3602"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="countTokens">
+<a name="3612"><h3>countTokens
+</h3></a>
+<a name="3614"><code>public int countTokens()
+</code></a>
+<dl>
+<dd><a name="3616">Calculates the number of times that this tokenizer's nextToken method 
+<a href="java.util.StringTokenizer.html#3694">(I-&#167;3.9.8)</a> can be called before it generates an exception.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3618"><b>Returns:
+</b></a><dd><a name="3620">the number of tokens remaining in the string using thie current delimiter set.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hasMoreElements">
+<a name="3630"><h3>hasMoreElements
+</h3></a>
+<a name="27763"><code>public boolean hasMoreElements()
+</code></a>
+<dl>
+<dd><a name="27764">This method returns the same value as the following hasMoreTokens 
+method. It exists so that this class can implement the enumeration 
+<a href="java.util.Enumeration.html#29289">(I-&#167;3.11)</a> interface.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27760"><b>Returns:
+</b></a><dd><a name="3638">true if there are more tokens; false otherwise
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="hasMoreTokens">
+<a name="3648"><h3>hasMoreTokens
+</h3></a>
+<a name="3650"><code>public boolean hasMoreTokens()
+</code></a>
+<dl><dl>
+<dt><a name="3654"><b>Returns:
+</b></a><dd><a name="3656">true if there are more tokens available from this tokenizer's string; false 
+otherwise
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextElement">
+<a name="3666"><h3>nextElement
+</h3></a>
+<a name="3668"><code>public Object nextElement()
+</code></a>
+<dl>
+<dd><a name="27780">This method returns the same value as the following nextToken method, 
+except that its declared return value is Object rather than String. It exists so 
+that this class can implement the enumeration <a href="java.util.Enumeration.html#29289">(I-&#167;3.11)</a> interface.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3672"><b>Returns:
+</b></a><dd><a name="3674">the next token in the string.
+</a>
+
+<dt><a name="3676"><b>Throws
+</b></a><dd><a name="3682">NoSuchElementException &#32;<a href="java.util.NoSuchElementException.html#4690">(I-&#167;3.14)</a>
+</a>
+<dd><a name="3684">If there are no more tokens in this tokenizer's string.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextToken">
+<a name="3694"><h3>nextToken
+</h3></a>
+<a name="3696"><code>public String nextToken()
+</code></a>
+<dl><dl>
+<dt><a name="29660"><b>Returns:
+</b></a><dd><a name="3702">the next token from this string tokenizer.
+</a>
+
+<dt><a name="3704"><b>Throws
+</b></a><dd><a name="3710">NoSuchElementException &#32;<a href="java.util.NoSuchElementException.html#4690">(I-&#167;3.14)</a>
+</a>
+<dd><a name="3712">If there are no more tokens in this tokenizer's string.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextToken">
+<a name="3720"><h3>nextToken
+</h3></a>
+<a name="3722"><code>public String nextToken(String &#32;delim)
+</code></a>
+<dl>
+<dd><a name="3724">Gets the next token in this stringt tokenizer's string. The new delimiter set 
+remains the default after this call.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="3726"><b>Parameters:
+</b></a><dd><a name="3728"><code>delim
+- </code></a><a name="3730">the new delimiters
+</a>
+
+<dt><a name="3732"><b>Returns:
+</b></a><dd><a name="3734">the next token, after switching to the new delimiter set.
+</a>
+
+<dt><a name="27809"><b>Throws
+</b></a><dd><a name="27813">NoSuchElementException &#32;<a href="java.util.NoSuchElementException.html#4690">(I-&#167;3.14)</a>
+</a>
+<dd><a name="27814">If there are no more tokens in the string.
+</a>
+<dd><a name="27807">
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.util.html">This Package</a>  <a href="java.util.Stack.html">Prev</a>  <a href="java.util.Vector.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

@@ -1,0 +1,379 @@
+<html><head><title>Class GridBagLayout</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.GridBagConstraints.html">Prev</a>  <a href="java.awt.GridLayout.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="13797"><h1>	&#167;1.22 Class GridBagLayout</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>GridBagLayout
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+    implements java.awt.<strong>LayoutManager</strong> &#32;<a href="java.awt.LayoutManager.html#51689">(II-&#167;1.43)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+ &#32; &#32;protected final static int <strong>MAXGRIDSIZE</strong>;	<a href="java.awt.GridBagLayout.html#34292">&#167;1.22.1</a>
+    protected final static int <strong>MINSIZE</strong>;	<a href="java.awt.GridBagLayout.html#34298">&#167;1.22.2</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+ &#32; &#32;public <strong>GridBagLayout</strong>();	<a href="java.awt.GridBagLayout.html#34325">&#167;1.22.3</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addLayoutComponent</strong>(String &#32;name, 	<a href="java.awt.GridBagLayout.html#34337">&#167;1.22.4</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;Component &#32;comp);
+ &#32; &#32;public GridBagConstraints <strong>getConstraints</strong>(Component &#32;comp);	<a href="java.awt.GridBagLayout.html#14267">&#167;1.22.5</a>
+ &#32; &#32;public void <strong>layoutContainer</strong>(Container &#32;target);	<a href="java.awt.GridBagLayout.html#14351">&#167;1.22.6</a>
+ &#32; &#32;protected GridBagConstraints	<a href="java.awt.GridBagLayout.html#14391">&#167;1.22.7</a>
+        <strong>lookupConstraints</strong>(Component &#32;comp);
+    public Dimension <strong>minimumLayoutSize</strong>(Container &#32;target);	<a href="java.awt.GridBagLayout.html#14415">&#167;1.22.8</a>
+    public Dimension <strong>preferredLayoutSize</strong>(Container &#32;target);	<a href="java.awt.GridBagLayout.html#50820">&#167;1.22.9</a>
+    public void <strong>removeLayoutComponent</strong>(Component &#32;comp);	<a href="java.awt.GridBagLayout.html#14479">&#167;1.22.10</a>
+    public void	<a href="java.awt.GridBagLayout.html#14499">&#167;1.22.11</a>
+        <strong>setConstraints</strong>(Component &#32;comp, GridBagConstraints &#32;constraints);
+    public String <strong>toString</strong>();	<a href="java.awt.GridBagLayout.html#14523">&#167;1.22.12</a>
+}
+</pre><a name="13997">The grid bag layout manager is a flexible layout manager that aligns components horizontally and vertically, without requiring that the components be the same size. 
+</a><p><a name="34031">Each grid bag layout manager uses a rectangular grid of cells, with each component occupying one or more cells (called its <em>display area</em>). Each component in a grid bag layout is 
+associated with a set of constraints contained within a GridBag-Constraints instance that specifies how the component is to be laid out within its display area. 
+</a><p><a name="34038">The manner in which the grid bag layout manager places a set of components depends on 
+each component's constraints and its minimum size, as well as the preferred size of the 
+components' container.
+</a><p><a name="13999">To use a grid bag layout effectively, one or more components must have a customized GridBagConstraints objects created for it.
+</a><p><a name="34055">The fields of the GridBagConstraints object are described more fully in <a href="java.awt.GridBagConstraints.html#13285">&#167;1.21</a>.
+</a><p><a name="14029">The following figure shows ten components (all buttons) managed by a grid bag layout 
+manager<img src="javaa40.gif">: 
+</a><p><a name="14031">Each of the ten components has the fill field of their constraint set to GridBagConstraints.BOTH. In addition, the buttons have the following non-default constraints:
+</a><p><a name="34078">In addition, the components have the following non-default constraints: 
+</a><p><dl><dl><ul><li><a name="14033">Button1, Button2, Button3: weightx=1.0 
+</a><li><a name="14035">Button4: weightx=1.0, gridwidth=GridBagConstraints.REMAINDER 
+</a><li><a name="14037">Button5: gridwidth=GridBagConstraints.REMAINDER 
+</a><li><a name="14039">Button6: gridwidth=GridBagConstraints.RELATIVE 
+</a><li><a name="14041">Button7: gridwidth=GridBagConstraints.REMAINDER 
+</a><li><a name="14043">Button8: gridheight=2, weighty=1.0, 
+</a><li><a name="14045">Button9, Button 10: gridwidth=GridBagConstraints.REMAINDER 
+</a></ul></dl></dl><a name="34373">Here is the code that implements the example shown above: 
+</a><p><pre><hr>
+<a name="34374">import &#32;java.awt.*;
+</a><a name="34375">import &#32;java.util.*;
+</a><a name="34089">import &#32;java.applet.Applet;
+</a><a name="34092">public &#32;class &#32;GridBagEx1 &#32;extends &#32;Applet &#32;{
+</a><a name="34095"> &#32;  &#32; &#32;protected &#32;void &#32;makebutton(String &#32;name, &#32;
+</a><a name="39540">                              GridBagLayout &#32;gridbag,
+</a><a name="39541">                             &#32; &#32;GridBagConstraints &#32;c) &#32;{
+</a><a name="34366"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;Button &#32;button &#32;= &#32;new &#32;Button(name);
+</a><a name="34106"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;gridbag.setConstraints(button, &#32;c);
+</a><a name="34109"> &#32; &#32; &#32; &#32;  &#32; &#32; &#32;add(button);
+</a><a name="34112"> &#32; &#32; &#32; &#32;}
+</a><a name="34115">
+</a><a name="45807"> &#32; &#32; &#32; &#32;public &#32;void &#32;init() &#32;{
+</a><a name="34118"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;GridBagLayout &#32;gridbag &#32;= &#32;new &#32;GridBagLayout();
+</a><a name="34121"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;GridBagConstraints &#32;c &#32;= &#32;new &#32;GridBagConstraints();
+</a><a name="34124"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;setFont(new &#32;Font("Helvetica", &#32;Font.PLAIN, &#32;14));
+</a><a name="34127"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;setLayout(gridbag);
+</a><a name="34130"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;c.fill &#32;= &#32;GridBagConstraints.BOTH;
+</a><a name="34133"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;c.weightx &#32;= &#32;1.0;
+</a><a name="34136"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button1", &#32;gridbag, &#32;c);
+</a><a name="34139"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button2", &#32;gridbag, &#32;c);
+</a><a name="34142"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button3", &#32;gridbag, &#32;c);
+</a><a name="34145">
+</a><a name="34148">        // end row	
+</a><a name="39542">        c.gridwidth &#32;= &#32;GridBagConstraints.REMAINDER; &#32;
+</a><a name="34151">     &#32; &#32; &#32; &#32;makebutton("Button4", &#32;gridbag, &#32;c);
+</a><a name="34154"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;c.weightx &#32;= &#32;0.0;		 &#32; &#32; &#32;//reset &#32;to &#32;the &#32;default
+</a><a name="34157"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button5", &#32;gridbag, &#32;c); &#32;//another &#32;row
+</a><a name="34160">
+</a><a name="34163">     &#32; &#32; &#32; &#32;// next-to last &#32;in &#32;row
+</a><a name="39548">     &#32; &#32; &#32; &#32;c.gridwidth &#32;= &#32;GridBagConstraints.RELATIVE; &#32;
+</a><a name="34169"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button6", &#32;gridbag, &#32;c);
+</a><a name="34175">     &#32; &#32; &#32; &#32;c.gridwidth &#32;= &#32;GridBagConstraints.REMAINDER; &#32;//end &#32;row
+</a><a name="34178"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button7", &#32;gridbag, &#32;c);
+</a><a name="34181">     &#32; &#32; &#32; &#32;c.gridwidth &#32;= &#32;1;	 &#32; &#32; &#32;	 &#32; &#32; &#32;// reset to the default
+</a><a name="34187">     &#32; &#32; &#32; &#32;c.gridheight &#32;= &#32;2;
+</a><a name="34190"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;c.weighty &#32;= &#32;1.0;
+</a><a name="34193"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button8", &#32;gridbag, &#32;c);
+</a><a name="34196"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;c.weighty &#32;= &#32;0.0;		 &#32; &#32; &#32;//reset &#32;to &#32;the &#32;default
+</a><a name="34199">
+</a><a name="34202">     &#32; &#32; &#32; &#32;// end &#32;row
+</a><a name="39561">    &#32; &#32; &#32; &#32; c.gridwidth &#32;= &#32;GridBagConstraints.REMAINDER; &#32;
+</a><a name="34205">     &#32; &#32; &#32; &#32;c.gridheight &#32;= &#32;1;		 &#32; &#32; &#32;// reset to the default
+</a><a name="34211"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button9", &#32;gridbag, &#32;c);
+</a><a name="34214"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;makebutton("Button10", &#32;gridbag, &#32;c);
+</a><a name="34217"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;resize(300, &#32;100);
+</a><a name="34220"> &#32; &#32; &#32; &#32;}	
+</a><a name="34223">
+</a><a name="39568"> &#32; &#32; &#32; &#32;public &#32;static &#32;void &#32;main(String &#32;args[]) &#32;{
+</a><a name="34229">     &#32; &#32; &#32; &#32;Frame &#32;f &#32;= &#32;new &#32;Frame("GridBag &#32;Layout &#32;Example");
+</a><a name="34232"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; GridBagEx1 &#32;ex1 &#32;= &#32;new &#32;GridBagEx1();
+</a><a name="34235">     &#32; &#32; &#32; &#32;ex1.init();
+</a><a name="34238">     &#32; &#32; &#32; &#32;f.add("Center", &#32;ex1);
+</a><a name="34241">     &#32; &#32; &#32; &#32;f.pack();
+</a><a name="34247"> &#32; &#32; &#32; &#32;f.show();
+</a><a name="34250"> &#32; &#32; &#32; &#32;}
+</a><a name="34253">}
+</a>
+<hr></pre>
+<hr>
+<a name="34259"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="MAXGRIDSIZE">
+<a name="34292"><h3>MAXGRIDSIZE
+</h3></a>
+<a name="34295"><code>protected final static int MAXGRIDSIZE = 128
+</code></a>
+<dl>
+<dd><a name="34386">The maximum number of grid positions (both horizontally and vertically) 
+that can be laid out by the grid bag layout.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MINSIZE">
+<a name="34298"><h3>MINSIZE
+</h3></a>
+<a name="34301"><code>protected final static int MINSIZE = 1
+</code></a>
+<dl>
+<dd><a name="34388">The smallest grid that can be laid out by the grid bag layout.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="34322"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="GridBagLayout">
+<a name="34325"><h3>GridBagLayout
+</h3></a>
+<a name="34328"><code>public GridBagLayout()
+</code></a>
+<dl>
+<dd><a name="34331">Creates a grid bag layout manager
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="34334"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addLayoutComponent">
+<a name="34337"><h3>addLayoutComponent
+</h3></a>
+<a name="34340"><code>public void addLayoutComponent(String &#32;name, Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="34393">This method is not used by the grid bag layout manager.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34357"><b>Parameters:
+</b></a><dd><a name="34358"><code>name
+- </code></a><a name="34359">a tag understood by the layout manager
+</a>
+<dd><a name="33820"><code>comp
+- </code></a><a name="33821">the component to be added
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getConstraints">
+<a name="14267"><h3>getConstraints
+</h3></a>
+<a name="14269"><code>public GridBagConstraints getConstraints(Component &#32;comp)
+</code></a>
+<dl><dl>
+<dt><a name="14273"><b>Parameters:
+</b></a><dd><a name="14275"><code>comp
+- </code></a><a name="14277">the component to be queried
+</a>
+
+<dt><a name="14279"><b>Returns:
+</b></a><dd><a name="14281">the constraint for the specified component in this grid bag layout. A 
+copy of the constraint object is returned.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="layoutContainer">
+<a name="14351"><h3>layoutContainer
+</h3></a>
+<a name="52867"><code>public void layoutContainer(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="52868">Lays out the container argument using this grid bag layout.
+<pre>
+</pre></a>
+
+<dd><a name="52869">This method reshapes the components in the specified container in order to 
+satisfy the constraints of this GridBagLayout object.
+<pre>
+</pre></a>
+
+<dd><a name="40583">Most applications do not call this method directly. This method is called 
+when a container calls its layout method <a href="java.awt.Container.html#6483">(II-&#167;1.11.11)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34423"><b>Parameters:
+</b></a><dd><a name="33711"><code>target
+- </code></a><a name="33712">the container in which to do the layout.
+</a>
+
+<dt><a name="14363"><b>See Also:
+</b></a><dd><a name="14369">Container &#32;<a href="java.awt.Container.html#6019">(II-&#167;1.11)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="lookupConstraints">
+<a name="14391"><h3>lookupConstraints
+</h3></a>
+<a name="14393"><code>protected GridBagConstraints<br>
+lookupConstraints(Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="14395">Retrieves the constraints for the specified component in this grid bag layout. The return value is not a copy, but is the actual GridBagConstraints 
+object used by the layout mechanism.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="14397"><b>Parameters:
+</b></a><dd><a name="14399"><code>comp
+- </code></a><a name="14401">the component to be queried
+</a>
+
+<dt><a name="14403"><b>Returns:
+</b></a><dd><a name="14405">the contraints for the specified component.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="minimumLayoutSize">
+<a name="14415"><h3>minimumLayoutSize
+</h3></a>
+<a name="14417"><code>public Dimension minimumLayoutSize(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="52797">Determines the minimum size of the target container using this grid bag 
+layout.
+<pre>
+</pre></a>
+
+<dd><a name="40637">This method is called when a container calls its layout method 
+<a href="java.awt.Container.html#6483">(II-&#167;1.11.11)</a>. Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33491"><b>Parameters:
+</b></a><dd><a name="33492"><code>target
+- </code></a><a name="33493">the container in which to do the layout
+</a>
+
+<dt><a name="33494"><b>Returns:
+</b></a><dd><a name="33495">the minimum dimensions needed to lay out the subcomponents of the 
+specified container.
+</a>
+
+<dt><a name="50812"><b>See Also:
+</b></a><dd><a name="50816">preferredLayoutSize &#32;<a href="java.awt.GridBagLayout.html#50820">(II-&#167;1.22.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="preferredLayoutSize">
+<a name="50820"><h3>preferredLayoutSize
+</h3></a>
+<a name="14449"><code>public Dimension preferredLayoutSize(Container &#32;target)
+</code></a>
+<dl>
+<dd><a name="52801">Determines the preferred size of the target container using this grid bag layout.
+<pre>
+</pre></a>
+
+<dd><a name="40737">Most applications do not call this method directly. This method is called 
+when a container calls its preferredSize method <a href="java.awt.Container.html#6681">(II-&#167;1.11.17)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="14453"><b>Parameters:
+</b></a><dd><a name="14455"><code>target
+- </code></a><a name="14457">the container in which to do the layout
+</a>
+
+<dt><a name="14459"><b>Returns:
+</b></a><dd><a name="14461">the preferred dimensions to lay out the subcomponents of the specified container.
+</a>
+
+<dt><a name="14463"><b>See Also:
+</b></a><dd><a name="14469">minimumLayoutSize &#32;<a href="java.awt.GridBagLayout.html#14415">(II-&#167;1.22.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="removeLayoutComponent">
+<a name="14479"><h3>removeLayoutComponent
+</h3></a>
+<a name="14481"><code>public void removeLayoutComponent(Component &#32;comp)
+</code></a>
+<dl>
+<dd><a name="33860">Removes the specified component from this layout.
+<pre>
+</pre></a>
+
+<dd><a name="40818">Most applications do not call this method directly. This method is called 
+when a container calls its remove <a href="java.awt.Container.html#6747">(II-&#167;1.11.19)</a> or removeAll <a href="java.awt.Container.html#6775">(II-&#167;1.11.20)</a> 
+methods.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33861"><b>Parameters:
+</b></a><dd><a name="33862"><code>comp
+- </code></a><a name="33863">the component to be removed
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setConstraints">
+<a name="14499"><h3>setConstraints
+</h3></a>
+<a name="14501"><code>public void setConstraints(Component &#32;comp,
+</code></a>
+<a name="53570"><code> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;  &#32; &#32; &#32; &#32; &#32; &#32;GridBagConstraints &#32;constraints)
+</code></a>
+<dl>
+<dd><a name="14503">Sets the constraints for the specified component in this layout
+<pre>
+</pre></a>
+<dl>
+<dt><a name="14505"><b>Parameters:
+</b></a><dd><a name="14507"><code>comp
+- </code></a><a name="14509">the component to be modified
+</a>
+<dd><a name="14511"><code>constraints
+- </code></a><a name="14513">the constraints to be applied
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="14523"><h3>toString
+</h3></a>
+<a name="14525"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="27256"><b>Returns:
+</b></a><dd><a name="27257">a string representation of this grid bag layout.
+</a>
+
+<dt><a name="14533"><b>Overrides:
+</b></a><dd><a name="14539">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.GridBagConstraints.html">Prev</a>  <a href="java.awt.GridLayout.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

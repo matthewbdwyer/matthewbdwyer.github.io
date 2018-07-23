@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Compiler Construction</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<br>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+          <tr>
+
+    <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+    
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler Construction</font></b></p>
+            </td>
+
+  </tr>
+
+  
+        </tbody>
+      </table>
+
+
+      <p><span style="position: absolute; top: 50px; left: 11px;">
+
+      <img src="images/12x12spacer.gif" border="0" height="12" width="12"></span> </p>
+
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+<table border="0" cellpadding="0" cellspacing="0" dir="ltr" width="100%">
+  <tbody>
+    <tr>
+<!--#include file="sidebar.shtml" -->
+      <td valign="top" width="24"></td>
+      <td valign="top">
+      <h1><font face="Arial" size="5">Course Description - CSCE 425/825</font></h1>
+
+      <h2><font face="Arial" size="2">Purpose:<br>
+
+      <span style="font-weight: 400;">The course will teach modern compiler techniques 
+applied to general-purpose programming language.
+The goal of the course is to give students a working knowledge of the foundations,
+tools, and engineering approaches used in developing formal language translators.
+The emphasis is on the construction of compilers to position students to build
+translators for little languages in their careers.
+      </span></font></h2>
+
+      <h2><font face="Arial" size="2">Contents: <br>
+
+      </font>
+      <span style="font-weight: 400;">
+      <font face="Arial" size="2">
+      <i>Lexical analysis:</i>lexemes, tokenization, and common patterns<br>
+
+      <i>Syntactic analysis:</i>LL and LR parsing and the ANTLR tool<br>
+
+      <i>Semantic analysis:</i> abstract syntax trees, symbol tables, type checking, 
+resource allocation<br>
+
+      <i>Static analysis:</i>control flow, data flow analysis and frameworks<br>
+
+      <i>Virtual machines and run-time environments:</i> stacks, heaps, objects. <br>
+
+      <i>Code generation:</i> resources, templates, optimizations. <br>
+
+      <i>Surveys on:</i> garbage collection, native code generation.</font></span></h2>
+
+
+      <h2>
+      <font face="Arial" size="2">Outcomes: <br>
+
+      <span style="font-weight: 400;">
+By studying the course contents and engaging in the <i>practice</i> of
+compiler development through course projects, students will <i>master</i>
+the topics of lexical and syntactic specification, the use of front-end
+generator tools, techniques for enforcing semantic and type rules of a language,
+data structures representing source program data for analysis and code generation,
+and approaches to generating target programs for modern virtual machines.
+Students will also gain a significant degree of <i>familiarity</i> with techniques
+for implementing program analyses and optimizing transformations.  They will
+also be <i>exposed</i> to garbage collection and issues in native code generaion.
+      </span>
+      </font></h2>
+
+
+      <table style="border-collapse: collapse;" id="AutoNumber4" border="0" bordercolor="#111111" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+          <tr>
+
+    <td width="50%"><font face="Arial" size="2"><b>Text Book:</b><br>
+
+    We have chosen Compilers : Principles, Techniques, & Tools, by
+Aho, Lam, Sethi and Ullman (aka "the purple dragon book")
+for the following reasons:</font>
+            <ul>
+
+  <li><font face="Arial" size="2">it is the most comprehensive treatment of compiling
+  available.   It will serve as an excellent introduction to compiling as well as a resource
+  throughout your career;</font></li>
+
+  <li><font face="Arial" size="2">it covers static analysis,
+  optimizations and other advanced topics used for compiling modern languages.  
+  Many other texts only give brief coverage of those topics, but in this course we'll
+  dig deeper.</font></li>
+
+            </ul>
+
+
+    </td>
+
+    <td align="center" width="50%"><font face="Arial" size="2">
+            <img src="images/cover30.jpg" border="0" height="203" width="154"></font></td>
+
+  </tr>
+
+        </tbody>
+      </table>
+
+      <h2><font face="Arial" size="2"><font face="Arial" size="2">Schedule:<br>
+
+      <span style="font-weight: 400;"><i>Lectures:</i> 2.5 hours/week. TU 12:30-13:45, Avery 108<br>
+
+      <i>Office Hours:</i> Instructor: Wed 11:00am-noon, 365 Avery</span></font></font></h2>
+
+      <h2><font face="Arial" size="2"><font face="Arial" size="2">Prerequisites: <br>
+
+      <span style="font-weight: 400;">CIS 310, 322 </span></font></font></h2>
+
+      <h2><font face="Arial" size="2"><font face="Arial" size="2">Marking Scheme:<span style="font-weight: 400;"><br>
+ 
+Course Projects (50%)<br>
+ 
+Quizzes (25%)<br>
+ 
+Final Exam (25%)<br>
+ 
+      <i>Graduate students will be required to complete an additional course project</i>.
+      </span></font></font></h2>
+      <h2><font face="Arial" size="2"><font face="Arial" size="2"><font face="Arial" size="2">Lecturer: <br>
+
+      <span style="font-weight: 400;">Matthew Dwyer, Avery 365
+      </span></font></font></font></h2>
+
+      <h2><font face="Arial" size="2"><font face="Arial" size="2"><font face="Arial" size="2">Credits: <br>
+
+      <span style="font-weight: 400;">3 credits</span></font></font></font></h2>
+
+      <p><font face="Arial" size="2"><font face="Arial" size="2"><font face="Arial" size="2"><b>Philosophy:</b><br>
+
+This course is based on a course that was originally designed 
+by <a href="http://www-acaps.cs.mcgill.ca:80/%7Ehendren/">
+Laurie Hendren</a> and <a href="http://www.brics.dk/%7Emis">Michael I. 
+Schwartzbach</a> which has been taught at a number of universities
+over the past decade.  The course received a significant update by <a href="http://www.cis.ksu.edu/%7Erobby">Robby</a> and <a href="http://www.cse.unl.edu/%7Edwyer">Matthew Dwyer</a> in 
+2005 with respect to the projects and the tools that are used for compiler
+implementation; this update achieves a modernization of compiler 
+construction technologies.
+      </font></font></font></p>
+
+      <p><font face="Arial" size="2"><font face="Arial" size="2"><font face="Arial" size="2">This is primarily an introductory
+compiling course that has been designed to recognize that most
+people will not build a large application like a compiler from
+scratch and that people learn by <i>doing</i>.
+Towards this end
+the project for the course involves the enhancement of an existing
+compiler code base. Students will be given a working compiler and
+will be required to extend it in significant ways. This will give
+them insights into how a compiler is designed and written that
+they can leverage for their enhancements.
+&nbsp;While serving this purpose, the course does present significantly
+more content on static analysis than is typically found in an
+undergraduate compiling course; thus it can serve as an effective
+introduction on advanced topics for graduate students.<br>
+
+&nbsp;</font></font></font></p>
+
+
+      <br>
+      </td>
+    </tr>
+<!--msnavigation-->
+  </tbody>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+<html><head><title>Class Runtime</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Process.html">Prev</a>  <a href="java.lang.SecurityManager.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="6564"><h1>	&#167;1.14 Class Runtime</h1></a>
+<pre>public &#32;class &#32;java.lang.<strong>Runtime
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Methods
+    public Process <strong>exec</strong>(String &#32;command);	<a href="java.lang.Runtime.html#6684">&#167;1.14.1</a>
+    public Process <strong>exec</strong>(String &#32;command, String &#32;envp[]);	<a href="java.lang.Runtime.html#45081">&#167;1.14.2</a>
+    public Process <strong>exec</strong>(String &#32;cmdarray[]);	<a href="java.lang.Runtime.html#6732">&#167;1.14.3</a>
+    public Process <strong>exec</strong>(String &#32;cmdarray[], String &#32;envp[]);	<a href="java.lang.Runtime.html#6760">&#167;1.14.4</a>
+ &#32; &#32;public void <strong>exit</strong>(int &#32;status);	<a href="java.lang.Runtime.html#6790">&#167;1.14.5</a>
+    public long <strong>freeMemory</strong>();	<a href="java.lang.Runtime.html#6810">&#167;1.14.6</a>
+    public void <strong>gc</strong>();	<a href="java.lang.Runtime.html#6824">&#167;1.14.7</a>
+    public InputStream <strong>getLocalizedInputStream</strong>(InputStream&#32;in);  <a href="java.lang.Runtime.html#6838">&#167;1.14.8</a>
+    public OutputStream <strong>getLocalizedOutputStream</strong>(OutputStream&#32;out); <a href="java.lang.Runtime.html#6852">&#167;1.14.9</a>
+    public static Runtime <strong>getRuntime</strong>();	<a href="java.lang.Runtime.html#6866">&#167;1.14.10</a>
+    public void <strong>load</strong>(String &#32;filename);	<a href="java.lang.Runtime.html#6880">&#167;1.14.11</a>
+    public void <strong>loadLibrary</strong>(String &#32;libname);	<a href="java.lang.Runtime.html#6918">&#167;1.14.12</a>
+    public void <strong>runFinalization</strong>();	<a href="java.lang.Runtime.html#6948">&#167;1.14.13</a>
+    public long <strong>totalMemory</strong>();	<a href="java.lang.Runtime.html#6962">&#167;1.14.14</a>
+    public void <strong>traceInstructions</strong>(boolean &#32;on);	<a href="java.lang.Runtime.html#6976">&#167;1.14.15</a>
+    public void <strong>traceMethodCalls</strong>(boolean &#32;on);	<a href="java.lang.Runtime.html#6996">&#167;1.14.16</a>
+}
+</pre><a name="40045">Every Java application has a single instance of class Runtime which allows the application 
+to interface with the environment in which the application is running. The current runtime 
+can be obtained from the getRuntime method <a href="java.lang.Runtime.html#6866">(I-&#167;1.14.10)</a>.
+</a><p><a name="40052">An application cannot create its own instance of this class.
+</a><p>
+<hr>
+<a name="40046"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="exec">
+<a name="6684"><h3>exec
+</h3></a>
+<a name="6686"><code>public Process exec(String &#32;command)
+</code></a>
+<a name="6688"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="33710">Executes the string command in a separate process. 
+<pre>
+</pre></a>
+
+<dd><a name="43787">The command argument is parsed into tokens and then executed as a command in a separate process. This method has exactly the same effect as 
+exec(command, null) <a href="java.lang.Runtime.html#45081">(I-&#167;1.14.2)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6692"><b>Parameters:
+</b></a><dd><a name="6694"><code>command
+- </code></a><a name="6696">a specified system command
+</a>
+
+<dt><a name="6698"><b>Returns:
+</b></a><dd><a name="45077">a Process <a href="java.lang.Process.html#39912">(I-&#167;1.13)</a> object for managing the subprocess.
+</a>
+
+<dt><a name="45084"><b>Throws
+</b></a><dd><a name="45088">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45089">If the current thread cannot create a subprocess.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="exec">
+<a name="45081"><h3>exec
+</h3></a>
+<a name="45082"><code>public Process exec(String &#32;command, String &#32;envp[])
+</code></a>
+<a name="6712"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="43789">Executes the string command in a separate process with the specified environment.. 
+<pre>
+</pre></a>
+
+<dd><a name="33781">This method breaks the command string into tokens and creates a new array 
+cmdarray containing the tokens; it then performs the call exec(cmdarray, envp) 
+<a href="java.lang.Runtime.html#6760">(I-&#167;1.14.4)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6716"><b>Parameters:
+</b></a><dd><a name="6718"><code>command
+- </code></a><a name="6720">a specified system command
+</a>
+<dd><a name="33794"><code>envp
+- </code></a><a name="33795">array containing environment in format name=value
+</a>
+
+<dt><a name="6722"><b>Returns:
+</b></a><dd><a name="40071">a Process <a href="java.lang.Process.html#39912">(I-&#167;1.13)</a> object for managing the subprocess.
+</a>
+
+<dt><a name="45091"><b>Throws
+</b></a><dd><a name="45095">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45096">If the current thread cannot create a subprocess.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="exec">
+<a name="6732"><h3>exec
+</h3></a>
+<a name="6734"><code>public Process exec(String &#32;cmdarray[])
+</code></a>
+<a name="6736"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="33801">Executes the command in a separate process with the specified arguments.
+<pre>
+</pre></a>
+
+<dd><a name="43790">The command specified by the tokens in cmdarray is executed as a command 
+in a separate process. This has exactly the same effect as exec(cmdarray, null) 
+<a href="java.lang.Runtime.html#6760">(I-&#167;1.14.4)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6740"><b>Parameters:
+</b></a><dd><a name="6742"><code>cmdarray
+- </code></a><a name="6744">array containing the command to call and its arguments
+</a>
+
+<dt><a name="6750"><b>Returns:
+</b></a><dd><a name="40076">a Process <a href="java.lang.Process.html#39912">(I-&#167;1.13)</a> object for managing the subprocess.
+</a>
+
+<dt><a name="45098"><b>Throws
+</b></a><dd><a name="45102">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45103">If the current thread cannot create a subprocess.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="exec">
+<a name="6760"><h3>exec
+</h3></a>
+<a name="6762"><code>public Process exec(String &#32;cmdarray[], String &#32;envp[])
+</code></a>
+<a name="6764"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="43792">Executes the command in a separate process with the specified arguments 
+and the specified environment.
+<pre>
+</pre></a>
+
+<dd><a name="33817">If there is a security manager, its checkExec method <a href="java.lang.SecurityManager.html#7474">(I-&#167;1.15.10)</a> is called 
+with the first component of the array cmdarray as its argument. This may 
+result in a security exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="33818">Given an array of strings cmdarray, representing the tokens of a command 
+line, and an array of strings envp, representing an "environment" that 
+defines system properties, this method creates a new process in which to 
+execute the specified command,
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6768"><b>Parameters:
+</b></a><dd><a name="6770"><code>cmdarray
+- </code></a><a name="6772">array containing the command to call and its arguments
+</a>
+<dd><a name="6774"><code>envp
+- </code></a><a name="6776">array containing environment in format name=value
+</a>
+
+<dt><a name="6778"><b>Returns:
+</b></a><dd><a name="40081">a Process <a href="java.lang.Process.html#39912">(I-&#167;1.13)</a> object for managing the subprocess.
+</a>
+
+<dt><a name="44983"><b>Throws
+</b></a><dd><a name="44987">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44988">If the current thread cannot create a subprocess.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="exit">
+<a name="6790"><h3>exit
+</h3></a>
+<a name="6792"><code>public void exit(int &#32;status)
+</code></a>
+<dl>
+<dd><a name="34458">Terminates the currently running Java Virtual Machine. This method never 
+returns normally
+<pre>
+</pre></a>
+
+<dd><a name="43793">If there is a security manager, its checkExit method <a href="java.lang.SecurityManager.html#7504">(I-&#167;1.15.11)</a> is called 
+with the status as its argument. This may result in a security exception. 
+<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+<pre>
+</pre></a>
+
+<dd><a name="35233">The argument serves as a status code; by convention, a nonzero status code 
+indicates abnormal termination.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34465"><b>Parameters:
+</b></a><dd><a name="6798"><code>status
+- </code></a><a name="6800">exit status
+</a>
+
+<dt><a name="44972"><b>Throws
+</b></a><dd><a name="44976">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44977">If the current thread cannot exit with the specified status.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="freeMemory">
+<a name="6810"><h3>freeMemory
+</h3></a>
+<a name="6812"><code>public long freeMemory()
+</code></a>
+<dl><dl>
+<dt><a name="33864"><b>Determines the amount of free memory in the system. The value returned 
+by this method is always less than the value returned by the total-Memory 
+method <a href="java.lang.Runtime.html#6962">(I-&#167;1.14.14)</a>. Calling the gc method <a href="java.lang.Runtime.html#6824">(I-&#167;1.14.7)</a> may result in 
+increasing the value returned by freeMemory.
+</b></a>
+<dt><a name="33872"><b>Returns:
+</b></a><dd><a name="33867">an approximation to the total amount of memory currently available 
+for future allocated objects, measured in bytes, is returned. .
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="gc">
+<a name="6824"><h3>gc
+</h3></a>
+<a name="6826"><code>public void gc()
+</code></a>
+<dl>
+<dd><a name="33882">Calling this method suggests that the Java Virtual Machine expend effort 
+toward recycling unused objects in order to make the memory they currently occupy available for quick reuse. When control returns from the 
+method call, the Java Virtual Machine has made its best effort to recycle 
+all unused objects. 
+<pre>
+</pre></a>
+
+<dd><a name="44435">The name gc stands for "garbage collector." The Java Virtual Machine performs this recycling process automatically as needed even if the gc method 
+is not invoked explicitly.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="getLocalizedInputStream">
+<a name="6838"><h3>getLocalizedInputStream
+</h3></a>
+<a name="6840"><code>public InputStream getLocalizedInputStream(InputStream &#32;in)
+</code></a>
+<dl>
+<dd><a name="33995">Creates a localized version of an input stream. This method takes an InputStream <a href="java.io.InputStream.html#5284">(I-&#167;2.13)</a> and returns an InputStream equivalent to the argument in all 
+respects except that it is localized: as characters in the local character set 
+are read from the stream, they are automatically converted from the local 
+character set to Unicode. 
+<pre>
+</pre></a>
+
+<dd><a name="40095">If the argument is already a localized stream, it may be returned as the 
+result.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="40086"><b>Returns:
+</b></a><dd><a name="40087">a localized input stream.
+</a>
+</dl>
+<dd><a name="40084">
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="getLocalizedOutputStream">
+<a name="6852"><h3>getLocalizedOutputStream
+</h3></a>
+<a name="6854"><code>public OutputStream getLocalizedOutputStream(OutputStream &#32;out)
+</code></a>
+<dl>
+<dd><a name="34005">Creates a localized version of an output stream. This method takes an OutputStream <a href="java.io.OutputStream.html#6024">(I-&#167;2.15)</a> and returns an OutputStream equivalent to the argument in 
+all respects except that it is localized: as Unicode characters are written to 
+the stream, they are automatically converted to the local character set. 
+<pre>
+</pre></a>
+
+<dd><a name="44457">If the argument is already a localized stream, it may be returned as the 
+result.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="40097"><b>Returns:
+</b></a><dd><a name="40098">a localized output stream.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getRuntime">
+<a name="6866"><h3>getRuntime
+</h3></a>
+<a name="6868"><code>public static Runtime getRuntime()
+</code></a>
+<dl><dl>
+<dt><a name="34014"><b>Returns:
+</b></a><dd><a name="34017">the Runtime object associated with the current Java application.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="load">
+<a name="6880"><h3>load
+</h3></a>
+<a name="6882"><code>public &#32;void load(String &#32;filename)
+</code></a>
+<dl>
+<dd><a name="43811">Loads the given filename as a dynamic library. The filename argument 
+must be a complete path name.
+<pre>
+</pre></a>
+
+<dd><a name="33936">If there is a security manager, its checkLink method <a href="java.lang.SecurityManager.html#7534">(I-&#167;1.15.12)</a> is called 
+with the filename as its argument. This may result in an security exception 
+<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="6886"><b>Parameters:
+</b></a><dd><a name="6888"><code>filename
+- </code></a><a name="6890">the file to load
+</a>
+
+<dt><a name="44468"><b>Throws
+</b></a><dd><a name="44472">UnsatisfiedLinkError &#32;<a href="java.lang.UnsatisfiedLinkError.html#15952">(I-&#167;1.61)</a>
+</a>
+<dd><a name="44473">If the file does not exist.
+</a>
+
+<dt><a name="44475"><b>Throws
+</b></a><dd><a name="44479">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44480">If the current thread cannot load the specified dynamic library.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="loadLibrary">
+<a name="6918"><h3>loadLibrary
+</h3></a>
+<a name="6920"><code>public void loadLibrary(String &#32;libname)
+</code></a>
+<dl>
+<dd><a name="43820">Loads the dynamic library with the specified library name. The mapping 
+from a library name to a specific filename is done is a system-specific 
+manner.
+<pre>
+</pre></a>
+
+<dd><a name="44498">First, if there is a security manager, its checkLink method <a href="java.lang.SecurityManager.html#7534">(I-&#167;1.15.12)</a> is 
+called with the filename as its argument. This may result in an security 
+exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="33983">If this method is called more than once with the same library name, the 
+second and subsequent calls are ignored.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33988"><b>Parameters:
+</b></a><dd><a name="33985"><code>libname
+- </code></a><a name="33986">the name of the library
+</a>
+
+<dt><a name="6930"><b>Throws
+</b></a><dd><a name="6936">UnsatisfiedLinkError &#32;<a href="java.lang.UnsatisfiedLinkError.html#15952">(I-&#167;1.61)</a>
+</a>
+<dd><a name="6938">If the library does not exist.
+</a>
+
+<dt><a name="44491"><b>Throws
+</b></a><dd><a name="44495">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44496">If the current thread cannot load the specified dynamic library.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="runFinalization">
+<a name="6948"><h3>runFinalization
+</h3></a>
+<a name="6950"><code>public void runFinalization()
+</code></a>
+<dl>
+<dd><a name="33893">Calling this method suggests that the Java Virtual Machine expend effort 
+toward running the finalize methods <a href="java.lang.Object.html#6100">(I-&#167;1.12.4)</a> of objects that have been 
+found to be discarded but whose finalize methods have not yet been run. 
+When control returns from the method call, the Java Virtual Machine has 
+made a best effort to complete all outstanding finalizations.
+<pre>
+</pre></a>
+
+<dd><a name="33894">The Java Virtual Machine performs the finalization process automatically 
+as needed if the runFinalization method is not invoked explicitly.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="totalMemory">
+<a name="6962"><h3>totalMemory
+</h3></a>
+<a name="6964"><code>public long totalMemory()
+</code></a>
+<dl>
+<dd><a name="33840">Determines the total amount of memory in the Java Virtual Machine.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43825"><b>Returns:
+</b></a><dd><a name="33851">the total amount of memory currently available for allocating objects, 
+measured in bytes.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="traceInstructions">
+<a name="6976"><h3>traceInstructions
+</h3></a>
+<a name="33903"><code>public void traceInstructions(boolean &#32;on)
+</code></a>
+<dl>
+<dd><a name="33904">If the boolean argument is true, this method asks the Java Virtual Machine to 
+print out a detailed trace of each instruction in the Java Virtual Machine as 
+it is executed. The virtual machine may ignore this request if it does not 
+support this feature. The destination of the trace output is system-dependent.
+<pre>
+</pre></a>
+
+<dd><a name="33909">If the boolean argument is false, this method causes the Java Virtual 
+Machine to stop performing a detailed instruction trace it is performing.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="33905"><b>Parameters:
+</b></a><dd><a name="33906"><code>on
+- </code></a><a name="6986">true to enable instruction tracing; false to disable this feature
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="traceMethodCalls">
+<a name="6996"><h3>traceMethodCalls
+</h3></a>
+<a name="6998"><code>public void traceMethodCalls(boolean &#32;on)
+</code></a>
+<dl>
+<dd><a name="33922">If the boolean argument is true, this method asks the Java Virtual Machine to 
+print out a detailed trace of each method in the Java Virtual Machine as it 
+is called. The virtual machine may ignore this request if it does not support 
+this feature. The destination of the trace output is system-dependent.
+<pre>
+</pre></a>
+
+<dd><a name="33923">If the boolean argument is false, this method causes the Java Virtual 
+Machine to stop performing a detailed method trace it is performing.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7002"><b>Parameters:
+</b></a><dd><a name="7004"><code>on
+- </code></a><a name="7006">true to enable instruction tracing; false to disable this feature
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Process.html">Prev</a>  <a href="java.lang.SecurityManager.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

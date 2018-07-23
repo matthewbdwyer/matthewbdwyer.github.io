@@ -1,0 +1,1018 @@
+<html><head><title>Class Thread</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.System.html">Prev</a>  <a href="java.lang.ThreadGroup.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="11128"><h1>	&#167;1.19 Class Thread</h1></a>
+<pre>public &#32;class &#32;java.lang.<strong>Thread
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+    implements java.lang.<strong>Runnable</strong> &#32;<a href="java.lang.Runnable.html#42925">(I-&#167;1.23)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public final static int <strong>MAX_PRIORITY</strong>;	<a href="java.lang.Thread.html#11432">&#167;1.19.1</a>
+    public final static int <strong>MIN_PRIORITY</strong>;	<a href="java.lang.Thread.html#35428">&#167;1.19.2</a>
+    public final static int <strong>NORM_PRIORITY</strong>;	<a href="java.lang.Thread.html#11456">&#167;1.19.3</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Thread</strong>();	<a href="java.lang.Thread.html#11472">&#167;1.19.4</a>
+    public <strong>Thread</strong>(Runnable &#32;target);	<a href="java.lang.Thread.html#11494">&#167;1.19.5</a>
+    public <strong>Thread</strong>(Runnable &#32;target, String &#32;name);	<a href="java.lang.Thread.html#11512">&#167;1.19.6</a>
+    public <strong>Thread</strong>(String &#32;name);	<a href="java.lang.Thread.html#11534">&#167;1.19.7</a>
+    public <strong>Thread</strong>(ThreadGroup &#32;group, Runnable &#32;target);	<a href="java.lang.Thread.html#11552">&#167;1.19.8</a>
+    public <strong>Thread</strong>(ThreadGroup &#32;group,	<a href="java.lang.Thread.html#11574">&#167;1.19.9</a>
+     &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;Runnable &#32;target, String &#32;name);
+    public <strong>Thread</strong>(ThreadGroup &#32;group, String &#32;name);	<a href="java.lang.Thread.html#11600">&#167;1.19.10</a>
+
+ &#32; &#32; &#32; &#32;// Methods<br>
+ &#32; &#32;public static int <strong>activeCount</strong>();	<a href="java.lang.Thread.html#11626">&#167;1.19.11</a>
+    public void <strong>checkAccess</strong>();	<a href="java.lang.Thread.html#11640">&#167;1.19.12</a>
+    public int <strong>countStackFrames</strong>();	<a href="java.lang.Thread.html#11664">&#167;1.19.13</a>
+    public static Thread <strong>currentThread</strong>();	<a href="java.lang.Thread.html#11688">&#167;1.19.14</a>
+    public void <strong>destroy</strong>();	<a href="java.lang.Thread.html#11702">&#167;1.19.15</a>
+    public static void <strong>dumpStack</strong>();	<a href="java.lang.Thread.html#11716">&#167;1.19.16</a>
+    public static int <strong>enumerate</strong>(Thread &#32;tarray[]);	<a href="java.lang.Thread.html#11738">&#167;1.19.17</a>
+    public final String <strong>getName</strong>();	<a href="java.lang.Thread.html#11756">&#167;1.19.18</a>
+    public final int <strong>getPriority</strong>();	<a href="java.lang.Thread.html#11778">&#167;1.19.19</a>
+    public final ThreadGroup <strong>getThreadGroup</strong>();	<a href="java.lang.Thread.html#11800">&#167;1.19.20</a>
+    public void <strong>interrupt</strong>();	<a href="java.lang.Thread.html#11814">&#167;1.19.21</a>
+    public static boolean <strong>interrupted</strong>();	<a href="java.lang.Thread.html#11828">&#167;1.19.22</a>
+    public final boolean <strong>isAlive</strong>();	<a href="java.lang.Thread.html#11842">&#167;1.19.23</a>
+    public final boolean <strong>isDaemon</strong>();	<a href="java.lang.Thread.html#11856">&#167;1.19.24</a>
+    public boolean <strong>isInterrupted</strong>();	<a href="java.lang.Thread.html#11878">&#167;1.19.25</a>
+    public final void <strong>join</strong>();	<a href="java.lang.Thread.html#11892">&#167;1.19.26</a>
+    public final void &#32;<strong>join</strong>(long &#32;millis);	<a href="java.lang.Thread.html#11916">&#167;1.19.27</a>
+    public final void <strong>join</strong>(long &#32;millis, int &#32;nanos)	<a href="java.lang.Thread.html#11946">&#167;1.19.28</a>
+    public final void <strong>resume</strong>();	<a href="java.lang.Thread.html#11972">&#167;1.19.29</a>
+    public void <strong>run</strong>();	<a href="java.lang.Thread.html#11986">&#167;1.19.30</a>
+    public final void <strong>setDaemon</strong>(boolean &#32;on);	<a href="java.lang.Thread.html#12012">&#167;1.19.31</a>
+    public final void <strong>setName</strong>(String &#32;name);	<a href="java.lang.Thread.html#12050">&#167;1.19.32</a>
+    public final void <strong>setPriority</strong>(int &#32;newPriority);	<a href="java.lang.Thread.html#44482">&#167;1.19.33</a>
+    public static void <strong>sleep</strong>(long &#32;millis);	<a href="java.lang.Thread.html#44520">&#167;1.19.34</a>
+    public static void <strong>sleep</strong>(long &#32;millis, int &#32;nanos)	<a href="java.lang.Thread.html#12148">&#167;1.19.35</a>
+    public void <strong>start</strong>();	<a href="java.lang.Thread.html#12184">&#167;1.19.36</a>
+    public final void <strong>stop</strong>();	<a href="java.lang.Thread.html#12220">&#167;1.19.37</a>
+    public final void &#32;<strong>stop</strong>(Throwable &#32;obj);	<a href="java.lang.Thread.html#12244">&#167;1.19.38</a>
+    public final void <strong>suspend</strong>();	<a href="java.lang.Thread.html#12276">&#167;1.19.39</a>
+    public String <strong>toString</strong>();	<a href="java.lang.Thread.html#12290">&#167;1.19.40</a>
+    public static void <strong>yield</strong>();	<a href="java.lang.Thread.html#12312">&#167;1.19.41</a>
+}
+</pre><a name="35388">A <em>thread</em> is a thread of executing in a program. The Java Virtual Machine allows an application to have multiple threads of executing running concurrently. 
+</a><p><a name="43060">Every thread has a priority. Threads with higher priority are executed in preference to 
+threads with lower priority. Each thread may or may not also be marked as a d&aelig;mon. 
+When code running in some thread creates a new Thread object, the new thread has its priority initially set equal to the priority of the creating thread, and is a d&aelig;mon thread if and 
+only if the creating thread is a d&aelig;mon.
+</a><p><a name="35338">When a Java Virtual Machine starts up, there is usually a single non-d&aelig;mon thread (which 
+typically calls the method named main of some designated class). The Java Virtual Machine 
+continues to execute threads until either of the following occurs:
+</a><p><ul><li><a name="35342">The exit method <a href="java.lang.Runtime.html#6790">(I-&#167;1.14.5)</a> of class Runtime has been called and the security manager 
+has permitted the exit operation to take place.
+</a><li><a name="35343">All threads that are not d&aelig;mon threads have died, either by returning from the call to 
+the run method <a href="java.lang.Thread.html#11986">(I-&#167;1.19.30)</a> or by performing the stop method <a href="java.lang.Thread.html#12220">(I-&#167;1.19.37)</a>.
+</a></ul><a name="35350">There are two ways to create a new thread of execution
+</a><p><a name="44039">One is to declare a class to be a subclass of Thread. This subclass should override the run 
+method of class Thread. An instance of the subclass can then be allocated and started. For 
+example, a thread whose job is to compute primes larger than a stated value could be written as follows:
+</a><p><pre><hr>
+<a name="35351">class PrimeThread extends Thread {
+</a><a name="35352"> &#32; &#32; &#32; &#32;	long minPrime;
+</a><a name="35353"> &#32; &#32; &#32; &#32;	PrimeThread(long minPrime) {
+</a><a name="35354"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;		this.minPrime = minPrime;
+</a><a name="35355"> &#32; &#32; &#32; &#32;	}
+</a><a name="35356">
+</a><a name="35401"> &#32; &#32; &#32; &#32;	public void run() {
+</a><a name="35357"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; 		// compute primes larger than minPrime
+</a><a name="35358"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;		...
+</a><a name="35359"> &#32; &#32; &#32; &#32;	}
+</a><a name="35360">}
+</a>
+<hr></pre><a name="35361">The following code would then create a thread and start it running:
+</a><p><ul><a name="35362">
+<code>PrimeThread p = new PrimeThread(143);
+</code>
+</a><a name="35402">
+<code>p.start();
+</code>
+</a></ul><a name="35403">The other way to create a thread is to is to declare a class which implements the Runnable 
+interface <a href="java.lang.Runnable.html#42925">(I-&#167;1.23)</a>. That class then implements the run method. An instance of the class can 
+then be allocated, passed as an argument when creating Thread, and started. The same 
+example in this other style looks like the following:
+</a><p><pre><hr>
+<a name="35404">class PrimeRun implements Runnable {
+</a><a name="35366">	 &#32; &#32; &#32; &#32;long minPrime;
+</a><a name="35367"> &#32; &#32; &#32; &#32;	PrimeRun(long minPrime) {
+</a><a name="35368"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;		this.minPrime = minPrime;
+</a><a name="35369"> &#32; &#32; &#32; &#32;	}
+</a><a name="35370">
+</a><a name="35405"> &#32; &#32; &#32; &#32;	public void run() {
+</a><a name="35371"> &#32; &#32; &#32; &#32; &#32; &#32; 		// compute primes larger than minPrime
+</a><a name="35372"> &#32; &#32; &#32; &#32; &#32; &#32; &#32;		...
+</a><a name="35373"> &#32; &#32; &#32; &#32;	}
+</a><a name="35374">}
+</a>
+<hr></pre><a name="35375">The following code would then create a thread and start it running:
+</a><p><ul><a name="35376">
+<code>PrimeRun p = new PrimeRun(143);
+</code>
+</a><a name="35377">
+<code>new Thread(p).start();
+</code>
+</a></ul><a name="35420">Every thread has a name for identification purposes. More than one thread may have the 
+same name. If a name is not specified when a thread is created, a new name is generated 
+for it.
+</a><p>
+<hr>
+<a name="11424"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="MAX_PRIORITY">
+<a name="11432"><h3>MAX_PRIORITY
+</h3></a>
+<a name="35423"><code>public final static int MAX_PRIORITY = 10
+</code></a>
+<dl>
+<dd><a name="35424">The maximum priority that a thread can have.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MIN_PRIORITY">
+<a name="35428"><h3>MIN_PRIORITY
+</h3></a>
+<a name="11446"><code>public final static int MIN_PRIORITY = 1
+</code></a>
+<dl>
+<dd><a name="11448">The minimum priority that a thread can have.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="NORM_PRIORITY">
+<a name="11456"><h3>NORM_PRIORITY
+</h3></a>
+<a name="11458"><code>public final static int NORM_PRIORITY = 5
+</code></a>
+<dl>
+<dd><a name="11460">The default priority that is assigned to a thread. 
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="11464"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Thread">
+<a name="11472"><h3>Thread
+</h3></a>
+<a name="11474"><code>public Thread()
+</code></a>
+<dl>
+<dd><a name="35443">Allocates a new Thread object. This constructor has the same effect as 
+Thread(null, null, gname) <a href="java.lang.Thread.html#11574">(I-&#167;1.19.9)</a> where gname is a newly generated name. 
+Automatically generated names are of the form "Thread-"+n where n is an 
+integer.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="Thread">
+<a name="11494"><h3>Thread
+</h3></a>
+<a name="11496"><code>public Thread(Runnable &#32;target)
+</code></a>
+<dl>
+<dd><a name="45406">Allocates a new Thread object. This constructor has the same effect as 
+Thread(null, target, gname) <a href="java.lang.Thread.html#11574">(I-&#167;1.19.9)</a> where gname is a newly generated 
+name. Automatically generated names are of the form "Thread-"+n where n 
+is an integer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11500"><b>Parameters:
+</b></a><dd><a name="11502"><code>target
+- </code></a><a name="11504">the object whose run method is called
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Thread">
+<a name="11512"><h3>Thread
+</h3></a>
+<a name="11514"><code>public Thread(Runnable &#32;target, String &#32;name)
+</code></a>
+<dl>
+<dd><a name="45415">Allocates a new Thread object. This constructor has the same effect as 
+Thread(null, target, name) <a href="java.lang.Thread.html#11574">(I-&#167;1.19.9)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11518"><b>Parameters:
+</b></a><dd><a name="11520"><code>target
+- </code></a><a name="11522">the object whose run method is called
+</a>
+<dd><a name="11524"><code>name
+- </code></a><a name="11526">the name of the new thread
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Thread">
+<a name="11534"><h3>Thread
+</h3></a>
+<a name="11536"><code>public Thread(String &#32;name)
+</code></a>
+<dl>
+<dd><a name="45426">Allocates a new Thread object. This constructor has the same effect as 
+Thread(null, null, name) <a href="java.lang.Thread.html#11574">(I-&#167;1.19.9)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11540"><b>Parameters:
+</b></a><dd><a name="11542"><code>name
+- </code></a><a name="11544">the name of the new thread
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Thread">
+<a name="11552"><h3>Thread
+</h3></a>
+<a name="35539"><code>public Thread(ThreadGroup &#32;group, Runnable &#32;target)
+</code></a>
+<dl>
+<dd><a name="45437">Allocates a new Thread object. This constructor has the same effect as 
+Thread(group, target, gname) <a href="java.lang.Thread.html#11574">(I-&#167;1.19.9)</a> where gname is a newly generated 
+name. Automatically generated names are of the form "Thread-"+n where n 
+is an integer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="35550"><b>Parameters:
+</b></a><dd><a name="11560"><code>group
+- </code></a><a name="11562">the thread group
+</a>
+<dd><a name="11564"><code>target
+- </code></a><a name="11566">the object whose run method is called
+</a>
+
+<dt><a name="44098"><b>Throws
+</b></a><dd><a name="44102">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44103">If the current thread cannot create a thread in the specified thread 
+group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Thread">
+<a name="11574"><h3>Thread
+</h3></a>
+<a name="11576"><code>public Thread(ThreadGroup &#32;group, Runnable &#32;target,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;String &#32;name)
+</code></a>
+<dl>
+<dd><a name="35593">Allocates a new Thread object so that it has target as its run object, has the 
+specified name as its name, and belongs to the thread group referred to by 
+group.
+<pre>
+</pre></a>
+
+<dd><a name="45485">If group is not null, the checkAccess method <a href="java.lang.ThreadGroup.html#12576">(I-&#167;1.20.5)</a> of that thread group is 
+called with no arguments; this may result in throwing a SecurityException; if 
+group is null, the new process belongs to the same group as the thread this 
+is created the new thread.
+<pre>
+</pre></a>
+
+<dd><a name="45493">If the target argument is not null, the run method of the target <a href="java.lang.Runnable.html#42949">(I-&#167;1.23.1)</a> is 
+called when this thread is started. If the target argument is null, this 
+thread's run method <a href="java.lang.Thread.html#11986">(I-&#167;1.19.30)</a> is called when this thread is started.
+<pre>
+</pre></a>
+
+<dd><a name="35594">The priority of the newly created thread is set equal to the priority of the 
+thread creating it, that is, the currently running thread. The method set-Priority <a href="java.lang.Thread.html#44482">(I-&#167;1.19.33)</a> may be used to change the priority to a new value.
+<pre>
+</pre></a>
+
+<dd><a name="35598">The newly created thread is a initially marked as being a d&aelig;mon thread if 
+and only if the thread creating it is currently marked as a d&aelig;mon thread. 
+The method setDaemon <a href="java.lang.Thread.html#12012">(I-&#167;1.19.31)</a> may be used to change whether or not a 
+thread is a d&aelig;mon.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11580"><b>Parameters:
+</b></a><dd><a name="11582"><code>group
+- </code></a><a name="11584">the thread group
+</a>
+<dd><a name="11586"><code>target
+- </code></a><a name="11588">the object whose run method is called
+</a>
+<dd><a name="11590"><code>name
+- </code></a><a name="11592">the name of the new thread
+</a>
+
+<dt><a name="44105"><b>Throws
+</b></a><dd><a name="44109">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44110">If the current thread cannot create a thread in the specified thread 
+group
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Thread">
+<a name="11600"><h3>Thread
+</h3></a>
+<a name="11602"><code>public Thread(ThreadGroup &#32;group, String &#32;name)
+</code></a>
+<dl>
+<dd><a name="45446">Allocates a new Thread object. This constructor has the same effect as 
+Thread(group, null, name) <a href="java.lang.Thread.html#11574">(I-&#167;1.19.9)</a>
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11606"><b>Parameters:
+</b></a><dd><a name="11608"><code>group
+- </code></a><a name="11610">the thread group
+</a>
+<dd><a name="11612"><code>name
+- </code></a><a name="11614">the name of the new thread
+</a>
+
+<dt><a name="44112"><b>Throws
+</b></a><dd><a name="44116">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44117">If the current thread cannot create a thread in the specified thread 
+group.
+</a>
+</dl></dl>
+<hr>
+<a name="11616"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="activeCount">
+<a name="11626"><h3>activeCount
+</h3></a>
+<a name="11628"><code>public static int activeCount()
+</code></a>
+<dl><dl>
+<dt><a name="40982"><b>Returns:
+</b></a><dd><a name="40987">the current number of threads in this thread's thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkAccess">
+<a name="11640"><h3>checkAccess
+</h3></a>
+<a name="11642"><code>public void checkAccess()
+</code></a>
+<dl>
+<dd><a name="35662">Determines if the currently running thread has permission to modify this 
+thread.
+<pre>
+</pre></a>
+
+<dd><a name="43745">If there is a security manager, its checkAccess method <a href="java.lang.SecurityManager.html#7316">(I-&#167;1.15.4)</a> is called 
+with this thread as its argument. This may result in throwing a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11646"><b>Throws
+</b></a><dd><a name="11652">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="11654">If the current thread is not allowed to access this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="countStackFrames">
+<a name="11664"><h3>countStackFrames
+</h3></a>
+<a name="11666"><code>public int countStackFrames()
+</code></a>
+<dl>
+<dd><a name="40994">Counts the number of stack frames in this thread. The thread must be suspended.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="40996"><b>Returns:
+</b></a><dd><a name="40995">the number of stack frames in this thread.
+</a>
+
+<dt><a name="11670"><b>Throws
+</b></a><dd><a name="11676">IllegalThreadStateException &#32;<a href="java.lang.IllegalThreadStateException.html#13914">(I-&#167;1.34)</a>
+</a>
+<dd><a name="11678">If this thread is not suspended.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="currentThread">
+<a name="11688"><h3>currentThread
+</h3></a>
+<a name="11690"><code>public static Thread currentThread()
+</code></a>
+<dl>
+<dd><a name="41004">Find the currently executing thread.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43124"><b>Returns:
+</b></a><dd><a name="41005">the currently executing thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="destroy">
+<a name="11702"><h3>destroy<a href="#41018"><sup>1</sup></a>
+</h3></a>
+<a name="11704"><code>public void destroy()
+</code></a>
+<dl>
+<dd><a name="11706">Destroys this thread, without any cleanup. Any monitors it has locked 
+remain locked. 
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="dumpStack">
+<a name="11716"><h3>dumpStack
+</h3></a>
+<a name="11718"><code>public static void dumpStack()
+</code></a>
+<dl>
+<dd><a name="11720">Prints a stack trace of the current thread. Used only for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11722"><b>See Also:
+</b></a><dd><a name="11728">printStackTrace in class &#32;Throwable &#32;<a href="java.lang.Throwable.html#13088">(I-&#167;1.21.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="enumerate">
+<a name="11738"><h3>enumerate
+</h3></a>
+<a name="11740"><code>public static int enumerate(Thread &#32;tarray[])
+</code></a>
+<dl>
+<dd><a name="11742">Copies into the array argument every thread in this thread's thread group. 
+This method simple calls the enumerate method <a href="java.lang.ThreadGroup.html#12624">(I-&#167;1.20.7)</a> of this thread's 
+thread group with the array argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11744"><b>Returns:
+</b></a><dd><a name="11746">the number of threads put into the array.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getName">
+<a name="11756"><h3>getName
+</h3></a>
+<a name="11758"><code>public final String getName()
+</code></a>
+<dl><dl>
+<dt><a name="41036"><b>Returns:
+</b></a><dd><a name="41037">this thread's name.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getPriority">
+<a name="11778"><h3>getPriority
+</h3></a>
+<a name="11780"><code>public final int getPriority()
+</code></a>
+<dl><dl>
+<dt><a name="36725"><b>Returns:
+</b></a><dd><a name="36726">this thread's current priority.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getThreadGroup">
+<a name="11800"><h3>getThreadGroup
+</h3></a>
+<a name="11802"><code>public final ThreadGroup getThreadGroup()
+</code></a>
+<dl><dl>
+<dt><a name="36767"><b>Returns:
+</b></a><dd><a name="36776">this thread's thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="interrupt">
+<a name="11814"><h3>interrupt
+</h3></a>
+<a name="11816"><code>public void interrupt()
+</code></a>
+<dl>
+<dd><a name="11818">Interrupts this thread.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="interrupted">
+<a name="11828"><h3>interrupted
+</h3></a>
+<a name="11830"><code>public static boolean interrupted()
+</code></a>
+<dl><dl>
+<dt><a name="41048"><b>Returns:
+</b></a><dd><a name="41054">true if the current thread has been interrupted; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isAlive">
+<a name="11842"><h3>isAlive
+</h3></a>
+<a name="11844"><code>public final boolean isAlive()
+</code></a>
+<dl>
+<dd><a name="36756">Determines if this thread is alive A thread is alive if it has been started and 
+has not yet died.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="36751"><b>Returns:
+</b></a><dd><a name="36752">true if this thread is alive; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isDaemon">
+<a name="11856"><h3>isDaemon
+</h3></a>
+<a name="11858"><code>public final boolean isDaemon()
+</code></a>
+<dl><dl>
+<dt><a name="36737"><b>Returns:
+</b></a><dd><a name="36738">true if this thread is a d&aelig;mon thread; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isInterrupted">
+<a name="11878"><h3>isInterrupted
+</h3></a>
+<a name="11880"><code>public boolean isInterrupted()
+</code></a>
+<dl><dl>
+<dt><a name="36744"><b>Returns:
+</b></a><dd><a name="36745">true if this thread has been interrupted; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="join">
+<a name="11892"><h3>join
+</h3></a>
+<a name="11894"><code>public final void join()
+</code></a>
+<a name="11896"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="11898">Waits for this thread to die.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11900"><b>Throws
+</b></a><dd><a name="11906">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="11908">Another thread has interrupted the current thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="join">
+<a name="11916"><h3>join
+</h3></a>
+<a name="11918"><code>public final void join(long &#32;millis)
+</code></a>
+<a name="11920"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="11922">Waits at most millis milliseconds for for this thread to die. A timeout of 0 
+means to wait forever.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11924"><b>Parameters:
+</b></a><dd><a name="11926"><code>millis
+- </code></a><a name="11928">the time to wait in milliseconds
+</a>
+
+<dt><a name="11930"><b>Throws
+</b></a><dd><a name="11936">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="11938">Another thread has interrupted the current thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="join">
+<a name="11946"><h3>join
+</h3></a>
+<a name="11948"><code>public final void join(long &#32;millis, int &#32;nanos)
+</code></a>
+<a name="11950"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="11952">Waits at most millis milliseconds plus nanos nanoseconds for this thread to 
+die. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="41091"><b>Parameters:
+</b></a><dd><a name="41095"><code>millis
+- </code></a><a name="41096">the time to wait in milliseconds
+</a>
+<dd><a name="41128"><code>nanos
+- </code></a><a name="41129">0-999999 additional nanoseconds to wait
+</a>
+
+<dt><a name="11954"><b>Throws
+</b></a><dd><a name="11960">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="11962">Another thread has interrupted the current thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="resume">
+<a name="11972"><h3>resume
+</h3></a>
+<a name="35760"><code>public final void resume()
+</code></a>
+<dl>
+<dd><a name="35764">Resumes a suspended thread. 
+<pre>
+</pre></a>
+
+<dd><a name="43748">First, the checkAccess method <a href="java.lang.Thread.html#11640">(I-&#167;1.19.12)</a> of this thread is called with no 
+arguments. This may result in throwing a SecurityException (in the current 
+thread).
+<pre>
+</pre></a>
+
+<dd><a name="35768">If the thread is alive <a href="java.lang.Thread.html#11842">(I-&#167;1.19.23)</a> but suspended, it is resumed and is permitted to make progress in its execution.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="44465"><b>Throws
+</b></a><dd><a name="44469">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44470">If the current thread cannot modify this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="run">
+<a name="11986"><h3>run
+</h3></a>
+<a name="11988"><code>public void run()
+</code></a>
+<dl>
+<dd><a name="35668">If this thread was constructed using a separate Runnable run object (see 
+<a href="java.lang.Thread.html#11494">I</a>-<a href="java.lang.Thread.html#11574">&#167;1.19.9</a> on <a href="java.lang.Thread.html#11574">page &#32;141</a> for more information), then that Runnable object's 
+run method <a href="java.lang.Runnable.html#42949">(I-&#167;1.23.1)</a> is called. Otherwise, this method does nothing and 
+returns.
+<pre>
+</pre></a>
+
+<dd><a name="45510">Subclasses of Thread should override this method.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11992"><b>See Also:
+</b></a><dd><a name="12002">start &#32;<a href="java.lang.Thread.html#12184">(I-&#167;1.19.36)</a><br>
+stop &#32;<a href="java.lang.Thread.html#12220">(I-&#167;1.19.37)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setDaemon">
+<a name="12012"><h3>setDaemon
+</h3></a>
+<a name="12014"><code>public final void setDaemon(boolean &#32;on)
+</code></a>
+<dl>
+<dd><a name="12016">Marks this thread as either a d&aelig;mon thread or a user thread. The Java Virtual Machine exits when the only threads running are all d&aelig;mon threads.
+<pre>
+</pre></a>
+
+<dd><a name="12018">This method must be called before the thread is started.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="41112"><b>Parameters:
+</b></a><dd><a name="12020"><code>on
+- </code></a><a name="12022">if true, marks this thread as a d&aelig;mon thread
+</a>
+
+<dt><a name="12024"><b>Throws
+</b></a><dd><a name="12030">IllegalThreadStateException &#32;<a href="java.lang.IllegalThreadStateException.html#13914">(I-&#167;1.34)</a>
+</a>
+<dd><a name="12032">If this thread is active.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setName">
+<a name="12050"><h3>setName
+</h3></a>
+<a name="12052"><code>public final void setName(String &#32;name)
+</code></a>
+<dl>
+<dd><a name="43750">Changes the name of this thread to be equal to the argument name.
+<pre>
+</pre></a>
+
+<dd><a name="36660">First the checkAccess method <a href="java.lang.Thread.html#11640">(I-&#167;1.19.12)</a> of this thread is called with no 
+arguments. This may result in throwing a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12056"><b>Parameters:
+</b></a><dd><a name="12058"><code>name
+- </code></a><a name="44477">the new name for this thread.
+</a>
+
+<dt><a name="44523"><b>Throws
+</b></a><dd><a name="44527">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44528">If the current thread cannot modify this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setPriority">
+<a name="44482"><h3>setPriority
+</h3></a>
+<a name="44483"><code>public final void setPriority(int &#32;newPriority)
+</code></a>
+<dl>
+<dd><a name="43159">Changes the priority of this thread
+<pre>
+</pre></a>
+
+<dd><a name="43763">First the checkAccess method <a href="java.lang.Thread.html#11640">(I-&#167;1.19.12)</a> of this thread is called with no 
+arguments. This may result in throwing a SecurityException.
+<pre>
+</pre></a>
+
+<dd><a name="36684">Otherwise, the priority of this thread is set to the smaller of the specified 
+newPriority and the maximum permitted priority <a href="java.lang.ThreadGroup.html#12722">(I-&#167;1.20.11)</a> of the thread's 
+thread group <a href="java.lang.Thread.html#11800">(I-&#167;1.19.20)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12084"><b>Throws
+</b></a><dd><a name="12090">IllegalArgumentException &#32;<a href="java.lang.IllegalArgumentException.html#13758">(I-&#167;1.32)</a>
+</a>
+<dd><a name="44515">If the priority is not in the range MIN_PRIORITY to MAX_PRIORITY.
+</a>
+
+<dt><a name="44530"><b>Throws
+</b></a><dd><a name="44534">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44535">If the current thread cannot modify this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="sleep">
+<a name="44520"><h3>sleep
+</h3></a>
+<a name="44521"><code>public static void sleep(long &#32;millis)
+</code></a>
+<a name="12122"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="12124">Causes the currently executing thread to sleep (temporarily cease execution) for the specified number of milliseconds. The thread does not lose 
+ownership of any monitors (see <a href="java.lang.Object.html#6152">I</a>-<a href="java.lang.Object.html#6152">&#167;1.12.7</a> on <a href="java.lang.Object.html#6152">page &#32;72</a> for further discussion 
+of monitors).
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12126"><b>Parameters:
+</b></a><dd><a name="12128"><code>millis
+- </code></a><a name="12130">the length of time to sleep in milliseconds
+</a>
+
+<dt><a name="12132"><b>Throws
+</b></a><dd><a name="12138">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="12140">Another thread has interrupted this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="sleep">
+<a name="12148"><h3>sleep
+</h3></a>
+<a name="12150"><code>public static void sleep(long &#32;millis, int &#32;nanos)
+</code></a>
+<a name="12152"><code>throws InterruptedException
+</code></a>
+<dl>
+<dd><a name="43176">Causes the currently executing thread to sleep (cease execution) for the 
+specified number of milliseconds plus the specified number of nanoseconds. The thread does not lose ownership of any monitors (see <a href="java.lang.Object.html#6152">I</a>-<a href="java.lang.Object.html#6152">&#167;1.12.7</a> 
+on <a href="java.lang.Object.html#6152">page &#32;72</a> for further discussion of monitors).
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12156"><b>Parameters:
+</b></a><dd><a name="12158"><code>millis
+- </code></a><a name="12160">the length of time to sleep in milliseconds
+</a>
+<dd><a name="12162"><code>nanos
+- </code></a><a name="12164">0-999999 additional nanoseconds to sleep
+</a>
+
+<dt><a name="12166"><b>Throws
+</b></a><dd><a name="12172">InterruptedException &#32;<a href="java.lang.InterruptedException.html#14148">(I-&#167;1.37)</a>
+</a>
+<dd><a name="12174">Another thread has interrupted this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="start">
+<a name="12184"><h3>start
+</h3></a>
+<a name="12186"><code>public void start()
+</code></a>
+<dl>
+<dd><a name="35672">Causes this thread to begin execution; the Java Virtual Machine calls the 
+run method <a href="java.lang.Thread.html#11986">(I-&#167;1.19.30)</a> of this thread.
+<pre>
+</pre></a>
+
+<dd><a name="35679">The result is that two threads are running concurrently: the current thread 
+(which returns from the call to the start method) and the other thread (which 
+executes its run method).
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12190"><b>Throws
+</b></a><dd><a name="12196">IllegalThreadStateException &#32;<a href="java.lang.IllegalThreadStateException.html#13914">(I-&#167;1.34)</a>
+</a>
+<dd><a name="12198">If the thread was already started.
+</a>
+
+<dt><a name="12200"><b>See Also:
+</b></a><dd><a name="12210">run &#32;<a href="java.lang.Thread.html#11986">(I-&#167;1.19.30)</a><br>
+stop &#32;<a href="java.lang.Thread.html#12220">(I-&#167;1.19.37)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="stop">
+<a name="12220"><h3>stop
+</h3></a>
+<a name="12222"><code>public final void stop()
+</code></a>
+<dl>
+<dd><a name="35684">Forces this thread to stop executing.
+<pre>
+</pre></a>
+
+<dd><a name="43767">First, the checkAccess method <a href="java.lang.Thread.html#11640">(I-&#167;1.19.12)</a> of this thread is called with no 
+arguments. This may result in throwing a SecurityException (in the current 
+thread).
+<pre>
+</pre></a>
+
+<dd><a name="35685">The thread represented by the this thread is forced to stop whatever it is 
+doing abnormally and to throw a newly created ThreadDeath <a href="java.lang.ThreadDeath.html#15830">(I-&#167;1.59)</a> object 
+as an exception.
+<pre>
+</pre></a>
+
+<dd><a name="35686">It is permitted to stop a thread that has not yet been started. If the thread is 
+eventually started, it immediately terminates.
+<pre>
+</pre></a>
+
+<dd><a name="35687">An application should not normally try to catch ThreadDeath unless it must 
+do some extraordinary cleanup operation (note that the throwing of ThreadDeath will cause finally clauses of try statements to be executed before the 
+thread officially dies).  If a catch clause does catch a ThreadDeath object, it is 
+important to rethrow the object so that the thread actually dies. 
+<pre>
+</pre></a>
+
+<dd><a name="43192">The top-level error handler that reacts to otherwise uncaught exceptions 
+<a href="java.lang.ThreadGroup.html#12920">(I-&#167;1.20.23)</a> does not print out a message or otherwise notify the application if the uncaught exception is an instance of ThreadDeath.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12226"><b>See Also:
+</b></a><dd><a name="12236">start &#32;<a href="java.lang.Thread.html#12184">(I-&#167;1.19.36)</a><br>
+run &#32;<a href="java.lang.Thread.html#11986">(I-&#167;1.19.30)</a>.
+</a>
+
+<dt><a name="44537"><b>Throws
+</b></a><dd><a name="44541">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44542">If the current thread cannot modify this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="stop">
+<a name="12244"><h3>stop
+</h3></a>
+<a name="12246"><code>public final void stop(Throwable &#32;obj)
+</code></a>
+<dl>
+<dd><a name="43769">Forces the this thread to stop executing.
+<pre>
+</pre></a>
+
+<dd><a name="35699">First, the checkAccess method <a href="java.lang.Thread.html#11640">(I-&#167;1.19.12)</a> of this thread is called with no 
+arguments. This may result in throwing a SecurityException (in the current 
+thread).
+<pre>
+</pre></a>
+
+<dd><a name="35700">If the argument obj is null, a NullPointerException is thrown (in the current 
+thread).
+<pre>
+</pre></a>
+
+<dd><a name="35701">The thread represented by this thread is forced to complete whatever it is 
+doing abnormally and to throw the Throwable object obj as an exception. This 
+is an unusual action to take; normally, the stop method that takes no arguments <a href="java.lang.Thread.html#12220">(I-&#167;1.19.37)</a> should be used.
+<pre>
+</pre></a>
+
+<dd><a name="35705">It is permitted to stop a thread that has not yet been started. If the thread is 
+eventually started, it immediately terminates.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12250"><b>Parameters:
+</b></a><dd><a name="12252"><code>obj
+- </code></a><a name="12254">the Throwable object to be thrown
+</a>
+
+<dt><a name="44544"><b>Throws
+</b></a><dd><a name="44548">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44549">If the current thread cannot modify this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="suspend">
+<a name="12276"><h3>suspend
+</h3></a>
+<a name="12278"><code>public final void suspend()
+</code></a>
+<dl>
+<dd><a name="35721">Suspends this thread.
+<pre>
+</pre></a>
+
+<dd><a name="43770">First, the checkAccess method <a href="java.lang.Thread.html#11640">(I-&#167;1.19.12)</a> of this thread is called with no 
+arguments. This may result in throwing a SecurityException (in the current 
+thread).
+<pre>
+</pre></a>
+
+<dd><a name="35725">If the thread is alive <a href="java.lang.Thread.html#11842">(I-&#167;1.19.23)</a>, it is suspended and makes no further 
+progress unless and until it is resumed.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="44551"><b>Throws
+</b></a><dd><a name="44555">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44556">If the current thread cannot modify this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="12290"><h3>toString
+</h3></a>
+<a name="12292"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="31451"><b>Returns:
+</b></a><dd><a name="31452">a string representation of this thread.
+</a>
+
+<dt><a name="12296"><b>Overrides:
+</b></a><dd><a name="12302">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="yield">
+<a name="12312"><h3>yield
+</h3></a>
+<a name="12314"><code>public static void yield()
+</code></a>
+<dl>
+<dd><a name="12316">Causes the currently executing thread object to temporarily pause and 
+allow other threads to execute.
+<pre>
+</pre></a>
+</dl>
+
+<hr>
+<sup>1</sup><!--"Footnote" is same tag as body.-->
+<a name="41018">Unimplemented in Java 1.1.
+</a><p><!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.System.html">Prev</a>  <a href="java.lang.ThreadGroup.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

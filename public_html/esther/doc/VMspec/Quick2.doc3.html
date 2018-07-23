@@ -1,0 +1,519 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>VM Spec  </title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+<table width=600><tr>
+<td><a href="Copyright.doc.html">Contents</a> | <a href="Quick2.doc2.html">Prev</a> | <a href="Quick2.doc4.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+
+<hr><br>
+ 
+
+<a name="instanceof_quick"></a>
+<h2>instanceof_quick</h2>
+<a name="instanceof_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="5311"></a>
+<p>
+<Table Border="0">
+<tr><td><a name="5306"></a>
+ <i>instanceof_quick</i>
+<td><a name="423"></a>
+ 
+
+<tr><td><a name="5308"></a>
+ <i>indexbyte1</i>
+<td><a name="430"></a>
+ 
+
+<tr><td><a name="5310"></a>
+ <i>indexbyte2</i>
+<td><a name="437"></a>
+ 
+
+</Table>
+Determine if object is of given type<p>
+<a name="instanceof_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12455"></a>
+<i>instanceof_quick</i> = 225 (0xe1)<p>
+<a name="instanceof_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="5312"></a>
+..., <i>objectref</i><em> </em><img src="chars/arrwdbrt.gif">  ..., <i>result</i><p>
+<a name="instanceof_quick.Description"></a>
+<b>Description</b><br>
+<a name="8113"></a>
+The <i>objectref</i>, which must be of type <code>reference</code>, is popped from the operand stack. The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The class at that index of the constant pool must have already been successfully resolved and may be a class, array, or interface.<p>
+<a name="18712"></a>
+If <i>objectref</i> is not <code>null</code> and is an instance of the resolved class, array, or interface, the <i>instanceof_quick</i> instruction pushes an <code>int</code> <i>result</i> of <i>1</i> as an int on the operand stack. Otherwise, it pushes an <code>int</code> <i>result</i> of <i>0</i>.<p>
+<a name="18713"></a>
+The following rules are used to determine whether an <i>objectref</i> that is not <code>null</code> is an instance of the resolved type: If S is the class of the object referred to by <i>objectref</i> and T is the resolved class, array, or instance type, <i>instanceof_quick</i> determines whether <i>objectref</i> is an instance of T as follows:<p>
+<ul><a name="11862"></a>
+<li>If S is an ordinary (non-array) class, then:
+<ul>
+<a name="11866"></a>
+<li>If T is a class type, then S must be the same class <a href="Concepts.doc.html#20389">(&#167;2.8.1)</a> as T, or a subclass of T.
+<a name="11870"></a>
+<li>If T is an interface type, then S must implement <a href="Concepts.doc.html#16432">(&#167;2.13)</a> interface T.
+<a name="22108"></a>
+ instanceof_quick	 (cont.)	instanceof_quick (cont.)<p>
+</ul>
+<a name="11871"></a>
+<li>If S is a class representing the array type SC<code>[]</code>, that is, an array of components of type SC, then:
+<ul>
+<a name="11875"></a>
+<li>If T is a class type, then T must be <code>Object</code> <a href="Concepts.doc.html#27433">(&#167;2.4.6)</a>.
+<a name="11876"></a>
+<li>If T is an array type TC<code>[]</code>, that is, an array of components of type TC, then one of the following must be true:
+<ul>
+<a name="11880"></a>
+<li>TC and SC are the same primitive type <a href="Concepts.doc.html#19511">(&#167;2.4.1)</a>.
+<a name="11884"></a>
+<li>TC and SC are reference types <a href="Concepts.doc.html#25376">(&#167;2.4.5)</a> and type SC can be cast to TC by these runtime rules. 
+</ul>
+</ul>
+</ul><a name="8134"></a>
+S cannot be an interface type, because there are no instances of interfaces, only instances of classes and arrays.<p>
+<a name="instanceof_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="5318"></a>
+The opcode of this instruction was originally <i>instanceof</i>. The operands of the <i>instanceof</i> instruction are not modified.<p>
+<a name="5243"></a>
+ invokeinterface_quick		invokeinterface_quick<p>
+<a name="instanceof_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="5257"></a>
+Invoke interface method<p>
+<Table Border="0">
+<tr><td><a name="5248"></a>
+ <i>invokeinterface_quick</i>
+<td><a name="182"></a>
+ 
+
+<tr><td><a name="5250"></a>
+ <i>idbyte1</i>
+<td><a name="189"></a>
+ 
+
+<tr><td><a name="5252"></a>
+ <i>idbyte2</i>
+<td><a name="196"></a>
+ 
+
+<tr><td><a name="5254"></a>
+ <i>nargs</i>
+<td><a name="203"></a>
+ 
+
+<tr><td><a name="5256"></a>
+ <i>guess</i>
+<td><a name="210"></a>
+ 
+
+</Table>
+<p>
+<a name="instanceof_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12456"></a>
+<i>invokeinterface_quick</i> = 218 (0xda)<p>
+<a name="instanceof_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="5258"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif"> ...<p>
+<a name="instanceof_quick.Description"></a>
+<b>Description</b><br>
+<a name="11638"></a>
+The unsigned <i>idbyte1</i> and <i>idbyte2</i> are used to construct an identifier for the name and descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a> of the desired method, where the value of the identifier is (<i>idbyte1</i> << 8) | <i>idbyte2</i>. <p>
+<a name="11642"></a>
+The <i>nargs</i> operand is an unsigned byte which must not be zero. The <i>objectref</i> must be of type <code>reference</code> and must be followed on the operands stack by <i>nargs</i> - 1 words of arguments. The method table of the class of the type of <i>objectref</i> is determined. If <i>objectref</i> is an array type, then the method table of class <code>Object</code> is used.<p>
+<a name="11615"></a>
+The unsigned <i>guess</i> is used to index into the method table. If there is a method at index <i>guess</i>, and if its identifier is identical to the constructed identifier, then that method is selected. Otherwise, the method table is searched for a method whose identifier is identical to the constructed identifier. If one is found, the current value of <i>guess</i> is overwritten by that index.<p>
+<a name="11655"></a>
+The result of the search is a method table entry, which includes a direct reference to the code for the interface method and the method's modifier information ((see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>). The method table entry must be that of a <code>public</code> method.<p>
+<a name="22116"></a>
+ invokeinterface_quick	 (cont.)	invokeinterface_quick (cont.)<p>
+<a name="18526"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+<a name="18527"></a>
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="18528"></a>
+If the method is <code>native</code> and the platform-dependent code that implements it has not yet been loaded and linked into the Java Virtual Machine, that is done. The <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="instanceof_quick.Linking"></a>
+<b>Linking Exceptions</b><br>
+<a name="12075"></a>
+If no method matching the resolved name and descriptor can be found in the class of <i>objectref</i>, <i>invokeinterface_quick</i> throws an <code>IncompatibleClassChangeError</code>.<p>
+<a name="11782"></a>
+ Otherwise, if the selected method is a class (<code>static</code>) method, the <i>invokeinterface_quick</i> instruction throws an <code>IncompatibleClassChangeError</code>.<p>
+<a name="11783"></a>
+ Otherwise, if the selected method is not <code>public</code>, the <i>in-vokeinterface_quick</i> instruction throws an <code>IllegalAccess-Error</code>.<p>
+<a name="12163"></a>
+ Otherwise, if the selected method is <code>abstract</code>, <i>invoke-interface_quick</i> throws an <code>AbstractMethodError</code>.<p>
+<a name="12164"></a>
+ Otherwise, if the selected method is <code>native</code> and the code that implements the method cannot be loaded or linked, <i>invoke-interface_quick </i>throws an <code>UnsatisfiedLinkError</code>.<p>
+<a name="22168"></a>
+ invokeinterface_quick	 (cont.)	invokeinterface_quick (cont.)<p>
+<a name="instanceof_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="5268"></a>
+Otherwise, if <i>objectref</i> is <code>null</code>, the <i>invokeinterface_quick</i> instruction throws a <code>NullPointerException</code>. <p>
+<a name="instanceof_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="5270"></a>
+The opcode of this instruction was originally <i>invokeinterface</i>. The initial value of <i>guess</i> is 0, the operand value supplied by <i>invokeinterface</i>. The identifiers being compared and stored in the <i>invokeinterface_quick</i> instruction encode a method name and descriptor as a 16-bit quantity that can be compared quickly. The details of the encoding are implementation-specific. The bytes of the identifier for the method being invoked, <i>idbyte1</i> and <i>idbyte2</i>, replace the original constant pool index bytes. The identifier can be calculated when each method is loaded, or at run time. The value of the <i>nargs</i> operand is not modified.<p>
+<a name="12207"></a>
+ invokenonvirtual_quick		invokenonvirtual_quick<p>
+<a name="instanceof_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="12217"></a>
+Invoke an instance initialization method or a private method, dispatching based on compile-time type<p>
+<Table Border="0">
+<tr><td><a name="12212"></a>
+ <i>invokenonvirtual_quick</i>
+<td><a name="664"></a>
+ 
+
+<tr><td><a name="12214"></a>
+ <i>indexbyte1</i>
+<td><a name="671"></a>
+ 
+
+<tr><td><a name="12216"></a>
+ <i>indexbyte2</i>
+<td><a name="678"></a>
+ 
+
+</Table>
+<p>
+<a name="instanceof_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12457"></a>
+<i>invokenonvirtual_quick</i> = 215 (0xd7)<p>
+<a name="instanceof_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="12218"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif">  ...<p>
+<a name="instanceof_quick.Description"></a>
+<b>Description</b><br>
+<a name="12219"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The constant pool item at the index must be a <code>CONSTANT_Methodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> which must already have been resolved successfully. The constant pool entry representing the resolved method includes a direct reference to the code for the method, an unsigned byte <i>nargs</i> which must be greater than zero, and the method's modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+<a name="18530"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+<a name="18531"></a>
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="18532"></a>
+If the method is <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="22182"></a>
+ invokenonvirtual_quick	 (cont.)	invokenonvirtual_quick (cont.)<p>
+<a name="instanceof_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="12339"></a>
+If <i>objectref</i> is <code>null</code>, the <i>invokenonvirtual_quick</i> instruction throws a <code>NullPointerException</code>.<p>
+<a name="instanceof_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="12233"></a>
+The opcode of this instruction was originally <i>invokespecial</i>, and the method it invoked was determined dynamically to be either an instance initialization method <code>&lt;init&gt;</code> or a <code>private</code> method. The operands of the <i>invokespecial</i> instruction are not modified.<p>
+<a name="18418"></a>
+The difference between the <i>invokenonvirtual_quick</i> and the <i>in-vokevirtual_quick_w</i> instructions is that <i>invokevirtual_quick_w</i> invokes a method based on the actual (runtime) type of the object. The <i>invokenonvirtual_quick</i> instruction invokes an instance initialization method or <code>private</code> method based on the compile-time type of the object.<p>
+<a name="5193"></a>
+ invokesuper_quick		invokesuper_quick<p>
+<a name="instanceof_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="5203"></a>
+Invoke a superclass method, dispatching based on compile-time type<p>
+<Table Border="0">
+<tr><td><a name="5198"></a>
+ <i>invokesuper_quick</i>
+<td><a name="326"></a>
+ 
+
+<tr><td><a name="5200"></a>
+ <i>indexbyte1</i>
+<td><a name="333"></a>
+ 
+
+<tr><td><a name="5202"></a>
+ <i>indexbyte2</i>
+<td><a name="340"></a>
+ 
+
+</Table>
+<p>
+<a name="instanceof_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12458"></a>
+<i>invokesuper_quick</i> = 216 (0xd8)<p>
+<a name="instanceof_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="5204"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif">  ...<p>
+<a name="instanceof_quick.Description"></a>
+<b>Description</b><br>
+<a name="12282"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the method table of the superclass of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The specified method table entry includes a direct reference to the code for the method, an unsigned byte <i>nargs</i> which must be greater than zero, and the method's modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+<a name="18545"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+<a name="18546"></a>
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="18547"></a>
+If the method is <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="22197"></a>
+ invokesuper_quick	 (cont.)	invokesuper_quick (cont.)<p>
+<a name="instanceof_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="5211"></a>
+If <i>objectref</i> is <code>null</code>, the <i>invokesuper_quick</i> instruction throws a <code>NullPointerException</code>.<p>
+<a name="instanceof_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="12259"></a>
+The opcode of this instruction was originally <i>invokespecial</i>, and the method it invoked was determined dynamically to be a method in a superclass of the current object. The operands of the <i>invokespecial</i> instruction are not modified.<p>
+<a name="11950"></a>
+The difference between the <i>invokesuper_quick</i> and the <i>invokevirtual_quick_w</i> instructions is that <i>invokevirtual_quick_w</i> invokes a method based on the class of the object. The <i>invokesuper_quick</i> instruction is used to invoke methods in a superclass of the current class. <p>
+<a name="11952"></a>
+The <i>invokesuper_quick</i> instruction was introduced in Sun's JDK 1.0.2 release to fix a bug in earlier versions of the Java Virtual Machine. Prior to that release, the <i>invokespecial</i> instruction (then named <i>invokenonvirtual</i>) would always be converted to the <i>invokenonvirtual_quick</i> instruction.<p>
+<a name="11948"></a>
+<p>
+<a name="5220"></a>
+ <a href="Quick2.doc.html#">invokestatic_quick		invokestatic_quick</a><p>
+<a name="instanceof_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="5230"></a>
+Invoke a class (static) method<p>
+<Table Border="0">
+<tr><td><a name="5225"></a>
+ <i>invokestatic_quick</i>
+<td><a name="52"></a>
+ 
+
+<tr><td><a name="5227"></a>
+ <i>indexbyte1</i>
+<td><a name="59"></a>
+ 
+
+<tr><td><a name="5229"></a>
+ <i>indexbyte2</i>
+<td><a name="66"></a>
+ 
+
+</Table>
+<p>
+<a name="instanceof_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12459"></a>
+<i>invokestatic_quick</i> = 217 (0xd9)<p>
+<a name="instanceof_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="5231"></a>
+...<em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif">  ...<p>
+<a name="instanceof_quick.Description"></a>
+<b>Description</b><br>
+<a name="11579"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The constant pool item at the index must be a <code>CONSTANT_Methodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> which must already have been resolved successfully.<p>
+<a name="11586"></a>
+The constant pool entry representing the resolved method includes a direct reference to the code for the method, an unsigned byte <i>nargs</i> which may be zero, and the method's modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+<a name="18563"></a>
+If the method is <code>synchronized</code>, the monitor associated with the current class is acquired.<p>
+<a name="18564"></a>
+If the method is not <code>native</code>, the <i>nargs </i>words of arguments are popped from the operand stack. A new stack frame is created for the method being invoked, and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>arg1</i> in local variable <i>0</i>, <i>arg2</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="18565"></a>
+If the method is <code>native</code>, the <i>nargs </i>words of arguments are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="instanceof_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="5239"></a>
+The opcode of this instruction was originally <i>invokestatic</i>. The operands of the <i>invokestatic</i> instruction are not modified.<p>
+<a name="5151"></a>
+ invokevirtual_quick		invokevirtual_quick<p>
+<a name="instanceof_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="5161"></a>
+Invoke instance method<p>
+<Table Border="0">
+<tr><td><a name="5156"></a>
+ <i>invokevirtual_quick</i>
+<td><a name="156"></a>
+ 
+
+<tr><td><a name="5158"></a>
+ <i>index</i>
+<td><a name="163"></a>
+ 
+
+<tr><td><a name="5160"></a>
+ <i>nargs</i>
+<td><a name="170"></a>
+ 
+
+</Table>
+; dispatch based on class<p>
+<a name="instanceof_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12460"></a>
+<i>invokevirtual_quick</i> = 214 (0xd6)<p>
+<a name="instanceof_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="5162"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif"> ...<p>
+<a name="instanceof_quick.Description"></a>
+<b>Description</b><br>
+<a name="11507"></a>
+The <i>objectref</i> must be of type <code>reference</code> and must reference a class instance. The <i>index</i> operand is an unsigned byte, and the <i>nargs</i> operand is an unsigned byte, which must not be zero. The <i>index</i> is an index into the method table of the class of the type of <i>objectref</i>. The table entry at that index includes the method's code and its modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+<a name="18595"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+<a name="22239"></a>
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="22259"></a>
+ invokevirtual_quick	 (cont.)	invokevirtual_quick (cont.)<p>
+<a name="22241"></a>
+If the method is <code>native</code> and the platform-dependent code that implements it has not yet been loaded and linked into the Java Virtual Machine, that is done. The <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="instanceof_quick.Linking"></a>
+<b>Linking Exception</b><br>
+<a name="12125"></a>
+If the specified method is <code>native</code> and the code that implements the method cannot be loaded or linked, the <i>invokevirtual_quick</i> instruction throws an <code>UnsatisfiedLinkError</code>.<p>
+<a name="instanceof_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="5166"></a>
+Otherwise, if <i>objectref</i> is <code>null</code>, the <i>invokevirtual_quick</i> instruction throws a <code>NullPointerException</code>. <p>
+<a name="instanceof_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="5168"></a>
+The opcode of this instruction was originally <i>invokevirtual</i>, with <i>objectref</i> not referring to an instance of <code>java.lang.Object</code> and with operands determined dynamically to represent a method with a method table index of 255 or less. When the constant pool entry referenced by an <i>invokevirtual</i> instruction is resolved, a one-byte index for the method it references is generated. That index replaces the first operand byte of the original <i>invokevirtual</i> instruction. The second operand byte of the <i>invokevirtual</i> instruction is replaced by <i>nargs</i>, the number of argument words expected by the method.<p>
+<a name="12640"></a>
+An <i>invokevirtual</i> instruction referring to an instance of <code>java.lang.Object</code> and with operands representing a constant pool index of 255 or less will instead be converted into an <i>invokevirtualobject_quick</i> instruction. Any <i>invokevirtual</i> instruction with operands representing a constant pool index greater than 255 will be converted into an <i>invokevirtual_quick_w</i> instruction.<p>
+<a name="12635"></a>
+ invokevirtual_quick_w		invokevirtual_quick_w<p>
+<a name="instanceof_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="6740"></a>
+Invoke instance method<p>
+<Table Border="0">
+<tr><td><a name="6735"></a>
+ <i>invokevirtual_quick_w</i>
+<td><a name="638"></a>
+ 
+
+<tr><td><a name="6737"></a>
+ <i>indexbyte1</i>
+<td><a name="645"></a>
+ 
+
+<tr><td><a name="6739"></a>
+ <i>indexbyte2</i>
+<td><a name="652"></a>
+ 
+
+</Table>
+, dispatching on class (wide index)<p>
+<a name="instanceof_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12461"></a>
+<i>invokevirtual_quick_w</i> = 226 (0xe2)<p>
+<a name="instanceof_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="6741"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif"> ...<p>
+<a name="instanceof_quick.Description"></a>
+<b>Description</b><br>
+<a name="8709"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The constant pool item at the index must be a <code>CONSTANT_Methodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a> which must already have been resolved successfully. The constant pool entry representing the resolved method includes an unsigned <i>index</i> into the method table of the resolved class and an unsigned byte <i>nargs</i> which must not be zero.<p>
+<a name="11542"></a>
+The <i>objectref</i> must be of type <code>reference</code>. The <i>index</i> is used as an index into the method table of the class of the type of <i>objectref</i>. If the <i>objectref</i> is an array type, then the method table of class <code>Object</code> is used. The table entry at that index includes the method's code and its modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+<a name="18603"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+<a name="22268"></a>
+ invokevirtual_quick_w	 (cont.)	invokevirtual_quick_w (cont.)<p>
+<a name="18604"></a>
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="18605"></a>
+If the method is <code>native</code> and the platform-dependent code that implements it has not yet been loaded and linked into the Java Virtual Machine, that is done. The <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="instanceof_quick.Linking"></a>
+<b>Linking Exception</b><br>
+<a name="12154"></a>
+If the specified method is <code>native</code> and the code that implements the method cannot be loaded or linked, the <i>invokevirtual_quick_w</i> instruction throws an <code>UnsatisfiedLinkError</code>.<p>
+<a name="instanceof_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="6745"></a>
+Otherwise, if <i>objectref</i> is <code>null</code>, the <i>invokevirtual_quick_w</i> instruction throws a <code>NullPointerException</code>. <p>
+<a name="instanceof_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="6747"></a>
+The opcode of this instruction was originally <i>invokevirtual</i>, with operands determined dynamically to represent a method with a method table index greater than 255. The operands of the <i>invokevirtual</i> instruction are not modified.<p>
+<a name="9000"></a>
+The <i>invokevirtual_quick</i> and <i>invokevirtualobject_quick</i> instructions only support a one-byte offset into the method table of <i>objectref</i>. The <i>invokevirtual_quick_w</i> instruction can be used to for invocations of methods that cannot be represented using <i>invokevirtual_quick</i>.<p>
+<a name="11936"></a>
+ invokevirtualobject_quick		invokevirtualobject_quick<p>
+<a name="instanceof_quick.Operation"></a>
+<b>Operation</b><br>
+<a name="9288"></a>
+Invoke instance method<p>
+<Table Border="0">
+<tr><td><a name="9283"></a>
+ <i>invokevirtualobject_quick</i>
+<td><a name="78"></a>
+ 
+
+<tr><td><a name="9285"></a>
+ <i>index</i>
+<td><a name="85"></a>
+ 
+
+<tr><td><a name="9287"></a>
+ <i>nargs</i>
+<td><a name="92"></a>
+ 
+
+</Table>
+ of class <code>java.lang.Object</code><p>
+<a name="instanceof_quick.Forms"></a>
+<b>Forms</b><br>
+<a name="12462"></a>
+<i>invokevirtualobject_quick</i> = 219 (0xdb)<p>
+<a name="instanceof_quick.Stack"></a>
+<b>Stack</b><br>
+<a name="9289"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif"> ...<p>
+<a name="instanceof_quick.Description"></a>
+<b>Description</b><br>
+<a name="9068"></a>
+The <i>objectref</i> must be of type <code>reference</code>. The <i>index</i> operand is an unsigned byte, and the <i>nargs</i> operand is an unsigned byte which must not be zero. The <i>index</i> is an index into the method table of the class of the type of <i>objectref</i>. If the <i>objectref</i> is an array type, then the method table of class <code>Object</code> is used. The table entry at that index includes the method's code and its modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+<a name="18607"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+<a name="22862"></a>
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="22863"></a>
+ invokevirtualobject_quick	 (cont.)	invokevirtualobject_quick (cont.)<p>
+<a name="22864"></a>
+If the method is <code>native</code> and the platform-dependent code that implements it has not yet been loaded and linked into the Java Virtual Machine, that is done. The <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="instanceof_quick.Linking"></a>
+<b>Linking Exception</b><br>
+<a name="12194"></a>
+If the specified method is <code>native</code> and the code that implements the method cannot be loaded or linked, <i>invokevirtual_quick</i> throws an <code>UnsatisfiedLinkError</code>.<p>
+<a name="instanceof_quick.Runtime"></a>
+<b>Runtime Exception</b><br>
+<a name="12078"></a>
+Otherwise, if <i>objectref</i> is <code>null</code>, the <i>invokevirtualobject_quick</i> instruction throws a <code>NullPointerException</code>.<p>
+<a name="instanceof_quick.Notes"></a>
+<b>Notes</b><br>
+<a name="9302"></a>
+The opcode of this instruction was originally <i>invokevirtual</i>, and it referred to a method of the class <code>java.lang.Object</code> determined dynamically to have a method table index of 255 or less. The <i>invokevirtualobject_quick</i> instruction is specifically for the benefit of arrays.<p>
+<a name="5908"></a>
+When the constant pool entry referenced by an <i>invokevirtual</i> instruction is resolved, a one-byte index for the method it references is generated. That index replaces the first operand byte of the original <i>invokevirtual</i> instruction. The second operand byte of the <i>invokevirtual</i> instruction is replaced by <i>nargs</i>, the number of argument words expected by the method.<p>
+<a name="28017"></a>
+The <i>invokevirtualobject_quick</i> instruction only supports a one-byte index into the method table of <i>objectref</i>. Objects with large numbers of methods may not be able to have all their methods referenced with <i>_quick</i> variants. It is always correct, if less efficient, to re-fuse to convert an instance of an <i>invokevirtual</i> instruction to <i>invokevirtualobject_quick</i>.<p>
+<a name="12643"></a>
+An <i>invokevirtual</i> instruction not referring to an instance of <code>java.lang.Object</code> and with operands representing a constant pool index of 255 or less will instead be converted into an <i>invokevirtual_quick</i> instruction. Any <i>invokevirtual</i> instruction with operands representing a constant pool index greater than 255 will be converted into an <i>invokevirtual_quick_w</i> instruction.<p>
+
+
+<hr>
+<!-- This inserts footnotes--><p><br>
+<a href="Copyright.doc.html">Contents</a> | <a href="Quick2.doc2.html">Prev</a> | <a href="Quick2.doc4.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size=-1>Java Virtual Machine Specification (HTML generated by chsieh on March 13, 1997)<br>
+<i><a href="jcopyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

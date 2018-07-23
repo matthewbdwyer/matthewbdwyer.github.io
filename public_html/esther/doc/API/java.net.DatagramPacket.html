@@ -1,0 +1,148 @@
+<html><head><title>Class DatagramPacket</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.net.html">This Package</a>  <a href="java.net.ContentHandler.html">Prev</a>  <a href="java.net.DatagramSocket.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="293"><h1>	&#167;4.2 Class DatagramPacket</h1></a>
+<pre>public &#32;final &#32;class &#32;java.net.<strong>DatagramPacket
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>DatagramPacket</strong>(byte &#32;ibuf[], int &#32;ilength);	<a href="java.net.DatagramPacket.html#355">&#167;4.2.1</a>
+ &#32;  public <strong>DatagramPacket</strong>(byte &#32;ibuf[], int &#32;ilength,	<a href="java.net.DatagramPacket.html#377">&#167;4.2.2</a>
+         &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;InetAddress &#32;iaddr, int iport);
+
+ &#32; &#32; &#32; &#32;// Methods
+ &#32; &#32;public InetAddress <strong>getAddress</strong>();	<a href="java.net.DatagramPacket.html#407">&#167;4.2.3</a>
+    public byte[] <strong>getData</strong>();	<a href="java.net.DatagramPacket.html#419">&#167;4.2.4</a>
+    public int <strong>getLength</strong>();	<a href="java.net.DatagramPacket.html#431">&#167;4.2.5</a>
+    public int <strong>getPort</strong>();	<a href="java.net.DatagramPacket.html#443">&#167;4.2.6</a>
+}
+</pre><a name="343">This class represents a datagram packet. 
+</a><p><a name="26146">Datagram packets are used to implement a connectionless packet delivery service. Each 
+message is routed from one machine to another based solely on information contained 
+within that packet. Multiple packets sent from a machine to another might be routed differently, and might arrive in any order.
+</a><p>
+<hr>
+<a name="347"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="DatagramPacket">
+<a name="355"><h3>DatagramPacket
+</h3></a>
+<a name="357"><code>public DatagramPacket(byte &#32;ibuf[], int &#32;ilength)
+</code></a>
+<dl>
+<dd><a name="26143">Constructs a DatagramPacket for receiving packets of length ilength.
+<pre>
+</pre></a>
+
+<dd><a name="361">The length argument must be less than or equal to ibuf.length
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29757"><b>Parameters:
+</b></a><dd><a name="363"><code>ibuf
+- </code></a><a name="365">buffer for holding the incoming datagram
+</a>
+<dd><a name="367"><code>ilength
+- </code></a><a name="369">the number of bytes to read
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="DatagramPacket">
+<a name="377"><h3>DatagramPacket
+</h3></a>
+<a name="26185"><code>public DatagramPacket(byte &#32;ibuf[], int &#32;ilength,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;InetAddress &#32;iaddr, int &#32;iport)
+</code></a>
+<dl>
+<dd><a name="26186">Constructs a DatagramPacket for sending packets of length ilength to the 
+specified port number on the specified host.
+<pre>
+</pre></a>
+
+<dd><a name="29759">The length argument must be less than or equal to ibuf.length
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26237"><b>Parameters:
+</b></a><dd><a name="26188"><code>ibuf
+- </code></a><a name="387">the packet data
+</a>
+<dd><a name="389"><code>ilength
+- </code></a><a name="391">the packet length
+</a>
+<dd><a name="393"><code>iaddr
+- </code></a><a name="28787">the desination address(<a href="java.net.InetAddress.html#681">&#167;4.4</a>)
+</a>
+<dd><a name="28789"><code>iport
+- </code></a><a name="26167">the destination port number
+</a>
+</dl></dl>
+<hr>
+<a name="397"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="getAddress">
+<a name="407"><h3>getAddress
+</h3></a>
+<a name="409"><code>public InetAddress getAddress()
+</code></a>
+<dl><dl>
+<dt><a name="26265"><b>Returns:
+</b></a><dd><a name="26266">the IP address (<a href="java.net.InetAddress.html#681">&#167;4.4</a>) of the machine to which this datagram is being 
+sent, or from which the datagram was received.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getData">
+<a name="419"><h3>getData
+</h3></a>
+<a name="421"><code>public byte[] getData()
+</code></a>
+<dl><dl>
+<dt><a name="26275"><b>Returns:
+</b></a><dd><a name="26276">the data received, or the data to be sent.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getLength">
+<a name="431"><h3>getLength
+</h3></a>
+<a name="433"><code>public int getLength()
+</code></a>
+<dl><dl>
+<dt><a name="26277"><b>Returns:
+</b></a><dd><a name="26278">the length of the data to be sent, or the length of the data received.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getPort">
+<a name="443"><h3>getPort
+</h3></a>
+<a name="445"><code>public int getPort()
+</code></a>
+<dl><dl>
+<dt><a name="26281"><b>Returns:
+</b></a><dd><a name="26284">the port number on the remote host to which this datagram is being 
+sent, or from which the dagram was received.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.net.html">This Package</a>  <a href="java.net.ContentHandler.html">Prev</a>  <a href="java.net.DatagramSocket.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

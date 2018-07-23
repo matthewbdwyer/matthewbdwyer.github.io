@@ -1,0 +1,1545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>VM Spec  </title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+<table width=100%><tr>
+<td><a href="VMSpecTOC.doc.html">Contents</a> | <a href="Instructions2.doc6.html">Prev</a> | <a href="Instructions2.doc8.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+
+<hr><br>
+ 
+
+<a name="i2b">
+</a><h2>i2b</h2>
+<a name="i2b.Operation"></a>
+<b>Operation</h3></b>
+<a name="68328"></a>
+Convert <code>int</code> to <code>byte</code><p><Table Border="1">
+<tr><td><a name="68327"></a>
+ <i>i2b</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="i2b.Forms"></a>
+<b>Forms</h3></b>
+<a name="68329"></a>
+<i>i2b</i> = 145 (0x91)<p>
+<a name="i2b.Stack"></a>
+<b>Stack</h3></b>
+<a name="68330"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="i2b.Description"></a>
+<b>Description</h3></b>
+<a name="68331"></a>
+The <i>value</i> on the top of the operand stack must be of type <code>int</code>. It is popped from the operand stack, truncated to a <code>byte</code>, then sign-extended to an <code>int</code> <i>result</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="i2b.Notes"></a>
+<b>Notes</h3></b>
+<a name="68332"></a>
+The <i>i2b</i> instruction performs a narrowing primitive conversion <a href="Concepts.doc.html#26142">(&#167;2.6.3)</a>. It may lose information about the overall magnitude of <i>value</i>. The <i>result</i> may also not have the same sign as <i>value</i>.<p>
+
+<a name="i2c"></a>
+<hr><h2>i2c</h2>
+<a name="i2c.Operation"></a>
+<b>Operation</h3></b>
+<a name="68342"></a>
+Convert <p><Table Border="1">
+<tr><td><a name="68341"></a>
+ <i>i2c</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><code>int</code> to <code>char</code><p>
+<a name="i2c.Forms"></a>
+<b>Forms</h3></b>
+<a name="68343"></a>
+<i>i2c</i> = 146 (0x92)<p>
+<a name="i2c.Stack"></a>
+<b>Stack</h3></b>
+<a name="68344"></a>
+..., <i>value</i><em> </em><img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="i2c.Description"></a>
+<b>Description</h3></b>
+<a name="68345"></a>
+The <i>value</i> on the top of the operand stack must be of type <code>int</code>. It is popped from the operand stack, truncated to <code>char</code>, then zero-extended to an <code>int</code> <i>result</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="i2c.Notes"></a>
+<b>Notes</h3></b>
+<a name="68346"></a>
+The <i>i2c</i> instruction performs a narrowing primitive conversion <a href="Concepts.doc.html#26142">(&#167;2.6.3)</a>. It may lose information about the overall magnitude of <i>value</i>. The <i>result</i> (which is always positive) may also not have the same sign as <i>value</i>.<p>
+
+<a name="i2d"></a>
+<hr><h2>i2d</h2>
+<a name="i2d.Operation"></a>
+<b>Operation</h3></b>
+<a name="68359"></a>
+Convert <code>int</code> to <code>double</code><p><Table Border="1">
+<tr><td><a name="68358"></a>
+ <i>i2d</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="i2d.Forms"></a>
+<b>Forms</h3></b>
+<a name="68360"></a>
+<i>i2d</i> = 135 (0x87)<p>
+<a name="i2d.Stack"></a>
+<b>Stack</h3></b>
+<a name="68361"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ..., <i>result.word1</i>, <i>result.word2</i><p>
+<a name="i2d.Description"></a>
+<b>Description</h3></b>
+<a name="68362"></a>
+The <i>value</i> on the top of the operand stack must be of type <code>int</code>. It is popped from the operand stack and converted to a <code>double</code> <i>result</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="i2d.Notes"></a>
+<b>Notes</h3></b>
+<a name="68363"></a>
+The <i>i2d</i> instruction performs a widening primitive conversion <a href="Concepts.doc.html#23435">(&#167;2.6.2)</a>. Because all values of type <code>int</code> are exactly representable by type <code>double</code>, the conversion is exact.<p>
+
+<a name="i2f"></a>
+<hr><h2>i2f</h2>
+<a name="i2f.Operation"></a>
+<b>Operation</h3></b>
+<a name="68379"></a>
+Convert <code>int</code> to <code>float</code><p><Table Border="1">
+<tr><td><a name="68378"></a>
+ <i>i2f</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="i2f.Forms"></a>
+<b>Forms</h3></b>
+<a name="68380"></a>
+<i>i2f</i> = 134 (0x86)<p>
+<a name="i2f.Stack"></a>
+<b>Stack</h3></b>
+<a name="68381"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="i2f.Description"></a>
+<b>Description</h3></b>
+<a name="68382"></a>
+The <i>value</i> on the top of the operand stack must be of type <code>int</code>. It is popped from the operand stack and converted to the <code>float</code> <i>result</i> using IEEE 754 round-to-nearest mode. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="i2f.Notes"></a>
+<b>Notes</h3></b>
+<a name="68383"></a>
+The <i>i2f</i> instruction performs a widening primitive conversion <a href="Concepts.doc.html#23435">(&#167;2.6.2)</a>, but may result in a loss of precision because type <code>float</code> has only 24 mantissa bits.<p>
+
+<a name="i2l"></a>
+<hr><h2>i2l</h2>
+<a name="i2l.Operation"></a>
+<b>Operation</h3></b>
+<a name="68393"></a>
+Convert <code>int</code> to <code>long</code><p><Table Border="1">
+<tr><td><a name="68392"></a>
+ <i>i2l</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="i2l.Forms"></a>
+<b>Forms</h3></b>
+<a name="68394"></a>
+<i>i2l</i> = 133 (0x85)<p>
+<a name="i2l.Stack"></a>
+<b>Stack</h3></b>
+<a name="68395"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ..., <i>result.word1</i>, <i>result.word2</i><p>
+<a name="i2l.Description"></a>
+<b>Description</h3></b>
+<a name="68396"></a>
+The <i>value</i> on the top of the operand stack must be of type <code>int</code>. It is popped from the operand stack and sign-extended to a <code>long</code> <i>result</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="i2l.Notes"></a>
+<b>Notes</h3></b>
+<a name="68397"></a>
+The <i>i2l</i> instruction performs a widening primitive conversion <a href="Concepts.doc.html#23435">(&#167;2.6.2)</a>. Because all values of type <code>int</code> are exactly representable by type <code>long</code>, the conversion is exact.<p>
+
+<a name="i2s"></a>
+<hr><h2>i2s</h2>
+<a name="i2s.Operation"></a>
+<b>Operation</h3></b>
+<a name="68407"></a>
+<p><Table Border="1">
+<tr><td><a name="68406"></a>
+ <i>i2s</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br>Convert <code>int</code> to <code>short</code><p>
+<a name="i2s.Forms"></a>
+<b>Forms</h3></b>
+<a name="68408"></a>
+<i>i2s</i> = 147 (0x93)<p>
+<a name="i2s.Stack"></a>
+<b>Stack</h3></b>
+<a name="68409"></a>
+..., <i>value</i><em> </em><img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="i2s.Description"></a>
+<b>Description</h3></b>
+<a name="68410"></a>
+The <i>value</i> on the top of the operand stack must be of type <code>int</code>. It is popped from the operand stack, truncated to a <code>short</code>, then sign-extended to an <code>int</code> <i>result</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="i2s.Notes"></a>
+<b>Notes</h3></b>
+<a name="68411"></a>
+The <i>i2s</i> instruction performs a narrowing primitive conversion <a href="Concepts.doc.html#26142">(&#167;2.6.3)</a>. It may lose information about the overall magnitude of <i>value</i>. The <i>result</i> may also not have the same sign as <i>value</i>.<p>
+
+<a name="iadd"></a>
+<hr><h2>iadd</h2>
+<a name="iadd.Operation"></a>
+<b>Operation</h3></b>
+<a name="68421"></a>
+Add <code>int</code><p><Table Border="1">
+<tr><td><a name="68420"></a>
+ <i>iadd</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="iadd.Forms"></a>
+<b>Forms</h3></b>
+<a name="68422"></a>
+<i>iadd</i> = 96 (0x60)<p>
+<a name="iadd.Stack"></a>
+<b>Stack</h3></b>
+<a name="68423"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="iadd.Description"></a>
+<b>Description</h3></b>
+<a name="68424"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. The values are popped from the operand stack. The <code>int</code> <i>result</i> is <i>value1</i> + <i>value2</i>. The <i>result</i> is pushed onto the operand stack. <p>
+<a name="68425"></a>
+If an <i>iadd</i> overflows, then the result is the low-order bits of the true mathematical result in a sufficiently wide two's-complement format. If overflow occurs, then the sign of the result will not be the same as the sign of the mathematical sum of the two values.<p>
+
+<a name="iaload"></a>
+<hr><h2>iaload</h2>
+<a name="iaload.Operation"></a>
+<b>Operation</h3></b>
+<a name="68438"></a>
+Load <code>int</code> from array<p><Table Border="1">
+<tr><td><a name="68437"></a>
+ <i>iaload</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="iaload.Forms"></a>
+<b>Forms</h3></b>
+<a name="68439"></a>
+<i>iaload</i> = 46 (0x2e)<p>
+<a name="iaload.Stack"></a>
+<b>Stack</h3></b>
+<a name="68440"></a>
+..., <i>arrayref</i>, <i>index</i> <img src="chars/arrwdbrt.gif"> ..., <i>value</i><p>
+<a name="iaload.Description"></a>
+<b>Description</h3></b>
+<a name="68441"></a>
+The <i>arrayref</i> must be of type <code>reference</code> and must refer to an array whose components are of type <code>int</code>. The <i>index</i> must be of type <code>int</code>. Both <i>arrayref</i> and <i>index</i> are popped from the operand stack. The <code>int</code> <i>value</i> in the component of the array at <i>index</i> is retrieved and pushed onto the top of the operand stack.<p>
+<a name="iaload.Runtime"></a>
+<b>Runtime Exceptions</h3></b>
+<a name="68443"></a>
+If <i>arrayref</i><em> </em>is <code>null</code>, <i>iaload</i> throws a <code>NullPointerException</code>. <p>
+<a name="68444"></a>
+Otherwise, if <i>index</i> is not within the bounds of the array referenced by <i>arrayref</i>, the <i>iaload</i> instruction throws an <code>ArrayIndexOutOfBoundsException</code>.<p>
+
+<a name="iand"></a>
+<hr><h2>iand</h2>
+<a name="iand.Operation"></a>
+<b>Operation</h3></b>
+<a name="68454"></a>
+Boolean AND <code>int</code><p><Table Border="1">
+<tr><td><a name="68453"></a>
+ <i>iand</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="iand.Forms"></a>
+<b>Forms</h3></b>
+<a name="68455"></a>
+<i>iand</i> = 126 (0x7e)<p>
+<a name="iand.Stack"></a>
+<b>Stack</h3></b>
+<a name="68456"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="iand.Description"></a>
+<b>Description</h3></b>
+<a name="68457"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. They are popped from the operand stack. An <code>int</code> <i>result</i> is calculated by taking the bitwise AND (conjunction) of <i>value1</i> and <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+
+<a name="iastore"></a>
+<hr><h2>iastore</h2>
+<a name="iastore.Operation"></a>
+<b>Operation</h3></b>
+<a name="68470"></a>
+Store into <code>int</code> array<p><Table Border="1">
+<tr><td><a name="68469"></a>
+ <i>iastore</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="iastore.Forms"></a>
+<b>Forms</h3></b>
+<a name="68471"></a>
+<i>iastore</i> = 79 (0x4f)<p>
+<a name="iastore.Stack"></a>
+<b>Stack</h3></b>
+<a name="68472"></a>
+..., <i>arrayref</i>, <i>index</i>, <i>value</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="iastore.Description"></a>
+<b>Description</h3></b>
+<a name="68473"></a>
+The <i>arrayref</i> must be of type <code>reference</code> and must refer to an array whose components are of type <code>int</code>. Both <i>index</i> and <i>value</i> must be of type <code>int</code>. The <i>arrayref</i>, <i>index</i>, and <i>value</i> are popped from the operand stack. The <code>int</code> <i>value</i> is stored as the component of the array indexed by <i>index</i>. <p>
+<a name="iastore.Runtime"></a>
+<b>Runtime Exceptions</h3></b>
+<a name="68475"></a>
+If <i>arrayref</i><em> </em>is <code>null</code>, <i>iastore</i> throws a <code>NullPointerException</code>. <p>
+<a name="68476"></a>
+Otherwise, if <i>index</i> is not within the bounds of the array referenced by <i>arrayref</i>, the <i>iastore</i> instruction throws an <code>ArrayIndexOutOfBoundsException</code>.<p>
+
+<a name="iconst_i"></a>
+<hr><h2>iconst_&lt;i&gt;</h2>
+<a name="iconst_i.Operation"></a>
+<b>Operation</h3></b>
+<a name="68483"></a>
+Push <code>int</code> constant<p><Table Border="1">
+<tr><td><a name="68482"></a>
+ <i>iconst_&lt;i&gt;</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="iconst_i.Forms"></a>
+<b>Forms</h3></b>
+<a name="68484"></a>
+<i>iconst_m1</i> = 2 (0x2)<i></i><p>
+<a name="177980"></a>
+<i>iconst_0</i> = 3 (0x3)<i></i><p>
+<a name="177982"></a>
+<i>iconst_1</i> = 4 (0x4)<i></i><p>
+<a name="177984"></a>
+<i>iconst_2</i> = 5 (0x5)<i></i><p>
+<a name="177986"></a>
+<i>iconst_3</i> = 6 (0x6)<i></i><p>
+<a name="177988"></a>
+<i>iconst_4</i> = 7 (0x7)<i></i><p>
+<a name="177990"></a>
+<i>iconst_5</i> = 8 (0x8)<p>
+<a name="iconst_i.Stack"></a>
+<b>Stack</h3></b>
+<a name="68485"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>&lt;i&gt;</i><p>
+<a name="iconst_i.Description"></a>
+<b>Description</h3></b>
+<a name="68486"></a>
+Push the <code>int</code> constant <i>&lt;i&gt;</i> (-<i>1</i>, <i>0</i>, <i>1</i>, <i>2</i>, <i>3</i>, <i>4</i> or <i>5</i>) onto the operand stack. <p>
+<a name="iconst_i.Notes"></a>
+<b>Notes</h3></b>
+<a name="68487"></a>
+Each of this family of instructions is equivalent to <i>bipush</i> <i>&lt;i&gt;</i> for the respective value of <i>&lt;i&gt;</i>, except that the operand <i>&lt;i&gt;</i> is implicit.<p>
+
+<a name="idiv"></a>
+<hr><h2>idiv</h2>
+<a name="idiv.Operation"></a>
+<b>Operation</h3></b>
+<a name="68497"></a>
+Divide <code>int</code><p><Table Border="1">
+<tr><td><a name="68496"></a>
+ <i>idiv</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="idiv.Forms"></a>
+<b>Forms</h3></b>
+<a name="68498"></a>
+<i>idiv</i> = 108 (0x6c)<p>
+<a name="idiv.Stack"></a>
+<b>Stack</h3></b>
+<a name="68499"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="idiv.Description"></a>
+<b>Description</h3></b>
+<a name="68500"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. The values are popped from the operand stack. The <code>int</code> <i>result</i> is the value of the Java expression <i>value1</i> / <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="68501"></a>
+An <code>int</code> division rounds towards 0; that is, the quotient produced for <code>int</code> values in <i>n</i>/<i>d</i> is an <code>int</code> value <i>q</i> whose magnitude is as large as possible while satisfying <br><br><img src="Instructions2.doc.anc6.gif">
+<br><br>. Moreover, <i>q </i>is positive when <br><br><img src="Instructions2.doc.anc7.gif">
+<br><br> and <i>n</i> and <i>d</i> have the same sign, but <i>q</i> is negative when <br><br><img src="Instructions2.doc.anc8.gif">
+<br><br> and <i>n</i> and <i>d </i>have opposite signs. <p>
+<a name="68511"></a>
+There is one special case that does not satisfy this rule: if the dividend is the negative integer of largest possible magnitude for the <code>int</code> type, and the divisor is -<i>1</i>, then overflow occurs, and the result is equal to the dividend. Despite the overflow, no exception is thrown in this case. <p>
+<a name="idiv.Runtime"></a>
+<b>Runtime</h3></b>
+<a name="idiv.Exception"></a>
+<b>Exception</h3></b>
+<a name="68513"></a>
+If the value of the divisor in an <code>int</code> division is 0, <i>idiv</i> throws an <code>ArithmeticException</code>.<p>
+
+<a name="if_acmpcond"></a>
+<hr><h2>if_acmp&lt;cond&gt;</h2>
+<a name="if_acmpcond.Operation"></a>
+<b>Operation</h3></b>
+<a name="68524"></a>
+Branch if <code>reference</code> comparison succeeds<p><Table Border="1">
+<tr><td><a name="68519"></a>
+ <i>if_acmp&lt;cond&gt;</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68521"></a>
+ <i>branchbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68523"></a>
+ <i>branchbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="if_acmpcond.Forms"></a>
+<b>Forms</h3></b>
+<a name="68525"></a>
+<i>if_acmpeq</i> = 165 (0xa5)<i></i><p>
+<a name="177994"></a>
+<i>if_acmpne</i> = 166 (0xa6)<p>
+<a name="if_acmpcond.Stack"></a>
+<b>Stack</h3></b>
+<a name="68526"></a>
+..., <i>value1</i>, <i>value2</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="if_acmpcond.Description"></a>
+<b>Description</h3></b>
+<a name="68527"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>reference</code>. They are both popped from the operand stack and compared. The results of the comparison are as follows:<p>
+<ul><a name="68528"></a>
+<li><i>eq</i> 	succeeds if and only if <i>value1</i> = <i>value2</i>
+<a name="68529"></a>
+<li><i>ne</i> 	succeeds if and only if <i>value1</i> <img src="chars/notequal.gif"> <i>value2</i>
+</ul><a name="68530"></a>
+If <em>the comparison succeeds, the unsigned </em><i>branchbyte1</i> and <i>branchbyte2</i> are used to construct a signed 16-bit offset, where the offset is calculated to be (<i>branchbyte1</i> << 8) | <i>branchbyte2</i>. Execution then proceeds at that offset from the address of the opcode of this <i>if_acmp&lt;cond&gt;</i> instruction. The target address must be that of an opcode of an instruction within the method that contains this <i>if_acmp&lt;cond&gt;</i> instruction.<p>
+<a name="68531"></a>
+Otherwise, if the comparison fails, execution proceeds at the address of the instruction following this <i>if_acmp&lt;cond&gt;</i> instruction.<p>
+
+<a name="if_icmpcond"></a>
+<hr><h2>if_icmp&lt;cond&gt;</h2>
+<a name="if_icmpcond.Operation"></a>
+<b>Operation</h3></b>
+<a name="68548"></a>
+Branch if <code>int</code> comparison succeeds<p><Table Border="1">
+<tr><td><a name="68543"></a>
+ <i>if_icmp&lt;cond&gt;</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68545"></a>
+ <i>branchbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68547"></a>
+ <i>branchbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="if_icmpcond.Forms"></a>
+<b>Forms</h3></b>
+<a name="166925"></a>
+<i>if_icmpeq</i>	=	159 (0x9f)<i></i><p>
+<a name="177996"></a>
+<i>if_icmpne</i>	=	160 (0xa0)<i></i><p>
+<a name="177998"></a>
+<i>if_icmplt</i> 	= 	161 (0xa1)<i></i><p>
+<a name="178000"></a>
+<i>if_icmpge</i>	=	162 (0xa2)<i></i><p>
+<a name="178002"></a>
+<i>if_icmpgt</i>	=	163 (0xa3)<i></i><p>
+<a name="178004"></a>
+<i>if_icmple</i>	=	164 (0xa4)<p>
+<a name="if_icmpcond.Stack"></a>
+<b>Stack</h3></b>
+<a name="68550"></a>
+..., <i>value1</i>, <i>value2</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="if_icmpcond.Description"></a>
+<b>Description</h3></b>
+<a name="68551"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. They are both popped from the operand stack and compared. All comparisons are signed. The results of the comparison are as follows:<p>
+<ul><a name="68552"></a>
+<li><i>eq</i> 	succeeds if and only if <i>value1</i> = <i>value2</i>
+<a name="68553"></a>
+<li><i>ne</i> 	succeeds if and only if <i>value1</i> <img src="chars/notequal.gif"> <i>value2</i>
+<a name="68554"></a>
+<li><i>lt </i>	succeeds if and only if <i>value1</i> < <i>value2</i>
+<a name="68555"></a>
+<li><i>le</i> 	succeeds if and only if <i>value1</i> &#163; <i>value2</i>
+<a name="68556"></a>
+<li><i>gt</i> 	succeeds if and only if <i>value1</i> \> <i>value2</i>
+<a name="68557"></a>
+<li><i>ge</i> 	succeeds if and only if <i>value1</i> <img src="chars/gtequal.gif"> <i>value2</i>
+</ul>
+<a name="68558"></a>
+If <em>the comparison succeeds, the unsigned </em><i>branchbyte1</i> and <i>branchbyte2</i> are used to construct a signed 16-bit offset, where the offset is calculated to be (<i>branchbyte1</i> << 8) | <i>branchbyte2</i>. Execution then proceeds at that offset from the address of the opcode of this <i>if_icmp&lt;cond&gt;</i> instruction. The target address must be that of an opcode of an instruction within the method that contains this <i>if_icmp&lt;cond&gt;</i> instruction.<p>
+<a name="68559"></a>
+Otherwise, execution proceeds at the address of the instruction following this <i>if_icmp&lt;cond&gt;</i> instruction. <p>
+
+<a name="ifcond"></a>
+<hr><h2>if&lt;cond&gt;</h2>
+<a name="ifcond.Operation"></a>
+<b>Operation</h3></b>
+<a name="68570"></a>
+Branch if <code>int</code> comparison with zero succeeds<p><Table Border="1">
+<tr><td><a name="68565"></a>
+ <i>if&lt;cond&gt;</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68567"></a>
+ <i>branchbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68569"></a>
+ <i>branchbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ifcond.Forms"></a>
+<b>Forms</h3></b>
+<a name="68571"></a>
+<i>ifeq	</i>=	153 (0x99)<i></i><p>
+<a name="178006"></a>
+<i>ifne</i>	=	154 (0x9a)<i></i><p>
+<a name="178008"></a>
+<i>iflt</i>	=	155 (0x9b)<i></i><p>
+<a name="178010"></a>
+<i>ifge</i>	=	156 (0x9c)<i></i><p>
+<a name="178012"></a>
+<i>ifgt</i>	=	157 (0x9d)<i></i><p>
+<a name="178014"></a>
+<i>ifle</i>	=	158 (0x9e)<p>
+<a name="ifcond.Stack"></a>
+<b>Stack</h3></b>
+<a name="68572"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="ifcond.Description"></a>
+<b>Description</h3></b>
+<a name="68573"></a>
+The <i>value</i> must be of type <code>int</code>. It is popped from the operand stack and compared against zero. All comparisons are signed. The results of the comparisons are as follows:<p>
+<ul><a name="68574"></a>
+<li><i>eq</i> 	succeeds if and only if <i>value</i> = 0
+<a name="68575"></a>
+<li><i>ne</i> 	succeeds if and only if <i>value</i> <img src="chars/notequal.gif"> 0
+<a name="68576"></a>
+<li><i>lt</i> 	succeeds if and only if <i>value</i> < 0
+<a name="68577"></a>
+<li><i>le</i> 	succeeds if and only if <i>value</i> &#163; 0
+<a name="68578"></a>
+<li><i>gt</i> 	succeeds if and only if <i>value</i> \> 0
+<a name="68579"></a>
+<li><i>ge</i> 	succeeds if and only if <i>value</i> <img src="chars/gtequal.gif"> 0
+</ul>
+If the comparison succeeds, <em>the unsigned</em> <i>branchbyte1</i> and <i>branchbyte2</i> are used to construct a signed 16-bit offset, where the offset is calculated to be (<i>branchbyte1</i> << 8) | <i>branchbyte2</i>. Execution then proceeds at that offset from the address of the opcode of this <i>if&lt;cond&gt;</i> instruction. The target address must be that of an opcode of an instruction within the method that contains this <i>if&lt;cond&gt;</i> instruction.<p>
+<a name="68581"></a>
+Otherwise, execution proceeds at the address of the instruction following this <i>if&lt;cond&gt;</i> instruction.<p>
+
+<a name="ifnonnull"></a>
+<hr><h2>ifnonnull</h2>
+<a name="ifnonnull.Operation"></a>
+<b>Operation</h3></b>
+<a name="68592"></a>
+Branch if <code>reference</code> not <code>null</code><p><Table Border="1">
+<tr><td><a name="68587"></a>
+ <i>ifnonnull</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68589"></a>
+ <i>branchbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68591"></a>
+ <i>branchbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ifnonnull.Forms"></a>
+<b>Forms</h3></b>
+<a name="68593"></a>
+<i>ifnonnull</i> = 199 (0xc7)<p>
+<a name="ifnonnull.Stack"></a>
+<b>Stack</h3></b>
+<a name="68594"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="ifnonnull.Description"></a>
+<b>Description</h3></b>
+<a name="68595"></a>
+The <i>value</i> must of type <code>reference</code>. It is popped from the oper-and stack. If <i>value</i> is not <code>null</code>, <em>the unsigned</em> <i>branchbyte1</i> and <i>branchbyte2</i> are used to construct a signed 16-bit offset, where the offset is calculated to be (<i>branchbyte1</i> << 8) | <i>branchbyte2</i>. Execution then proceeds at that offset from the address of the opcode of this <i>ifnonnull</i> instruction. The target address must be that of an opcode of an instruction within the method that contains this <i>ifnonnull</i> instruction.<p>
+<a name="68596"></a>
+Otherwise, execution proceeds at the address of the instruction following this <i>ifnonnull</i> instruction.<p>
+
+<a name="ifnull"></a>
+<hr><h2>ifnull</h2>
+<a name="ifnull.Operation"></a>
+<b>Operation</h3></b>
+<a name="68607"></a>
+Branch if <code>reference</code> is <code>null</code><p><Table Border="1">
+<tr><td><a name="68602"></a>
+ <i>ifnull</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68604"></a>
+ <i>branchbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68606"></a>
+ <i>branchbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ifnull.Forms"></a>
+<b>Forms</h3></b>
+<a name="68608"></a>
+<i>ifnull</i> = 198 (0xc6)<p>
+<a name="ifnull.Stack"></a>
+<b>Stack</h3></b>
+<a name="68609"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="ifnull.Description"></a>
+<b>Description</h3></b>
+<a name="68610"></a>
+The <i>value</i> must of type <code>reference</code>. It is popped from the operand stack. If <i>value</i> is <code>null</code>, <em>the unsigned</em> <i>branchbyte1</i> and <i>branchbyte2</i> are used to construct a signed 16-bit offset, where the offset is calculated to be (<i>branchbyte1</i> << 8) | <i>branchbyte2</i>. Execution then proceeds at that offset from the address of the opcode of this <i>ifnull</i> instruction. The target address must be that of an opcode of an instruction within the method that contains this <i>ifnull</i> instruction.<p>
+<a name="68611"></a>
+Otherwise, execution proceeds at the address of the instruction following this <i>ifnull</i> instruction.<p>
+
+<a name="iinc"></a>
+<hr><h2>iinc</h2>
+<a name="iinc.Operation"></a>
+<b>Operation</h3></b>
+<a name="68622"></a>
+Increment local variable by constant<p><Table Border="1">
+<tr><td><a name="68617"></a>
+ <i>iinc</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68619"></a>
+ <i>index</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68621"></a>
+ <i>const</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="iinc.Forms"></a>
+<b>Forms</h3></b>
+<a name="68623"></a>
+<i>iinc</i> = 132 (0x84)<p>
+<a name="iinc.Stack"></a>
+<b>Stack</h3></b>
+<a name="68624"></a>
+No change<p>
+<a name="iinc.Description"></a>
+<b>Description</h3></b>
+<a name="68625"></a>
+The <i>index</i> is an unsigned byte that must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The <i>const</i> is a immediate signed byte. The local variable at <i>index</i> must contain an <code>int</code>. The value <i>const</i> is first sign-extended to an <code>int</code>, then the local variable at <i>index</i> is incremented by that amount.<p>
+<a name="iinc.Notes"></a>
+<b>Notes</h3></b>
+<a name="68629"></a>
+The <i>iinc</i> opcode can be used in conjunction with the <i>wide</i> instruction to access a local variable using a two-byte unsigned index and increment it by a two-byte immediate value.<p>
+<a name="68630"></a>
+<p>
+
+<a name="iload"></a>
+<hr><h2>iload</h2>
+<a name="iload.Operation"></a>
+<b>Operation</h3></b>
+<a name="68639"></a>
+Load <code>int</code> from local variable<p><Table Border="1">
+<tr><td><a name="68636"></a>
+ <i>iload</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68638"></a>
+ <i>index</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="iload.Forms"></a>
+<b>Forms</h3></b>
+<a name="68640"></a>
+<i>iload</i> = 21 (0x15)<p>
+<a name="iload.Stack"></a>
+<b>Stack</h3></b>
+<a name="68641"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>value</i><p>
+<a name="iload.Description"></a>
+<b>Description</h3></b>
+<a name="68642"></a>
+The <i>index</i> is an unsigned byte that must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The local variable at <i>index</i> must contain an <code>int</code>. The <i>value</i> of the local variable at <i>index </i>is pushed onto the operand stack.<p>
+<a name="iload.Notes"></a>
+<b>Notes</h3></b>
+<a name="68646"></a>
+The <i>iload</i> opcode can be used in conjunction with the <i>wide</i> instruction to access a local variable using a two-byte unsigned index.<p>
+
+<a name="iload_n"></a>
+<hr><h2>iload_&lt;n&gt;</h2>
+<a name="iload_n.Operation"></a>
+<b>Operation</h3></b>
+<a name="68656"></a>
+Load <code>int</code> from local variable<p><Table Border="1">
+<tr><td><a name="68655"></a>
+ <i>iload_&lt;n&gt;</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="iload_n.Forms"></a>
+<b>Forms</h3></b>
+<a name="68657"></a>
+<i>iload_0</i> = 26 (0x1a)<i></i><p>
+<a name="178016"></a>
+<i>iload_1</i> = 27 (0x1b)<i></i><p>
+<a name="178018"></a>
+<i>iload_2</i> = 28 (0x1c)<i></i><p>
+<a name="178020"></a>
+<i>iload_3</i> = 29 (0x1d)<p>
+<a name="iload_n.Stack"></a>
+<b>Stack</h3></b>
+<a name="68658"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>value</i><p>
+<a name="iload_n.Description"></a>
+<b>Description</h3></b>
+<a name="68659"></a>
+The <i>&lt;n&gt;</i> must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The local variable at <i>&lt;n&gt;</i> must contain an <code>int</code>. The <i>value</i> of the local variable at <i>&lt;n&gt;</i> is pushed onto the operand stack.<p>
+<a name="iload_n.Notes"></a>
+<b>Notes</h3></b>
+<a name="68663"></a>
+Each of the <i>iload_&lt;n&gt;</i> instructions is the same as <i>iload</i> with an <i>index</i> of <i>&lt;n&gt;</i>, except that the operand <i>&lt;n&gt;</i> is implicit.<p>
+
+<a name="imul"></a>
+<hr><h2>imul</h2>
+<a name="imul.Operation"></a>
+<b>Operation</h3></b>
+<a name="68676"></a>
+Multiply <code>int</code><p><Table Border="1">
+<tr><td><a name="68675"></a>
+ <i>imul</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="imul.Forms"></a>
+<b>Forms</h3></b>
+<a name="68677"></a>
+<i>imul</i> = 104 (0x68)<p>
+<a name="imul.Stack"></a>
+<b>Stack</h3></b>
+<a name="68678"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="imul.Description"></a>
+<b>Description</h3></b>
+<a name="68679"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. The values are popped from the operand stack. The <code>int</code> <i>result</i> is <i>value1</i> * <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="68680"></a>
+If an <code>int</code> multiplication overflows, then the result is the low-order bits of the mathematical product as an <code>int</code>. If overflow occurs, then the sign of the result may not be the same as the sign of the mathematical product of the two values.<p>
+
+<a name="ineg"></a>
+<hr><h2>ineg</h2>
+<a name="ineg.Operation"></a>
+<b>Operation</h3></b>
+<a name="68687"></a>
+Negate <code>int</code><p><Table Border="1">
+<tr><td><a name="68686"></a>
+ <i>ineg</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ineg.Forms"></a>
+<b>Forms</h3></b>
+<a name="68688"></a>
+<i>ineg</i><em> </em>= 116 (0x74)<p>
+<a name="ineg.Stack"></a>
+<b>Stack</h3></b>
+<a name="68689"></a>
+..., <i>value</i><em> </em><img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="ineg.Description"></a>
+<b>Description</h3></b>
+<a name="68690"></a>
+The <i>value</i> must be of type <code>int</code>. It is popped from the operand stack. The <code>int</code> <i>result</i> is the arithmetic negation of <i>value</i>, -<i>value</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="68691"></a>
+For <code>int</code> values, negation is the same as subtraction from zero. Because the Java Virtual Machine uses two's-complement representation for integers and the range of two's-complement values is not symmetric, the negation of the maximum negative <code>int</code> results in that same maximum negative number. Despite the fact that overflow has occurred, no exception is thrown. <p>
+<a name="68692"></a>
+For all <code>int</code> values <code>x</code>, <code>-x</code> equals <code>(~x) + 1</code>.<p>
+
+<a name="instanceof"></a>
+<hr><h2>instanceof</h2>
+<a name="instanceof.Operation"></a>
+<b>Operation</h3></b>
+<a name="68727"></a>
+<p><Table Border="1">
+<tr><td><a name="68722"></a>
+ <i>instanceof</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68724"></a>
+ <i>indexbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68726"></a>
+ <i>indexbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br>Determine if object is of given type<p>
+<a name="instanceof.Forms"></a>
+<b>Forms</h3></b>
+<a name="68728"></a>
+<i>instanceof</i> = 193 (0xc1)<p>
+<a name="instanceof.Stack"></a>
+<b>Stack</h3></b>
+<a name="68729"></a>
+..., <i>objectref</i><em> </em><img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="instanceof.Description"></a>
+<b>Description</h3></b>
+<a name="68730"></a>
+The <i>objectref</i>, which must be of type <code>reference</code>, is popped from the operand stack. The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The item at that index in the constant pool must be a <code>CONSTANT_Class</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a>, a symbolic reference to a class, array, or interface. The symbolic reference is resolved <a href="ConstantPool.doc.html#51579">(&#167;5.1)</a>. <p>
+<a name="140275"></a>
+If <i>objectref</i> is not <code>null</code> and is an instance of the resolved class, array, or interface, the <i>instanceof</i> instruction pushes an <code>int</code> <i>result</i> of <i>1</i> as an int on the operand stack. Otherwise, it pushes an <code>int</code> <i>result</i> of <i>0</i>.<p>
+<a name="68740"></a>
+The following rules are used to determine whether an <i>objectref</i> that is not <code>null</code> is an instance of the resolved type: If S is the class of the object referred to by <i>objectref</i> and T is the resolved class, array, or interface type, <i>instanceof</i> determines whether <i>objectref</i> is an instance of T as follows:<p>
+
+<a name="instanceof"></a>
+<hr><h2>instanceof</h2>
+<ul><a name="68741"></a>
+<li>If S is an ordinary (non-array) class, then:
+<ul>
+<a name="68745"></a>
+<li>If T is a class type, then S must be the same class <a href="Concepts.doc.html#20389">(&#167;2.8.1)</a> as T or a subclass of T.
+<a name="68749"></a>
+<li>If T is an interface type, then S must implement <a href="Concepts.doc.html#16432">(&#167;2.13)</a> interface T.
+</ul>
+<a name="68750"></a>
+<li>If S is a class representing the array type SC<code>[]</code>, that is, an array of components of type SC, then:
+<ul>
+<a name="68754"></a>
+<li>If T is a class type, then T must be <code>Object</code> <a href="Concepts.doc.html#27433">(&#167;2.4.6)</a>.
+<a name="68755"></a>
+<li>If T is an array type TC<code>[]</code>, that is, an array of components of type TC, then one of the following must be true:
+<ul>
+<a name="68759"></a>
+<li>TC and SC are the same primitive type <a href="Concepts.doc.html#19511">(&#167;2.4.1)</a>.
+<a name="68763"></a>
+<li>TC and SC are reference types <a href="Concepts.doc.html#25376">(&#167;2.4.5)</a>, and type SC can be cast to TC by these runtime rules. 
+</ul>
+</ul>
+</ul><a name="68764"></a>
+S cannot be an interface type, because there are no instances of interfaces, only instances of classes and arrays.<p>
+<a name="instanceof.Linking"></a>
+<b>Linking Exceptions</h3></b>
+<a name="115905"></a>
+During resolution of the <code>CONSTANT_Class</code> constant pool item, any of the exceptions documented in <a href="ConstantPool.doc.html#51579">&#167;5.1</a> can be thrown.<p>
+<a name="instanceof.Notes"></a>
+<b>Notes</h3></b>
+<a name="68766"></a>
+The <i>instanceof</i> instruction is fundamentally very similar to the <i>checkcast</i> instruction. It differs in its treatment of <code>null</code>, its behavior when its test fails (<i>checkcast</i> throws an exception, <i>instanceof</i> pushes a result code), and its effect on the operand stack.<p>
+<a name="68767"></a>
+<p>
+
+<a name="invokeinterface"></a>
+<hr><h2>invokeinterface</h2>
+<a name="invokeinterface.Operation"></a>
+<b>Operation</h3></b>
+<a name="68788"></a>
+Invoke interface method<p><Table Border="1">
+<tr><td><a name="68779"></a>
+ <i>invokeinterface</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68781"></a>
+ <i>indexbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68783"></a>
+ <i>indexbyte2</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68785"></a>
+ <i>nargs</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68787"></a>
+ <i>0</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="invokeinterface.Forms"></a>
+<b>Forms</h3></b>
+<a name="68789"></a>
+<i>invokeinterface</i> = 185 (0xb9)<p>
+<a name="invokeinterface.Stack"></a>
+<b>Stack</h3></b>
+<a name="68790"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif"> ...<p>
+<a name="invokeinterface.Description"></a>
+<b>Description</h3></b>
+<a name="68791"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The item at that index in the constant pool must have the tag <code>CONSTANT_InterfaceMethodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a>, a reference to an interface name, a method name, and the method's descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a>. The constant pool item is resolved <a href="ConstantPool.doc.html#64064">(&#167;5.3)</a>. The interface method must not be <code>&lt;init&gt;</code>, an instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>, or <code>&lt;clinit&gt;</code>, a class or interface initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>. <p>
+<a name="68804"></a>
+The <i>nargs</i> operand is an unsigned byte which must not be zero. The <i>objectref</i> must be of type <code>reference</code> and must be followed on the operands stack by <i>nargs</i> - 1 words of arguments. The number of words of arguments and the type and order of the values they represent must be consistent with the descriptor of the selected interface method.<p>
+<a name="68805"></a>
+The method table of the class of the type of <i>objectref</i> is determined. If <i>objectref</i> is an array type, then the method table of class <code>Object</code> is used. The method table is searched for a method whose name and descriptor are identical to the name and descriptor of the resolved constant pool entry.<p>
+The result of the search is a method table entry, which includes a direct reference to the code for the interface method and the method's modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>). The method table entry must be that of a <code>public</code> method.<p>
+<a name="138160"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+<a name="138161"></a>
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="138162"></a>
+If the method is <code>native</code> and the platform-dependent code that implements it has not yet been loaded and linked into the Java Virtual Machine, that is done. The <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="invokeinterface.Linking"></a>
+<b>Linking Exceptions</h3></b>
+<a name="116277"></a>
+During resolution of the <code>CONSTANT_InterfaceMethodref</code> constant pool item, any of the exceptions documented in <a href="ConstantPool.doc.html#64064">&#167;5.3</a> can be thrown.<p>
+<a name="68810"></a>
+Otherwise, if no method matching the resolved name and descriptor can be found in the class of <i>objectref</i>, <i>invokeinterface</i> throws an <code>IncompatibleClassChangeError</code>.<p>
+<a name="68811"></a>
+Otherwise, if the selected method is a class (<code>static</code>) method, the <i>invokeinterface</i> instruction throws an <code>IncompatibleClass-ChangeError</code>.<p>
+
+<a name="invokeinterface"></a>
+<hr><h2>invokeinterface</h2>
+<a name="68812"></a>
+Otherwise, if the selected method is not <code>public</code>, <i>invokeinterface</i> throws an <code>IllegalAccessError</code>.<p>
+<a name="68813"></a>
+Otherwise, if the selected method is <code>abstract</code>, <i>invokeinterface</i> throws an <code>AbstractMethodError</code>.<p>
+<a name="68814"></a>
+Otherwise, if the selected method is <code>native</code> and the code that implements the method cannot be loaded or linked, <i>invokeinterface</i> throws an <code>UnsatisfiedLinkError</code>.<p>
+<a name="invokeinterface.Runtime"></a>
+<b>Runtime Exception</h3></b>
+<a name="68816"></a>
+Otherwise, if <i>objectref</i> is <code>null</code>, the <i>invokeinterface</i> instruction throws a <code>NullPointerException</code>. <p>
+<a name="invokeinterface.Notes"></a>
+<b>Notes</h3></b>
+<a name="68823"></a>
+Unlike <i>invokevirtual</i>, <i>invokestatic</i>, and <i>invokespecial</i>, the number of arguments words (<i>nargs</i>) for the method invocation is made available as an operand of the <i>invokeinterface</i> instruction. As with the other instructions, that value can also be derived from the descriptor of the selected method. The derived value must be identical to the value of the <i>nargs</i> operand. This redundancy is historical, but the <i>nargs</i> operand also reserves space in the instruction for an operand used by the <i>invokeinterface_quick</i> pseudo-instruction which may replace <i>invokeinterface</i> at run time. See Chapter <a href="Quick.doc.html#2488">9</a>, <a href="Quick.doc.html#6997">"An Optimization,"</a> for information on <i>invokeinterface_quick</i>.<p>
+<a name="68827"></a>
+The fourth operand byte of the <i>invokeinterface</i> instruction is unused by the instruction itself and must be zero. It exists only to reserve space for an additional operand added if the <i>invokeinterface</i> instruction is replaced by the <i>invokeinterface_quick</i> pseudo-instruction at run time. <p>
+
+<a name="invokespecial"></a>
+<hr><h2>invokespecial</h2>
+<a name="invokespecial.Operation"></a>
+<b>Operation</h3></b>
+<a name="68833"></a>
+Invoke instance method; special handling for superclass, private, and instance initialization method invocations<p><Table Border="1">
+<tr><td><a name="68838"></a>
+ <i>invokespecial</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68840"></a>
+ <i>indexbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68842"></a>
+ <i>indexbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="invokespecial.Forms"></a>
+<b>Forms</h3></b>
+<a name="68843"></a>
+<i>invokespecial</i> = 183 (0xb7)<p>
+<a name="invokespecial.Stack"></a>
+<b>Stack</h3></b>
+<a name="68844"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif"> ...<p>
+<a name="invokespecial.Description"></a>
+<b>Description</h3></b>
+<a name="68845"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The item at that index in the constant pool must have the tag <code>CONSTANT_Methodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a>, a reference to a class name, a method name, and the method's descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a>. The named method is resolved <a href="ConstantPool.doc.html#49425">(&#167;5.2)</a>. The descriptor of the resolved method must be identical to the descriptor of one of the methods of the resolved class. <p>
+<a name="68858"></a>
+Next, the Java Virtual Machine determines if all of the following conditions are true:<p>
+<ul><a name="68859"></a>
+<li>The name of the method is not <code>&lt;init&gt;</code>, an instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>.
+<a name="68860"></a>
+<li>The method is not a <code>private</code> method.
+<a name="68861"></a>
+<li>The class of the method is a superclass of the class of the current method.
+<a name="68864"></a>
+<li>The <code>ACC_SUPER </code>flag (see <a href="ClassFile.doc.html#23242">Table 4.1, "Class access and modifier flags"</a>) is set for the current class.
+</ul>
+If so, then the Java Virtual Machine selects the method with the identical descriptor in the closest superclass, possibly selecting the method just resolved.<p>
+<a name="68867"></a>
+The resulting method must not be <code>&lt;clinit&gt;</code>, a class or interface initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>. <p>
+<a name="140201"></a>
+If the method is <code>&lt;init&gt;</code>, an instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>, then the method must only be invoked once on an uninitialized object, and before the first backward branch following the execution of the <i>new</i> instruction that allocated the object. <p>
+<a name="140202"></a>
+Finally, if the method is <code>protected</code> <a href="ClassFile.doc.html#1513">(&#167;4.6)</a>, then it must be either a member of the current class or a member of a superclass of the current class, and the class of <i>objectref</i> must be either the current class or a subclass of the current class.<p>
+<a name="68872"></a>
+The constant pool entry representing the resolved method includes a direct reference to the code for the method, an unsigned byte <i>nargs </i>that must not be zero, and the method's modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+<a name="68873"></a>
+The <i>objectref</i> must be of type <code>reference</code> and must be followed on the operand stack by <i>nargs </i>- 1 words of arguments, where the number of words of arguments and the type and order of the values they represent must be consistent with the descriptor of the selected instance method.<p>
+<a name="138167"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="138169"></a>
+If the method is <code>native</code> and the platform-dependent code that implements it has not yet been loaded and linked into the Java Virtual Machine, that is done. The <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="invokespecial.Linking"></a>
+<b>Linking Exceptions</h3></b>
+<a name="158759"></a>
+During resolution of the <code>CONSTANT_Methodref </code>constant pool item, any of the exceptions documented in <a href="ConstantPool.doc.html#49425">&#167;5.2</a> can be thrown.<p>
+<a name="68877"></a>
+Otherwise, if the specified method exists but is a class (<code>static</code>) method, the <i>invokespecial</i> instruction throws an <code>IncompatibleClassChangeError</code>.<p>
+<a name="68878"></a>
+Otherwise, if the specified method is <code>abstract</code>, <i>invokespecial</i> throws an <code>AbstractMethodError</code>.<p>
+<a name="68879"></a>
+Otherwise, if the specified method is <code>native</code> and the code that implements the method cannot be loaded or linked, <i>invokespecial</i> throws an <code>UnsatisfiedLinkError</code>.<p>
+<a name="invokespecial.Runtime"></a>
+<b>Runtime Exception</h3></b>
+<a name="68881"></a>
+Otherwise, if <i>objectref</i> is <code>null</code>, the <i>invokespecial</i> instruction throws a <code>NullPointerException</code>. <p>
+
+<b>Notes</h3></b>
+<a name="68888"></a>
+The difference between the <i>invokespecial</i> and the <i>invokevirtual</i> instructions is that <i>invokevirtual</i> invokes a method based on the class of the object. The <i>invokespecial</i> instruction is used to invoke instance initialization methods (<code>&lt;init&gt;</code>) as well as <code>private</code> methods and methods of a superclass of the current class. <p>
+<a name="68890"></a>
+The <i>invokespecial</i> instruction was named <i>invokenonvirtual</i> prior to Sun's JDK 1.0.2 release.<p>
+
+<a name="invokestatic"></a>
+<hr><h2>invokestatic</h2>
+<a name="invokestatic.Operation"></a>
+<b>Operation</h3></b>
+<a name="68901"></a>
+Invoke a class (<code>static</code>) method<p><Table Border="1">
+<tr><td><a name="68896"></a>
+ <i>invokestatic</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68898"></a>
+ <i>indexbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68900"></a>
+ <i>indexbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="invokestatic.Forms"></a>
+<b>Forms</h3></b>
+<a name="68902"></a>
+<i>invokestatic</i> = 184 (0xb8)<p>
+<a name="invokestatic.Stack"></a>
+<b>Stack</h3></b>
+<a name="68903"></a>
+...<em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif"> ...<p>
+<a name="invokestatic.Description"></a>
+<b>Description</h3></b>
+<a name="68904"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The item at that index in the constant pool must have the tag <code>CONSTANT_Methodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a>, a reference to a class name, a method name, and the method's descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a>. The named method is resolved <a href="ConstantPool.doc.html#49425">(&#167;5.2)</a>. The descriptor of the resolved method must be identical to the descriptor of one of the methods of the resolved class. The method must not be <code>&lt;init&gt;</code>, an instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>, or <code>&lt;clinit&gt;</code>, a class or interface initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>. It must be <code>static</code>, and therefore cannot be <code>abstract</code>. Finally, if the method is <code>protected</code> <a href="ClassFile.doc.html#1513">(&#167;4.6)</a>, then it must be either a member of the current class or a member of a superclass of the current class.<p>
+<a name="68920"></a>
+The constant pool entry representing the resolved method includes a direct reference to the code for the method, an unsigned byte <i>nargs</i> that may be zero, and the method's modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+The operand stack must contain <i>nargs</i> words of arguments, where the number of words of arguments and the type and order of the values they represent must be consistent with the descriptor of the resolved method.<p>
+<a name="138176"></a>
+If the method is <code>synchronized</code>, the monitor associated with the current class is acquired.<p>
+<a name="138172"></a>
+If the method is not <code>native</code>, the <i>nargs </i>words of arguments are popped from the operand stack. A new stack frame is created for the method being invoked, and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>arg1</i> in local variable <i>0</i>, <i>arg2</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="138173"></a>
+If the method is <code>native</code>, the <i>nargs </i>words of arguments are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="invokestatic.Linking"></a>
+<b>Linking Exceptions</h3></b>
+<a name="117162"></a>
+During resolution of the <code>CONSTANT_Methodref </code>constant pool item, any of the exceptions documented in <a href="ConstantPool.doc.html#49425">&#167;5.2</a> can be thrown.<p>
+<a name="68925"></a>
+Otherwise, if the specified method exists but is an instance method, the <i>invokestatic</i> instruction throws an <code>IncompatibleClass-ChangeError</code>.<p>
+<a name="158805"></a>
+Otherwise, if the specified method is <code>native</code> and the code that implements the method cannot be loaded or linked, <i>invokestatic</i> throws an <code>UnsatisfiedLinkError</code>.<p>
+
+<a name="invokevirtual"></a>
+<hr><h2>invokevirtual</h2>
+<a name="invokevirtual.Operation"></a>
+<b>Operation</h3></b>
+<a name="68948"></a>
+Invoke instance method<p><Table Border="1">
+<tr><td><a name="68943"></a>
+ <i>invokevirtual</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68945"></a>
+ <i>indexbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="68947"></a>
+ <i>indexbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br>; dispatch based on class<p>
+<a name="invokevirtual.Forms"></a>
+<b>Forms</h3></b>
+<a name="68949"></a>
+<i>invokevirtual</i> = 182 (0xb6)<p>
+<a name="invokevirtual.Stack"></a>
+<b>Stack</h3></b>
+<a name="68950"></a>
+...<em>, </em><i>objectref</i><em>, [</em><i>arg1</i><em>, [</em><i>arg2</i><em> </em>...<em>]] </em><img src="chars/arrwdbrt.gif"> ...<p>
+<a name="invokevirtual.Description"></a>
+<b>Description</h3></b>
+<a name="68951"></a>
+The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The item at that index in the constant pool must have the tag <code>CONSTANT_Methodref</code> <a href="ClassFile.doc.html#4723">(&#167;4.4.2)</a>, a reference to a class name, a method name, and the method's descriptor <a href="ClassFile.doc.html#7035">(&#167;4.3.3)</a>. The named method is resolved <a href="ConstantPool.doc.html#49425">(&#167;5.2)</a>. The descriptor of the resolved method must be identical to the descriptor of the one of the methods of the resolved class. The method must not be <code>&lt;init&gt;</code>, an instance initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>, or <code>&lt;clinit&gt;</code>, a class or interface initialization method <a href="Overview.doc.html#12174">(&#167;3.8)</a>. Finally, if the method is <code>protected</code> <a href="ClassFile.doc.html#1513">(&#167;4.6)</a>, then it must be either a member of the current class or a member of a superclass of the current class, and the class of <i>objectref</i> must be either the current class or a subclass of the current class. <p>
+<a name="68967"></a>
+The constant pool entry representing the resolved method includes an unsigned <i>index</i> into the method table of the resolved class and an unsigned byte <i>nargs</i> that must not be zero.<p>
+The <i>objectref</i> must be of type <code>reference</code>. The <i>index</i> is used as an index into the method table of the class of the type of <i>objectref</i>. If the <i>objectref</i> is an array type, then the method table of class <code>Object</code> is used. The table entry at that index includes a direct reference to the method's code and its modifier information (see <a href="ClassFile.doc.html#12725">Table 4.4, "Method access and modifier flags"</a>).<p>
+<a name="68969"></a>
+The <i>objectref</i> must be followed on the operand stack by <i>nargs </i>- 1 words of arguments, where the number of words of arguments and the type and order of the values they represent must be consistent with the descriptor of the selected instance method.<p>
+<a name="138096"></a>
+If the method is <code>synchronized</code>, the monitor associated with <i>objectref</i> is acquired.<p>
+<a name="135976"></a>
+If the method is not <code>native</code>, the <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack. A new stack frame is created for the method being invoked, and <i>objectref</i> and the words of arguments are made the values of its first <i>nargs</i> local variables, with <i>objectref</i> in local variable <i>0</i>, <i>arg1</i> in local variable <i>1</i>, and so on. The new stack frame is then made current, and the Java Virtual Machine <code>pc</code> is set to the opcode of the first instruction of the method to be invoked. Execution continues with the first instruction of the method.<p>
+<a name="138113"></a>
+If the method is <code>native</code> and the platform-dependent code that implements it has not yet been loaded and linked into the Java Virtual Machine, that is done. The <i>nargs </i>- 1 words of arguments and <i>objectref</i> are popped from the operand stack; the code that implements the method is invoked in an implementation-dependent manner.<p>
+<a name="invokevirtual.Linking"></a>
+<b>Linking Exceptions</h3></b>
+<a name="117277"></a>
+During resolution of the <code>CONSTANT_Methodref</code> constant pool item, any of the exceptions documented in <a href="ConstantPool.doc.html#49425">&#167;5.2</a> can be thrown.<p>
+Otherwise, if the specified method exists but is a class (<code>static</code>) method, the <i>invokevirtual</i> instruction throws an <code>Incompatible-Class-ChangeError</code>.<p>
+<a name="68974"></a>
+Otherwise, if the specified method is <code>abstract</code>, <i>invokevirtual</i> throws an <code>AbstractMethodError</code>.<p>
+<a name="68975"></a>
+Otherwise, if the specified method is <code>native</code> and the code that implements the method cannot be loaded or linked, <i>invokevirtual</i> throws an <code>UnsatisfiedLinkError</code>.<p>
+<a name="invokevirtual.Runtime"></a>
+<b>Runtime Exception</h3></b>
+<a name="68977"></a>
+Otherwise, if <i>objectref</i> is <code>null</code>, the <i>invokevirtual</i> instruction throws a <code>NullPointerException</code>. <p>
+
+<a name="ior"></a>
+<hr><h2>ior</h2>
+<a name="ior.Operation"></a>
+<b>Operation</h3></b>
+<a name="68994"></a>
+Boolean OR <code>int</code><p><Table Border="1">
+<tr><td><a name="68993"></a>
+ <i>ior</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ior.Forms"></a>
+<b>Forms</h3></b>
+<a name="68995"></a>
+<i>ior</i> = 128 (0x80)<p>
+<a name="ior.Stack"></a>
+<b>Stack</h3></b>
+<a name="68996"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="ior.Description"></a>
+<b>Description</h3></b>
+<a name="68997"></a>
+Both<i> value1</i> and <i>value2</i> must both be of type <code>int</code>. They are popped from the operand stack. An <code>int</code> <i>result</i> is calculated by taking the bitwise inclusive OR of <i>value1</i> and <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+
+<a name="irem"></a>
+<hr><h2>irem</h2>
+<a name="irem.Operation"></a>
+<b>Operation</h3></b>
+<a name="69007"></a>
+Remainder <code>int</code><p><Table Border="1">
+<tr><td><a name="69006"></a>
+ <i>irem</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="irem.Forms"></a>
+<b>Forms</h3></b>
+<a name="69008"></a>
+<i>irem</i> = 112 (0x70)<p>
+<a name="irem.Stack"></a>
+<b>Stack</h3></b>
+<a name="69009"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="irem.Description"></a>
+<b>Description</h3></b>
+<a name="69010"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. The values are popped from the operand stack. The <code>int</code> <i>result</i> is <i>value1</i> - (<i>value1</i> / <i>value2</i>) * <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="69011"></a>
+The result of the <i>irem</i> instruction is such that <code>(a/b)*b</code> <code>+</code> <code>(a%b)</code> is equal to <code>a</code>. This identity holds even in the special case that the dividend is the negative <code>int</code> of largest possible magnitude for its type and the divisor is -<code>1</code> (the remainder is <code>0</code>). It follows from this rule that the result of the remainder operation can be negative only if the dividend is negative and can be positive only if the dividend is positive. Moreover, the magnitude of the result is always less than the magnitude of the divisor. <p>
+<a name="irem.Runtime"></a>
+<b>Runtime Exception</h3></b>
+<a name="69013"></a>
+If the value of the divisor for an <code>int</code> remainder operator is 0, <i>irem</i> throws an <code>ArithmeticException</code>.<p>
+<a name="69014"></a>
+<p>
+
+<a name="ireturn"></a>
+<hr><h2>ireturn</h2>
+<a name="ireturn.Operation"></a>
+<b>Operation</h3></b>
+<a name="69024"></a>
+Return <code>int</code> from method<p><Table Border="1">
+<tr><td><a name="69023"></a>
+ <i>ireturn</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ireturn.Forms"></a>
+<b>Forms</h3></b>
+<a name="69025"></a>
+<i>ireturn</i> = 172 (0xac)<p>
+<a name="ireturn.Stack"></a>
+<b>Stack</h3></b>
+<a name="69026"></a>
+..., <i>value</i><em> </em><img src="chars/arrwdbrt.gif"> <p>
+<a name="178030"></a>
+[empty]<p>
+<a name="ireturn.Description"></a>
+<b>Description</h3></b>
+<a name="69027"></a>
+The returning method must have return type <code>byte</code>, <code>short</code>, <code>char</code>, or <code>int</code>. The <i>value</i> must be of type <code>int</code>. The <i>value</i> is popped from the operand stack of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a> and pushed onto the operand stack of the frame of the invoker. Any other values on the operand stack of the current method are discarded. If the returning method is a <code>synchronized</code> method, the monitor acquired or re-entered on invocation of the method is released or exited (respectively) as if by execution of a <i>monitorexit</i> instruction. <p>
+<a name="69031"></a>
+The interpreter then returns control to the invoker of the method, reinstating the frame of the invoker.<p>
+
+<a name="ishl"></a>
+<hr><h2>ishl</h2>
+<a name="ishl.Operation"></a>
+<b>Operation</h3></b>
+<a name="69041"></a>
+Shift left <code>int</code><p><Table Border="1">
+<tr><td><a name="69040"></a>
+ <i>ishl</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ishl.Forms"></a>
+<b>Forms</h3></b>
+<a name="69042"></a>
+<i>ishl</i> = 120 (0x78)<p>
+<a name="ishl.Stack"></a>
+<b>Stack</h3></b>
+<a name="69043"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="ishl.Description"></a>
+<b>Description</h3></b>
+<a name="69044"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. The values are popped from the operand stack. An <code>int</code> <i>result</i> is calculated by shifting <i>value1</i> left by <em>s</em> bit positions, where <em>s</em> is the value of the low five bits of <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="ishl.Notes"></a>
+<b>Notes</h3></b>
+<a name="69045"></a>
+This is equivalent (even if overflow occurs) to multiplication by 2 to the power <em>s</em>. The shift distance actually used is always in the range 0 to 31, inclusive, as if <i>value2</i> were subjected to a bitwise logical AND with the mask value 0x1f. <p>
+
+<a name="ishr"></a>
+<hr><h2>ishr</h2>
+<a name="ishr.Operation"></a>
+<b>Operation</h3></b>
+<a name="69055"></a>
+Arithmetic shift right <code>int</code><p><Table Border="1">
+<tr><td><a name="69054"></a>
+ <i>ishr</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ishr.Forms"></a>
+<b>Forms</h3></b>
+<a name="69056"></a>
+<i>ishr</i><em> </em>= 122 (0x7a)<p>
+<a name="ishr.Stack"></a>
+<b>Stack</h3></b>
+<a name="69057"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="ishr.Description"></a>
+<b>Description</h3></b>
+<a name="69058"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. The values are popped from the operand stack. An <code>int</code> <i>result</i> is calculated by shifting <i>value1</i> right by <em>s</em> bit positions, with sign extension, where <em>s</em> is the value of the low five bits of <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="ishr.Notes"></a>
+<b>Notes</h3></b>
+<a name="69062"></a>
+The resulting value is <br><br><img src="Instructions2.doc.anc9.gif">
+<br><br>, where <i>s</i> is <i>value2</i> &amp; 0x1f. For nonnegative <i>value1</i>, this is equivalent to truncating <code>int</code> division by 2 to the power <code>s</code>. The shift distance actually used is always in the range 0 to 31, inclusive, as if <i>value2</i> were subjected to a bitwise logical AND with the mask value 0x1f. <p>
+
+<a name="istore"></a>
+<hr><h2>istore</h2>
+<a name="istore.Operation"></a>
+<b>Operation</h3></b>
+<a name="69071"></a>
+Store <code>int</code> into local variable<p><Table Border="1">
+<tr><td><a name="69068"></a>
+ <i>istore</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="69070"></a>
+ <i>index</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="istore.Forms"></a>
+<b>Forms</h3></b>
+<a name="69072"></a>
+<i>istore</i> = 54 (0x36)<p>
+<a name="istore.Stack"></a>
+<b>Stack</h3></b>
+<a name="69073"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="istore.Description"></a>
+<b>Description</h3></b>
+<a name="69074"></a>
+The <i>index</i> is an unsigned byte that must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The <i>value</i> on the top of the operand stack must be of type <code>int</code>. It is popped from the operand stack, and the value of the local variable at <i>index</i> is set to <i>value</i>.<p>
+<a name="istore.Notes"></a>
+<b>Notes</h3></b>
+<a name="69078"></a>
+The <i>istore</i> opcode can be used in conjunction with the <i>wide</i> instruction to access a local variable using a two-byte unsigned index.<p>
+
+<a name="istore_n"></a>
+<hr><h2>istore_&lt;n&gt;</h2>
+<a name="istore_n.Operation"></a>
+<b>Operation</h3></b>
+<a name="69088"></a>
+Store <code>int</code> into local variable<p><Table Border="1">
+<tr><td><a name="69087"></a>
+ <i>istore_&lt;n&gt;</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="istore_n.Forms"></a>
+<b>Forms</h3></b>
+<a name="69089"></a>
+<i>istore_0</i> = 59 (0x3b)<i></i><p>
+<a name="178032"></a>
+<i>istore_1</i> = 60 (0x3c)<i></i><p>
+<a name="178034"></a>
+<i>istore_2</i> = 61 (0x3d)<i></i><p>
+<a name="178036"></a>
+<i>istore_3</i> = 62 (0x3e)<p>
+<a name="istore_n.Stack"></a>
+<b>Stack</h3></b>
+<a name="69090"></a>
+..., <i>value</i> <img src="chars/arrwdbrt.gif"> ...<p>
+<a name="istore_n.Description"></a>
+<b>Description</h3></b>
+<a name="69091"></a>
+The <i>&lt;n&gt;</i> must be a valid index into the local variables of the current frame <a href="Overview.doc.html#17257">(&#167;3.6)</a>. The <i>value</i> on the top of the operand stack must be of type <code>int</code>. It is popped from the operand stack, and the value of the local variable at <i>&lt;n&gt;</i> is set to <i>value</i>. <p>
+<a name="istore_n.Notes"></a>
+<b>Notes</h3></b>
+<a name="69095"></a>
+Each of the <i>istore_&lt;n&gt;</i> instructions is the same as <i>istore</i> with an <i>index</i> of <i>&lt;n&gt;</i>, except that the operand <i>&lt;n&gt;</i> is implicit.<p>
+
+<a name="isub"></a>
+<hr><h2>isub</h2>
+<a name="isub.Operation"></a>
+<b>Operation</h3></b>
+<a name="69108"></a>
+Subtract <code>int</code><p><Table Border="1">
+<tr><td><a name="69107"></a>
+ <i>isub</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="isub.Forms"></a>
+<b>Forms</h3></b>
+<a name="69109"></a>
+<i>isub</i> = 100 (0x64)<p>
+<a name="isub.Stack"></a>
+<b>Stack</h3></b>
+<a name="69110"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="isub.Description"></a>
+<b>Description</h3></b>
+<a name="69111"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. The values are popped from the operand stack. The <code>int</code> <i>result</i> is <i>value1</i> - <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="69112"></a>
+For <code>int</code> subtraction, <code>a</code> - <code>b</code> produces the same result as <code>a</code> + <code>(</code>-<code>b)</code>. For <code>int</code> values, subtraction from zero is the same as negation.<p>
+<a name="69113"></a>
+Despite the fact that overflow or underflow may occur, in which case the <i>result</i> may have a different sign than the true mathematical result, execution of an <i>isub</i> instruction never throws a runtime exception.<p>
+
+<a name="iushr"></a>
+<hr><h2>iushr</h2>
+<a name="iushr.Operation"></a>
+<b>Operation</h3></b>
+<a name="69123"></a>
+Logical shift right<p><Table Border="1">
+<tr><td><a name="69122"></a>
+ <i>iushr</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br> <code>int</code><p>
+<a name="iushr.Forms"></a>
+<b>Forms</h3></b>
+<a name="69124"></a>
+<i>iushr</i> = 124 (0x7c)<p>
+<a name="iushr.Stack"></a>
+<b>Stack</h3></b>
+<a name="69125"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="iushr.Description"></a>
+<b>Description</h3></b>
+<a name="69126"></a>
+Both <i>value1</i> and <i>value2</i> must be of type <code>int</code>. The values are popped from the operand stack. An <code>int</code> <i>result</i> is calculated by shifting <i>value1</i> right by <em>s</em> bit positions, with zero extension, where <em>s</em> is the value of the low five bits of <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="iushr.Notes"></a>
+<b>Notes</h3></b>
+<a name="100222"></a>
+If <em>value1</em> is positive and <code>s</code> is <i>value2</i> &amp; 0x1f, the result is the same as that of <i>value1</i> \>\> <code>s</code>; if <i>value1</i> is negative, the result is equal to the value of the expression (<i>value1</i> \>\> <code>s</code>) + (2 << ~<code>s</code>). The addition of the (2 << ~<code>s</code>) term cancels out the propagated sign bit. The shift distance actually used is always in the range 0 to 31, inclusive.<p>
+
+<a name="ixor"></a>
+<hr><h2>ixor</h2>
+<a name="ixor.Operation"></a>
+<b>Operation</h3></b>
+<a name="69144"></a>
+Boolean XOR <code>int</code><p><Table Border="1">
+<tr><td><a name="69143"></a>
+ <i>ixor</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ixor.Forms"></a>
+<b>Forms</h3></b>
+<a name="69145"></a>
+<i>ixor</i> = 130 (0x82)<p>
+<a name="ixor.Stack"></a>
+<b>Stack</h3></b>
+<a name="69146"></a>
+..., <i>value1</i><em>, </em><i>value2</i> <img src="chars/arrwdbrt.gif"> ..., <i>result</i><p>
+<a name="ixor.Description"></a>
+<b>Description</h3></b>
+<a name="69147"></a>
+Both <i>value1</i> and <i>value2</i> must both be of type <code>int</code>. They are popped from the operand stack. An <code>int</code> <i>result</i> is calculated by taking the bitwise exclusive OR of <i>value1</i> and <i>value2</i>. The <i>result</i> is pushed onto the operand stack.<p>
+<a name="69154"></a>
+<a href="Instructions2.doc.html#"></a><a href="Instructions2.doc.html#">jsr	jsr</a><p>
+<a name="ixor.Operation"></a>
+<b>Operation</h3></b>
+<a name="69164"></a>
+Jump subroutine<p><Table Border="1">
+<tr><td><a name="69159"></a>
+ <i>jsr</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="69161"></a>
+ <i>branchbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="69163"></a>
+ <i>branchbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="ixor.Forms"></a>
+<b>Forms</h3></b>
+<a name="69165"></a>
+<i>jsr</i> = 168 (0xa8)<p>
+<a name="ixor.Stack"></a>
+<b>Stack</h3></b>
+<a name="69166"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>address</i><p>
+<a name="ixor.Description"></a>
+<b>Description</h3></b>
+<a name="69167"></a>
+The <i>address</i> of the opcode of the instruction immediately following this <i>jsr</i> instruction is pushed onto the operand stack as a value of type <code>returnAddress</code>. The unsigned <i>branchbyte1</i> and <i>branchbyte2</i> are used to construct a signed 16-bit offset, where the offset is (<i>branchbyte1</i> << 8) | <i>branchbyte2</i>. Execution proceeds at that offset from the address of this <i>jsr</i> instruction. The target address must be that of an opcode of an instruction within the method that contains this <i>jsr </i>instruction.<p>
+<a name="ixor.Notes"></a>
+<b>Notes</h3></b>
+<a name="69168"></a>
+The <i>jsr</i> instruction is used with the <i>ret</i> instruction in the implementation of the <code>finally</code> clauses of the Java language (see <a href="Compiling.doc.html#13789">Section 7.13, "Compiling finally"</a>). Note that <i>jsr</i> pushes the address onto the stack and <i>ret</i> gets it out of a local variable. This asymmetry is intentional.<p>
+
+<a name="jsr_w"></a>
+<hr><h2>jsr_w</h2>
+<a name="jsr_w.Operation"></a>
+<b>Operation</h3></b>
+<a name="69186"></a>
+Jump subroutine (wide index)<p><Table Border="1">
+<tr><td><a name="69177"></a>
+ <i>jsr_w</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="69179"></a>
+ <i>branchbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="69181"></a>
+ <i>branchbyte2</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="69183"></a>
+ <i>branchbyte3</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="69185"></a>
+ <i>branchbyte4</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="jsr_w.Forms"></a>
+<b>Forms</h3></b>
+<a name="69187"></a>
+<i>jsr_w</i> = 201 (0xc9)<p>
+<a name="jsr_w.Stack"></a>
+<b>Stack</h3></b>
+<a name="69188"></a>
+... <img src="chars/arrwdbrt.gif"> ..., <i>address</i><p>
+<a name="jsr_w.Description"></a>
+<b>Description</h3></b>
+<a name="69189"></a>
+The <i>address</i> of the opcode of the instruction immediately following this <i>jsr_w</i> instruction is pushed onto the operand stack as a value of type <code>returnAddress</code>. The unsigned <i>branchbyte1</i>, <i>branchbyte2</i>, <i>branchbyte3</i>, and <i>branchbyte4</i> are used to construct a signed 32-bit offset, where the offset is (<i>branchbyte1</i> << 24) | (<i>branchbyte2</i> << 16) | (<i>branchbyte3</i> << 8) | <i>branchbyte4</i>. Execution proceeds at that offset from the address of this <i>jsr_w</i> instruction. The target address must be that of an opcode of an instruction within the method that contains this <i>jsr_w </i>instruction.<p>
+<a name="jsr_w.Notes"></a>
+<b>Notes</h3></b>
+<a name="69190"></a>
+The <i>jsr_w</i> instruction is used with the <i>ret</i> instruction in the implementation of the <code>finally</code> clauses of the Java language (see <a href="Compiling.doc.html#13789">Section 7.13, "Compiling finally"</a>). Note that <i>jsr_w</i> pushes the address onto the stack and <i>ret</i> gets it out of a local variable. This asymmetry is intentional.<p>
+<a name="69194"></a>
+Although the <i>jsr_w</i> instruction has a 4-byte branch offset, other factors limit the size of a Java method to 65535 bytes <a href="ClassFile.doc.html#6253">(&#167;4.10)</a>. This limit may be raised in a future release of the Java Virtual Machine.<p>
+
+
+<hr>
+<!-- This inserts footnotes--><p>
+<a href="VMSpecTOC.doc.html">Contents</a> | <a href="Instructions2.doc6.html">Prev</a> | <a href="Instructions2.doc8.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size = -1>Java Virtual Machine Specification <br>
+<!--(HTML generated by dkramer on March 31, 1997)-->
+<!--
+(HTML generated by dkramer on March 25, 1997)-->
+<br>
+<i><a href="copyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:jvm@java.sun.com">jvm@java.sun.com</a>
+</font>
+</body></html>

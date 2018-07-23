@@ -1,0 +1,488 @@
+<html><head><title>Class Frame</title></head>
+<!--Last split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.FontMetrics.html">Prev</a>  <a href="java.awt.Graphics.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="10801"><h1>	&#167;1.19 Class Frame</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Frame
+</strong>    extends &#32;java.awt.<strong>Window</strong> &#32;<a href="java.awt.Window.html#22917">(II-&#167;1.42)</a>
+    implements java.awt.<strong>MenuContainer</strong> &#32;<a href="java.awt.MenuContainer.html#51808">(II-&#167;1.44)</a>
+{
+ &#32; &#32; &#32; &#32;// possible cursor types for the <strong>setCursor</strong> method
+ &#32; &#32;public final static int <strong>CROSSHAIR_CURSOR</strong>;	<a href="java.awt.Frame.html#11011">&#167;1.19.1</a>
+    public final static int <strong>DEFAULT_CURSOR</strong>;	<a href="java.awt.Frame.html#45422">&#167;1.19.2</a>
+    public final static int <strong>E_RESIZE_CURSOR</strong>;	<a href="java.awt.Frame.html#11031">&#167;1.19.3</a>
+    public final static int <strong>HAND_CURSOR</strong>;	<a href="java.awt.Frame.html#11041">&#167;1.19.4</a>
+    public final static int <strong>MOVE_CURSOR</strong>;	<a href="java.awt.Frame.html#11051">&#167;1.19.5</a>
+    public final static int <strong>N_RESIZE_CURSOR</strong>;	<a href="java.awt.Frame.html#11061">&#167;1.19.6</a>
+    public final static int <strong>NE_RESIZE_CURSOR</strong>;	<a href="java.awt.Frame.html#11071">&#167;1.19.7</a>
+    public final static int <strong>NW_RESIZE_CURSOR</strong>;	<a href="java.awt.Frame.html#11081">&#167;1.19.8</a>
+    public final static int <strong>S_RESIZE_CURSOR</strong>;	<a href="java.awt.Frame.html#11091">&#167;1.19.9</a>
+    public final static int <strong>SE_RESIZE_CURSOR</strong>;	<a href="java.awt.Frame.html#11101">&#167;1.19.10</a>
+    public final static int <strong>SW_RESIZE_CURSOR</strong>;	<a href="java.awt.Frame.html#31617">&#167;1.19.11</a>
+    public final static int <strong>TEXT_CURSOR</strong>;	<a href="java.awt.Frame.html#11121">&#167;1.19.12</a>
+    public final static int <strong>W_RESIZE_CURSOR</strong>;	<a href="java.awt.Frame.html#11131">&#167;1.19.13</a>
+    public final static int <strong>WAIT_CURSOR</strong>;	<a href="java.awt.Frame.html#11141">&#167;1.19.14</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+ &#32; &#32;public <strong>Frame</strong>();	<a href="java.awt.Frame.html#11155">&#167;1.19.15</a>
+    public <strong>Frame</strong>(String &#32;title);	<a href="java.awt.Frame.html#11179">&#167;1.19.16</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addNotify</strong>();	<a href="java.awt.Frame.html#11213">&#167;1.19.17</a>
+    public void <strong>dispose</strong>();	<a href="java.awt.Frame.html#11235">&#167;1.19.18</a>
+    public int <strong>getCursorType</strong>();	<a href="java.awt.Frame.html#11257">&#167;1.19.19</a>
+    public Image <strong>getIconImage</strong>();	<a href="java.awt.Frame.html#11275">&#167;1.19.20</a>
+    public MenuBar <strong>getMenuBar</strong>();	<a href="java.awt.Frame.html#11293">&#167;1.19.21</a>
+    public String <strong>getTitle</strong>();	<a href="java.awt.Frame.html#11311">&#167;1.19.22</a>
+    public boolean <strong>isResizable</strong>();	<a href="java.awt.Frame.html#11337">&#167;1.19.23</a>
+    protected String <strong>paramString</strong>();	<a href="java.awt.Frame.html#11355">&#167;1.19.24</a>
+    public void <strong>remove</strong>(MenuComponent &#32;m);	<a href="java.awt.Frame.html#11381">&#167;1.19.25</a>
+    public void <strong>setCursor</strong>(int &#32;cursorType);	<a href="java.awt.Frame.html#11401">&#167;1.19.26</a>
+    public void <strong>setIconImage</strong>(Image &#32;image);	<a href="java.awt.Frame.html#11421">&#167;1.19.27</a>
+    public void <strong>setMenuBar</strong>(MenuBar &#32;mb);	<a href="java.awt.Frame.html#11441">&#167;1.19.28</a>
+    public void <strong>setResizable</strong>(boolean &#32;resizable);	<a href="java.awt.Frame.html#11461">&#167;1.19.29</a>
+    public void <strong>setTitle</strong>(String &#32;title);	<a href="java.awt.Frame.html#11481">&#167;1.19.30</a>
+}
+</pre><a name="46678">A frame is a top-level window with a title and a border. A frame can also have a menu bar. 
+The AWT sends the frame all mouse, keyboard, and focus events that occur over it.
+</a><p><a name="46545">
+</a><p><a name="11001">
+</a><p>
+<hr>
+<a name="46532"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="CROSSHAIR_CURSOR">
+<a name="11011"><h3>CROSSHAIR_CURSOR
+</h3></a>
+<a name="11013"><code>public final static int CROSSHAIR_CURSOR = 1
+</code></a>
+<dl>
+<dd><a name="11021">A cross-haired shaped cursor.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="DEFAULT_CURSOR">
+<a name="45422"><h3>DEFAULT_CURSOR
+</h3></a>
+<a name="11023"><code>public final static int DEFAULT_CURSOR = 0
+</code></a>
+<dl>
+<dd><a name="31519">The default cursor.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="E_RESIZE_CURSOR">
+<a name="11031"><h3>E_RESIZE_CURSOR
+</h3></a>
+<a name="11033"><code>public final static int E_RESIZE_CURSOR = 11
+</code></a>
+<dl>
+<dd><a name="31596">A cursor indicating that the right-hand border is being resized.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="HAND_CURSOR">
+<a name="11041"><h3>HAND_CURSOR
+</h3></a>
+<a name="11043"><code>public final static int HAND_CURSOR = 12
+</code></a>
+<dl>
+<dd><a name="31598">A hand-shaped cursor.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MOVE_CURSOR">
+<a name="11051"><h3>MOVE_CURSOR
+</h3></a>
+<a name="11053"><code>public final static int MOVE_CURSOR = 13
+</code></a>
+<dl>
+<dd><a name="31600">A cursor indicating that an object is being moved.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="N_RESIZE_CURSOR">
+<a name="11061"><h3>N_RESIZE_CURSOR
+</h3></a>
+<a name="11063"><code>public final static int N_RESIZE_CURSOR = 8
+</code></a>
+<dl>
+<dd><a name="31602">A cursor indicating that the top border is being resized.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="NE_RESIZE_CURSOR">
+<a name="11071"><h3>NE_RESIZE_CURSOR
+</h3></a>
+<a name="11073"><code>public final static int NE_RESIZE_CURSOR = 7
+</code></a>
+<dl>
+<dd><a name="31604">A cursor indicating that the top-right corner is being resized.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="NW_RESIZE_CURSOR">
+<a name="11081"><h3>NW_RESIZE_CURSOR
+</h3></a>
+<a name="11083"><code>public final static int NW_RESIZE_CURSOR = 6
+</code></a>
+<dl>
+<dd><a name="31606">A cursor indicating the the top-left corner is being resized.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="S_RESIZE_CURSOR">
+<a name="11091"><h3>S_RESIZE_CURSOR
+</h3></a>
+<a name="11093"><code>public final static int S_RESIZE_CURSOR = 9
+</code></a>
+<dl>
+<dd><a name="31608">A cursor indicating the the bottom edge is being resized.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SE_RESIZE_CURSOR">
+<a name="11101"><h3>SE_RESIZE_CURSOR
+</h3></a>
+<a name="31612"><code>public final static int SE_RESIZE_CURSOR = 5
+</code></a>
+<dl>
+<dd><a name="31619">A cursor indicating that the bottom-right edge is being resized.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SW_RESIZE_CURSOR">
+<a name="31617"><h3>SW_RESIZE_CURSOR
+</h3></a>
+<a name="11113"><code>public final static int SW_RESIZE_CURSOR = 4
+</code></a>
+<dl>
+<dd><a name="31621">A cursor indicating that the bottom-left edge is being resized.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="TEXT_CURSOR">
+<a name="11121"><h3>TEXT_CURSOR
+</h3></a>
+<a name="11123"><code>public final static int TEXT_CURSOR = 2
+</code></a>
+<dl>
+<dd><a name="31623">A cursor for text insertion.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="W_RESIZE_CURSOR">
+<a name="11131"><h3>W_RESIZE_CURSOR
+</h3></a>
+<a name="11133"><code>public final static int W_RESIZE_CURSOR = 10
+</code></a>
+<dl>
+<dd><a name="45451">A cursor indicating the the left edge is being resized.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="WAIT_CURSOR">
+<a name="11141"><h3>WAIT_CURSOR
+</h3></a>
+<a name="11143"><code>public final static int WAIT_CURSOR = 3
+</code></a>
+<dl>
+<dd><a name="31547">A cursor indicating that a long-running operation is taking place
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="11147"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Frame">
+<a name="11155"><h3>Frame
+</h3></a>
+<a name="11157"><code>public Frame()
+</code></a>
+<dl>
+<dd><a name="11159">Constructs a new frame; it is initially invisible and has no title.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="Frame">
+<a name="11179"><h3>Frame
+</h3></a>
+<a name="11181"><code>public Frame(String &#32;title)
+</code></a>
+<dl>
+<dd><a name="31481">Constructs a new frame; it is initially invisible and has the specified title.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11185"><b>Parameters:
+</b></a><dd><a name="11187"><code>title
+- </code></a><a name="11189">the title
+</a>
+</dl></dl>
+<hr>
+<a name="11203"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addNotify">
+<a name="11213"><h3>addNotify
+</h3></a>
+<a name="11215"><code>public void addNotify()
+</code></a>
+<dl>
+<dd><a name="26574">This method calls the createFrame method <a href="java.awt.Toolkit.html#22405">(II-&#167;1.41.10)</a> of this object's 
+toolkit <a href="java.awt.Component.html#4237">(II-&#167;1.10.20)</a> in order to create a FramePeer &#32;<a href="java.awt.peer.FramePeer.html#1147">(II-&#167;3.10)</a> for this frame. 
+This peer allows the application to change the look of a frame without 
+changing its functionality.
+<pre>
+</pre></a>
+
+<dd><a name="43801">Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11219"><b>Overrides:
+</b></a><dd><a name="11225">addNotify in class Window &#32;<a href="java.awt.Window.html#23031">(II-&#167;1.42.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="dispose">
+<a name="11235"><h3>dispose
+</h3></a>
+<a name="11237"><code>public void dispose()
+</code></a>
+<dl>
+<dd><a name="11239">Disposes of this frame, its menubar, and any system resources used by this 
+frame.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11241"><b>Overrides:
+</b></a><dd><a name="11247">dispose in class Window &#32;<a href="java.awt.Window.html#31499">(II-&#167;1.42.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getCursorType">
+<a name="11257"><h3>getCursorType
+</h3></a>
+<a name="11259"><code>public int getCursorType()
+</code></a>
+<dl><dl>
+<dt><a name="11263"><b>Returns:
+</b></a><dd><a name="11265">the cursor type of this frame.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getIconImage">
+<a name="11275"><h3>getIconImage
+</h3></a>
+<a name="11277"><code>public Image getIconImage()
+</code></a>
+<dl><dl>
+<dt><a name="11281"><b>Returns:
+</b></a><dd><a name="11283">the icon image for this frame, or null if this frame doesn't have an icon 
+image.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getMenuBar">
+<a name="11293"><h3>getMenuBar
+</h3></a>
+<a name="11295"><code>public MenuBar getMenuBar()
+</code></a>
+<dl><dl>
+<dt><a name="11299"><b>Returns:
+</b></a><dd><a name="11301">the menu bar for this frame, or null if this frame doesn't have a menu 
+bar.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getTitle">
+<a name="11311"><h3>getTitle
+</h3></a>
+<a name="11313"><code>public String getTitle()
+</code></a>
+<dl><dl>
+<dt><a name="11317"><b>Returns:
+</b></a><dd><a name="11319">the title of this frame, or null if this frame doesn't have a title
+</a>
+
+<dt><a name="11321"><b>See Also:
+</b></a><dd><a name="11327">setTitle &#32;<a href="java.awt.Frame.html#11481">(II-&#167;1.19.30)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isResizable">
+<a name="11337"><h3>isResizable
+</h3></a>
+<a name="11339"><code>public boolean isResizable()
+</code></a>
+<dl>
+<dd><a name="45396">Indicates whether this frame is resizable. By default, all frames are resizable.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34027"><b>Returns:
+</b></a><dd><a name="11345">true if the user can resize this frame; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="11355"><h3>paramString
+</h3></a>
+<a name="11357"><code>protected String paramString()
+</code></a>
+<dl>
+<dd><a name="52915">Returns the parameter string representing the state of this frame. This 
+string is useful for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26958"><b>Returns:
+</b></a><dd><a name="26959">the parameter string of this frame.
+</a>
+
+<dt><a name="11365"><b>Overrides:
+</b></a><dd><a name="11371">paramString in class Container &#32;<a href="java.awt.Container.html#6655">(II-&#167;1.11.16)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="remove">
+<a name="11381"><h3>remove
+</h3></a>
+<a name="11383"><code>public void remove(MenuComponent &#32;m)
+</code></a>
+<dl>
+<dd><a name="11385">Removes the specified menu bar from this frame.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11387"><b>Parameters:
+</b></a><dd><a name="11389"><code>m
+- </code></a><a name="11391">the menu component to remove.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setCursor">
+<a name="11401"><h3>setCursor
+</h3></a>
+<a name="11403"><code>public void setCursor(int &#32;cursorType)
+</code></a>
+<dl>
+<dd><a name="11405">Sets the cursor image for this frame to be one of the predefined cursors.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11407"><b>Parameters:
+</b></a><dd><a name="11409"><code>cursorType
+- </code></a><a name="11411">one of the predefined cursor constants defined above 
+(<a href="java.awt.Frame.html#11011">II</a>-<a href="java.awt.Frame.html#11011">&#167;1.19.1</a>-<a href="java.awt.Frame.html#11141">&#167;1.19.14</a>).
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setIconImage">
+<a name="11421"><h3>setIconImage
+</h3></a>
+<a name="11423"><code>public void setIconImage(Image &#32;image)
+</code></a>
+<dl>
+<dd><a name="11425">Sets the image to display when this frame is iconized. The default icon is 
+platform specific. Not all platforms support the concept of iconizing a 
+window.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11427"><b>Parameters:
+</b></a><dd><a name="11429"><code>image
+- </code></a><a name="11431">the icon image to be displayed
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setMenuBar">
+<a name="11441"><h3>setMenuBar
+</h3></a>
+<a name="11443"><code>public void setMenuBar(MenuBar &#32;mb)
+</code></a>
+<dl>
+<dd><a name="11445">Sets the menubar of this frame to the specified menubar.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11447"><b>Parameters:
+</b></a><dd><a name="11449"><code>mb
+- </code></a><a name="11451">the new menubar
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setResizable">
+<a name="11461"><h3>setResizable
+</h3></a>
+<a name="11463"><code>public void setResizable(boolean &#32;resizable)
+</code></a>
+<dl>
+<dd><a name="11467">Determines whether this frame should be resizable. By default, a frame is 
+resizable.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="31584"><b>Parameters:
+</b></a><dd><a name="11469"><code>resizable
+- </code></a><a name="11471">true if this frame should be resizable; false otherwise
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setTitle">
+<a name="11481"><h3>setTitle
+</h3></a>
+<a name="11483"><code>public void setTitle(String &#32;title)
+</code></a>
+<dl>
+<dd><a name="11485">Sets the title of this frame to the specified title.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="11487"><b>Parameters:
+</b></a><dd><a name="45415"><code>title
+- </code></a><a name="45416">the new title of this frame, or null to remove the title
+</a>
+
+<dt><a name="45417"><b>See Also:
+</b></a><dd><a name="11499">getTitle &#32;<a href="java.awt.Frame.html#11311">(II-&#167;1.19.22)</a>.
+</a>
+</dl></dl>
+<p></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.FontMetrics.html">Prev</a>  <a href="java.awt.Graphics.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

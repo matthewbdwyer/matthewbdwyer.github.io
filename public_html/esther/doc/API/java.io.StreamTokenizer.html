@@ -1,0 +1,536 @@
+<html><head><title>Class StreamTokenizer</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.SequenceInputStream.html">Prev</a>  <a href="java.io.StringBufferInputStream.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="9226"><h1>	&#167;2.22 Class StreamTokenizer</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>StreamTokenizer
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+ &#32; &#32;public double <strong>nval</strong>;	<a href="java.io.StreamTokenizer.html#9394">&#167;2.22.1</a>
+    public String <strong>sval</strong>;	<a href="java.io.StreamTokenizer.html#9406">&#167;2.22.2</a>
+ &#32; &#32;public int <strong>ttype</strong>;	<a href="java.io.StreamTokenizer.html#32263">&#167;2.22.3</a>
+
+ &#32; &#32; &#32; &#32;// possible values for the ttype field
+ &#32; &#32;public final static int <strong>TT_EOF</strong>;	<a href="java.io.StreamTokenizer.html#9418">&#167;2.22.4</a>
+    public final static int <strong>TT_EOL</strong>;	<a href="java.io.StreamTokenizer.html#9430">&#167;2.22.5</a>
+    public final static int <strong>TT_NUMBER</strong>;	<a href="java.io.StreamTokenizer.html#9442">&#167;2.22.6</a>
+    public final static int <strong>TT_WORD</strong>;	<a href="java.io.StreamTokenizer.html#9454">&#167;2.22.7</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+ &#32; &#32;public <strong>StreamTokenizer</strong>(InputStream &#32;I);	<a href="java.io.StreamTokenizer.html#9482">&#167;2.22.8</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>commentChar</strong>(int &#32;ch);	<a href="java.io.StreamTokenizer.html#9504">&#167;2.22.9</a>
+    public void <strong>eolIsSignificant</strong>(boolean &#32;flag);	<a href="java.io.StreamTokenizer.html#9524">&#167;2.22.10</a>
+    public int <strong>lineno</strong>();	<a href="java.io.StreamTokenizer.html#9544">&#167;2.22.11</a>
+    public void <strong>lowerCaseMode</strong>(boolean &#32;fl);	<a href="java.io.StreamTokenizer.html#9562">&#167;2.22.12</a>
+    public int <strong>nextToken</strong>();	<a href="java.io.StreamTokenizer.html#9582">&#167;2.22.13</a>
+    public void <strong>ordinaryChar</strong>(int &#32;ch);	<a href="java.io.StreamTokenizer.html#9602">&#167;2.22.14</a>
+    public void <strong>ordinaryChars</strong>(int &#32;low, int &#32;hi);	<a href="java.io.StreamTokenizer.html#9622">&#167;2.22.15</a>
+    public void <strong>parseNumbers</strong>();	<a href="java.io.StreamTokenizer.html#9646">&#167;2.22.16</a>
+    public void <strong>pushBack</strong>();	<a href="java.io.StreamTokenizer.html#9660">&#167;2.22.17</a>
+    public void <strong>quoteChar</strong>(int &#32;ch);	<a href="java.io.StreamTokenizer.html#9674">&#167;2.22.18</a>
+    public void <strong>resetSyntax</strong>();	<a href="java.io.StreamTokenizer.html#9694">&#167;2.22.19</a>
+    public void <strong>whitespaceChars</strong>(int &#32;low, int &#32;hi);	<a href="java.io.StreamTokenizer.html#9708">&#167;2.22.20</a>
+    public void <strong>slashStarComments</strong>(boolean &#32;flag);	<a href="java.io.StreamTokenizer.html#9728">&#167;2.22.21</a>
+    public String <strong>toString</strong>();	<a href="java.io.StreamTokenizer.html#9748">&#167;2.22.22</a>
+    public void <strong>whitespaceChars</strong>(int &#32;low, int &#32;hi);	<a href="java.io.StreamTokenizer.html#9774">&#167;2.22.23</a>
+    public void <strong>wordChars</strong>(int &#32;low, int &#32;hi);	<a href="java.io.StreamTokenizer.html#9798">&#167;2.22.24</a>
+}
+</pre><a name="38380">The StreamTokenizer class takes an input stream and parses it into "tokens", allowing the 
+tokens to be read one at a time. The parsing process is controlled by a table and a number 
+of flags that can be set to various states. The stream tokenizer can recognize identifiers, 
+numbers, quoted strings, and various comment styles.
+</a><p><a name="36143">Each byte read from the input stream is regarded as a character in the range '\u0000' 
+through '\u00FF'. The character value is used to look up five possible attributes of the character: <em>whitespace</em>, <em>alphabetic</em>, <em>numeric</em>, <em>string quote</em>, and <em>comment character</em>. Each character can have zero or more of these attributes.
+</a><p><a name="39356">In addition an instance has four flags. These flags indicate:
+</a><p><ul><li><a name="38418">Whether line terminators are to be returned as tokens or treated as whitespace that 
+merely separates tokens.
+</a><li><a name="38419">Whether C-style comments are to be recognized and skipped.
+</a><li><a name="38420">Whether C++-style comments are to be recognized and skipped.
+</a><li><a name="38422">Whether the characters of identifiers are converted to lowercase.
+</a></ul><a name="38392">A typical application first constructs an instance of this class, sets up the syntax tables, and 
+then repeatedly loops calling the nextToken method <a href="java.io.StreamTokenizer.html#9582">(I-&#167;2.22.13)</a> in each iteration of the 
+loop until it returns the value TT_EOF <a href="java.io.StreamTokenizer.html#9418">(I-&#167;2.22.4)</a>.
+</a><p>
+<hr>
+<a name="9386"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="nval">
+<a name="9394"><h3>nval
+</h3></a>
+<a name="9396"><code>public double nval
+</code></a>
+<dl>
+<dd><a name="9398">If the current token is a number, this field contains the value of that number. The current token is a number when the value of the ttype field 
+<a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a> is TT_NUMBER <a href="java.io.StreamTokenizer.html#9442">(I-&#167;2.22.6)</a>.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="sval">
+<a name="9406"><h3>sval
+</h3></a>
+<a name="9408"><code>public String sval
+</code></a>
+<dl>
+<dd><a name="33732">If the current token is a word token, this field contains a string giving the 
+characters of the word token. When the current token is a quoted string 
+token, this field contains the body of the string. 
+<pre>
+</pre></a>
+
+<dd><a name="37832">The current token is a word when when the value of the ttype field 
+<a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a> is TT_WORD <a href="java.io.StreamTokenizer.html#9454">(I-&#167;2.22.7)</a>. The current token is a quoted string 
+token when the value of the ttype field is a quote character (see <a href="java.io.StreamTokenizer.html#9674">I</a>-<a href="java.io.StreamTokenizer.html#9674">&#167;2.22.18</a>).
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="ttype">
+<a name="32263"><h3>ttype
+</h3></a>
+<a name="32264"><code>public int ttype
+</code></a>
+<dl>
+<dd><a name="32265">After a call to the nextToken method <a href="java.io.StreamTokenizer.html#9582">(I-&#167;2.22.13)</a>, this field contains the 
+type of the token just read. For a single character token, its value is the single character, converted to an integer. For a quoted string token (see 
+<a href="java.io.StreamTokenizer.html#9674">I</a>-<a href="java.io.StreamTokenizer.html#9674">&#167;2.22.18</a>), its value is the quote character. Otherwise, its value is one of 
+the following:
+<pre>
+</pre></a>
+<dl><ul><li><a name="33772">TT_WORD <a href="java.io.StreamTokenizer.html#9454">(I-&#167;2.22.7)</a> indicates that the token is a word.
+</a></ul><ul><li><a name="33774">TT_NUMBER <a href="java.io.StreamTokenizer.html#9442">(I-&#167;2.22.6)</a> indicates that the token is a number
+</a><li><a name="33776">TT_EOL <a href="java.io.StreamTokenizer.html#9430">(I-&#167;2.22.5)</a> indicates that the end of line has been read. The field 
+can only have this value if the eolIsSignficant method <a href="java.io.StreamTokenizer.html#9524">(I-&#167;2.22.10)</a> has been 
+called with the argument true.
+</a><li><a name="33755">TT_EOF <a href="java.io.StreamTokenizer.html#9418">(I-&#167;2.22.4)</a> indicates that the end of the input stream has been 
+reached.
+</a></ul></dl></dl>
+
+<META NAME="keywords" CONTENT="TT_EOF">
+<a name="9418"><h3>TT_EOF
+</h3></a>
+<a name="9420"><code>public final static int TT_EOF = -1
+</code></a>
+<dl>
+<dd><a name="9422">A constant indicating that the end of the stream has been read.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="TT_EOL">
+<a name="9430"><h3>TT_EOL
+</h3></a>
+<a name="9432"><code>public final static int TT_EOL = '\n'
+</code></a>
+<dl>
+<dd><a name="9434">A constant indicating that the end of line has been read.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="TT_NUMBER">
+<a name="9442"><h3>TT_NUMBER
+</h3></a>
+<a name="9444"><code>public final static int TT_NUMBER = -2
+</code></a>
+<dl>
+<dd><a name="9446">A constant indicating that a number has been read.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="TT_WORD">
+<a name="9454"><h3>TT_WORD
+</h3></a>
+<a name="9456"><code>public final static int TT_WORD = -3
+</code></a>
+<dl>
+<dd><a name="9458">A constant indicating that a token has been read.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="9474"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="StreamTokenizer">
+<a name="9482"><h3>StreamTokenizer
+</h3></a>
+<a name="9484"><code>public StreamTokenizer(InputStream &#32;I)
+</code></a>
+<dl>
+<dd><a name="38434">Creates a stream tokenizer that parses the specified input stream. The 
+stream tokenizer is initialized to the following default state:
+<pre>
+</pre></a>
+<dl><ul><li><a name="38435">All byte values 'A' through 'Z', 'a' through 'z', and '\u00A0' through '\u00FF' are 
+considered to be alphabetic.
+</a></ul><ul><li><a name="38436">All byte values '\u0000' through '\u0020' are considered to be whitespace.
+</a><li><a name="38443">'/' is a comment character.
+</a><li><a name="38444">Single quote '\'' and double quote '"' are string quote characters.
+</a><li><a name="38445">Numbers are parsed
+</a><li><a name="38446">End of lines are not treated as whitespace, not as separate tokens.
+</a><li><a name="38447">C-style and C++-style comments are not recognized.
+</a></ul>
+<dt><a name="9488"><b>Parameters:
+</b></a><dd><a name="9490"><code>I
+- </code></a><a name="9492">the input stream
+</a>
+</dl></dl>
+<hr>
+<a name="9494"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="commentChar">
+<a name="9504"><h3>commentChar
+</h3></a>
+<a name="9506"><code>public void commentChar(int &#32;ch)
+</code></a>
+<dl>
+<dd><a name="9508">Specified that the character argument starts a single line comment. All 
+characters from the comment character to the end of the line are ignored 
+by this stream tokenizer. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9510"><b>Parameters:
+</b></a><dd><a name="9512"><code>ch
+- </code></a><a name="9514">the character
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="eolIsSignificant">
+<a name="9524"><h3>eolIsSignificant
+</h3></a>
+<a name="9526"><code>public void eolIsSignificant(boolean &#32;flag)
+</code></a>
+<dl>
+<dd><a name="9528">If the flag argument is true, this tokenizer treats end of lines as tokens; the 
+nextToken method <a href="java.io.StreamTokenizer.html#9582">(I-&#167;2.22.13)</a> returns TT_EOL <a href="java.io.StreamTokenizer.html#9430">(I-&#167;2.22.5)</a> and also sets the 
+ttype field <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a> to this value when an end of line is read.
+<pre>
+</pre></a>
+
+<dd><a name="34148">A line is a sequence of characters ending with either a carriage return character ('\r') or a newline character ('\n'). In addition, a carriage return character followed immediately by a newline character is treated as a single end-
+of-line token.
+<pre>
+</pre></a>
+
+<dd><a name="34153">If the flag is false, end of line characters are treated as whitespace and serve 
+only to separate tokens.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9530"><b>Parameters:
+</b></a><dd><a name="9532"><code>flag
+- </code></a><a name="9534">true indicates that end-of-line characters are separate tokens; false 
+indicates that end-of-line characters are whitespace
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="lineno">
+<a name="9544"><h3>lineno
+</h3></a>
+<a name="9546"><code>public int lineno()
+</code></a>
+<dl><dl>
+<dt><a name="9550"><b>Returns:
+</b></a><dd><a name="9552">the current line number of this stream tokenizer
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="lowerCaseMode">
+<a name="9562"><h3>lowerCaseMode
+</h3></a>
+<a name="9564"><code>public void lowerCaseMode(boolean &#32;fl)
+</code></a>
+<dl>
+<dd><a name="9566">If the flag argument is true, then the value in the sval field is lowercased 
+whenever a word token is returned (the ttype field <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a> has the value 
+TT_WORD <a href="java.io.StreamTokenizer.html#9454">(I-&#167;2.22.7)</a>) by the nextToken method <a href="java.io.StreamTokenizer.html#9582">(I-&#167;2.22.13)</a> of this tokenizer.
+<pre>
+</pre></a>
+
+<dd><a name="34200">If the flag argument is false, then the sval field is not modified.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9568"><b>Parameters:
+</b></a><dd><a name="9570"><code>fl
+- </code></a><a name="9572">true indicates that all word tokens should be lowercased 
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="nextToken">
+<a name="9582"><h3>nextToken
+</h3></a>
+<a name="9584"><code>public int nextToken()
+</code></a>
+<a name="9586"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="9588">Parses the next token from the input stream of this tokenizer. The type of 
+the next token is returned in the ttype field <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a>. Additional information about the token may be in the nval field <a href="java.io.StreamTokenizer.html#9394">(I-&#167;2.22.1)</a> or the sval field 
+<a href="java.io.StreamTokenizer.html#9406">(I-&#167;2.22.2)</a> of this tokenizer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9590"><b>Returns:
+</b></a><dd><a name="9592">The value of the ttype field <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a>.
+</a>
+
+<dt><a name="38675"><b>Throws
+</b></a><dd><a name="38679">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="38680">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="ordinaryChar">
+<a name="9602"><h3>ordinaryChar
+</h3></a>
+<a name="9604"><code>public void ordinaryChar(int &#32;ch)
+</code></a>
+<dl>
+<dd><a name="9606">Specifies that the character argument is "ordinary" in this tokenizer. It 
+removes any special significance the character has as a comment character, 
+word component, string delimiter, whitespace, or number character. When 
+such a character is encountered by the parser, the parser treates it as a single-character token and sets ttype field <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a> to the character value.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9608"><b>Parameters:
+</b></a><dd><a name="9610"><code>ch
+- </code></a><a name="9612">the character
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="ordinaryChars">
+<a name="9622"><h3>ordinaryChars
+</h3></a>
+<a name="9624"><code>public void ordinaryChars(int &#32;low, int &#32;hi)
+</code></a>
+<dl>
+<dd><a name="9626">Specifies that all characters <em>c</em> in the range <img src="javaac5.gif"> are "ordinary" in 
+this tokenizer. See the ordinaryChar method <a href="java.io.StreamTokenizer.html#9602">(I-&#167;2.22.14)</a> for more information on a character being ordinary.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9628"><b>Parameters:
+</b></a><dd><a name="9630"><code>low
+- </code></a><a name="9632">the low end of the range
+</a>
+<dd><a name="9634"><code>hi
+- </code></a><a name="9636">the high end of the range
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="parseNumbers">
+<a name="9646"><h3>parseNumbers
+</h3></a>
+<a name="9648"><code>public void parseNumbers()
+</code></a>
+<dl>
+<dd><a name="9650">Specifies that numbers should be parsed by this tokenizer. The syntax 
+table of this tokenizer is modified so that each of the twelve characters
+<pre>
+</pre></a>
+<ul><a name="38457">
+<code>	0 1 2 3 4 5 6 7 8 9 . -
+</code>
+</a></ul>
+<dd><a name="38460">has the "numeric" attribute.
+<pre>
+</pre></a>
+
+<dd><a name="34302">When the parser encounters a word token that has the format of a double 
+precision floating point number, it treates the token as a number rather 
+than a word, by setting the the ttype field <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a> to the value 
+TT_NUMBER <a href="java.io.StreamTokenizer.html#9442">(I-&#167;2.22.6)</a> and putting the numeric value of the token into 
+the nval field <a href="java.io.StreamTokenizer.html#9394">(I-&#167;2.22.1)</a>.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="pushBack">
+<a name="9660"><h3>pushBack
+</h3></a>
+<a name="9662"><code>public void pushBack()
+</code></a>
+<dl>
+<dd><a name="9664">Causes the next call to the nextToken method <a href="java.io.StreamTokenizer.html#9582">(I-&#167;2.22.13)</a> of this tokenizer 
+to return the current value in the ttype field <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a>, and not to modify 
+the value in the nval <a href="java.io.StreamTokenizer.html#9394">(I-&#167;2.22.1)</a> or sval <a href="java.io.StreamTokenizer.html#9406">(I-&#167;2.22.2)</a> field.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="quoteChar">
+<a name="9674"><h3>quoteChar
+</h3></a>
+<a name="9676"><code>public void quoteChar(int &#32;ch)
+</code></a>
+<dl>
+<dd><a name="9678">Specifies that matching pairs of this character delimit string constants in 
+this tokenizer.
+<pre>
+</pre></a>
+
+<dd><a name="34363">When the nextToken method <a href="java.io.StreamTokenizer.html#9582">(I-&#167;2.22.13)</a> encounters a string constant, the 
+ttype field <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a> field is set to the string delimiter and the sval field 
+<a href="java.io.StreamTokenizer.html#9406">(I-&#167;2.22.2)</a> is set to the body of the string.
+<pre>
+</pre></a>
+
+<dd><a name="39402">If a string quote character is encountered, then a string is recognized, consisting of all characters after (but not including) the string quote character, 
+up to (but not including) the next occurrence of that same string quote 
+character, or a line terminator, or end of file. The usual escape sequences 
+such as "\n" and "\t" are recognized and converted to single characters as 
+the string is parsed.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9680"><b>Parameters:
+</b></a><dd><a name="9682"><code>ch
+- </code></a><a name="9684">the character
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="resetSyntax">
+<a name="9694"><h3>resetSyntax
+</h3></a>
+<a name="9696"><code>public void resetSyntax()
+</code></a>
+<dl>
+<dd><a name="34385">Resets this tokenizer's syntax table so that all characters are "ordinary." 
+See the ordinaryChar method <a href="java.io.StreamTokenizer.html#9602">(I-&#167;2.22.14)</a> for more information on a character being ordinary.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="slashSlashComments">
+<a name="9708"><h3>slashSlashComments
+</h3></a>
+<a name="34405"><code>public void slashSlashComments(boolean &#32;flag)
+</code></a>
+<dl>
+<dd><a name="34410">If the flag argument is true, this stream tokenizer recognizes C++ style 
+comments. Any occurrence of two consecutive slash characters ('/') is 
+treated as the beginning of a comment that extends to the end of the line.
+<pre>
+</pre></a>
+
+<dd><a name="34421">If the flag argument is false, then C++ style comments are not treated specially.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34407"><b>Parameters:
+</b></a><dd><a name="34408"><code>flag
+- </code></a><a name="9718">true indicates to recognize and ignore C++ style comments
+</a>
+<a name="39391">
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="slashStarComments">
+<a name="9728"><h3>slashStarComments
+</h3></a>
+<a name="9730"><code>public void slashStarComments(boolean &#32;flag)
+</code></a>
+<dl>
+<dd><a name="34435">If the flag argument is true, this stream tokenizer recognizes C style comments. All text between successive occurrences of /* and */ are discarded.
+<pre>
+</pre></a>
+
+<dd><a name="34436">If the flag argument is false, then C style comments are not treated specially.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9734"><b>Parameters:
+</b></a><dd><a name="9736"><code>flag
+- </code></a><a name="9738">true indicates to recognize and ignore C style comments
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="9748"><h3>toString
+</h3></a>
+<a name="9750"><code>public String toString()
+</code></a>
+<dl>
+<dd><a name="9752">Returns the string representation of the current stream token.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="9754"><b>Returns:
+</b></a><dd><a name="9756">a string representation of the token specified by the ttype <a href="java.io.StreamTokenizer.html#32263">(I-&#167;2.22.3)</a>, 
+nval <a href="java.io.StreamTokenizer.html#9394">(I-&#167;2.22.1)</a>, and sval <a href="java.io.StreamTokenizer.html#9406">(I-&#167;2.22.2)</a> fields.
+</a>
+
+<dt><a name="9758"><b>Overrides:
+</b></a><dd><a name="9764">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="whitespaceChars">
+<a name="9774"><h3>whitespaceChars
+</h3></a>
+<a name="9776"><code>public void whitespaceChars(int &#32;low, int &#32;hi)
+</code></a>
+<dl><dl>
+<dt><a name="9780"><b>Specifies that all characters <em>c</em> in the range <img src="javaac6.gif"> are whitespace 
+character. Whitepsace characters serve only to separate tokens in the input 
+stream.
+</b></a>
+<dt><a name="34491"><b>Parameters:
+</b></a><dd><a name="9782"><code>low
+- </code></a><a name="9784">the low end of the range
+</a>
+<dd><a name="9786"><code>hi
+- </code></a><a name="9788">the high end of the range
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="wordChars">
+<a name="9798"><h3>wordChars
+</h3></a>
+<a name="34499"><code>public void wordChars(int &#32;low, int &#32;hi)
+</code></a>
+<dl>
+<dd><a name="34500">Specifies that all characters <em>c</em> in the range <img src="javaac7.gif"> are word constituents. A word token consists of a word constitutent followed by zero or 
+more word constituents or number constituents.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34501"><b>Parameters:
+</b></a><dd><a name="34502"><code>low
+- </code></a><a name="9808">the low end of the range
+</a>
+<dd><a name="9810"><code>hi
+- </code></a><a name="9812">the high end of the range
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.SequenceInputStream.html">Prev</a>  <a href="java.io.StringBufferInputStream.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

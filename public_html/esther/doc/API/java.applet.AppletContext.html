@@ -1,0 +1,230 @@
+<html><head><title>Interface AppletContext</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.applet.html">This Package</a>  <a href="java.applet.Applet.html">Prev</a>  <a href="java.applet.AppletStub.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="784"><h1>	&#167;3.2 Interface AppletContext</h1></a>
+<pre>public &#32;interface &#32;java.applet.<strong>AppletContext
+</strong>{
+ &#32; &#32; &#32; &#32;// Methods
+    public abstract Applet <strong>getApplet</strong>(String &#32;name);	<a href="java.applet.AppletContext.html#846">&#167;3.2.1</a>
+ &#32; &#32;public abstract Enumeration <strong>getApplets</strong>();	<a href="java.applet.AppletContext.html#864">&#167;3.2.2</a>
+    public abstract AudioClip <strong>getAudioClip</strong>(URL &#32;url);	<a href="java.applet.AppletContext.html#878">&#167;3.2.3</a>
+    public abstract Image <strong>getImage</strong>(URL &#32;url);	<a href="java.applet.AppletContext.html#892">&#167;3.2.4</a>
+    public abstract void <strong>showDocument</strong>(URL &#32;url);	<a href="java.applet.AppletContext.html#906">&#167;3.2.5</a>
+    public abstract void 	<a href="java.applet.AppletContext.html#918">&#167;3.2.6</a>
+        <strong>showDocument</strong>(URL &#32;url, String &#32;target);
+    public abstract void <strong>showStatus</strong>(String &#32;status);	<a href="java.applet.AppletContext.html#932">&#167;3.2.7</a>
+}
+</pre><a name="26881">This interface corresponds to an applet's environment: the document containing the applet 
+and the other applets in the same document. 
+</a><p><a name="27461">The methods in this interface can be used by an applet to obtain information about its environment.
+</a><p>
+<hr>
+<a name="836"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="getApplet">
+<a name="846"><h3>getApplet
+</h3></a>
+<a name="848"><code>public abstract Applet getApplet(String &#32;name)
+</code></a>
+<dl>
+<dd><a name="850">Finds and returns the applet in the document represented by this applet 
+context with the given name. The name can be set in the HTML tag by setting the name attribute.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27421"><b>Parameters:
+</b></a><dd><a name="27422"><code>name
+- </code></a><a name="27423">an applet name
+</a>
+
+<dt><a name="852"><b>Returns:
+</b></a><dd><a name="854">the applet with the given name, or null if not found.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getApplets">
+<a name="864"><h3>getApplets
+</h3></a>
+<a name="866"><code>public abstract Enumeration getApplets()
+</code></a>
+<dl>
+<dd><a name="27416">Finds all the applets in the document represented by this applet context.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29045"><b>Returns:
+</b></a><dd><a name="27419">an enumeration of all applets in the document represented by this 
+applet context.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getAudioClip">
+<a name="878"><h3>getAudioClip
+</h3></a>
+<a name="880"><code>public abstract AudioClip getAudioClip(URL &#32;url)
+</code></a>
+<dl>
+<dd><a name="27027">Creates an audio clip.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="29048"><b>Parameters:
+</b></a><dd><a name="27028"><code>url
+- </code></a><a name="27029">an absolute URL giving the location of the audio clip
+</a>
+
+<dt><a name="27030"><b>Returns:
+</b></a><dd><a name="27031">the audio clip at the specified URL.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getImage">
+<a name="892"><h3>getImage
+</h3></a>
+<a name="894"><code>public abstract Image getImage(URL &#32;url)
+</code></a>
+<dl>
+<dd><a name="27036">Returns an Image object <a href="java.awt.Image.html#14865">(II-&#167;1.24)</a> that can then be painted on the screen. 
+The url argument that is passed as an argument must specify an absolute 
+URL.
+<pre>
+</pre></a>
+
+<dd><a name="27037">This method always returns immediately, whether or not the image exists. 
+When the applet attempts to draw the image on the screen, the data will be 
+loaded. The graphics primitives that draw the image will incrementally 
+paint on the screen.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27198"><b>Parameters:
+</b></a><dd><a name="27199"><code>url
+- </code></a><a name="27200">an absolute URL giving the location of the image.
+</a>
+
+<dt><a name="29041"><b>Returns:
+</b></a><dd><a name="29042">the image at the specified URL.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="showDocument">
+<a name="906"><h3>showDocument
+</h3></a>
+<a name="908"><code>public abstract void showDocument(URL &#32;url)
+</code></a>
+<dl>
+<dd><a name="910">Replaces the Web page currently being viewed with the given URL. This 
+method may be ignored by applet contexts that are not browsers.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27052"><b>Parameters:
+</b></a><dd><a name="27053"><code>url
+- </code></a><a name="27054">an absolute URL giving the location of the document
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="showDocument">
+<a name="918"><h3>showDocument
+</h3></a>
+<a name="920"><code>public abstract void &#32;showDocument(URL &#32;url, String &#32;target)
+</code></a>
+<dl>
+<dd><a name="27057">Requests that the browser or applet viewer show the Web page indicated 
+by the url argument. The target argument indicates where to display the 
+frame. The target argument is interpreted as follows: 
+<Table Border="3">
+<caption></caption>
+<tr><th><a name="27181">
+ "_self"
+</a>
+<p><th><a name="27183">
+ show in the current frame
+</a>
+<p>
+<tr><td><a name="27165">
+ "_parent"
+</a>
+<p><td><a name="27167">
+ show in the parent frame
+</a>
+<p>
+<tr><td><a name="27169">
+ "_top"
+</a>
+<p><td><a name="27171">
+ show in the top-most frame
+</a>
+<p>
+<tr><td><a name="27173">
+ "_blank"
+</a>
+<p><td><a name="27175">
+ show in a new unnamed top-level window
+</a>
+<p>
+<tr><td><a name="27177">
+ name
+</a>
+<p><td><a name="27179">
+ show in a new top-level window named <em>name</em>
+</a>
+<p>
+
+</Table>
+
+<Table>
+<tr><td>
+</Table>
+
+<pre>
+</pre></a>
+
+<dd><a name="27859">An applet viewer or browser is free to ignore.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27192"><b>Parameters:
+</b></a><dd><a name="27193"><code>url
+- </code></a><a name="27194">an absolute URL giving the location of the document
+</a>
+<dd><a name="27205"><code>target
+- </code></a><a name="27206">a String indicating where to display the page
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="showStatus">
+<a name="932"><h3>showStatus
+</h3></a>
+<a name="934"><code>public abstract void showStatus(String &#32;status)
+</code></a>
+<dl>
+<dd><a name="28446">Requests that the argument string be displayed in the "status window." 
+Many browsers and applet viewers provide such a "status window" where 
+the application can inform users of its current state.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27216"><b>Parameters:
+</b></a><dd><a name="27217"><code>status
+- </code></a><a name="27218">a string to display in the status window
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.applet.html">This Package</a>  <a href="java.applet.Applet.html">Prev</a>  <a href="java.applet.AppletStub.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

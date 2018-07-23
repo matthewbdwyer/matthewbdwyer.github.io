@@ -1,0 +1,57 @@
+Recent work in dynamic analysis of program behavior has significantly
+extended the kinds of information that can be gleaned from sets of
+program traces.  
+
+  Mining Specifications (infering specs from runs)
+      - Mining Specifications 
+         popl02a.pdf (POPL'02)
+      - Mining Temporal Specifications for Error Detection (Weimer, Necula)
+         WN-MiningTemporal.pdf (TACAS'05)
+      - Automatically Inferring Temporal Properties for Program Evolution
+         issre04.pdf (ISSRE'04)
+      - Behavior-Based Model Construction
+         vmcaiSttt30-bs-DIST.ps (VMCAI'03, STTT) 
+      - Efficient incremental algorithms for dynamic detection of likely invariants
+         invariants-incremental-fse2004.pdf (FSE'04) 
+      - Active learning for automatic classification of software behavior
+         p195-bowring.pdf (ISSTA'04)
+
+  Bug Finding (for lack of a better term)
+      - Finding latent code errors via machine learning over program executions
+         machlearn-errors-icse2004.pdf (ICSE'04)
+      - Tracking down software bugs using automatic anomaly detection
+         p291-hangal.pdf (ICSE'02)
+      - Finding failures by cluster analysis of execution profiles
+         p339-dickinson.pdf (ICSE'01)
+
+  Runtime Verification (monitoring for violations of TL/automata specs)
+      - Generating Optimal Monitors for Extended Regular Expressions
+           opt-ere-mon.pdf  (RV'03)
+      - Efficient Monitoring of Safety Properties
+           sttt-tacas02.pdf  (TACAS'02, STTT)
+      - An Overview of the Runtime Verification Tool Java PathExplorer
+           fmsd-rv01.pdf (RV'01, FMSD)
+      - Online Efficient Predictive Safety Analysis of Multithreaded Programs
+           jmpax-sttt.pdf (STTT)
+      - Towards Monitoring-Oriented Programming: A Paradigm Combining 
+        Specification and Implementation
+           chen-rosu03.pdf (RV'03)
+
+  Atomicity
+      - Atomizer : a dynamic atomicity checker for multithreaded programs
+           p256-flanagan.pdf (POPL'04)
+      - Runtime Analysis of Atomicity for Multi-threaded Programs
+           atomicity2004.pdf (submitted to TSE)
+
+  Data Races
+      - Eraser: a dynamic data race detector for multithreaded programs
+           p391-savage.pdf (TOCS)
+      - Object race detection
+           p70-von_praun.pdf (OOPSLA 01)
+      - Efficient and Precise Datarace Detection for Multithreaded 
+        Object-Oriented Programs
+           drace-pldi02.pdf (PLDI'02)
+
+  Analyzing Deployed Software
+      - Profiling Deployed Software : Assessing Strategies and Testing Opportunities
+           ieeetran.pdf (ISSTA'04, TSE submitted)

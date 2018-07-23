@@ -1,0 +1,137 @@
+<html><head><title>Interface AppletStub</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.applet.html">This Package</a>  <a href="java.applet.AppletContext.html">Prev</a>  <a href="java.applet.AudioClip.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="950"><h1>	&#167;3.3 Interface AppletStub</h1></a>
+<pre>public &#32;interface &#32;java.applet.<strong>AppletStub
+</strong>{
+ &#32; &#32; &#32; &#32;// Methods
+    public abstract void <strong>appletResize</strong>(int &#32;width, int &#32;height);	<a href="java.applet.AppletStub.html#27233">&#167;3.3.1</a>
+ &#32; &#32;public abstract AppletContext <strong>getAppletContext</strong>();	<a href="java.applet.AppletStub.html#1020">&#167;3.3.2</a>
+    public abstract URL <strong>getCodeBase</strong>();	<a href="java.applet.AppletStub.html#1034">&#167;3.3.3</a>
+    public abstract URL <strong>getDocumentBase</strong>();	<a href="java.applet.AppletStub.html#1048">&#167;3.3.4</a>
+    public abstract String <strong>getParameter</strong>(String &#32;name);	<a href="java.applet.AppletStub.html#1062">&#167;3.3.5</a>
+    public abstract boolean <strong>isActive</strong>();	<a href="java.applet.AppletStub.html#1076">&#167;3.3.6</a>
+}
+</pre><a name="27227">When an applet is first created, an applet stub is attached to it using the applet's setStub 
+method &#32;<a href="java.applet.Applet.html#688">(II-&#167;3.1.19)</a>. This stub serves as the interface between the applet and the browser 
+environment or applet viewer environment in which the application is running.
+</a><p>
+<hr>
+<a name="27228"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="appletResize">
+<a name="27233"><h3>appletResize
+</h3></a>
+<a name="1008"><code>public abstract void appletResize(int &#32;width, int &#32;height)
+</code></a>
+<dl>
+<dd><a name="1010">Called when the applet wants to be resized.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27266"><b>Parameters:
+</b></a><dd><a name="27267"><code>width
+- </code></a><a name="27268">the new requested width for the applet
+</a>
+<dd><a name="27269"><code>height
+- </code></a><a name="27270">the new requested height for the applet
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getAppletContext">
+<a name="1020"><h3>getAppletContext
+</h3></a>
+<a name="1022"><code>public abstract AppletContext getAppletContext()
+</code></a>
+<dl><dl>
+<dt><a name="1024"><b>Returns:
+</b></a><dd><a name="27273">the applet's context.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getCodeBase">
+<a name="1034"><h3>getCodeBase
+</h3></a>
+<a name="1036"><code>public abstract URL getCodeBase()
+</code></a>
+<dl><dl>
+<dt><a name="27278"><b>Returns:
+</b></a><dd><a name="27282">the URL of the applet.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getDocumentBase">
+<a name="1048"><h3>getDocumentBase
+</h3></a>
+<a name="1050"><code>public abstract URL getDocumentBase()
+</code></a>
+<dl><dl>
+<dt><a name="27284"><b>Returns:
+</b></a><dd><a name="27288">the URL of the document containing the applet.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getParameter">
+<a name="1062"><h3>getParameter
+</h3></a>
+<a name="1064"><code>public abstract String getParameter(String &#32;name)
+</code></a>
+<dl>
+<dd><a name="27296">Returns the value of the named parameter in the HTML tag. For example, 
+if an applet is specified as
+<pre>
+</pre></a>
+<ul><a name="27297">
+<code>	&lt;applet code="Clock" width=50 height=50&gt;<br>
+	&lt;param name=Color value="blue"&gt;<br>
+	&lt;/applet&gt;
+</code>
+</a></ul>
+<dd><a name="27298">A call to getParameter("Color") returns the value "blue".
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27299"><b>Parameters:
+</b></a><dd><a name="27300"><code>name
+- </code></a><a name="27306">a parameter name
+</a>
+
+<dt><a name="27307"><b>Returns:
+</b></a><dd><a name="27308">the value of the named parameter.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isActive">
+<a name="1076"><h3>isActive
+</h3></a>
+<a name="1078"><code>public abstract boolean isActive()
+</code></a>
+<dl>
+<dd><a name="27445">Determines if the applet is active. An applet is active just before its start 
+method <a href="java.applet.Applet.html#716">(II-&#167;3.1.21)</a> is called. It becomes inactive immediately after its stop 
+<a href="java.applet.Applet.html#746">(II-&#167;3.1.22)</a> method is called.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27313"><b>Returns:
+</b></a><dd><a name="27314">true if the applet is active; false otherwise.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.applet.html">This Package</a>  <a href="java.applet.AppletContext.html">Prev</a>  <a href="java.applet.AudioClip.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

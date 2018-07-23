@@ -1,0 +1,415 @@
+<html><head><title>Preface to API Document</title></head>
+
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  This Package  Prev  Next  <a href="AllNames.html">Index</a>  </pre>
+
+<a name="996901">
+<h1>
+Preface
+</h1>
+<dl>
+<dt><dd><a href="preface.htm#997091">A Bit of History		
+</a>
+<dt><dd><a href="preface.htm#997102">About the Java Series		
+</a>
+<dt><dd><a href="preface.htm#997047">Contributors to the API		
+</a>
+<dt><dd><a href="preface.htm#997147">About the Java Packages		
+</a>
+<dt><dd><a href="preface.htm#997000">References		
+</a>
+<dt><dd><a href="preface.htm#997004">Other Books in the Java Series
+</a></dl>
+</dl>
+
+<a><hr>
+<a name="997091">
+<h2>A Bit of History  </h2>
+</a><a name="997086">
+Java is a general-purpose object-oriented programming language. Its syntax is similar 
+to C and C++ but omits semantic features that make C and C++ complex, confusing, and 
+insecure. Java was initially developed to address the problems of building software for 
+small distributed systems to embed in consumer devices. As such it was designed for 
+heterogeneous networks, multiple host architectures, and secure delivery. To meet these 
+requirements, compiled Java code had to survive transport across networks, operate on any 
+client, and assure the client that it was safe to run.
+<p>
+</a><a name="997074">
+The popularization of the World Wide Web helped catapult these attributes of Java 
+into the limelight. The Internet demonstrated how interesting, media-rich content could be 
+made accessible in simple ways. Web browsers like Mosaic enabled millions of people to 
+roam the Net and made Web surfing part of popular culture. At last there was a medium 
+where what you saw and heard was essentially the same whether you were on a Mac, PC 
+or UNIX machine, connected to a high-speed network or a modem.
+<p>
+</a><a name="997075">
+But with popularity comes scrutiny and soon Web enthusiasts felt that the content 
+supported by the Web's HTML document format was too limited. HTML extensions like 
+forms only highlighted those limitations while making it clear that no browser could 
+include all the features users wanted. Extensibility was the answer. At just this time the 
+Java programming language found itself looking for another application. 
+<p>
+</a><a name="997076">
+Sun's HotJava browser was developed to showcase Java's interesting properties by 
+making it possible to embed Java programs inside Web pages. These Java programs, 
+known as <em>applets</em>, are transparently downloaded into the HotJava browser along with the 
+HTML pages in which they appear. Before being accepted by the browser, applets are 
+carefully checked to make sure they are safe. Like HTML pages, compiled Java programs 
+are network- and platform-independent. Applets behave the same regardless of where they 
+come from or what kind of machine they are being loaded into. 
+<p>
+</a><a name="997077">
+The Web community quickly noticed that Java was something new and important. 
+With Java as the extension language, a Web browser could have limitless capabilities. 
+Programmers could write an applet once and it would then run on any machine, anywhere. 
+Visitors to Java-powered Web pages could use the content found there with confidence 
+that nothing would damage their machine.
+<p>
+</a><a name="997078">
+With applets as the initial focus, Java has demonstrated a new way to make use of the 
+Internet to distribute software. This new paradigm goes beyond browsers. We believe it is 
+an innovation with the potential to change the course of computing. 
+<p>
+</a><a name="997079">
+Tim Lindholm
+<p>
+</a><a name="997080">
+Senior Staff Engineer
+<p>
+</a><a name="997081">
+JavaSoft
+<p>
+</a><a name="997101">
+April, 1996<br>
+
+<p>
+</a><hr>
+<a name="997102">
+<h2>About the Java Series  </h2>
+</a><a name="997103">
+
+<p>
+</a><a name="996902">
+The Java series provides definitive reference documentation for Java programmers and 
+end users. They are written by members of the Java team and published under the auspices 
+of JavaSoft, a Sun Microsystems business. The World-Wide-Web allows Java 
+documentation to be made available over the Internet, either by downloading or as 
+hypertext. Nevertheless, the world-wide interest in Java led us to write these books.
+<p>
+</a><a name="996892">
+To learn the latest about Java or download the latest Java release, visit our 
+World Wide Web site at http://java.sun.com. For updated information about the Java 
+Series, including sample code, errata, and previews of forthcoming books, visit 
+http://www.javasoft.com/books/Series.
+<p>
+</a><!--Used only in Preface-->
+<a name="996893">
+We would like to thank the Corporate and Professional Publishing Group at 
+Addison-Wesley for their partnership in putting together the Series. Our editor 
+Mike Hendrickson and his team have done a superb job of navigating us through 
+the world of publishing. Within Sun, the support of James Gosling, Ruth Hennigar, and Bill Joy of Sun Microsystems ensured that this series would have the 
+resources it needed to be successful. A personal note of thanks to my children 
+Christopher and James for putting a positive spin on the many trips to my office 
+during the development of the Series.
+<p>
+</a><a name="996922">
+Lisa Friendly 
+<p>
+</a><a name="996925">
+Series Editor
+<p>
+</a><a name="996926">
+
+<p>
+</a><hr>
+<a name="997047">
+<h2>Contributors to the API  </h2>
+</a><a name="997048">
+<h3>Designers of Classes and Interfaces  </h3>
+</a><pre><a name="997049">Tom Ball		Bill Joy
+<p></a><a name="997050">
+Lee Boynton		Tim Lindholm
+<p></a><a name="997051">
+Patrick Chan		Jonathan Payne
+<p></a><a name="997052">
+David Connelly		Sami Shaio
+<p></a><a name="997053">
+Pavani Diwanji		Doug Stein
+<p></a><a name="997054">
+Amy Fowler		Arthur van Hoff
+<p></a><a name="997112">
+James Gosling		Chris Warth
+<p></a><a name="997055">
+Jim Graham		Frank Yellin
+<p></a><a name="997056">
+Herb Jellinek
+<p>
+</pre>
+</a><a name="997057">
+<h3>Testers  </h3>
+</a><pre><a name="997058">Carla Schroer		Vijah Srinivasan
+<p></a><a name="997134">
+Kevin Smith		Headley Williamson	
+<p>
+</pre>
+</a><a name="997060">
+<h3>Layout and Supplemental Documentation  </h3>
+</a><pre><a name="997061">Lisa Friendly		Kathy Walrath
+<p></a><a name="997062">
+James Gosling		Doug Kramer
+<p></a><a name="997604">
+Jonni Kanerva		Frank Yellin
+<p></a><a name="997124">
+Guy Steele              Annette Wagner
+<p>
+</a>
+</pre>
+<a name="997126">
+<p>
+</a><hr>
+<a name="997147">
+<h2>About the Java Packages  </h2>
+</a><a name="997130">
+These two volumes describes the Java Application Programming Interface (API), a 
+standard set of libraries for writing Java programs. The libraries evolved over several 
+years of writing Java code to implement a variety of systems, ranging from consumer 
+device networks to animated user interfaces to operating systems to compilers. In 1995 the 
+libraries were reorganized to support Internet programming, and thus the Java API was 
+created. Many people, both from inside and outside Sun, have been involved in the design 
+of the API.
+<p>
+</a><a name="996934">
+Although the API hasn't reached perfection yet, we believe it's useful and hope to 
+make it a ubiquitous layer, available to all Internet applications.
+<p>
+</a><a name="996935">
+Have fun.
+<p>
+</a><a name="996936">
+Arthur van Hoff
+<p>
+</a><a name="996938">
+<h3>Introduction  </h3>
+</a><a name="996939">
+These books are a reference manual for Java application and applet programmers. To 
+make full use of it you should be familiar with the Java programming language and its 
+core concepts such as object orientation, garbage collection, and multithreading.
+<p>
+</a><a name="996940">
+The extent of the API and the choice of functionality have been driven by several factors. First and foremost, the API should be simple and easy to use. Parts of the API, such 
+as the support for multithreading, might introduce functionality that is new to you, but we 
+think you'll find these new concepts simpler and easier to use than in most other programming environments.
+<p>
+</a><a name="996941">
+The libraries in these booksare the first generation of an API for writing Internet programs. A simple form of an Internet program is an <em>applet</em>-a small Java program that can 
+be embedded in an HTML page.
+<p>
+</a><a name="996942">
+The API has been designed with the Java language in mind. Important Java features 
+such as object orientation, garbage collection, and multithreading played an important role 
+in the API design. Instead of taking existing libraries and simply rewriting them in Java, 
+we took the opportunity to design and implement the API making full use of the Java language.
+<p>
+</a><a name="996943">
+For Release 1.0, we've tried to stay away from certain complex functionality, such as 
+video and 3D, so that library implementations can be ported easily. We can include only 
+functionality that is not proprietary and that is easily implemented on many platforms.
+<p>
+</a><a name="996944">
+We expect to add to the API, but not to subtract from it or change its behavior. The 
+API documented in this book will remain available to all Java programs through future 
+releases..
+<p>
+</a><a name="996945">
+If you have ideas about how the API could be improved or how to implement some of 
+the missing functionality, we would like to hear from you. Please send your ideas and 
+implementations to java@java.sun.com.
+<p>
+</a><a name="996946">
+<h3>Using these API Books  </h3>
+</a><a name="996947">
+Don't get overwhelmed by the multitude of classes documented in these two books. 
+The structure of the Java language encourages the programmer to break up libraries into 
+many classes, each describing a small part of the functionality. The class diagrams on the 
+back cover are a good starting point for getting an impression of the relationships between 
+classes. Editor: Is that where the class diagrams are going to be?
+<p>
+</a><a name="996951">
+As you design and implement Java programs, you should write short test programs to 
+verify your understanding of the classes. When in doubt, try it out!
+<p>
+</a><a name="996952">
+The Java web site, http://java.sun.com/, contains many excellent and sometimes interactive explanations that can help you along. Another good source of information is the 
+newsgroup comp.lang.java.
+<p>
+</a><a name="996953">
+<h3>Package Overview  </h3>
+</a><a name="996954">
+This overview describes each package in the Java API, starting with the most general-
+purpose package (java.lang) and ending with one of the most specialized packages 
+(java.applet). Each package groups classes and interfaces that have similar functionality. 
+The API contains the following packages:
+<p>
+</a><ul><a name="997158">
+<li>Volumn I: Core Packages
+
+</a><ul><a name="997159">
+<li>java.lang: The Java Language Package
+
+</a><a name="996956">
+<li>java.io: The Java I/O Package
+
+</a><a name="997037">
+<li>java.util: Miscellaneous Java utilities and data structures
+
+</a><a name="997168">
+<li>java.net: The Java Networking Package
+
+</a></ul><a name="997164">
+<li>Volume II: Window Toolkit and Applets
+
+</a><ul><a name="996958">
+<li>java.awt: The Abstract Window Toolkit (AWT) Package
+
+</a><a name="996959">
+<li>java.awt.image: The AWT Image Package
+
+</a><a name="996960">
+<li>java.awt.peer: The AWT Peer Package
+
+</a><a name="996961">
+<li>java.applet: The Java Applet Package
+
+</a></ul></ul><a name="996962">
+<h3>java.lang: The Java Language Package  </h3>
+</a><a name="996963">
+The java.lang package provides the classes and interfaces that form the core of the Java 
+language and Virtual Machine. For example, the classes-Object, String, and Thread, for 
+example-are used by almost every program and are closely intertwined with the Java 
+language definition. Other java.lang classes define the exceptions and errors that the Java 
+Virtual Machinecan throw.
+<p>
+</a><a name="996964">
+Another set of java.lang classes provide wrappers for primitive types. For example, the 
+Integer class provides objects to contain int values. 
+<p>
+</a><a name="996965">
+Still other classes, such as ClassLoader, Process, Runtime, SecurityManager, and System, 
+provide access to system resources. For other generally useful classes, see the java.util 
+package.
+<p>
+</a><a name="997195">
+The java.lang package is imported automatically into every Java program.
+<p>
+</a><a name="997174">
+<h3>java.io: The Java I/O Package  </h3>
+</a><a name="997175">
+The java.io package provides a set of input and output streams used to read and write data 
+to files or other input and output sources. Java streams are byte oriented and the classes 
+defined here can be chained to implement more sophisticated stream functionality.
+<p>
+</a><a name="996967">
+<h3>java.util: The Java Utility Package  </h3>
+</a><a name="996968">
+The java.util package contains a collection of utility classes and related interfaces. It 
+includes classes that provide generic data structures (Dictionary, Hashtable, Stack, Vector), 
+string manipulation (StringTokenizer), and calendar and date utilities (Date). 
+<p>
+</a><a name="996969">
+The java.util package also contains the Observer interface and Observable class, which 
+allow objects to notify one another when they change.
+<p>
+</a><a name="996972">
+<h3>java.net: The Java Networking Package  </h3>
+</a><a name="996973">
+The java.net package contains networking classes and interfaces, including classes that 
+represent a URL and a URL connection, classes that implement a socket connection, and a 
+class that represents an Internet address.
+<p>
+</a><a name="996974">
+<h3>java.awt: The Abstract Window Toolkit (AWT) Package:   </h3>
+</a><a name="996975">
+The java.awt package provides the standard graphical user interface (GUI) elements such as 
+buttons, lists, menus, and text areas. It also includes containers (such as windows and 
+menu bars) and higher-level components (such as dialogs for opening and saving files). 
+The AWT contains two more packages: java.awt.image and java.awt.peer.	
+<p>
+</a><a name="996976">
+<h3>java.awt.image: The AWT Image Package  </h3>
+</a><a name="996977">
+The java.awt.image package contains classes and interfaces for performing sophisticated 
+image processing. These classes and interfaces can be used byapplications that need to 
+create or manipulate images and colors.
+<p>
+</a><a name="996978">
+<h3>java.awt.peer: The AWT Peer Package  </h3>
+</a><a name="996979">
+The java.awt.peer package contains interfaces used to connect AWT components to their 
+window system-specific implementations (such as Motif widgets). 
+<p>
+</a><a name="996980">
+Unless you're creating a window system-specific implementation of the AWT, you 
+shouldn't need to use the interfaces in the java.awt.peer package.
+<p>
+</a><a name="997227">
+<h3>java.applet: The Applet Package  </h3>
+</a><a name="997228">
+The java.applet package contains classes and interfaces for creating applets, which are 
+programs intended to be embedded into HTML pages or otherwise transported across a 
+network.
+<p>
+</a><hr>
+<a name="997000">
+<h2>References  </h2>
+</a><a name="997001">
+<em>IEEE Standard for Binary Floating-Point Arithmetic</em>, ANSI/IEEE Std. 754-1985. 
+Available from Global Engineering Documents, 15 Inverness Way East, englewood 
+Colorado 80112-5704 USA, 303-792-2181 or 800-854-7179.
+<p>
+</a><a name="997002">
+
+<p>
+</a><a name="997003">
+<em>The Unicode Standard: Worldwide Character Encoding</em>, Version 1.0, Volume 1 
+ISBN 0-201-56788-1 and Volume 2 ISBN 0-201-60845-6. <em>A</em>dditional information 
+about Unicode 1.1 may be found at ftp://unicode.org.
+<p>
+</a><hr>
+<a name="997004">
+<h2>Other Books in the Java Series  </h2>
+</a><!--Used only in Preface-->
+<a name="997006">
+Arnold, Ken and James Gosling. The Java Programming Language. Addison-
+Wesley, Reading, Massachusetts, to appear 1996, ISBN 0-201-63455-4.
+<p>
+</a><!--Used only in Preface-->
+<a name="997009">
+Campione, Mary and Kathy Walrath. The Java Language Tutorial: Object-Oriented Programming for the Internet. Addison-Wesley, Reading, Massachusets, to 
+appear 1996, ISBN 0-201-63454-6.
+<p>
+</a><!--Used only in Preface-->
+<a name="997010">
+Gosling, James, Bill Joy and Guy Steele. <em>The Java Language Specification</em>. Addison-Wesley, Reading, Massachusetts, 1996, ISBN 0-201-63451-1.
+<p>
+</a><!--Used only in Preface-->
+<a name="997629">
+Lindholm, Tim, and Frank Yellin. <em>The Java Virtual Machine Specification</em>. Addison-Wesley, Reading, Massachusetts, 1996, ISBN 0-201-63452-X.
+<p>
+</a><!--"Header" present only in Preface but contains no text.-->
+<a name="997630">
+ <p>
+</a><a name="996889">
+
+<p>
+</a>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="preface.html">This Package</a>  <a href="">Prev</a>  <a href="">Next</a>  <a href="AllNames.html">Index</a></pre>
+<h5>Java API Document (HTML generated by dkramer on April 14, 1996)<br>
+Copyright &#169 1996 Sun Microsystems, Inc.
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</h5>
+</body></html>

@@ -1,0 +1,596 @@
+<html><head><title>Class ThreadGroup</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Thread.html">Prev</a>  <a href="java.lang.Throwable.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="12330"><h1>	&#167;1.20 Class ThreadGroup</h1></a>
+<pre>public &#32;class &#32;java.lang.<strong>ThreadGroup
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>ThreadGroup</strong>(String &#32;name);	<a href="java.lang.ThreadGroup.html#12494">&#167;1.20.1</a>
+    public <strong>ThreadGroup</strong>(ThreadGroup &#32;parent, String &#32;name);  <a href="java.lang.ThreadGroup.html#12512">&#167;1.20.2</a>
+  
+ &#32; &#32; &#32; &#32;// Methods
+    public int <strong>activeCount</strong>();	<a href="java.lang.ThreadGroup.html#12548">&#167;1.20.3</a>
+    public int <strong>activeGroupCount</strong>();	<a href="java.lang.ThreadGroup.html#44609">&#167;1.20.4</a>
+    public final void <strong>checkAccess</strong>();	<a href="java.lang.ThreadGroup.html#12576">&#167;1.20.5</a>
+    public final void <strong>destroy</strong>();	<a href="java.lang.ThreadGroup.html#12600">&#167;1.20.6</a>
+    public int <strong>enumerate</strong>(Thread &#32;list[]);	<a href="java.lang.ThreadGroup.html#12624">&#167;1.20.7</a>
+    public int <strong>enumerate</strong>(Thread &#32;list[], boolean &#32;recurse);	<a href="java.lang.ThreadGroup.html#12646">&#167;1.20.8</a>
+    public int <strong>enumerate</strong>(ThreadGroup &#32;list[]);	<a href="java.lang.ThreadGroup.html#12672">&#167;1.20.9</a>
+    public int <strong>enumerate</strong>(ThreadGroup &#32;list[], boolean &#32;recurse); <a href="java.lang.ThreadGroup.html#12694">&#167;1.20.10</a>
+    public final int <strong>getMaxPriority</strong>();	<a href="java.lang.ThreadGroup.html#12722">&#167;1.20.11</a>
+    public final String <strong>getName</strong>();	<a href="java.lang.ThreadGroup.html#12736">&#167;1.20.12</a>
+    public final ThreadGroup <strong>getParent</strong>();	<a href="java.lang.ThreadGroup.html#12750">&#167;1.20.13</a>
+    public final boolean <strong>isDaemon</strong>();	<a href="java.lang.ThreadGroup.html#12764">&#167;1.20.14</a>
+    public void <strong>list</strong>();	<a href="java.lang.ThreadGroup.html#12778">&#167;1.20.15</a>
+    public final boolean <strong>parentOf</strong>(ThreadGroup &#32;g);	<a href="java.lang.ThreadGroup.html#12792">&#167;1.20.16</a>
+    public final void <strong>resume</strong>();	<a href="java.lang.ThreadGroup.html#12816">&#167;1.20.17</a>
+    public final void <strong>setDaemon</strong>(boolean &#32;daemon);	<a href="java.lang.ThreadGroup.html#12830">&#167;1.20.18</a>
+    public final void &#32;<strong>setMaxPriority</strong>(int &#32;pri);	<a href="java.lang.ThreadGroup.html#12850">&#167;1.20.19</a>
+    public final void <strong>stop</strong>();	<a href="java.lang.ThreadGroup.html#12870">&#167;1.20.20</a>
+    public final void <strong>suspend</strong>();	<a href="java.lang.ThreadGroup.html#12884">&#167;1.20.21</a>
+    public String <strong>toString</strong>();	<a href="java.lang.ThreadGroup.html#12898">&#167;1.20.22</a>
+    public void <strong>uncaughtException</strong>(Thread &#32;t, Throwable &#32;e);  <a href="java.lang.ThreadGroup.html#12920">&#167;1.20.23</a>
+}
+</pre><a name="12482">A thread group represents a set of threads. In addition, a thread group can also include 
+other thread groups. The thread groups form a tree in which every thread group except the 
+initial thread group has a parent.
+</a><p><a name="41161">A thread is allowed to access information about its own thread group, but not to access 
+information about its thread group's parent thread group.
+</a><p>
+<hr>
+<a name="12486"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="ThreadGroup">
+<a name="12494"><h3>ThreadGroup
+</h3></a>
+<a name="12496"><code>public ThreadGroup(String &#32;name)
+</code></a>
+<dl>
+<dd><a name="12498">Constructs a new thread group, whose parent is the thread group of the 
+currently running thread.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12500"><b>Parameters:
+</b></a><dd><a name="12502"><code>name
+- </code></a><a name="12504">the name of the new thread group
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="ThreadGroup">
+<a name="12512"><h3>ThreadGroup
+</h3></a>
+<a name="12514"><code>public ThreadGroup(ThreadGroup &#32;parent, String &#32;name)
+</code></a>
+<dl>
+<dd><a name="12516">Creates a new thread group whose parent is the specified thread group. 
+<pre>
+</pre></a>
+
+<dd><a name="41196">The checkAccess method <a href="java.lang.ThreadGroup.html#12576">(I-&#167;1.20.5)</a> of the parent thread group is called with 
+no arguments; this may result in a security exception<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12518"><b>Parameters:
+</b></a><dd><a name="12520"><code>parent
+- </code></a><a name="12522">the parent thread group
+</a>
+<dd><a name="12524"><code>name
+- </code></a><a name="12526">the name of the new thread group
+</a>
+
+<dt><a name="12528"><b>Throws
+</b></a><dd><a name="12534">NullPointerException &#32;<a href="java.lang.NullPointerException.html#14382">(I-&#167;1.40)</a>
+</a>
+<dd><a name="12536">If the thread group argument is null.
+</a>
+
+<dt><a name="44575"><b>Throws
+</b></a><dd><a name="44579">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44580">If the current thread cannot create a thread in the specified thread 
+group.
+</a>
+</dl></dl>
+<hr>
+<a name="12538"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="activeCount">
+<a name="12548"><h3>activeCount
+</h3></a>
+<a name="12550"><code>public int activeCount()
+</code></a>
+<dl><dl>
+<dt><a name="41228"><b>Returns:
+</b></a><dd><a name="44604">The number of active threads in this thread group and in any other 
+thread group that has this thread group as an ancestor.<br>
+
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="activeGroupCount">
+<a name="44609"><h3>activeGroupCount
+</h3></a>
+<a name="44610"><code>public int activeGroupCount()
+</code></a>
+<dl><dl>
+<dt><a name="12566"><b>Returns:
+</b></a><dd><a name="41244">The number of active thread groups with this thread group as an 
+ancestor.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkAccess">
+<a name="12576"><h3>checkAccess
+</h3></a>
+<a name="12578"><code>public final void checkAccess()
+</code></a>
+<dl>
+<dd><a name="43774">Determines if the currently running thread has permission to modify this 
+thread group.
+<pre>
+</pre></a>
+
+<dd><a name="41260">If there is a security manager, its checkAccess method <a href="java.lang.SecurityManager.html#7344">(I-&#167;1.15.5)</a> is called 
+with this thread group as its argument. This may result in throwing a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12582"><b>Throws
+</b></a><dd><a name="12588">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="12590">If the current thread is not allowed to access this thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="destroy">
+<a name="12600"><h3>destroy
+</h3></a>
+<a name="12602"><code>public final void destroy()
+</code></a>
+<dl>
+<dd><a name="12604">Destroys this thread group and all of its sub-groups. This thread group 
+must be empty, indicating that all threads that had been in this thread 
+group have since stopped.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12606"><b>Throws
+</b></a><dd><a name="12612">IllegalThreadStateException &#32;<a href="java.lang.IllegalThreadStateException.html#13914">(I-&#167;1.34)</a>
+</a>
+<dd><a name="12614">If the thread group is not empty or if the thread group has already 
+destroyed.
+</a>
+
+<dt><a name="44672"><b>Throws
+</b></a><dd><a name="44676">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44677">If the current thread cannot modify this thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="enumerate">
+<a name="12624"><h3>enumerate
+</h3></a>
+<a name="12626"><code>public int enumerate(Thread &#32;list[])
+</code></a>
+<dl>
+<dd><a name="12628">Copies into the specified array every active thread in this thread group and 
+its sub-groups.
+<pre>
+</pre></a>
+
+<dd><a name="41279">An application should use the activeCount method <a href="java.lang.ThreadGroup.html#12548">(I-&#167;1.20.3)</a> to get an estimate of how big the array should be. If the array is too short to hold all the 
+threads, the extra threads are silently ignored.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12630"><b>Parameters:
+</b></a><dd><a name="12632"><code>list
+- </code></a><a name="12634">an array into which to place the list of threads
+</a>
+
+<dt><a name="12636"><b>Returns:
+</b></a><dd><a name="12638">the number of threads put into the array
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="enumerate">
+<a name="12646"><h3>enumerate
+</h3></a>
+<a name="12648"><code>public int enumerate(Thread &#32;list[], boolean &#32;recurse)
+</code></a>
+<dl>
+<dd><a name="12650">Copies into the specified array every active thread in this thread group. If 
+the recurse flag is true references to every active thread in this thread's sub-
+groups are also included. If the array is too short to hold all the threads, the 
+extra threads are silently ignored.
+<pre>
+</pre></a>
+
+<dd><a name="41299">An application should use the activeCount method <a href="java.lang.ThreadGroup.html#12548">(I-&#167;1.20.3)</a> to get an estimate of how big the array should be.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12652"><b>Parameters:
+</b></a><dd><a name="12654"><code>list
+- </code></a><a name="12656">an array into which to place the list of threads
+</a>
+<dd><a name="12658"><code>recurse
+- </code></a><a name="12660">flag indicating whether to also include threads in sub-thread 
+groups.
+</a>
+
+<dt><a name="12662"><b>Returns:
+</b></a><dd><a name="12664">the number of threads placed into the array.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="enumerate">
+<a name="12672"><h3>enumerate
+</h3></a>
+<a name="12674"><code>public int enumerate(ThreadGroup &#32;list[])
+</code></a>
+<dl>
+<dd><a name="41305">Copies into the specified array references to every active sub-group in this 
+thread group.
+<pre>
+</pre></a>
+
+<dd><a name="41309">An application should use the activeGroupCount method <a href="java.lang.ThreadGroup.html#44609">(I-&#167;1.20.4)</a> to get an 
+estimate of how big the array should be. If the array is too short to hold all 
+the thread groups, the extra thread groups are silently ignored.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="41310"><b>Parameters:
+</b></a><dd><a name="41311"><code>list
+- </code></a><a name="41312">an array into which to place the list of thread groups
+</a>
+
+<dt><a name="41313"><b>Returns:
+</b></a><dd><a name="41314">the number of thread groups put into the array
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="enumerate">
+<a name="12694"><h3>enumerate
+</h3></a>
+<a name="12696"><code>public int enumerate(ThreadGroup &#32;list[], boolean &#32;recurse)
+</code></a>
+<dl>
+<dd><a name="41320">Copies into the specified array references to every active sub-group in this 
+thread group. If the recurse flag is true references to every active, all sub-
+thread groups of the sub-thread groups and so forth are also included.
+<pre>
+</pre></a>
+
+<dd><a name="41324">An application should use the activeGroupCount method <a href="java.lang.ThreadGroup.html#44609">(I-&#167;1.20.4)</a> to get an 
+estimate of how big the array should be.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="41325"><b>Parameters:
+</b></a><dd><a name="41326"><code>list
+- </code></a><a name="41327">an array into which to place the list of threads
+</a>
+<dd><a name="41345"><code>recurse
+- </code></a><a name="41346">flag indicating whether to recursively enumerate all included 
+thread groups.
+</a>
+
+<dt><a name="41347"><b>Returns:
+</b></a><dd><a name="41348">the number of thread groups put into the array.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getMaxPriority">
+<a name="12722"><h3>getMaxPriority
+</h3></a>
+<a name="12724"><code>public final int getMaxPriority()
+</code></a>
+<dl><dl>
+<dt><a name="41395"><b>Returns:
+</b></a><dd><a name="44631">the maximum priority that a thread in this thread group can have.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getName">
+<a name="12736"><h3>getName
+</h3></a>
+<a name="12738"><code>public final String getName()
+</code></a>
+<dl><dl>
+<dt><a name="41406"><b>Returns:
+</b></a><dd><a name="41407">the name of this thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getParent">
+<a name="12750"><h3>getParent
+</h3></a>
+<a name="12752"><code>public final ThreadGroup getParent()
+</code></a>
+<dl><dl>
+<dt><a name="41411"><b>Returns:
+</b></a><dd><a name="41412">the parent of this thread group. The top-level thread group is the only 
+thread group whose parent is null.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="isDaemon">
+<a name="12764"><h3>isDaemon
+</h3></a>
+<a name="43777"><code>public final boolean isDaemon()
+</code></a>
+<dl>
+<dd><a name="43778">Determines if this thread group is a d&aelig;mon thread group. A d&aelig;mon thread 
+group is automatically destroyed when its last thread is stopped or its last 
+thread group is destroyed.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="41424"><b>Returns:
+</b></a><dd><a name="41421">true if this thread group is a d&aelig;mon thread group; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="list">
+<a name="12778"><h3>list
+</h3></a>
+<a name="12780"><code>public void list()
+</code></a>
+<dl>
+<dd><a name="12782">Prints information about this thread group to the standard output. This 
+method is useful only for debugging.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="parentOf">
+<a name="12792"><h3>parentOf
+</h3></a>
+<a name="12794"><code>public final boolean parentOf(ThreadGroup &#32;g)
+</code></a>
+<dl>
+<dd><a name="12798">Determines if this thread group is either the thread group argument or one 
+of its ancestor thread groups.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43220"><b>Parameters:
+</b></a><dd><a name="12800"><code>g
+- </code></a><a name="12802">a thread group
+</a>
+
+<dt><a name="12804"><b>Returns:
+</b></a><dd><a name="12806">true if this thread group is the thread group argument or one of its 
+ancestor thread groups; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="resume">
+<a name="12816"><h3>resume
+</h3></a>
+<a name="12818"><code>public final void resume()
+</code></a>
+<dl>
+<dd><a name="41500">Resumes all processes in this thread group.
+<pre>
+</pre></a>
+
+<dd><a name="43231">First, the checkAccess method <a href="java.lang.ThreadGroup.html#12576">(I-&#167;1.20.5)</a> of this thread group is called with 
+no arguments; this may result in a security exception<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="41495">This method then calls the resume method <a href="java.lang.Thread.html#11972">(I-&#167;1.19.29)</a> on all the threads in 
+this thread group and in all of its sub-thread groups.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="44637"><b>Throws
+</b></a><dd><a name="44641">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44642">If the current thread is not allowed to access this thread group or any 
+of the threads in the thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setDaemon">
+<a name="12830"><h3>setDaemon
+</h3></a>
+<a name="12832"><code>public final void setDaemon(boolean &#32;daemon)
+</code></a>
+<dl>
+<dd><a name="41512">Sets whether this thread group is a d&aelig;mon thread group.
+<pre>
+</pre></a>
+
+<dd><a name="43232">First, the checkAccess method <a href="java.lang.ThreadGroup.html#12576">(I-&#167;1.20.5)</a> of this thread group is called with 
+no arguments; this may result in a security exception<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="41480">Marks whether this thread is a d&aelig;mon thread group. A d&aelig;mon thread 
+group is automatically destroyed when its last thread is stopped or its last 
+thread group is destroyed.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="41465"><b>Parameters:
+</b></a><dd><a name="41466"><code>daemon
+- </code></a><a name="41467">if true, marks this thread group as a d&aelig;mon thread group; 
+otherwise, marks this thread group as normal.
+</a>
+
+<dt><a name="44644"><b>Throws
+</b></a><dd><a name="44648">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44649">If the current thread cannot modify this thread.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setMaxPriority">
+<a name="12850"><h3>setMaxPriority
+</h3></a>
+<a name="12852"><code>public final void setMaxPriority(int &#32;pri)
+</code></a>
+<dl>
+<dd><a name="43240">Sets the maximum priority of the group. 
+<pre>
+</pre></a>
+
+<dd><a name="41524">First, the checkAccess method <a href="java.lang.ThreadGroup.html#12576">(I-&#167;1.20.5)</a> of this thread group is called with 
+no arguments; this may result in a security exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="41518">Threads in the thread group that already have a higher priority are not 
+affected.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="12856"><b>Parameters:
+</b></a><dd><a name="12858"><code>pri
+- </code></a><a name="12860">the new priority of the Thread group
+</a>
+
+<dt><a name="44651"><b>Throws
+</b></a><dd><a name="44655">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44656">If the current thread cannot modify this thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="stop">
+<a name="12870"><h3>stop
+</h3></a>
+<a name="12872"><code>public final void stop()
+</code></a>
+<dl>
+<dd><a name="41541">Stops all processes in this thread group.
+<pre>
+</pre></a>
+
+<dd><a name="43241">First, the checkAccess method <a href="java.lang.ThreadGroup.html#12576">(I-&#167;1.20.5)</a> of this thread group is called with 
+no arguments; this may result in a security exception<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="41559">This method then calls the stop method <a href="java.lang.Thread.html#12220">(I-&#167;1.19.37)</a> on all the threads in 
+this thread group and in all of its sub-thread groups.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="44681"><b>Throws
+</b></a><dd><a name="44685">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44686">If the current thread is not allowed to access this thread group or any 
+of the threads in the thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="suspend">
+<a name="12884"><h3>suspend
+</h3></a>
+<a name="12886"><code>public final void suspend()
+</code></a>
+<dl>
+<dd><a name="41570">Suspends all processes in this thread group.
+<pre>
+</pre></a>
+
+<dd><a name="43242">First, the checkAccess method <a href="java.lang.ThreadGroup.html#12576">(I-&#167;1.20.5)</a> of this thread group is called with 
+no arguments; this may result in a security exception<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="41577">This method then calls the suspend method <a href="java.lang.Thread.html#12276">(I-&#167;1.19.39)</a> on all the threads 
+in this thread group and in all of its sub-thread groups.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="44688"><b>Throws
+</b></a><dd><a name="44692">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44693">If the current thread is not allowed to access this thread group or any 
+of the threads in the thread group.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="12898"><h3>toString
+</h3></a>
+<a name="12900"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="31457"><b>Returns:
+</b></a><dd><a name="31458">a string representation of this thread group.
+</a>
+
+<dt><a name="12904"><b>Overrides:
+</b></a><dd><a name="12910">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="uncaughtException">
+<a name="12920"><h3>uncaughtException
+</h3></a>
+<a name="12922"><code>public void uncaughtException(Thread &#32;t, Throwable &#32;e)
+</code></a>
+<dl>
+<dd><a name="12924">The Java Virtual Machine calls this method when a thread in this thread 
+group stops because of an uncaught exception.
+<pre>
+</pre></a>
+
+<dd><a name="41598">The uncaughtException method of ThreadGroup does the following:
+<pre>
+</pre></a>
+<ol>
+<li><a name="44707">If this thread group has a parent thread group, the uncaughtException method 
+of that parent is called with the same two arguments. 
+</a></ol>
+<ol>
+<li><a name="44701">Otherwise, this method determines if the Throwable argument is an instance 
+of ThreadDeath <a href="java.lang.ThreadDeath.html#15830">(I-&#167;1.59)</a>. If so, nothing special is done.. Otherwise, the 
+Throwable's printStackTrace method <a href="java.lang.Throwable.html#13100">(I-&#167;1.21.6)</a> is called to print a stack back 
+trace to the standard error stream <a href="java.lang.System.html#10714">(I-&#167;1.18.1)</a>.
+</a></ol>
+
+<dd><a name="43252">Applications can override this method in subclasses of ThreadGroup to provide alternative handling of uncaught exceptions.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43245"><b>Parameters:
+</b></a><dd><a name="41608"><code>t
+- </code></a><a name="41609">the thread that is about to exit
+</a>
+<dd><a name="41611"><code>e
+- </code></a><a name="41655">the uncaught exception
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Thread.html">Prev</a>  <a href="java.lang.Throwable.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

@@ -1,0 +1,496 @@
+<html><head><title>Interface DataInput</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.StringBufferInputStream.html">Prev</a>  <a href="java.io.DataOutput.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="36268"><h1>	&#167;2.24 Interface DataInput</h1></a>
+<pre>public &#32;interface &#32;java.io.<strong>DataInput
+</strong>{
+ &#32; &#32; &#32; &#32;// Methods
+    public abstract boolean <strong>readBoolean</strong>();	<a href="java.io.DataInput.html#33618">&#167;</a>
+    public abstract byte <strong>readByte</strong>();	<a href="java.io.DataInput.html#33023">&#167;2.24.2</a>
+    public abstract char <strong>readChar</strong>();	<a href="java.io.DataInput.html#33044">&#167;2.24.3</a>
+    public abstract double <strong>readDouble</strong>();	<a href="java.io.DataInput.html#33065">&#167;2.24.4</a>
+    public abstract float <strong>readFloat</strong>();	<a href="java.io.DataInput.html#33086">&#167;2.24.5</a>
+    public abstract void <strong>readFully</strong>(byte &#32;b[]);	<a href="java.io.DataInput.html#33107">&#167;2.24.6</a>
+    public abstract void 	<a href="java.io.DataInput.html#33635">&#167;2.24.7</a>
+        <strong>readFully</strong>(byte &#32;b[], int &#32;off, int &#32;len);
+    public abstract int <strong>readInt</strong>();	<a href="java.io.DataInput.html#33155">&#167;2.24.8</a>
+    public abstract String <strong>readLine</strong>();	<a href="java.io.DataInput.html#33176">&#167;2.24.9</a>
+    public abstract long <strong>readLong</strong>();	<a href="java.io.DataInput.html#33182">&#167;2.24.10</a>
+    public abstract short <strong>readShort</strong>();	<a href="java.io.DataInput.html#33203">&#167;2.24.11</a>
+    public abstract int <strong>readUnsignedByte</strong>();	<a href="java.io.DataInput.html#33224">&#167;2.24.12</a>
+    public abstract int <strong>readUnsignedShort</strong>();	<a href="java.io.DataInput.html#33245">&#167;2.24.13</a>
+    public abstract String <strong>readUTF</strong>();	<a href="java.io.DataInput.html#33266">&#167;2.24.14</a>
+    public abstract int <strong>skipBytes</strong>(int &#32;n);	<a href="java.io.DataInput.html#33272">&#167;2.24.15</a>
+}
+</pre><a name="32989">The data input interface is implemented by streams that can read primitive Java data types 
+from a stream in a machine-independent manner.
+</a><p><dl><dt><a name="34622"><b>
+</b></a><dt><a name="34636"><b>See Also:
+</b></a><dd><a name="32994">DataInputStream &#32;<a href="java.io.DataInputStream.html#1604">(I-&#167;2.5)</a><br>
+DataOutput &#32;<a href="java.io.DataOutput.html#33299">(I-&#167;2.25)</a>.
+</a>
+</dl>
+<hr>
+<a name="33614"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="readBoolean">
+<a name="33617"><h3>readBoolean
+</h3></a>
+<a name="33618"><code>public abstract boolean readBoolean()
+</code></a>
+<a name="33004"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34639">Reads a boolean value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34640"><b>Returns:
+</b></a><dd><a name="34641">the boolean value read.
+</a>
+
+<dt><a name="33008"><b>Throws
+</b></a><dd><a name="33012">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39090">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33014"><b>Throws
+</b></a><dd><a name="33018">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39128">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readByte">
+<a name="33023"><h3>readByte
+</h3></a>
+<a name="33024"><code>public abstract byte readByte()
+</code></a>
+<a name="34653"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34658">Reads a signed eight-bit value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34655"><b>Returns:
+</b></a><dd><a name="34656">the eight-bit value read.
+</a>
+
+<dt><a name="33029"><b>Throws
+</b></a><dd><a name="33033">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39095">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33035"><b>Throws
+</b></a><dd><a name="33039">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39131">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readChar">
+<a name="33044"><h3>readChar
+</h3></a>
+<a name="33045"><code>public abstract char readChar()
+</code></a>
+<a name="36665"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="36666">Reads a Unicode char value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="36667"><b>Returns:
+</b></a><dd><a name="33049">the Unicode char read
+</a>
+
+<dt><a name="33050"><b>Throws
+</b></a><dd><a name="33054">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39097">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33056"><b>Throws
+</b></a><dd><a name="33060">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39134">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readDouble">
+<a name="33065"><h3>readDouble
+</h3></a>
+<a name="33066"><code>public abstract double readDouble()
+</code></a>
+<a name="36674"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="36675">Reads a double value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="36676"><b>Returns:
+</b></a><dd><a name="33070">the double value read.
+</a>
+
+<dt><a name="33071"><b>Throws
+</b></a><dd><a name="33075">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39099">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33077"><b>Throws
+</b></a><dd><a name="33081">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39136">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readFloat">
+<a name="33086"><h3>readFloat
+</h3></a>
+<a name="33087"><code>public abstract float readFloat()
+</code></a>
+<a name="33088"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34681">Reads a float value from the input stream, high byte
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34682"><b>Returns:
+</b></a><dd><a name="34683">the float value read.
+</a>
+
+<dt><a name="33092"><b>Throws
+</b></a><dd><a name="33096">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39101">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33098"><b>Throws
+</b></a><dd><a name="33102">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39138">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readFully">
+<a name="33107"><h3>readFully
+</h3></a>
+<a name="33108"><code>public abstract void readFully(byte &#32;b[])
+</code></a>
+<a name="33109"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34744">Reads b.length bytes into the byte array. This method blocks until all the 
+bytes are read.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34745"><b>Parameters:
+</b></a><dd><a name="34746"><code>b
+- </code></a><a name="34747">the buffer into which the data is read
+</a>
+
+<dt><a name="33114"><b>Throws
+</b></a><dd><a name="33118">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39103">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33120"><b>Throws
+</b></a><dd><a name="33124">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39140">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readFully">
+<a name="33635"><h3>readFully
+</h3></a>
+<a name="33636"><code>public abstract void readFully(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<a name="33131"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34749">Reads b.length bytes into the byte array. This method blocks until all the 
+bytes are read.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34750"><b>Parameters:
+</b></a><dd><a name="34751"><code>b
+- </code></a><a name="34752">the buffer into which the data is read
+</a>
+
+<dt><a name="33140"><b>Throws
+</b></a><dd><a name="33144">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39105">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33146"><b>Throws
+</b></a><dd><a name="33150">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39142">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readInt">
+<a name="33155"><h3>readInt
+</h3></a>
+<a name="33156"><code>public abstract int readInt()
+</code></a>
+<a name="33157"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34689">Reads an int value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34690"><b>Returns:
+</b></a><dd><a name="34691">the int value read.
+</a>
+
+<dt><a name="33161"><b>Throws
+</b></a><dd><a name="33165">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39107">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33167"><b>Throws
+</b></a><dd><a name="33171">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39144">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readLine">
+<a name="33176"><h3>readLine
+</h3></a>
+<a name="33177"><code>public abstract String readLine()
+</code></a>
+<a name="33178"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34755">Reads the next line of text from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34757"><b>Returns:
+</b></a><dd><a name="39109">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="34770"><b>Throws
+</b></a><dd><a name="34774">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39146">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readLong">
+<a name="33182"><h3>readLong
+</h3></a>
+<a name="33183"><code>public abstract long readLong()
+</code></a>
+<a name="34698"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34708">Reads a long value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34709"><b>Returns:
+</b></a><dd><a name="34710">the long value read.
+</a>
+
+<dt><a name="34702"><b>Throws
+</b></a><dd><a name="34706">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39111">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33194"><b>Throws
+</b></a><dd><a name="33198">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39148">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readShort">
+<a name="33203"><h3>readShort
+</h3></a>
+<a name="33204"><code>public abstract short readShort()
+</code></a>
+<a name="33205"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34716">Reads a 16-bit value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34717"><b>Returns:
+</b></a><dd><a name="34718">the 16-bit value read.
+</a>
+
+<dt><a name="33209"><b>Throws
+</b></a><dd><a name="33213">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39113">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33215"><b>Throws
+</b></a><dd><a name="33219">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39150">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readUnsignedByte">
+<a name="33224"><h3>readUnsignedByte
+</h3></a>
+<a name="33225"><code>public abstract int readUnsignedByte()
+</code></a>
+<a name="33226"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34726">Reads an unsigned eight-bit value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34727"><b>Returns:
+</b></a><dd><a name="34728">the unsigned eight-bit value read.
+</a>
+
+<dt><a name="33230"><b>Throws
+</b></a><dd><a name="33234">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39115">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33236"><b>Throws
+</b></a><dd><a name="33240">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39152">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readUnsignedShort">
+<a name="33245"><h3>readUnsignedShort
+</h3></a>
+<a name="33246"><code>public abstract int readUnsignedShort()
+</code></a>
+<a name="33247"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34736">Reads an unsigned 16-bit value from the input stream.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34737"><b>Returns:
+</b></a><dd><a name="34738">the unsigned 16-bit value read.
+</a>
+
+<dt><a name="33251"><b>Throws
+</b></a><dd><a name="33255">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39117">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="33257"><b>Throws
+</b></a><dd><a name="33261">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39154">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="readUTF">
+<a name="33266"><h3>readUTF
+</h3></a>
+<a name="33267"><code>public abstract String readUTF()
+</code></a>
+<a name="33268"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34791">Reads in a string that has been encoded using a modified UTF-8 format. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34797"><b>Returns:
+</b></a><dd><a name="34798">a Unicode string.
+</a>
+
+<dt><a name="34799"><b>Throws
+</b></a><dd><a name="34803">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39119">If this stream reaches the end before reading all the bytes.
+</a>
+
+<dt><a name="34805"><b>Throws
+</b></a><dd><a name="34809">UTFDataFormatException &#32;<a href="java.io.UTFDataFormatException.html#10470">(I-&#167;2.31)</a>
+</a>
+<dd><a name="34810">If the bytes do not represent a valid UTF-8 encoding of a string.
+</a>
+
+<dt><a name="34811"><b>Throws
+</b></a><dd><a name="34815">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39156">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="skipBytes">
+<a name="33272"><h3>skipBytes
+</h3></a>
+<a name="33273"><code>public abstract int skipBytes(int &#32;n)
+</code></a>
+<a name="33274"><code>throws IOException
+</code></a>
+<dl>
+<dd><a name="34820">Skips exactly n bytes of input.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34821"><b>Parameters:
+</b></a><dd><a name="34822"><code>n
+- </code></a><a name="34823">the number of bytes to be skipped
+</a>
+
+<dt><a name="34824"><b>Returns:
+</b></a><dd><a name="34825">the number of bytes skipped, which is always n.
+</a>
+
+<dt><a name="33281"><b>Throws
+</b></a><dd><a name="33285">EOFException &#32;<a href="java.io.DataInput.html#36268">(I-&#167;2.24)</a>
+</a>
+<dd><a name="39121">If this stream reaches the end before skipping all the bytes.
+</a>
+
+<dt><a name="33287"><b>Throws
+</b></a><dd><a name="33291">IOException &#32;<a href="java.io.IOException.html#10278">(I-&#167;2.29)</a>
+</a>
+<dd><a name="39158">If an I/O error occurs.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.StringBufferInputStream.html">Prev</a>  <a href="java.io.DataOutput.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

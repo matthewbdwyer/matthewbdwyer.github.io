@@ -1,0 +1,227 @@
+<html><head><title>Class Image</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.GridLayout.html">Prev</a>  <a href="java.awt.Insets.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="14865"><h1>	&#167;1.24 Class Image</h1></a>
+<pre>public &#32;abstract &#32;class &#32;java.awt.<strong>Image
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    public final static Object <strong>UndefinedProperty</strong>;	<a href="java.awt.Image.html#52964">&#167;1.24.1</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>Image</strong>();	<a href="java.awt.Image.html#14953">&#167;1.24.2</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public abstract void <strong>flush</strong>();	<a href="java.awt.Image.html#14967">&#167;1.24.3</a>
+    public abstract Graphics <strong>getGraphics</strong>();	<a href="java.awt.Image.html#14981">&#167;1.24.4</a>
+    public abstract int <strong>getHeight</strong>(ImageObserver &#32;observer);	<a href="java.awt.Image.html#15007">&#167;1.24.5</a>
+    public abstract Object	<a href="java.awt.Image.html#15043">&#167;1.24.6</a>
+        <strong>getProperty</strong>(String &#32;name, ImageObserver &#32;observer);
+    public abstract ImageProducer <strong>getSource</strong>();	<a href="java.awt.Image.html#15083">&#167;1.24.7</a>
+    public abstract int <strong>getWidth</strong>(ImageObserver &#32;observer)	<a href="java.awt.Image.html#15109">&#167;1.24.8</a><br>
+}
+</pre><a name="52959">The abstract class Image is the superclass of all classes that represent graphical images.
+</a><p>
+<hr>
+<a name="52960"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="UndefinedProperty">
+<a name="52964"><h3>UndefinedProperty
+</h3></a>
+<a name="14939"><code>public final static Object UndefinedProperty 
+</code></a>
+<a name="43647"><code> &#32; &#32; &#32; &#32;= new Object()
+</code></a>
+<dl>
+<dd><a name="14941">The UndefinedProperty object should be returned whenever a property which 
+was not defined for a particular image is fetched.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="14945"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Image">
+<a name="14953"><h3>Image
+</h3></a>
+<a name="14955"><code>public Image()
+</code></a>
+<dl>
+<dd><a name="34521">The default constructor for an image.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="14957"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="flush">
+<a name="14967"><h3>flush
+</h3></a>
+<a name="14969"><code>public abstract void flush()
+</code></a>
+<dl>
+<dd><a name="14971">Flushes all resources being used by this Image object. 
+<pre>
+</pre></a>
+
+<dd><a name="34522">These resources includes any pixel data that is being cached for rendering 
+to the screen as well as any system resources that are being used to store 
+data or pixels for the image. 
+<pre>
+</pre></a>
+
+<dd><a name="34523">The Image object is reset to a state similar to when it was first created so 
+that if it is again rendered, the image data must be recreated or fetched 
+again from its source.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="getGraphics">
+<a name="14981"><h3>getGraphics
+</h3></a>
+<a name="14983"><code>public abstract Graphics getGraphics()
+</code></a>
+<dl>
+<dd><a name="14985">Creates a graphics context <a href="java.awt.Graphics.html#11513">(II-&#167;1.20)</a> for drawing to an off-screen image. 
+This method can only be called for off-screen images, which are created 
+with the createImage method<a href="java.awt.Component.html#3897">(II-&#167;1.10.7)</a> with two integer arguments
+<pre>
+</pre></a>
+<dl>
+<dt><a name="14987"><b>Returns:
+</b></a><dd><a name="14989">a graphics context to draw to the off-screen image.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getHeight">
+<a name="15007"><h3>getHeight
+</h3></a>
+<a name="15009"><code>public abstract int getHeight(ImageObserver &#32;observer)
+</code></a>
+<dl>
+<dd><a name="15011">Determines the height of this image. If the height is not yet known, the 
+observer is notified later.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="15013"><b>Parameters:
+</b></a><dd><a name="15015"><code>observer
+- </code></a><a name="15017">an object waiting for the image to be loaded
+</a>
+
+<dt><a name="15019"><b>Returns:
+</b></a><dd><a name="15021">the height of the image, or -1 if the height is not yet known.
+</a>
+
+<dt><a name="15023"><b>See Also:
+</b></a><dd><a name="15033">getWidth &#32;<a href="java.awt.Image.html#15109">(II-&#167;1.24.8)</a><br>
+ImageObserver &#32;<a href="java.awt.image.ImageObserver.html#999757">(II-&#167;2.11)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getProperty">
+<a name="15043"><h3>getProperty
+</h3></a>
+<a name="15045"><code>public abstract Object<br>
+getProperty(String &#32;name, ImageObserver &#32;observer)
+</code></a>
+<dl>
+<dd><a name="15047">Gets a property of this image by name. 
+<pre>
+</pre></a>
+
+<dd><a name="34552">Individual property names are defined by the various image formats. If a 
+property is not defined for a particular image, this method returns the UndefinedProperty object. 
+<pre>
+</pre></a>
+
+<dd><a name="34553">If the properties for this image are not yet known, this method returns null 
+and the ImageObserver object is notified later. 
+<pre>
+</pre></a>
+
+<dd><a name="34554">The property name "comment" should be used to store an optional comment 
+which can be presented to the application as a description of the image, its 
+source, or its author.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="15049"><b>Parameters:
+</b></a><dd><a name="15051"><code>name
+- </code></a><a name="15053">a property name
+</a>
+<dd><a name="15055"><code>observer
+- </code></a><a name="15057">an object waiting for this image to be loaded
+</a>
+
+<dt><a name="15059"><b>Returns:
+</b></a><dd><a name="15061">the value of the named property.
+</a>
+
+<dt><a name="53683"><b>See Also:
+</b></a><dd><a name="53687">ImageObserver &#32;<a href="java.awt.image.ImageObserver.html#999757">(II-&#167;2.11)</a><br>
+UndefinedProperty &#32;<a href="java.awt.Image.html#52964">(II-&#167;1.24.1)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getSource">
+<a name="15083"><h3>getSource
+</h3></a>
+<a name="15085"><code>public abstract ImageProducer getSource()
+</code></a>
+<dl><dl>
+<dt><a name="15089"><b>Returns:
+</b></a><dd><a name="15091">the image producer <a href="java.awt.image.ImageProducer.html#999977">(II-&#167;2.12)</a> that produces the pixels for this image.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getWidth">
+<a name="15109"><h3>getWidth
+</h3></a>
+<a name="15111"><code>public abstract int getWidth(ImageObserver &#32;observer)
+</code></a>
+<dl>
+<dd><a name="34540">Determines the width of this image. If the width is not yet known, the 
+observer is notified later.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34541"><b>Parameters:
+</b></a><dd><a name="34542"><code>observer
+- </code></a><a name="34543">an object waiting for the image to be loaded
+</a>
+
+<dt><a name="34544"><b>Returns:
+</b></a><dd><a name="34545">the width of this image, or -1 if the width is not yet known.
+</a>
+
+<dt><a name="15125"><b>See Also:
+</b></a><dd><a name="15135">getHeight &#32;<a href="java.awt.Image.html#15007">(II-&#167;1.24.5)</a><br>
+ImageObserver &#32;<a href="java.awt.image.ImageObserver.html#999757">(II-&#167;2.11)</a>.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.GridLayout.html">Prev</a>  <a href="java.awt.Insets.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<title>VM Spec  </title>
+</head>
+<body BGCOLOR=#eeeeff text=#000000 LINK=#0000ff VLINK=#000077 ALINK=#ff0000>
+<table width=100%><tr>
+<td><a href="VMSpecTOC.doc.html">Contents</a> | <a href="Instructions2.doc2.html">Prev</a> | <a href="Instructions2.doc4.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a></td><td align=right><i><i>The Java<sup><font size=-2>TM</font></sup> Virtual Machine Specification</i></i></td>
+</tr></table>
+
+
+<hr><br>
+ 
+
+<a name="checkcast">
+</a><h2>checkcast</h2>
+<a name="checkcast.Operation"></a>
+<b>Operation</h3></b>
+<a name="67380"></a>
+Check whether object is of given type<p><Table Border="1">
+<tr><td><a name="67375"></a>
+ <i>checkcast</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="67377"></a>
+ <i>indexbyte1</i>
+<td><a name="87568"></a>
+ 
+
+<tr><td><a name="67379"></a>
+ <i>indexbyte2</i>
+<td><a name="87568"></a>
+ 
+
+</Table><br><br><p>
+<a name="checkcast.Forms"></a>
+<b>Forms</h3></b>
+<a name="67381"></a>
+<i>checkcast</i> = 192 (0xc0)<p>
+<a name="checkcast.Stack"></a>
+<b>Stack</h3></b>
+<a name="67382"></a>
+..., <i>objectref</i><em> </em><img src="chars/arrwdbrt.gif"> ..., <i>objectref</i><p>
+<a name="checkcast.Description"></a>
+<b>Description</h3></b>
+<a name="153291"></a>
+The <i>objectref</i> must be of type <code>reference</code>. The unsigned <i>indexbyte1</i> and <i>indexbyte2</i> are used to construct an index into the constant pool of the current class <a href="Overview.doc.html#17257">(&#167;3.6)</a>, where the value of the index is (<i>indexbyte1</i> << 8) | <i>indexbyte2</i>. The constant pool item at the index must be a <code>CONSTANT_Class</code> <a href="ClassFile.doc.html#1221">(&#167;4.4.1)</a>, a symbolic reference to a class, array, or interface type. The symbolic reference is resolved <a href="ConstantPool.doc.html#51579">(&#167;5.1)</a>.<p>
+<a name="140250"></a>
+If <i>objectref</i> is <code>null</code> or can be cast to the resolved class, array, or interface type, the operand stack is unchanged; otherwise, the <i>checkcast</i> instruction throws a <code>ClassCastException</code>.<p>
+<a name="140259"></a>
+The following rules are used to determine whether an <i>objectref</i> that is not <code>null</code> can be cast to the resolved type: if S is the class of the object referred to by <i>objectref</i> and T is the resolved class, array, or interface type, <i>checkcast</i> determines whether <i>objectref</i> can be cast to type T as follows:<p>
+
+<a name="checkcast"></a>
+<ul><a name="67394"></a>
+<li>If S is an ordinary (non-array) class, then:
+<ul>
+<a name="67398"></a>
+<li>If T is a class type, then S must be the same class <a href="Concepts.doc.html#20389">(&#167;2.8.1)</a> as T, or a subclass of T.
+<a name="67402"></a>
+<li>If T is an interface type, then S must implement <a href="Concepts.doc.html#16432">(&#167;2.13)</a> interface T.
+</ul>
+<a name="67403"></a>
+<li>If S is a class representing the array type SC<code>[]</code>, that is, an array of components of type SC, then:
+<ul>
+<a name="67407"></a>
+<li>If T is a class type, then T must be <code>Object</code> <a href="Concepts.doc.html#27433">(&#167;2.4.6)</a>.
+<a name="67408"></a>
+<li>If T is an array type TC<code>[]</code>, that is, an array of components of type TC, then one of the following must be true:
+<ul>
+<a name="67412"></a>
+<li>TC and SC are the same primitive type <a href="Concepts.doc.html#19511">(&#167;2.4.1)</a>.
+<a name="67416"></a>
+<li>TC and SC are reference types <a href="Concepts.doc.html#25376">(&#167;2.4.5)</a>, and type SC can be cast to TC by these runtime rules. 
+</ul>
+</ul>
+</ul><a name="67417"></a>
+S cannot be an interface type, because there are no instances of interfaces, only instances of classes and arrays.<p>
+<a name="checkcast.Linking"></a>
+<b>Linking Exceptions</h3></b>
+<a name="140427"></a>
+During resolution of the <code>CONSTANT_Class</code> constant pool item, any of the exceptions documented in <a href="ConstantPool.doc.html#51579">&#167;5.1</a> can be thrown.<p>
+<a name="checkcast.Runtime"></a>
+<b>Runtime Exception</h3></b>
+<a name="67420"></a>
+Otherwise, if <i>objectref</i><em> </em>cannot be cast to the resolved class, array, or interface type, the <i>checkcast</i> instruction throws a <code>ClassCast-Exception</code>.<p>
+<a name="checkcast.Notes"></a>
+<b>Notes</h3></b>
+<a name="67421"></a>
+The <i>checkcast</i> instruction is very similar to the <i>instanceof</i> instruction. It differs in its treatment of <code>null</code>, its behavior when its test fails (<i>checkcast</i> throws an exception, <i>instanceof</i> pushes a result code), and its effect on the operand stack.<p>
+
+
+<hr>
+<!-- This inserts footnotes--><p>
+<a href="VMSpecTOC.doc.html">Contents</a> | <a href="Instructions2.doc2.html">Prev</a> | <a href="Instructions2.doc4.html">Next</a> | <a href="Lindholm.INDEX.html">Index</a>
+<p>
+<font size = -1>Java Virtual Machine Specification <br>
+<!--(HTML generated by dkramer on March 31, 1997)-->
+<!--
+(HTML generated by dkramer on March 25, 1997)-->
+<br>
+<i><a href="copyright.doc.html">Copyright &#169 1996, 1997 Sun Microsystems, Inc.</a>
+All rights reserved</i>
+<br>
+Please send any comments or corrections to <a href="mailto:jvm@java.sun.com">jvm@java.sun.com</a>
+</font>
+</body></html>

@@ -1,0 +1,233 @@
+<html><head><title>Class StringBufferInputStream</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.StreamTokenizer.html">Prev</a>  <a href="java.io.DataInput.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="9826"><h1>	&#167;2.23 Class StringBufferInputStream</h1></a>
+<pre>public &#32;class &#32;java.io.<strong>StringBufferInputStream
+</strong>    extends &#32;java.io.<strong>InputStream</strong> &#32;<a href="java.io.InputStream.html#5284">(I-&#167;2.13)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    protected String <strong>buffer</strong>;	<a href="java.io.StringBufferInputStream.html#9904">&#167;2.23.1</a>
+    protected int <strong>count</strong>;	<a href="java.io.StringBufferInputStream.html#9916">&#167;2.23.2</a>
+    protected int <strong>pos</strong>;	<a href="java.io.StringBufferInputStream.html#9928">&#167;2.23.3</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>StringBufferInputStream</strong>(String &#32;s);	<a href="java.io.StringBufferInputStream.html#9944">&#167;2.23.4</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public int <strong>available</strong>();	<a href="java.io.StringBufferInputStream.html#9966">&#167;2.23.5</a>
+    public int <strong>read</strong>();	<a href="java.io.StringBufferInputStream.html#9992">&#167;2.23.6</a>
+    public int <strong>read</strong>(byte &#32;b[], int &#32;off, int &#32;len);	<a href="java.io.StringBufferInputStream.html#10016">&#167;2.23.7</a>
+    public void <strong>reset</strong>();	<a href="java.io.StringBufferInputStream.html#10056">&#167;2.23.8</a>
+    public long <strong>skip</strong>(long &#32;n);	<a href="java.io.StringBufferInputStream.html#10078">&#167;2.23.9</a>
+}
+</pre><a name="35527">This class allows an application to create an input stream in which the bytes read are supplied by the contents of a string. Applications can also read bytes from a byte array by 
+using a ByteArrayInputStream <a href="java.io.ByteArrayInputStream.html#940">(I-&#167;2.3)</a>.
+</a><p><a name="36227">Only the low eight bits of each character in the string are used by this class.
+</a><p>
+<hr>
+<a name="9896"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="buffer">
+<a name="9904"><h3>buffer
+</h3></a>
+<a name="9906"><code>protected String buffer
+</code></a>
+<dl>
+<dd><a name="35545">The string from which bytes are read. 
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="count">
+<a name="9916"><h3>count
+</h3></a>
+<a name="9918"><code>protected int count
+</code></a>
+<dl>
+<dd><a name="34526">The number of valid characters in the input stream buffer <a href="java.io.StringBufferInputStream.html#9904">(I-&#167;2.23.1)</a>.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="pos">
+<a name="9928"><h3>pos
+</h3></a>
+<a name="9930"><code>protected int pos
+</code></a>
+<dl>
+<dd><a name="34538">The index of the next character to read from the input stream buffer 
+<a href="java.io.StringBufferInputStream.html#9904">(I-&#167;2.23.1)</a>.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="9936"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="StringBufferInputStream">
+<a name="9944"><h3>StringBufferInputStream
+</h3></a>
+<a name="9946"><code>public StringBufferInputStream(String &#32;s)
+</code></a>
+<dl>
+<dd><a name="34548">Creates a string input stream to read data from the specified string
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34562"><b>Parameters:
+</b></a><dd><a name="34563"><code>s
+- </code></a><a name="34564">the underlying input buffer
+</a>
+</dl></dl>
+<hr>
+<a name="9956"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="available">
+<a name="9966"><h3>available
+</h3></a>
+<a name="9968"><code>public int available()
+</code></a>
+<dl>
+<dd><a name="35476">Determines the number of bytes that can be read from the input stream 
+without blocking.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34567"><b>Returns:
+</b></a><dd><a name="37905">the value of <img src="javaac8.gif">, which is the number of bytes remaining to 
+be read from the input buffer. 
+</a>
+
+<dt><a name="34569"><b>Overrides:
+</b></a><dd><a name="34573">available in class InputStream &#32;<a href="java.io.InputStream.html#5412">(I-&#167;2.13.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="9992"><h3>read
+</h3></a>
+<a name="35562"><code>public int read()
+</code></a>
+<dl>
+<dd><a name="37915">Reads the next byte of data from this input stream. The value byte is 
+returned as an int in the range 0 to 255. If no byte is available because the 
+end of the stream has been reached, the value -1 is returned. 
+<pre>
+</pre></a>
+
+<dd><a name="36770">The read method of StringBufferInputStream cannot block. It returns the low 8 
+bits of the next character in this input stream's buffer. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="35563"><b>Returns:
+</b></a><dd><a name="35568">the next byte of data, or -1 if the end of the stream is reachedend of the 
+stream is reached.
+</a>
+
+<dt><a name="34584"><b>Overrides:
+</b></a><dd><a name="34588">read in class InputStream &#32;<a href="java.io.InputStream.html#5496">(I-&#167;2.13.6)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="read">
+<a name="10016"><h3>read
+</h3></a>
+<a name="10018"><code>public int read(byte &#32;b[], int &#32;off, int &#32;len)
+</code></a>
+<dl>
+<dd><a name="34594">Reads up to len bytes of data from this input stream into an array of bytes. 
+<pre>
+</pre></a>
+
+<dd><a name="37932">The read method of StringBufferInputStream cannot block. It copies the low 8-
+bits from the characters in this input stream's buffer into the byte array 
+argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34595"><b>Parameters:
+</b></a><dd><a name="34596"><code>b
+- </code></a><a name="34597">the buffer into which the data is read
+</a>
+<dd><a name="34598"><code>off
+- </code></a><a name="34599">the start offset of the data
+</a>
+<dd><a name="34600"><code>len
+- </code></a><a name="34601">the maximum number of bytes read
+</a>
+
+<dt><a name="34602"><b>Returns:
+</b></a><dd><a name="34603">the total number of bytes read into the buffer, or -1 is there is no more 
+data because the end of the stream has been reached.
+</a>
+
+<dt><a name="10040"><b>Overrides:
+</b></a><dd><a name="10046">read in class InputStream &#32;<a href="java.io.InputStream.html#5558">(I-&#167;2.13.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="reset">
+<a name="10056"><h3>reset
+</h3></a>
+<a name="10058"><code>public void reset()
+</code></a>
+<dl>
+<dd><a name="34607">Resets the input stream to begin reading from the first character of this 
+input stream's underlying buffer.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34608"><b>Overrides:
+</b></a><dd><a name="34612">reset in class InputStream &#32;<a href="java.io.InputStream.html#5602">(I-&#167;2.13.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="skip">
+<a name="10078"><h3>skip
+</h3></a>
+<a name="10080"><code>public long skip(long &#32;n)
+</code></a>
+<dl>
+<dd><a name="34616">Skips n bytes of input from this input stream. Fewer bytes might be 
+skipped if the end of the input stream is reached.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34617"><b>Parameters:
+</b></a><dd><a name="34618"><code>n
+- </code></a><a name="34619">the number of bytes to be skipped
+</a>
+
+<dt><a name="34620"><b>Returns:
+</b></a><dd><a name="34621">the actual number of bytes skipped.
+</a>
+
+<dt><a name="10094"><b>Overrides:
+</b></a><dd><a name="10100">skip in class InputStream &#32;<a href="java.io.InputStream.html#5628">(I-&#167;2.13.10)</a>.
+</a>
+</dl></dl><!--"RightPage" is inserted just before the classes begin.  Don't convert its text.-->
+<!--Forces heading to right page-->
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.io.html">This Package</a>  <a href="java.io.StreamTokenizer.html">Prev</a>  <a href="java.io.DataInput.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

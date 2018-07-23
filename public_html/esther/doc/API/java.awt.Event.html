@@ -1,0 +1,1011 @@
+<html><head><title>Class Event</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Dimension.html">Prev</a>  <a href="java.awt.FileDialog.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="38347"><h1>	&#167;1.14 Class Event</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>Event
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+ &#32; &#32;public Object <strong>arg</strong>;	<a href="java.awt.Event.html#30467">&#167;1.14.1</a>
+ &#32; &#32;public int <strong>clickCount</strong>;	<a href="java.awt.Event.html#30473">&#167;1.14.2</a>
+ &#32; &#32;public Event <strong>evt</strong>;	<a href="java.awt.Event.html#30482">&#167;1.14.3</a>
+ &#32; &#32;public int <strong>id</strong>;	<a href="java.awt.Event.html#30491">&#167;1.14.4</a>
+ &#32; &#32;public int <strong>key</strong>;	<a href="java.awt.Event.html#30497">&#167;1.14.5</a>
+ &#32; &#32;public int <strong>modifiers</strong>;	<a href="java.awt.Event.html#30515">&#167;1.14.6</a>
+ &#32; &#32;public Object <strong>target</strong>;	<a href="java.awt.Event.html#30506">&#167;1.14.7</a>
+ &#32; &#32;public long <strong>when</strong>;	<a href="java.awt.Event.html#30524">&#167;1.14.8</a>
+ &#32; &#32;public int <strong>x</strong>;	<a href="java.awt.Event.html#30533">&#167;1.14.9</a>
+    public int <strong>y</strong>;	<a href="java.awt.Event.html#30539">&#167;1.14.10</a>
+
+ &#32;  &#32; // possible values for the <strong>id</strong> field	
+ &#32; &#32;public final static int <strong>ACTION_EVENT</strong>;	<a href="java.awt.Event.html#7837">&#167;1.14.11</a>
+ &#32; &#32;public final static int <strong>GOT_FOCUS</strong>;	<a href="java.awt.Event.html#30550">&#167;1.14.12</a>
+ &#32; &#32;public final static int <strong>KEY_ACTION</strong>;	<a href="java.awt.Event.html#30559">&#167;1.14.13</a>
+    public final static int <strong>KEY_ACTION_RELEASE</strong>;	<a href="java.awt.Event.html#30565">&#167;1.14.14</a>
+    public final static int <strong>KEY_PRESS</strong>;	<a href="java.awt.Event.html#30571">&#167;1.14.15</a>
+    public final static int <strong>KEY_RELEASE</strong>;	<a href="java.awt.Event.html#30577">&#167;1.14.16</a>
+ &#32; &#32;public final static int <strong>LIST_DESELECT</strong>;	<a href="java.awt.Event.html#30586">&#167;1.14.17</a>
+    public final static int <strong>LIST_SELECT</strong>;	<a href="java.awt.Event.html#30591">&#167;1.14.18</a>
+ &#32; &#32;public final static int <strong>LOAD_FILE</strong>;	<a href="java.awt.Event.html#45287">&#167;1.14.19</a>
+    public final static int <strong>LOST_FOCUS</strong>;	<a href="java.awt.Event.html#30602">&#167;1.14.20</a>
+ &#32; &#32;public final static int <strong>MOUSE_DOWN</strong>;	<a href="java.awt.Event.html#30611">&#167;1.14.21</a>
+    public final static int <strong>MOUSE_DRAG</strong>;	<a href="java.awt.Event.html#45230">&#167;1.14.22</a>
+    public final static int <strong>MOUSE_ENTER</strong>;	<a href="java.awt.Event.html#30623">&#167;1.14.23</a>
+    public final static int <strong>MOUSE_EXIT</strong>;	<a href="java.awt.Event.html#30629">&#167;1.14.24</a>
+    public final static int <strong>MOUSE_MOVE</strong>;	<a href="java.awt.Event.html#30635">&#167;1.14.25</a>
+    public final static int <strong>MOUSE_UP</strong>;	<a href="java.awt.Event.html#30641">&#167;1.14.26</a>
+ &#32; &#32;public final static int <strong>SAVE_FILE</strong>;	<a href="java.awt.Event.html#30650">&#167;1.14.27</a>
+ &#32; &#32;public final static int <strong>SCROLL_ABSOLUTE</strong>;	<a href="java.awt.Event.html#30656">&#167;1.14.28</a>
+    public final static int <strong>SCROLL_LINE_DOWN</strong>;	<a href="java.awt.Event.html#30662">&#167;1.14.29</a>
+    public final static int <strong>SCROLL_LINE_UP</strong>;	<a href="java.awt.Event.html#30668">&#167;1.14.30</a>
+    public final static int <strong>SCROLL_PAGE_DOWN</strong>;	<a href="java.awt.Event.html#30674">&#167;1.14.31</a>
+    public final static int <strong>SCROLL_PAGE_UP</strong>;	<a href="java.awt.Event.html#30680">&#167;1.14.32</a>
+ &#32; &#32;public final static int <strong>WINDOW_DEICONIFY</strong>;	<a href="java.awt.Event.html#30727">&#167;1.14.33</a>
+    public final static int <strong>WINDOW_DESTROY</strong>;	<a href="java.awt.Event.html#30733">&#167;1.14.34</a>
+    public final static int <strong>WINDOW_EXPOSE</strong>;	<a href="java.awt.Event.html#30739">&#167;1.14.35</a>
+    public final static int <strong>WINDOW_ICONIFY</strong>;	<a href="java.awt.Event.html#30745">&#167;1.14.36</a>
+    public final static int <strong>WINDOW_MOVED</strong>;	<a href="java.awt.Event.html#30751">&#167;1.14.37</a>
+
+ &#32;  &#32; // possible values for the <strong>key</strong> field when the
+ &#32; &#32; &#32; &#32;// action is <strong>KEY_ACTION</strong> or <strong>KEY_ACTION_RELEASE</strong>	
+ &#32; &#32;public final static int <strong>DOWN</strong>;	<a href="java.awt.Event.html#7897">&#167;1.14.38</a>
+    public final static int <strong>END</strong>;	<a href="java.awt.Event.html#7909">&#167;1.14.39</a>
+ &#32; &#32;public final static int <strong>F1</strong>;	<a href="java.awt.Event.html#7933">&#167;1.14.40</a>
+ &#32; &#32;public final static int <strong>F2</strong>;	<a href="java.awt.Event.html#7981">&#167;1.14.41</a>
+    public final static int <strong>F3</strong>;	<a href="java.awt.Event.html#7993">&#167;1.14.42</a>
+    public final static int <strong>F4</strong>;	<a href="java.awt.Event.html#8005">&#167;1.14.43</a>
+    public final static int <strong>F5</strong>;	<a href="java.awt.Event.html#8017">&#167;1.14.44</a>
+    public final static int <strong>F6</strong>;	<a href="java.awt.Event.html#8029">&#167;1.14.45</a>
+    public final static int <strong>F7</strong>;	<a href="java.awt.Event.html#8041">&#167;1.14.46</a>
+    public final static int <strong>F8</strong>;	<a href="java.awt.Event.html#8053">&#167;1.14.47</a>
+    public final static int <strong>F9</strong>;	<a href="java.awt.Event.html#8065">&#167;1.14.48</a>
+ &#32; &#32;public final static int <strong>F10;	</strong><a href="java.awt.Event.html#29800">&#167;1.14.49</a>
+ &#32; &#32;public final static int <strong>F11;	</strong><a href="java.awt.Event.html#29806">&#167;1.14.50</a>
+ &#32; &#32;public final static int <strong>F12;	</strong><a href="java.awt.Event.html#29812">&#167;1.14.51</a>
+ &#32; &#32;public final static int <strong>HOME</strong>;	<a href="java.awt.Event.html#8089">&#167;1.14.52</a>
+ &#32; &#32;public final static int <strong>LEFT</strong>;	<a href="java.awt.Event.html#8173">&#167;1.14.53</a>
+ &#32; &#32;public final static int <strong>PGDN</strong>;	<a href="java.awt.Event.html#8325">&#167;1.14.54</a>
+    public final static int <strong>PGUP</strong>;	<a href="java.awt.Event.html#8337">&#167;1.14.55</a>
+    public final static int <strong>RIGHT</strong>;	<a href="java.awt.Event.html#8349">&#167;1.14.56</a>
+ &#32; &#32;public final static int <strong>UP</strong>;	<a href="java.awt.Event.html#30784">&#167;1.14.57</a>
+
+ &#32; &#32; &#32; &#32;// possible masks for the <strong>modifiers</strong> field 
+ &#32; &#32;public final static int <strong>ALT_MASK	</strong><a href="java.awt.Event.html#30760">&#167;1.14.58</a>
+ &#32; &#32;public final static int <strong>CTRL_MASK</strong>;	<a href="java.awt.Event.html#30766">&#167;1.14.59</a>
+ &#32; &#32;public final static int <strong>META_MASK</strong>;	<a href="java.awt.Event.html#30775">&#167;1.14.61</a>
+ &#32; &#32;public final static int <strong>SHIFT_MASK</strong>;	<a href="java.awt.Event.html#8433">&#167;1.14.60</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+ &#32; &#32;public <strong>Event</strong>(Object &#32;target, int &#32;id, Object &#32;arg);	<a href="java.awt.Event.html#30720">&#167;1.14.62</a>
+    public <strong>Event</strong>(Object &#32;target, long &#32;when, int id,	<a href="java.awt.Event.html#8595">&#167;1.14.63</a>
+     &#32; &#32; &#32; &#32; &#32;int &#32;x, int &#32;y, int &#32;key, int &#32;modifiers);
+    public <strong>Event</strong>(Object &#32;target, long &#32;when, int id, 	<a href="java.awt.Event.html#8637">&#167;1.14.64</a>
+      &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;x, int &#32;y, int &#32;key,
+  &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;modifiers, Object &#32;arg);
+
+ &#32; &#32; &#32; &#32;// Methods
+    public boolean <strong>controlDown</strong>();	<a href="java.awt.Event.html#8687">&#167;1.14.65</a>
+    public boolean <strong>metaDown</strong>();	<a href="java.awt.Event.html#8721">&#167;1.14.66</a>
+    protected String <strong>paramString</strong>();	<a href="java.awt.Event.html#8755">&#167;1.14.67</a>
+    public boolean <strong>shiftDown</strong>();	<a href="java.awt.Event.html#8773">&#167;1.14.68</a>
+    public String <strong>toString</strong>();	<a href="java.awt.Event.html#8807">&#167;1.14.69</a>
+    public void <strong>translate</strong>(int &#32;dX, int &#32;dY);	<a href="java.awt.Event.html#52651">&#167;1.14.70</a>
+}
+</pre><a name="7827">Event is a platform-independent class that encapsulates user events from the local Graphical User Interface (GUI) platform.
+</a><p>
+<hr>
+<a name="7829"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="arg">
+<a name="30467"><h3>arg
+</h3></a>
+<a name="30468"><code>public Object arg
+</code></a>
+<dl>
+<dd><a name="30469">An arbitrary argument of the event. The value of this field depends on the 
+type of event.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="clickCount">
+<a name="30473"><h3>clickCount
+</h3></a>
+<a name="30474"><code>public int clickCount
+</code></a>
+<dl>
+<dd><a name="30475">For MOUSE_DOWN events, this field indicates the number of consecutive clicks. For other events, it is zero.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="evt">
+<a name="30482"><h3>evt
+</h3></a>
+<a name="30483"><code>public Event evt
+</code></a>
+<dl>
+<dd><a name="30484">The next event. This field is set when putting events into a linked list.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="id">
+<a name="30491"><h3>id
+</h3></a>
+<a name="30492"><code>public int id
+</code></a>
+<dl>
+<dd><a name="30493">The type of the event.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="key">
+<a name="30497"><h3>key
+</h3></a>
+<a name="30498"><code>public int key
+</code></a>
+<dl>
+<dd><a name="30499">The key that was pressed in a keyboard event.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="modifiers">
+<a name="30515"><h3>modifiers
+</h3></a>
+<a name="30516"><code>public int modifiers
+</code></a>
+<dl>
+<dd><a name="30517">The state of the modifier keys.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="target">
+<a name="30506"><h3>target
+</h3></a>
+<a name="30507"><code>public Object target
+</code></a>
+<dl>
+<dd><a name="30508">The target component. This indicates the component over which the event 
+occurred or with which the event is associated.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="when">
+<a name="30524"><h3>when
+</h3></a>
+<a name="30525"><code>public long when
+</code></a>
+<dl>
+<dd><a name="30526">The time stamp of the event.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="x">
+<a name="30533"><h3>x
+</h3></a>
+<a name="30534"><code>public int x
+</code></a>
+<dl>
+<dd><a name="30535">The x coordinate of the event.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="y">
+<a name="30539"><h3>y
+</h3></a>
+<a name="30540"><code>public int y
+</code></a>
+<dl>
+<dd><a name="30541">The y coordinate of the event.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="ACTION_EVENT">
+<a name="7837"><h3>ACTION_EVENT
+</h3></a>
+<a name="7839"><code>public final static int ACTION_EVENT = 1001
+</code></a>
+<dl>
+<dd><a name="7841">This event indicates that the user wants some action to occur.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="GOT_FOCUS">
+<a name="30550"><h3>GOT_FOCUS
+</h3></a>
+<a name="30551"><code>public final static int GOT_FOCUS = 1004
+</code></a>
+<dl>
+<dd><a name="30552">A component gained the focus.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="KEY_ACTION">
+<a name="30559"><h3>KEY_ACTION
+</h3></a>
+<a name="30560"><code>public final static int KEY_ACTION = 403
+</code></a>
+<dl>
+<dd><a name="30561">The user has pressed an "action" key. The key field contains one of the special values indicated in <a href="java.awt.Event.html#7897">&#167;1.14.38</a> to <a href="java.awt.Event.html#30784">&#167;1.14.57</a>.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="KEY_ACTION_RELEASE">
+<a name="30565"><h3>KEY_ACTION_RELEASE
+</h3></a>
+<a name="30566"><code>public final static int KEY_ACTION_RELEASE = 404
+</code></a>
+<dl>
+<dd><a name="30567">The user has released an "action" key. The key field contains one of the 
+special values indicated in <a href="java.awt.Event.html#7897">&#167;1.14.38</a> to <a href="java.awt.Event.html#30784">&#167;1.14.57</a>.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="KEY_PRESS">
+<a name="30571"><h3>KEY_PRESS
+</h3></a>
+<a name="30572"><code>public final static int KEY_PRESS = 401
+</code></a>
+<dl>
+<dd><a name="30573">The user has pressed a normal key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="KEY_RELEASE">
+<a name="30577"><h3>KEY_RELEASE
+</h3></a>
+<a name="30578"><code>public final static int KEY_RELEASE = 402
+</code></a>
+<dl>
+<dd><a name="30579">The user has released a normal key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="LIST_DESELECT">
+<a name="30586"><h3>LIST_DESELECT
+</h3></a>
+<a name="30587"><code>public final static int LIST_DESELECT = 702
+</code></a>
+<dl>
+<dd><a name="45282">An item in a list has been deselected.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="LIST_SELECT">
+<a name="30591"><h3>LIST_SELECT
+</h3></a>
+<a name="30592"><code>public final static int LIST_SELECT = 701
+</code></a>
+<dl>
+<dd><a name="30596">An item in a list has been selected.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="LOAD_FILE">
+<a name="45287"><h3>LOAD_FILE
+</h3></a>
+<a name="30597"><code>public final static int LOAD_FILE = 1002
+</code></a>
+<dl>
+<dd><a name="30598">A file loading event.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="LOST_FOCUS">
+<a name="30602"><h3>LOST_FOCUS
+</h3></a>
+<a name="30603"><code>public final static int LOST_FOCUS = 1005
+</code></a>
+<dl>
+<dd><a name="30604">A component lost the focus.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MOUSE_DOWN">
+<a name="30611"><h3>MOUSE_DOWN
+</h3></a>
+<a name="45225"><code>public final static int MOUSE_DOWN = 501
+</code></a>
+<dl>
+<dd><a name="45226">The user has pressed the mouse button. The ALT_MASK <a href="java.awt.Event.html#30760">(II-&#167;1.14.58)</a> flag 
+indicates that the middle button has been pushed. The META_MASK 
+<a href="java.awt.Event.html#30775">(II-&#167;1.14.61)</a> flag indicates that the right button has been pushed.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MOUSE_DRAG">
+<a name="45230"><h3>MOUSE_DRAG
+</h3></a>
+<a name="30618"><code>public final static int MOUSE_DRAG = 506
+</code></a>
+<dl>
+<dd><a name="45257">The user has moved the mouse with a button pushed. The ALT_MASK 
+<a href="java.awt.Event.html#30760">(II-&#167;1.14.58)</a> flag indicates that the middle button is being pushed. The 
+META_MASK <a href="java.awt.Event.html#30775">(II-&#167;1.14.61)</a> flag indicates that the right button is pushed 
+pushed.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MOUSE_ENTER">
+<a name="30623"><h3>MOUSE_ENTER
+</h3></a>
+<a name="30624"><code>public final static int MOUSE_ENTER = 504
+</code></a>
+<dl>
+<dd><a name="30625">The mouse has entered a component.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MOUSE_EXIT">
+<a name="30629"><h3>MOUSE_EXIT
+</h3></a>
+<a name="30630"><code>public final static int MOUSE_EXIT = 505
+</code></a>
+<dl>
+<dd><a name="30631">The mouse has exited a component.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MOUSE_MOVE">
+<a name="30635"><h3>MOUSE_MOVE
+</h3></a>
+<a name="30636"><code>public final static int MOUSE_MOVE = 503
+</code></a>
+<dl>
+<dd><a name="30637">The mouse has moved with no button pressed.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="MOUSE_UP">
+<a name="30641"><h3>MOUSE_UP
+</h3></a>
+<a name="30642"><code>public final static int MOUSE_UP = 502
+</code></a>
+<dl>
+<dd><a name="45273">The user has released the mouse button. The ALT_MASK <a href="java.awt.Event.html#30760">(II-&#167;1.14.58)</a> flag 
+indicates that the middle button has been pushed. The META_MASK 
+<a href="java.awt.Event.html#30775">(II-&#167;1.14.61)</a> flag indicates that the right button has been pushed.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SAVE_FILE">
+<a name="30650"><h3>SAVE_FILE
+</h3></a>
+<a name="30651"><code>public final static int SAVE_FILE = 1003
+</code></a>
+<dl>
+<dd><a name="30652">A file saving event.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SCROLL_ABSOLUTE">
+<a name="30656"><h3>SCROLL_ABSOLUTE
+</h3></a>
+<a name="30657"><code>public final static int SCROLL_ABSOLUTE = 605
+</code></a>
+<dl>
+<dd><a name="30658">The user has moved the bubble in a scroll bar.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SCROLL_LINE_DOWN">
+<a name="30662"><h3>SCROLL_LINE_DOWN
+</h3></a>
+<a name="30663"><code>public final static int SCROLL_LINE_DOWN = 602	
+</code></a>
+<dl>
+<dd><a name="30664">The user has pushed the "line down" area of a scroll bar.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SCROLL_LINE_UP">
+<a name="30668"><h3>SCROLL_LINE_UP
+</h3></a>
+<a name="30669"><code>public final static int SCROLL_LINE_UP = 601
+</code></a>
+<dl>
+<dd><a name="30670">The user has pushed the "line up" area of a scroll bar.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SCROLL_PAGE_DOWN">
+<a name="30674"><h3>SCROLL_PAGE_DOWN
+</h3></a>
+<a name="30675"><code>public final static int SCROLL_PAGE_DOWN = 604
+</code></a>
+<dl>
+<dd><a name="30676">The user has pushed the "page down" area of a scroll bar.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SCROLL_PAGE_UP">
+<a name="30680"><h3>SCROLL_PAGE_UP
+</h3></a>
+<a name="30681"><code>public final static int SCROLL_PAGE_UP = 603
+</code></a>
+<dl>
+<dd><a name="30682">The user has pushed the "page up" area of a scroll bar.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="WINDOW_DEICONIFY">
+<a name="30727"><h3>WINDOW_DEICONIFY
+</h3></a>
+<a name="30728"><code>public final static int WINDOW_DEICONIFY = 204
+</code></a>
+<dl>
+<dd><a name="30729">The user has asked the window manager to deiconify the window.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="WINDOW_DESTROY">
+<a name="30733"><h3>WINDOW_DESTROY
+</h3></a>
+<a name="30734"><code>public final static int WINDOW_DESTROY = 201
+</code></a>
+<dl>
+<dd><a name="30735">The user has asked the window manager to kill the window.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="WINDOW_EXPOSE">
+<a name="30739"><h3>WINDOW_EXPOSE
+</h3></a>
+<a name="30740"><code>public final static int WINDOW_EXPOSE = 202
+</code></a>
+<dl>
+<dd><a name="30741">A window has becom exposed.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="WINDOW_ICONIFY">
+<a name="30745"><h3>WINDOW_ICONIFY
+</h3></a>
+<a name="30746"><code>public final static int WINDOW_ICONIFY = 203
+</code></a>
+<dl>
+<dd><a name="30747">The user has asked the window manager to iconify the window.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="WINDOW_MOVED">
+<a name="30751"><h3>WINDOW_MOVED
+</h3></a>
+<a name="30752"><code>public final static int WINDOW_MOVED = 205
+</code></a>
+<dl>
+<dd><a name="30753">The window has moved.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="DOWN">
+<a name="7897"><h3>DOWN
+</h3></a>
+<a name="7899"><code>public final static int DOWN = 1005
+</code></a>
+<dl>
+<dd><a name="7901">The down key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="END">
+<a name="7909"><h3>END
+</h3></a>
+<a name="7911"><code>public final static int END = 1001
+</code></a>
+<dl>
+<dd><a name="7913">The end key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F1">
+<a name="7933"><h3>F1
+</h3></a>
+<a name="7935"><code>public final static int F1 = 1008
+</code></a>
+<dl>
+<dd><a name="7937">The F1 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F2">
+<a name="7981"><h3>F2
+</h3></a>
+<a name="7983"><code>public final static int F2 = 1009
+</code></a>
+<dl>
+<dd><a name="7985">The F2 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F3">
+<a name="7993"><h3>F3
+</h3></a>
+<a name="7995"><code>public final static int F3 = 1010
+</code></a>
+<dl>
+<dd><a name="7997">The F3 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F4">
+<a name="8005"><h3>F4
+</h3></a>
+<a name="8007"><code>public final static int F4 = 1011
+</code></a>
+<dl>
+<dd><a name="8009">The F4 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F5">
+<a name="8017"><h3>F5
+</h3></a>
+<a name="8019"><code>public final static int F5 = 1012
+</code></a>
+<dl>
+<dd><a name="8021">The F5 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F6">
+<a name="8029"><h3>F6
+</h3></a>
+<a name="8031"><code>public final static int F6 = 1013
+</code></a>
+<dl>
+<dd><a name="8033">The F6 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F7">
+<a name="8041"><h3>F7
+</h3></a>
+<a name="8043"><code>public final static int F7 = 1014
+</code></a>
+<dl>
+<dd><a name="8045">The F7 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F8">
+<a name="8053"><h3>F8
+</h3></a>
+<a name="8055"><code>public final static int F8 = 1015
+</code></a>
+<dl>
+<dd><a name="8057">The F8 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F9">
+<a name="8065"><h3>F9
+</h3></a>
+<a name="8067"><code>public final static int F9 = 1016
+</code></a>
+<dl>
+<dd><a name="8069">The F9 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F10">
+<a name="29800"><h3>F10
+</h3></a>
+<a name="29801"><code>public final static int F10 = 1017
+</code></a>
+<dl>
+<dd><a name="29802">The F10 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F11">
+<a name="29806"><h3>F11
+</h3></a>
+<a name="29807"><code>public final static int F11 = 1018
+</code></a>
+<dl>
+<dd><a name="29808">The F11 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="F12">
+<a name="29812"><h3>F12
+</h3></a>
+<a name="29813"><code>public final static int F12 = 1019
+</code></a>
+<dl>
+<dd><a name="29814">The F12 function key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="HOME">
+<a name="8089"><h3>HOME
+</h3></a>
+<a name="8091"><code>public final static int HOME = 1008
+</code></a>
+<dl>
+<dd><a name="8093">The home key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="LEFT">
+<a name="8173"><h3>LEFT
+</h3></a>
+<a name="8175"><code>public final static int LEFT = 1006
+</code></a>
+<dl>
+<dd><a name="8177">The left arrow key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="PGDN">
+<a name="8325"><h3>PGDN
+</h3></a>
+<a name="8327"><code>public final static int PGDN = 1003
+</code></a>
+<dl>
+<dd><a name="8329">The page down key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="PGUP">
+<a name="8337"><h3>PGUP
+</h3></a>
+<a name="8339"><code>public final static int PGUP = 1002
+</code></a>
+<dl>
+<dd><a name="8341">The page up key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="RIGHT">
+<a name="8349"><h3>RIGHT
+</h3></a>
+<a name="8351"><code>public final static int RIGHT = 1007
+</code></a>
+<dl>
+<dd><a name="8353">The right arrow key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="UP">
+<a name="30784"><h3>UP
+</h3></a>
+<a name="30785"><code>public final static int UP = 1004
+</code></a>
+<dl>
+<dd><a name="30786">The up arrow key.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="ALT_MASK">
+<a name="30760"><h3>ALT_MASK
+</h3></a>
+<a name="30761"><code>public final static int ALT_MASK = 8
+</code></a>
+<dl>
+<dd><a name="30762">This flag indicates that the "alt" key was down when the event occurred. 
+For mouse events, this flag indicates that the middle button was pressed or 
+released.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="CTRL_MASK">
+<a name="30766"><h3>CTRL_MASK
+</h3></a>
+<a name="30767"><code>public final static int CTRL_MASK = 2
+</code></a>
+<dl>
+<dd><a name="30768">This flag indicates that the control key was down when the event occurred.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="SHIFT_MASK">
+<a name="8433"><h3>SHIFT_MASK
+</h3></a>
+<a name="8435"><code>public final static int SHIFT_MASK = 0
+</code></a>
+<dl>
+<dd><a name="38360">This flag indicates that the shift key was down when the event occurred.
+<pre>
+</pre></a>
+</dl>
+
+<META NAME="keywords" CONTENT="META_MASK">
+<a name="30775"><h3>META_MASK
+</h3></a>
+<a name="30776"><code>public final static int META_MASK = 4
+</code></a>
+<dl>
+<dd><a name="38362">This flag indicates that the meta key was down when the event occurred. 
+For mouse events, this flag indicates that the right button was pressed or 
+released.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="30716"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="Event">
+<a name="30720"><h3>Event
+</h3></a>
+<a name="8571"><code>public Event(Object &#32;target, int &#32;id, Object &#32;arg)
+</code></a>
+<dl>
+<dd><a name="8573">Creates an Event with the specified target component, event type, and argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="8575"><b>Parameters:
+</b></a><dd><a name="8577"><code>target
+- </code></a><a name="8579">the target component
+</a>
+<dd><a name="8581"><code>id
+- </code></a><a name="8583">the event type
+</a>
+<dd><a name="8585"><code>arg
+- </code></a><a name="8587">the specified argument
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Event">
+<a name="8595"><h3>Event
+</h3></a>
+<a name="8597"><code>public Event(Object &#32;target, long &#32;when, int &#32;id,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;x, int &#32;y, int &#32;key, int &#32;modifiers)
+</code></a>
+<dl>
+<dd><a name="8599">Creates an Event with the specified target component, time stamp, event 
+type, x and y coordinates, keyboard key, state of the modifier keys, and an 
+argument set to null.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="8601"><b>Parameters:
+</b></a><dd><a name="8603"><code>target
+- </code></a><a name="8605">the target component
+</a>
+<dd><a name="8607"><code>when
+- </code></a><a name="8609">the time stamp
+</a>
+<dd><a name="8611"><code>id
+- </code></a><a name="8613">the event type
+</a>
+<dd><a name="8615"><code>x
+- </code></a><a name="8617">the x coordinate
+</a>
+<dd><a name="8619"><code>y
+- </code></a><a name="8621">the y coordinate
+</a>
+<dd><a name="8623"><code>key
+- </code></a><a name="8625">the key pressed in a keyboard event
+</a>
+<dd><a name="8627"><code>modifiers
+- </code></a><a name="8629">the state of the modifier keys
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="Event">
+<a name="8637"><h3>Event
+</h3></a>
+<a name="8639"><code>public Event(Object &#32;target, long &#32;when, int &#32;id, int &#32;x,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;y, int &#32;key, int &#32;modifiers, Object &#32;arg)
+</code></a>
+<dl>
+<dd><a name="8641">Creates an Event with the specified target component, time stamp, event 
+type, x and y coordinates, keyboard key, state of the modifier keys, and 
+argument.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="8643"><b>Parameters:
+</b></a><dd><a name="8645"><code>target
+- </code></a><a name="8647">the target component
+</a>
+<dd><a name="8649"><code>when
+- </code></a><a name="8651">the time stamp
+</a>
+<dd><a name="8653"><code>id
+- </code></a><a name="8655">the event type
+</a>
+<dd><a name="8657"><code>x
+- </code></a><a name="8659">the x coordinate
+</a>
+<dd><a name="8661"><code>y
+- </code></a><a name="8663">the y coordinate
+</a>
+<dd><a name="8665"><code>key
+- </code></a><a name="8667">the key pressed in a keyboard event
+</a>
+<dd><a name="8669"><code>modifiers
+- </code></a><a name="8671">the state of the modifier keys
+</a>
+<dd><a name="8673"><code>arg
+- </code></a><a name="8675">the specified argument
+</a>
+</dl></dl>
+<hr>
+<a name="8677"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="controlDown">
+<a name="8687"><h3>controlDown
+</h3></a>
+<a name="8689"><code>public boolean controlDown()
+</code></a>
+<dl><dl>
+<dt><a name="8693"><b>Returns:
+</b></a><dd><a name="8695">true if this event indicates that the control key was down; false otherwise.
+</a>
+
+<dt><a name="8697"><b>See Also:
+</b></a><dd><a name="8711">modifiers &#32;<a href="java.awt.Event.html#30515">(II-&#167;1.14.6)</a><br>
+shiftDown &#32;<a href="java.awt.Event.html#8773">(II-&#167;1.14.68)</a><br>
+metaDown &#32;<a href="java.awt.Event.html#8721">(II-&#167;1.14.66)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="metaDown">
+<a name="8721"><h3>metaDown
+</h3></a>
+<a name="8723"><code>public boolean metaDown()
+</code></a>
+<dl><dl>
+<dt><a name="8727"><b>Returns:
+</b></a><dd><a name="29828">true if this event indicates that the meta key was down; false otherwise.
+</a>
+
+<dt><a name="8731"><b>See Also:
+</b></a><dd><a name="8745">modifiers &#32;<a href="java.awt.Event.html#30515">(II-&#167;1.14.6)</a><br>
+shiftDown &#32;<a href="java.awt.Event.html#8773">(II-&#167;1.14.68)</a><br>
+controlDown &#32;<a href="java.awt.Event.html#8687">(II-&#167;1.14.65)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="8755"><h3>paramString
+</h3></a>
+<a name="8757"><code>protected String paramString()
+</code></a>
+<dl>
+<dd><a name="52902">Returns the parameter string representing this event. This string is useful 
+for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="26943"><b>Returns:
+</b></a><dd><a name="26944">the parameter string of this event.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="shiftDown">
+<a name="8773"><h3>shiftDown
+</h3></a>
+<a name="8775"><code>public boolean shiftDown()
+</code></a>
+<dl><dl>
+<dt><a name="8779"><b>Returns:
+</b></a><dd><a name="29836">true if this event indicates that the shift key was down; false otherwise.
+</a>
+
+<dt><a name="8783"><b>See Also:
+</b></a><dd><a name="8797">modifiers &#32;<a href="java.awt.Event.html#30515">(II-&#167;1.14.6)</a><br>
+controlDown &#32;<a href="java.awt.Event.html#8687">(II-&#167;1.14.65)</a><br>
+metaDown &#32;<a href="java.awt.Event.html#8721">(II-&#167;1.14.66)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="toString">
+<a name="8807"><h3>toString
+</h3></a>
+<a name="8809"><code>public String toString()
+</code></a>
+<dl><dl>
+<dt><a name="27213"><b>Returns:
+</b></a><dd><a name="27214">a string representation of this event.
+</a>
+
+<dt><a name="52643"><b>Overrides:n
+</b></a><dd><a name="52647">toString in class Object &#32;<a href="java.lang.Object.html#6228">(I-&#167;1.12.9)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="translate">
+<a name="52651"><h3>translate
+</h3></a>
+<a name="8835"><code>public void translate(int &#32;dx, int &#32;dy)
+</code></a>
+<dl>
+<dd><a name="8837">Translates this event so that its x and y position are increased by dx and dy 
+respectively.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="8839"><b>Parameters:
+</b></a><dd><a name="8841"><code>dX
+- </code></a><a name="8843">the amount to translate the x coordinate
+</a>
+<dd><a name="8845"><code>dY
+- </code></a><a name="8847">the amount to translate the y coordinate
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.Dimension.html">Prev</a>  <a href="java.awt.FileDialog.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

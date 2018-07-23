@@ -1,0 +1,117 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Compiler Construction</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<meta name="Microsoft Border" content="tlb">
+</head>
+
+<body><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+<table border="1" cellspacing="0" bordercolor="#0066FF" width="100%" id="AutoNumber3" bgcolor="#FFFFFF" style="border-collapse: collapse" cellpadding="0">
+  <tr>
+    <td width="100%" bgcolor="#B3B3FF" bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF">
+    <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler Construction</font></b></td>
+  </tr>
+  </table>
+
+<p><span style="position: absolute; top: 50; left: 11">
+
+<img border="0" src="../images/12x12spacer.gif" width="12" height="12"></span> </p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%">
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; position:relative; left:2" bordercolor="#0066FF" width="1%" id="AutoNumber2">
+  <tr>
+    <td width="100%" nowrap align="center" bgcolor="#B3B3FF"><b>
+    <font face="Arial" size="2">CSCE 425/825</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../index.htm">Course Home Page</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../describe.shtml">Course Description</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../calendar/index.htm">Calendar</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="peephole/peephole.htm">Peephole Contest</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2" color="#C0C0C0">
+    <a class="nav" href="http://www.cse.unl.edu/~cthiel/cgi-bin/submit.cgi">Project Upload</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap align="center" bgcolor="#B3B3FF"><b>
+    <font face="Arial" size="2">Resources</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="index.htm">Project JOOS</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font color="#C0C0C0" face="Arial" size="2">
+    <a class="nav" href="../wig/index.htm">Project WIG</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../java.shtml">Java</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../jasmine/jasmine.htm">Jasmin</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" nowrap><font face="Arial" size="2">
+    <a class="nav" href="../scaningparsing.shtml">Tools</a></font></td>
+  </tr>
+  </table>
+
+</td><td valign="top" width="24"></td><!--msnavigation--><td valign="top">
+<h1><font face="Arial" size="5">The <img border="0" src="images/a+small.gif" width="29" height="24"> 
+binary</font></h1>
+<p><font face="Arial" size="2">A binary JOOS compiler is available
+for three different platforms:
+<ul>
+<li> <a href="a+bin/linux/joos">linux</a>
+<li> <a href="a+bin/solaris/joos">solaris</a>
+<li> <a href="a+bin/win32/joos.exe">windows</a>
+</ul>
+To use it, you must follow the
+<a href="../topics/howtojoosjava.shtml">general 
+guidelines</a> for setting up the JOOS/Java environment. 
+</font></p>
+<p><font face="Arial" size="2">The compiler may be used for experiments and can 
+answer many detailed questions about the correct semantics of the JOOS language. 
+The compiler is an A+ version, which means that: </font></p>
+<ul>
+  <li><font face="Arial" size="2">it allows C-style comments; </font></li>
+  <li><font face="Arial" size="2">it allows increments and for-loops as 
+  syntactic sugar; </font></li>
+  <li><font face="Arial" size="2">it computes the correct stack limits; </font>
+  </li>
+  <li><font face="Arial" size="2">it implements 35 interesting peephole 
+  patterns. </font></li>
+</ul>
+
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d">
+</head>
+
+<body>
+
+<p align="right"><font face="Arial" size="1">Last Modified:<font color="#C0C0C0">
+</font><font color="#0066FF">
+<!--webbot bot="Timestamp" S-Type="EDITED" S-Format="%B %d, %Y" startspan -->
+September 10, 2003</font></font></p>
+
+</td></tr><!--msnavigation--></table></body></html>

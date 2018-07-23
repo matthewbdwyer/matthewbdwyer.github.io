@@ -1,0 +1,539 @@
+<html><head><title>Class IndexColorModel</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.ImageFilter.html">Prev</a>  <a href="java.awt.image.MemoryImageSource.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="997889"><h1>	&#167;2.6 Class IndexColorModel</h1></a>
+<pre>public &#32;class &#32;java.awt.image.<strong>IndexColorModel
+</strong>    extends &#32;java.awt.image.<strong>ColorModel</strong> &#32;<a href="java.awt.image.ColorModel.html#996814">(II-&#167;2.1)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>IndexColorModel</strong>(int &#32;bits, int &#32;size,	<a href="java.awt.image.IndexColorModel.html#997977">&#167;2.6.1</a>
+    &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;r[], byte &#32;g[], byte &#32;b[]);
+    public <strong>IndexColorModel</strong>(int &#32;bits, int &#32;size,	<a href="java.awt.image.IndexColorModel.html#998005">&#167;2.6.2</a>
+    &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;r[], byte &#32;g[], 
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;b[], byte &#32;a[]);
+    public <strong>IndexColorModel</strong>(int &#32;bits, int &#32;size,	<a href="java.awt.image.IndexColorModel.html#998034">&#167;2.6.3</a>
+    &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;r[], byte &#32;g[],
+   &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;b[], int &#32;trans);
+    public <strong>IndexColorModel</strong>(int &#32;bits, int &#32;size,	<a href="java.awt.image.IndexColorModel.html#998064">&#167;2.6.4</a>
+   &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;cmap[], int &#32;start,
+   &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;boolean &#32;hasalpha);
+    public <strong>IndexColorModel</strong>(int &#32;bits, int &#32;size,	<a href="java.awt.image.IndexColorModel.html#998099">&#167;2.6.5</a>
+   &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;cmap[], int &#32;start,
+   &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;boolean &#32;hasalpha, &#32;int &#32;trans);
+
+ &#32; &#32; &#32; &#32;// Methods
+    public final int <strong>getAlpha</strong>(int &#32;pixel);	<a href="java.awt.image.IndexColorModel.html#998123">&#167;2.6.6</a>
+    public final void <strong>getAlphas</strong>(byte &#32;a[]);	<a href="java.awt.image.IndexColorModel.html#998139">&#167;2.6.7</a>
+    public final int <strong>getBlue</strong>(int &#32;pixel);	<a href="java.awt.image.IndexColorModel.html#998152">&#167;2.6.8</a>
+    public final void <strong>getBlues</strong>(byte &#32;b[]);	<a href="java.awt.image.IndexColorModel.html#998168">&#167;2.6.9</a>
+    public final int <strong>getGreen</strong>(int &#32;pixel);	<a href="java.awt.image.IndexColorModel.html#998181">&#167;2.6.10</a>
+    public final void <strong>getGreens</strong>(byte &#32;g[]);	<a href="java.awt.image.IndexColorModel.html#998196">&#167;2.6.11</a>
+    public final int <strong>getMapSize</strong>();	<a href="java.awt.image.IndexColorModel.html#998209">&#167;2.6.12</a>
+    public final int <strong>getRed</strong>(int &#32;pixel);	<a href="java.awt.image.IndexColorModel.html#998216">&#167;2.6.13</a>
+    public final void <strong>getReds</strong>(byte &#32;r[]);	<a href="java.awt.image.IndexColorModel.html#998232">&#167;2.6.14</a>
+    public final int <strong>getRGB</strong>(int &#32;pixel);	<a href="java.awt.image.IndexColorModel.html#998245">&#167;2.6.15</a>
+    public final int <strong>getTransparentPixel</strong>();	<a href="java.awt.image.IndexColorModel.html#998265">&#167;2.6.16</a>
+}
+</pre><a name="997967">The index color model class specifies a color model <a href="java.awt.image.ColorModel.html#996814">(II-&#167;2.1)</a> in a which a pixel value is 
+converted into alpha, red, green, and blue component by using the pixel value as an index 
+into a color map. Each entry in the color map gives the alpha, red, green, and blue component for the corresponding pixel.
+</a><p><a name="997968">An optional <em>transparent</em> pixel can be specified. This pixel is completely transparent, independent of the alpha value recorded for that pixel value.
+</a><p><a name="997969">The maximum size of the color map is 256 entries. 
+</a><p><a name="997970">This color model is similar to an X11 PseudoColor visual.
+</a><p><a name="997971">Many of the methods in this class are final: the underlying native graphics code makes 
+assumptions about the layout and operation of this class and those assumptions are 
+reflected in the implementations of the methods here that are marked final. Applications 
+can subclass this class for other reaons, but they cannot override or modify the behavior of 
+the final methods.
+</a><p>
+<hr>
+<a name="997973"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="IndexColorModel">
+<a name="997977"><h3>IndexColorModel
+</h3></a>
+<a name="997978"><code>public IndexColorModel(int &#32;bits, int &#32;size, byte &#32;r[],<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;g[], byte &#32;b[])
+</code></a>
+<dl>
+<dd><a name="997979">Constructs an IndexColorModel from the given arrays of red, green, and 
+blue components. 
+<pre>
+</pre></a>
+
+<dd><a name="997980">Pixels described by this color model all have alpha components of 255 
+(fully opaque). 
+<pre>
+</pre></a>
+
+<dd><a name="997981">Each of the three arrays must have at least size elements, and it must be the 
+case that <img src="javaaj3.gif">. These first size elements of the arrays are the red, 
+green, and blue values for pixels in the range <img src="javaai4.gif">. Pixels in the 
+range <img src="javaai5.gif"> have red, green, and blue values of 0.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="997991"><b>Parameters:
+</b></a><dd><a name="997992"><code>bits
+- </code></a><a name="997993">The number of bits in a pixel
+</a>
+<dd><a name="997994"><code>size
+- </code></a><a name="997995">The size of the color component arrays
+</a>
+<dd><a name="997996"><code>r
+- </code></a><a name="997997">an array of red color components
+</a>
+<dd><a name="997998"><code>g
+- </code></a><a name="997999">an array of green color components
+</a>
+<dd><a name="998000"><code>b
+- </code></a><a name="998001">an array of blue color components
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="IndexColorModel">
+<a name="998005"><h3>IndexColorModel
+</h3></a>
+<a name="998006"><code>public IndexColorModel(int &#32;bits, int &#32;size, byte &#32;r[],<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;g[], byte &#32;b[], byte &#32;a[])
+</code></a>
+<dl>
+<dd><a name="998007">Constructs an IndexColorModel from the given arrays of red, green, blue 
+and alpha components.
+<pre>
+</pre></a>
+
+<dd><a name="998008">Each of the four arrays must have at least size elements, and it must be the 
+case that <img src="javaah6.gif">. These first size elements of the arrays are the red, 
+green, and blue values for pixels in the range <img src="javaag7.gif">. Pixels in the 
+range <img src="javaag8.gif"> have red, green, and blue, and alpha values of 0. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998018"><b>Parameters:
+</b></a><dd><a name="998019"><code>bits
+- </code></a><a name="998020">The number of bits in a pixel
+</a>
+<dd><a name="998021"><code>size
+- </code></a><a name="998022">a lower bound on the size of each of the arrays
+</a>
+<dd><a name="998023"><code>r
+- </code></a><a name="998024">an array of red color components
+</a>
+<dd><a name="998025"><code>g
+- </code></a><a name="998026">an array of green color components
+</a>
+<dd><a name="998027"><code>b
+- </code></a><a name="998028">an array of blue color components
+</a>
+<dd><a name="998029"><code>a
+- </code></a><a name="998030">an array of alpha value components
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="IndexColorModel">
+<a name="998034"><h3>IndexColorModel
+</h3></a>
+<a name="998035"><code>public<br>
+IndexColorModel(int &#32;bits, int &#32;size, byte &#32;r[],<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;g[], byte &#32;b[], int &#32;trans)
+</code></a>
+<dl>
+<dd><a name="998036">Constructs an IndexColorModel from the given arrays of red, green, and 
+blue components. 
+<pre>
+</pre></a>
+
+<dd><a name="998037">Pixels described by this color model all have alpha components of 255 
+(fully opaque), except for the transparent pixel.
+<pre>
+</pre></a>
+
+<dd><a name="998038">Each of the three arrays must have at least size elements, and it must be the 
+case that <img src="javaag9.gif">. These first size elements of the arrays are the red, 
+green, and blue values for pixels in the range <img src="javaag10.gif">. Pixels in the 
+range <img src="javaaf11.gif"> have red, green, and blue values of 0.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998048"><b>Parameters:
+</b></a><dd><a name="998049"><code>bits
+- </code></a><a name="998050">The number of bits in a pixel
+</a>
+<dd><a name="998051"><code>size
+- </code></a><a name="998052">The size of the color component arrays
+</a>
+<dd><a name="998053"><code>r
+- </code></a><a name="998054">an array of red color components
+</a>
+<dd><a name="998055"><code>g
+- </code></a><a name="998056">an array of green color components
+</a>
+<dd><a name="998057"><code>b
+- </code></a><a name="998058">an array of blue color components
+</a>
+<dd><a name="998059"><code>trans
+- </code></a><a name="998060">the index of the transparent pixel
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="IndexColorModel">
+<a name="998064"><h3>IndexColorModel
+</h3></a>
+<a name="998065"><code>public<br>
+IndexColorModel(int &#32;bits, int &#32;size, byte &#32;cmap[],<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;int &#32;start, boolean &#32;hasalpha)
+</code></a>
+<dl>
+<dd><a name="998066">Constructs an index color model from a single array of packed red, green, 
+blue and optional alpha components. 
+<pre>
+</pre></a>
+
+<dd><a name="998067">If the hasalpha argument is false, then the cmap array must have length of at 
+least <img src="javaaf12.gif">. The red, green, and blue components for a 
+pixel i in the range <img src="javaaf13.gif"> are in the three elements of the cmap 
+array starting at cmap[start + 3i] Its alpha component is 255 (fully opaque).
+<pre>
+</pre></a>
+
+<dd><a name="998074">If the hasalpha argument is true, then the cmap array must have length of at 
+least <img src="javaae14.gif">. The red, green, blue, and alpha components for 
+a pixel i in the range <img src="javaad15.gif"> are in the four elements of the cmap 
+array starting at cmap[start + 4i]
+<pre>
+</pre></a>
+
+<dd><a name="998084">Pixels in the range <img src="javaad16.gif"> have red, green, and blue values of 
+0, Their alpha component is 0 if hasalpha is true, and 255 otherwise.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998085"><b>Parameters:
+</b></a><dd><a name="998086"><code>bits
+- </code></a><a name="998087">the number of bits in a pixel
+</a>
+<dd><a name="998088"><code>size
+- </code></a><a name="998089">the size of the color component arrays
+</a>
+<dd><a name="998090"><code>cmap
+- </code></a><a name="998091">an array of color components
+</a>
+<dd><a name="998092"><code>start
+- </code></a><a name="998093">the starting offset of the first color component
+</a>
+<dd><a name="998094"><code>hasalpha
+- </code></a><a name="998095">if true, the alpha values are contained in the cmap array
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="IndexColorModel">
+<a name="998099"><h3>IndexColorModel
+</h3></a>
+<a name="998100"><code>public IndexColorModel(int &#32;bits, int &#32;size,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;byte &#32;cmap[], int &#32;start,<br>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;boolean &#32;hasalpha, int &#32;trans)
+</code></a>
+<dl>
+<dd><a name="998101">Constructs an index color model from a single array of packed red, green, 
+blue, and optional alpha values.
+<pre>
+</pre></a>
+
+<dd><a name="998105">The color model is constructed the same way as described in <a href="java.awt.image.IndexColorModel.html#998064">&#167;2.6.4</a>. In 
+addition, the specified transparent index represents a pixel which is considered entirely transparent regardless of any alpha value specified for it. 
+The array must have enough values in it to fill all of the needed component 
+arrays of the specified size.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998106"><b>Parameters:
+</b></a><dd><a name="998107"><code>bits
+- </code></a><a name="998108">the number of bits in a pixel
+</a>
+<dd><a name="998109"><code>size
+- </code></a><a name="998110">the size of the color component arrays
+</a>
+<dd><a name="998111"><code>cmap
+- </code></a><a name="998112">an array of color components
+</a>
+<dd><a name="998113"><code>start
+- </code></a><a name="998114">the starting offset of the first color component
+</a>
+<dd><a name="998115"><code>hasalpha
+- </code></a><a name="998116">if true, the alpha values are in the cmap array
+</a>
+<dd><a name="998117"><code>trans
+- </code></a><a name="998118">The index of the fully transparent pixel.
+</a>
+</dl></dl>
+<hr>
+<a name="998119"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="getAlpha">
+<a name="998123"><h3>getAlpha
+</h3></a>
+<a name="998124"><code>public final int getAlpha(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="998125">Determines the alpha transparency value of the pixel in this color model. 
+The value ranges from 0 to 255. The value 0 indicates that the pixel is 
+completely transparent. The value 255 indicates that the pixel is opaque.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998126"><b>Parameters:
+</b></a><dd><a name="998127"><code>pixel
+- </code></a><a name="998128">a pixel value
+</a>
+
+<dt><a name="998129"><b>Returns:
+</b></a><dd><a name="998130">The alpha transparency represented by the pixel value
+</a>
+
+<dt><a name="998131"><b>Overrides:
+</b></a><dd><a name="998135">getAlpha in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996893">(II-&#167;2.1.3)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getAlphas">
+<a name="998139"><h3>getAlphas
+</h3></a>
+<a name="998140"><code>public final void getAlphas(byte &#32;a[])
+</code></a>
+<dl>
+<dd><a name="998141">Copies the array of alpha transparency values from this color model into 
+the given array. 
+<pre>
+</pre></a>
+
+<dd><a name="998142">Only the initial entries of the array as specified by the getMapSize method 
+<a href="java.awt.image.IndexColorModel.html#998209">(II-&#167;2.6.12)</a> are written.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998146"><b>Parameters:
+</b></a><dd><a name="998147"><code>a
+- </code></a><a name="998148">an array into which to place the results
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getBlue">
+<a name="998152"><h3>getBlue
+</h3></a>
+<a name="998153"><code>public final int getBlue(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="998154">Determines the blue component of the pixel in this color model. The value 
+ranges from 0 to 255. The value 0 indicates no contribution from this primary color. The value 255 indicates the maximum intensity of this color 
+component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998155"><b>Parameters:
+</b></a><dd><a name="998156"><code>pixel
+- </code></a><a name="998157">a pixel value
+</a>
+
+<dt><a name="998158"><b>Returns:
+</b></a><dd><a name="998159">the blue color component represented by the pixel value.
+</a>
+
+<dt><a name="998160"><b>Overrides:
+</b></a><dd><a name="998164">getBlue in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996904">(II-&#167;2.1.4)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getBlues">
+<a name="998168"><h3>getBlues
+</h3></a>
+<a name="998169"><code>public final void getBlues(byte &#32;b[])
+</code></a>
+<dl>
+<dd><a name="998170">Copies the array of blue color components from this color model into the 
+given array. 
+<pre>
+</pre></a>
+
+<dd><a name="998171">Only the initial entries of the array as specified by the getMapSize method 
+<a href="java.awt.image.IndexColorModel.html#998209">(II-&#167;2.6.12)</a> are written.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998175"><b>Parameters:
+</b></a><dd><a name="998176"><code>b
+- </code></a><a name="998177">an array into which to place the results
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getGreen">
+<a name="998181"><h3>getGreen
+</h3></a>
+<a name="1001204"><code>public final int getGreen(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="998182">Determines the green component of the pixel in this color model. The 
+value ranges from 0 to 255. The value 0 indicates no contribution from this 
+primary color. The value 255 indicates the maximum intensity of this color 
+component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998183"><b>Parameters:
+</b></a><dd><a name="998184"><code>pixel
+- </code></a><a name="998185">a pixel value
+</a>
+
+<dt><a name="998186"><b>Returns:
+</b></a><dd><a name="998187">the blue color component represented by the pixel value.
+</a>
+
+<dt><a name="998188"><b>Overrides:
+</b></a><dd><a name="998192">getGreen in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996915">(II-&#167;2.1.5)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getGreens">
+<a name="998196"><h3>getGreens
+</h3></a>
+<a name="998197"><code>public final void getGreens(byte &#32;g[])
+</code></a>
+<dl>
+<dd><a name="998198">Copies the array of green color components from this color model into the 
+given array. 
+<pre>
+</pre></a>
+
+<dd><a name="998199">Only the initial entries of the array as specified by the getMapSize method 
+<a href="java.awt.image.IndexColorModel.html#998209">(II-&#167;2.6.12)</a> are written.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998203"><b>Parameters:
+</b></a><dd><a name="998204"><code>g
+- </code></a><a name="998205">an array into which to place the results
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getMapSize">
+<a name="998209"><h3>getMapSize
+</h3></a>
+<a name="998210"><code>public final int getMapSize()
+</code></a>
+<dl><dl>
+<dt><a name="998211"><b>Returns:
+</b></a><dd><a name="998212">the value of the size argument when creating this index color model.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getRed">
+<a name="998216"><h3>getRed
+</h3></a>
+<a name="998217"><code>public final int getRed(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="1000661">Determines the red component of the pixel in this color model. The value 
+ranges from 0 to 255. The value 0 indicates no contribution from this primary color. The value 255 indicates the maximum intensity of this color 
+component.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998219"><b>Parameters:
+</b></a><dd><a name="998220"><code>pixel
+- </code></a><a name="998221">a pixel value
+</a>
+
+<dt><a name="998222"><b>Returns:
+</b></a><dd><a name="998223">the red color component represented by the pixel value.
+</a>
+
+<dt><a name="998224"><b>Overrides:
+</b></a><dd><a name="998228">getRed in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996933">(II-&#167;2.1.7)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getReds">
+<a name="998232"><h3>getReds
+</h3></a>
+<a name="998233"><code>public final void getReds(byte &#32;r[])
+</code></a>
+<dl>
+<dd><a name="998234">Copies the array of red color components from this color model into the 
+given array. 
+<pre>
+</pre></a>
+
+<dd><a name="998235">Only the initial entries of the array as specified by the getMapSize method 
+<a href="java.awt.image.IndexColorModel.html#998209">(II-&#167;2.6.12)</a> are written.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998239"><b>Parameters:
+</b></a><dd><a name="998240"><code>a
+- </code></a><a name="998241">an array into which to place the results
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getRGB">
+<a name="998245"><h3>getRGB
+</h3></a>
+<a name="998246"><code>public final int getRGB(int &#32;pixel)
+</code></a>
+<dl>
+<dd><a name="998247">Calculates a single integer representing the alpha, red, green, and blue 
+components of the pixel in this color model. The components are each 
+scaled to be a value between 0 and 255 . The integer returned is the number such that bits &#32;24-31 are the alpha value, 16-23 are the red value, bits 
+8-15 are the green value, and bits 0-7 are the blue value. 
+<pre>
+</pre></a>
+
+<dd><a name="998251">This format is the format used by the default RGB color model <a href="java.awt.image.ColorModel.html#1001364">(II-&#167;2.1.9)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="998252"><b>Parameters:
+</b></a><dd><a name="998253"><code>pixel
+- </code></a><a name="998254">a pixel value
+</a>
+
+<dt><a name="998255"><b>Returns:
+</b></a><dd><a name="998256">an integer representing this color in RGB format.
+</a>
+
+<dt><a name="998257"><b>Overrides:
+</b></a><dd><a name="998261">getRGB in class ColorModel &#32;<a href="java.awt.image.ColorModel.html#996944">(II-&#167;2.1.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getTransparentPixel">
+<a name="998265"><h3>getTransparentPixel
+</h3></a>
+<a name="998266"><code>public final int getTransparentPixel()
+</code></a>
+<dl><dl>
+<dt><a name="998267"><b>Returns:
+</b></a><dd><a name="998268">the index of the transparent pixel in this color model, or -1 if there is 
+no transparent pixel.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.image.html">This Package</a>  <a href="java.awt.image.ImageFilter.html">Prev</a>  <a href="java.awt.image.MemoryImageSource.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

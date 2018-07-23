@@ -1,0 +1,8 @@
+A {text-decoration : none}
+A:link {color: #0000dd}
+A:visited {color: #0000dd}
+A:active {color: #0000dd}
+A.nav:link {color: #000000}
+A.nav:visited {color: #000000}
+A.nav:active {color: #000000}
+A.nav:hover {text-decoration : underline; color: #0000FF}

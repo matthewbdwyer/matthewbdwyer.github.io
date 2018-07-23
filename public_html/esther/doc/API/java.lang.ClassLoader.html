@@ -1,0 +1,253 @@
+<html><head><title>Class ClassLoader</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Class.html">Prev</a>  <a href="java.lang.Compiler.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="1866"><h1>	&#167;1.4 Class ClassLoader</h1></a>
+<pre>public &#32;abstract class &#32;java.lang.<strong>ClassLoader
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    protected <strong>ClassLoader</strong>();	<a href="java.lang.ClassLoader.html#1940">&#167;1.4.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    protected final Class 	<a href="java.lang.ClassLoader.html#1956">&#167;1.4.2</a>
+        <strong>defineClass</strong>(byte &#32;data[], int &#32;offset, int &#32;length);
+    protected final Class <strong>findSystemClass</strong>(String &#32;name);	<a href="java.lang.ClassLoader.html#2010">&#167;1.4.3</a>
+    protected abstract Class 	<a href="java.lang.ClassLoader.html#45876">&#167;1.4.4</a>
+        <strong>loadClass</strong>(String &#32;name, boolean &#32;resolve);
+    protected final void <strong>resolveClass</strong>(Class &#32;c);	<a href="java.lang.ClassLoader.html#2100">&#167;1.4.5</a>
+}
+</pre><a name="1910">The class ClassLoader is an abstract class. Applications implement subclasses of ClassLoader 
+in order to extend the manner in which the Java Virtual Machine dynamically loads 
+classes. 
+</a><p><a name="38043">Normally, the Java Virtual Machine loads classes from the local file system in a platform-
+dependent manner. For example, on UNIX systems, the Virtual Machine loads classes 
+from the directory defined by the CLASSPATH environment variable.
+</a><p><a name="1912">However, some classes may not originate from a file; they may originate from other 
+sources, such as the network, or they could be constructed by an application. The method 
+defineClass <a href="java.lang.ClassLoader.html#1956">(I-&#167;1.4.2)</a> converts an array of bytes into an instance of class Class <a href="java.lang.Class.html#1594">(I-&#167;1.3)</a>. 
+Instances of this newly defined class can be created using the newInstance method in class 
+Class <a href="java.lang.Class.html#1798">(I-&#167;1.3.7)</a>. 
+</a><p><a name="44672">The methods and constructors of objects created by a class loader may reference other 
+classes. To determine the class(es) referred to, the Java Virtual Machine calls the loadClass 
+method <a href="java.lang.ClassLoader.html#45876">(I-&#167;1.4.4)</a> of the class loader that originally created the class. If the Java Virtual 
+Machine only needs to determine if the class exists and if it does exist to know its superclass, the resolve flag is set to false. However if an instance of the class is being created or 
+any of its methods are being called, the class must also be resolved. In this case the resolve 
+flag is set to true, and the resolveClass method <a href="java.lang.ClassLoader.html#2100">(I-&#167;1.4.5)</a> should be called.
+</a><p><a name="38222">For example, an application could create a network class loader to download class files 
+from a server. Sample code might look like:
+</a><p><ul><a name="44682">
+<code>ClassLoader &#32;loader &#32;= &#32;new &#32;NetworkClassLoader(host, &#32;port);<br>
+Object &#32;main &#32;= &#32;loader.loadClass("Main", true).newInstance();<br>
+	....
+</code>
+</a></ul><a name="1918">The network class loader subclass must define the method loadClass to load a class from the 
+network. Once it has downloaded the bytes that make up the class, it should use the 
+method defineClass to create a class instance. A sample implementation might be the following:
+</a><p><pre><hr>
+<a name="30170">	class &#32;NetworkClassLoader &#32;{
+</a><a name="38126">	 &#32; &#32; &#32; &#32;String &#32;host;
+</a><a name="38127">	 &#32; &#32; &#32; &#32;int &#32;port;
+</a><a name="38128">	 &#32; &#32; &#32; &#32;Hashtable &#32;cache &#32;= &#32;new &#32;Hashtable();
+</a><a name="38129">	 &#32; &#32; &#32; &#32;private &#32;byte &#32;loadClassData(String &#32;name)[] &#32;{
+</a><a name="38130"> &#32; &#32; &#32; &#32;		// &#32;load &#32;the &#32;class &#32;data &#32;from &#32;the &#32;connection
+</a><a name="38131"> &#32; &#32; &#32; &#32;		...
+</a><a name="38132">	 &#32; &#32; &#32; &#32;}
+</a><a name="38133"><br>
+	 &#32; &#32; &#32; &#32;public &#32;synchronized &#32;Class &#32;loadClass(String &#32;name, 
+</a><a name="38240"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;&#32; &#32; &#32; &#32;&#32; &#32; &#32; &#32;boolean resolve) &#32;{
+</a><a name="38134">	 &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;Class &#32;c &#32;= &#32;cache.get(name);
+</a><a name="38135"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;		if &#32;(c &#32;== &#32;null) &#32;{
+</a><a name="38136"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;		 &#32; &#32; &#32; &#32;byte &#32;data[] &#32;= &#32;loadClassData(name);
+</a><a name="38137">	  &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;c = defineClass(data, 0, data.length);
+</a><a name="38170"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;		 &#32; &#32; &#32; &#32;cache.put(name, &#32;c);
+</a><a name="38138"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;		}
+</a><a name="38239"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;if (resolve)
+</a><a name="38139"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;resolveClass(c);
+</a><a name="38241"> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;		return &#32;c;
+</a><a name="38140"><br>
+	 &#32; &#32; &#32; &#32;}
+</a><a name="38141">	}
+</a>
+<hr><a name="1928">
+</a></pre>
+<hr>
+<a name="1932"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="ClassLoader">
+<a name="1940"><h3>ClassLoader
+</h3></a>
+<a name="1942"><code>protected ClassLoader()
+</code></a>
+<dl>
+<dd><a name="1944">Constructs a new class loader and initializes it.
+<pre>
+</pre></a>
+
+<dd><a name="45730">If there is a security manager, its checkCreateClassLoader method <a href="java.lang.SecurityManager.html#7420">(I-&#167;1.15.8)</a> is 
+called. This may result in a security exception <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="45716"><b>Throws
+</b></a><dd><a name="45720">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="45721">If the current thread does not have permission to create a new class 
+loader.
+</a>
+</dl></dl>
+<hr>
+<a name="1946"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="defineClass">
+<a name="1956"><h3>defineClass
+</h3></a>
+<a name="1958"><code>protected final Class<br>
+defineClass(byte &#32;data[], int &#32;offset, int &#32;length)
+</code></a>
+<dl>
+<dd><a name="38247">Converts an array of bytes into an instance of class Class. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1962"><b>Parameters:
+</b></a><dd><a name="1964"><code>data
+- </code></a><a name="1966">the bytes that make up the Class
+</a>
+<dd><a name="1968"><code>offset
+- </code></a><a name="1970">the start offset of the Class data
+</a>
+<dd><a name="1972"><code>length
+- </code></a><a name="1974">the length of the Class data
+</a>
+
+<dt><a name="1976"><b>Returns:
+</b></a><dd><a name="1978">the class object which was created from the data.
+</a>
+
+<dt><a name="1980"><b>Throws
+</b></a><dd><a name="1986">ClassFormatError &#32;<a href="java.lang.ClassFormatError.html#14944">(I-&#167;1.47)</a>
+</a>
+<dd><a name="1988">If the data does not contain a valid Class.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="findSystemClass">
+<a name="2010"><h3>findSystemClass
+</h3></a>
+<a name="2012"><code>protected final Class findSystemClass(String &#32;name)
+</code></a>
+<a name="2014"><code>throws ClassNotFoundException
+</code></a>
+<dl>
+<dd><a name="2016">Finds the system class with the specified name, loading it in if necessary.
+<pre>
+</pre></a>
+
+<dd><a name="43164">A system class is a class loaded from the local file system in a platform-
+dependent way. It has no class loader.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2018"><b>Parameters:
+</b></a><dd><a name="2020"><code>name
+- </code></a><a name="2022">the name of the system Class
+</a>
+
+<dt><a name="38184"><b>Returns:
+</b></a><dd><a name="38185">a system class with the given name.
+</a>
+
+<dt><a name="2024"><b>Throws
+</b></a><dd><a name="2030">NoClassDefFoundError &#32;<a href="java.lang.NoClassDefFoundError.html#15462">(I-&#167;1.54)</a>
+</a>
+<dd><a name="2032">If the Class is not found.
+</a>
+
+<dt><a name="2034"><b>Throws
+</b></a><dd><a name="2040">ClassNotFoundException &#32;<a href="java.lang.ClassNotFoundException.html#13462">(I-&#167;1.28)</a>
+</a>
+<dd><a name="2042">If it could not find a definition for the class
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="loadClass">
+<a name="45876"><h3>loadClass
+</h3></a>
+<a name="45877"><code>protected abstract Class<br>
+loadClass(String &#32;name, boolean &#32;resolve)
+</code></a>
+<a name="2056"><code>throws ClassNotFoundException
+</code></a>
+<dl>
+<dd><a name="2058">Requests the class loader to load a class with the specified name. The loadClass method is called by the Java Virtual Machine when a class loaded by 
+a class loader first references another class. Every subclass of class ClassLoader must define this method.
+<pre>
+</pre></a>
+
+<dd><a name="2060">If the resolve flag is true, the method should call the resolveClass method on 
+the resulting class object.
+<pre>
+</pre></a>
+
+<dd><a name="38257">Class loaders should use a hash table or other cache to avoid defining 
+classes with the same name multiple times.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="38221"><b>Parameters:
+</b></a><dd><a name="38218"><code>name
+- </code></a><a name="2064">the name of the desired Class
+</a>
+<dd><a name="2066"><code>resolve
+- </code></a><a name="2068">true if the Class must be resolved
+</a>
+
+<dt><a name="2070"><b>Returns:
+</b></a><dd><a name="2072">the resulting Class, or null if it was not found.
+</a>
+
+<dt><a name="2074"><b>Throws
+</b></a><dd><a name="2080">ClassNotFoundException &#32;<a href="java.lang.ClassNotFoundException.html#13462">(I-&#167;1.28)</a>
+</a>
+<dd><a name="2082">If the classloader cannot find a definition for the class
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="resolveClass">
+<a name="2100"><h3>resolveClass
+</h3></a>
+<a name="2102"><code>protected final void resolveClass(Class &#32;c)
+</code></a>
+<dl>
+<dd><a name="2104">Resolves the class so that an instance of the class can be created, or so that 
+one of its methods can be called. This method should be called by loadClass 
+if the resolve flag is true. 
+<pre>
+</pre></a>
+<dl>
+<dt><a name="2106"><b>Parameters:
+</b></a><dd><a name="2108"><code>c
+- </code></a><a name="2110">the Class instance to be resolved
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Class.html">Prev</a>  <a href="java.lang.Compiler.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

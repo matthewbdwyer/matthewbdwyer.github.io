@@ -1,0 +1,966 @@
+<html><head><title>Class SecurityManager</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Runtime.html">Prev</a>  <a href="java.lang.String.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="7020"><h1>	&#167;1.15 Class SecurityManager</h1></a>
+<pre>public abstract &#32;class &#32;java.lang.<strong>SecurityManager
+</strong>    extends &#32;java.lang.<strong>Object</strong> &#32;<a href="java.lang.Object.html#5914">(I-&#167;1.12)</a>
+{
+ &#32; &#32; &#32; &#32;// Fields
+    protected boolean <strong>inCheck</strong>;	<a href="java.lang.SecurityManager.html#7242">&#167;1.15.1</a>
+
+ &#32; &#32; &#32; &#32;// Constructors
+    protected <strong>SecurityManager</strong>();	<a href="java.lang.SecurityManager.html#7256">&#167;1.15.2</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void &#32;<strong>checkAccept</strong>(String &#32;host, int &#32;port);	<a href="java.lang.SecurityManager.html#7282">&#167;1.15.3</a>
+    public void <strong>checkAccess</strong>(Thread &#32;g);	<a href="java.lang.SecurityManager.html#7316">&#167;1.15.4</a>
+    public void <strong>checkAccess</strong>(ThreadGroup &#32;g);	<a href="java.lang.SecurityManager.html#7344">&#167;1.15.5</a>
+    public void <strong>checkConnect</strong>(String &#32;host, int &#32;port);	<a href="java.lang.SecurityManager.html#7374">&#167;1.15.6</a>
+    public void <strong>checkConnect</strong>(String &#32;host, int &#32;port,	<a href="java.lang.SecurityManager.html#7406">&#167;1.15.7</a>
+ &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;Object &#32;context);
+    public void <strong>checkCreateClassLoader</strong>();	<a href="java.lang.SecurityManager.html#7420">&#167;1.15.8</a>
+    public void <strong>checkDelete</strong>(String &#32;file);	<a href="java.lang.SecurityManager.html#7444">&#167;1.15.9</a>
+    public void <strong>checkExec</strong>(String &#32;cmd);	<a href="java.lang.SecurityManager.html#7474">&#167;1.15.10</a>
+    public void <strong>checkExit</strong>(int &#32;status);	<a href="java.lang.SecurityManager.html#7504">&#167;1.15.11</a>
+    public void <strong>checkLink</strong>(String &#32;lib);	<a href="java.lang.SecurityManager.html#7534">&#167;1.15.12</a>
+    public void <strong>checkListen</strong>(int &#32;port);	<a href="java.lang.SecurityManager.html#7564">&#167;1.15.13</a>
+    public void <strong>checkPackageAccess</strong>(String &#32;pkg);	<a href="java.lang.SecurityManager.html#7594">&#167;1.15.14</a>
+    public void <strong>checkPackageDefinition</strong>(String &#32;pkg);	<a href="java.lang.SecurityManager.html#34528">&#167;1.15.15</a>
+ &#32; &#32;public void <strong>checkPropertiesAccess</strong>();	<a href="java.lang.SecurityManager.html#7622">&#167;1.15.16</a>
+    public void <strong>checkPropertyAccess</strong>(String &#32;key);	<a href="java.lang.SecurityManager.html#7646">&#167;1.15.17</a>
+    public void <strong>checkRead</strong>(FileDescriptor &#32;fd);	<a href="java.lang.SecurityManager.html#34698">&#167;1.15.18</a>
+    public void <strong>checkRead</strong>(String &#32;file);	<a href="java.lang.SecurityManager.html#7736">&#167;1.15.19</a>
+    public void <strong>checkRead</strong>(String &#32;file, Object &#32;context);	<a href="java.lang.SecurityManager.html#7764">&#167;1.15.20</a>
+    public void <strong>checkSetFactory</strong>();	<a href="java.lang.SecurityManager.html#44595">&#167;1.15.21</a>
+    public boolean <strong>checkTopLevelWindow</strong>(Object &#32;window);	<a href="java.lang.SecurityManager.html#7812">&#167;1.15.22</a>
+    public void <strong>checkWrite</strong>(FileDescriptor &#32;fd);	<a href="java.lang.SecurityManager.html#7832">&#167;1.15.23</a>
+    public void <strong>checkWrite</strong>(String &#32;file);	<a href="java.lang.SecurityManager.html#7860">&#167;1.15.24</a>
+    protected int <strong>classDepth</strong>(String &#32;name);	<a href="java.lang.SecurityManager.html#7890">&#167;1.15.25</a>
+    protected int <strong>classLoaderDepth</strong>();	<a href="java.lang.SecurityManager.html#7910">&#167;1.15.26</a>
+    protected ClassLoader <strong>currentClassLoader</strong>();	<a href="java.lang.SecurityManager.html#7922">&#167;1.15.27</a>
+    protected Class[] <strong>getClassContext</strong>();	<a href="java.lang.SecurityManager.html#7936">&#167;1.15.28</a>
+    public boolean <strong>getInCheck</strong>();	<a href="java.lang.SecurityManager.html#7950">&#167;1.15.29</a>
+    public Object <strong>getSecurityContext</strong>();	<a href="java.lang.SecurityManager.html#7964">&#167;1.15.30</a>
+    protected boolean <strong>inClass</strong>(String &#32;name);	<a href="java.lang.SecurityManager.html#7978">&#167;1.15.31</a>
+    protected boolean <strong>inClassLoader</strong>();	<a href="java.lang.SecurityManager.html#7998">&#167;1.15.32</a>
+}
+</pre><a name="34041">The security manager is an abstract class that allows applications to implement a security 
+policy. It allows an application to determine, before performing a possibly unsafe or sensitive operation, what the operation is and whether the operation is being performed by a 
+class created via a class loader <a href="java.lang.ClassLoader.html#1866">(I-&#167;1.4)</a> rather than installed locally. Classes loaded via a 
+class loader (especially if they have been downloaded over a network) may be less trustworthy than classes from files installed locally. The application has the option of allowing 
+or disallowing the operation.
+</a><p><a name="40160">The securityManager class contains a large number of methods whose names begin with 
+the word check. These methods are called by various methods in the Java libraries before 
+those methods perform certain potentially sensitive operations. The invocation of such a 
+check method typically looks like this:
+</a><p><ul><a name="36190">
+<code>SecurityManager security = System.getSecurityManager();<br>
+if (security != null) {<br>
+ &#32; &#32; &#32; &#32;security.checkXXX(argument, ... );
+</code>
+</a><a name="34033">
+<code>}
+</code>
+</a></ul><a name="34034">The security manager is thereby given an opportunity to prevent completion of the operation by throwing an exception. A security manager routine simply returns if the operation 
+is permitted, but throws a SecurityException <a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a> if the operation is not permitted. The 
+only exception to this convention is checkTopLevelWindow <a href="java.lang.SecurityManager.html#7812">(I-&#167;1.15.22)</a>, which returns a boolean value.
+</a><p><a name="44536">The current security manager is set by the by the setSecurityManager method <a href="java.lang.System.html#11094">(I-&#167;1.18.16)</a> in 
+class -System. The current security manager is obtained by the get-Security-Manager method 
+<a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a>. 
+</a><p><a name="34063">The default implementation of each of the checkXXX methods is to assume that the caller 
+does <em>not</em> have permission to perform the requested operation. 
+</a><p>
+<hr>
+<a name="34061"><h2>
+<img src="images/fields.gif" width=153 height=38 alt="Fields">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="inCheck">
+<a name="7242"><h3>inCheck
+</h3></a>
+<a name="7244"><code>protected boolean inCheck
+</code></a>
+<dl>
+<dd><a name="34069">This field is true if there is a security check in progress; false otherwise.
+<pre>
+</pre></a>
+</dl>
+<hr>
+<a name="7248"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="SecurityManager">
+<a name="7256"><h3>SecurityManager
+</h3></a>
+<a name="7258"><code>protected SecurityManager()
+</code></a>
+<dl>
+<dd><a name="7260">Constructs a new SecurityManager. An application is not allowed to create a 
+new security manager if there is already a current security manager 
+<a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a>
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7262"><b>Throws
+</b></a><dd><a name="7268">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7270">If a security manager already exists.
+</a>
+</dl></dl>
+<hr>
+<a name="7272"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="checkAccept">
+<a name="7282"><h3>checkAccept
+</h3></a>
+<a name="34127"><code>public void checkAccept(String &#32;host, int &#32;port)
+</code></a>
+<dl>
+<dd><a name="34128">This method should throw a SecurityException if the calling thread is not permitted to accepting a socket connection from the specified host and port 
+number.
+<pre>
+</pre></a>
+
+<dd><a name="34119">This method is invoked for the current security manager <a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a> by 
+the accept method <a href="java.net.ServerSocket.html#1083">(I-&#167;4.5.3)</a> of class ServerSocket.
+<pre>
+</pre></a>
+
+<dd><a name="34126">The checkAccept method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7288"><b>Parameters:
+</b></a><dd><a name="7290"><code>host
+- </code></a><a name="7292">the host name of the socket connection
+</a>
+<dd><a name="7294"><code>port
+- </code></a><a name="7296">the port number of the socket connection
+</a>
+
+<dt><a name="7298"><b>Throws
+</b></a><dd><a name="7304">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7306">If the caller does not have permission to accept the connection
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkAccess">
+<a name="7316"><h3>checkAccess
+</h3></a>
+<a name="7318"><code>public void checkAccess(Thread &#32;g)
+</code></a>
+<dl>
+<dd><a name="34151">This method should throw a SecurityException if the calling thread is not 
+allowed to modify the thread argument.
+<pre>
+</pre></a>
+
+<dd><a name="34216">This method is invoked for the current security manager <a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a> by 
+the stop <a href="java.lang.Thread.html#12220">(I-&#167;1.19.37)</a>, suspend <a href="java.lang.Thread.html#12276">(I-&#167;1.19.39)</a>, resume <a href="java.lang.Thread.html#11972">(I-&#167;1.19.29)</a>, setPriority 
+<a href="java.lang.Thread.html#44482">(I-&#167;1.19.33)</a>, setName <a href="java.lang.Thread.html#12050">(I-&#167;1.19.32)</a> and setDaemon <a href="java.lang.Thread.html#12012">(I-&#167;1.19.31)</a> methods of 
+class Thread.
+<pre>
+</pre></a>
+
+<dd><a name="34159">The checkAccess method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7322"><b>Parameters:
+</b></a><dd><a name="7324"><code>g
+- </code></a><a name="7326">the thread to be checked
+</a>
+
+<dt><a name="7328"><b>Throws
+</b></a><dd><a name="7334">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7336">If the caller does not have permission to modify the thread
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkAccess">
+<a name="7344"><h3>checkAccess
+</h3></a>
+<a name="7346"><code>public void checkAccess(ThreadGroup &#32;g)
+</code></a>
+<dl>
+<dd><a name="34250">This method should throw a SecurityException if the calling thread is not 
+allowed to modify the thread group argument.
+<pre>
+</pre></a>
+
+<dd><a name="34240">This method is invoked for the current security manager <a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a> when 
+a new child thread or child thread group is created, and by the setDaemon 
+<a href="java.lang.ThreadGroup.html#12830">(I-&#167;1.20.18)</a>, setMaxPriority <a href="java.lang.ThreadGroup.html#12850">(I-&#167;1.20.19)</a>, stop <a href="java.lang.ThreadGroup.html#12870">(I-&#167;1.20.20)</a>, suspend 
+<a href="java.lang.ThreadGroup.html#12884">(I-&#167;1.20.21)</a>, resume <a href="java.lang.ThreadGroup.html#12816">(I-&#167;1.20.17)</a>, and destroy <a href="java.lang.ThreadGroup.html#12600">(I-&#167;1.20.6)</a> methods of class 
+ThreadGroup.
+<pre>
+</pre></a>
+
+<dd><a name="34301">The checkAccess method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7350"><b>Parameters:
+</b></a><dd><a name="7352"><code>g
+- </code></a><a name="7354">the Thread group to be checked
+</a>
+
+<dt><a name="7356"><b>Throws
+</b></a><dd><a name="7362">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34291">If the caller does not have permission to modify the thread group
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkConnect">
+<a name="7374"><h3>checkConnect
+</h3></a>
+<a name="7376"><code>public void checkConnect(String &#32;host, int &#32;port)
+</code></a>
+<dl>
+<dd><a name="34293">This method should throw a SecurityException if the calling thread is not 
+allowed to open a socket connection to the specified host and port number.
+<pre>
+</pre></a>
+
+<dd><a name="34303">A port number of of -1 indicates that the calling method is attempting to 
+determine the IP address of the specified host name.
+<pre>
+</pre></a>
+
+<dd><a name="34306">The checkConnect method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7380"><b>Parameters:
+</b></a><dd><a name="7382"><code>host
+- </code></a><a name="7384">the host name port to connect to
+</a>
+<dd><a name="7386"><code>port
+- </code></a><a name="7388">the protocol port to connect to
+</a>
+
+<dt><a name="7390"><b>Throws
+</b></a><dd><a name="7396">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7398">If the caller does not have permission to open a socket connection to 
+the specified host and port.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkConnect">
+<a name="7406"><h3>checkConnect
+</h3></a>
+<a name="7408"><code>public void<br>
+checkConnect(String &#32;host, int &#32;port, Object &#32;context)
+</code></a>
+<dl>
+<dd><a name="34310">This method should throw a SecurityException if the specified security context 
+<a href="java.lang.SecurityManager.html#7964">(I-&#167;1.15.30)</a> is not allowed to open a socket connection to the specified 
+host and port number.
+<pre>
+</pre></a>
+
+<dd><a name="34311">A port number of of -1 indicates that the calling method is attempting to 
+determine the IP address of the specified host name.
+<pre>
+</pre></a>
+
+<dd><a name="34312">The checkConnect method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34314"><b>Parameters:
+</b></a><dd><a name="34315"><code>host
+- </code></a><a name="34316">the host name port to connect to
+</a>
+<dd><a name="34329"><code>port
+- </code></a><a name="34330">the protocol port to connect to
+</a>
+<dd><a name="34332"><code>context
+- </code></a><a name="34333">a system-dependent security context
+</a>
+
+<dt><a name="34319"><b>Throws
+</b></a><dd><a name="34323">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34324">If the specified security context does not have permission to open a 
+socket connection.to the specified host and port.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkCreateClassLoader">
+<a name="7420"><h3>checkCreateClassLoader
+</h3></a>
+<a name="7422"><code>public void checkCreateClassLoader()
+</code></a>
+<dl>
+<dd><a name="34339">This method should throw a SecurityException if the calling thread is not 
+allowed to create a new class loader <a href="java.lang.ClassLoader.html#1940">(I-&#167;1.4.1)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="34341">The checkCreateClassLoader method for class SecurityManager always throws a 
+SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7426"><b>Throws
+</b></a><dd><a name="7432">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7434">If the caller does not have permission to create a new class loader.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkDelete">
+<a name="7444"><h3>checkDelete
+</h3></a>
+<a name="7446"><code>public void checkDelete(String &#32;file)
+</code></a>
+<dl>
+<dd><a name="34364">This method should throw a SecurityException if the calling thrad is not 
+allowed to delete the specified file.
+<pre>
+</pre></a>
+
+<dd><a name="34377">This method is invoked for the current security manager <a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a> by 
+the delete method <a href="java.io.File.html#3182">(I-&#167;2.7.10)</a> of class File.
+<pre>
+</pre></a>
+
+<dd><a name="34368">The checkDelete method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7450"><b>Parameters:
+</b></a><dd><a name="7452"><code>file
+- </code></a><a name="7454">the system dependent file name
+</a>
+
+<dt><a name="7456"><b>Throws
+</b></a><dd><a name="7462">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7464">If the caller does not have permission to delete the file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkExec">
+<a name="7474"><h3>checkExec
+</h3></a>
+<a name="7476"><code>public void checkExec(String &#32;cmd)
+</code></a>
+<dl>
+<dd><a name="34419">This method should throw a SecurityException if the calling thread is not 
+allowed to create a subprocss.
+<pre>
+</pre></a>
+
+<dd><a name="34423">This method is invoked for the current security manager <a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a> by 
+the exec methods (<a href="java.lang.Runtime.html#6684">&#167;1.14.1</a>-<a href="java.lang.Runtime.html#6760">&#167;1.14.4</a>) of class Runtime.
+<pre>
+</pre></a>
+
+<dd><a name="34427">The checkExec method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7480"><b>Parameters:
+</b></a><dd><a name="7482"><code>cmd
+- </code></a><a name="7484">the specified system command
+</a>
+
+<dt><a name="7486"><b>Throws
+</b></a><dd><a name="7492">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34435">If the caller does not have permission to create a subprocess.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkExit">
+<a name="7504"><h3>checkExit
+</h3></a>
+<a name="7506"><code>public void checkExit(int &#32;status)
+</code></a>
+<dl>
+<dd><a name="34437">This method should throw a SecurityException if the calling thread is not 
+allowed to cause the Java Virtual Machine to halt with the specified access 
+code.
+<pre>
+</pre></a>
+
+<dd><a name="34475">This method is invoked for the current security manager <a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a> by 
+the exit method <a href="java.lang.Runtime.html#6790">(I-&#167;1.14.5)</a> of class Runtime. A status of 0 indicates success; 
+other values indicate various errors.
+<pre>
+</pre></a>
+
+<dd><a name="34445">The checkExit method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7510"><b>Parameters:
+</b></a><dd><a name="7512"><code>status
+- </code></a><a name="7514">the exit status
+</a>
+
+<dt><a name="7516"><b>Throws
+</b></a><dd><a name="7522">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7524">If the caller does not have permission to halt the Java Virtual Machine 
+with the specified status.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkLink">
+<a name="7534"><h3>checkLink
+</h3></a>
+<a name="7536"><code>public void checkLink(String &#32;lib)
+</code></a>
+<dl>
+<dd><a name="34076">This method should throw a SecurityException if the calling thread is not 
+allowed to dynamic link the library code specified by the string argument 
+file. The argument is either a simple library name or a complete file name.
+<pre>
+</pre></a>
+
+<dd><a name="34080">This method is invoked for the current security manager <a href="java.lang.System.html#10962">(I-&#167;1.18.11)</a> by 
+methods load <a href="java.lang.Runtime.html#6880">(I-&#167;1.14.11)</a> and loadLibrary <a href="java.lang.Runtime.html#6918">(I-&#167;1.14.12)</a> of class Runtime.
+<pre>
+</pre></a>
+
+<dd><a name="34087">The checkLink method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7540"><b>Parameters:
+</b></a><dd><a name="7542"><code>lib
+- </code></a><a name="7544">the name of the library
+</a>
+
+<dt><a name="7546"><b>Throws
+</b></a><dd><a name="7552">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7554">If the caller does not have permission to dynamically link the library.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkListen">
+<a name="7564"><h3>checkListen
+</h3></a>
+<a name="7566"><code>public void checkListen(int &#32;port)
+</code></a>
+<dl>
+<dd><a name="34483">This method should throw a SecurityException if the calling thread is not 
+allowed to wait for a connection request on the specified local port number.
+<pre>
+</pre></a>
+
+<dd><a name="34494">The checkListen method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7570"><b>Parameters:
+</b></a><dd><a name="7572"><code>port
+- </code></a><a name="7574">the local port
+</a>
+
+<dt><a name="7576"><b>Throws
+</b></a><dd><a name="7582">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7584">If the caller does not have permission to listen on the specified port.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkPackageAccess">
+<a name="7594"><h3>checkPackageAccess
+</h3></a>
+<a name="34522"><code>public void checkPackageAccess(String &#32;pkg)
+</code></a>
+<dl>
+<dd><a name="34530">This method should throw a SecurityException if the calling thread is allowed 
+to access the package specified by the argument.
+<pre>
+</pre></a>
+
+<dd><a name="34539">This method is used by the loadClass method <a href="java.lang.ClassLoader.html#45876">(I-&#167;1.4.4)</a> of class loaders.
+<pre>
+</pre></a>
+
+<dd><a name="34634">The checkPackageAccess method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34552"><b>Parameters:
+</b></a><dd><a name="34553"><code>pkg
+- </code></a><a name="34554">the package name
+</a>
+
+<dt><a name="34555"><b>Throws
+</b></a><dd><a name="34559">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34560">If the caller does not have permission to access the specified package.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkPackageDefinition">
+<a name="34528"><h3>checkPackageDefinition
+</h3></a>
+<a name="7610"><code>public void checkPackageDefinition(String &#32;pkg)
+</code></a>
+<dl>
+<dd><a name="34568">This method should throw a SecurityException if the calling thread is not 
+allowed to define classes in the package specified by the argument.
+<pre>
+</pre></a>
+
+<dd><a name="34572">This method is used by the loadClass method <a href="java.lang.ClassLoader.html#45876">(I-&#167;1.4.4)</a> of some class loaders.
+<pre>
+</pre></a>
+
+<dd><a name="34638">The checkPackageDefinition method for class SecurityManager always throws a 
+SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34573"><b>Parameters:
+</b></a><dd><a name="34574"><code>pkg
+- </code></a><a name="34575">the package name
+</a>
+
+<dt><a name="34576"><b>Throws
+</b></a><dd><a name="34580">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34581">If the caller does not have permission to define classes in the specified 
+package.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkPropertiesAccess">
+<a name="7622"><h3>checkPropertiesAccess
+</h3></a>
+<a name="7624"><code>public void checkPropertiesAccess()
+</code></a>
+<dl>
+<dd><a name="34591">This method should throw a SecurityException if the calling thread is not 
+allowed to access or modify the system properties.
+<pre>
+</pre></a>
+
+<dd><a name="34595">This method is used by the getProperties <a href="java.lang.System.html#10906">(I-&#167;1.18.8)</a> and setProperties 
+<a href="java.lang.System.html#11074">(I-&#167;1.18.15)</a> methods of class System.
+<pre>
+</pre></a>
+
+<dd><a name="34642">The checkPropertiesAccess method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7628"><b>Throws
+</b></a><dd><a name="7634">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7636">If the caller does not have permission to access or modify the system 
+properties.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkPropertyAccess">
+<a name="7646"><h3>checkPropertyAccess
+</h3></a>
+<a name="7648"><code>public void checkPropertyAccess(String &#32;key)
+</code></a>
+<dl>
+<dd><a name="34658">This method should throw a SecurityException if the calling thread is not 
+allowed to access the system property with the specified key name.
+<pre>
+</pre></a>
+
+<dd><a name="34662">This method is used by the getProperty <a href="java.lang.System.html#10920">(I-&#167;1.18.9)</a> method of class System.
+<pre>
+</pre></a>
+
+<dd><a name="34652">The checkPropertiesAccess method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7652"><b>Parameters:
+</b></a><dd><a name="7654"><code>key
+- </code></a><a name="7656">a system property key.
+</a>
+
+<dt><a name="7658"><b>Throws
+</b></a><dd><a name="7664">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="7666">If the caller does not have permission to access the specified system 
+property.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkRead">
+<a name="34698"><h3>checkRead
+</h3></a>
+<a name="34699"><code>public void checkRead(FileDescriptor &#32;fd)
+</code></a>
+<dl>
+<dd><a name="34705">This method should throw a SecurityException if the calling thread is not 
+allowed to read from the specified file descriptor <a href="java.io.FileDescriptor.html#3576">(I-&#167;2.8)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="34713">The checkRead method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7714"><b>Parameters:
+</b></a><dd><a name="7716"><code>fd
+- </code></a><a name="7718">the system dependent file descriptor
+</a>
+
+<dt><a name="7720"><b>Throws
+</b></a><dd><a name="7726">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34721">If the caller does not have permission to access the specified file 
+descriptor.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkRead">
+<a name="7736"><h3>checkRead
+</h3></a>
+<a name="7738"><code>public void checkRead(String &#32;file)
+</code></a>
+<dl>
+<dd><a name="34729">This method should throw a SecurityException if the calling thread is not 
+allowed to read the file specified by the string argument.
+<pre>
+</pre></a>
+
+<dd><a name="34730">The checkRead method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7742"><b>Parameters:
+</b></a><dd><a name="7744"><code>file
+- </code></a><a name="7746">the system dependent file name
+</a>
+
+<dt><a name="7748"><b>Throws
+</b></a><dd><a name="7754">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34734">If the caller does not have permission to access the specified file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkRead">
+<a name="7764"><h3>checkRead
+</h3></a>
+<a name="7766"><code>public void checkRead(String &#32;file, Object &#32;context)
+</code></a>
+<dl>
+<dd><a name="34740">This method should throw a SecurityException if the specified security context 
+is not allowed to read the file specified by the string argument. The context 
+must be a security context returned by a previous call to getSecurityContext 
+<a href="java.lang.SecurityManager.html#7964">(I-&#167;1.15.30)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="34741">The checkRead method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7770"><b>Parameters:
+</b></a><dd><a name="7772"><code>file
+- </code></a><a name="7774">the system dependent file name
+</a>
+<dd><a name="34886"><code>context
+- </code></a>
+<dt><a name="7780"><b>a system-dependent security context
+</b></a><dd><a name="34888">
+</a>
+
+<dt><a name="34891"><b>Throws
+</b></a><dd><a name="44589">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="44598">If the specified security context does not have permission to read the 
+specified file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkSetFactory">
+<a name="44595"><h3>checkSetFactory
+</h3></a>
+<a name="44596"><code>public void checkSetFactory()
+</code></a>
+<dl>
+<dd><a name="34749">This method should throw a SecurityException if the calling thread is not 
+allowed to set the socket factor used by ServerSocket <a href="java.net.ServerSocket.html#1163">(I-&#167;4.5.7)</a> or Socket 
+<a href="java.net.Socket.html#33642">(I-&#167;4.6.11)</a>, or the stream handler factory used by URL <a href="java.net.URL.html#2621">(I-&#167;4.8.16)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="34750">The checkSetFactory method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34772"><b>Throws
+</b></a><dd><a name="34776">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34781">The caller does not have permission to specify a socket factory or a 
+stream handler factory.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkTopLevelWindow">
+<a name="7812"><h3>checkTopLevelWindow
+</h3></a>
+<a name="7814"><code>public boolean checkTopLevelWindow(Object &#32;window)
+</code></a>
+<dl>
+<dd><a name="7816">This method should return false if the calling thread is not trusted to bring 
+up the top-level window indicated by the window argument. In this case, 
+the caller can still decide to show the window, but the window should 
+include some sort of visual warning. If the method returns true, then the 
+window can be shown without any special restrictions.
+<pre>
+</pre></a>
+
+<dd><a name="43128">See class Window <a href="java.awt.Window.html#22917">(II-&#167;1.42)</a> for more information on trusted and untrusted 
+windows.
+<pre>
+</pre></a>
+
+<dd><a name="34821">The checkSetFactory method for class SecurityManager always return false.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="7818"><b>Parameters:
+</b></a><dd><a name="7820"><code>window
+- </code></a><a name="7822">the new window that's being created.
+</a>
+
+<dt><a name="34785"><b>Returns:
+</b></a><dd><a name="34796">true if the caller is trusted to put up top-level windows; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkWrite">
+<a name="7832"><h3>checkWrite
+</h3></a>
+<a name="7834"><code>public void checkWrite(FileDescriptor &#32;fd)
+</code></a>
+<dl>
+<dd><a name="34843">This method should throw a SecurityException if the calling thread is not 
+allowed to write to the specified file descriptor <a href="java.io.FileDescriptor.html#3576">(I-&#167;2.8)</a>.
+<pre>
+</pre></a>
+
+<dd><a name="34844">The checkWrite method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34845"><b>Parameters:
+</b></a><dd><a name="34846"><code>fd
+- </code></a><a name="34847">the system dependent file descriptor
+</a>
+
+<dt><a name="34848"><b>Throws
+</b></a><dd><a name="34852">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34853">If the caller does not have permission to access the specified file 
+descriptor.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="checkWrite">
+<a name="7860"><h3>checkWrite
+</h3></a>
+<a name="7862"><code>public void checkWrite(String &#32;file)
+</code></a>
+<dl>
+<dd><a name="34859">This method should throw a SecurityException if the calling thread is not 
+allowed to write to the file specified by the string argument.
+<pre>
+</pre></a>
+
+<dd><a name="34860">The checkWrite method for class SecurityManager always throws a SecurityException.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34861"><b>Parameters:
+</b></a><dd><a name="34862"><code>file
+- </code></a><a name="34863">the system dependent file name
+</a>
+
+<dt><a name="34864"><b>Throws
+</b></a><dd><a name="34868">SecurityException &#32;<a href="java.lang.SecurityException.html#14612">(I-&#167;1.43)</a>
+</a>
+<dd><a name="34869">If the caller does not have permission to access the specified file.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="classDepth">
+<a name="7890"><h3>classDepth
+</h3></a>
+<a name="7892"><code>protected int classDepth(String &#32;name)
+</code></a>
+<dl>
+<dd><a name="7896">Determines the stack depth of a given class.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43140"><b>Parameters:
+</b></a><dd><a name="7898"><code>name
+- </code></a><a name="7900">the fully qualified name of the class to search for
+</a>
+
+<dt><a name="34903"><b>Returns:
+</b></a><dd><a name="34908">the depth on the stack frame of the first occurrence of a method from a 
+class with the specified name; -1 if such a frame cannot be found.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="classLoaderDepth">
+<a name="7910"><h3>classLoaderDepth
+</h3></a>
+<a name="7912"><code>protected int classLoaderDepth()
+</code></a>
+<dl>
+<dd><a name="34914">Determines the stack stack of the most recently executing method from a 
+class defined using a class loader.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43143"><b>Returns:
+</b></a><dd><a name="34915">the depth on the stack frame of the most recent occurrence of a 
+method from a class defined using a class loader; returns -1 if there is 
+no occurrence of a method from a class defined using a class loader
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="currentClassLoader">
+<a name="7922"><h3>currentClassLoader
+</h3></a>
+<a name="7924"><code>protected ClassLoader currentClassLoader()
+</code></a>
+<dl>
+<dd><a name="34921">Determines the most recent class loader executing on the stack.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43155"><b>Returns:
+</b></a><dd><a name="44624">the class loader of the most recent occurrence on the stack of a method 
+from a class defined using a class loader; returns null if there is no 
+occurrence on the stack of a method from a class defined using a class 
+loader.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getClassContext">
+<a name="7936"><h3>getClassContext
+</h3></a>
+<a name="7938"><code>protected Class[] getClassContext()
+</code></a>
+<dl>
+<dd><a name="34933">Calculates the current execution stack, which is returned as an array of 
+classes. 
+<pre>
+</pre></a>
+
+<dd><a name="44631">The length of the array is the number of methods on the execution stack. 
+The element at index 0 is the class of the currently executing method. The 
+element at index 1 is the class of that method's caller. And so forth.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="34943"><b>Returns:
+</b></a><dd><a name="34934">the execution stack.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getInCheck">
+<a name="7950"><h3>getInCheck
+</h3></a>
+<a name="7952"><code>public boolean getInCheck()
+</code></a>
+<dl><dl>
+<dt><a name="34945"><b>Returns:
+</b></a><dd><a name="34946">the value of the inCheck <a href="java.lang.SecurityManager.html#7242">(I-&#167;1.15.1)</a> field. This field should contain true 
+if a security check is in progress; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getSecurityContext">
+<a name="7964"><h3>getSecurityContext
+</h3></a>
+<a name="7966"><code>public Object getSecurityContext()
+</code></a>
+<dl>
+<dd><a name="34957">Creates an object when encapsulates the current execution environment. 
+The result of this method is used by the three-argument checkConnect 
+method <a href="java.lang.SecurityManager.html#7406">(I-&#167;1.15.7)</a> and by the two-argument checkRead method 
+<a href="java.lang.SecurityManager.html#7764">(I-&#167;1.15.20)</a>. 
+<pre>
+</pre></a>
+
+<dd><a name="43173">These methods are needed because a trusted method may be called upon to 
+read a file or open a socket on behalf of another method. The trusted 
+method needs to determine if the other (possibly untrusted) method would 
+be allowed to perform the operation.on its own.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="43156"><b>Returns:
+</b></a><dd><a name="34958">an implementation-dependent object which encapsulates sufficient 
+information about the current execution environment to perform some 
+security checks later.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="inClass">
+<a name="7978"><h3>inClass
+</h3></a>
+<a name="7980"><code>protected boolean inClass(String &#32;name)
+</code></a>
+<dl><dl>
+<dt><a name="7984"><b>Parameters:
+</b></a><dd><a name="7986"><code>name
+- </code></a><a name="7988">the fully-qualified name of the class
+</a>
+
+<dt><a name="34962"><b>Returns:
+</b></a><dd><a name="34963">true if a method from a class with the specified name is on the execution stack; false otherwise.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="inClassLoader">
+<a name="7998"><h3>inClassLoader
+</h3></a>
+<a name="8000"><code>protected boolean inClassLoader()
+</code></a>
+<dl><dl>
+<dt><a name="34972"><b>Returns:
+</b></a><dd><a name="34973">true if a method from a class defined using a class loader is on the execution stack.
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.lang.html">This Package</a>  <a href="java.lang.Runtime.html">Prev</a>  <a href="java.lang.String.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>

@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+  <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+
+  <meta name="ProgId" content="FrontPage.Editor.Document">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>CSCE 425/825</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+  <meta name="Microsoft Border" content="tlb, default">
+
+</head>
+
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+      <td>
+      <table id="AutoNumber3" style="border-collapse: collapse;" bgcolor="#ffffff" border="1" bordercolor="#0066ff" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody>
+
+          <tr>
+
+            <td bordercolor="#0066FF" bordercolorlight="#0066FF" bordercolordark="#0066FF" bgcolor="#b3b3ff" width="100%">
+            <p align="center"><b><font face="Arial" size="5">CSCE 425/825 - Compiler
+Construction</font></b></p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <p><span style="position: absolute; top: 50px; left: 11px;"> <img src="../images/12x12spacer.gif" border="0" height="12" width="12"></span> </p>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+    <tr>
+
+<!--#include file="sidebar.shtml" --> <td valign="top" width="24"></td>
+
+<td valign="top">
+      <h1><font face="Arial" size="5">Milestone
+3 : Type Checking</font></h1>
+
+<font face="Arial" size="2">
+      <p>
+Your task in this milestone is to extend the StaticJava type checker
+to support ExtendedStaticJava
+programs. The differences between StaticJava and ExtendedStaticJava
+are highlighted in the <a href="../extendedstaticjava.shtml">EBNF
+for ExtendedStaticJava</a>.
+Most of the work in this
+milestone requires you to override the TypeChecker/ASTVisitor visit
+methods in ExtendedTypeChecker.java to implement the new type rules
+for ESJ.
+      <p>
+
+      <p>You must submit
+your assignment through the course <a href="http://cse.unl.edu/~cse425/handin">Project Upload</a> site
+by 11:59pm CDT on Friday Nov. 2, 2007.   
+Solutions submitted after the deadline will have their score reduced by 10% for each hour that they are late; late times will be rounded up to the next highest hour for this calculation.
+      </p>
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">Setup</font></h3>
+
+<font face="Arial" size="2">
+      <p>
+      Download the file <a href="myname-milestone3.zip">myname-milestone3.zip</a>
+      <p>
+      This contains a skeletal implementation of the milestone with a JUnit testing framework for your use. 
+      <p>
+In order to import the projects into your workspace, do the following:
+<p>
+Goto the "File" menu, select "Import". Expand "General" and select "Existing Projects into Workspace". Click "Next". Select "Select archive file:" and click the "Browse" button associated with it. In the file browser, points to the myname-milestone3.zip that you downloaded.
+<p>
+You should see "myname-milestone3", check the box,
+and click "Finish".
+<p>
+If you run Eclipse appropriately (i.e., using Java 5.0 and the right versions of plugins and by following the instructions in the course quick notes website), your workspace should be set. 
+<p>
+Make sure you rename "myname" in the project's name into your CIS username by right clicking the project, select "Refactor" -> "Rename...".
+<p>    
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">Instructions and Hints</font></h3>
+
+<font face="Arial" size="2">
+      <p>Your assignment is to implement the type checker
+for ESJ.  You will do this by adding to the file:<br>
+<pre>sjc.type.checker.extended.ExtendedTypeChecker</pre><br>
+which transfers the the actions for the basic SJ type checker
+into a skeleton for your ESJ type checker.
+
+      <p>We are providing the file:<br>
+<pre>sjc.parser.extended.esj-ast.g</pre><br>
+which contains a solution to milestone 2 that passes all of the
+test cases for that milestone.  You can use that to see how to
+handle any features in ESJ that you did not completely handle in
+milestone 2.
+
+      <p>You can tell if you are making progress by running the JUnit test
+         suite.   This is done by highlighting the class:<br>
+<pre>sjc.test.extended.ExtendedTypeCheckingTest</pre>,
+right clicking and selecting "Run As" -> "JUnit Test".  The results will
+be shown in total and on a per test case basis.
+      
+      <p>You can see the source of the test cases in <code>src-examples</code>
+         directory of the milestone.  For this milestone, the unit testing 
+         is done by differencing the output produced by running custom symbol
+         and type table 
+         printing routines with output produced by our solution.  Those
+         files are stored with a <code>.etc</code> suffix. 
+      
+      <p>You are done when all of the test cases pass or your run out of time.
+
+<p> It is a useful design strategy to write down a type rule for each new
+     construct in ESJ before implementing it.  Use the type rules from<br>
+     lecture as a guide.  Then you can map your rule to an implementation
+     following the model of the StaticJava type checker.
+
+<p> <b>IMPORTANT</b>: Try to reuse as much of the StaticJava type checker as possible.  You
+     will definitely need to make some changes and perhaps add new visit
+     methods, but there is much that can be reused and there is lots to
+     learn from studying that code.
+
+<p> An extended symbol processing pass is supplied for your use.  It is
+     similar to what was covered in class except that in addition to the
+     name and method maps there is now a <code>fieldTypeMap</code> (in
+     class <code>ClassType</code>).
+
+<p> You will need to convert between JDT AST types and SJ/ESJ's type representation.
+     Use the ExtendedTypeChecker.Visitor.convertType method to do this.
+     At this point in the semester, you should be able to read code like this
+     and understand what it does.
+      
+</font>
+
+      <hr>
+      <h3><font face="Arial" size="4">What To
+Submit</font></h3>
+
+<font face="Arial" size="2">
+      <p>Your solution should consist of the following :</p>
+
+      <ul>
+
+        <li>a modified version of ExtendedTypeChecker.java that correctly type checks ExtendedStaticJava</li>
+
+        <li>a description of all of the new type rules you implemented to handlethe ESJ features.  These should be integrated into the header comments for each type checking method in the visitor that you create.  
+Note that while these are comments, I expect them to be precise</li>
+
+        <li>a single text file that describe your implementation including any limitations and anything special you had to do to handle the extensions</li>
+
+      </ul>
+</p>
+Export your solution project as a single file named <em>yourname</em>-milestone3.zip,
+including the text files in the root directory of your project, and upload that file.
+<p>
+As with all programming, I expect that you provide reasonable
+internal documentation describing tricky/subtle parts of your
+implementation.  If you have any limitations in your implementation
+you should include documentation describing those as well, since if
+we find them we will assume that you did not.
+</p>
+<p>
+Your grade will be based on your solution (80%), your in type rule
+documentation (15%), and the description of limitations you provide (5%).
+<p>
+If you admit to failing a test then you will lose only half of
+the points associated with that test in comparison to our finding
+out you fail the test when we run your solution.
+
+</font>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<br>
+
+<br>
+
+</body>
+</html>

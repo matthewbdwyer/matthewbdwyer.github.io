@@ -1,0 +1,141 @@
+<html><head><title>Class CheckboxMenuItem</title></head>
+<!--Intermediate split file from a FrameMaker file-->
+<body bgcolor=#ffffff>
+
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.CheckboxGroup.html">Prev</a>  <a href="java.awt.Choice.html">Next</a>  <a href="AllNames.html">Index</a>  </pre>
+
+
+<hr>
+<a name="1737"><h1>	&#167;1.7 Class CheckboxMenuItem</h1></a>
+<pre>public &#32;class &#32;java.awt.<strong>CheckboxMenuItem
+</strong>    extends &#32;java.awt.<strong>MenuItem</strong> &#32;<a href="java.awt.MenuItem.html#18549">(II-&#167;1.32)</a>
+{
+ &#32; &#32; &#32; &#32;// Constructors
+    public <strong>CheckboxMenuItem</strong>(String &#32;label);	<a href="java.awt.CheckboxMenuItem.html#1793">&#167;1.7.1</a>
+
+ &#32; &#32; &#32; &#32;// Methods
+    public void <strong>addNotify</strong>();	<a href="java.awt.CheckboxMenuItem.html#1815">&#167;1.7.2</a>
+    public boolean <strong>getState</strong>();	<a href="java.awt.CheckboxMenuItem.html#1837">&#167;1.7.3</a>
+    public String <strong>paramString</strong>();	<a href="java.awt.CheckboxMenuItem.html#1855">&#167;1.7.4</a>
+    public void <strong>setState</strong>(boolean &#32;t);	<a href="java.awt.CheckboxMenuItem.html#1881">&#167;1.7.5</a>
+}
+</pre><a name="40278">This class represents a check box that can be included in a menu. Clicking on the check 
+box in the menu changes its state from "on" to "off" or from "off" to "on".
+</a><p><a name="40264">The picture of a menu bar <a href="java.awt.MenuBar.html#40149">(page &#32;II-188)</a> shows five menu items. The item labeled Check 
+shows a check box menu item in its "off" state.
+</a><p><a name="40274">When a check box menu item is clicked, the AWT sends an action event <a href="java.awt.Event.html#7837">(II-&#167;1.14.11)</a> to 
+the check box menu item's containing frame. The event's target is the check box menu 
+item, and its object is the string label of the check box.
+</a><p>
+<hr>
+<a name="27320"><h2>
+<img src="images/constrct.gif" width=231 height=38 alt="Constructors">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="CheckboxMenuItem">
+<a name="1793"><h3>CheckboxMenuItem
+</h3></a>
+<a name="1795"><code>public CheckboxMenuItem(String &#32;label)
+</code></a>
+<dl>
+<dd><a name="27364">Creates a check box with the specified label. The check box is initially set 
+to "off".
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27369"><b>Parameters:
+</b></a><dd><a name="27367"><code>label
+- </code></a><a name="27368">a string label for the check box menu item, or null for an 
+unlabeled menu item
+</a>
+</dl></dl>
+<hr>
+<a name="1805"><h2>
+<img src="images/methods.gif" width=151 height=38 alt="Methods">
+</h2></a>
+
+
+<META NAME="keywords" CONTENT="addNotify">
+<a name="1815"><h3>addNotify
+</h3></a>
+<a name="1817"><code>public void addNotify()
+</code></a>
+<dl>
+<dd><a name="26506">This method calls the createCheckboxMenuItem method <a href="java.awt.Toolkit.html#22309">(II-&#167;1.41.6)</a> of the 
+check box's toolkit <a href="java.awt.Component.html#4237">(II-&#167;1.10.20)</a> in order to create a 
+CheckboxMenuItemPeer &#32;<a href="java.awt.peer.CheckboxMenuItemPeer.html#293">(II-&#167;3.3)</a> for this button. This peer allows the application to change the look of a check box menu item without changing its 
+functionality.
+<pre>
+</pre></a>
+
+<dd><a name="43769">Most applications do not call this method directly.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1821"><b>Overrides:
+</b></a><dd><a name="1827">addNotify in class MenuItem &#32;<a href="java.awt.MenuItem.html#18651">(II-&#167;1.32.2)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="getState">
+<a name="1837"><h3>getState
+</h3></a>
+<a name="1839"><code>public boolean getState()
+</code></a>
+<dl>
+<dd><a name="44754">Determines whether this check box menu item is "on" or "off."
+<pre>
+</pre></a>
+<dl>
+<dt><a name="52554"><b>Returns:
+</b></a><dd><a name="27396">the state of this check box menu item: true indicates "on", false indicates "off".
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="paramString">
+<a name="1855"><h3>paramString
+</h3></a>
+<a name="1857"><code>public String paramString()
+</code></a>
+<dl>
+<dd><a name="54085">Returns the parameter string representing the state of this check box menu 
+item. This string is useful for debugging.
+<pre>
+</pre></a>
+<dl>
+<dt><a name="1861"><b>Returns:
+</b></a><dd><a name="26884">the parameter string of this check box menu item.
+</a>
+
+<dt><a name="1865"><b>Overrides:
+</b></a><dd><a name="1871">paramString in class MenuItem &#32;<a href="java.awt.MenuItem.html#18759">(II-&#167;1.32.8)</a>.
+</a>
+</dl></dl>
+
+<META NAME="keywords" CONTENT="setState">
+<a name="1881"><h3>setState
+</h3></a>
+<a name="1883"><code>public void setState(boolean &#32;state)
+</code></a>
+<dl>
+<dd><a name="27398">Sets this check box menu item to the specifed boolean state: true indicates 
+"on"; false indicates "off".
+<pre>
+</pre></a>
+<dl>
+<dt><a name="27399"><b>Parameters:
+</b></a><dd><a name="27400"><code>state
+- </code></a><a name="27401">the boolean state of this check box menu item
+</a>
+</dl></dl>
+
+<hr>
+<!-- This inserts footnotes--><p>
+<pre><a href="packages.html">Packages</a>  <a href="Package-java.awt.html">This Package</a>  <a href="java.awt.CheckboxGroup.html">Prev</a>  <a href="java.awt.Choice.html">Next</a>  <a href="AllNames.html">Index</a></pre>
+<font size=-1>Java API Document (HTML generated by dkramer on April 22, 1996)<br>
+<a href="copyright.html">Copyright &#169 1996 Sun Microsystems, Inc.</a>
+All rights reserved<br>
+Please send any comments or corrections to <a href="mailto:doug.kramer@sun.com">doug.kramer@sun.com</a>
+</font>
+</body></html>
