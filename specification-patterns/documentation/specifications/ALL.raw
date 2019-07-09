@@ -1,0 +1,4488 @@
+
+REQUIREMENT: When an error message is displayed the only available user action
+             is aknowledgement via the 'ok' button
+PATTERN: 1-2 Constrained Response Chain (constrained cause-effect variant)
+SCOPE: Global
+CTL: AG(error.full -> A[ (!control=user) U A[ (control=user) U ok.pushed]])
+REWRITING: AG(full -> AF(user & !!user & AX(A[!!user U pushed]))
+REWRITING: AG(full -> A[!user U (user & A[user U pushed]))])
+NOTES: This spec is a variation and simplification of the mapping
+SOURCE: Matt Dwyer \cite{dwyer:97a}
+DOMAIN: GUI
+
+
+REQUIREMENT: When the cancel button on the identify traveler screen is 
+             pressed control returns to the main menu screen.
+PATTERN: 1-2 Constrained Response Chain (constrained cause-effect variant)
+SCOPE: Global
+CTL: AG(cancel.pushed & focus=idtraveler -> 
+        A[ (!control=user) U A[ (control=user) U focus=main]])
+NOTES: This spec is a variation and simplification of the mapping
+SOURCE: Matt Dwyer \cite{dwyer:97a}
+DOMAIN: GUI
+
+REQUIREMENT: If a search is done and one match is found, the search and search
+             all names command buttons are not enabled
+PATTERN: 1-2 Constrained Response Chain (constrained cause-effect variant)
+SCOPE: Global
+CTL: AG(dbSearchResult=one_match -> 
+        A[(!control=user) U 
+          A[(control=user) U 
+            (!search.enabled & !searchallnames.enabled)]])
+NOTES: This spec is a variation and simplification of the mapping
+SOURCE: Matt Dwyer \cite{dwyer:97a}
+DOMAIN: GUI
+
+REQUIREMENT: If a search returns some match then the view/print command 
+             button is enabled
+PATTERN: 1-2 Constrained Response Chain (constrained cause-effect variant)
+SCOPE: Global
+CTL: AG(!dbSearchResult=no_match -> 
+        A[(!control=user) U A[ (control=user) U viewPrint.enabled]])
+NOTES: This spec is a variation and simplification of the mapping
+SOURCE: Matt Dwyer \cite{dwyer:97a}
+DOMAIN: GUI
+
+REQUIREMENT: When a match is found all fields are filled in
+PATTERN: Response
+SCOPE: Global
+CTL: AG(!dbSearchResult=no_match -> AF(text.full & names.full & substance.full))
+SOURCE: Matt Dwyer \cite{dwyer:97a}
+DOMAIN: GUI
+
+
+REQUIREMENT: If enqueue(d1) then invocation of forward iterator 
+             will call Process_type(d1)
+REFINEMENT: If between an enqueue of d1 and the initiation of a forward 
+            iteration, d1 is not dequeued, then it will eventually be 
+            produced by the iteration.
+PATTERN: Constrained Response-chain 2-1
+SCOPE: Global
+PARAMETERS: Call events with parameters
+LTL: [](call_Enqueue(d1) & (!return_Dequeue(d1) U call_Top_Down) ->
+        <>(call_Top_Down & <>call_P(d1,*)))
+NOTE: Since these are all events we can drop the nexts
+SOURCE: Matthew Dwyer 
+DOMAIN: Generic Container ADTs
+
+REQUIREMENT: If enqueue(d1) then invocation of backward iterator 
+             will call Process_type(d1)
+REFINEMENT: If between an enqueue of d1 and the initiation of a backward 
+            iteration, d1 is not dequeued, then it will eventually be 
+            produced by the iteration.
+PATTERN: Constrained Response-chain 2-1
+SCOPE: Global
+PARAMETERS: Call events with parameters
+LTL: [](call_Enqueue(d1) & (!return_Dequeue(d1) U call_Bottom_Up) ->
+        <>(call_Bottom_Up & <>call_P(d1,*)))
+NOTE: Since these are all events we can drop the nexts
+SOURCE: Matthew Dwyer 
+DOMAIN: Generic Container ADTs
+
+
+REQUIREMENT: If enqueue(d1) then enqueue(d2) then
+             forward iteration calls P(d1) before P(d2)
+REFINEMENT: A sequence of calls that enqueue d1 and d2 followed by start of
+            forward iteration without intervening dequeus of d1 or d2
+            must be followed by calls to P(d1) and P(d2)
+PATTERN: Constrained 3-2 Response Chain
+SCOPE: Global
+PARAMETERS:  Call events with parameters
+LTL: []((call_Enqueue(d1) & 
+         (!return_Dequeue(d1) U (call_Enqueue(d2) & 
+          (!return_Dequeue(d1) & !return_Dequeue(d2) U call_Top_Down)))) -> 
+        <>(call_Top_Down & <>(call_P(d1) & <>call_P(d2))))
+NOTE: Since these are events we drop the nexts
+SOURCE: Matthew Dwyer 
+DOMAIN: Generic Container ADTs
+
+REQUIREMENT: If enqueue(d1) then enqueue(d2) then
+             backward iteration calls ProcessType(d2) before ProcessType(d1)
+REFINEMENT: Subsequent calls that enqueue d1 and d2 followed by start of
+            backward iteration without intervening dequeus of d1 or d2
+            must be followed by calls to P(d2) and P(d1)
+PATTERN: Constrained 3-2 Response Chain
+SCOPE: Global
+PARAMETERS:  Call events with parameters
+LTL: []((call_Enqueue(d1) & 
+         (!return_Dequeue(d1) U (call_Enqueue(d2) & 
+          (!return_Dequeue(d1) & !return_Dequeue(d2) U call_Bottom_Up)))) -> 
+        <>(call_Bottom_Up & <>(call_P(d2) & <>call_P(d1))))
+NOTE: Since these are events we drop the nexts
+SOURCE: Matthew Dwyer 
+DOMAIN: Generic Container ADTs
+
+
+REQUIREMENT: An enqueue without subsequent dequeue can only be followed by 
+             empty(false)
+REFINEMENT: An enqueue followed by a call to empty without an intervening
+            call to dequeue must be followed by return of false from empty.
+PATTERN: Constrained 2-1 Response Chain
+SCOPE: Global
+PARAMETERS: Call events with parameters
+LTL: [](call_Enqueue & (!return_Dequeue U call_Empty) ->
+        <>(call_Empty & <>return_Empty(false)))
+NOTE: Since these are events we drop the nexts
+SOURCE: Matthew Dwyer 
+DOMAIN: Generic Container ADTs
+
+
+REQUIREMENT: Between an enqueue(d1) and empty(true) there must be a dequeue(d1)
+PATTERN: Existence
+SCOPE: Between
+PARAMETERS: Call events with parameters
+LTL: []((call_Enqueue(d1) & <>return_Empty(true)) -> 
+        (!return_Empty(true) U return_Dequeue(d1)))
+SOURCE: Matthew Dwyer 
+DOMAIN: Generic Container ADTs
+
+
+REQUIREMENT: Between the time an elevator is called at a floor
+             and the time it opens its doors at that floor,
+             the elevator can arrive at that floor at most twice.
+PATTERN: 2 Bounded Existence
+SCOPE: Between
+LTL: []((call & <>open) ->
+        ((!atfloor & !open) U 
+         (open | ((atfloor & !open) U
+          (open | ((!atfloor & !open) U
+           (open | ((atfloor & !open) U
+            (open | (!atfloor U open))))))))))
+SOURCE: Matthew Dwyer
+DOMAIN: Control system, elevator
+
+
+
+REQUIREMENT: When a connection is not made to the server, report an error 
+             and reset network component to initial state.
+REFINEMENT: After OpeningNetworkConnection, an ErrorMessage will pop up in
+            response to a NetworkError
+PATTERN: Response 
+SCOPE: After
+PARAMETERS: Propositional
+LTL:  [](OpenNetworkConnection -> [](NetworkError -> <>ErrorMessage))
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+REQUIREMENT: When a connection is made to the POP server, mail will be 
+             transferred to the local machine and handled by the message 
+             handling subsystem.
+REFINEMENT: After PopServerConnected and before the mail is Placed 
+            in Mailboxes the Messages will be downloaded
+PATTERN: Existence 
+SCOPE: Between
+PARAMETERS: Propositional
+LTL:  []((PopServerConnected & <>PlacedinMailboxes) -> 
+         (!PlacedinMailboxes U MessagesTransfered))
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+
+REQUIREMENT: When a connection is made to the SMTP server, all queued 
+             messages in the OutBox mail will be transferred to the server.
+REFINEMENT: Before QueuedMailSent, SMTPServerConnected
+PATTERN: Existence 
+SCOPE: Before
+AlTERNATE: Global Precedence
+PARAMETERS: Propositional
+LTL:  <>QueuedMailSent -> (!QueuedMailSent U SMTPServerConnected)
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+
+REQUIREMENT: When the name of a mailbox is double-clicked, that 
+             mailbox will be opened.
+REFINEMENT: After MailboxSelected MailboxWindowOpen will exist
+PATTERN: Existence
+SCOPE: After
+ALTERNATE: Global Response
+PARAMETERS: Propositional
+LTL:  [](!MailboxSelected) | <>(MailboxSelected & <>MailboxWindowOpen))
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+
+REQUIREMENT: When a message has been created and the user is finished editing 
+             it the message is placed in the OutBox and marked as queued.
+REFINEMENT: After MessageReady MessageinOutbox will exist.
+PATTERN: Existence 
+SCOPE: After
+ALTERNATE: Global Response
+PARAMETERS: Propositional
+LTL: [](!MessageReady) | <>(MessageReady & <>MessageinOutbox))
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+
+REQUIREMENT: When the mouse is clicked on the line corresponding to a 
+             message in a mailbox and is drug to another mailbox, the 
+             message will be transferred to the new mailbox.
+REFINEMENT: After MessageDragged, MessageMoved will exist.
+PATTERN: Existence 
+SCOPE: After
+ALTERNATE: Global Response
+PARAMETERS: Propositional
+LTL: [](!MessageDragged) | <>(MessageDragged & <>MessageMoved))
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+
+REQUIREMENT: A popup box that requires a response from the user will remain 
+             in the foreground until action is taken. 
+REFINEMENT: ErrorPopup must be followed by ResponsetoPopup before more action.
+PATTERN: Response 
+SCOPE: After
+PARAMETERS: Propositional
+LTL: [](Error -> [](ErrorPopup -> <>ResponsetoPopup))
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+
+REQUIREMENT: All messages incoming from the POP server should be 
+             marked as unread.
+REFINEMENT: MarkasUnread will occur after PlacedinMailboxes.
+PATTERN: Response 
+SCOPE: After
+PARAMETERS: Propositional
+LTL: [](MessageTransferred -> [](PlacedinMailboxes -> <>MarkasUnread))
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+
+REQUIREMENT: Messages should not be removed from the POP server until 
+             retrieved successfully.
+REFINEMENT: POPServerMessageDelete after PlacedinMailboxes.
+PATTERN: Existence
+SCOPE: After
+PARAMETERS: Propositional
+LTL: [](!POPServerMessageDelete) | 
+     <>(POPServerMessageDelete & <>PlacedinMailboxes)
+SOURCE: Jeff Isom \cite{isom:98}
+DOMAIN: GUI
+
+
+REQUIREMENT: From the Main Menu, the program cannot move to the Request View
+             unless the user has entered a keyword to search for or the user
+             has entered an ID number to search for.
+REFINEMENT: If form is main_menu, form is not request_view until
+            keyword_text_box or id_number_text_box.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form = main_menu) -> A[!(form=request_view) U
+          (keyword_text_box | id_number_text_box | AG(!(form=request_view)))])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: From the List View, the program will either move into the Main
+             Menu or the Request View.
+REFINEMENT: If form is list_view, form will either be main_menu or
+            request_view before it is anything else.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form=list_view) -> 
+    A[!((form=patron_type) | (form=letter_type) | (form=select_reason)) U 
+       ((form=main_menu) | (form=request_view)) | 
+       AG (!((form=patron_type) | (form=letter_type) | (form=select_reason)))])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: From the Request View, the program can move directly into any
+             screen except the Select Reason screen.
+REFINEMENT: If form is request_view, form will either be main_menu, list_view,
+            patron_view, or letter_type before it is select_reason.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form=request_view) -> 
+         A[!(form=select_reason) U 
+            (((form=main_menu) | (form=list_view) | (form=patron_view) | 
+              (form=letter_type)) | AG (!(form=select_reason)))])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: Once the program is in the Patron View, it can only return to the
+             Request View.
+REFINEMENT: If form is patron_view, form will be request_view before it is
+            anything else.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form=patron_view) -> 
+         A[!((form=main_menu) | (form=list_view) | (form=letter_type) | 
+             (form=select_reason)) U
+           ((form=request_view) | 
+            AG (!((form=main_menu) | (form=list_view) | 
+                  (form=letter_type) | (form=select_reason))))])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: From the Letter Type screen, the program will either move into the
+             Select Reason screen or the Request View.
+REFINEMENT: If form is letter_type, form will either be select_reason or
+            request_view before it is anything else.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form=letter_type) -> 
+         A[!((form=main_menu) | (form=list_view) | (form=patron_view)) U 
+           ((form=select_reason) | (form=request_view) | 
+            AG (!((form=main_menu) | (form=list_view) | (form=patron_view))))])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: From the Select Reason screen, the program can only return to the
+             Request View.
+REFINEMENT: If form is select_reason, form will be request_view before it is
+            anything else.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form=select_reason) -> 
+         A[!((form=main_menu) | (form=list_view) | (form=patron_view) | 
+             (form=letter_type)) U 
+           ((form=request_view) | 
+            AG (!((form=main_menu) | (form=list_view) | 
+                  (form=patron_view) | (form=letter_type))))])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: Pressing the Close Button from the Request View will cause the
+             system to move to either the List View or the Main Menu, whichever
+             state the program was in before it entered the Request View.
+REFINEMENT: If form is list_view and then form is request_view, form will
+            be list_view before it is main_menu.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form=list_view) -> 
+         A[!(form=request_view) U 
+           (AG !(form=request_view) | (form=request_view) & 
+            A[!(form=main_menu) U ((form=list_view) | AG !(form=main_menu))])])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: Pressing the Close Button from the Request View will cause the
+             system to move to either the List View or the Main Menu, whichever
+             state the program was in before it entered the Request View.
+REFINEMENT: If form is main_menu and then form is request_view, form will
+            be main_menu before it is list_view.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form=main_menu) -> 
+         A[!(form=request_view) U 
+           (AG !(form=request_view) | (form=request_view) & 
+            A[!(form=list_view) U ((form=main_menu) | AG !(form=list_view))])])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: The program should not display information about a patron without
+             first displaying information about the corresponding request.
+REFINEMENT: Every time the form is patron_view it must have been preceeded by
+            a corresponding request_view.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: A[!(form=patron_view) U ((form=request_view) | AG (!(form=patron_view)))]
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: The program should not let the user send a letter without first
+             displaying information about the corresponding request.
+REFINEMENT: Every time the form is send_letter, it must have been preceeded by
+            a corresponding request_view.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: A[!(form=send_letter) U ((form=request_view) | AG (!(form=send_letter)))]
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: The system should not search for a request when no search criteria
+             are specified.
+REFINEMENT: If form is main_menu, form is not request_view unless
+            id_number_text_box or keyword_text_box.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional
+CTL: AG ((form=main_menu) -> 
+         A[!(form=request_view) U 
+           (id_number_text_box | keyword_text_box | AG (!(form=request_view)))])
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: The Find ID Button on the Main Menu is disabled unless the user
+             has entered an ID number to search for.
+REFINEMENT: Not find_id_button unless id_number_text_box.
+PATTERN: Precedence
+SCOPE: Global 
+PARAMETERS: Propositional
+CTL: A[!find_id_button U (id_number_text_box | AG (!find_id_button))]
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: The Find Keyword Button on the Main Menu is disabled unless the
+             user has entered a keyword to search for.
+REFINEMENT: Not find_keyword_button unless keyword_text_box.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: A[!find_keyword_button U (keyword_text_box | AG (!find_keyword_button))]
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: On the Letter Type screen, the Photocopy Check Box and the Due
+             Date Text Box are disabled unless "Material Available for Pickup"
+             is selected.
+REFINEMENT: Not photocopy_check_box or due_date_text_box unless not
+            letter_type_radio_buttons.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: A[!(photocopy_check_box | due_date_text_box) U 
+       (!letter_type_radio_buttons | 
+        AG (!(photocopy_check_box | due_date_text_box)))]
+SOURCE: Tim McCune (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+
+REQUIREMENT: If the title is in the List then the book is found.
+REFINEMENT: If TitleinList1 is equal to 1 then Titlefound should be 1.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ( (TitleinList1=1) -> AF (Titlefound=1) )
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If the author is in the List then the book is found.
+REFINEMENT: If AuthorinList1 is equal to 1 then Authorfound should be 1.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ( (AuthorinList1=1) -> AF (Authorfound=1) )
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If the subject is in the List then the book is found.
+REFINEMENT: If SubjectinList1 is equal to 1 then Subjectfound should be 1.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ( (SubjectinList1=1) -> AF (Subjectfound=1) )
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If the ISBN number is in the List then the book is found.
+REFINEMENT: If NumberinList1 is equal to 1 then Authorfound should be 1.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ( (NumberinList1=1) -> AF (Numberfound=1) )
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If the book is not charged then I means that it is not checkedout.
+REFINEMENT: If the Status of the book is notcharged then Checkout should be 0.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG((Status=notcharged)->AF(Checkout=0))
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: A person can place hold only once.
+REFINEMENT: If NameinList2 is equal to 1 then Name_accepted should be 0.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ((NameinList2=1) -> AF (Name_accepted=0))
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If a new name is entered in the Loan List, then the 
+             password is always correct.
+REFINEMENT: If NameinList3 is false then the Password is always correct.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG (!NameinList3 -> AF(Password = correct))
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: Cannot go from the hold status the status of the 
+             book to not charged.
+REFINEMENT: If the Status of the book is hold then it cannot be notcharged.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG((Status=hold)->AF(!Status=notcharged)) 
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: The book is checked out only if it's status is charged or hold.
+REFINEMENT: Checkout is 0 until the Status of the book is charged or hold.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: A[(Checkout=0) U ((Status=charged )|(Status=hold)| AG((Checkout=0)))]
+REWRITING: Checkout=0  ==  !(Checkout>0)
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: The status of the book cannot go from uncharged to hold.
+REFINEMENT: Status of the book cannot be hold unless it is charged.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: A[!(Status=hold) U((Status=charged )| AG(!(Status=hold)))] 
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If the title is not in the List then the book cannot be found
+REFINEMENT: If TitleinList1 is equal to 0 then Titlefound cannot be 1.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ( (TitleinList1=0) -> AF !(Titlefound=1) ) 
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If the author is not in the List then the book cannot be found
+REFINEMENT: If AuthorinList1 is equal to 0 then Authorfound cannot be 1.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ( (AuthorinList1=0) -> AF !(Authorfound=1) ) 
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If the subject is not in the List then the book cannot be found
+REFINEMENT: If SubjectinList1 is equal to 0 then Subjectfound cannot be 1.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ( (SubjectinList1=0) -> AF !(Subjectfound=1) ) 
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+REQUIREMENT: If the number is not in the List then the book cannot be found
+REFINEMENT: If NumberinList1 is equal to 0 then Numberfound cannot be 1.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+CTL: AG ( (NumberinList1=0) -> AF !(Numberfound=1) ) 
+SOURCE: Ravinder Gulla (Course Project : CIS 842, Fall, 1997)
+DOMAIN: GUI
+
+
+
+REQUIREMENT: No work will be scheduled before execution. 
+REFINEMENT: No "doWork" calls occur before the workers begin to "Execute". 
+PATTERN: Absence
+SCOPE: Before
+PARAMETERS: Propositional, Call events
+LTL: (<>call_Execute) -> ((!call_doWork) U call_Execute)
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: No work is scheduled after a termination. 
+REFINEMENT: Between the moment in which the an execution completes and
+            a new execution begins there is no work done ("doWork").
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositional, Call events
+LTL: []((return_Execute && (<>call_Execute)) -> 
+        ((!call_doWork) U call_Execute))
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: Mutual exclusion in executing the result procedure.  
+REFINEMENT: While the ith Worker is performing result computations
+            ("doResults") no other worker, i.e., the jth, can do so.
+            Result computations need not terminate.
+PATTERN: Absence
+SCOPE: After-Until
+PARAMETERS: Propositions, Call events indexed by process
+LTL: [](call_doResults:i -> 
+        ((!call_doResults:j) U (return_doResults:i || [](!call_doResults:j))))
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: Mutual exclusion in executing the result procedure.  
+REFINEMENT: While the ith Worker is performing result computations
+            ("doResults") no other worker, i.e., the jth, can do so.
+            Result computations must terminate.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositions, Call events indexed by process
+LTL: []((call_doResults:i && <>return_doResults:i) -> 
+        ((!call_doResults:j) U return_doResults:i))
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+
+REQUIREMENT: Acquired locks are eventually released
+REFINEMENT: If the ith worker succeeds in waiting on the result lock
+            it will eventually "signal" that task.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions, Call events indexed by process
+LTL: [](return_resultlock.wait:i -> <>call_resultlock.signal:i)
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: Calls to user supplied routines return 
+REFINEMENT: Each call to "doWork" and "doResults" will return
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions, Call events indexed by process
+LTL: [](call_doWork:i -> <>return_doWork:i) 
+     [](call_doResult:i -> <>return_doResult:i) 
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+
+REQUIREMENT: Acquired locks are released assuming that callbacks return
+REFINEMENT: If the ith worker succeeds in acquiring a lock it will eventually
+            release it assuming its "doResult" call returns.
+PATTERN: Filter=GlobalResponse->GlobalResponse
+SCOPE: Global
+PARAMETERS: Propositions, Call events indexed by process
+LTL: [](call_doResult:i -> <>return_doResult:i) ->
+     [](return_resultlock.wait:i -> <>call_resultlock.signal:i)
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: Computation terminates when workpool is empty or worker signals
+             that it is finished.  
+REFINEMENT: The Execute call returns only when the number of workitems 
+            is zero or when a doWork call returns done=true.
+PATTERN: Absence
+SCOPE: After-Until
+PARAMETERS: Propositions, Call events indexed by process with parameter values
+LTL: [](call_Execute -> ((!return_Execute) U
+        (return_doWork(done==true):i || ... || 
+         return_doResult(done==true):i || ... || workCountEQzero ||
+         [](!return_Execute))))
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: The computation will not terminate before the ActivePool task
+             accepts "Complete".
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions 
+LTL: ((! return_Execute ) U ( return_pool.Complete || [] (!return_Execute)))
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: A worker signals done only if its local computation does so.
+REFINEMENT: The ActivePool task accepts "Finished" only if "done" is true
+            in Worker1 task or in Worker2 task.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions, Call events indexed by process with parameter values
+LTL: (!return_pool.Finished) U 
+     (return_doWork(done==true):i || ... || 
+      return_doResult(done==true):i || ... || [] (!return_pool.Finished))
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: Call-backs do not call routines in the same framework. 
+REFINEMENT: Calls on routines in the framework cannot be performed from
+            those program points that lie within the doWork and
+            doResults call-back routines.
+PATTERN: Absence
+SCOPE: Global
+PARAMETERS: Propositions, Call events indexed by program points
+LTL: []!(call_Create:i || call_Destroy:i || call_Input:i || 
+         call_Execute:i || call_GetResults:i) 
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT:  A worker signals done only if its local computation does so,
+              assuming that call-backs do not call routines in the framework.
+PATTERN: Filter=GlobalAbsence+GlobalPrecedence 
+SCOPE: Global
+PARAMETERS: Propositions, Call events indexed by process and program points with parameter values
+LTL: ([]!(call_Create:i || call_Destroy:i || call_Input:i || 
+         call_Execute:i || call_GetResults:i)) -> 
+     ((!return_pool.Finished) U 
+      (return_doWork(done==true):i || ... || 
+       return_doResult(done==true):i || ... || [] (!return_pool.Finished)))
+SOURCE: Matt Dwyer and Corina Pasareanu \cite{dwyer:98a}
+DOMAIN: Software, Components
+
+REQUIREMENT: If a semaphore P is done, then there will eventually be a V.
+REFINEMENT: If the state representing the semaphore's 1 value ever is
+            false, then it will eventually be true.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional
+LTL: [](txB1==0 -> <>txB1==1);
+     [](rxBufferSem1==0 -> <>rxBufferSem1==1);
+     [](rxBCS1==0 -> <>rxBCS1==1);
+SOURCE: Mike Novak \cite{novak:98}
+DOMAIN: Concurrency Logic
+
+REQUIREMENT: Only one of the 3-counting semaphore's four semaphore place's 
+             may be occupied at any one time
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: []((state0 & !state1 & !state2 & !state3) |
+        (!state0 & state1 & !state2 & !state3) |
+        (!state0 & !state1 & state2 & !state3) |
+        (!state0 & !state1 & !state2 & state3) )
+SOURCE: Mike Novak \cite{novak:98}
+DOMAIN: Concurrency Logic
+NOTE: 2 instances of this spec
+
+REQUIREMENT: From state 0(3), we can only move to state 1(2) without 
+             seeing states 2(0) or 3(1) between movements.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Proposition
+LTL: []((state0 & <>state1) -> !(state2 || state3) U state1)
+     []((state3 & <>state2) -> !(state0 || state1) U state2)
+SOURCE: Mike Novak \cite{novak:98}
+DOMAIN: Concurrency Logic
+NOTE: 2 instances of this spec
+
+REQUIREMENT: From state 1(2), we can only move to states 0(1) or 2(3) 
+             without seeing state 3(0) between movements
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Proposition
+LTL: []((state1 & <>(state0 || state2)) -> !state3 U (state0 || state2))
+SOURCE: Mike Novak \cite{novak:98}
+DOMAIN: Concurrency Logic
+NOTE: 2 instances of this spec
+
+REQUIREMENT: The first method called will be the connect method.
+REFINEMENT: None of the available methods can be called until connect is called.
+PATTERN: Absence
+SCOPE: Before
+ALTERNATIVE: Global Precedence
+PARAMETERS: Propositions
+LTL: <>connect -> (!(disconnect || poke || send || blockingSend || receive || blockingReceive) U connect)
+SOURCE: Mike Novak \cite{novak:98}
+DOMAIN: Concurrency Logic
+
+REQUIREMENT: After connect is called, any method may be called 
+             except connect until disconnect is called.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositions
+LTL: []((connect && <>disconnect) -> !connect U disconnect)
+SOURCE: Mike Novak \cite{novak:98}
+DOMAIN: Concurrency Logic
+
+REQUIREMENT: After disconnect is called, only the connect method may be called.
+REFINEMENT: Between disconnect being called and connect being called, 
+            we may not call disconnect, poke, send, blockingSend, receive, 
+            or blockingReceive.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositions
+LTL: []((disconnect && <>connect) ->
+        !(disconnect || poke || send || blockingSend || 
+          receive || blockingReceive) U connect)
+SOURCE: Mike Novak \cite{novak:98}
+DOMAIN: Concurrency Logic
+
+REQUIREMENT: A send of data from the blockingSend() call may be performed 
+             when the socket is not connected.
+REFINEMENT: Sending data from blockingSend() implies that connected is false
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Proposition
+LTL: [](blockingSendBeforeSendPlace -> !Connected)
+SOURCE: Mike Novak \cite{novak:98}
+DOMAIN: Concurrency Logic
+
+REQUIREMENT: The OK button is enabled after the user enters correct data.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions and Macros
+CTL: AG(ALL_DATA_ENTERED_CORRECT -> AF(login_ok_state=ok_enabled))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: Once enabled the OK button remains enabled as long as
+             all data is entered correctly.
+PATTERN: Existence
+SCOPE: Between
+PARAMETERS: Propositions and Macros
+CTL: AG(login_ok_state=ok_enabled -> 
+        A[login_ok_state=ok_enabled U
+          (!ALL_DATA_ENTERED_CORRECT | AG(login_ok_state=ok_enabled))])
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+
+REQUIREMENT: If the information (generic, username and password) that is 
+             keyed in the login window is not validated, then the application 
+             shall not be initialized.  The OK button shall not enabled 
+             unless the data is validated with respect to the Database.
+REFINEMENT: It is always the case that if !ALL_DATA_ENTERED_CORRECT in the 
+            login window, then the login_ok_state will never become ok_enabled.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions and Macros
+CTL: AG(!ALL_DATA_ENTERED_CORRECT -> AF(!(login_ok_state=ok_enabled)))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: When the information entered in any of the fields in the login
+             window is incorrect a message box is displayed to the user and
+             the user selects OK on this message box the respective 
+             field shall be reset to its default state.
+REQUIREMENT: The occurrence of incorrect login information which persists 
+             until the user clicks the user clicks the ok message causes
+             the system to move to the default state. 
+PATTERN: Constrained Response Chain (2-1)
+SCOPE: Global
+PARAMETERS: Propositions
+CTL: AG((login_generic_state=generic_incorrect & 
+         AX(A[!(login_generic_state=generic_default) U (errmsg_ok)])) ->
+        AX(A[!(login_generic_state=generic_default) U 
+             (errmsg_ok & AF(login_generic_state=generic_default))]))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+NOTE: 6 instances of this spec
+
+REQUIREMENT: The Add, Delete or Update buttons are enabled in the Requirements
+             window only if the user is logged in as Project Manager or Database
+             Administrator and the Requirements window is invoked by selecting 
+             if from the Project Administration menu item.
+REFINEMENT: It is always the case that if the req_command_state is in 
+            command_enabled state then previously login_admin and subsequently
+            select_req_admin is true.
+PATTERN: Precedence Chain (2-1)
+SCOPE: Global
+PARAMETERS: 
+CTL: AG((!req_command_state=command_enabled) U
+        (AG(!req_command_state=command_enabled) |
+         (!req_command_state=command_enabled & login_admin & 
+          AX(A[!req_command_state=command_enabled & select_req_admin]))))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The Add, Delete or Update buttons shall be desensitized if the
+             requirements window is accessed from the View/Lookup menu item
+             for all groups of users.
+REFINEMENT: It is always the case that if select_req_view is true then
+            req_command_state shall be command_not_enabled.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+CTL: AG(select_req_view -> (req_command_state=command_not_enabled))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The Add, Delete or Update buttons in the Requirements window 
+             shall not be enabled if the user is logged in as Project Manager 
+             or Database Administrator and if the Requirements window is later 
+             invoked by selecting it from the View/Lookup Menu item.
+REFINEMENT: It is always the case that if login_admin is true and eventually
+            req_select_view is true then the req_command_state shall not be 
+            command_enabled.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions
+CTL: AG(login_admin -> AF(req_select_view -> 
+                          !req_command_state=command_enabled))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The user may enter any known information about one or more
+             requirements in the Input fields and retrieve all information 
+             regarding those requirements by selecting the Search button.
+REFINEMENT: When req_input_fields_state is in input_field_entered state 
+            then the req_search_state shall become enabled.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions
+CTL: AG(req_input_fields_state=input_field_entered ->
+        AF(req_search_state = search_enabled))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The refresh command is available to all users and is enabled 
+             when an entry is made in any of the Input or Information fields.
+REFINEMENT: It is always the case that when req_input_fields_state is in 
+            input_field_entered state or req_info_fields_state is in 
+            info_field_entered state, then req_refresh_state shall become 
+            refresh_enabled state.
+NOTE: RDATA_ENTERED := ((req_input_fields_state = input_field_entered) |
+                        (req_info_fields_state = info_field_entered))
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions and Macros
+CTL: AG(RDATA_ENTERED -> AF(req_refresh_state=refresh_enabled))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: Selecting the close button will close the Requirements window.
+             This command is available to all users and is enabled always.
+REFINEMENT: The req_close_state is always in close_enabled state.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+CTL: AG(req_close_state=close_enabled)
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The Generic Reports menu shall be available only to members of
+             the Project Administration group.  For all other users these 
+             reports shall be not be available.
+REFINEMENT: It is always the case that the report_generic_state is in
+            repgen_enabled state when login_admin is true.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions
+CTL: AG(login_admin -> AF(report_generic_state=repgen_enabled))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The OK button on the login window is enabled as soon as the
+             application is started and the login window is first displayed 
+             to the user.
+REFINEMENT: When the login window is first displayed to the user 
+            !ALL_DATA_ENTERED_CORRECT is true, and at this point 
+            login_ok_state is in ok_enabled state.
+PATTERN: Universal
+SCOPE: After
+PARAMETERS: 
+CTL: AG(!ALL_DATA_ENTERED_CORRECT -> (login_ok_state=ok_enabled))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The Add, Delete or Update buttons shall be enabled if the
+             requirements window is accessed from the View/Lookup menu item
+             for the Project Manager or Database Administrator group of users.
+REFINEMENT: It is always the case that if login_admin is true and 
+            eventually select_req_view is also true then eventually 
+            req_command_state is command_enabled.
+PATTERN: Response Chain (2-1)
+SCOPE: Global
+PARAMETERS:  Propositions
+CTL: AG(login_admin & AX(AF(select_req_view)) ->
+        AX(AF(select_req_view & AF(req_command_state=command_enabled))))
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The Search button is enabled always and does not depend upon an
+             entry being in the Input fields.
+REFINEMENT: It is always the case that when req_input_fields_state is empty
+            the req_search_state is enabled.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+CTL: AG(req_input_fields_state=input_field_empty ->
+        req_search_state=search_enabled)
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The Close command on the Requirement window shall be enabled only
+             when the search command is enabled.
+REFINEMENT: It is always the case that when the req_search_state is not
+            enabled, then the req_close_state shall not be closed and will 
+            remain not closed until the req_search_state is enabled.
+PATTERN: Absence
+SCOPE: After-until
+PARAMETERS: Propositions
+CTL: AG(req_search_state=search_not_enabled ->
+        !E[!req_search_state=search_enabled U
+           (req_close_state=close_enabled &
+            !req_search_state=search_enabled)])
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The Refresh button in the Requirements window is never enabled
+REFINEMENT: It is always the case that the req_refresh_state is never is
+            refresh_enabled state
+PATTERN: Absence
+SCOPE: Global
+PARAMETERS: Proposition
+CTL: AG(!req_refresh_state=refresh_enabled)
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The Generic Reports menu shall be available to members of 
+             all groups, this menu item shall be enabled always.
+REFINEMENT: It is always the case that report_generic_state is in 
+            repgen_enabled state when !login_admin is true.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Proposition
+CTL: AG(!login_admin -> report_generic_state=repgen_enabled)
+SOURCE: Aruna Srikanth (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+
+REQUIREMENT: If the MS is in a call, then, eventually, ms_meas_state shall 
+             be MeasOn
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(ms_cc_state=InCall -> AF(ms_meas_state=MeasOn))
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+
+REQUIREMENT: MsHandoffRequest message precedes BsHandoffAccept.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propsitions (enumerations)
+CTL: A[!(bs_to_ms_msg=BsHandoffAccept) U 
+       (ms_to_bs_msg=MsHandoffRequest | AG(!(bs_to_ms_msg=BsHandoffAccept)))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: If BsHandoffAccept is received, then, eventually the MS 
+             transmitter will be turned off.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(bs_to_ms_msg=BsHandoffAccept -> AF(ms_trans_state=TransOff))
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+
+REQUIREMENT: MsHandoffRequest message precedes BsHandoffReject.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!(bs_to_ms_msg=BsHandoffReject) U 
+       (ms_to_bs_msg=MsHandoffRequest | AG(!(bs_to_ms_msg=BsHandoffReject)))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: It is always the case that after a MsHandoffRequest has been sent
+             either a BsHandoffReject or a BsHandoffAccept shall follow.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(ms_to_bs_msg=MsHandoffRequest -> 
+        AF(bs_to_ms_msg=BsHandoffReject | bs_to_ms_msg=BsHandoffAccept))
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: It is always the case that after the MS is in a call 
+             RSS measurements shall be enabled.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(ms_cc_state=InCall -> AF(ms_meas_state = BsMeasOn))
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: MsHandoffRequest message to the BS precedes a BsHandoffRequest 
+             message to the BSC.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!bs_to_bsc_msg=BsHandoffRequest U 
+       (ms_to_bs_msg=MsHandoffRequest | AG(!bs_to_bsc_msg=BsHandoffRequest))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+
+REQUIREMENT: BsHandoffRequest message to the BSC precedes a 
+             BscHandoffAccept message to the BS.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!bsc_to_bs_msg=BsHandoffAccept U 
+       (bs_to_bsc_msg=BsHandoffRequest | AG(!bsc_to_bs_msg=BsHandoffAccept))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+
+REQUIREMENT: BscHandoffAccept message to the BS precedes a 
+             BsHandoffAccept message to the MS.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!bs_to_ms_msg=BsHandoffAccept U 
+       (bsc_to_bs_msg=BscHandoffAccept | AG(!bs_to_ms_msg=BsHandoffAccept))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: BsHandoffRequest message to the BSC precedes a 
+             BscHandoffReject message to the BS.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!bsc_to_bs_msg=BsHandoffReject U 
+       (bs_to_bsc_msg=BsHandoffRequest | AG(!bsc_to_bs_msg=BsHandoffReject))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: BscHandoffReject message to the BS precedes a 
+             BsHandoffReject message to the MS.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!bs_to_ms_msg=BsHandoffReject U 
+       (bsc_to_bs_msg=BscHandoffReject | AG(!bs_to_ms_msg=BsHandoffReject))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: It is always the case that after a BsHandoffRequest has 
+             been received by the BSC either a BscHandoffReject or a 
+             BscHandoffAccept shall be sent to the BS.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(bs_to_bsc_msg=BsHandoffRequest -> 
+        AF(bsc_to_bs_msg=BscHandoffReject | bsc_to_bs_msg=BscHandoffAccept))
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: If the BS is in a call, then, eventually, bs_meas_state shall be
+             BsMeasOn
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(bs_cc_state=InCall -> AF(bs_meas_state=BsMeasOn))
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: MS RSS < BsCallDropThreshold precedes a BsCallDrop message to 
+             the BSC.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations and relational-scalar comparison)
+CTL: A[!bs_to_bsc_msg=BsCallDrop U 
+       (ms_rss_value<BsCallDropThreshold | AG(!bs_to_bsc_msg=BsCallDrop))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: It is always the case that after MS RSS < BsCallDropThreshold a
+             BsCallDrop is sent to the BSC and the BS transmitter is turned off.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations and relational-scalar comparison)
+CTL: AG(ms_rss_value<BsCallDropThreshold -> 
+        AF((bs_to_bsc_msg=BsCallDrop & bs_tx_power=1)))
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: After a channel has been allocated, the BSC receiving a BsCallDrop
+             message precedes a channel deallocation.
+PATTERN: Precedence
+SCOPE: After
+PARAMETERS: Propositions (enumerations), Call events with parameters
+CTL: A[tch_free(1) U 
+       (AG(tch_free(1)) | 
+        (tch_free(1) & 
+         A[tch_free(1) U (bs_to_bsc_msg=BsCallDrop | AG(tch_free(1)))]))]
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: It is always the case that after a call has started it will 
+             remain in the call until either the call is dropped due to low 
+             BS RSS, the call is ended, or the call is handed-off.
+PATTERN: Universal
+SCOPE: After-Until 
+PARAMETERS: Propositions (enumerations)
+CTL: AG(ms_cc_state=InCall -> 
+        !E[!(MsCallDrop | ms_cc_state=EndCall | ms_cc_state=StartHandoff) U
+           (!ms_cc_state=InCall  &
+            !(MsCallDrop | ms_cc_state=EndCall | ms_cc_state=StartHandoff))])
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: It is always the case that after BS RSS < MsCallDropThreshold the
+             MS transmitter is turned off and the call state shall move to Idle.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations and relational-scalar comparison)
+CTL: AG(bs_rss_value<MsCallDropThreshold -> AF(ms_tx_power=1 & ms_c_state=Idle))
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+REQUIREMENT: Given that the TCH is already allocated, it is never the case that
+             the BSC will send a BscCallAccept message to the BS until the TCH
+             is freed.
+PATTERN: Absence
+SCOPE: After-until
+PARAMETERS: Propositions (enumerations), Call events with parameters
+CTL: AG(!tch_free(1) -> 
+        !E[!tch_free(1) U (bsc_to_bs_msg=BscCallAccept & !tch_free(1))])
+SOURCE: James McClelland (Course Project, CIS 842, KSU, Fall 1997)
+DOMAIN: Communication Protocol
+
+
+REQUIREMENT: If users entry illegal strings into any text fields, 
+             then information window will pop-up.
+REFINEMENT: If parameter_setting equals illegal, then the InfoWin equals open.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Parameters (enumerations)
+CTL: AG((parameter_setting=illegal) -> AF(InfoWin=open))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: If users don't load data but press the build window button, 
+             then the information window will pop-up.  
+REFINEMENT: If the load_data equals Unloaded and build_window_button equals 
+            enabled, then the InfoWin will becom open.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG((load_data=Unloaded & build_window_button=enabled) -> AF(InfoWin=open))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: Information window can not closed until users press the 
+             "OK" button.
+REFINEMENT: InfoWin equals open until OK_button equals pressed.
+PATTERN: Universal
+SCOPE: Between
+PARAMETERS: Propositions (enumerations)
+CTL: AG(InfoWin=open -> 
+        A[InfoWin=open U (OK_button=pressed | AG(InfoWin=open))])
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: If users press load data button, then the file dialog  will pop-up.
+REFINEMENT: If load_button equals pressed, then the fileDialog will equal open.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(load_button=pressed -> AF(fileDialog=open))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: File dialog window can not closed until users press "ok" button 
+             or "cancel" button.
+REFINEMENT: fileDialog equals open until file_option_button equals "ok" or 
+            "cancel"
+PATTERN: Universal
+SCOPE: Between
+PARAMETERS: Propositions (enumerations)
+CTL: AG(fileDialog=open -> 
+        A[fileDialog=open U 
+          (file_option_button=ok | file_option_button=cancel | 
+           AG(fileDialog=open))])
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: Color type can always be set by clicking the checkBoxgroup.
+REFINEMENT: Color_type_state can either equals color or non-color at any time.
+PATTERN: Universality
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(color_type_state=color | color_type_state=non-color)
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: When users give a source data file name, then users can load 
+             the source data into the system.
+REFINEMENT: If file_text_field equals has_name and file_option_button equals 
+            ok, then load_data equals loaded.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations) 
+CTL: AG((file_text_field=has_name & file_option_button=ok) -> 
+        AF(load_data=loaded)) 
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The load button is disabled until information window and 
+             file dialog are closed.
+REFINEMENT: load_button is not enabled until infoWindow equals closed and
+            fileDialog equals closed.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations) 
+CTL: A[!load_button=enabled U 
+       ((InfoWin=closed & fileDialog=closed) | AG(load_button=disabled))]
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The build window button is disabled until the parameter text 
+             field already set and source data already loaded.
+REFINEMENT: build_window_button is not enabled until parameter_setting 
+            equals legal and load_data equals loaded.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!build_window_button=disabled U 
+       ((parameter_setting=legal & load_data=loaded) | 
+        AG(build_window_button=disabled))]
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The graphics window can be opened either by clicking build 
+             window button or selecting "new" item in file menu choice.
+REFINEMENT: If build_window_button equals enabled or file_menu_choice 
+            equals new, then graphics_window will become open.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations) 
+CTL: AG((build_window_button=enabled | file_menu_choice=new) ->
+        AF(graphics_window=open))    
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The user can select "new" item in file menu choice to open a 
+             new graphics window.
+REFINEMENT: If file_menu_choice equals new, then graphics_window will open.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(file_menu_choice=new -> AF(graphics_window=open))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The user can select "closed" item in file menu choice to close 
+             the graphics window.
+REFINEMENT: If file_menu_choice equals closed, then graphics_window will close.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(file_menu_choice=closed -> AF(graphics_window=closed))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The cancel button is disabled until the build window button 
+             is enabled.
+REFINEMENT: Enabling the build window button precedes enabling of the cancel
+            button.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!cancel_button=enabled U 
+       (build_window_button=enabled | AG(!cancel_button=enabled))]
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The text field setting can not accepted until the graphics 
+             windows are open.
+REFINEMENT: Opening of graphics_window precedes setting of parameter_setting 
+            to accepted.
+PATTERN: Precedence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: A[!parameter_setting = accepted U
+       (graphics_window=open | AG(!parameter_setting=accepted))]
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The text field have made an legal value entry at some point.
+REFINEMENT: Parameter_setting must be equal to a legal or the default
+            value at some point. 
+PATTERN: Existence
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AF(parameter_setting=legal | parameter_setting=default)
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: If the graphics window is open and users click the refresh 
+             button, then surface rendering will return to the initial 
+             position.
+REFINEMENT: When graphics_window equals open and refresh_button equals pressed, 
+            then refresh_button_state equals On.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG((graphics_windpw=open & refresh_button=pressed) ->
+        AF(refresh_button_state=On))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: When the wire frame button is labeled with "WireFrame Off", 
+             after users click it, the wire frame button will label with 
+             "WireFrame On".
+REFINEMENT: If wireFrame_state equals Off and wireFrame_button equals pressed,
+            then wireFrame_state will equal On.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG( (wireFrame_state=Off & wireFrame_button=pressed) ->
+        AF(wireFrame_state=On))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: After the user clicks the filled button labeled with "Filled Off",
+             the filled button will label with "Filled On".
+REFINEMENT: If filled_state equals Off and filled_button equals pressed,
+            then filled_state will equal On.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG((filled_state=Off & filled_button=pressed) ->
+        AF(filled_state=On))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: If graphics window is open and users click the rendering button, 
+             then the graphics will display on the screen.
+REFINEMENT: When graphics_window equals open and rendering_button equals 
+            pressed, then rendering_button_state will equal On.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG((graphics_windpw=open & rendering_button=pressed) ->
+        AF(rendering_button_state=On))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: When text field has illegal value, the graphics window can be open.
+REFINEMENT: When parameter_setting equals illegal, the graphics_window 
+            will equal open.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(parameter_setting=illegal -> AF(graphics_window=open))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: The build window button is always enabled.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(build_window_button=enabled)
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: When users have not load source data, the graphics window 
+             can be open.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+CTL: AG(load_data=Unloaded -> AF(graphics_window=open))
+SOURCE: Yan Gao (MSE Project, KSU, Aug 1998)
+DOMAIN: GUI
+
+REQUIREMENT: (2) If an artist is registered for an event and dispatcher
+             receives this event, it will not receive another event before 
+             passing this one to the artist.  
+PATTERN: Constrained 2-1 Response Chain
+SCOPE: Global
+CTL: AG((register_a1_e1 & A[!unregister_a1_e1 U after_notify_artists_e1]) ->
+        AF(after_notify_artists_e1 &
+           A[!(notify_artists_e1 | notify_artists_e2) U 
+             notify_client_event_a1_e1]))
+PATTERN: Response
+SCOPE: Between 
+LTL: []((register_a1_e1 && <> unregister_a1_e1) -> 
+        (after_notify_artists_e1 -> 
+         ((!(notify_artists_e1 || notify_artists_e2) && !unregister_a1_e1) U
+          notify_client_event_a1_e1)) U 
+        unregister_a1_e1)
+NOTE: with a constraint of !notify_received by unfolding the box to
+      its U form
+SOURCE: The Chiron Crew (George Avrunin, James Corbett, Matt Dwyer, 
+                         Gleb Naumovic, Corina Pasareanu)
+
+REQUIREMENT: (3) Dispatcher does not notify any artists of an event until it
+             receives this event from the ADT.  
+PATTERN: Precedence
+SCOPE: Global
+CTL: !E[[!notify_artists_e1 U
+     (notify_client_event_a1_e1 | notify_client_event_a2_e1)]
+LTL: !(notify_client_event_a1_e1 || notify_client_event_a2_e1)  U
+     (notify_artists_e1 || 
+      []!(notify_client_event_a1_e1 || notify_client_event_a2_e1))
+SOURCE: The Chiron Crew
+
+REQUIREMENT: (4) Having received an event of kind 1, dispatcher never
+             notifies artists of event 2.  
+PATTERN: Absence
+SCOPE: After-Until
+CTL: AG(notify_artists_e1 -> 
+        !E[!notify_artists_e2 U 
+           ((notify_client_event_a1_e2 | notify_client_event_a2_e2) & 
+            !notify_artists_e2)])
+LTL: [](notify_artists_e1 -> 
+        (!(notify_client_event_a1_e2 || notify_client_event_a2_e2) U 
+         (notify_artists_e2 || 
+          []!(notify_client_event_a1_e2 || notify_client_event_a2_e2))))
+SOURCE: The Chiron Crew
+
+REQUIREMENT: (5) Dispatcher does not block ADT if no one is registered (this
+             means that if no artists are registered for events of kind 1,
+             dispatcher does nothing upon receiving an event of this kind
+             from the ADT).
+PATTERN: Absence
+SCOPE: After-Until
+CTL: AG(e1_szEQ0 -> 
+        !E[!e1_szGT0 U 
+           ((notify_client_event_a1_e1 | notify_client_event_a2_e1) & 
+            !e1_szGT0)])
+LTL: [](e1_szEQ0 -> 
+        (!(notify_client_event_a1_e1 || notify_client_event_a2_e1) U
+         (e1_szGT0 || 
+          []!(notify_client_event_a1_e1 || notify_client_event_a2_e1))))
+SOURCE: The Chiron Crew
+
+
+REQUIREMENT: (6a) Dispatcher never gives an event to an artist that is not
+             registered for it (either hasn't registered for it yet or has
+             unregistered already).
+REFINEMENT: (6a) Artist without an initial register can't be notified
+PATTERN: Absence
+SCOPE: Before
+CTL: !E[!register_a1_e1 U (notify_event_a1_e1 & !register_a1_e1)]
+LTL:  <>register_a1_e1 -> (!notify_event_a1_e1 U register_a1_e1)
+SOURCE: The Chiron Crew
+
+REQUIREMENT: (6b) Dispatcher never gives an event to an artist that is not
+             registered for it (either hasn't registered for it yet or has
+             unregistered already).
+REFINEMENT: (6b) Artist without an explicit register can't be notified
+PATTERN: Absence
+SCOPE: After-Until
+CTL: AG(unregister_a1_e1 -> 
+        !E[!register_a1_e1 U (notify_client_event_a1_e1 & !register_a1_e1)])
+LTL: [](unregister_a1_e1 -> 
+        (!notify_client_event_a1_e1 U 
+         (register_a1_e1 || []!notify_client_event_a1_e1)))
+SOURCE: The Chiron Crew
+
+REQUIREMENT: (7) The order in which artists register for events of kind 1 is
+             the order in which they are notified of an event of this kind by 
+             the dispatcher. In other words, if artist1 registers for event2
+             before artist2 does, then once dispatcher receives event2 from
+             the ADT, it will first send it to artist1 and then to artist2.
+PATTERN: Constrained Response-Chain (3-1)
+SCOPE: Global
+CTL: !EF(register_a1_e1 &
+         E[!unregister_a1_e1 & !notify_client_event_a1_e1 U
+           (register_a2_e1 & 
+            E[!unregister_a1_e1 & !unregister_a2_e1 & 
+              !notify_client_event_a1_e1 U
+              notify_client_event_a2_e1])])
+LTL: <>term -> 
+     []((register_a1_e1 && 
+         (!unregister_a1_e1 U 
+          (register_a2_e1 && 
+           (!unregister_a1_e1 && !unregister_a2_e1) U notify_artists_e1))) ->
+        <>(notify_artist_e1 &
+           (!notify_client_event_a2_e1 U notify_client_event_a1_e1)))
+NOTE: filter <>term in LTL, used negation of violation of chain for CTL
+SOURCE: The Chiron Crew
+
+
+REQUIREMENT: (8) Size of the linked list used to store IDs of artists
+             registered for event2 never exceeds 2. 
+PATTERN: Absence
+SCOPE: After-Until
+CTL: AG(e1_szEQ2 & (after_register_a1_e1 | after_register_a2_e1) -> 
+        !E[!e1_szLT2 U 
+           ((register_a1_e1 | register_a2_e1) & !e1_szLT2)])
+LTL: [](e1_szEQ2 & (after_register_a1_e1 | after_register_a2_e1) -> 
+        (!(register_a2_e1 || register_a1_e1)) U
+         (e1_szLT2 || []!(register_a2_e1 || register_a1_e1)))
+SOURCE: The Chiron Crew
+
+
+REQUIREMENT:  (14a) An artist cannot unregister unless it is registered.
+REFINEMENT: Unregisters are disallowed from the initial state
+PATTERN: Absence
+SCOPE: Before
+CTL: !E[!register_a1_e1 U (unregister_a1_e1 & !register_a1_e1)
+LTL: <>register_a1_e1 -> (!unregister_a1_e1 U register_a1_e1)
+SOURCE: The Chiron Crew
+
+REQUIREMENT:  (14b) An artist cannot unregister unless it is registered.
+REFINEMENT: Unregisters are disallowed while explicitly registered
+PATTERN: Absence
+SCOPE: After-Until
+CTL: AG(after_unregister_a1_e1 -> 
+        !E[!register_a1_e1 U (unregister_a1_e1 & !register_a1_e1)])
+LTL: [](after_unregister_a1_e1 -> 
+        (!unregister_a1_e1 U (register_a1_e1 || []!unregister_a1_e1)))
+SOURCE: The Chiron Crew
+
+REQUIREMENT: (15a) An artist always unregisters before the program terminates.
+REFINEMENT: The program never terminates with an artist registered.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG( term -> (e1_szEQ0 & e2_szEQ0))
+LTL: []( term -> (e1_szEQ0 && e2_szEQ0))
+SOURCE: The Chiron Crew
+
+
+REQUIREMENT: (15b) An artist always unregisters before the program terminates.
+REFINEMENT: Given that you can't register for the same event twice, we need
+            only check that unregisters respond to registers
+PATTERN: Response
+SCOPE: Before
+CTL: !E[!term U (register_a1_e1 & !term & E[!unregister_a1_e1 U term])]
+LTL: (register_a1_e1 -> (!term U unregister_a1_e1)) U (term | [](!term))
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((NAT=Lautocal & !(NAT=Sautocal & ...)) | 
+        (NAT=Sautocal & !(NAT=Lautocal & ...)) | ...)
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((NavUpd=HUDUpd & !(WD=Nattack & ...)) | 
+        (NavUpd=RadarUpd & !(WD=Nattack & ...)) | ...)
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(NavUpd=AflyUpd -> WD=BOC | WD=SBOC)
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+REQUIREMENT: ?
+PATTERN: Universal
+ALTERNATE: Absence
+SCOPE: Global
+CTL: !EF(WD=Manrip & WD=AA_Guns)
+REWRITING: AG(!WD=Manrip | !WD=AA_Guns)
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((NAT=Mag-sl | NAT=Grid | NAT=IMS-fail) -> !(WD=BOC  | WD=SBOC | ...))
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG AF (sender.state = get)
+SOURCE: Bwolen Yang (Originally from Armin Biere)
+CITE: \cite{biere:97}
+DOMAIN: protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG s.SAFE
+SOURCE: Bwolen Yang (Originally from Klaus Havelund)
+CITE: \cite{havelund:96}
+DOMAIN: protocol
+
+REQUIREMENT: No bus errors
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !bus-error
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: No errors
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !error
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Between (open-closed)
+CTL: AG(b1.p1.writable & b1.p1.data=1 ->
+        !EX E[!(b1.p1.writable | b2.p1.writable | b3.p1.writable) U
+  	      b1.p1.readable & b1.p1.data=0 | 
+              b2.p1.readable & b2.p1.data=0 | 
+              b3.p1.readable & b3.p1.data=0])
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE:  Global
+ALTERNATIVE: Universal
+CTL: AG (!b1.p1.writable | !b1.p2.readable)   
+REWRITING: AG !(b1.p1.writable & b1.p2.readable)   
+NOTES: 7 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (b1.p1.readable & b1.p2.readable -> b1.p1.data=b1.p2.data)  
+NOTES: 5 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (b2.m.memory-line-modified=0 & b1.p1.readable -> b2.m.data=b1.p1.data)
+NOTES: 3 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG EF b1.p1.readable
+NOTES: 6 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE:  Global
+CTL: AG (p1.excl -> !p2.readable)
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (p1.state=shared & p2.state=shared -> p1.data=p2.data)
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (p1.unmodified & m.memory-line-modified=0 -> p1.data=m.data)
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Between (open-closed)
+CTL: AG (p1.writable & p1.data=1 ->
+	!EX E[!(p1.writable | p2.writable) U
+   	      p1.unmodified & p1.data=0 | p2.unmodified & p2.data=0])
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG EF p1.state=shared
+NOTES: 3 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: Contingency Guide terminates
+PATTERN: Response
+SCOPE: Global
+CTL: AG(!cg.idle -> AF(cg.finished))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency guide can be executed infinitely often
+PATTERN:  Unknown
+SCOPE:  Unknown
+CTL: AG((cg.idle | cg.finished) -> 
+        EF(!(cg.idle | cg.finished) & EF(cg.finished)))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency mode select task works fine
+PATTERN: Universal
+SCOPE:  Global
+CTL: AG(cs.cont_3EO_start & cs.region_selected -> 
+         ((cs.m_mode = mm102 | meco_confirmed) &
+          !cs.r = reg-1 & !cs.r = reg0))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Bad (initial) value never happens again once region is computed
+             unless we restart the task
+PATTERN: Absence
+SCOPE: After-Until 
+CTL: AG(!cs.r=reg-1 -> 
+        !E[!cg.start_cont_3eo_mode_select U 
+           cs.r=reg-1 & !cg.start_cont_3eo_mode_select])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cs.r in {reg-1,reg0 ,reg1,reg2,reg3,reg102})
+NOTES: 13 instances
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Mode_select starts at the next step after its "start" bit is set:
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+PARAMETERS: Next formulae
+CTL: AG(!cg.start_cont_3eo_mode_select -> 
+        AX(cg.start_cont_3eo_mode_select & cs.step in {exit, undef} -> 
+                 AX(cs.step = 1 & !cs.region_selected)))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: During major mode 103, the inertial velocity is monitored.
+             Below an I-loaded velocity, a MECO would constitute a contingency
+             abort. (Must NOT be in SMODE=5 (??))
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(cg.start_cont_3eo_mode_select & cs.m_mode = mm103 & 
+        vel = LEQ_vi_3eo_min & meco_confirmed & !smode5 -> 
+            A[!cs.region_selected U cs.region_selected & cs.cont_3EO_start])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Above a certain inertial velocity (in mode 103), the 3E/O field
+             is blanked, indicating that a MECO at this point would not require
+             an OPS 6 contingency abort.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cs.region_selected -> 
+         (cs.m_mode = mm103 & vel = GRT_vi_3eo_max -> !cs.cont_3EO_start))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Between the two velocities, an apogee altitude - velocity curve is 
+             constructed based on the current inertial velocity. If the apogee
+             altitude is above this curve, a contingency abort capability is
+             still required and a 3E/O region index will be calculated. 
+             Otherwise, the 3E/O field is blanked out and no further contingency
+             abort calculations will be performed. (Must NOT be in SMODE=5 (??))
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(cg.start_cont_3eo_mode_select & cs.m_mode = mm103 & 
+        vel = GRT_vi_3eo_min & meco_confirmed & !smode5 ->
+           A[!cs.region_selected U cs.region_selected & 
+              apogee_alt_LT_alt_ref = !cs.cont_3EO_start])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: For an RTLS trajectory (SMODE=5), a check is made on the downrange
+          velocity to see if the vehicle is heading away from the landing site.
+          If this is the case, a 3E/O region index is calculated. If the vehicle
+          is heading back to the landing site, and the current range to the MECO
+          R-V line is greater than an I-loaded value, a 3E/O region index is
+          calculated. Otherwise, an intact abort is possible and the 3E/O field
+          is blanked.
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(cg.start_cont_3eo_mode_select & smode5 &  meco_confirmed &
+        (!v_horiz_dnrng_LT_0 | !delta_r_GRT_del_r_usp) -> 
+          A[!cs.region_selected U cs.region_selected & cs.cont_3EO_start])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: If this task is called prior to SRB separation [mm102], the 3E/O 
+             region index is set to 102 and the 3E/O contingency flag is set.
+PATTERN: Constrained Response (non-empty variation)
+SCOPE: Global
+CTL: AG(cs.m_mode = mm102 & cg.start_cont_3eo_mode_select -> 
+               AX (A [ !cs.region_selected U cs.region_selected & 
+                                cs.r = reg102 & cs.cont_3EO_start]))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: After SRB separation, on every pass that the 3E/O region index is
+             calculated, a check is made to see if MECO confirmed has occured.  
+             If so, a check is made to see if the major mode is 103. If so, 
+             an RTLS is automatically invoked to transition to major mode 601.
+PATTERN: Constrained Response
+SCOPE: Global 
+CTL: AG(!cs.region_selected & cs.m_mode = mm103 & meco_confirmed ->
+        A[!cs.region_selected U cs.region_selected & !cs.r = reg0 -> 
+              cs.m_mode = mm601 & cs.RTLS_abort_declared])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Once the 3E/O contingency flag has been set, this task is no longer
+             executed.
+PATTERN: Absence
+SCOPE: After
+CTL: AG(cs.cont_3EO_start -> AG(!cg.start_cont_3eo_mode_select))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: If MECO confirmed occurs in MM103 and an OPS 6 contingency abort
+             procedure is still required, contingency 3E/O guidance sets the
+             CONT_3EO_START flag ON. Contingency 3E/O guidance then switches
+             from its display support function into an actual auto guidance
+             steering process. Contingency 3E/O guidance sets the RTLS abort
+             declared flag and the MSC performs the transition from from major 
+             mode 103 to 601.
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG(!cg.idle & !cg.finished & !cs.region_selected & cs.m_mode = mm103 -> 
+       A[ !cg.finished U cg.finished & cs.region_selected & 
+           (cs.cont_3EO_start -> cs.m_mode = mm601 & cs.RTLS_abort_declared) ])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: If MECO confirmed occurs in a major mode 601 and a contingency 
+             abort procedure is still required, contingency 3E/O guidance sets 
+             the CONT_3EO_START flag ON. Contingency 3E/O guidance then commands
+             3E/O auto maneuvers in major mode 601.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.finished & cs.m_mode = mm601 & !et_sep_cmd & 
+        meco_confirmed  & cs.cont_3EO_start -> 
+        cg.q_gcb_i in {quat_reg1, quat_reg2, ...} | cg.emerg_sep)
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: If MECO confirmed occurs in a first stage (MM102), contingency
+             3E/O guidance will command a fast ET separation during SRB 
+             tailoff in major mode 102. CONT 3E/O GUID will then command 
+             maneuver post-sep in MM601.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.finished & cs.m_mode = mm102 & meco_confirmed & pre_sep ->
+        cg.emerg_sep | et_sep_cmd | cg.et_sep_man_initiate | cg.early_sep)
+NOTES: 4 instances
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency Guidance shall command an ET separation 
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cs.cont_3EO_start & cg.finished & 
+           (cg.r = reg1 -> cond_29) & 
+           (cg.r = reg2 -> cond_24 & cond_26) &
+           (cg.r = reg3 -> cg.alpha_ok &
+            (ABS_alf_err_LT_alf_sep_err -> cond_20b)) &
+           (cg.r = reg4 -> cond_18 & q_orb_LT_0) &
+           (cg.r = reg102 -> pre_sep) ->
+            et_sep_cmd | cg.et_sep_man_initiate | cg.early_sep | cg.emerg_sep)
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency Guidance shall command at most one 
+             interconnected OMS dump.
+PATTERN: Universal
+SCOPE: After 
+PARAMETERS: Temporal sub-formula
+CTL:     AG(cg.finished & cg.oms_rcs_i_c_inh_ena_cmd -> 
+             AG(!cg.oms_rcs_i_c_inh_ena_cmd -> 
+                AG(!cg.oms_rcs_i_c_inh_ena_cmd)))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency Guidance shall command a transition to glide RTLS
+             (flight mode 602)
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.finished & cs.m_mode = mm601 -> cg.call_RTLS_abort_task)
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Paper, p. 28, unstated assumption 2: at step 6 the region is
+             among 102, 1-4.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.step = 6 -> cg.r in {reg102, reg1, reg2, reg3, reg4})
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: The transition to mode 602 shall not occur until the entry maneuver
+             is calculated
+PATTERN: Precedence
+SCOPE: Global
+CTL: !E[cg.q_gcb_i = undef U cg.cont_sep_cplt & cg.q_gcb_i = undef]
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: The entry maneuver calculations shall not commence until the 
+             OMS/RCS interconnect, if any, is complete.
+PATTERN: Absence 
+SCOPE: After-Until
+CTL: AG(cg.oms_rcs_i_c_inh_ena_cmd -> 
+          !E[rcs_all_jet_inhibit U 
+              !cg.q_gcb_i = undef & rcs_all_jet_inhibit])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: The OMS dump shall not be considered until the -Z translation 
+             is complete.
+PATTERN: Precedence (possibly empty variation)
+SCOPE: Global
+CTL: !E[!cont_minus_z_compl & !cg.r = reg102 U cg.orbiter_dump_ena]
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Completion of -Z translation shall not be checked until ET 
+             separation has been commanded
+PATTERN: Precedence (possibly empty variation)
+SCOPE: Global
+CTL: !E[!et_sep_cmd U cg.step = 7]
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: ET separation shall be commanded if and only if an abort maneuver
+             region is assigned [and again there are *certain conditions*].
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.finished & cs.cont_3EO_start & 
+                  (cg.r = reg1 -> cond_29) & 
+                  (cg.r = reg2 -> cond_24 & cond_26) &
+                  (cg.r = reg3 -> cg.alpha_ok &
+                     (ABS_alf_err_LT_alf_sep_err -> cond_20b)) &
+                  (cg.r = reg4 -> cond_18 & q_orb_LT_0) &
+                  (cg.r = reg102 -> pre_sep) -> 
+          (cg.et_sep_man_initiate | et_sep_cmd
+                 <-> cg.r in {reg1, reg2, reg3, reg4, reg102}))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Regions 1 and 2 may interchange, but will not switch to any 
+             other region
+PATTERN: Universal
+SCOPE: After
+CTL: AG(cg.finished & cs.cont_3EO_start & cg.r in {reg1,reg2} -> 
+        AG(cg.finished -> cg.r in {reg1,reg2}))
+NOTES: 2 instances
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Region 102 never changes:
+PATTERN: Universal
+SCOPE: After
+CTL: AG(cg.finished & cg.r = reg102 -> AG(cg.finished -> cg.r = reg102))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+
+REQUIREMENT: ?
+PATTERN: Unknown
+SCOPE: Global
+CTL: EF(in_f[2]=2)
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: priority queue, data structure
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF(out_l[1]=0)
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: priority queue, data structure
+
+REQUIREMENT: ?
+PATTERN: Unknown
+SCOPE: Global
+CTL: EG(out_l[1]=0)
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: priority queue, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (sort_req -> AF(sort_OK))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(bufsize=3 -> 
+        AF(sim.val <= buffer[1] & sim.val <= buffer[2] & sim.val <= buffer[3]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (bufsize=2 -> AF(sim.val <= buffer[1] & sim.val <= buffer[2]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (bufsize=1 -> AF(sim.val <= buffer[1]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(bufsize=3 -> AF(val <= buffer[1] & val <= buffer[2] & val <= buffer[3]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (bufsize=2 -> AF(val <= buffer[1] & val <= buffer[2]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (bufsize=1 -> AF(val <= buffer[1]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: Whenever currPhase(FeedBelt)=NormalRun then eventually 
+             currPhase(FeedBelt)=CriticalRun
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.FBM=on & !s.deliv) -> AF (s.FBM=on & s.deliv))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Table)=StoppedInLoadPosition
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.FBM=on & s.deliv) -> 
+        AF(s.botPos & s.minRot & s.TEM=idle & s.TRM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Table)=StoppedInUnloadPosition
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.botPos & s.minRot & s.TEM=idle & s.TRM=idle) -> 
+        AF(s.topPos & s.maxRot & s.TEM=idle & s.TRM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: after that eventually currPhase(Robot)=UnloadTable
+             (we take for this the guard of RT2a where A1Mag is assigned to on)
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.topPos & s.maxRot & s.TEM=idle & s.TRM=idle) -> 
+        AF((s.angle=arm1totable & s.A1M=extend) & s.a1ext=ot))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Robot)=LoadPress
+             (we take for this the guard of RT2d where A1Mag is assigned to off)
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((s.angle=arm1totable & s.A1M=extend) & s.a1ext=ot) ->
+        AF((s.angle=arm1topress & s.A1M=extend) & s.a1ext=a1ip))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Press)=OpenForLoading
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((s.angle=arm1topress & s.A1M=extend) & s.a1ext=a1ip) -> 
+        AF(s.midPosP & s.PM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Press)=ClosedForForging
+PATTERN: Response
+SCOPE: Global
+CTL: AG ( (s.midPosP & s.PM=idle) -> AF (s.topPosP & s.PM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Press)=OpenForUnloading
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((s.topPosP & s.PM=idle) -> AF (s.botPosP & s.PM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Robot)=UnloadPress
+             (we take for this the guard of RT2b where A2Mag is assigned to on)
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.botPosP & s.PM=idle) -> 
+        AF((s.angle=arm2topress & s.A2M=extend) & s.a2ext=a2ip))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Robot)=LoadDepositBelt
+             (we take for this the guard of RT2c where A2Mag is assigned to off)
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((s.angle=arm2topress & s.A2M=extend) & s.a2ext=a2ip) ->
+        AF((s.angle=arm2todepbelt & s.A2M=extend) & s.a2ext=ob))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(DepositBelt)=NormalRun
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((s.angle=arm2todepbelt & s.A2M=extend) & s.a2ext=ob) -> 
+        AF(s.DBM=run & !s.crit))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(DepositBelt)=CriticalRun
+PATTERN: Response
+SCOPE: Global
+CTL: AG ( (s.DBM=run & !s.crit) -> AF (s.DBM=run & s.crit))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Crane)=UnloadDepositBelt
+             (we take for this the guard of CT1 where CMag is assigned to on)
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.DBM=run & s.crit) -> 
+        AF(s.gob & s.gvp=ovb & s.CHM=idle & s.CVM=idle & s.CMag=off & s.pbe))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Crane)=LoadFeedBelt
+             (we take for this the guard of CT6 where CMag is assigned to off)
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((s.gob & s.gvp=ovb & s.CHM=idle & s.CVM=idle & s.CMag=off & s.pbe) ->
+         AF (s.CVM=down & s.gvp=ovf & s.gof))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(FeedBelt)=NormalRun
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((s.CVM=down & s.gvp=ovf & s.gof) -> AF (s.FBM=on & !s.deliv))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG AF (step = 0)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG AF (opstep = 17)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(watsol & !material)
+REWRITING: AG(!(watsol & !material))
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(material & !mf34 & !m7 & !m9)
+REWRITING: AG(!(material & !mf34 & !m7 & !m9))
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: !EF EG material
+REWRITING: AG AF !material
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(h = 7)
+REWRITING: AG(!h=7)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: !EF EG(h > 0)
+REWRITING: AG AF (!h>0)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(main_valve & !flame)
+REWRITING: AG(!(main_valve & !flame))
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: !EF EG(pilot_valve & !flame)
+REWRITING: AG AF !(pilot_valve & !flame)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(material & !flame)
+REWRITING: AG !(material & !flame)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(open & close & (step = 0))
+REWRITING: AG !(open & close & (step = 0))
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: !EF EG z
+REWRITING: AG AF !z
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !ND_Auto_SL
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(Composite_RA_Evaluated_Event & DMG_inconsistent)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(Composite_RA = Descend & Composite_RA_Evaluated_Event & 
+          Diff_OTA_GL_LT_NODESLO)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(Radio_Altimeter_Status = Valid & Some_OA_Sense_Descend_Increase
+           & Composite_RA_Evaluated_Event & LE_Own_Alt_Radio_ZNOINCDES)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((Composite_RA = Climb & Composite_RA_Evaluated_Event) -> 
+         GE_Displayed_Model_Goal_Climb_Goal_Table_8)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(Corrective_Descend_Evaluated_Event & Corrective_Climb = Yes & 
+          Corrective_Descend = Yes)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG AF bit2.carry_out
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: counter, hardware
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG(!(e-1.u.ack & e-2.u.ack) & !(e-1.u.ack & e-3.u.ack) & 
+        !(e-2.u.ack & e-3.u.ack))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: dme1, hardware
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG EF (p0.readable)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: gigamax, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG EF (p0.writable)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: gigamax, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(p0.writable & p1.writable)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: gigamax, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Unknown
+SCOPE: Global
+CTL: EF((state1 = c1) & (state2 = c2))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: mutex, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((state1 = t1) -> AF (state1 = c1))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: mutex, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((state2 = t2) -> AF (state2 = c2))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: mutex, protocol
+
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(start_transaction -> AF end_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((!req & issue_next & !b_gnt) -> AF b_gnt)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((b_gnt & !frame) -> AF frame)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(b_trdy_next & frame -> AF end_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(start_transaction -> AF end_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(start_transaction -> AX !start_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(start_transaction -> AX state = address)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(end_transaction -> AX !end_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(end_transaction -> AX state = idle)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG((!req & issue_next) -> AX req)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(b_trdy_next & !abort -> AX b_trdy)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(b_frame_switch -> AX !b_frame_switch)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(b_frame_switch -> b_frame)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(!b_frame -> !b_frame_switch)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !abort
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !abort_count = 3
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Unknown
+SCOPE: Global
+CTL: EG abort_count = 0
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req1 -> A[req1 U (grant = 1 | req0)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req0 -> A[req0 U grant = 0])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req1 & policy = RR) -> A[req1 U grant = 1])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req1 -> A[req1 U (grant = 1 | req0)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req2 -> A[req2 U (grant = 2 | req0 | req1)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req0 -> A[req0 U grant = 0])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req0 -> (A[req0 U grant = 0] | AX !req0))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req1 & policy = RR) -> A[req1 U grant = 1])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req2 & policy = RR) -> A[req2 U grant = 2])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req0 -> A[req0 U grant = 0])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req1 & all_RR) -> A[req1 U grant = 1])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req2 & all_RR) -> A[req2 U grant = 2])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req3 & all_RR) -> A[req3 U grant = 3])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req4 & all_RR) -> A[req4 U grant = 4])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req5 & all_RR) -> A[req5 U grant = 5])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req1 -> A[req1 U (grant = 1 | req0)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req2 -> A[req2 U (grant = 2 | req0 | req1)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req3 -> A[req3 U (grant = 3 | req0 | req1 | req2)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req4 -> A[req4 U (grant = 4 | req0 | req1 | req2 | req3)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req5 -> A[req5 U (grant = 5 | req0 | req1 | req2 | req3 | req5)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req2 & policy = RR) -> (A[req2 U grant = 2] | AX !req2))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: After
+CTL: AG((processor.start_transaction) -> AG !(scsi_ctrl.end_transaction))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !error
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: periodic
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: (AG AF gate1.output) & (AG AF !gate1.output)
+NOTES: Conjoined independent specs
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: ring
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !activation_count = 2
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !error
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(T2pri8 & T3pri8)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(T4pri3 & T5pri3)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(pT1.start -> AF pT1.finish)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: After
+CTL: AG(pT1.start -> AG !pT1.finish)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: After
+CTL: AG(pT5.start -> AG !pT5.finish)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: After
+CTL: AG(pT3.suspend_count = 3 -> AG !timer = 50)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL:  AG (proc1.state = entering -> AF proc1.state = critical)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: semaphore
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL:  AG(request -> AF state = busy)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: short
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((ack-out -> Request) & AF (!Request | ack-out))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: syncarb5, protocol, hardware
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (e5.Request -> AF (!e5.Request | e5.ack-out))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: syncarb5, protocol, hardware
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG (!e1.Request & !e2.Request & !e3.Request & !e4.Request & e5.Request -> 
+         e5.ack-out)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: syncarb5, protocol, hardware
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG (!(e1.ack-out & e2.ack-out) & !(e1.ack-out & e3.ack-out)
+         & !(e2.ack-out & e3.ack-out) & !(e1.ack-out & e4.ack-out)
+         & !(e2.ack-out & e4.ack-out) & !(e3.ack-out & e4.ack-out)
+         & !(e1.ack-out & e5.ack-out) & !(e2.ack-out & e5.ack-out)
+         & !(e3.ack-out & e5.ack-out) & !(e4.ack-out & e5.ack-out))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: syncarb5, protocol, hardware
+
+REQUIREMENT: Pressing a landing button guarantees that the lift will arrive
+             at that landing with its doors open.
+PATTERN: Response
+SCOPE: Global
+LTL: AG(landingButi.pressed -> AF(lift.floor=i & lift.door=open))
+NOTES: This is an examplar for a class of specs for each floor i
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Pressing a landing button guarantees that the lift will arrive
+             at that landing with its doors open, going in a downward direction.
+PATTERN: Response
+SCOPE: Global
+LTL: AG(landingButi.pressed -> AF(lift.floor=i & lift.door=open & 
+                                   lift.direction=down))
+NOTES: This is an examplar for a class of specs for each floor i
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Pressing a lift button guarantees that the lift will arrive
+             at the respective floor with its doors open.
+PATTERN: Response
+SCOPE: Global
+LTL: AG(liftButi.pressed -> AF(floor=i & door=open))
+NOTES: This is an examplar for a class of specs for each floor i
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: An elevator can remain idle on the third floor with its
+             doors closed.
+PATTERN: Unknown
+SCOPE: Global
+LTL: AG(floor=3 & idle & door=closed -> EG(floor=3 & door=closed))
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: An upwards travelling lift at the second floor does not change
+             direction when it has passengers wishing to go to the fifth
+             floor. 
+PATTERN: Response (constrained variation)
+SCOPE: Global
+LTL: AG(floor=2 & direction=up & liftBut5.pressed ->
+        A[direction=up U floor=5])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+
+REQUIREMENT: Service guaranteed for passengers inside lift if not empty
+PATTERN: Response
+SCOPE: Global
+LTL: AG(liftBut3.pressed & !lift.empty -> AF((floor=3 & dor=open) | lift.empty))
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Lift parks at floor 1
+PATTERN: Unknown
+SCOPE: Global
+LTL: AG(floor=4 & idle -> E[idle U floor=1])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+
+REQUIREMENT: Lift calls have preference
+PATTERN: Response (constrained variation)
+SCOPE: Global
+LTL: AG(up & liftBut2.pressed & !liftBut3.pressed ->
+        A[!(floor=3 & doors=open) U ((floor=2 & door=open) | !up)])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Lift will not move while overloaded
+PATTERN: Response (constrained variation)
+SCOPE: Global
+LTL: AG(floor=3 & overloaded ->
+        A[floor=3 U !overloaded])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Doors may close when no overloading
+PATTERN: Unknown
+SCOPE: Global
+LTL: AG(door=open & !overloaded -> E[!overloaded U door=closed])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Impossible to close doors if overloaded
+PATTERN: Absence
+SCOPE: Global
+LTL: AG(!(overloaded & door=closed))
+ORIGINAL: !EF(overloaded & door=closed)
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+
+F. Cassez 
+R. Cleaveland
+
+
+REQUIREMENT: It is impossible to be driving without the key in
+PATTERN: Absence
+SCOPE: Global
+CTL: AG(!(shifter = drive & !(ignition = keyin)))
+SOURCE: Matt Dwyer (CIS 842 course notes Fall, 1997)
+DOMAIN: control, automobile
+  
+REQUIREMENT: If we request a unlock operation the doors will become unlocked
+PATTERN: Response
+SCOPE: Global
+CTL:  AG( remote=unlock -> AF( driver.doorUnlocked & passenger.doorUnlocked &
+                           slider.doorUnlocked & hatch.doorUnlocked))
+SOURCE: Matt Dwyer (CIS 842 course notes Fall, 1997)
+DOMAIN: control, automobile
+
+REQUIREMENT: If car is moving then the  key cannot be out of the ignition.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG( !speed=0 -> !ignition=keyout )
+SOURCE: Matt Dwyer (CIS 842 course notes Fall, 1997)
+DOMAIN: control, automobile
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL:  AG (info_fields = empty ->AF (!info_fields = match_info)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL:  AG ((info_fields = empty) & (!info_fields = match_info)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL:  AG ((info_fields = empty) | (info_fields = match_info)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(match_results=one_match -> 
+        AF(search_state=not_enabled & search_all_names_state=not_enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL:  AG ((match_results = more_than_one_match)   -> AF ((search_state = enabled) & (search_all_names_state = enabled))) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (help_state = open -> AF (help_size = min)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((help_state = closed) & (help_size = min)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Always
+SCOPE: Before
+CTL: A[help_size = max U (help_state = closed | AG(!help_state=closed))] 
+NOTES: Part 1 of 2 part spec
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF help_state = closed
+NOTES: Part 2 of 2 part spec
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((name_fields = entry_made | text_fields = entry_made) -> 
+         AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (!(match_results = no_match) -> AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((clear_selected = selected) -> 
+        AF (search_state = not_enabled & search_all_names_state = not_enabled &
+            view_print_state = not_enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((match_results = one_match) | (match_results = more_than_one_match) -> 
+        AF (view_print_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((display_diamond_state = selected) & !(match_results = no_match)) -> 
+        AF (diamond_info_fields = match_info)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((text_fields = entry_made) | (name_fields = entry_made)) -> 
+        AF ((search_state = enabled) & (clear_state = enabled))) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((text_fields = entry_made) | (name_fields = entry_made)) -> 
+        AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((name_fields = entry_made) ->  AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((name_fields = entry_made) -> 
+        AF ((search_state = enabled) & (search_all_names_state = enabled) &
+            (clear_state = enabled))) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(!match_results=no_match -> 
+        AF((text_fields = match_info) & (name_fields = match_info) & 
+           (info_fields = match_info))) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: If there is a match and diamond state is selected then 
+             diamond fields will have the match info.
+PATTERN: 2-1 Response Chain
+SCOPE: Global
+CTL: !EF(!match_results=no_match & 
+         EX(EF(display_diamond_state=selected & 
+               EG(!diamond_info_fields=match_info))))
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (!(match_results = no_match) -> AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF (text_fields = entry_made) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF (match_results = one_match) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF (match_results = more_than_one_match) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (clear_state = enabled) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((name_fields = empty)  -> (search_all_names_state = enabled))
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((match_results = no_match) ->  (view_print_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Before
+CTL: A[help_size = min U (help_state = open | AG(!help_state=open)]
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((help_size = min) & (help_state = closed))
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(((search_all_names_state = entry_made) &  
+         !(match_results=no_match)) -> (search_all_names_state = not_enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((menustate=file) & (menuaction=mexit)->AF(systemstate=terminated)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((menustate=file) & (menuaction=mexit)->AF(systemstate=terminated)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (tastate=error))->AF(taaction=errok)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=error))->AF(tiaction=errok)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=valid) & (tiaction=ok) & validid) ->
+        AF(tistate=complete))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & !(tiready) & !(tiaction=cancel) & changeid)->
+         AF(tistate=entry)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((systemstate=ti & tistate=entry & tiaction=ok)-> AF(tistate=idle)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=idle)  & (tiaction=ok)&validid)-> 
+        AF(tistate=valid))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=idle) & (tiaction=ok) & (!validid)) ->
+        AF(tistate=error))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((systemstate=ta) & (taaction=cancel)->AF(tastate=terminated)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(systemstate=ta->AF(menuaction=moff)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(systemstate=ta->AF(menustate=none))  
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (tastate=terminated) & 
+         (menustate=none) & (menuaction=moff))-> AF(systemstate=m))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((systemstate=ti) & (tiaction=cancel) -> AF(tistate=terminated)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(systemstate=ti)->AF(menuaction=moff) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(systemstate=ti)->AF(menustate=none)  
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=terminated) & 
+        (menustate=none) & (menuaction=moff))->AF(systemstate=m))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((taaction=click)->AF(tastate=dest))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (tastate=dest) & (taaction=off) & (fieldstate=0))->
+         AF(tastate=empty)) 
+NOTES: 3 instances
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (taaction=save))->AF(tastate=saved))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (taaction=submit)& !tavalid)->AF(tastate=error)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (taaction=submit)& tavalid)->AF(tastate=submitted))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(systemstate=ta) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(systemstate=terminated) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(systemstate=m)  
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(systemstate=ti) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(ActiveTrans = RecvQtyOKLI1 -> AF ActiveTrans = CheckOrdStatus)
+NOTES: 14 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(ActiveTrans = CheckOrdStatus -> AF ActiveTrans = none)
+NOTES: 3 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(ActiveTrans = PrnLI1 -> AF ActiveTrans = PrnLI2)
+NOTES: 2 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: The status never goes from unit to these values, so it can only go
+             to open or remain in unit.
+PATTERN: Existence
+SCOPE: Between
+CTL: AG((Status = uninit) -> 
+	!E[Status = uninit U 
+   	  (Status = inprogress | Status = shipped | Status = closed)])
+NOTES: 5 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: An open order may be deleted and have the value uninit.
+PATTERN: Unknown
+SCOPE: Unknown
+CTL: EF((Status = open) -> E[Status = open U Status = uninit])
+NOTES: 8 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: When either line-item is shipped and the other line-item is not 
+             open or inprogress, the order is shipped.
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((li1.Status = shipped & 
+        !(li2.Status = open | li2.Status = inprogress)) |
+         (li2.Status = shipped & 
+        !(li1.Status = open | li1.Status = inprogress)) ->
+	AF(Status = shipped))
+NOTES: 6 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: When the line-item.Status = shipped the Receipt Qty Correct 
+             button is enabled.  The user presses this button to indicate 
+             that the receipt quantity for the line-item is acceptable.  
+             The line-item Status will become closed if the receipt qty not 
+             equal the shipped quantity as specified in the first SPEC.  
+             To allow this transaction to be undone, the RecvQtyEqShipQty 
+             is set to false.
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((Enabled & ((li.LINo = 1 & EnvPress = RecvQtyOKLI1) | 
+                     (li.LINo = 2 & EnvPress = RecvQtyOKLI2)) & 
+         	!li.RandomRecvQtyEqShipQty & li.Status = shipped & 
+		ActiveTrans = none & running) -> 
+      AF(li.Status = closed & !li.RecvQtyEqShipQty))
+NOTES: 21 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: Verifies that the above implication's antecedent is true some time
+PATTERN: Unknown
+SCOPE: Unknown
+CTL: EF(Enabled & ((li.LINo = 1 & EnvPress = RecvQtyOKLI1) | 
+                     (li.LINo = 2 & EnvPress = RecvQtyOKLI2)) & 
+         	!li.RandomRecvQtyEqShipQty & li.Status = shipped & 
+		ActiveTrans = none & running) 
+NOTES: 21 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+
+
+REQUIREMENT: Every p is followed by an r and between the p and the r, q is true
+PATTERN: Constrained Response
+SCOPE: Global
+LTL: [] (p -> q U r)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: cr1 and cr2 are never both true
+PATTERN: Absence
+SCOPE: Global
+LTL: [] !(cr1 && cr2)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Every UP is followed by a DOWN
+PATTERN: Response
+SCOPE: Global
+LTL: [] (up -> (<> down))
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Every p is followed by a q
+PATTERN: Response
+SCOPE: Global
+LTL: [] (p -> <>q)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Every b is followed by an r but no np_
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: [] (b -> ([] !np_ && <>r))
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+NOTE: combination of "No np_ after b" and "r responds to b"
+
+REQUIREMENT: Eventually bp
+PATTERN: Existence
+SCOPE: Global
+LTL:  <> bp
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Infinitely often, A is followed by D and between A and D, C is true
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: []<> (a -> (c U d))
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Infinitely often, A is followed by D
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: []<> (a -> <> d))
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: If p1 is always followed by p2 and p3 is always followed by p4, then p5 is always followed by p6
+PATTERN: Response
+SCOPE: Global
+LTL: [] ((p1 -> <>p2) && (p3 -> <>p4)) -> [](p5 -> <>p6)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+NOTE: boolean combination of response patterns
+
+REQUIREMENT: In the first two states, either p then q or q then p
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: (p && X q) || (q && X p)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Eventually A, B, and B until C. 
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: <> ((a && b) && b U c)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Eventually p until q
+PATTERN: Existence
+SCOPE: Global
+LTL: <> (p U q)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+EQUIVALENT: <> q
+
+REQUIREMENT: Eventually always p
+PATTERN: Existence
+SCOPE: Global
+LTL: <>[] p
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Always p until not p
+PATTERN: Always
+SCOPE: Global
+LTL: [] (p U !p)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+EQUIVALENT: true
+
+
+REQUIREMENT: If f characterizes the legitimate global state, then we want to
+             prove that always eventually f holds
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal formula (<>)
+LTL: []<>f
+SOURCE: SPIN'96 Paper on Self-stabilizing \cite{}, pp. 6, part 1
+DOMAIN: Communication Protocol
+
+REQUIREMENT: If f characterizes the legitimate global state, then we want to
+             prove that always eventually f holds
+PATTERN: Universal
+SCOPE: After
+PARAMETERS: Proposition
+LTL: [](f -> []f)
+SOURCE: SPIN'96 Paper on Self-stabilizing \cite{}, pp. 6, part 1
+DOMAIN: Communication Protocol
+
+REQUIREMENT: Always eventually transition aftsCC is taken
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal (<>)
+LTL: []<>aftsCC  
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: Eventually transition aftsCC is taken
+PATTERN: Existence
+SCOPE: Global
+PARAMETERS: Temporal (<>)
+LTL: <>aftsCC  
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: After transition CC is taken, transition DR will never be taken. 
+PATTERN: Absence
+SCOPE: After
+PARAMETERS: Propositions
+LTL: [](aftsCC -> !<>aftsDR)
+REWRITING: [](aftsCC -> []!aftsDR)
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: After transition CR is taken, transition CC will be taken.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: [](aftsCR -> <>aftsCC)
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: ?? 
+PATTERN: Existence
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: aftsCR -> <>(aftsCC || aftsDR)
+NOTE: Propositional fragment or existence
+REWRITING: !aftsCR || <>(aftsCC || aftsDR)
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: ??
+PATTERN: Filter=GlobalUniversal+GlobalAbsence
+SCOPE: Global
+PARAMETERS: Temporal(<>) and Propositions
+LTL: ([]<>aftsDR) -> !<>aftsCC 
+NOTE: Converted to absence
+REWRITING: ([]<>aftsDR) -> []!aftsCC 
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: If at least one member exists in a LAN, the Bridge must 
+             eventyally recognize it.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Temporal([])
+LTL: [](p -> <>[]q)
+SOURCE: Tadashi Nakatani \cite{nakatani:97}, pp. 8
+DOMAIN: Communication Protocol
+
+REQUIREMENT: There is no duplication of blanks 
+NOTE: These are embedded as assertions in the promela, we could
+      express them as: after-absence and global-response[rcvblank,sndblank]
+PATTERN: Absence
+SCOPE: After
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: There is no loss of blanks 
+NOTE: These are embedded as assertions in the promela, we could
+      express them as: after-absence and global-response[rcvblank,sndblank]
+PATTERN: Response
+SCOPE: Global
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: Sequence numbers of sent blanks are preserved when they
+             are received by the container
+NOTE: This is embedded as an assertion in the promela, we could
+      express it as: 2-2 response-chain
+PATTERN: 2-2 Response Chain
+SCOPE: Global
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: Each blank that is received will eventually be forged.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional (equality comparison with constant)
+NOTE: Conjunction of m response patterns
+LTL: [](P(0) -> <>Q(0)) && ... && [](P(m) -> <>Q(m))
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: There are no collisions between the press and the robot.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositional 
+LTL: [](pressing -> (!arm1_in_press && !arm2_in_press))
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: For all ports p numbered from, say 0 to m, if p is created 
+             then the related channel needs to be empty.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositional (very large formulae)
+LTL: []((P(0) -> Q(0)) && ... && (P(m) -> Q(m)))
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 4
+DOMAIN: Operating System
+
+REQUIREMENT: The manager always eventually does a treatment when a request
+             is sent to it. 
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+LTL: []((State=INIT && request) -> <>(State=WORK))
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 5
+DOMAIN: Operating System
+
+REQUIREMENT: The manager always returns in its initial state after a treatment.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+LTL: [](State=WORK -> <>(State=INIT))
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 5
+DOMAIN: Operating System
+
+REQUIREMENT: The manager always does a treatment when requested then returns
+             to its initial state.
+PATTERN: Response Chain 1-2
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+LTL: []((State=INIT && request) -> 
+        <>(!State=INIT && (!State=INIT -> <>(State=INIT))))
+REWRITING: []((State=INIT && request) -> <>(!State=INIT && <>(State=INIT))))
+NOTE: Eliminated the next from the response-chain pattern for simplicity.
+      This requirement is the conjunction of the previous 2, it took
+      the authors 5 derivation steps to produce it and it still includes
+      some redundancy.
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 6
+DOMAIN: Operating System
+
+REQUIREMENT: FIFO buffers have to be empty at the end of a communication
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+LTL: [](EndOfCommunication -> BufferEmpty)
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 6
+DOMAIN: Operating System
+
+REQUIREMENT: No pair of synchronizations on channel to_medium can occur
+             without an intervening broadcast delivery.
+PATTERN: Absence
+SCOPE: After-until
+LTL: [](Synch(to_medium) -> 
+        !Synch(to_medium) U (Broadcast | []!Synch(to_medium)))
+NOTE: They only give the english requirement
+SOURCE: Jensen, Larsen and Skou \cite{jensen:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: Messages received must correspond to the receivers id.
+PATTERN: Absence
+SCOPE: Global
+PARAMETERS: Propositions (variable comparison)
+LTL: []!data==id
+NOTE: They only give the english requirement
+SOURCE: Jensen, Larsen and Skou \cite{jensen:96}, fig. 6
+DOMAIN: Communication Protocol
+
+REQUIREMENT: In a safe domain there is a single MCS provider at the top
+             of each domain.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: [](safe -> one_top)
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: In a safe domain the height in every domain is always bounded.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: [](safe -> bounded_height)
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: In a safe domain every client attached to a domain has unique
+             identifiers.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: [](safe -> unique_ids)
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: In a merging domain, the protocol always detects and removes
+             cycles in MCS connections.
+PATTERN: Response
+SCOPE: Global 
+PARAMETERS: Propositions 
+LTL: [](merging -> <>safe)
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: While a domain is in a merging state, no new use identifiers
+             will be assigned.
+PATTERN: Absence
+SCOPE: After-until
+PARAMETERS: Propositions
+LTL: [](merging -> !(new_id U safe))
+NOTE: This spec either encodes some implicit assumptions or is wrong.
+REWRITING: [](merging -> !new_id U (safe | []!new_id))
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: The process Shunt does not signal free way to the train if the
+             Level Crossing is not closed.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions 
+NOTE: Limited details, but implemented as an assertion 
+LTL: [](SignalFreeWay && !LevelCrossingClosed)
+SOURCE: Cimmatti et. al.  \cite{cimmatti:97}, pp. 9
+DOMAIN: Railway Control
+
+REQUIREMENT: The SL never issues contradictory PD controls during a cycle.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositions 
+NOTE: Limited details, but, implemented using assertion 
+LTL: []((PDcontrolX && <>EndCycle) -> !PDcontrolContraX U EndCycle)
+SOURCE: Cimmatti et. al.  \cite{cimmatti:97}, pp. 9
+DOMAIN: Railway Control
+
+REQUIREMENT: If the free way was signalled to the train, and the level
+             crossing was closed with a manual command, then the manual
+             command RESTORE-AUTOMATIC-MODE must leave the level crossing
+             closed.
+PATTERN: Response 
+SCOPE: Global
+PARAMETERS: Propositions 
+NOTE: No details given for LTL formula, so its unclear what parts of
+      the system are modeled as states vs. events.
+LTL: []((SignalFreeWay && LevelCrossingClosed) -> 
+        <>(complete_RESTORE-AUTOMATICMODE && LevelCrossingClosed))
+SOURCE: Cimmatti et. al.  \cite{cimmatti:97}
+DOMAIN: Railway Control
+
+REQUIREMENT: A task releases all its locks before it terminates
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions (somewhat complex boolean function)
+NOTE: This is implemented as an assertion
+LTL: [](return_Achieving_Task -> not_subscriber(this,p.memory_property))
+SOURCE: Havelund, Lowry and Penix \cite{havelund:98}, pp. 43
+DOMAIN: Space Craft Control
+
+REQUIREMENT: If an inconsistency occurs between the database and an entry
+             in the lock table, then all tasks that rely on the lock will 
+             be terminated, either by themselves or by the daemon in terms
+             of abort.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerated and finite-range integer expressions)
+LTL: [](task1_property_broken -> <>task1_terminated)
+SOURCE: Havelund, Lowry and Penix \cite{havelund:98}, pp. 45
+DOMAIN: Space Craft Control
+
+REQUIREMENT: In all taks, if task1_property_broken holds, then eventually
+             either task1_terminated or task1_property_repaired will hold.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerated and finite-range integer expressions)
+LTL: [](task1_property_broken -> 
+        <>(task1_terminated || task1_property_repaired))
+SOURCE: Havelund, Lowry and Penix \cite{havelund:98}, pp. 51
+DOMAIN: Space Craft Control
+
+REQUIREMENT: When a server requests for its registration in the ROT, it
+             will eventually be registered.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (boolean vector)
+LTL: [](RequestedRegisterImpl[i] -> <>ServerRegistered[i])
+NOTE: this is replicated for all modeled servers
+SOURCE: Gregory Duval \cite{duval:98}, RI, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: When a client i asks for a server j reference, it will 
+             eventually get the reference.  Unless the server is not
+             registered yet.
+PATTERN: Existence
+SCOPE: After-Until
+PARAMETERS:  Propositions (integer and boolean array expressions)
+LTL:  [](RequestGetIOR[i]=j -> (ServerRegistered[j] U GetIOR(i)))
+NOTE: Replicated for all modeled clients and servers.  The original
+      LTL is expressed with W (weak-until) as:
+        [](RequestGetIOR[i]=j -> <>(GetIOR(i) W !ServerRegistered[j]))
+SOURCE: Gregory Duval \cite{duval:98}, IOR, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: For an ordinary send/receive : When a client makes a method
+             call to a server, it will eventually receive the result of
+             its call if the server is OK.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS:  Propositions (boolean arrays)
+LTL: [](ClientSend[i] -> <>ClientRecv[i])
+NOTE: Replicated for all modeled clients
+SOURCE: Gregory Duval \cite{duval:98}, SR, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: When a client makes a one way send, the server must eventually
+             receive data.
+PATTERN: Response
+SCOPE: Global 
+PARAMETERS:  Propositions (boolean arrays)
+LTL: [](ClientSend[i] -> <>ServerRecv[i])
+NOTE: Replicated for all modeled clients and servers
+SOURCE: Gregory Duval \cite{duval:98}, OW, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: For a Defered Synchronous Request : When the client waits for
+             the result from the Request process, it will eventually get it.
+PATTERN: Response
+SCOPE: Global 
+PARAMETERS:  Propositions (boolean arrays)
+LTL: [](ClientAskResult[i] -> <>ClientGetResult[i])
+NOTE: Replicated for all modeled clients 
+SOURCE: Gregory Duval \cite{duval:98}, DSR, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: When the name server makes a call to a test_implementation 
+             method of a remote server, the result of its call must be
+             equal to the reference of the server which is registered
+             in the ROT, Unless the server is not registered yet.
+PATTERN: Unknown
+SCOPE:   Unknown
+PARAMETERS: Propositions (relative variable values)
+LTL: 
+NOTE: Replicated for all servers.  The original LTL is expressed with W
+      (weak-until) as:
+        [](TestImplKey[j]=ReceivedKey W !ServerRegistered[j]) 
+SOURCE: Gregory Duval \cite{duval:98}, TIR, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: For each client the received integer is equal to the sent one
+             plus two.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions (relative values of variables) 
+LTL: [](ReceivedInteger = (SentInteger + 1))
+SOURCE: Gregory Duval \cite{duval:98}, SC1, pp. 47
+DOMAIN: Distributed Object System
+
+
+REQUIREMENT: On any iteration, customer 3 starts before customer 2 starts.
+PATTERN: Universal 
+SCOPE: Global
+CTL:  AG(cust_3_started -> cust_2_started)
+NOTES: For model with flag variables added
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: scheduling algorithm
+
+REQUIREMENT: On any iteration, customer 3 starts before customer 2 starts.
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((sched__2=s2) -> A[!(sched__3=s3)U(sched__2=s3)])
+QRE:  {cust_2_start,cust_3_start} none
+      [-cust_2_start,cust_3_start]*;
+      (cust_2_start; [-cust_3_start]*;
+       cust_3_start; [-cust_2_start,cust_3_start]*)*;
+      cust_3_start; [cust_2_start,cust_3_start]*
+INCA: (defquery "no_c3c2" "nofair"
+      (omega-star-less
+       (sequence
+        (interval :initial t :open t
+   	          :ends-with '((rend "sched_1;sched_2.next")
+                               (rend "sched_2;cust_3.start")))
+       )))
+NOTE: Problems with matching up state/event names make it difficult to
+      confirm the use of QRE and INCA mappings.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: scheduling algorithm
+
+
+REQUIREMENT: On any iteration, can customer 2 start twice without an 
+             intervening call to finish.
+PATTERN: Absence
+SCOPE: Global
+CTL:  AG(!error)
+NOTES: For model with flag for customer_2 finishing and error flag set to 
+       true if customer_2 is started when the cust_2_finished flag is true.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: scheduling algorithm
+
+
+REQUIREMENT: On any iteration, can customer 2 start twice without an 
+             intervening call to finish.
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL:  AG((sched__2=s3) -> A[!(sched__2=s2)U((sched__2=s5) |  (sched__2=s8))])
+INCA: (defquery "no_c2ss" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t 
+                   :ends-with '((rend "sched_2;cust_2.start")))
+         (interval :ends-with '((rend "sched_2;cust_2.start"))
+                   :forbid '((rend "cust_2;sched_2.finished)))
+        )))
+QRE: {customer_2_start,scheduler_2_finished} all
+     [-customer_2_start]*;
+     (customer_2_start; [-customer_2_start,scheduler_2_finished]*;
+      scheduler_2_finished; [-customer_2_start]*)*
+NOTES: The QRE is an exact match of the varied mapping.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: scheduling algorithm
+
+REQUIREMENT: If solver_3 is forked, is it possible for solver_1 to join the 
+             main task before solver_3 has joined solver_2?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((solver_1=s3) -> ((solver_3_forked & solver_3_joined) | 
+                          !solver_3_forked))
+NOTES: For model with flags for solver_3_forked and solver_3_joined.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: parallel computation
+
+
+REQUIREMENT: If solver_3 is forked, is it possible for solver_1 to join the
+             main task before solver_3 has joined solver_2?
+PATTERN: Unknown
+SCOPE: Unknown
+CTL: EF((solver__1=s2) & ((sover__3=s3) | (solver__3=s5)))
+INCA: (defquery "no_s1js3j" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :ends-with '((rend "main;solver_1.join"))
+                   :require '((rend "solver_2;solver_3.fork"))
+                   :forbid '((rend "solver_2;solver_22.join")))
+        )))
+QRE: {solver_1_join,solver_3_fork,solver_3_join} all
+     [-solver_1_join,solver_3_fork,solver_3_join]*;
+     ((solver_3_fork; [-solver_1_join,solver_3_join]*;
+       solver_3_join; [-solver_1_join]*;
+       solver_1_join)
+      |
+       solver_1_join);
+     [solver_1_join,solver_3_fork,solver_3_join]*
+NOTES: INCA and QREs appear to ask the negation of requirement
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: parallel computation
+
+
+REQUIREMENT: Is solver_3 forked on every execution of the program?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((solver_1=s2) -> solver_3_forked)
+NOTES: For model with flags for solver_3_forked.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: parallel computation
+
+
+REQUIREMENT: Is solver_3 forked on every execution of the program?
+PATTERN: Existence
+SCOPE: Global
+CTL: A[!(main=s3) U ((solver__3=s3) | (solver__3=s5))]
+INCA: (defquery "no_s3f" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :ends-with '((rend "main;solver_1.join"))
+                   :forbid '((rend "solver_2;solver_3.fork)))
+        )))
+QRE: {solver_1_join,solver_3-fork} all
+     [-solver_1_join,solver_3_fork]*; solver_3_fork;
+     [solver_1_join,solber_3_fork]*
+NOTES: Pattern/scope based on QRE.  Why not use AF for the CTL?  
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: parallel computation
+
+
+REQUIREMENT: Can two adjacent philosophers ever be eating at the same time?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(((phil__1=s3) -> !(phil__2=s3)) & ((phil__2=s3) -> !(phil__1=s3)))
+INCA: (defquery "no_p1p2" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '((rend "phil_1;fork_1.up") 
+                                (rend "phil_2;fork_2.up)))
+        )))
+QRE: {phil_1_start_eating,phil_1_stop_eating,
+      phil_2_start_eating,phil_2_stop_eating} all
+     [-phil_1_start_eating,phil_2_start_eating]*;
+     (((phil_1_start_eating; [-phil_2_start_eating,phil_1_stop_eating]*; 
+        phil_1_stop_eating) |
+       (phil_2_start_eating; [-phil_1_start_eating,phil_2_stop_eating]*;
+        phil_2_stop_eating));
+      [-phil_1_start_eating,phil_2_start_eating]*)*
+NOTES: Its very difficult to factor out the disjunction/conjuntion encoding
+       of the QRE to see the (trivial) mapping.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: dining philosophers
+
+
+REQUIREMENT: Can philosopher i ever start eating while holding the dictionary?
+PATTERN:  Universal
+SCOPE: Global
+CTL: AG((phil_2=s3) -> !holding_dictionary)
+NOTES: For model with holding_dictionary variable.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: dining philosophers with dictionary
+
+REQUIREMENT: Can philosopher i ever start eating while holding the dictionary?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((phil__2=s6) -> A[!(phil__2=s4)U(phil__2=s1)])
+INCA: (defquery "no_p2d" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '((rend "phil_1;phil_2.dictionary")))
+         (interval :ends-with '((rend "phil_2;fork_2.up"))
+                   :forbid '((rend "phil_2;phil_3.dictionary")))
+        )))
+QRE: {phil_2_dictionary,phil_2_dictionary,phil_2_eating} all
+     [-phil_2_dictionary]*;
+     (phil_2_dictionary; [-phil_2_eating,phil_3_dictionary]*;
+      phil_3_dictionary; [-phil_2_citionary]*)*
+NOTES: CTL requires FAIRNESS constraint phil_2=s1.  Exact match on QRE mapping.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: dining philosophers with dictionary
+
+
+REQUIREMENT: Can an elevator ever be moved while its doors are open?
+PATTERN: Absence 
+SCOPE: Global
+CTL: AG(!error)
+NOTES: For model door open and error variables
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, elevator
+
+
+REQUIREMENT: Can an elevator ever be moved while its doors are open?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+INCA: (defquery "no_omc" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t 
+                   :ends-with '((rend "doorman_1;elevator.open_door_1")))
+         (interval :ends-with '((rend "elevator_1;controller.at_floor"))
+                   :forbid '((rend "doorman_1;elevaotr.close_door_1")))
+       )))
+QRE: {elevator_open_door_1,elevator_close_door_1,elevator_1_moved} all
+     [-elevator_open_door_1]*;
+     (elevator_open_door_1; [-elevator_close_door_1,elevator_1_moved]*;
+      elevator_close_door_1 [-elevator_open_door_1]*)*;
+NOTES: Pattern/scope based on matching of mappings for both QRE and INCA 
+       to other requirements in this collection (see 2 above) . 
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, elevator
+
+REQUIREMENT: Can an elevator ever be shut down while it has pending requests?
+PATTERN:  Universal
+SCOPE: Global
+CTL: AG((elevator_1=s3) -> elev_1_idle)
+NOTES: For model with elev_1_idle variable
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, elevator
+
+REQUIREMENT: Can an elevator ever be shut down while it has pending requests?
+PATTERN:  Response (constrained variation)
+SCOPE: Global
+INCA: (defquery "no_omc_con" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '((rend "elevator;elevator_1.set_direction")))
+         (interval :ends-with '((rend "driver;controller.shut_down"))
+                   :forbid '((rend "elevator-task;elevator_1-task.set_idle")))
+        )))
+QRE: {elevator_1_set_idle,elevator_1_set_direction,controller_shut_down} all
+     [-elevator_1_set_direction,controller_shut_down]*;
+     elevator_1_set_direction; [-elevator_1_set_idle,controller_shut_down]*;
+     elevator_1_set_idle; [-elevator_1_set_direction,controller_shut_down]*)*;
+     controller_shut_down
+NOTES: Missing open paren in QRE, INCA is constrained response
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, elevator
+
+
+REQUIREMENT: Can two customers ever be pumping on the same pump at the
+             same time?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(((customer_1=s5) -> !(customer_2=s5)) & 
+        ((customer_2=s5) -> !(customer_1=s5)))
+INCA: (defquery "no_c1c2" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '("call(cust_1-task;pump_1-task.start_pumping)"
+                                "call(cust_2-task;pump_1-task.start_pumping)"))
+       )))
+QRE: {cust_1_start_pumping,cust_1_stop_pumping,
+      cust_2_start_pumping,cust_2_stop_pumping} none
+     [-cust_1_start_pumping,cust_2_start_pumping]*
+     (((cust_1_start_pumping; [-cust_2_start_pumping,cust_1_stop_pumping]*;
+        cust_1_start_pumping) |
+       (cust_2_start_pumping; [-cust_1_start_pumping,cust_1_stop_pumping]*;
+        cust_2_stop_pumping)); 
+      [-cust_1_start_pumping,cust_2_start_pumping]*)*;
+     ((cust_1_start_pumping; [-cust_2_start_pumping,cust_1_stop_pumping]*;
+       cust_2_start_pumping) |
+      (cust_2_start_pumping; [-cust_1_start_pumping,cust_2_stop_pumping]*;
+       cust_1_start_pumping));
+     [cust_1_start_pumping,cust_1_stop_pumping,
+      cust_2_start_pumping,cust_2_stop_pumping]*
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, Ada program
+
+REQUIREMENT: Can a customer ever prepay on one pump and get change based on
+             the charge from the other pump?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cust_1_pump_2_change -> !prepay_1_pump_1)
+NOTES: For model with variables prepay_1_pump_1 and cust_1_pump_2_change.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, Ada program
+
+
+REQUIREMENT: Can a customer ever prepay on one pump and get change based on
+             the charge from the other pump?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((customer__1_task=s4) -> 
+        A[!(customer__1_task=s1) U 
+          ((operator_task=s29) |(operator_task=s24) |
+           (operator_task=s14) | (operator_task=s20))]) 
+INCA: (defquery "no_c1p2" "nofair"
+   (omega-star-less
+    (sequence
+     (interval :initial t :open t 
+       :ends-with '(
+         (rend "operator-task;customer_1-task.operator-prepay_1_pump_1-end")))
+     (interval :ends-with '((rend "operator-task;customer_1-task.change"))
+               :require '((rend "pump_2-task;operator-task.charge_1_pump_2"))
+               :forbid '((rend "pumpt_1-task;operator-task.charge_1_pump_1")))
+    )))
+QRE: [operator_prepay_1_pump_1,cust_1_pump_1_change,cust_1_pump_2_change} all
+     [-operator_prepay_1_pump_1]*;
+     operator_prepay_1_pump_1; [-cust_1_pump_1_change,cust_1_pump_2_change]*;
+     cust_1_pump_1_change; [-operator_prepay_1_pump_1]*)*
+NOTES: CTL required fairness constraint for customer__1_task=s1.  QRE is
+       exact match for varied mapping.  INCA doesn't seem to be.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, Ada program
+
+REQUIREMENT: On any iteration in the main task, can task 3 be started before
+             task 2?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(t_2_first)
+NOTES: For model with t_2_started and t_2_first variables.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: Ada program
+
+
+REQUIREMENT: On any iteration in the main task, can task 3 be started before
+             task 2?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((t__1=s3) -> A[!(t__3=s3) U (t__2=s3)])
+INCA: (defquery "no_t3t2" "nofair"
+   (omega-star-less
+    (sequence
+     (interval :initial t :open t :ends-with '((rend "main;t_1.start")))
+     (interval :ends-with '((rend "main;t_2.start"))
+               :forbid '((rend "main;t_2.start")))
+    )))
+QRE: {task_1_start, task_3_start} none
+     [-task_1_start, task_3_start]*;
+     (task_1_start; [-task_3_start]*;
+      task_3_start; [-task_1_start, task_3_start]*)*;
+     task_3_start; [task_1_start,task_3_start]*
+NOTES: INCA seems to match, but the QRE uses a none formulation so it
+       doesn't match.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: Ada program
+
+REQUIREMENT: Can two users ever be in the critical section at the same time?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(((!(user__1=s1) & !(user__1=s2) & !(user__1=s4) & !(user__1=s12)
+          !(user__1=s21) & !(user__1=s27) & !(user__1=s28)) ->
+         ((user__2=s1) | (user__2=s2) | (user__2=s4) | (user__2=s12) |
+          (user__2=s21) | (user__2=s27) | (user__2=s28)) ) ...)
+INCA: (defquery "no_u1u2" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '("call(user_1-task;crit_sect-task.cs_start)"
+                                "call(user_2-task;crit-sect-task.cs_start)"))
+      )))
+QRE: {user_1_in_crit_sect,user_1_not_in_crit_sect,
+      user_2_in_crit_sect,user_2_not_in_crit_sect} none
+     [-user_1_in_crit_sect,user_2_in_crit_sect]*;
+     (((user_1_in_crit_sect; [-user_2_in_crit_sect,user_1_not_in_crit_sect]*;
+        user_1_not_in_crit_sect) |
+       (user_2_in_crit_sect; [-user_1_in_crit_sect,user_2_not_in_crit_sect]*;
+        user_2_not_in_crit_sect));
+      [-user_1_not_in_crit_sect,user_2_not_in_crit_sect]*)*;
+     ((user_1_in_crit_sect; [-user_2_in_crit_sect,user_1_not_in_crit_sect]*;
+       user_2_in_crit_sect) |
+      (user_2_in_crit_sect; [-user_1_in_crit_sect,user_2_not_in_crit_sect]*;
+       user_1_in_crit_sect));
+     [user_1_in_crit_sect,user_1_not_in_crit_sect,
+      user_2_in_crit_sect,user_2_not_in_crit_sect]*
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: memory management
+
+
+
+REQUIREMENT: Can the system ever be shut down while a user is allocating memory?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((final=s3) -> !user_1_allocating)
+NOTES: For model with user_1_allocating variable
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: memory management
+
+REQUIREMENT: Can the system ever be shut down while a user is allocating memory?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((user__1=s2) -> A[!(final-s4)U((user__1=s4) | (user__1=s27))])
+INCA:
+  (defquery "no_sdu1a" "nofair"
+   (omega-star-less
+    (sequence
+     (interval :initial t :open t
+               :ends-with '("internal(user-task_1;user_1_allocating)"))
+     (interval :ends-with '((rend "final;driver.final-go-end"))
+               :forbid '("internal(user-task_1;user_1_not_allocating)"))
+    )))
+QRE: {user_1_allocating,user_1_not_allocating,mmg_crit_sect_whoa} none
+     [-user_1_allocating,user_1_not_allocating,mmg_crit_sect_whoa]*;
+     (user_1_allocating; [-user_1_not_allocating,mmg_crit_sect_whoa]*;
+      user_1_not_allocating; [-user_1_allocating,user_1_not_allocating,
+                              mmg_crit_sect_whoa]*)*;
+     user_1_allocating; [-user_1_not_allocating,mmg_crit_sect_whoa]*;
+     mmg_crit_sect_whoa; [user_1_allocating,user_1_not_allocating,
+                          mmg_crit_sect_whoa]*
+NOTES: CTL required fairness constraint user__1=s27.  INCA is a match, but
+       QRE doesn't because it uses a none formulation. 
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: memory management
+
+
+REQUIREMENT: Can two adjacent masters ever be using the resource at the 
+             same time?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(((master_1=s3) -> !(master_2=s3)) & ((master_2=s3) -> !(master_1=s3))
+INCA: (defquery "no_m1m2" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t
+                 :ends-with '((rend "server_1;master_1.server_1-request-end")
+                              (rend "server_2;master_2.server_2-request-end")))
+        )))
+QRE: {master_1_start_using,server_1_release,
+      master_2_start_using,server_2_release} all
+     [-master_1_start_using,master_2_start_using]*;
+     (((master_1_start_using; [-master_2_start_using,server_1_release]*;
+        server_1_release) |
+       (master_2_start_using; [-master_1_start_using,server_2_release]*;
+        server_2_release));
+      [-master_1_start_using,master_2_start_using]*)*
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: mutex protocol
+

@@ -1,0 +1,912 @@
+<!--#set var="title" value="Property Pattern Mappings for Inca" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p>This page describe mappings for property patterns in Inca. For other information about the patterns click on the pattern links.</p>
+
+<p>Information about the entire pattern system is available at
+the <a href="/">Specification Patterns Home Page</a>.</p>
+
+<p>Where more than one Inca query is given for a particular pattern/scope pair, all of the given queries must be checked to verify the requirement.</p>
+
+<hr>
+
+<h1>Pattern Mappings</h1>
+
+<hr>
+
+<p><a name="Absence"></a><a href="absence.shtml">Absence</a></p>
+
+<p><tt>P</tt> is false:
+
+<center>
+<table border="2" cellspacing="3" cellpadding="10" >
+	    <tr> <td align=left>Globally</td>                           
+	      <td align=left><tt > <pre>(defquery "global_absence_of_p" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("P"))
+    )))</pre></tt></td> </tr>
+	    <tr> <td align=left>Before <tt>R</tt></td>                  
+	      <td align=left><tt ><pre>(defquery "absence_of_p_before_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("R") :require '("P"))
+    )))
+		</pre></tt></td> </tr>
+	    <tr> <td align=left>After <tt>Q</tt></td>                   
+	      <td align=left><tt ><pre>(defquery "absence_of_p_after_q" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :ends-with '("P"))
+    )))
+		</pre></tt></td> </tr>
+	    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>  
+	      <td align=left><tt ><pre>(defquery "absence_of_p_between_q_and_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :opent t :ends-with '("Q"))
+    (interval :ends-with '("R") :require '("P"))
+    )))</pre></tt></td> </tr>
+	    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>  
+	      <td align=left><tt ><pre>(defquery "absence_of_p_after_q_until_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("P") :forbid '("R"))
+    )))
+		</pre></tt></td> </tr>
+	  </table>
+	</center></p>
+
+<hr>
+
+<p><a name="Existence"></a><a href="existence.shtml">Existence</a></p>
+
+<p><tt>P</tt> becomes true:
+
+	<center>
+	  <table border="2" cellpadding="10" cellspacing="3">
+	    <tr> <td align=left>Globally</td>
+	      <td align=left><tt ><pre>(defquery "global_existence_of_p" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :intitial t :forbid '("P"))
+    (interval :perpetual t :forbid '("P"))  
+    )))</pre></tt></td> </tr>
+	    <tr> <td align=left>Before <tt>R</tt></td>
+	      <td align=left><tt ><pre>(defquery "existence_of_p_before_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("R") :forbid '("P"))
+    )))</pre></tt></td> </tr>
+	    <tr> <td align=left>After <tt>Q</tt></td>
+	      <td align=left><tt ><pre>(defquery "existence_of_p_after_q" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :forbid '("P"))
+    (interval :perpetual t :forbid '("P"))
+    )))</pre></tt></td> </tr>
+	    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+	      <td align=left><tt ><pre>(defquery "existence_of_p_between_q_and_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("R") :forbid '("P"))
+    )))</pre></tt></td> </tr>
+	    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+	      <td align=left><tt ><pre>(defquery "existence_of_p_after_q_until_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("R") :forbid '("P"))
+    )))
+(defquery "existence_of_p_after_q_until_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :forbid '("P"))
+    (interval :perpetual t :forbid '("P"))
+    )))</pre></tt></td> </tr>
+	  </table>
+	</center></p>
+
+<hr>
+
+<p><a name="Bounded"></a><a href="bounded.shtml">Bounded Existence</a></p>
+
+<p>In these mappings we illustrate one instance of the bounded existence
+	pattern, where the bound is at most k designated events.</p>
+
+<p><tt>P</tt> occurs at most k times:
+
+	<center>
+	  <table border="2" cellpadding="10" cellspacing="3">
+
+	    <tr> <td align=left>Globally</td>
+	      <td align=left><tt>
+		<pre>(defquery "p_occurs_at_most_k_times_globally" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial :constraints '((> "P" k)))
+    )))</pre>
+	      </tt></td> </tr>
+
+	    <tr> <td align=left>Before <tt>R</tt></td>
+	      <td align=left><tt>
+		<pre>(defquery "p_occurs_at_most_k_times_before_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("R")
+	      :constraints '((> "P" k)))
+    )))</pre>
+	      </tt></td></tr>
+
+	    <tr> <td align=left>After <tt>Q</tt></td>
+	      <td align=left><tt>
+		<pre>(defquery "p_occurs_at_most_k_times_after_q" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :constraints '((> "P" k)))
+    )))</pre>
+	      </tt></td> </tr>
+
+	    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+	      <td align=left><tt>
+		<pre>(defquery "p_occurs_at_most_k_times_between_q_and_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("R") :constraints '((> "P" k)))
+    )))</pre>
+	      </tt></td> </tr>
+
+	    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+	      <td align=left><tt>
+		<pre>(defquery "p_occurs_at_most_k_times_after_q_until_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval ::constraints '((> "P" k)) :forbid '("R"))
+    )))</pre>
+	      </tt></td> </tr>
+
+	  </table>
+	</center></p>
+
+<hr>
+
+<p><a name="Universality"></a><a href="universality.shtml">Universality</a></p>
+
+<p>Specifying universality in an event-based formalism requires
+	the identification of complementary events.  The positive
+	event, <tt>P</tt>, is defined such that after an occurrence of
+	<tt>P</tt> states have the property.  The negative event,
+	<tt>N</tt>, is defined such that after an ocurrence of
+	<tt>N</tt> states fail to have the property.  Then we define
+	universality throughout a scope as having seen a <tt>P</tt>
+	prior to the beginning of the scope with no <tt>N</tt> until
+	after the close of the scope.</p>
+
+<p>Our assumption is that the initial state of the system has
+	  the desired property.</p>
+
+<p>The property holds:
+
+	<center>
+	  <table border="2" cellspacing="3" cellpadding="10" >
+	      <tr> <td align=left>Globally</td>
+		<td align=left><tt ><pre>(defquery "property_holds_globally" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("N"))
+    )))</pre></tt></td> </tr>
+	      <tr> <td align=left>Before <tt>R</tt></td>
+		<td align=left><tt ><pre>(defquery "property_holds_before_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t: :ends-with '("R") :require '("N"))
+    )))</pre>
+		</tt></td> </tr>
+	      <tr> <td align=left>After <tt>Q</tt></td>
+		<td align=left><tt ><pre>(defquery "property_holds_after_q-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q") :forbid '("N"))
+    (interval :ends-with '("N"))
+    )))
+(defquery "property_holds_after_q-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t  :open t :ends-with '("P"))
+    (interval :ends-with '("Q") :forbid '("N"))
+    (interval :ends-with '("N"))
+    )))</pre>
+		</tt></td> </tr>
+	      <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+		<td align=left><tt ><pre>(defquery "property_holds_between_q_and_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q") :forbid '("N"))
+    (interval :ends-with '("R") :require '("N"))
+    )))
+(defquery "property_holds_between_q_and_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t  :open t :ends-with '("P"))
+    (interval :ends-with '("Q") :forbid '("N"))
+    (interval :ends-with '("R") :require '("N"))
+    )))</pre></tt></td> </tr>
+	      <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+		<td align=left><tt ><pre>(defquery "property_holds_after_q_until_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q") :forbid '("N"))
+    (interval :ends-with '("R"))
+    )))
+(defquery "property_holds_after_q_until_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t  :open t :ends-with '("P"))
+    (interval :ends-with '("Q") :forbid '("N"))
+    (interval :ends-with '("N"))
+    )))</pre>
+		</tt></td> </tr>
+	    </table>
+	  </center></p>
+
+<hr>
+
+<p><a name="Precedence"></a><a href="precedence.shtml">Precedence</a></p>
+
+<p><tt>S</tt> precedes <tt>P</tt>:
+
+	<center>
+	  <table border="2" cellpadding="10" cellspacing="3">
+	    <tr> <td align=left>Globally</td>
+	      <td align=left><tt><pre>(defquery "s_precedes_p_globally" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("P") :forbid '("S"))
+    )))</pre>
+	      </tt></td></tr>
+
+	    <tr> <td align=left>Before <tt>R</tt></td>
+	      <td align=left><tt><pre>(defquery "s_precedes_p_before_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("P") :forbid '("S" "R"))
+    (interval :ends-with '("R"))
+    )))</pre>
+	      </tt></td></tr>
+
+	    <tr> <td align=left>After <tt>Q</tt><bf></bf></td>
+	      <td align=left><tt><pre>(defquery "s_precedes_p_after_q" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :ends-with '("P") :forbid '("S"))
+    )))</pre>
+	      </tt></td></tr>
+
+	    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+	      <td align=left><tt><pre>(defquery "s_precedes_p_between_q_and_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("P") :forbid '("S" "R"))
+    (interval :ends-with '("R"))
+    )))</pre>
+	      </tt></td></tr>
+
+	    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+	      <td align=left><tt><pre>(defquery "s_precedes_p_after_q_until_r" "nofair"
+  (omega-star-less
+   (sequence 
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("P") :forbid '("S" "R"))
+    )))</pre>
+	      </tt></td></tr>
+	  </table>
+	</center></p>
+
+<hr>
+
+<p><a name="Response"></a><a href="response.shtml">Response</a></p>
+
+<p><tt>S</tt> responds to <tt>P</tt>:
+
+	<center>
+	  <table border="2" cellpadding="10" cellspacing="3">
+	    <tr> <td align=left>Globally</td>
+	      <td align=left><tt><pre>(defquery "s_responds_to_p_globally" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P"))
+    (interval :forbid '("S"))
+    (interval :perpetual t :forbid '("S"))
+    )))</pre>
+	      </tt></td></tr>
+	    <tr> <td align=left>Before <tt>R</tt></td>
+	      <td align=left><tt><pre>(defquery "s_responds_to_p_before_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))</pre>
+	      </tt></td></tr>
+	    <tr> <td align=left>After <tt>Q</tt></td>
+	      <td align=left><tt><pre>(defquery "s_responds_to_p_after_q" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :open t :ends-with '("P"))
+    (interval :forbid '("S"))
+    (interval :perpetual t :forbid '("S"))
+    )))</pre>
+	      </tt></td></tr>
+	    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+	      <td align=left><tt><pre>(defquery "s_responds_to_p_between_q_and_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))</pre>
+	      </tt></td></tr>
+	    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+	      <td align=left><tt><pre>(defquery "s_responds_to_p_after_q_until_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))
+(defquery "s_responds_to_p_after_q_until_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :forbid '("S" "R"))
+    (interval :perpetual t :forbid '("S" "R"))
+    )))</pre>
+	      </tt></td></tr>
+	  </table>
+	</center></p>
+
+<hr>
+
+<p><a name="Precedence-Chain"></a><a name=Precedence-Chain><a href="precedence-chain.shtml">Precedence Chain</a></p>
+
+<p>This illustrates the 2 cause-1 effect precedence chain.</p>
+
+<p><tt>S, T</tt> precedes <tt>P</tt>:
+
+	  <center>
+	    <table border="2" cellpadding="10" cellspacing="3">
+	      <tr> <td align=left>Globally</td>
+		<td align=left><tt >
+		  <pre>(defquery "s-t_precedes_p_globally-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("P") :forbid '("S"))
+    )))
+(defquery "s-t_precedes_p_globally-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("S") :forbid '("P"))
+    (interval :ends-with '("P") :forbid '("T"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>Before <tt>R</tt></td>
+		<td align=left><tt >
+		  <pre>(defquery "s-t_precedes_p_before_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("P") :forbid '("S" "R"))
+    (interval :ends-with '("R"))
+    )))
+(defquery "s-t_precedes_p_before_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("S") :forbid '("P" "R"))
+    (interval :ends-with '("R") :require '("T"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>After <tt>Q</tt></td>
+		<td align=left><tt >
+		  <pre>(defquery "s-t_precedes_p_after_q-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :ends-with '("P") :forbid '("S"))
+    )))
+(defquery "s-t_precedes_p_after_q-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :ends-with '("S") :forbid '("P"))
+    (interval :ends-with '("P") :forbid '("T"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_precedes_p_between_q_and_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("P") :forbid '("S" "R"))
+    (interval :ends-with '("R"))
+    )))
+(defquery "s-t_precedes_p_between_q_and_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("S") :forbid '("P" "R"))
+    (interval :ends-with '("P") :forbid '("T" "R"))
+    (interval :ends-with '("R"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_precedes_p_after_q_until_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("P") :forbid '("S" "R"))
+    )))
+(defquery "s-t_precedes_p_after_q_until_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("S") :forbid '("P" "R"))
+    (interval :ends-with '("P") :forbid '("T" "R"))
+    )))</pre>
+		</tt></td> </tr>
+	    </table>
+	  </center></p>
+
+<p>This illustrates the 1 cause-2 effect precedence chain.</p>
+
+<p><tt>P</tt> precedes <tt>(S, T)</tt>:
+
+	  <center>
+	    <table border="2" cellpadding="10" cellspacing="3">
+	      <tr> <td align=left>Globally</td>
+		<td align=left><tt>
+		  <pre>(defquery "p_precedes_s-t-globally" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("T") :forbid '("P") :require '("S"))
+    )))</pre>
+		</tt></td></tr>
+
+	      <tr> <td align=left>Before <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "p_precedes_s-t_before_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("S") :forbid '("P" "R"))
+    (interval :ends-with '("R") :require '("T"))
+    )))</pre>
+		</tt></td></tr>
+
+	      <tr> <td align=left>After <tt>Q</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "p_precedes_s-t_after_q" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :ends-with '("S") :forbid '("P"))
+    (interval :ends-with '("T"))
+    )))</pre>
+		</tt></td></tr>
+
+	      <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "p_precedes_s-t_between_q_and_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("S") :forbid '("P" "R"))
+    (interval :ends-with '("R") :require '("T"))
+    )))</pre>
+		</tt></td></tr>
+
+	      <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "p_precedes_s-t_after_q_until_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :ends-with '("S") :forbid '("P" "R"))
+    (interval :ends-with '("T") :forbid '("R"))
+    )))</pre>
+		</tt></td></tr>
+	    </table>
+	  </center></p>
+
+<hr>
+
+<p><a name="Response-Chain"></a><a name=Response-Chain><a href="response-chain.shtml">Response Chain</a></p>
+
+<p>This illustrates the 2 stimulus-1 response chain.</p>
+
+<p><tt>P</tt> responds to <TT>S,T</TT>:
+
+	  <center>
+	    <table border="2" cellpadding="10" cellspacing="3">
+	      <tr> <td align=left>Globally</td>
+		<td align=left><tt>
+		  <pre>(defquery "p_responds_to_s-t-globally" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("S"))
+    (interval :ends-with '("T"))
+    (interval :forbid '("P"))
+    (interval :perpetual t :forbid '("P"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>Before <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "p_responds_to_s-t_before_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("T") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("P"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>After <tt>Q</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "p_responds_to_s-t_after_q" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :open t :ends-with '("S"))
+    (interval :ends-with '("T"))
+    (interval :forbid '("P"))
+    (interval :perpetual t :forbid '("P"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "p_responds_to_s-t_between_q_and_r" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("T") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("P"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "p_responds_to_s-t_after_q_until_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("T") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("P"))
+    )))
+(defquery "p_responds_to_s-t_after_q_until_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("T") :forbid '("R"))
+    (interval :forbid '("P" "R"))
+    (interval :perpetual t :forbid '("P" "R"))
+    )))</pre>
+		</tt></td> </tr>
+
+	    </table>
+	  </center></p>
+
+<p>This illustrates the 1 stimulus-2 response chain.</p>
+
+<p><tt>S,T</tt> responds to <TT>P</TT>:
+
+	  <center>
+	    <table border="2" cellpadding="10" cellspacing="3">
+	      <tr> <td align=left>Globally</td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_responds_to_p_globally-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P"))
+    (interval :forbid '("S"))
+    (interval :perpetual t :forbid '("S"))
+    )))
+(defquery "s-t_responds_to_p_globally-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P"))
+    (interval :ends-with '("S"))
+    (interval :forbid '("T"))
+    (interval :perpetual t :forbid '("T"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>Before <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_responds_to_p_before_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))
+(defquery "s-t_responds_to_p_before_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("T"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>After <tt>Q</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_responds_to_p_after_q-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :open t :ends-with '("P"))
+    (interval :forbid '("S"))
+    (interval :perpetual t :forbid '("S"))
+    )))
+(defquery "s-t_responds_to_p_after_q-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :open t :ends-with '("P"))
+    (interval :ends-with '("S"))
+    (interval :forbid '("T"))
+    (interval :perpetual t :forbid '("T"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_responds_to_p_between_q_and_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))
+(defquery "s-t_responds_to_p_between_q_and_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("T"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_responds_to_p_after_q_until_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))
+(defquery "s-t_responds_to_p_after_q_until_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("T"))
+    )))
+(defquery "s-t_responds_to_p_after_q_until_r-3" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :forbid '("S" "R"))
+    (interval :perpetual t :forbid '("S" "R"))
+    )))
+(defquery "s-t_responds_to_p_after_q_until_r-4" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :forbid '("T" "R"))
+    (interval :perpetual t :forbid '("T" "R"))
+    )))</pre>
+		</tt></td> </tr>
+	    </table>
+	  </center></p>
+
+<hr>
+
+<p><a name="Constrained"></a><a name=Constrained><a href="constrained.shtml">Constrained Chain Patterns</a></p>
+
+<p>This is the 1-2 response chain constrained by a single event.</p>
+
+<p><tt>S,T</tt> without <tt>Z</tt> responds to <tt>P</tt>:
+
+	  <center>
+	    <table border="2" cellpadding="10" cellspacing="3">
+	      <tr> <td align=left>Globally</td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_without_z_responds_to_p_globally-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P"))
+    (interval :forbid '("S"))
+    (interval :perpetual t :forbid '("S"))
+    )))
+(defquery "s-t_without_z_responds_to_p_globally-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P"))
+    (interval :ends-with '("S"))
+    (interval :forbid '("T"))
+    (interval :perpetual t :forbid '("T"))
+    )))
+(defquery "s-t_without_z_responds_to_p_globally-3" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P"))
+    (interval :ends-with '("S"))
+    (interval :ends-with '("T") :require '("Z"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>Before <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_without_z_responds_to_p_before_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))
+(defquery "s-t_without_z-responds_to_p_before_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("T"))
+    )))
+(defquery "s-t_without_z-responds_to_p_before_r-3" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("T") :forbid '("R") :require '("Z"))
+    (interval :ends-with '("R"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>After <tt>Q</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_without_z-responds_to_p_after_q-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :open t :ends-with '("P"))
+    (interval :forbid '("S"))
+    (interval :perpetual t :forbid '("S"))
+    )))
+(defquery "s-t_without_z-responds_to_p_after_q-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :open t :ends-with '("P"))
+    (interval :ends-with '("S"))
+    (interval :forbid '("T"))
+    (interval :perpetual t :forbid '("T"))
+    )))
+(defquery "s-t_without_z-responds_to_p_after_q-3" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :ends-with '("Q"))
+    (interval :open t :ends-with '("P"))
+    (interval :ends-with '("S"))
+    (interval :ends-with '("T") :require '("Z"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_without_z-responds_to_p_between_q_and_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))
+(defquery "s-t_without_z-responds_to_p_between_q_and_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("T"))
+    )))
+(defquery "s-t_without_z-responds_to_p_between_q_and_r-3" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("T") :require '("Z"))
+    (interval :ends-with '("R"))
+    )))</pre>
+		</tt></td> </tr>
+
+	      <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+		<td align=left><tt>
+		  <pre>(defquery "s-t_without_z-responds_to_p_after_q_until_r-1" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("S"))
+    )))
+(defquery "s-t_without_z-responds_to_p_after_q_until_r-2" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("R") :forbid '("T"))
+    )))
+(defquery "s-t_without_z-responds_to_p_after_q_until_r-3" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("T") :require '("Z"))
+    (interval :ends-with '("R"))
+    )))
+(defquery "s-t_without_z-responds_to_p_after_q_until_r-4" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :forbid '("S" "R"))
+    (interval :perpetual t :forbid '("S" "R"))
+    )))
+(defquery "s-t_without_z-responds_to_p_after_q_until_r-5" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :forbid '("T" "R"))
+    (interval :perpetual t :forbid '("T" "R"))
+    )))
+(defquery "s-t_without_z-responds_to_p_after_q_until_r-6" "nofair"
+  (omega-star-less
+   (sequence
+    (interval :initial t :open t :ends-with '("Q"))
+    (interval :open t :ends-with '("P") :forbid '("R"))
+    (interval :ends-with '("S") :forbid '("R"))
+    (interval :ends-with '("T") :require '("Z"))
+    )))</pre>
+		</tt></td> </tr>
+	      
+	    </table>
+	  </center></p>
+
+<!--#include virtual="/footer.shtml" -->

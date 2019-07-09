@@ -1,0 +1,329 @@
+<!--#set var="title" value="Property Pattern Mappings for LTL" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p>This page describe mappings for property patterns in linear
+temporal logic (LTL).</p>
+
+<P>Some of the mappings use the weak until operator (W) which is related
+to the strong until operator (U) by the following equivalences:
+<pre>
+p W q = ([]p) | (p U q)
+      = <>(!p) -> (p U q)
+      = p U (q | []p)
+</pre>
+
+<p>This operator often makes the mappings easier to understand (thanks
+to William Chan for suggesting this).</p>
+
+<p>For other information about the patterns click on the pattern links.</p>
+
+<p>For information about the meaning of scopes look
+<a href="scopes.shtml">here</a>.</p>
+<p>Information about the entire pattern system is available at
+the <a href="/">Specification Patterns Home Page</a>.</p>
+
+<hr>
+
+<h1>Pattern Mappings</h1>
+
+<hr>
+
+<p><a name=Absence><a href="absence.shtml">Absence</a></p>
+
+<p><tt>P</tt> is false :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><code>[](!P)</code></td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><code><>R -> (!P U R)</code></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><code>[](Q -> [](!P))</code></td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><code>[]((Q & !R & <>R) -> (!P U R))</code></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><code>[](Q & !R -> (!P W R))</code></td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Existence><a href="existence.shtml">Existence</a></p>
+
+<p><tt>P</tt> becomes true :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><code><>(P)</code></td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><code>!R W (P & !R)</code></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><code>[](!Q) | <>(Q & <>P))</code></td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><code>[](Q & !R -> (!R W (P & !R))) </code></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><code>[](Q & !R -> (!R U (P & !R)))</code></td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Bounded> <a href="bounded.shtml">Bounded Existence</a></p>
+
+<p>In these mappings we illustrate one instance of the bounded existence
+ pattern, where the bound is at most 2 designated states.  Other
+ bounds can be specified by variations on this mapping. <br>
+ transitions to <tt>P</tt>-states occur at most 2 times :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><code>(!P W (P W (!P W (P W []!P))))</code></td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+<>R -> ((!P & !R) U (R | ((P & !R) U
+         (R | ((!P & !R) U (R | ((P & !R) U
+            (R | (!P U R)))))))))</pre></td> </tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><code>
+        <>Q -> (!Q U (Q & (!P W (P W (!P W (P W []!P))))))
+        </code></td> </tr>
+
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+[]((Q & <>R) ->
+   ((!P & !R) U (R | ((P & !R) U
+     (R | ((!P & !R) U (R | ((P & !R) U
+       (R | (!P U R))))))))))</pre></td> </tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+[](Q -> ((!P & !R) U (R | ((P & !R) U
+          (R | ((!P & !R) U (R | ((P & !R) U
+            (R | (!P W R) | []P)))))))))</pre></td> </tr>
+
+
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Universality> <a href="universality.shtml">Universality</a></p>
+
+<p><tt>P</tt> is true :
+ <center>
+ <table border="2" cellspacing="3" cellpadding="10">
+    <tr> <td align=left>Globally</td>
+         <td align=left><tt>[](P)</tt></td> </tr>
+    <tr> <td align=left>Before <tt>R</tt></td>
+         <td align=left><tt><>R -> (P U R)</tt></td> </tr>
+    <tr> <td align=left>After <tt>Q</tt></td>
+         <td align=left><tt>[](Q -> [](P))</tt></td> </tr>
+    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+         <td align=left><tt>[]((Q & !R & <>R) -> (P U R))</tt></td> </tr>
+    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+         <td align=left><tt>[](Q & !R -> (P W R))</tt></td> </tr>
+ </table>
+ </center></p>
+ 
+<hr>
+
+<p><a name=Precedence> <a href="precedence.shtml">Precedence</a></p>
+
+<p><tt>S</tt> precedes <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>!P W S</tt></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt><>R -> (!P U (S | R))</tt></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>[]!Q | <>(Q & (!P W S))</tt></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><tt>[]((Q & !R & <>R) -> (!P U (S | R)))</tt></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><tt>[](Q & !R -> (!P W (S | R)))</tt></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Response><a href="response.shtml">Response</a></p>
+
+<p><tt>S</tt> responds to <tt>P</tt> :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>[](P -> <>S)</tt></td></tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt><>R -> (P -> (!R U (S & !R))) U R</tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>[](Q -> [](P -> <>S))</tt></td></tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><tt>[]((Q & !R & <>R) -> (P -> (!R U (S & !R))) U R)</tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><tt>[](Q & !R -> ((P -> (!R U (S & !R))) W R)</tt></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Precedence-Chain> <a href="precedence-chain.shtml">Precedence Chain</a></p>
+
+<p>This illustrates the 2 cause-1 effect precedence chain.</p>
+
+<p><tt>S, T</tt> precedes <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt >
+  <>P -> (!P U (S & !P & o(!P U T)))
+   </tt></td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt >
+  <>R -> (!P U (R | (S & !P & o(!P U T))))
+   </tt></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt >
+  ([]!Q) | (!Q U (Q & <>P -> (!P U (S & !P & o(!P U T))))
+   </tt></td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><tt>
+  []((Q & <>R) -> (!P U (R | (S & !P & o(!P U T)))))
+   </tt></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><tt>
+  [](Q -> (<>P -> (!P U (R | (S & !P & o(!P U T))))))
+   </tt></td> </tr>
+</table>
+</center></p>
+
+<p>This illustrates the 1 cause-2 effect precedence chain.</p>
+
+<p><tt>P</tt> precedes <tt>(S, T)</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>(<>(S & o<>T)) -> ((!S) U P))</tt></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt>
+  <>R -> ((!(S & (!R) & o(!R U (T & !R)))) U (R | P))
+                </tt></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>
+  ([]!Q) | ((!Q) U (Q & ((<>(S & o<>T)) -> ((!S) U P)))
+              </tt></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><tt>
+  []((Q & <>R) -> ((!(S & (!R) & o(!R U (T & !R)))) U (R | P)))
+              </tt></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><tt>
+  [](Q -> (!(S & (!R) & o(!R U (T & !R))) U (R | P) | [](!(S & o<>T))))
+              </tt></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Response-Chain><a href="response-chain.shtml">Response Chain</a></p>
+
+<p>This illustrates the 2 stimulus-1 response chain.</p>
+
+<p><tt>P</tt> responds to <TT>S,T</TT>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>
+  [] (S & o<> T -> o(<>(T & <> P)))
+        </tt></td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt>
+  <>R -> (S & o(!R U T) -> o(!R U (T & <> P))) U R
+        </tt></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>
+ [] (Q -> [] (S & o<> T -> o(!T U (T & <> P))))
+        </tt></td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><tt>
+  [] ((Q & <>R) -> (S & o(!R U T) -> o(!R U (T & <> P))) U R)
+   </tt></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+[] (Q -> (S & o(!R U T) -> o(!R U (T & <> P))) U
+    (R | [] (S & o(!R U T) -> o(!R U (T & <> P)))))</pre></td> </tr>
+</table>
+</center></p>
+
+<p>This illustrates the 1 stimulus-2 response chain.</p>
+
+<p><tt>S,T</tt> responds to <TT>P</TT>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>
+  [] (P -> <>(S & o<>T))
+        </tt></td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt>
+  <>R -> (P -> (!R U (S & !R & o(!R U T)))) U R
+        </tt></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>
+ [] (Q -> [] (P -> (S & o<> T)))
+        </tt></td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><tt>
+  [] ((Q & <>R) -> (P -> (!R U (S & !R & o(!R U T)))) U R)
+   </tt></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+[] (Q -> (P -> (!R U (S & !R & o(!R U T)))) U
+    (R | [] (P -> (S & o<> T))))</pre></td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Constrained><a href="constrained.shtml">Constrained Chain Patterns</a></p>
+
+<p>This is the 1-2 response chain constrained by a single proposition.</p>
+
+<p><tt>S,T</tt> without <tt>Z</tt> responds to <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>
+  [] (P -> <>(S & !Z & o(!Z U T)))
+        </tt></td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt>
+  <>R -> (P -> (!R U (S & !R & !Z & o((!R & !Z) U T)))) U R
+        </tt></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>
+ [] (Q -> [] (P -> (S & !Z & o(!Z U T))))
+        </tt></td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><tt>
+  [] ((Q & <>R) -> (P -> (!R U (S & !R & !Z & o((!R & !Z) U T)))) U R)
+   </tt></td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+[] (Q -> (P -> (!R U (S & !R & !Z & o((!R & !Z) U T)))) U
+    (R | [] (P -> (S & !Z & o(!Z U T)))))</pre></td> </tr>
+</table>
+</center></p>
+
+<!--#include virtual="/footer.shtml" -->

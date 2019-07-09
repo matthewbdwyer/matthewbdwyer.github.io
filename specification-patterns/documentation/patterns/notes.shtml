@@ -1,0 +1,261 @@
+<!--#set var="title" value="Property Specification Pattern Notes" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p>The patterns provided in this system cover a broad range of
+requirements for real systems.  Your requirement, however,
+may require you to adapt existing patterns slightly
+to better express your intended property.
+There are a number of ways in which this variation can take place, e.g.,
+parameterization of patterns, combination of patterns,
+and variation in pattern scopes.</p>
+
+<hr>
+
+<p><b>Pattern Parameterization</b></p>
+
+<p>Pattern mappings are presented in terms of place-holder symbols
+(e.g. <tt>P,Q,R,S</tt>) that are to be replaced by users
+when writing actual specifications.  These place holders are filled
+with descriptions of specific system states or events of interest.
+These descriptions can be more complex than just a single proposition
+or event name.  Here are a few typical examples:</p>
+
+
+<p>For Logics (e.g., <a href="ctl.shtml">CTL</a>, <a href="ltl.shtml">LTL</a>)</p>
+<ul>
+<li> Purely propositional formula can always be used to describe a state.
+This includes simple negations, disjunctions, conjunctions and implications.
+<li> State-formulae that include temporal operators can also be used (e.g.,
+<code>[]!init</code> responds to <code>init</code> globally would be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<tt>[](init -> <>[]!init)</tt><br>
+Care must be taken in using such state-formulae, since the 
+meaning of the resulting specification can be quite subtle.
+This is especially true when using scopes that may have an end point,
+i.e., before, between and after-until.  Consider a requirement
+that before the first <code>shutdown</code> state we would like it to
+be the case that <code>request</code>s are <code>respond</code>ed to.
+We know that a succesful response has the form:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<tt>[](request -> <>respond)</tt><br>
+and we might be tempted to use this as a parameter in 
+a before-scope universality pattern.  The resulting formula: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<tt><>shutdown -> (([](request -> <>respond)) U shutdown)</tt><br>
+however, does not express the correct requirement.  In particular the
+<code><></code> operator when embedded in the scope
+does not take into account the fact that the search for <code>respond</code> should
+terminate upon encountering <code>shutdown</code>.  One can modify this by
+expanding the <code><></code> to its until form, e.g., <code>true U respond</code>,
+then requiring that throughout the search the <code>shutdown</code> is 
+absent (this is similar to the constrained response discussed below). 
+The resulting formula is:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<tt><>shutdown -> (([](request -> (!shutdown U respond))) U shutdown)</tt><br>
+</ul>
+
+<p>For <a href="qre.shtml">QREs</a></p>
+
+<p>Each portion of a specification "matches" some portion of program
+behavior.  This "matching", which is inherent to an automata based
+specification model, means that a portion of input is consumed for
+each portion of a specification.  This has some implications for
+the way's that patterns can be parameterized.
+<ul>
+<li> Choice among a collection of events (e.g., disjunction) 
+can be handled relatively simply by using symbol classes 
+(e.g., <tt>[x,y,z]</tt>).
+<li> Requiring a sequence of events is also simple 
+(e.g., <tt>x;y;z</tt>), although such a sequence implies
+that there are no intervening events in the sequence.
+<li> Notions of conjunction (i.e. having all of a collection of
+events occur) are significantly more complex to specify.  In this
+case it is necessary to explicitly describe the possible
+orderings of the constituent events (e.g., <tt>x;y</tt>,
+<tt>y;x</tt>).  The same caveat about intervening events
+holds here as well.
+<li> Given the "matching" as consumption model of QREs, it is not
+possible to "look ahead" in the computation to formulate descriptions
+of certain points in the execution (e.g., as the lookahead for
+<tt>r</tt> in the LTL formula
+<tt><>r -> !q U r</tt> does).
+</ul>
+<hr>
+
+<p><b>Pattern Combinations</b></p>
+
+<p>A system's specification usually consists of a collection of 
+property specifications.</p>
+
+<p>Conjunctions</p>
+
+<p>It is most often the case that all
+such property specifications should hold.  In this case, one
+could simply check all specifications individually and require
+that all are successful.  For the logical formalisms, an alternative
+is to conjoin the individual specifications into a single larger
+specification.
+While this is semantically equivalent, it may be the case that
+a larger specification is less efficient to verify (e.g., the cost of
+LTL to Buchi automaton construction can be large for automata-based
+model checkers).  For this reason,
+preserving, and verifing, the individual property specifications is suggested.</p>
+
+<p>Disjunctions</p>
+
+<p>There are two views of a pair (or more generally
+a collection) of alternative individual property specifications:
+
+<ul>
+  <li> system behaviors <b>all</b> correspond to one specification
+or they <b>all</b> correspond to the other specification</li>
+
+  <li> <b>some</b> of the system behaviors correspond to one 
+specification and the <b>rest</b> of the behaviors correspond
+to the other specification</li>
+</ul>
+
+<p>The first of these alternatives corresponds to the checking of
+individual property specifications independently and disjoining
+the results.  This is true for all specification formalisms.
+The latter situation can be achieved in formalisms that allow
+specifications to be disjoined under the same universal path quantifier.</p>
+
+<p>For LTL and QREs there is an implicit outer universal
+path quantifier, thus checking of a top-level disjunction of specifications
+will achieve these semantics.
+To achieve the first alternative (above) one must check LTL and
+QRE specifications separately.</p>
+
+<p>This is not the case for CTL, where two specifications cannot
+be disjoined directly under the same path quantifier.
+A top-level disjunction CTL achieves the first alternative
+and the second cannot be achieved directly (although one might
+be able to rewrite a combined version of the two specifications).
+
+<hr>
+
+<p><b>Scope Variations</b></p>
+
+<p>Most event-based formalisms use some version
+of an interleaved model of concurrent computation.  In such
+formalisms, two events cannot coincide.  Event-delimited scopes are
+thus open at both ends: an event that occurs within the scope cannot
+occur at the same time as an event that marks the beginning or end of
+the scope.  For state-based formalisms, the situation is different.
+Consider, for instance, a scope that begins with a state in which
+proposition <tt>Q</tt> holds and ends with the next state in
+which <tt>R</tt> holds.  If we want to specify that proposition
+<tt>P</tt> does not hold within this scope, we have to decide
+what should happen if <tt>P</tt> is true at either of the
+states marking the endpoints of the scope.</p>
+
+<p>We have chosen to define scopes for state-based formalisms that
+include the state marking the beginning of the scope but do not
+include the state marking the end of the scope.  Thus, for example,
+the LTL version of this specification would be <br>
+&nbsp;&nbsp;&nbsp;&nbsp;<tt>[]((Q & o<>R) -> (!P & o((!P) U (R | [](!P)))))</tt><br>
+which requires that
+<tt>P</tt> be false in the state where <tt>Q</tt> holds
+but does not require <tt><b>P</b></tt> to be false when
+<tt>R</tt> becomes true.  We chose these closed-left/open-right
+scopes because they are relatively easy to encode in specifications
+and beacuse they work for the real property specifications we
+studied.<p>
+
+It isn't very hard, however, to modify the mappings to open the scope
+on the left or close it on the right.  An LTL specification of the
+"<tt>P</tt> is absent between <tt>Q</tt> and
+<tt>R</tt>" property with a scope that is open on the left
+would simply remove the first <tt>!P</tt>:<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;<tt>[]((Q & o<>R) -> (o((!P) U (R | [](!P)))))</tt><br>
+allowing <tt>P</tt> to
+hold at the state marking the beginning of the scope.  Similarly, to
+close the scope on the right, we have to require <tt>!P</tt> to
+hold until a state in which both <tt>R</tt> and
+<tt>!P</tt> are true:<br> 
+&nbsp;&nbsp;&nbsp;&nbsp;<tt>[]((Q & o<>R) -> (!P & o((!P) U ((R & (!P))| [](!P)))))</tt><br>
+<p>
+Similar modifications can be made
+to adjust all the mappings for the various versions of the scopes.
+<hr>
+
+<p><b>Constrained Order Patterns</b></p>
+
+<p>Order related patterns describe sequencing relationships between 
+specified states or events.  It is sometimes the case that one wishes
+to specify not only the sequencing relationship, but that the region
+between the states or events in that relationship is free of 
+some other events. We provide <a href="constrained.shtml">constrained chain</a>
+patterns to address this issue for 
+<a href="precedence-chain.shtml">precedence</a> and
+<a href="response-chain.shtml">response</a> chains.</p>
+
+<p>The plain <a href="response.shtml">response</a> pattern 
+also has a constrained variation.  For example, one can restrict <tt>Z</tt>
+from the region between <tt>P</tt> and the <tt>S</tt> that responds
+to it in LTL, but converting the <code><></code> to its <code>U</code>
+equivalent then embedding <tt>!Z</tt> in its left operand.  The global
+response mapping:<br>
+<pre>
+[](P -> <>S)
+</pre>
+
+<p>becomes: <br>
+<pre>
+[](P -> (true U S))
+</pre>
+
+<p>and finally:<br>
+<pre>
+[](P -> (!Z U S))
+</pre>
+
+<p>A similar transformation to the <code><></code> in the after scope
+can be applied.  The before, between and after-until scope versions
+of the LTL response mappings already unfold the <code><></code> to
+its <code>U</code> form.  In these cases, one need only embed the <code>!Z</code>  
+in the proper place (which is identified by looking for the <code>S</code>
+appearing as the right operand of the <code>U</code>).  For example, the
+between response mapping :<br>
+<pre>
+[]((Q & <>R) -> (P -> (!R U S)) U R)
+</pre>
+
+<p>becomes:<br>
+<pre>
+[]((Q & <>R) -> (P -> ((!R & !Z) U S)) U R)
+</pre>
+<p>
+Modifications for mappings in other formalisms can be applied as well.
+Global and between scope versions of constrained response in CTL are:
+<pre>
+AG(P -> A[!Z U S])
+
+AG(Q -> !E[!R U (P & !R & (E[!S U R] | E[Z U S]))])
+</pre>
+
+<p>The global version mirrors the LTL modifications.  The between scope
+version is different because the CTL spec is expressed in terms of
+the lack of a violating sequence.  In this case, we must enumerate
+the possible violating sequences, i.e., a missing 
+response <code>E[!S U R]</code> or the occurrence of a constrained
+state before the response <code>E[Z U S]</code>.</p>
+
+<p>Global and between scope versions of constrained response as QREs are:
+<pre>
+[-P]*; (P; [-S,Z]*; S; [-P]*)*
+
+[-Q]*; (Q; [-P,R]*; (P; [-S,R,Z]*; S; [-P,R]*)*; R; [-Q]*)*; (Q; [-R]*)?
+</pre>
+
+<p>Multiple propositions can embedded in the constraint by using conjunction
+in the logics and by listing multiple events in QREs.</p>
+
+<p>It is important to note that constrained response is different from
+absence with a between scope.  The latter, which in LTL is:
+<pre>
+[]((Q & <>R) -> !P U R)
+</pre>
+
+<p>does not require the closing of the scope (which corresponds to the
+responding state).
+
+<!--#include virtual="/footer.shtml" -->

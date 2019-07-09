@@ -1,0 +1,16 @@
+<!--#set var="menuItem" value="Overview.About" -->
+<!--#set var="title" value="About Specification Patterns" -->
+
+<!--#include virtual="/header.shtml" -->
+
+  <p>This page is the home of an online repository for information about property specification for finite-state verification. The intent of this repository is to collect patterns that occur commonly in the specification of concurrent and reactive systems. Most specification formalisms in this domain are a bit tricky to use. To make them easier to use our patterns come with descriptions that illustrate how to map well-understood, but imprecise, conceptions of system behavior into precise statements in common formal specification languages. We're already support mappings to a number of formalisms that have tool support for automated analysis.</p>
+
+  <p>This isn't a static repository.  We imagine that additional formalisms may be supported, the set of patterns will be extended, and different organizations of the patterns will be produced catering to different users.  In fact this has already happened a few times.</p>
+
+  <p>Hopefully lots of people will contribute to and use the information on these pages.</p>
+
+  <p>We've collected and answered some <a href="/documentation/FAQ.shtml">frequently asked questions</a> about the specification pattern system.  If you have additional questions/comments please send them along to <a href= "mailto:spec-patterns@cis.ksu.edu">us</a>.</p>
+
+  <p>See the <a href="http://www.comlab.ox.ac.uk/archive/formal-methods.html"> Formal Methods Virtual Library</a> for information about a wide variety of finite-state verification tools.</p>  
+    
+<!--#include virtual="/footer.shtml" -->

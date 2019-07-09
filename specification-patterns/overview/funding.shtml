@@ -1,0 +1,11 @@
+<!--#set var="menuItem" value="Overview.Funding" -->
+<!--#set var="title" value="Funding" -->
+
+<!--#include virtual="/header.shtml" -->
+
+  <p>This work is partially funded by NSF under grants CCR-9308067, CCR-9407182, 
+<a HREF="http://www.cis.ksu.edu/~dwyer/projects/NSF-CCR-9708184.html">CCR-9708184</a>,
+<a HREF="http://www.cis.ksu.edu/~dwyer/projects/NSF-CCR-9703094.html">CCR-9703094</a> and by NASA under award
+<a HREF="http://www.cis.ksu.edu/~dwyer/projects/NASA-NAG-2-1209.html">NAG-2-1209</a>.
+
+<!--#include virtual="/footer.shtml" -->

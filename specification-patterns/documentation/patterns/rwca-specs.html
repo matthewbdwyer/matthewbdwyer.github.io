@@ -1,0 +1,199 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="description" CONTENT="Formal Specifications for the Replicated Workers Framework.">
+   <META NAME="keywords" CONTENT="final2">
+   <META NAME="resource-type" CONTENT="document">
+   <META NAME="distribution" CONTENT="global">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; U; SunOS 5.6 sun4c) [Netscape]">
+   <TITLE>Formal Specifications for a Replicated Workers Framework.</TITLE>
+</HEAD>
+<BODY BACKGROUND="marble1.jpg" LANG="EN">
+
+<H1>
+<A NAME="SECTION00010000000000000000"></A>Replicated Workers Framework</H1>
+We specified properties of a generic, programming framework (written in
+Ada) that supports distribution and concurrent execution of sub-computations
+(see the <A HREF="http://www.cis.ksu.edu/~dwyer/CAS/cas.html">coordination
+abstraction</A> web pages for details).
+
+<P>These specifications use a collection of propositions defined in a finite-state
+model of a configuration of the programming framework that instantiates
+it to have three (internal) tasks. The framework maintains an internal
+work pool whose size is represented by propositions whose name begins with
+"workCount". Other propositions are introduced below as needed.
+<BR>We expressed all the formulae in terms of "event predicates". An event
+reffers to an ADA rendezvous or to an internal event .&nbsp; An event predicate
+is true if any task containing the event specified is in a state immediately
+following a transition on that event.
+<BR>In addition we used, some "state predicates", to capture states of
+variables in the system (for example the states in which workCount is zero).
+
+<P>The framework is not a complete application, for example, there are
+parameters that are undefined. We can employ existing model checkers, e.g.,
+SPIN, to analyze such incomplete systems by specifying assumptions about
+the intended behaviour of the missing components and using those specifications
+to restrict model checking to paths in the finite-state model that conform
+to intended component behavior. We use property specification patterns
+both for correctness properties and for parameter and calling context assumptions.
+<H1>
+Properties Analyzed</H1>
+In the following, we use the LTL mappings from the patterns. We provide
+the <I>(i)</I> initial informal english statement of the requirement, <I>(ii)</I>
+a refined version of the english that explicitly refers to the propositions
+available in the finite-state model, <I>(iii)</I> the pattern and scope
+used and finally <I>(iv)</I> the instantiation of the pattern mapping.
+<UL>
+<LI>
+<I>(i)</I> No work will be scheduled before execution.</LI>
+
+
+<P><I>(ii)</I> No "GetWork" before the ActivePool&nbsp; task accepts "Execute".
+Event "GetWork" represents rendezvous on entry "Get" with argument "done"
+set to false.
+
+<P><I>(iii)</I> pattern: <A HREF="absence.html">absence</A>,
+scope: before
+
+<P><I>(iv)</I>&nbsp; <B><TT>( &lt;>&nbsp; pool.Execute ) -> (( ! pool.GetWork
+) U pool.Execute )</TT></B>
+<BR>&nbsp;
+<LI>
+<I>(i)</I> No work is scheduled after a worker signalized termination.</LI>
+
+
+<P><I>(ii)</I>&nbsp; Between the moment in which the ActivePool task accepts
+"Finished" from one of the workers and until a new execution of the WorkPool
+task, there is no "GetWork".
+
+<P><I>(iii)</I> pattern: <A HREF="absence.html">absence</A>,
+scope: between
+
+<P><I>(iv)</I> <B><TT>[]&nbsp; ( (pool.Finished &amp;&amp; (&lt;>&nbsp;
+pool.Execute) ) -> ( ( ! pool.GetWork ) U pool.Execute ) )</TT></B>
+<BR>&nbsp;
+<LI>
+<I>(i)</I> Mutual exclusion in executing the result procedure.</LI>
+
+
+<P><I>(ii)</I> After Worker2 task succeeded the rendezvous on entry "wait
+"with ResultLock task,&nbsp; Worker1 task can not make the rendezvous on
+the same "wait" entry,&nbsp; until Worker2 calls "signal" entry of ResultLock
+task.
+
+<P><I>(iii)</I> pattern: <A HREF="absence.html">absence</A>,
+scope: after-until.
+
+<P><I>(iv)</I> <B><TT>[] (resultlock.wait_worker2 -> (( ! resultlock.wait_worker1)
+U (resultlock.signal_worker2 || []&nbsp; ( ! resultlock.wait_worker1))))</TT></B>
+<BR>&nbsp;
+<LI>
+<I>(i)</I> Release of resource: if a worker receives a lock, it will eventually
+release the lock.</LI>
+
+
+<P><I>(ii)</I> If a Worker2 task succeds to make a rendezvous&nbsp; on
+entry "wait" it will eventually make a rendezvous on entry "signal" of
+ResultLock task.
+
+<P><I>(iii)</I> pattern: <A HREF="response.html">response</A>,
+scope: globally.
+
+<P><I>(iv)</I> <B><TT>[] (resultlock.wait_worker2 -> &lt;> resultlock.signal_worker2)</TT></B>
+
+<P>This property did not check and in the counter example provided by SPIN,
+"doResult" never returns.
+
+<P>We added the assumption about the environment :
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (<I>i</I>)Call-back procedures
+(i.e. doWork and doResult) return.
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ii) </I>Procedures "doWork"
+and "doResult" in tasks Worker1 and Worker2 return. Internal events ("startdoWork",
+"stopdoWork", "startdoResult", "stopdoResult") in Worker tasks designate
+the beginning and the end of each call back. We used the assumption: event
+"startdoResult" in Worker2 leads to event "stopdoResult" in the same task.
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (iii)</I> pattern: <A HREF="response.html">response</A>,
+scope: globally.
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (iv)</I> <B><TT>( [] (startdoResult_worker2
+-> &lt;> stopdoResult_worker2 ) )</TT></B>
+
+<P>And we checked the&nbsp; "filtered" formula (in which "startdoResult"
+corresponds to "wait")
+
+<P><I>(iv)</I> <B><TT>( [] (startdoResult_worker2 -> &lt;> stopdoResult_worker2))
+-> ( [] (resultlock.wait_worker2 -> &lt;> resultlock.wait_signal2))</TT></B>
+<BR>&nbsp;
+<LI>
+<I>(i)</I> The computation can terminate only when the work item list in
+pool is empty or a worker signalized.</LI>
+
+
+<P><I>(ii)</I>The computation can terminate only when the "workCount "
+is zero or the ActivePool task accepted "Finished" from a Worker. We identified
+termination as a state in the ActivePool task (the end of the outer loop).
+
+<P><I>(iii)</I> pattern: <A HREF="/i> <tt><b>((! term) U (workCount_is_0 || acceptFinished_pool || [](! term)))</b></tt><p><LI> <i>(i)</i> No termination before complete.<p><i>(iii)</i> pattern: <a href=" precedence.html>precedence</A>,
+scope: globally.
+
+<P><I>(iv)</I> <B><TT>((! termination) U ( workCount_is_0 || pool.Finished
+|| [] (! termination)))</TT></B>
+<BR>&nbsp;
+<LI>
+<I>(i)</I> A worker signalizes termination only if its local computation
+terminates.</LI>
+
+
+<P><I>(ii)</I>The ActivePool task accepts "Finished" only if "done" is
+true in Worker1 task or in Worker2 task.
+
+<P><I>(iii)</I> pattern: <A HREF="/i> <tt><b>((! term) U (workCount_is_0 || acceptFinished_pool || [](! term)))</b></tt><p><LI> <i>(i)</i> No termination before complete.<p><i>(iii)</i> pattern: <a href=" precedence.html>precedence</A>,&nbsp;
+scope: globally.
+
+<P><I>(iv)</I> <B><TT>((! pool.Finished) U (done_worker2 || done_worker1
+|| [] (! pool.Finished)))</TT></B>
+
+<P>Again, this property did not check. In the counter example, the environment
+(procedure "doResult" in Worker1 ) makes a call to "Finished". We used
+the assumption about the call-backs:
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (i)</I> Call-backs do
+not call entries in the same framework.
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (ii) </I>In procedure
+"doWork " in Worker1, "callprocsw" is never true. In procedure "doResult"
+in Worker1, "callprocsr "is never true. The same can be written for Worker2;
+"callprocsw" and "callprocsr"&nbsp; identify the states in wich a "doWork"
+procedure (and a "doResult" procedure respectively) in a Worker task, makes
+a call to a procedure in the interface of the framework.
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (iii)</I> pattern: <A HREF="absence.html">absence</A>,&nbsp;
+scope: globally
+
+<P><I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (iv)</I>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<B><TT>([] (! callprocsw_worker1))</TT></B>
+<BR><B><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ([] (! callprocsr_worker1))</TT></B>
+<BR><B><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ([] (! callprocsw_worker2))</TT></B>
+<BR><B><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ([] (! callprocsr_worker2))</TT></B>
+
+<P>We attempted to check the "filtered" formula:
+
+<P><I>(iv)</I> <B><TT>([] (! callprocsr_worker1)) -> ((! pool.Finished)
+U (done_worker2 || done_worker1 || [] (! pool.Finished)))</TT></B>
+
+<P>Again, this property did not check. We incrementally added more filters,
+and we checked in the end the following formula:
+
+<P><I>(iv)</I>&nbsp;&nbsp;&nbsp;&nbsp; <B><TT>(([] (! callprocsw_worker1))
+&amp;&amp; ([] (! callprocsr_worker1)) &amp;&amp;</TT></B>
+<BR><B><TT>&nbsp;&nbsp;&nbsp;&nbsp; ([] (! callprocsw_worker2)) &amp;&amp;
+([] (! callprocsr_worker2)) ) -></TT></B>
+<BR><B><TT>&nbsp;&nbsp;&nbsp;&nbsp; ((! pool.Finished) U (done_worker2
+|| done_worker1 || [] (! pool.Finished)))</TT></B>
+<BR>&nbsp;</UL>
+
+</BODY>
+</HTML>

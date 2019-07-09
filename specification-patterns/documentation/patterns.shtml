@@ -1,0 +1,52 @@
+<!--#set var="menuItem" value="Documentation.Patterns" -->
+<!--#set var="title" value="The Patterns" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p>
+The information in the patterns can be presented in a variety of ways.
+One organization, illustrated below, 
+is based on classifying the patterns in
+terms of the kinds of system behaviors they describe.
+<center>
+<img ALIGN=BOTTOM SRC="/images/patterns/hierarchy.gif"> <br>
+</center>
+<ul>
+<li> <a href="./patterns/occurrence.shtml">Occurrence Patterns</a> talk about the occurrence of a given event/state during system execution.
+<li> <a href="./patterns/order.shtml">Order Patterns</a> talk about relative order in which multiple events/states occur during system execution.
+
+<li> While not themselves patterns, 
+<a href="./patterns/notes.shtml">Pattern Notes</a> discuss common ways
+to vary the existing patterns to suite your needs.
+</ul>
+<p>
+An alternative organization for this information is to group
+pattern to formalism mappings by specification formalism.
+The supported formalisms are listed below.
+Clicking on the formalism will bring you to pages with mappings for
+each property pattern in that formalisms.  
+We supply the mappings on these formalism-specific pages
+and you are refered to the complete patterns
+for information about relationships and example uses.
+<ul>
+<li> <a href="./patterns/ltl.shtml">Linear Temporal Logic</a> (LTL)
+<li> <a href="./patterns/ctl.shtml">Computation Tree Logic</a> (CTL)
+<li> <a href="./patterns/gil.shtml">Graphical Interval Logic</a> (GIL)
+<li> <a href="./patterns/qre.shtml">Quantified Regular Expressions</a> (QRE)
+<li> <a href="./patterns/inca.shtml">INCA Queries</a>
+</ul>
+<p>
+Mappings for additional formalisms have also been developed (by 
+other researchers)
+<ul>
+<li>
+<a href="http://www.inrialpes.fr/vasy/cadp/resources/evaluator/actl.html">
+
+Action Computation Tree Logic</a> (ACTL)
+<li>
+<a href="http://www.inrialpes.fr/vasy/cadp/resources/evaluator/rafmc.html">
+Regular Alternation-Free Mu-Calculus</a>
+</ul>
+
+<!--#include virtual="/footer.shtml" -->
+

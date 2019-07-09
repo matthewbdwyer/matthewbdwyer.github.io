@@ -1,0 +1,51 @@
+<!--#set var="title" value="Precedence Property Pattern" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p><b>Intent</b></p>
+
+<p>To describe relationships between a pair of events/states
+   where the occurrence of the first is a necessary pre-condition for
+   an occurrence of the second.  We say that an occurrence of the second
+   is enabled by an occurrence of the first.</p>
+
+<hr>
+
+<p><b>Example Mappings</b></p>
+
+<p>In these mappings <i>P</i> is the consequent and <i>S</i> is
+the enabling state/event.</p>
+
+<ul>
+  <li><a href=ctl.shtml#Precedence>CTL</a></li>
+  <li><a href=ltl.shtml#Precedence>LTL</a></li>
+  <li><a href=qre.shtml#Precedence>QRE</a></li>
+  <li><a href=inca.shtml#Precedence>INCA</a></li>
+  <li><a href=gil.shtml#Precedence>GIL</a></li>
+</ul>
+
+<hr>
+
+<p><b>Examples and Known Uses</b></p>
+
+<p><a href="precedence.shtml">Precedence</a> properties occur quite commonly in specifications of concurrent systems.  One common example is in describing a requirement that a resource is only granted in response to a request.</p>
+
+<hr>
+    
+<p><b>Relationships</b></p>
+
+<p>Note that a <a href="precedence.shtml">Precedence</a> property is like a converse of a <a href="response.shtml">Response</a>
+    property.  <a href="precedence.shtml">Precedence</a>
+    says that some cause precedes each effect, 
+    and <a href="response.shtml">Response</a> says that
+    some effect follows each cause.  They are not equivalent, because
+    a <a href="response.shtml">Response</a> allows effects to occur 
+    without causes (<a href="precedence.shtml">Precedence</a>
+    similarly allows causes to occur without subsequent effects).</p>
+    
+<p>Note that this pattern does not require that each occurrence of
+    a consequent will have its own occurrence of an enabling condition.</p>
+    
+<p>This is an <a href="order.shtml">Order</a> pattern.</p>
+
+<!--#include virtual="/footer.shtml" -->

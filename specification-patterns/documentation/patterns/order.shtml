@@ -1,0 +1,37 @@
+<!--#set var="title" value="Order Specification Patterns" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p>Order patterns are used to express requirements related
+to pairs of states/events
+during well-defined regions of system execution.  As with
+our other patterns, the regions are defined using 
+<a href="scopes.shtml">Scopes</a>.</p>
+
+<p>Information about the patterns system as a
+whole is available at the <a href="/">Specification
+Patterns Home Page</a>.</p>
+
+<p>
+There are two basic order-related patterns:
+<ul>
+  <li> <a href="precedence.shtml">Precedence</a></li>
+  <li> <a href="response.shtml">Response</a>, aka Follows, Leads-To</li>
+</ul>
+<p>
+Chain patterns are used to express requirements related
+to complex combinations of individual state/event relationships.
+These include precedence/response relationships consisting of
+sequences of individual states/events.  We call these chain patterns.
+<p>
+There are two variations of chain patterns:
+<ul>
+  <li> <a href="response-chain.shtml">Response Chains</a></li>
+  <li> <a href="precedence-chain.shtml">Precedence Chains</a></li>
+</ul>
+
+<p>A variation of the chain patterns is to
+<a href="constrained.shtml">constrain</a> the regions between
+the state/events that constitute the chain sequences.</p>
+
+<!--#include virtual="/footer.shtml" -->

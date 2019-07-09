@@ -1,0 +1,354 @@
+<!--#set var="title" value="Property Pattern Mappings for CTL" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p>This page describe mappings for property patterns in computation
+tree logic (CTL).</p>
+
+<p>Many of the mappings use the weak until operator (W) which is related
+to the strong until operator (U) by the following equivalences:
+<pre>
+A[x W y] = !E[!y U (!x & !y)]
+E[x U y] = !A[!y W (!x & !y)]
+</pre>
+
+<p>This operator often makes the mappings easier to understand (thanks
+to William Chan for suggesting this).</p>
+
+<p>For other information about the patterns click on the pattern links.</p>
+
+<p>For information about the meaning of scopes look <a href="scopes.shtml">here</a>.</p>
+
+<p>Information about the entire pattern system is available at
+the <a href="/">Specification Patterns Home Page</a>.</p>
+
+<hr>
+
+<h1><b>Pattern Mappings</b></h1>
+
+<hr>
+
+<p><a name=Absence> <a href="absence.shtml">Absence</a></p>
+
+<p><tt>P</tt> is false :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>                           
+        <td align=left><tt >AG(!P)</tt></td> </tr>
+   <tr> <td align=left> Before <tt>R</tt></td>                  
+        <td align=left><tt >A[(!P | AG(!R)) W R]</tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt></td>                   
+        <td align=left><tt >AG(Q -> AG(!P))</tt></td> </tr>
+   <tr> <td align=left> Between <tt>Q</tt> and <tt>R</tt></td>  
+        <td align=left><tt >AG(Q & !R -> A[(!P | AG(!R)) W R]) </tt></td> </tr>
+   <tr> <td align=left> After <tt>Q</tt> until <tt>R</tt></td>  
+        <td align=left><tt >AG(Q & !R -> A[!P W R])</tt></td> </tr>
+</table>
+</center>
+<hr>
+
+<p><a name=Existence> <a href="existence.shtml">Existence</a></p>
+<p><tt>P</tt> becomes true :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt >AF(P)</tt></td> </tr>
+   <tr> <td align=left> Before <tt>R</tt></td>
+        <td align=left><tt >A[!R W (P & !R)]</tt></td> </tr>
+   <tr> <td align=left> After <tt>Q</tt></td>
+        <td align=left><tt >A[!Q W (Q &  AF(P))]</tt></td> </tr>
+   <tr> <td align=left> Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><tt >AG(Q & !R -> A[!R W (P & !R)])</tt></td> </tr>
+   <tr> <td align=left> After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><tt >AG(Q & !R -> A[!R U (P & !R)])</tt></td> </tr>
+</table>
+</center>
+<hr>
+
+<p><a name=Bounded> <a href="bounded.shtml">Bounded Existence</a></p>
+
+<p>In these mappings we illustrate one instance of the bounded existence
+ pattern, where the bound is at most 2 designated states.  Other
+ bounds can be specified by variations on this mapping.</p>
+ 
+<p> Transitions to <tt>P</tt>-states occur at most 2 times :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+
+   <tr> <td align=left>Globally</td>
+        <td align=left><pre>
+!EF(!P & EX(P & EF(!P & EX(P & EF(!P & EX(P))))))</pre></td> </tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+!E[!R U (!P & !R & EX(P &
+    E[!R U (!P & !R & EX(P &
+       E[!R U (!P & !R & EX(P & !R))]))]))]</pre></td> </tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><pre>
+!E[!Q U (Q & EF(!P & EX(P & EF(!P & EX(P & EF(!P & EX(P)))))))]</pre></td> </tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[!R U (!P & !R & EX(P &
+            E[!R U (!P & !R & EX(P &
+               E[!R U (!P & !R & EX(P & !R & EF(R)))]))]))])</pre></td> </tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[!R U (!P & !R & EX(P &
+            E[!R U (!P & !R & EX(P &
+               E[!R U (!P & !R & EX(P & !R))]))]))])</pre></td> </tr>
+
+</table>
+</center>
+<hr>
+
+<p><a name=Universality> <a href="universality.shtml">Universality</a></p>
+
+<p><tt>P</tt> is true :
+ <center>
+ <table border="2" cellspacing="3" cellpadding="10">
+    <tr> <td align=left>Globally</td>
+         <td align=left><tt >AG(P)</tt></td> </tr>
+    <tr> <td align=left>Before <tt>R</tt></td>
+         <td align=left><tt >A[(P | AG(!R)) W R]</tt></td> </tr>
+    <tr> <td align=left>After <tt>Q</tt></td>
+         <td align=left><tt >AG(Q -> AG(P))</tt></td> </tr>
+    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+         <td align=left><tt >AG(Q & !R -> A[(P | AG(!R)) W R]) </tt></td> </tr>
+    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+         <td align=left><tt >AG(Q & !R -> A[P W R])</tt></td> </tr>
+ </table>
+ </center>
+<hr>
+
+<p><a name=Precedence> <a href="precedence.shtml">Precedence</a></p>
+
+<p><tt>S</tt> precedes <tt>P</tt> :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><pre>
+A[!P W S]</pre></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+A[(!P | AG(!R)) W (S | R)]</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt><bf></bf></td>
+        <td align=left><pre>
+A[!Q W (Q & A[!P W S])]</pre></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q & !R -> A[(!P | AG(!R)) W (S | R)])</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q & !R -> A[!P W (S | R)])</pre></td></tr>
+</table>
+</center>
+<hr>
+
+<p><a name=Response> <a href="response.shtml">Response</a></p>
+
+<p><tt>S</tt> responds to <tt>P</tt> :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>AG(P -> AF(S))</tt></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+A[((P -> A[!R U (S & !R)]) | AG(!R)) W R]</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><pre>
+A[!Q W (Q & AG(P -> AF(S))] </pre></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q & !R -> A[((P -> A[!R U (S & !R)]) | AG(!R)) W R])</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q & !R -> A[(P -> A[!R U (S & !R)]) W R])</pre></td></tr>
+</table>
+</center>
+<hr>
+
+<p><a name=Precedence-Chain><a href="precedence-chain.shtml">Precedence Chain</a></p>
+
+<p>This illustrates the 1 cause-2 effect precedence chain.</p>
+
+<p><tt>P</tt> precedes <tt>S,T</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><pre>
+!E[!P U (S & !P & EX(EF(T)))]</pre></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+!E[(!P & !R) U (S & !P & !R & EX(E[!R U (T & !R)]))]</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><pre>
+!E[!Q U (Q & E[!P U (S & !P & EX(EF(T)))])]</pre></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[(!P & !R) U (S & !P & !R & 
+                        EX(E[!R U (T & !R & EF(R))]))])</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[(!P & !R) U (S & !P & !R & 
+                        EX(E[!R U (T & !R)]))])</pre></td></tr>
+</table>
+</center></p>
+
+<p>This illustrates the 2 cause-1 effect precedence chain.</p>
+
+<p><tt>S,T</tt> precedes <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><pre>
+!E[!S U P] & 
+!E[!P U (S & !P & EX(E[!T U (P & !T)]))]</pre></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+!E[(!S & !R) U (P & !R)] &
+!E[(!P & !R) U (S & !P & !R & 
+                EX(E[(!T & !R) U (P & !T & !R)]))]</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><pre>
+!E[!Q U (Q & E[!S U P] & 
+         E[!P U (S & !P & EX(E[!T U (P & !T)]))])]</pre></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[(!S & !R) U (P & !R & EF(R))] &
+        !E[(!P & !R) U (S & !P & !R &
+                        EX(E[(!T & !R) U (P & !T & !R & EF(R))]))])</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[(!S & !R) U (P & !R)] &
+        !E[(!P & !R) U (S & !P & !R &
+                        EX(E[(!T & !R) U (P & !T & !R)]))])</pre></td></tr>
+</table>
+</center>
+<hr>
+
+<p><a name=Response-Chain> <a href="response-chain.shtml">Response Chain</a></p>
+
+<p>This illustrates the 1 stimulus-2 response chain.</p>
+
+<p><tt>S,T</tt> responds to <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><pre>
+AG(P -> AF(S & AX(AF(T))))</pre></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+!E[!R U (P & !R & (E[!S U R] | 
+                   E[!R U (S & !R & EX(E[!T U R]))]))]</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><pre>
+!E[!Q U (Q & EF(P & (EG(!S) | EF(S & EX(EG(!T))))))]</pre></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[!R U (P & !R & 
+                 (E[!S U R] | 
+                  E[!R U (S & !R & EX(E[!T U R]))]))])</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[!R U (P & !R & 
+                 (E[!S U R] | EG(!S & !R) |
+                  E[!R U (S & !R & 
+                          EX(E[!T U R] | EG(!T & !R)))]))])</pre></td></tr>
+</table>
+</center></p>
+
+<p>This illustrates the 2 stimulus-1 response chain.</p>
+
+<p><tt>P</tt> responds to <tt>S,T</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><pre>
+!EF(S & EX(EF(T & EG(!P))))</pre></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+!E[!R U (S & !R & EX(E[!R U (T & !R & E[!P U R])]))]</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><pre>
+!E[!Q U (Q & EF(S & EX(EF(T & EG(!P)))))]</pre></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[!R U (S & !R & 
+                 EX(E[!R U (T & !R & E[!P U R])]))])</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[!R U (S & !R & 
+                 EX(E[!R U (T & !R & (E[!P U R] | 
+                                      EG(!P & !R)))]))])</pre></td></tr>
+</table>
+</center>
+<hr>
+
+<p><a name=Constrained><a href="constrained.shtml">Constrained Chain Patterns</a></p>
+
+<p>This is a 1-2 response chain constrained by a single proposition.</p>
+
+<p><tt>S,T</tt> without <tt>Z</tt> responds to <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><pre>
+AG(P -> AF(S & !Z & AX(A[!Z U T])))</pre></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><pre>
+!E[!R U (P & !R & 
+         (E[!S U R] | 
+          E[!R U (S & !R & (E[!T U Z] | EX(E[!T U R])))]))]</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><pre>
+!E[!Q U (Q & EF(P & (EG(!S) | 
+                     EF(S & (E[!T U Z] | EX(EG(!T)))))))]</pre></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[!R U (P & !R & 
+                 (E[!S U R] | 
+                  E[!R U (S & !R & (E[!T U Z] |
+                                    EX(E[!T U R])))]))])</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+AG(Q -> !E[!R U (P & !R & 
+                 (E[!S U R] | EG(!S & !R) |
+                  E[!R U (S & !R & (E[!T U Z] | EX(E[!T U R] |
+                                    EG(!T & !R))))]))])</pre></td></tr>
+</table>
+</center>
+<hr>
+
+<!--#include virtual="/footer.shtml" -->

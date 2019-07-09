@@ -1,0 +1,225 @@
+<!--#set var="title" value="Property Pattern Mappings for GIL" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p>This page describe mappings for property patterns in graphical interval
+logic (GIL). For other information about the patterns click on the pattern links.</p>
+
+<p>Information about the entire pattern system is available at
+the <a href="/">Specification Patterns Home Page</a>.</p>
+
+<hr>
+
+<h1>Pattern Mappings</h1>
+
+<hr>
+
+<p><a name=Absence><a href="absence.shtml">Absence</a></p>
+
+<p><tt>P</tt> is false :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left> <img src="/images/patterns/GIL/absGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/absBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><img src="/images/patterns/GIL/absAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/absBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/absAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Existence><a href="existence.shtml">Existence</a></p>
+
+<p><tt>P</tt> becomes true :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><img src="/images/patterns/GIL/exGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/exBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/exAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/exBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/exAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Bounded><a href="bounded.shtml">Bounded Existence</a></p>
+
+<p>In these mappings we illustrate one instance of the bounded existence
+ pattern, where the bound is at most 2 designated states.  Other
+ bounds can be specified by variations on this mapping.</p>
+ 
+<p>Transitions to <tt>P</tt>-states occur at most 2 times :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><img src="/images/patterns/GIL/bexGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/bexBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/bexAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/bexBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/bexAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Universality><a href="universality.shtml">Universality</a></p>
+
+<p><tt>P</tt> is true :
+ <center>
+ <table border="2" cellspacing="3" cellpadding="10">
+    <tr> <td align=left>Globally</td>
+        <td align=left> <img src="/images/patterns/GIL/univGl.gif"> </td> </tr>
+    <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/univBf.gif"> </td> </tr>
+    <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/univAft.gif"> </td> </tr>
+    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/univBtw.gif"> </td> </tr>
+    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/univAfUt.gif"> </td> </tr>
+ </table>
+ </center></p>
+ 
+<hr>
+
+<p><a name=Precedence><a href="precedence.shtml">Precedence</a></p>
+
+<p><tt>S</tt> precedes <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left> <img src="/images/patterns/GIL/preGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/preBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/preAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/preBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/preAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Response><a href="response.shtml">Response</a></p>
+
+<p><tt>S</tt> responds to <tt>P</tt> :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><img src="/images/patterns/GIL/resGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/resBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><img src="/images/patterns/GIL/resAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/resBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/resAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Precedence-Chain><a href="precedence-chain.shtml">Precedence Chain</a></p>
+
+<p>This illustrates the 2 cause-1 effect precedence chain.</p>
+
+<p><tt>S, T</tt> precedes <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><img src="/images/patterns/GIL/21preGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/21preBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><img src="/images/patterns/GIL/21preAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left> <img src="/images/patterns/GIL/21preBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/21preAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<p>This illustrates the 1 cause-2 effect precedence chain.</p>
+
+<p><tt>P</tt> precedes <tt>(S, T)</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><img src="/images/patterns/GIL/12preGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/12preBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><img src="/images/patterns/GIL/12preAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/12preBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/12preAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Response-Chain><a href="response-chain.shtml">Response Chain</a></p>
+
+<p>This illustrates the 2 stimulus-1 response chain.</p>
+
+<p><tt>P</tt> responds to <TT>S,T</TT>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><img src="/images/patterns/GIL/21resGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/21resBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><img src="/images/patterns/GIL/21resAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/21resBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/21resAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<p>This illustrates the 1 stimulus-2 response chain.</p>
+
+<p><tt>S,T</tt> responds to <TT>P</TT>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><img src="/images/patterns/GIL/12resGl.gif"> </td> </tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/12resBf.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><img src="/images/patterns/GIL/12resAft.gif"> </td> </tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/12resBtw.gif"> </td> </tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><img src="/images/patterns/GIL/12resAfUt.gif"> </td> </tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Constrained><a href="constrained.shtml">Constrained Chain Patterns</a></p>
+
+<p>Not available yet.
+
+<!--#include virtual="/footer.shtml" -->

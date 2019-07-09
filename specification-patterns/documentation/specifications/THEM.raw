@@ -1,0 +1,1885 @@
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((NAT=Lautocal & !(NAT=Sautocal & ...)) | 
+        (NAT=Sautocal & !(NAT=Lautocal & ...)) | ...)
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((NavUpd=HUDUpd & !(WD=Nattack & ...)) | 
+        (NavUpd=RadarUpd & !(WD=Nattack & ...)) | ...)
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(NavUpd=AflyUpd -> WD=BOC | WD=SBOC)
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+REQUIREMENT: ?
+PATTERN: Universal
+ALTERNATE: Absence
+SCOPE: Global
+CTL: !EF(WD=Manrip & WD=AA_Guns)
+REWRITING: AG(!WD=Manrip | !WD=AA_Guns)
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((NAT=Mag-sl | NAT=Grid | NAT=IMS-fail) -> !(WD=BOC  | WD=SBOC | ...))
+SOURCE: Bwolen Yang (Originally from Jo Atlee)
+CITE: \cite{sremani:96,a7spec}
+DOMAIN: Requirements, mode transition table
+
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG AF (sender.state = get)
+SOURCE: Bwolen Yang (Originally from Armin Biere)
+CITE: \cite{biere:97}
+DOMAIN: protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG s.SAFE
+SOURCE: Bwolen Yang (Originally from Klaus Havelund)
+CITE: \cite{havelund:96}
+DOMAIN: protocol
+
+REQUIREMENT: No bus errors
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !bus-error
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: No errors
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !error
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Between (open-closed)
+CTL: AG(b1.p1.writable & b1.p1.data=1 ->
+        !EX E[!(b1.p1.writable | b2.p1.writable | b3.p1.writable) U
+  	      b1.p1.readable & b1.p1.data=0 | 
+              b2.p1.readable & b2.p1.data=0 | 
+              b3.p1.readable & b3.p1.data=0])
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE:  Global
+ALTERNATIVE: Universal
+CTL: AG (!b1.p1.writable | !b1.p2.readable)   
+REWRITING: AG !(b1.p1.writable & b1.p2.readable)   
+NOTES: 7 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (b1.p1.readable & b1.p2.readable -> b1.p1.data=b1.p2.data)  
+NOTES: 5 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (b2.m.memory-line-modified=0 & b1.p1.readable -> b2.m.data=b1.p1.data)
+NOTES: 3 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG EF b1.p1.readable
+NOTES: 6 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE:  Global
+CTL: AG (p1.excl -> !p2.readable)
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (p1.state=shared & p2.state=shared -> p1.data=p2.data)
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (p1.unmodified & m.memory-line-modified=0 -> p1.data=m.data)
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Between (open-closed)
+CTL: AG (p1.writable & p1.data=1 ->
+	!EX E[!(p1.writable | p2.writable) U
+   	      p1.unmodified & p1.data=0 | p2.unmodified & p2.data=0])
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG EF p1.state=shared
+NOTES: 3 instances
+SOURCE: Bwolen Yang (Originally from Edmund Clarke)
+CITE: \cite{clarke:95}
+DOMAIN: cache coherence protocol
+
+REQUIREMENT: Contingency Guide terminates
+PATTERN: Response
+SCOPE: Global
+CTL: AG(!cg.idle -> AF(cg.finished))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency guide can be executed infinitely often
+PATTERN:  Unknown
+SCOPE:  Unknown
+CTL: AG((cg.idle | cg.finished) -> 
+        EF(!(cg.idle | cg.finished) & EF(cg.finished)))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency mode select task works fine
+PATTERN: Universal
+SCOPE:  Global
+CTL: AG(cs.cont_3EO_start & cs.region_selected -> 
+         ((cs.m_mode = mm102 | meco_confirmed) &
+          !cs.r = reg-1 & !cs.r = reg0))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Bad (initial) value never happens again once region is computed
+             unless we restart the task
+PATTERN: Absence
+SCOPE: After-Until 
+CTL: AG(!cs.r=reg-1 -> 
+        !E[!cg.start_cont_3eo_mode_select U 
+           cs.r=reg-1 & !cg.start_cont_3eo_mode_select])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cs.r in {reg-1,reg0 ,reg1,reg2,reg3,reg102})
+NOTES: 13 instances
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Mode_select starts at the next step after its "start" bit is set:
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+PARAMETERS: Next formulae
+CTL: AG(!cg.start_cont_3eo_mode_select -> 
+        AX(cg.start_cont_3eo_mode_select & cs.step in {exit, undef} -> 
+                 AX(cs.step = 1 & !cs.region_selected)))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: During major mode 103, the inertial velocity is monitored.
+             Below an I-loaded velocity, a MECO would constitute a contingency
+             abort. (Must NOT be in SMODE=5 (??))
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(cg.start_cont_3eo_mode_select & cs.m_mode = mm103 & 
+        vel = LEQ_vi_3eo_min & meco_confirmed & !smode5 -> 
+            A[!cs.region_selected U cs.region_selected & cs.cont_3EO_start])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Above a certain inertial velocity (in mode 103), the 3E/O field
+             is blanked, indicating that a MECO at this point would not require
+             an OPS 6 contingency abort.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cs.region_selected -> 
+         (cs.m_mode = mm103 & vel = GRT_vi_3eo_max -> !cs.cont_3EO_start))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Between the two velocities, an apogee altitude - velocity curve is 
+             constructed based on the current inertial velocity. If the apogee
+             altitude is above this curve, a contingency abort capability is
+             still required and a 3E/O region index will be calculated. 
+             Otherwise, the 3E/O field is blanked out and no further contingency
+             abort calculations will be performed. (Must NOT be in SMODE=5 (??))
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(cg.start_cont_3eo_mode_select & cs.m_mode = mm103 & 
+        vel = GRT_vi_3eo_min & meco_confirmed & !smode5 ->
+           A[!cs.region_selected U cs.region_selected & 
+              apogee_alt_LT_alt_ref = !cs.cont_3EO_start])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: For an RTLS trajectory (SMODE=5), a check is made on the downrange
+          velocity to see if the vehicle is heading away from the landing site.
+          If this is the case, a 3E/O region index is calculated. If the vehicle
+          is heading back to the landing site, and the current range to the MECO
+          R-V line is greater than an I-loaded value, a 3E/O region index is
+          calculated. Otherwise, an intact abort is possible and the 3E/O field
+          is blanked.
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(cg.start_cont_3eo_mode_select & smode5 &  meco_confirmed &
+        (!v_horiz_dnrng_LT_0 | !delta_r_GRT_del_r_usp) -> 
+          A[!cs.region_selected U cs.region_selected & cs.cont_3EO_start])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: If this task is called prior to SRB separation [mm102], the 3E/O 
+             region index is set to 102 and the 3E/O contingency flag is set.
+PATTERN: Constrained Response (non-empty variation)
+SCOPE: Global
+CTL: AG(cs.m_mode = mm102 & cg.start_cont_3eo_mode_select -> 
+               AX (A [ !cs.region_selected U cs.region_selected & 
+                                cs.r = reg102 & cs.cont_3EO_start]))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: After SRB separation, on every pass that the 3E/O region index is
+             calculated, a check is made to see if MECO confirmed has occured.  
+             If so, a check is made to see if the major mode is 103. If so, 
+             an RTLS is automatically invoked to transition to major mode 601.
+PATTERN: Constrained Response
+SCOPE: Global 
+CTL: AG(!cs.region_selected & cs.m_mode = mm103 & meco_confirmed ->
+        A[!cs.region_selected U cs.region_selected & !cs.r = reg0 -> 
+              cs.m_mode = mm601 & cs.RTLS_abort_declared])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Once the 3E/O contingency flag has been set, this task is no longer
+             executed.
+PATTERN: Absence
+SCOPE: After
+CTL: AG(cs.cont_3EO_start -> AG(!cg.start_cont_3eo_mode_select))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: If MECO confirmed occurs in MM103 and an OPS 6 contingency abort
+             procedure is still required, contingency 3E/O guidance sets the
+             CONT_3EO_START flag ON. Contingency 3E/O guidance then switches
+             from its display support function into an actual auto guidance
+             steering process. Contingency 3E/O guidance sets the RTLS abort
+             declared flag and the MSC performs the transition from from major 
+             mode 103 to 601.
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG(!cg.idle & !cg.finished & !cs.region_selected & cs.m_mode = mm103 -> 
+       A[ !cg.finished U cg.finished & cs.region_selected & 
+           (cs.cont_3EO_start -> cs.m_mode = mm601 & cs.RTLS_abort_declared) ])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: If MECO confirmed occurs in a major mode 601 and a contingency 
+             abort procedure is still required, contingency 3E/O guidance sets 
+             the CONT_3EO_START flag ON. Contingency 3E/O guidance then commands
+             3E/O auto maneuvers in major mode 601.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.finished & cs.m_mode = mm601 & !et_sep_cmd & 
+        meco_confirmed  & cs.cont_3EO_start -> 
+        cg.q_gcb_i in {quat_reg1, quat_reg2, ...} | cg.emerg_sep)
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: If MECO confirmed occurs in a first stage (MM102), contingency
+             3E/O guidance will command a fast ET separation during SRB 
+             tailoff in major mode 102. CONT 3E/O GUID will then command 
+             maneuver post-sep in MM601.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.finished & cs.m_mode = mm102 & meco_confirmed & pre_sep ->
+        cg.emerg_sep | et_sep_cmd | cg.et_sep_man_initiate | cg.early_sep)
+NOTES: 4 instances
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency Guidance shall command an ET separation 
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cs.cont_3EO_start & cg.finished & 
+           (cg.r = reg1 -> cond_29) & 
+           (cg.r = reg2 -> cond_24 & cond_26) &
+           (cg.r = reg3 -> cg.alpha_ok &
+            (ABS_alf_err_LT_alf_sep_err -> cond_20b)) &
+           (cg.r = reg4 -> cond_18 & q_orb_LT_0) &
+           (cg.r = reg102 -> pre_sep) ->
+            et_sep_cmd | cg.et_sep_man_initiate | cg.early_sep | cg.emerg_sep)
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency Guidance shall command at most one 
+             interconnected OMS dump.
+PATTERN: Universal
+SCOPE: After 
+PARAMETERS: Temporal sub-formula
+CTL:     AG(cg.finished & cg.oms_rcs_i_c_inh_ena_cmd -> 
+             AG(!cg.oms_rcs_i_c_inh_ena_cmd -> 
+                AG(!cg.oms_rcs_i_c_inh_ena_cmd)))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Contingency Guidance shall command a transition to glide RTLS
+             (flight mode 602)
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.finished & cs.m_mode = mm601 -> cg.call_RTLS_abort_task)
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Paper, p. 28, unstated assumption 2: at step 6 the region is
+             among 102, 1-4.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.step = 6 -> cg.r in {reg102, reg1, reg2, reg3, reg4})
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: The transition to mode 602 shall not occur until the entry maneuver
+             is calculated
+PATTERN: Precedence
+SCOPE: Global
+CTL: !E[cg.q_gcb_i = undef U cg.cont_sep_cplt & cg.q_gcb_i = undef]
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: The entry maneuver calculations shall not commence until the 
+             OMS/RCS interconnect, if any, is complete.
+PATTERN: Absence 
+SCOPE: After-Until
+CTL: AG(cg.oms_rcs_i_c_inh_ena_cmd -> 
+          !E[rcs_all_jet_inhibit U 
+              !cg.q_gcb_i = undef & rcs_all_jet_inhibit])
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: The OMS dump shall not be considered until the -Z translation 
+             is complete.
+PATTERN: Precedence (possibly empty variation)
+SCOPE: Global
+CTL: !E[!cont_minus_z_compl & !cg.r = reg102 U cg.orbiter_dump_ena]
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Completion of -Z translation shall not be checked until ET 
+             separation has been commanded
+PATTERN: Precedence (possibly empty variation)
+SCOPE: Global
+CTL: !E[!et_sep_cmd U cg.step = 7]
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: ET separation shall be commanded if and only if an abort maneuver
+             region is assigned [and again there are *certain conditions*].
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cg.finished & cs.cont_3EO_start & 
+                  (cg.r = reg1 -> cond_29) & 
+                  (cg.r = reg2 -> cond_24 & cond_26) &
+                  (cg.r = reg3 -> cg.alpha_ok &
+                     (ABS_alf_err_LT_alf_sep_err -> cond_20b)) &
+                  (cg.r = reg4 -> cond_18 & q_orb_LT_0) &
+                  (cg.r = reg102 -> pre_sep) -> 
+          (cg.et_sep_man_initiate | et_sep_cmd
+                 <-> cg.r in {reg1, reg2, reg3, reg4, reg102}))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Regions 1 and 2 may interchange, but will not switch to any 
+             other region
+PATTERN: Universal
+SCOPE: After
+CTL: AG(cg.finished & cs.cont_3EO_start & cg.r in {reg1,reg2} -> 
+        AG(cg.finished -> cg.r in {reg1,reg2}))
+NOTES: 2 instances
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+REQUIREMENT: Region 102 never changes:
+PATTERN: Universal
+SCOPE: After
+CTL: AG(cg.finished & cg.r = reg102 -> AG(cg.finished -> cg.r = reg102))
+SOURCE: Bwolen Yang (Originally from Sergey Berezin)
+DOMAIN: requirements, avionics
+
+
+REQUIREMENT: ?
+PATTERN: Unknown
+SCOPE: Global
+CTL: EF(in_f[2]=2)
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: priority queue, data structure
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF(out_l[1]=0)
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: priority queue, data structure
+
+REQUIREMENT: ?
+PATTERN: Unknown
+SCOPE: Global
+CTL: EG(out_l[1]=0)
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: priority queue, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (sort_req -> AF(sort_OK))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(bufsize=3 -> 
+        AF(sim.val <= buffer[1] & sim.val <= buffer[2] & sim.val <= buffer[3]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (bufsize=2 -> AF(sim.val <= buffer[1] & sim.val <= buffer[2]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (bufsize=1 -> AF(sim.val <= buffer[1]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(bufsize=3 -> AF(val <= buffer[1] & val <= buffer[2] & val <= buffer[3]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (bufsize=2 -> AF(val <= buffer[1] & val <= buffer[2]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (bufsize=1 -> AF(val <= buffer[1]))
+SOURCE: Bwolen Yang (Originally from Edelweis Helene Ache Garcez)
+CITE: \cite{hoeg:94}
+DOMAIN: producer consumer, data structure
+
+REQUIREMENT: Whenever currPhase(FeedBelt)=NormalRun then eventually 
+             currPhase(FeedBelt)=CriticalRun
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.FBM=on & !s.deliv) -> AF (s.FBM=on & s.deliv))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Table)=StoppedInLoadPosition
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.FBM=on & s.deliv) -> 
+        AF(s.botPos & s.minRot & s.TEM=idle & s.TRM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Table)=StoppedInUnloadPosition
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.botPos & s.minRot & s.TEM=idle & s.TRM=idle) -> 
+        AF(s.topPos & s.maxRot & s.TEM=idle & s.TRM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: after that eventually currPhase(Robot)=UnloadTable
+             (we take for this the guard of RT2a where A1Mag is assigned to on)
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.topPos & s.maxRot & s.TEM=idle & s.TRM=idle) -> 
+        AF((s.angle=arm1totable & s.A1M=extend) & s.a1ext=ot))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Robot)=LoadPress
+             (we take for this the guard of RT2d where A1Mag is assigned to off)
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((s.angle=arm1totable & s.A1M=extend) & s.a1ext=ot) ->
+        AF((s.angle=arm1topress & s.A1M=extend) & s.a1ext=a1ip))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Press)=OpenForLoading
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((s.angle=arm1topress & s.A1M=extend) & s.a1ext=a1ip) -> 
+        AF(s.midPosP & s.PM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Press)=ClosedForForging
+PATTERN: Response
+SCOPE: Global
+CTL: AG ( (s.midPosP & s.PM=idle) -> AF (s.topPosP & s.PM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Press)=OpenForUnloading
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((s.topPosP & s.PM=idle) -> AF (s.botPosP & s.PM=idle))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Robot)=UnloadPress
+             (we take for this the guard of RT2b where A2Mag is assigned to on)
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.botPosP & s.PM=idle) -> 
+        AF((s.angle=arm2topress & s.A2M=extend) & s.a2ext=a2ip))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Robot)=LoadDepositBelt
+             (we take for this the guard of RT2c where A2Mag is assigned to off)
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((s.angle=arm2topress & s.A2M=extend) & s.a2ext=a2ip) ->
+        AF((s.angle=arm2todepbelt & s.A2M=extend) & s.a2ext=ob))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(DepositBelt)=NormalRun
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((s.angle=arm2todepbelt & s.A2M=extend) & s.a2ext=ob) -> 
+        AF(s.DBM=run & !s.crit))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(DepositBelt)=CriticalRun
+PATTERN: Response
+SCOPE: Global
+CTL: AG ( (s.DBM=run & !s.crit) -> AF (s.DBM=run & s.crit))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Crane)=UnloadDepositBelt
+             (we take for this the guard of CT1 where CMag is assigned to on)
+PATTERN: Response
+SCOPE: Global
+CTL: AG((s.DBM=run & s.crit) -> 
+        AF(s.gob & s.gvp=ovb & s.CHM=idle & s.CVM=idle & s.CMag=off & s.pbe))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(Crane)=LoadFeedBelt
+             (we take for this the guard of CT6 where CMag is assigned to off)
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((s.gob & s.gvp=ovb & s.CHM=idle & s.CVM=idle & s.CMag=off & s.pbe) ->
+         AF (s.CVM=down & s.gvp=ovf & s.gof))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: After that eventually currPhase(FeedBelt)=NormalRun
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((s.CVM=down & s.gvp=ovf & s.gof) -> AF (s.FBM=on & !s.deliv))
+SOURCE: Bwolen Yang (Originally from Kirsten Winter)
+CITE: \cite{winter:97}
+DOMAIN: production cell, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG AF (step = 0)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG AF (opstep = 17)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(watsol & !material)
+REWRITING: AG(!(watsol & !material))
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(material & !mf34 & !m7 & !m9)
+REWRITING: AG(!(material & !mf34 & !m7 & !m9))
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: !EF EG material
+REWRITING: AG AF !material
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(h = 7)
+REWRITING: AG(!h=7)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: !EF EG(h > 0)
+REWRITING: AG AF (!h>0)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(main_valve & !flame)
+REWRITING: AG(!(main_valve & !flame))
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: !EF EG(pilot_valve & !flame)
+REWRITING: AG AF !(pilot_valve & !flame)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(material & !flame)
+REWRITING: AG !(material & !flame)
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: !EF(open & close & (step = 0))
+REWRITING: AG !(open & close & (step = 0))
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: !EF EG z
+REWRITING: AG AF !z
+SOURCE: Bwolen Yang (Originally from Scott Probst)
+CITE: \cite{probst:94}
+DOMAIN: reactor, control system
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !ND_Auto_SL
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(Composite_RA_Evaluated_Event & DMG_inconsistent)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(Composite_RA = Descend & Composite_RA_Evaluated_Event & 
+          Diff_OTA_GL_LT_NODESLO)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(Radio_Altimeter_Status = Valid & Some_OA_Sense_Descend_Increase
+           & Composite_RA_Evaluated_Event & LE_Own_Alt_Radio_ZNOINCDES)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((Composite_RA = Climb & Composite_RA_Evaluated_Event) -> 
+         GE_Displayed_Model_Goal_Climb_Goal_Table_8)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(Corrective_Descend_Evaluated_Event & Corrective_Climb = Yes & 
+          Corrective_Descend = Yes)
+NOTES: These are automatically generated
+SOURCE: Bwolen Yang (Originally from William Chan)
+CITE: \cite{anderson:96}
+DOMAIN: requirements, avionics, tcas
+
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG AF bit2.carry_out
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: counter, hardware
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG(!(e-1.u.ack & e-2.u.ack) & !(e-1.u.ack & e-3.u.ack) & 
+        !(e-2.u.ack & e-3.u.ack))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: dme1, hardware
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG EF (p0.readable)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: gigamax, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: AG EF (p0.writable)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: gigamax, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(p0.writable & p1.writable)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: gigamax, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Unknown
+SCOPE: Global
+CTL: EF((state1 = c1) & (state2 = c2))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: mutex, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((state1 = t1) -> AF (state1 = c1))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: mutex, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((state2 = t2) -> AF (state2 = c2))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: mutex, protocol
+
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(start_transaction -> AF end_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((!req & issue_next & !b_gnt) -> AF b_gnt)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((b_gnt & !frame) -> AF frame)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(b_trdy_next & frame -> AF end_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(start_transaction -> AF end_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(start_transaction -> AX !start_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(start_transaction -> AX state = address)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(end_transaction -> AX !end_transaction)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(end_transaction -> AX state = idle)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG((!req & issue_next) -> AX req)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(b_trdy_next & !abort -> AX b_trdy)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Response (restricted next variation)
+SCOPE: Global
+CTL: AG(b_frame_switch -> AX !b_frame_switch)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(b_frame_switch -> b_frame)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(!b_frame -> !b_frame_switch)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !abort
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !abort_count = 3
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Unknown
+SCOPE: Global
+CTL: EG abort_count = 0
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req1 -> A[req1 U (grant = 1 | req0)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req0 -> A[req0 U grant = 0])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req1 & policy = RR) -> A[req1 U grant = 1])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req1 -> A[req1 U (grant = 1 | req0)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req2 -> A[req2 U (grant = 2 | req0 | req1)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req0 -> A[req0 U grant = 0])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req0 -> (A[req0 U grant = 0] | AX !req0))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req1 & policy = RR) -> A[req1 U grant = 1])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req2 & policy = RR) -> A[req2 U grant = 2])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req0 -> A[req0 U grant = 0])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req1 & all_RR) -> A[req1 U grant = 1])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req2 & all_RR) -> A[req2 U grant = 2])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req3 & all_RR) -> A[req3 U grant = 3])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req4 & all_RR) -> A[req4 U grant = 4])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req5 & all_RR) -> A[req5 U grant = 5])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req1 -> A[req1 U (grant = 1 | req0)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req2 -> A[req2 U (grant = 2 | req0 | req1)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req3 -> A[req3 U (grant = 3 | req0 | req1 | req2)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req4 -> A[req4 U (grant = 4 | req0 | req1 | req2 | req3)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG(req5 -> A[req5 U (grant = 5 | req0 | req1 | req2 | req3 | req5)])
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Constrained Response
+SCOPE: Global
+CTL: AG((req2 & policy = RR) -> (A[req2 U grant = 2] | AX !req2))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: After
+CTL: AG((processor.start_transaction) -> AG !(scsi_ctrl.end_transaction))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: pci, hardware, protocol
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !error
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: periodic
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal sub-formula
+CTL: (AG AF gate1.output) & (AG AF !gate1.output)
+NOTES: Conjoined independent specs
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: ring
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !activation_count = 2
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !error
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(T2pri8 & T3pri8)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG !(T4pri3 & T5pri3)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(pT1.start -> AF pT1.finish)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: After
+CTL: AG(pT1.start -> AG !pT1.finish)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: After
+CTL: AG(pT5.start -> AG !pT5.finish)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: After
+CTL: AG(pT3.suspend_count = 3 -> AG !timer = 50)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: robot, control, robot
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL:  AG (proc1.state = entering -> AF proc1.state = critical)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: semaphore
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL:  AG(request -> AF state = busy)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: short
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((ack-out -> Request) & AF (!Request | ack-out))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: syncarb5, protocol, hardware
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (e5.Request -> AF (!e5.Request | e5.ack-out))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: syncarb5, protocol, hardware
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG (!e1.Request & !e2.Request & !e3.Request & !e4.Request & e5.Request -> 
+         e5.ack-out)
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: syncarb5, protocol, hardware
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Global
+CTL: AG (!(e1.ack-out & e2.ack-out) & !(e1.ack-out & e3.ack-out)
+         & !(e2.ack-out & e3.ack-out) & !(e1.ack-out & e4.ack-out)
+         & !(e2.ack-out & e4.ack-out) & !(e3.ack-out & e4.ack-out)
+         & !(e1.ack-out & e5.ack-out) & !(e2.ack-out & e5.ack-out)
+         & !(e3.ack-out & e5.ack-out) & !(e4.ack-out & e5.ack-out))
+SOURCE: Bwolen Yang (Originally from the SMV Distribution)
+DOMAIN: syncarb5, protocol, hardware
+
+REQUIREMENT: Pressing a landing button guarantees that the lift will arrive
+             at that landing with its doors open.
+PATTERN: Response
+SCOPE: Global
+LTL: AG(landingButi.pressed -> AF(lift.floor=i & lift.door=open))
+NOTES: This is an examplar for a class of specs for each floor i
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Pressing a landing button guarantees that the lift will arrive
+             at that landing with its doors open, going in a downward direction.
+PATTERN: Response
+SCOPE: Global
+LTL: AG(landingButi.pressed -> AF(lift.floor=i & lift.door=open & 
+                                   lift.direction=down))
+NOTES: This is an examplar for a class of specs for each floor i
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Pressing a lift button guarantees that the lift will arrive
+             at the respective floor with its doors open.
+PATTERN: Response
+SCOPE: Global
+LTL: AG(liftButi.pressed -> AF(floor=i & door=open))
+NOTES: This is an examplar for a class of specs for each floor i
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: An elevator can remain idle on the third floor with its
+             doors closed.
+PATTERN: Unknown
+SCOPE: Global
+LTL: AG(floor=3 & idle & door=closed -> EG(floor=3 & door=closed))
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: An upwards travelling lift at the second floor does not change
+             direction when it has passengers wishing to go to the fifth
+             floor. 
+PATTERN: Response (constrained variation)
+SCOPE: Global
+LTL: AG(floor=2 & direction=up & liftBut5.pressed ->
+        A[direction=up U floor=5])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+
+REQUIREMENT: Service guaranteed for passengers inside lift if not empty
+PATTERN: Response
+SCOPE: Global
+LTL: AG(liftBut3.pressed & !lift.empty -> AF((floor=3 & dor=open) | lift.empty))
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Lift parks at floor 1
+PATTERN: Unknown
+SCOPE: Global
+LTL: AG(floor=4 & idle -> E[idle U floor=1])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+
+REQUIREMENT: Lift calls have preference
+PATTERN: Response (constrained variation)
+SCOPE: Global
+LTL: AG(up & liftBut2.pressed & !liftBut3.pressed ->
+        A[!(floor=3 & doors=open) U ((floor=2 & door=open) | !up)])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Lift will not move while overloaded
+PATTERN: Response (constrained variation)
+SCOPE: Global
+LTL: AG(floor=3 & overloaded ->
+        A[floor=3 U !overloaded])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Doors may close when no overloading
+PATTERN: Unknown
+SCOPE: Global
+LTL: AG(door=open & !overloaded -> E[!overloaded U door=closed])
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+REQUIREMENT: Impossible to close doors if overloaded
+PATTERN: Absence
+SCOPE: Global
+LTL: AG(!(overloaded & door=closed))
+ORIGINAL: !EF(overloaded & door=closed)
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator
+
+
+F. Cassez 
+R. Cleaveland
+
+
+REQUIREMENT: Every p is followed by an r and between the p and the r, q is true
+PATTERN: Constrained Response
+SCOPE: Global
+LTL: [] (p -> q U r)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: cr1 and cr2 are never both true
+PATTERN: Absence
+SCOPE: Global
+LTL: [] !(cr1 && cr2)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Every UP is followed by a DOWN
+PATTERN: Response
+SCOPE: Global
+LTL: [] (up -> (<> down))
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Every p is followed by a q
+PATTERN: Response
+SCOPE: Global
+LTL: [] (p -> <>q)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Every b is followed by an r but no np_
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: [] (b -> ([] !np_ && <>r))
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+NOTE: combination of "No np_ after b" and "r responds to b"
+
+REQUIREMENT: Eventually bp
+PATTERN: Existence
+SCOPE: Global
+LTL:  <> bp
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Infinitely often, A is followed by D and between A and D, C is true
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: []<> (a -> (c U d))
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Infinitely often, A is followed by D
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: []<> (a -> <> d))
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: If p1 is always followed by p2 and p3 is always followed by p4, then p5 is always followed by p6
+PATTERN: Response
+SCOPE: Global
+LTL: [] ((p1 -> <>p2) && (p3 -> <>p4)) -> [](p5 -> <>p6)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+NOTE: boolean combination of response patterns
+
+REQUIREMENT: In the first two states, either p then q or q then p
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: (p && X q) || (q && X p)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Eventually A, B, and B until C. 
+PATTERN: Unknown
+SCOPE: Unknown
+LTL: <> ((a && b) && b U c)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Eventually p until q
+PATTERN: Existence
+SCOPE: Global
+LTL: <> (p U q)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+EQUIVALENT: <> q
+
+REQUIREMENT: Eventually always p
+PATTERN: Existence
+SCOPE: Global
+LTL: <>[] p
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+
+REQUIREMENT: Always p until not p
+PATTERN: Always
+SCOPE: Global
+LTL: [] (p U !p)
+SOURCE: Gerard Holzmann (correspondence with SPIN user)
+DOMAIN: ?
+EQUIVALENT: true
+
+
+REQUIREMENT: If f characterizes the legitimate global state, then we want to
+             prove that always eventually f holds
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal formula (<>)
+LTL: []<>f
+SOURCE: SPIN'96 Paper on Self-stabilizing \cite{}, pp. 6, part 1
+DOMAIN: Communication Protocol
+
+REQUIREMENT: If f characterizes the legitimate global state, then we want to
+             prove that always eventually f holds
+PATTERN: Universal
+SCOPE: After
+PARAMETERS: Proposition
+LTL: [](f -> []f)
+SOURCE: SPIN'96 Paper on Self-stabilizing \cite{}, pp. 6, part 1
+DOMAIN: Communication Protocol
+
+REQUIREMENT: Always eventually transition aftsCC is taken
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Temporal (<>)
+LTL: []<>aftsCC  
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: Eventually transition aftsCC is taken
+PATTERN: Existence
+SCOPE: Global
+PARAMETERS: Temporal (<>)
+LTL: <>aftsCC  
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: After transition CC is taken, transition DR will never be taken. 
+PATTERN: Absence
+SCOPE: After
+PARAMETERS: Propositions
+LTL: [](aftsCC -> !<>aftsDR)
+REWRITING: [](aftsCC -> []!aftsDR)
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: After transition CR is taken, transition CC will be taken.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: [](aftsCR -> <>aftsCC)
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: ?? 
+PATTERN: Existence
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: aftsCR -> <>(aftsCC || aftsDR)
+NOTE: Propositional fragment or existence
+REWRITING: !aftsCR || <>(aftsCC || aftsDR)
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: ??
+PATTERN: Filter=GlobalUniversal+GlobalAbsence
+SCOPE: Global
+PARAMETERS: Temporal(<>) and Propositions
+LTL: ([]<>aftsDR) -> !<>aftsCC 
+NOTE: Converted to absence
+REWRITING: ([]<>aftsDR) -> []!aftsCC 
+SOURCE: Stefan Leue and Peter B. Ladkin \cite{leue:96}, pp. 16
+DOMAIN: Message Sequence Chart Validation
+
+REQUIREMENT: If at least one member exists in a LAN, the Bridge must 
+             eventyally recognize it.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Temporal([])
+LTL: [](p -> <>[]q)
+SOURCE: Tadashi Nakatani \cite{nakatani:97}, pp. 8
+DOMAIN: Communication Protocol
+
+REQUIREMENT: There is no duplication of blanks 
+NOTE: These are embedded as assertions in the promela, we could
+      express them as: after-absence and global-response[rcvblank,sndblank]
+PATTERN: Absence
+SCOPE: After
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: There is no loss of blanks 
+NOTE: These are embedded as assertions in the promela, we could
+      express them as: after-absence and global-response[rcvblank,sndblank]
+PATTERN: Response
+SCOPE: Global
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: Sequence numbers of sent blanks are preserved when they
+             are received by the container
+NOTE: This is embedded as an assertion in the promela, we could
+      express it as: 2-2 response-chain
+PATTERN: 2-2 Response Chain
+SCOPE: Global
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: Each blank that is received will eventually be forged.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositional (equality comparison with constant)
+NOTE: Conjunction of m response patterns
+LTL: [](P(0) -> <>Q(0)) && ... && [](P(m) -> <>Q(m))
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: There are no collisions between the press and the robot.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositional 
+LTL: [](pressing -> (!arm1_in_press && !arm2_in_press))
+SOURCE: Thierry Cattel \cite{cattel:95}, pp. 4
+DOMAIN: Process Control
+
+REQUIREMENT: For all ports p numbered from, say 0 to m, if p is created 
+             then the related channel needs to be empty.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositional (very large formulae)
+LTL: []((P(0) -> Q(0)) && ... && (P(m) -> Q(m)))
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 4
+DOMAIN: Operating System
+
+REQUIREMENT: The manager always eventually does a treatment when a request
+             is sent to it. 
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+LTL: []((State=INIT && request) -> <>(State=WORK))
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 5
+DOMAIN: Operating System
+
+REQUIREMENT: The manager always returns in its initial state after a treatment.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+LTL: [](State=WORK -> <>(State=INIT))
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 5
+DOMAIN: Operating System
+
+REQUIREMENT: The manager always does a treatment when requested then returns
+             to its initial state.
+PATTERN: Response Chain 1-2
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+LTL: []((State=INIT && request) -> 
+        <>(!State=INIT && (!State=INIT -> <>(State=INIT))))
+REWRITING: []((State=INIT && request) -> <>(!State=INIT && <>(State=INIT))))
+NOTE: Eliminated the next from the response-chain pattern for simplicity.
+      This requirement is the conjunction of the previous 2, it took
+      the authors 5 derivation steps to produce it and it still includes
+      some redundancy.
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 6
+DOMAIN: Operating System
+
+REQUIREMENT: FIFO buffers have to be empty at the end of a communication
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions (enumerations)
+LTL: [](EndOfCommunication -> BufferEmpty)
+SOURCE: Gregory Duval and Jacques Julliand \cite{duval:95}, pp. 6
+DOMAIN: Operating System
+
+REQUIREMENT: No pair of synchronizations on channel to_medium can occur
+             without an intervening broadcast delivery.
+PATTERN: Absence
+SCOPE: After-until
+LTL: [](Synch(to_medium) -> 
+        !Synch(to_medium) U (Broadcast | []!Synch(to_medium)))
+NOTE: They only give the english requirement
+SOURCE: Jensen, Larsen and Skou \cite{jensen:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: Messages received must correspond to the receivers id.
+PATTERN: Absence
+SCOPE: Global
+PARAMETERS: Propositions (variable comparison)
+LTL: []!data==id
+NOTE: They only give the english requirement
+SOURCE: Jensen, Larsen and Skou \cite{jensen:96}, fig. 6
+DOMAIN: Communication Protocol
+
+REQUIREMENT: In a safe domain there is a single MCS provider at the top
+             of each domain.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: [](safe -> one_top)
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: In a safe domain the height in every domain is always bounded.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: [](safe -> bounded_height)
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: In a safe domain every client attached to a domain has unique
+             identifiers.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions
+LTL: [](safe -> unique_ids)
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: In a merging domain, the protocol always detects and removes
+             cycles in MCS connections.
+PATTERN: Response
+SCOPE: Global 
+PARAMETERS: Propositions 
+LTL: [](merging -> <>safe)
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: While a domain is in a merging state, no new use identifiers
+             will be assigned.
+PATTERN: Absence
+SCOPE: After-until
+PARAMETERS: Propositions
+LTL: [](merging -> !(new_id U safe))
+NOTE: This spec either encodes some implicit assumptions or is wrong.
+REWRITING: [](merging -> !new_id U (safe | []!new_id))
+SOURCE: Merino \cite{merino:96}, fig. 5
+DOMAIN: Communication Protocol
+
+REQUIREMENT: The process Shunt does not signal free way to the train if the
+             Level Crossing is not closed.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions 
+NOTE: Limited details, but implemented as an assertion 
+LTL: [](SignalFreeWay && !LevelCrossingClosed)
+SOURCE: Cimmatti et. al.  \cite{cimmatti:97}, pp. 9
+DOMAIN: Railway Control
+
+REQUIREMENT: The SL never issues contradictory PD controls during a cycle.
+PATTERN: Absence
+SCOPE: Between
+PARAMETERS: Propositions 
+NOTE: Limited details, but, implemented using assertion 
+LTL: []((PDcontrolX && <>EndCycle) -> !PDcontrolContraX U EndCycle)
+SOURCE: Cimmatti et. al.  \cite{cimmatti:97}, pp. 9
+DOMAIN: Railway Control
+
+REQUIREMENT: If the free way was signalled to the train, and the level
+             crossing was closed with a manual command, then the manual
+             command RESTORE-AUTOMATIC-MODE must leave the level crossing
+             closed.
+PATTERN: Response 
+SCOPE: Global
+PARAMETERS: Propositions 
+NOTE: No details given for LTL formula, so its unclear what parts of
+      the system are modeled as states vs. events.
+LTL: []((SignalFreeWay && LevelCrossingClosed) -> 
+        <>(complete_RESTORE-AUTOMATICMODE && LevelCrossingClosed))
+SOURCE: Cimmatti et. al.  \cite{cimmatti:97}
+DOMAIN: Railway Control
+
+REQUIREMENT: A task releases all its locks before it terminates
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions (somewhat complex boolean function)
+NOTE: This is implemented as an assertion
+LTL: [](return_Achieving_Task -> not_subscriber(this,p.memory_property))
+SOURCE: Havelund, Lowry and Penix \cite{havelund:98}, pp. 43
+DOMAIN: Space Craft Control
+
+REQUIREMENT: If an inconsistency occurs between the database and an entry
+             in the lock table, then all tasks that rely on the lock will 
+             be terminated, either by themselves or by the daemon in terms
+             of abort.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerated and finite-range integer expressions)
+LTL: [](task1_property_broken -> <>task1_terminated)
+SOURCE: Havelund, Lowry and Penix \cite{havelund:98}, pp. 45
+DOMAIN: Space Craft Control
+
+REQUIREMENT: In all taks, if task1_property_broken holds, then eventually
+             either task1_terminated or task1_property_repaired will hold.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (enumerated and finite-range integer expressions)
+LTL: [](task1_property_broken -> 
+        <>(task1_terminated || task1_property_repaired))
+SOURCE: Havelund, Lowry and Penix \cite{havelund:98}, pp. 51
+DOMAIN: Space Craft Control
+
+REQUIREMENT: When a server requests for its registration in the ROT, it
+             will eventually be registered.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS: Propositions (boolean vector)
+LTL: [](RequestedRegisterImpl[i] -> <>ServerRegistered[i])
+NOTE: this is replicated for all modeled servers
+SOURCE: Gregory Duval \cite{duval:98}, RI, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: When a client i asks for a server j reference, it will 
+             eventually get the reference.  Unless the server is not
+             registered yet.
+PATTERN: Existence
+SCOPE: After-Until
+PARAMETERS:  Propositions (integer and boolean array expressions)
+LTL:  [](RequestGetIOR[i]=j -> (ServerRegistered[j] U GetIOR(i)))
+NOTE: Replicated for all modeled clients and servers.  The original
+      LTL is expressed with W (weak-until) as:
+        [](RequestGetIOR[i]=j -> <>(GetIOR(i) W !ServerRegistered[j]))
+SOURCE: Gregory Duval \cite{duval:98}, IOR, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: For an ordinary send/receive : When a client makes a method
+             call to a server, it will eventually receive the result of
+             its call if the server is OK.
+PATTERN: Response
+SCOPE: Global
+PARAMETERS:  Propositions (boolean arrays)
+LTL: [](ClientSend[i] -> <>ClientRecv[i])
+NOTE: Replicated for all modeled clients
+SOURCE: Gregory Duval \cite{duval:98}, SR, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: When a client makes a one way send, the server must eventually
+             receive data.
+PATTERN: Response
+SCOPE: Global 
+PARAMETERS:  Propositions (boolean arrays)
+LTL: [](ClientSend[i] -> <>ServerRecv[i])
+NOTE: Replicated for all modeled clients and servers
+SOURCE: Gregory Duval \cite{duval:98}, OW, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: For a Defered Synchronous Request : When the client waits for
+             the result from the Request process, it will eventually get it.
+PATTERN: Response
+SCOPE: Global 
+PARAMETERS:  Propositions (boolean arrays)
+LTL: [](ClientAskResult[i] -> <>ClientGetResult[i])
+NOTE: Replicated for all modeled clients 
+SOURCE: Gregory Duval \cite{duval:98}, DSR, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: When the name server makes a call to a test_implementation 
+             method of a remote server, the result of its call must be
+             equal to the reference of the server which is registered
+             in the ROT, Unless the server is not registered yet.
+PATTERN: Unknown
+SCOPE:   Unknown
+PARAMETERS: Propositions (relative variable values)
+LTL: 
+NOTE: Replicated for all servers.  The original LTL is expressed with W
+      (weak-until) as:
+        [](TestImplKey[j]=ReceivedKey W !ServerRegistered[j]) 
+SOURCE: Gregory Duval \cite{duval:98}, TIR, pp. 46
+DOMAIN: Distributed Object System
+
+REQUIREMENT: For each client the received integer is equal to the sent one
+             plus two.
+PATTERN: Universal
+SCOPE: Global
+PARAMETERS: Propositions (relative values of variables) 
+LTL: [](ReceivedInteger = (SentInteger + 1))
+SOURCE: Gregory Duval \cite{duval:98}, SC1, pp. 47
+DOMAIN: Distributed Object System
+

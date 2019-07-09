@@ -1,0 +1,57 @@
+<!--#set var="menuItem" value="Documentation.Specifications" -->
+<!--#set var="title" value="Survey of Property Specifications" -->
+
+<!--#include virtual="/header.shtml" -->
+
+  <p>As part of the property specification patterns project we have conducted
+a survey of how people are using specification formalisms supported
+by FSV tools.
+The goal is to evaluate the utility of the patterns.  
+We solicited contribution, in the Spring of 1998, of 
+examples of requirements that might be verified with existing finite-state
+verification tools (e.g., SPIN, SMV, CWB-NC, INCA, FLAVERS, ...).
+We received a number of responses and have surveyed the literature
+to collect a number of specifications.</p>
+
+  <p>A paper describing the survey and the interpretation
+of its results is provided above.
+Descriptions of each of the collected specifications are given
+in <a href="./specifications/index.shtml">this directory</a>.</p>
+
+  <p>The following example specification description illustrates the kind of information recorded (English language description,
+pattern, scope, formal spec, developer of the spec, citation, and
+problem domain).</p>
+
+  <p>  
+  <pre>
+REQUIREMENT: Pressing a landing button guarantees that the lift will arrive
+             at that landing with its doors open.
+PATTERN: Response
+SCOPE: Global
+LTL: AG(landingButi.pressed -> AF(lift.floor=i & lift.door=open))
+NOTES: This is an examplar for a class of specs for each floor i
+SOURCE: M. Ryan
+CITE: \cite{ryan:97}
+DOMAIN: feature integration, elevator</pre>
+  </p>
+
+  <p>We are continuing to collect this survey data and will periodically
+update this part of the web-site.  If you'd like to make a contribution
+we'd be happy to accept your requirements.
+The kind of requirements we are interested in
+typically restrict the occurrence/order of states/events
+in the finite-state model of the system. Examples include: 
+
+  <ul>
+    <li> "After every occurrence of X there must be an occurrence of Y."</li>
+    <li> "Between a P and a Q there can never be an X."</li>
+  </ul>
+
+  <p>We are interested in both natural language descriptions of the requirements
+as well as expressions of requirements in a formal specification language
+(e.g., LTL, CTL, regular expressions, ...).</p>
+
+  <p>You can <a href=" mailto:spec-patterns@cis.ksu.edu">email</a>.
+example requirements or citations/references to such requirements to us.</p>
+
+<!--#include virtual="/footer.shtml" -->

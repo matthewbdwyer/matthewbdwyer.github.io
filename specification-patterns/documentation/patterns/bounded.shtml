@@ -1,0 +1,72 @@
+<!--#set var="title" value="Occurrence Specification Patterns" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p><b>Intent</b></p>
+
+<p>To describe a portion of a system's execution that contains
+    at most a specified number of instances of a designated state transition
+    or event.</p>
+
+<hr>
+
+<p><b>Example Mappings</b></p>
+
+<ul>
+  <li><a href=ctl.shtml#Bounded>CTL</a>
+  <li><a href=ltl.shtml#Bounded>LTL</a>
+  <li><a href=qre.shtml#Bounded>QRE</a>
+  <li><a href=inca.shtml#Bounded>INCA</a>
+  <li><a href=gil.shtml#Bounded>GIL</a>
+</ul>
+
+<hr>
+
+<p><b>Examples and Known Uses</b></p>
+
+<p>Bounded overtaking properties can naturally be expressed using
+    instances of this pattern.  For example, if we wish to say 
+    that process 1 can enter its critical region at most twice
+    while process 2 is waiting to enter its region we would use
+    a between scope (delimited by process 2 entering and exiting
+    its waiting region) with 2-bounded existence for process 1
+    entering its critical region.</p>
+    
+<p>Mappings for bounds other than two can be constructed relatively
+    simply from the given mappings.  For QREs one simply defines
+    <tt>k</tt> appropriately.  For LTL and CTL we simply add
+    additional copies of the nested until structures, 
+    for example in LTL 3-bounded global existence is:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<tt>(!P W (P W </tt><tt><b>(!P W (P W (!P W (P W []!P))))</b></tt><tt>))</tt><br>
+    (where the nested 2-bounded version is in <b>bold</b>).</p>
+    
+<p>If the weak-until operator is not available directly one can
+    simply expand the mapping using the definition given above.  For
+    example, the 2-bounded global LTL mapping:<br>  
+    &nbsp;&nbsp;&nbsp;&nbsp;<tt>(!P W (P W (!P W (P W []!P))))</tt><br>
+    would become:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<tt>(!P U ([]!P | (P U ([]P | (!P U ([]!P | (P U ([]P | []!P))))))))</tt><br></p>
+    
+<hr>
+
+<p><b>Relationships</b></p>
+
+<p>This pattern is related to existence and chains.
+    Note that this pattern does not require the occurrence of
+    any number of instances of the given states/events 
+    (rather it bounds the number of instances).  Single
+    instances can be required with <a href="existence.shtml">existence</a>
+    patterns.  Multiple instances can be required with a slight variant
+    to the above mappings.</p>
+    
+<p>Note that <a href="r12chain.shtml">response chain</a> patterns are different than bounded existence in two ways:
+    response chains require the responding sequence to be of the
+    designated length (whereas here we only bound a sequences length),
+    and the notion of an instance of a state/event differs between
+    the two.  In particular, a stuttered instance (i.e., in consecutive
+    states on a path) counts as multiple instances with the chain
+    whereas it is a single instance with bounded existence.</p>
+    
+<p>This is an <a href="occurrence.shtml">Occurrence</a> pattern.</p>
+
+<!--#include virtual="/footer.shtml" -->

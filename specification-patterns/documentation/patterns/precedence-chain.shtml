@@ -1,0 +1,57 @@
+<!--#set var="title" value="Precedence Chain Property Pattern" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p><b>Intent</b></p>
+
+<p>This is a scalable pattern.  We describe the 1 cause - 2 effect
+  version here.</p>
+  
+<p>To describe a relationship between an event/state <i>P</i> and a
+  sequence of events/states <i>(S, T)</i> in which the occurrence of
+  <i>S</i> followed by <i>T</i> within the scope must be preceded by
+  an occurrence of the the sequence <i>P</i> within the same scope.
+  In state-based formalisms, the beginning of the enabled sequence
+  <i>(S, T)</i> may be satisfied by the same state as the enabling
+  condition (i.e., <i>P</i> and <i>S</i> may be true in the same
+  state).</p>
+
+<hr>
+
+<p><b>Example Mappings</b></p>
+
+<ul>
+  <li><a href=ctl.shtml#Precedence-Chain>CTL</a></li>
+  <li><a href=ltl.shtml#Precedence-Chain>LTL</a></li>
+  <li><a href=qre.shtml#Precedence-Chain>QRE</a></li>
+  <li><a href=inca.shtml#Precedence-Chain>INCA</a></li>
+  <li><a href=gil.shtml#Precedence-Chain>GIL</a></li>
+</ul>
+
+<hr>
+
+<p><b>Examples and Known Uses</b></p>
+
+<p>An example of this pattern, assuming reliable communication
+between client and server, is that 
+"If a client makes a request and there is no response, then
+the server must have crashed."
+This would be expressed by parameterizing the 
+<a href="constrained.shtml">constrained variant</a> of the
+1-2 precedence chain pattern
+as:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; ServerCrash precedes ClientRequest, []!Response
+without Response<br>
+in LTL.</p>
+
+<hr>
+    
+<p><b>Relationships</b></p>
+
+<p>Note that this pattern does not require that each occurrence of
+    the enabled sequence will have its own occurrence of the enabling
+    condition.</p>
+    
+<p>This is an <a href="order.shtml">Order</a> pattern.</p>
+    
+<!--#include virtual="/footer.shtml" -->

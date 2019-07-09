@@ -1,0 +1,53 @@
+<!--#set var="title" value="Property Specification Scopes" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<center>
+<img WIDTH=444 HEIGHT=232 ALIGN=BOTTOM ALT="figure50" SRC="/images/patterns/scopes.gif"  > <BR>
+<STRONG>Figure:</STRONG> Pattern Scopes<BR>
+</center>
+
+<P>
+<P>
+Each pattern has a <em>scope</em>, which is the extent of the program
+execution over which the pattern must hold.  There are five basic
+kinds of scopes: global (the entire program execution), before (the
+execution up to a given state/event), after (the execution after a
+given state/event), between (any part of the execution from one
+given state/event to another given state/event)
+and after-until (like between but the designated part of
+the execution continues even if the second state/event does
+not occur).  The scope is
+determined by specifying a starting and an ending state/event for the
+pattern: the scope consists of all states/events beginning with the
+starting state/event and up to but not including the ending
+state/event.
+<p>
+The figure above illustrates the portions of an execution
+that are designated by the different kinds of scopes. 
+We note that a scope itself should be interpreted as optional;
+if the scope delimiters are not present in an execution then
+the specification will be true.
+<p>
+Before and after scopes for our patterns are interpreted relative
+to the first occurrence of the designated state/event.  
+We have done this because it matches our experience
+with real specifications.  Note, however, that we could
+just as easily interpret these scopes relative to the last
+occurrence of the designated state/event (the mappings
+given in the patterns are easily transformed to match
+this interpretation).  
+At present we do not see the need for supporting both first and
+last occurrence scopes,
+but as we gain experience applying the patterns we may
+wish to extend scopes in this way.
+<P>
+Scope operators are not present in most specification formalisms
+(interval logics are an exception).  Nevertheless, our experience
+strongly indicates that most informal requirements are specified as
+properties of program executions or segments of program executions.
+Thus a pattern system for properties should mirror this view to
+enhance usability.
+<P>
+
+<!--#include virtual="/footer.shtml" -->

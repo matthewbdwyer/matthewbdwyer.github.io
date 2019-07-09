@@ -1,0 +1,15 @@
+<!--#set var="menuItem" value="Overview.People" -->
+<!--#set var="title" value="People" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<ul>
+  <li><a href="http://www.cps.msu.edu/~hamid">Hamid Alavi</a>
+  <li><a href="http://www.math.umass.edu/~avrunin">George Avrunin</a>
+  <li>James Corbett
+  <li><a href="http://www.cps.msu.edu/~ldillon">Laura Dillon</a>
+  <li><a href="http://www.cis.ksu.edu/~dwyer">Matt Dwyer</a>
+  <li><a href="http://www.cis.ksu.edu/~pcorina">Corina Pasareanu</a>
+</ul>
+
+<!--#include virtual="/footer.shtml" -->

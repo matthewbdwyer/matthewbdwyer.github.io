@@ -1,0 +1,44 @@
+<!--#set var="title" value="Universality Property Pattern" -->
+
+<!--#include virtual="/header.shtml" --> 
+
+<p><b>Intent</b></p>
+
+<p>To describe a portion of a system's execution which contains
+     only states that have a desired property.
+     Also known as <B>Henceforth</B> and <b>Always</b>.</p>
+
+<hr>
+ 
+<p><b>Example Mappings</b></p>
+
+<ul>
+  <li><a href=ctl.shtml#Universality>CTL</a></li>
+  <li><a href=ltl.shtml#Universality>LTL</a></li>
+  <li><a href=qre.shtml#Universality>QRE</a></li>
+  <li><a href=inca.shtml#Universality>INCA</a></li>
+  <li><a href=gil.shtml#Universality>GIL</a></li>
+</ul>
+
+<hr>
+
+<p><b>Examples and Known Uses</b></p>
+
+<p>This pattern can be applied in most situations where the absence pattern
+     can be applied.  This is especially true for state-based formalisms,
+     e.g., where mutual exclusion could be formulated as absence or
+     universality with a between scope.</p>
+
+<hr>
+
+<p><b>Relationships</b></p>
+
+<p>This pattern is closely related to the <a href="absence.shtml">Absence</a> 
+     and <a href="existence.shtml">Existence</a> 
+     patterns.   Universality of a state can be viewed as absence of
+     its negation.  For event-based formalisms, we look for the existence
+     of the positive event and absence of the negating event.</p>
+  
+<p>This is an <a href="occurrence.shtml">Occurrence</a> pattern.</p>
+
+<!--#include virtual="/footer.shtml" -->

@@ -1,0 +1,147 @@
+<!--#set var="title" value="Specification Pattern System: FAQ's" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<UL>
+
+<LI> <EM>Why is a specification pattern system needed for finite-state
+verification?</EM>
+ <P>
+Although finite-state verification methods are largely automatic, 
+freeing the user from the need to understand the details of the
+verification process, users of finite-state verification tools still
+must be able to specify the system requirements in the specification
+language of the verification tool. 
+ <P>
+Most programmers are unfamiliar with the formal specification
+languages used by verification tools.
+The effort required to
+acquire an adequate level of expertise in writing these specifications
+represents a substantial obstacle to
+the adoption of automated finite-state verification techniques.
+Providing an effective way for practitioners to draw on a large
+experience base can greatly reduce this obstacle.
+ <P>
+The specification pattern system enables the transfer of
+experience between practitioners by providing 
+a set of commonly occurring properties and examples
+of how these properties map into specific specification languages.
+We believe this can assist
+practitioners in mapping descriptions of system behavior into their
+formalism of choice, and that it may improve the transition of these
+formal methods to practice.
+ <P>
+
+<LI> <EM>What is a specification pattern?</EM>
+ <P>
+A property specification pattern is a generalized description of a
+commonly occurring requirement on the permissible state/event sequences
+in a finite-state model of a system.  A property specification pattern
+describes the essential structure of some aspect of a system's
+behavior and provides expressions of this behavior in a range of
+common formalisms.
+ <P>
+
+<LI> <EM>What formalisms/tools are currently supported?</EM>
+ <P>
+Currently, we provide mappings to 
+<UL>
+<LI> Linear Temporal Logic (LTL)
+<LI> Computation Tree Logic (CTL)
+<LI> Quantified Regular Expressions (QREs)
+<LI> The Inca query language
+<LI> Graphical Interval Logic (GIL)
+<li> Action Computation Tree Logic (ACTL)
+<li> Regular Alternation-Free Mu-Calculus
+</UL>
+Thus any tool accepting property specifications in these formalisms
+can be used with the pattern system. Such tools include:
+<UL>
+<LI> SPIN (accepts LTL)
+<LI> JavaPathFinder (accepts LTL)
+<LI> SMV (accepts CTL)
+<LI> FLAVERS (accepts QREs)
+<li> CADP/EVALUATOR (accepts ACTL and Mu-Calculus)
+</UL>
+
+ <P>
+
+<LI> <EM>What is the scope of a pattern?</EM>
+ <P>
+The <EM>scope</EM> of a pattern is the extent of the program
+execution over which the pattern must hold.  There are five basic
+kinds of scopes: global (the entire program execution), before (the
+execution up to a given state/event), after (the execution after a
+given state/event), between (any part of the execution from one
+given state/event to another given state/event)
+and after-until (like between but the designated part of
+the execution continues even if the second state/event does
+not occur).  
+The scope is determined by specifying a starting and 
+an ending state/event for the pattern. 
+ <P>
+For state-delimited scopes, the interval in which the 
+property is evaluated is closed at the left and open at the right end.
+Thus, the scope consists of all states beginning with the
+starting state and up to but not including the ending state.
+We chose closed-left open-right scopes because they are relatively easy
+to encode in specifications and they work for the
+real property specifications we studied.  It is possible,
+however, to define scopes that are open-left and closed-right
+as well.
+In event-based formalisms the underlying model does not
+allow two events to coincide, thus
+event-delimited scopes are open at both ends.
+ <P>
+Scope operators are not present in most specification formalisms
+(interval logics are an exception).  Nevertheless, our experience
+strongly indicates that most informal requirements are specified as
+properties of program executions or segments of program executions.
+Thus a pattern system for properties should mirror this view to
+enhance usability.
+ <P>
+
+<LI> <EM>How did you validate the pattern mappings?</EM>
+<P>
+Mappings were validated primarily by peer review amongst the 
+project members, with assistance from
+several other people on selected pattern mappings.  Some of the mappings
+also underwent testing by running existing FSV tools to analyze 
+small finite-state
+transition systems which encode (un)satisfying sequences of states/events.
+<P>
+
+<LI> <EM>How can I find the pattern for the property I need to verify?</EM>
+ <P>
+We have organized the patterns into a simple hierarchy, with links
+between related patterns. By searching down the hierarchy to the
+kind of property you need (e.g., existence of an event, ordering of
+events), browsing some specific patterns that sound relevant, 
+and possibly following links to related patterns, you should be
+able to locate a pattern that is at least close to what you want.
+ <P>
+
+<LI> <EM>What if my property is not an existing pattern?</EM>
+ <P>
+Even if your property does not match any pattern in the system,
+it may be close to an existing pattern, which can give you a start.
+ <P>
+Also, looking at similar properties and their mappings can help you
+learn standard idioms of the specification language (e.g., how do I
+require one event follow another), which in turn can assist you
+in writing the property yourself. If you find a property that does
+not fit into our pattern system, please submit it to us.
+Development of a pattern system is a community activity requiring
+participation by a broad range of experts both in patterns and in the
+formal specification domain.
+ <P>
+
+<LI> <EM>How can I contribute a pattern/mapping to the system?</EM>
+ <P>
+Submit a description of the pattern to 
+<a href="mailto:spec-patterns@cis.ksu.edu">
+spec-patterns@cis.ksu.edu</a>.
+Please use a format similar to our own by including an intent,
+example(s) of known uses, relationships to existing patterns,
+and as many mappings as you have worked out. 
+ <P>

@@ -1,0 +1,54 @@
+<!--#set var="title" value="Order Specification Patterns" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p><b>Intent</b></p>
+
+<p>This is a scalable pattern.  We describe the intent of the 1
+  stimulus - 2 response version here.</p>
+  
+<p>To describe a relationship between a stimulus event (<TT>P</TT>)
+  and a sequence of two response events (<TT>S,T</TT>)
+  in which the
+  occurrence of the stimulus event must be followed by an occurrence
+  of the sequence of response events within the scope.
+  In state-based formalisms, the states satisfying the response must
+  be distinct (i.e., <TT>S</TT> and <TT>T</TT> must be true in different
+  states to count as a response), 
+  but the response may be satisfied by the same state as the
+  stimulus (i.e., <TT>P</TT> and <TT>S</TT> may be true in the same state).</p>
+
+<hr>
+
+<p><b>Example Mappings</b></p>
+
+<ul>
+  <li><a href=ctl.shtml#Response-Chain>CTL</a></li>
+  <li><a href=ltl.shtml#Response-Chain>LTL</a></li>
+  <li><a href=qre.shtml#Response-Chain>QRE</a></li>
+  <li><a href=inca.shtml#Response-Chain>INCA</a></li>
+  <li><a href=gil.shtml#Response-Chain>GIL</a></li>
+</ul>
+
+<hr>
+
+<p><b>Examples and Known Uses</b></p>
+
+<p>If a resource allocator grants a process access to a resource 
+(<TT>GrantRes</TT>),
+the process will start using the resource (<TT>BeginRes</TT>)
+and finish using the resource (<TT>EndRes</TT>).</p>
+
+<hr>
+
+<p><b>Relationships</b></p>
+
+<p>This pattern is a generalization of 
+    the <a href="response.shtml">Response</a> pattern.
+    If you wish to restrict the occurrence of states/events between
+    stimuli or responses use the  
+    the <a href="constrained.shtml">Constrained Response Chain</a> pattern.</p>
+    
+<p>This is an <a href="order.shtml">Order</a> pattern.</p>
+
+<!--#include virtual="/footer.shtml" -->

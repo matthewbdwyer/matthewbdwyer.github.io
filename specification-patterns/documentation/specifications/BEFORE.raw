@@ -1,0 +1,980 @@
+
+REQUIREMENT: It is impossible to be driving without the key in
+PATTERN: Absence
+SCOPE: Global
+CTL: AG(!(shifter = drive & !(ignition = keyin)))
+SOURCE: Matt Dwyer (CIS 842 course notes Fall, 1997)
+DOMAIN: control, automobile
+  
+REQUIREMENT: If we request a unlock operation the doors will become unlocked
+PATTERN: Response
+SCOPE: Global
+CTL:  AG( remote=unlock -> AF( driver.doorUnlocked & passenger.doorUnlocked &
+                           slider.doorUnlocked & hatch.doorUnlocked))
+SOURCE: Matt Dwyer (CIS 842 course notes Fall, 1997)
+DOMAIN: control, automobile
+
+REQUIREMENT: If car is moving then the  key cannot be out of the ignition.
+PATTERN: Universal
+SCOPE: Global
+CTL: AG( !speed=0 -> !ignition=keyout )
+SOURCE: Matt Dwyer (CIS 842 course notes Fall, 1997)
+DOMAIN: control, automobile
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL:  AG (info_fields = empty ->AF (!info_fields = match_info)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL:  AG ((info_fields = empty) & (!info_fields = match_info)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL:  AG ((info_fields = empty) | (info_fields = match_info)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(match_results=one_match -> 
+        AF(search_state=not_enabled & search_all_names_state=not_enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL:  AG ((match_results = more_than_one_match)   -> AF ((search_state = enabled) & (search_all_names_state = enabled))) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (help_state = open -> AF (help_size = min)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((help_state = closed) & (help_size = min)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Always
+SCOPE: Before
+CTL: A[help_size = max U (help_state = closed | AG(!help_state=closed))] 
+NOTES: Part 1 of 2 part spec
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF help_state = closed
+NOTES: Part 2 of 2 part spec
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG ((name_fields = entry_made | text_fields = entry_made) -> 
+         AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (!(match_results = no_match) -> AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((clear_selected = selected) -> 
+        AF (search_state = not_enabled & search_all_names_state = not_enabled &
+            view_print_state = not_enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((match_results = one_match) | (match_results = more_than_one_match) -> 
+        AF (view_print_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((display_diamond_state = selected) & !(match_results = no_match)) -> 
+        AF (diamond_info_fields = match_info)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((text_fields = entry_made) | (name_fields = entry_made)) -> 
+        AF ((search_state = enabled) & (clear_state = enabled))) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(((text_fields = entry_made) | (name_fields = entry_made)) -> 
+        AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((name_fields = entry_made) ->  AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG((name_fields = entry_made) -> 
+        AF ((search_state = enabled) & (search_all_names_state = enabled) &
+            (clear_state = enabled))) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG(!match_results=no_match -> 
+        AF((text_fields = match_info) & (name_fields = match_info) & 
+           (info_fields = match_info))) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: If there is a match and diamond state is selected then 
+             diamond fields will have the match info.
+PATTERN: 2-1 Response Chain
+SCOPE: Global
+CTL: !EF(!match_results=no_match & 
+         EX(EF(display_diamond_state=selected & 
+               EG(!diamond_info_fields=match_info))))
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response
+SCOPE: Global
+CTL: AG (!(match_results = no_match) -> AF (clear_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF (text_fields = entry_made) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF (match_results = one_match) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Existence
+SCOPE: Global
+CTL: AF (match_results = more_than_one_match) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG (clear_state = enabled) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((name_fields = empty)  -> (search_all_names_state = enabled))
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((match_results = no_match) ->  (view_print_state = enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Absence
+SCOPE: Before
+CTL: A[help_size = min U (help_state = open | AG(!help_state=open)]
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG ((help_size = min) & (help_state = closed))
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(((search_all_names_state = entry_made) &  
+         !(match_results=no_match)) -> (search_all_names_state = not_enabled)) 
+SOURCE: Vicki Carr (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((menustate=file) & (menuaction=mexit)->AF(systemstate=terminated)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((menustate=file) & (menuaction=mexit)->AF(systemstate=terminated)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (tastate=error))->AF(taaction=errok)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=error))->AF(tiaction=errok)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=valid) & (tiaction=ok) & validid) ->
+        AF(tistate=complete))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & !(tiready) & !(tiaction=cancel) & changeid)->
+         AF(tistate=entry)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((systemstate=ti & tistate=entry & tiaction=ok)-> AF(tistate=idle)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=idle)  & (tiaction=ok)&validid)-> 
+        AF(tistate=valid))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=idle) & (tiaction=ok) & (!validid)) ->
+        AF(tistate=error))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((systemstate=ta) & (taaction=cancel)->AF(tastate=terminated)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(systemstate=ta->AF(menuaction=moff)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(systemstate=ta->AF(menustate=none))  
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (tastate=terminated) & 
+         (menustate=none) & (menuaction=moff))-> AF(systemstate=m))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((systemstate=ti) & (tiaction=cancel) -> AF(tistate=terminated)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(systemstate=ti)->AF(menuaction=moff) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(systemstate=ti)->AF(menustate=none)  
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ti) & (tistate=terminated) & 
+        (menustate=none) & (menuaction=moff))->AF(systemstate=m))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((taaction=click)->AF(tastate=dest))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (tastate=dest) & (taaction=off) & (fieldstate=0))->
+         AF(tastate=empty)) 
+NOTES: 3 instances
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (taaction=save))->AF(tastate=saved))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (taaction=submit)& !tavalid)->AF(tastate=error)) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(((systemstate=ta) & (taaction=submit)& tavalid)->AF(tastate=submitted))
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(systemstate=ta) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(systemstate=terminated) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(systemstate=m)  
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+REQUIREMENT: ?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(systemstate=ti) 
+SOURCE: Laura Hines (CIS 842 course project Fall, 1997)
+DOMAIN: gui
+
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(ActiveTrans = RecvQtyOKLI1 -> AF ActiveTrans = CheckOrdStatus)
+NOTES: 14 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(ActiveTrans = CheckOrdStatus -> AF ActiveTrans = none)
+NOTES: 3 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: ?
+PATTERN: Response 
+SCOPE: Global
+CTL: AG(ActiveTrans = PrnLI1 -> AF ActiveTrans = PrnLI2)
+NOTES: 2 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: The status never goes from unit to these values, so it can only go
+             to open or remain in unit.
+PATTERN: Existence
+SCOPE: Between
+CTL: AG((Status = uninit) -> 
+	!E[Status = uninit U 
+   	  (Status = inprogress | Status = shipped | Status = closed)])
+NOTES: 5 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: An open order may be deleted and have the value uninit.
+PATTERN: Unknown
+SCOPE: Unknown
+CTL: EF((Status = open) -> E[Status = open U Status = uninit])
+NOTES: 8 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: When either line-item is shipped and the other line-item is not 
+             open or inprogress, the order is shipped.
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((li1.Status = shipped & 
+        !(li2.Status = open | li2.Status = inprogress)) |
+         (li2.Status = shipped & 
+        !(li1.Status = open | li1.Status = inprogress)) ->
+	AF(Status = shipped))
+NOTES: 6 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: When the line-item.Status = shipped the Receipt Qty Correct 
+             button is enabled.  The user presses this button to indicate 
+             that the receipt quantity for the line-item is acceptable.  
+             The line-item Status will become closed if the receipt qty not 
+             equal the shipped quantity as specified in the first SPEC.  
+             To allow this transaction to be undone, the RecvQtyEqShipQty 
+             is set to false.
+PATTERN: Response 
+SCOPE: Global
+CTL: AG((Enabled & ((li.LINo = 1 & EnvPress = RecvQtyOKLI1) | 
+                     (li.LINo = 2 & EnvPress = RecvQtyOKLI2)) & 
+         	!li.RandomRecvQtyEqShipQty & li.Status = shipped & 
+		ActiveTrans = none & running) -> 
+      AF(li.Status = closed & !li.RecvQtyEqShipQty))
+NOTES: 21 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+REQUIREMENT: Verifies that the above implication's antecedent is true some time
+PATTERN: Unknown
+SCOPE: Unknown
+CTL: EF(Enabled & ((li.LINo = 1 & EnvPress = RecvQtyOKLI1) | 
+                     (li.LINo = 2 & EnvPress = RecvQtyOKLI2)) & 
+         	!li.RandomRecvQtyEqShipQty & li.Status = shipped & 
+		ActiveTrans = none & running) 
+NOTES: 21 instances
+SOURCE: Bryon Donahue (CIS 842 course project Fall, 1997)
+DOMAIN: database application
+
+
+
+REQUIREMENT: On any iteration, customer 3 starts before customer 2 starts.
+PATTERN: Universal 
+SCOPE: Global
+CTL:  AG(cust_3_started -> cust_2_started)
+NOTES: For model with flag variables added
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: scheduling algorithm
+
+REQUIREMENT: On any iteration, customer 3 starts before customer 2 starts.
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((sched__2=s2) -> A[!(sched__3=s3)U(sched__2=s3)])
+QRE:  {cust_2_start,cust_3_start} none
+      [-cust_2_start,cust_3_start]*;
+      (cust_2_start; [-cust_3_start]*;
+       cust_3_start; [-cust_2_start,cust_3_start]*)*;
+      cust_3_start; [cust_2_start,cust_3_start]*
+INCA: (defquery "no_c3c2" "nofair"
+      (omega-star-less
+       (sequence
+        (interval :initial t :open t
+   	          :ends-with '((rend "sched_1;sched_2.next")
+                               (rend "sched_2;cust_3.start")))
+       )))
+NOTE: Problems with matching up state/event names make it difficult to
+      confirm the use of QRE and INCA mappings.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: scheduling algorithm
+
+
+REQUIREMENT: On any iteration, can customer 2 start twice without an 
+             intervening call to finish.
+PATTERN: Absence
+SCOPE: Global
+CTL:  AG(!error)
+NOTES: For model with flag for customer_2 finishing and error flag set to 
+       true if customer_2 is started when the cust_2_finished flag is true.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: scheduling algorithm
+
+
+REQUIREMENT: On any iteration, can customer 2 start twice without an 
+             intervening call to finish.
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL:  AG((sched__2=s3) -> A[!(sched__2=s2)U((sched__2=s5) |  (sched__2=s8))])
+INCA: (defquery "no_c2ss" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t 
+                   :ends-with '((rend "sched_2;cust_2.start")))
+         (interval :ends-with '((rend "sched_2;cust_2.start"))
+                   :forbid '((rend "cust_2;sched_2.finished)))
+        )))
+QRE: {customer_2_start,scheduler_2_finished} all
+     [-customer_2_start]*;
+     (customer_2_start; [-customer_2_start,scheduler_2_finished]*;
+      scheduler_2_finished; [-customer_2_start]*)*
+NOTES: The QRE is an exact match of the varied mapping.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: scheduling algorithm
+
+REQUIREMENT: If solver_3 is forked, is it possible for solver_1 to join the 
+             main task before solver_3 has joined solver_2?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((solver_1=s3) -> ((solver_3_forked & solver_3_joined) | 
+                          !solver_3_forked))
+NOTES: For model with flags for solver_3_forked and solver_3_joined.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: parallel computation
+
+
+REQUIREMENT: If solver_3 is forked, is it possible for solver_1 to join the
+             main task before solver_3 has joined solver_2?
+PATTERN: Unknown
+SCOPE: Unknown
+CTL: EF((solver__1=s2) & ((sover__3=s3) | (solver__3=s5)))
+INCA: (defquery "no_s1js3j" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :ends-with '((rend "main;solver_1.join"))
+                   :require '((rend "solver_2;solver_3.fork"))
+                   :forbid '((rend "solver_2;solver_22.join")))
+        )))
+QRE: {solver_1_join,solver_3_fork,solver_3_join} all
+     [-solver_1_join,solver_3_fork,solver_3_join]*;
+     ((solver_3_fork; [-solver_1_join,solver_3_join]*;
+       solver_3_join; [-solver_1_join]*;
+       solver_1_join)
+      |
+       solver_1_join);
+     [solver_1_join,solver_3_fork,solver_3_join]*
+NOTES: INCA and QREs appear to ask the negation of requirement
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: parallel computation
+
+
+REQUIREMENT: Is solver_3 forked on every execution of the program?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((solver_1=s2) -> solver_3_forked)
+NOTES: For model with flags for solver_3_forked.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: parallel computation
+
+
+REQUIREMENT: Is solver_3 forked on every execution of the program?
+PATTERN: Existence
+SCOPE: Global
+CTL: A[!(main=s3) U ((solver__3=s3) | (solver__3=s5))]
+INCA: (defquery "no_s3f" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :ends-with '((rend "main;solver_1.join"))
+                   :forbid '((rend "solver_2;solver_3.fork)))
+        )))
+QRE: {solver_1_join,solver_3-fork} all
+     [-solver_1_join,solver_3_fork]*; solver_3_fork;
+     [solver_1_join,solber_3_fork]*
+NOTES: Pattern/scope based on QRE.  Why not use AF for the CTL?  
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: parallel computation
+
+
+REQUIREMENT: Can two adjacent philosophers ever be eating at the same time?
+PATTERN: Universal 
+SCOPE: Global
+CTL: AG(((phil__1=s3) -> !(phil__2=s3)) & ((phil__2=s3) -> !(phil__1=s3)))
+INCA: (defquery "no_p1p2" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '((rend "phil_1;fork_1.up") 
+                                (rend "phil_2;fork_2.up)))
+        )))
+QRE: {phil_1_start_eating,phil_1_stop_eating,
+      phil_2_start_eating,phil_2_stop_eating} all
+     [-phil_1_start_eating,phil_2_start_eating]*;
+     (((phil_1_start_eating; [-phil_2_start_eating,phil_1_stop_eating]*; 
+        phil_1_stop_eating) |
+       (phil_2_start_eating; [-phil_1_start_eating,phil_2_stop_eating]*;
+        phil_2_stop_eating));
+      [-phil_1_start_eating,phil_2_start_eating]*)*
+NOTES: Its very difficult to factor out the disjunction/conjuntion encoding
+       of the QRE to see the (trivial) mapping.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: dining philosophers
+
+
+REQUIREMENT: Can philosopher i ever start eating while holding the dictionary?
+PATTERN:  Universal
+SCOPE: Global
+CTL: AG((phil_2=s3) -> !holding_dictionary)
+NOTES: For model with holding_dictionary variable.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: dining philosophers with dictionary
+
+REQUIREMENT: Can philosopher i ever start eating while holding the dictionary?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((phil__2=s6) -> A[!(phil__2=s4)U(phil__2=s1)])
+INCA: (defquery "no_p2d" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '((rend "phil_1;phil_2.dictionary")))
+         (interval :ends-with '((rend "phil_2;fork_2.up"))
+                   :forbid '((rend "phil_2;phil_3.dictionary")))
+        )))
+QRE: {phil_2_dictionary,phil_2_dictionary,phil_2_eating} all
+     [-phil_2_dictionary]*;
+     (phil_2_dictionary; [-phil_2_eating,phil_3_dictionary]*;
+      phil_3_dictionary; [-phil_2_citionary]*)*
+NOTES: CTL requires FAIRNESS constraint phil_2=s1.  Exact match on QRE mapping.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: dining philosophers with dictionary
+
+
+REQUIREMENT: Can an elevator ever be moved while its doors are open?
+PATTERN: Absence 
+SCOPE: Global
+CTL: AG(!error)
+NOTES: For model door open and error variables
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, elevator
+
+
+REQUIREMENT: Can an elevator ever be moved while its doors are open?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+INCA: (defquery "no_omc" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t 
+                   :ends-with '((rend "doorman_1;elevator.open_door_1")))
+         (interval :ends-with '((rend "elevator_1;controller.at_floor"))
+                   :forbid '((rend "doorman_1;elevaotr.close_door_1")))
+       )))
+QRE: {elevator_open_door_1,elevator_close_door_1,elevator_1_moved} all
+     [-elevator_open_door_1]*;
+     (elevator_open_door_1; [-elevator_close_door_1,elevator_1_moved]*;
+      elevator_close_door_1 [-elevator_open_door_1]*)*;
+NOTES: Pattern/scope based on matching of mappings for both QRE and INCA 
+       to other requirements in this collection (see 2 above) . 
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, elevator
+
+REQUIREMENT: Can an elevator ever be shut down while it has pending requests?
+PATTERN:  Universal
+SCOPE: Global
+CTL: AG((elevator_1=s3) -> elev_1_idle)
+NOTES: For model with elev_1_idle variable
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, elevator
+
+REQUIREMENT: Can an elevator ever be shut down while it has pending requests?
+PATTERN:  Response (constrained variation)
+SCOPE: Global
+INCA: (defquery "no_omc_con" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '((rend "elevator;elevator_1.set_direction")))
+         (interval :ends-with '((rend "driver;controller.shut_down"))
+                   :forbid '((rend "elevator-task;elevator_1-task.set_idle")))
+        )))
+QRE: {elevator_1_set_idle,elevator_1_set_direction,controller_shut_down} all
+     [-elevator_1_set_direction,controller_shut_down]*;
+     elevator_1_set_direction; [-elevator_1_set_idle,controller_shut_down]*;
+     elevator_1_set_idle; [-elevator_1_set_direction,controller_shut_down]*)*;
+     controller_shut_down
+NOTES: Missing open paren in QRE, INCA is constrained response
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, elevator
+
+
+REQUIREMENT: Can two customers ever be pumping on the same pump at the
+             same time?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(((customer_1=s5) -> !(customer_2=s5)) & 
+        ((customer_2=s5) -> !(customer_1=s5)))
+INCA: (defquery "no_c1c2" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '("call(cust_1-task;pump_1-task.start_pumping)"
+                                "call(cust_2-task;pump_1-task.start_pumping)"))
+       )))
+QRE: {cust_1_start_pumping,cust_1_stop_pumping,
+      cust_2_start_pumping,cust_2_stop_pumping} none
+     [-cust_1_start_pumping,cust_2_start_pumping]*
+     (((cust_1_start_pumping; [-cust_2_start_pumping,cust_1_stop_pumping]*;
+        cust_1_start_pumping) |
+       (cust_2_start_pumping; [-cust_1_start_pumping,cust_1_stop_pumping]*;
+        cust_2_stop_pumping)); 
+      [-cust_1_start_pumping,cust_2_start_pumping]*)*;
+     ((cust_1_start_pumping; [-cust_2_start_pumping,cust_1_stop_pumping]*;
+       cust_2_start_pumping) |
+      (cust_2_start_pumping; [-cust_1_start_pumping,cust_2_stop_pumping]*;
+       cust_1_start_pumping));
+     [cust_1_start_pumping,cust_1_stop_pumping,
+      cust_2_start_pumping,cust_2_stop_pumping]*
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, Ada program
+
+REQUIREMENT: Can a customer ever prepay on one pump and get change based on
+             the charge from the other pump?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(cust_1_pump_2_change -> !prepay_1_pump_1)
+NOTES: For model with variables prepay_1_pump_1 and cust_1_pump_2_change.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, Ada program
+
+
+REQUIREMENT: Can a customer ever prepay on one pump and get change based on
+             the charge from the other pump?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((customer__1_task=s4) -> 
+        A[!(customer__1_task=s1) U 
+          ((operator_task=s29) |(operator_task=s24) |
+           (operator_task=s14) | (operator_task=s20))]) 
+INCA: (defquery "no_c1p2" "nofair"
+   (omega-star-less
+    (sequence
+     (interval :initial t :open t 
+       :ends-with '(
+         (rend "operator-task;customer_1-task.operator-prepay_1_pump_1-end")))
+     (interval :ends-with '((rend "operator-task;customer_1-task.change"))
+               :require '((rend "pump_2-task;operator-task.charge_1_pump_2"))
+               :forbid '((rend "pumpt_1-task;operator-task.charge_1_pump_1")))
+    )))
+QRE: [operator_prepay_1_pump_1,cust_1_pump_1_change,cust_1_pump_2_change} all
+     [-operator_prepay_1_pump_1]*;
+     operator_prepay_1_pump_1; [-cust_1_pump_1_change,cust_1_pump_2_change]*;
+     cust_1_pump_1_change; [-operator_prepay_1_pump_1]*)*
+NOTES: CTL required fairness constraint for customer__1_task=s1.  QRE is
+       exact match for varied mapping.  INCA doesn't seem to be.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: control, Ada program
+
+REQUIREMENT: On any iteration in the main task, can task 3 be started before
+             task 2?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(t_2_first)
+NOTES: For model with t_2_started and t_2_first variables.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: Ada program
+
+
+REQUIREMENT: On any iteration in the main task, can task 3 be started before
+             task 2?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((t__1=s3) -> A[!(t__3=s3) U (t__2=s3)])
+INCA: (defquery "no_t3t2" "nofair"
+   (omega-star-less
+    (sequence
+     (interval :initial t :open t :ends-with '((rend "main;t_1.start")))
+     (interval :ends-with '((rend "main;t_2.start"))
+               :forbid '((rend "main;t_2.start")))
+    )))
+QRE: {task_1_start, task_3_start} none
+     [-task_1_start, task_3_start]*;
+     (task_1_start; [-task_3_start]*;
+      task_3_start; [-task_1_start, task_3_start]*)*;
+     task_3_start; [task_1_start,task_3_start]*
+NOTES: INCA seems to match, but the QRE uses a none formulation so it
+       doesn't match.
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: Ada program
+
+REQUIREMENT: Can two users ever be in the critical section at the same time?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(((!(user__1=s1) & !(user__1=s2) & !(user__1=s4) & !(user__1=s12)
+          !(user__1=s21) & !(user__1=s27) & !(user__1=s28)) ->
+         ((user__2=s1) | (user__2=s2) | (user__2=s4) | (user__2=s12) |
+          (user__2=s21) | (user__2=s27) | (user__2=s28)) ) ...)
+INCA: (defquery "no_u1u2" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t :open t
+                   :ends-with '("call(user_1-task;crit_sect-task.cs_start)"
+                                "call(user_2-task;crit-sect-task.cs_start)"))
+      )))
+QRE: {user_1_in_crit_sect,user_1_not_in_crit_sect,
+      user_2_in_crit_sect,user_2_not_in_crit_sect} none
+     [-user_1_in_crit_sect,user_2_in_crit_sect]*;
+     (((user_1_in_crit_sect; [-user_2_in_crit_sect,user_1_not_in_crit_sect]*;
+        user_1_not_in_crit_sect) |
+       (user_2_in_crit_sect; [-user_1_in_crit_sect,user_2_not_in_crit_sect]*;
+        user_2_not_in_crit_sect));
+      [-user_1_not_in_crit_sect,user_2_not_in_crit_sect]*)*;
+     ((user_1_in_crit_sect; [-user_2_in_crit_sect,user_1_not_in_crit_sect]*;
+       user_2_in_crit_sect) |
+      (user_2_in_crit_sect; [-user_1_in_crit_sect,user_2_not_in_crit_sect]*;
+       user_1_in_crit_sect));
+     [user_1_in_crit_sect,user_1_not_in_crit_sect,
+      user_2_in_crit_sect,user_2_not_in_crit_sect]*
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: memory management
+
+
+
+REQUIREMENT: Can the system ever be shut down while a user is allocating memory?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG((final=s3) -> !user_1_allocating)
+NOTES: For model with user_1_allocating variable
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: memory management
+
+REQUIREMENT: Can the system ever be shut down while a user is allocating memory?
+PATTERN: Response (constrained variation)
+SCOPE: Global
+CTL: AG((user__1=s2) -> A[!(final-s4)U((user__1=s4) | (user__1=s27))])
+INCA:
+  (defquery "no_sdu1a" "nofair"
+   (omega-star-less
+    (sequence
+     (interval :initial t :open t
+               :ends-with '("internal(user-task_1;user_1_allocating)"))
+     (interval :ends-with '((rend "final;driver.final-go-end"))
+               :forbid '("internal(user-task_1;user_1_not_allocating)"))
+    )))
+QRE: {user_1_allocating,user_1_not_allocating,mmg_crit_sect_whoa} none
+     [-user_1_allocating,user_1_not_allocating,mmg_crit_sect_whoa]*;
+     (user_1_allocating; [-user_1_not_allocating,mmg_crit_sect_whoa]*;
+      user_1_not_allocating; [-user_1_allocating,user_1_not_allocating,
+                              mmg_crit_sect_whoa]*)*;
+     user_1_allocating; [-user_1_not_allocating,mmg_crit_sect_whoa]*;
+     mmg_crit_sect_whoa; [user_1_allocating,user_1_not_allocating,
+                          mmg_crit_sect_whoa]*
+NOTES: CTL required fairness constraint user__1=s27.  INCA is a match, but
+       QRE doesn't because it uses a none formulation. 
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: memory management
+
+
+REQUIREMENT: Can two adjacent masters ever be using the resource at the 
+             same time?
+PATTERN: Universal
+SCOPE: Global
+CTL: AG(((master_1=s3) -> !(master_2=s3)) & ((master_2=s3) -> !(master_1=s3))
+INCA: (defquery "no_m1m2" "nofair"
+       (omega-star-less
+        (sequence
+         (interval :initial t
+                 :ends-with '((rend "server_1;master_1.server_1-request-end")
+                              (rend "server_2;master_2.server_2-request-end")))
+        )))
+QRE: {master_1_start_using,server_1_release,
+      master_2_start_using,server_2_release} all
+     [-master_1_start_using,master_2_start_using]*;
+     (((master_1_start_using; [-master_2_start_using,server_1_release]*;
+        server_1_release) |
+       (master_2_start_using; [-master_1_start_using,server_2_release]*;
+        server_2_release));
+      [-master_1_start_using,master_2_start_using]*)*
+SOURCE: Tim Chamillard (and others)
+CITE: \cite{chamillard:96}
+DOMAIN: mutex protocol
+

@@ -1,0 +1,95 @@
+<!--#set var="title" value="Constrained Chain Property Patterns" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p><b>Intent</b></p>
+
+<p>To describe a variant of response and precedence chain
+  patterns that restrict user specified events from occurring
+  between pairs of states/events in the chain sequences.</p>
+
+<p>Consecutive pairs of states/events in chain sequences are
+  refered to as links.  This pattern allows specification of
+  the absence of states/events from individual links.</p>
+  
+<hr>
+
+<p><b>Example Mappings</b></p>
+
+<p>This variant of chain patterns can be applied to any kind of 
+response or precedence chain.  Here we illustrate mappings for
+the constrained 1-2 response chain.</p>
+
+<ul>
+  <li><a href=ctl.shtml#Constrained>CTL</a>
+  <li><a href=ltl.shtml#Constrained>LTL</a>
+  <li><a href=qre.shtml#Constrained>QRE</a>
+  <li><a href=inca.shtml#Constrained>INCA</a>
+  <li><a href=gil.shtml#Constrained>GIL</a>
+</ul>
+
+<hr>
+
+<p><b>Examples and Known Uses</b></p>
+
+<p>Constrained chain patterns are surprisingly useful.  Some of our recent
+work with model checking of GUI software used CTL mappings for 
+constrained 1-2 response patterns with global scope 
+(e.g., <tt>AG(P -> AF(S & !Z & AX(A[!Z U T])))</tt>).
+In the following, <tt>user</tt> indicates that the user is allowed
+to interact with the GUI, <tt>select, print, help, ok, ...</tt> are interactions
+that the user can perform, and <tt>error, address</tt> are system responses.
+<ul>
+<li> When a system error message is displayed the only allowable action is 
+user acknowledgement via the 'ok' button.<br>
+<tt>
+&nbsp;&nbsp;&nbsp;AG(error -> AF(user & !(print | help | ...) & <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AX(A[!(print | help | ...) U ok])))<br>
+</tt>
+
+<li> When the user selects a customer the address information is displayed
+before the user is allowed another interaction .<br>
+<tt>
+&nbsp;&nbsp;&nbsp;AG(select -> AF(!user & AX(A[!user U address])))<br>
+</tt>
+</ul>
+
+<p>The latter example had <tt>!user</tt> filling the role of both
+<tt>S</tt> and <tt>!Z</tt> in the mapping and it was simplified.</p>
+
+<hr>
+
+<p><b>Constraining Other Chain Mappings</b></p>
+
+<p>Introducing constraints into mappings for chain links depends on
+the formalism and scope of the mapping.</p>
+
+<p>In LTL or CTL with global and after scopes, the future operators (i.e.,
+<tt><>X</tt> in LTL and <tt>AF(X)</tt> in CTL) can be expanded
+to their until equivalents (i.e., <tt>true U X</tt> in LTL and
+<tt>A[true U X]</tt>), then the true can be replaced by the
+negation of the constraining formula.</p>
+
+<p>In LTL or CTL with before, between, and after-until scopes, untils
+are used for expressing each link and these can be selectively
+constrained by conjoining the negation of the constraining
+formula on the left of the until operator.</p>
+
+<p>In QREs for all scopes, the interval between link endpoints
+is expressed with a <tt>[- ...]</tt> operator.  Adding the constraining
+formula as an argument of this operator achieves the link constraint.</p>
+
+<hr>
+
+<p><b>Relationships</b></p>
+
+<p>Aside from the obvious relationship with the 
+<a href="chain.shtml">Chain patterns</a>, constrained
+chains are similar to 
+<a href="absence.shtml">Absence</a> patterns in the sense
+that each link constraint is like a small absence pattern (with a
+between scope).</p>
+
+<p>This is an <a href="order.shtml">Order</a> pattern.</p>
+
+<!--#include virtual="/footer.shtml" -->

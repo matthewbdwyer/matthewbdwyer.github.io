@@ -1,0 +1,379 @@
+<!--#set var="title" value="Property Pattern Mappings for QREs" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p>This page describe mappings for property patterns in quantified regular
+expressions (QREs).
+For other information about the patterns click on the pattern links.
+<P>
+Information about the entire pattern system is available at
+the <a href="/">Specification Patterns Home Page</a>.
+
+<P>
+<hr>
+
+<h1>Pattern Mappings</h1>
+
+<p>Let "." be the set of all events symbols,
+ let <tt>[- P,Q,R]</tt> denote the expression that matches any symbol
+ <i>except</i> <tt>P</tt> <tt>Q</tt> and <tt>R</tt> and let <tt>e?</tt> denote
+ zero or one instance of expression <tt>e</tt>, and let <tt>e^k</tt>
+ denote <b>k</b> instances of <tt>e</tt>.<br></p>
+
+<hr>
+
+<p><a name=Absence><a href="absence.shtml">Absence</a></p>
+
+<p><tt>P</tt> is false :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally          </td>
+        <td align=left><tt>[- P]*</tt></td></tr>
+   <tr> <td align=left>Before <tt>R</tt>          </td>
+        <td align=left><tt>[- R]* | [-P,R]*; R; .*</tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt>           </td>
+        <td align=left><tt>[- Q]*; (Q; [- P]*)?</tt></td></tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt>   </td>
+        <td align=left><tt>([- Q]*; Q; [- P,R]*; R)*; [- Q]*; (Q; [- R]*)?</tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt>   </td>
+        <td align=left><tt>([- Q]*; Q; [- P,R]*; R)*; [-Q]*; (Q; [- P,R]*)?</tt></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Existence><a href="existence.shtml">Existence</a></p>
+
+<p>Event <tt>P</tt> occurs:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally          </td>
+        <td align=left><tt>[- P]*; P; .*</tt></td></tr>
+   <tr> <td align=left>Before <tt>R</tt>          </td>
+        <td align=left><tt>[- R]* | [-P,R]*; P; .*</tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt>           </td>
+        <td align=left><tt>[- Q]*; (Q; [- P]*; P; .*)?</tt></td></tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt>   </td>
+        <td align=left><tt>([- Q]*; Q; [- P,R]*; P; [-R]*; R)*; [- Q]*; (Q; [- R
+]*)?</tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt>   </td>
+        <td align=left><tt>([- Q]*; Q; [- P,R]*; P; [-R]*; R)*; [-Q]*; (Q; [- P,
+R]*; P; [-R]*)?</tt></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Bounded><a href="bounded.shtml">Bounded Existence</a></p>
+
+<p>QREs allow us to formulate mappings for the
+ general case (as opposed to a specific instance as with some other
+ formalisms, e.g., LTL and CTL).</p>
+
+<p>Event <tt>P</tt> occurs at most <b>k</b> times:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+
+   <tr> <td align=left>Globally          </td>
+        <td align=left><tt>
+(([- P]*;P)?)^k; [- P]*
+        </tt></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt>          </td>
+        <td align=left><tt>
+[- R]* | (([- P,R]*;P)?)^k; [- P,R]*; R; .*
+        </tt></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt>           </td>
+        <td align=left><tt>
+[- Q]*; (Q; (([- P]*;P)?)^k; [- P]* )?
+          </tt></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt>   </td>
+        <td align=left><pre>
+([- Q]*; Q; (([- P,R]*;P)?)^k; [- P,R]*; R)*;
+[- Q]*; (Q; [- R]*)?</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt>   </td>
+        <td align=left><pre>
+([- Q]*; Q; (([- P,R]*;P)?)^k; [- P,R]*; R)*;
+[-Q]*; (Q; (([- P,R]*;P)?)^k; [- P,R]*)?</pre></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Universality><a href="universality.shtml">Universality</a></p>
+
+<p>Specifying universality in an event-based formalism requires
+ the identification of complementary events.
+ The positive event, <tt>P</tt>, is defined such that
+ after an occurrence of <tt>P</tt> states have the property.
+ The negative event, <tt>N</tt>, is defined such that
+ after an ocurrence of <tt>N</tt> states fail to have the property.
+ Then we define universality throughout
+ a scope as having seen a <tt>P</tt> prior to the beginning of the scope
+ with no <tt>N</tt> until after the close of the scope.</p>
+
+<p>Our assumption is that the initial state has the desired property.
+ <center>
+ <table border="2" cellspacing="3" cellpadding="10">
+    <tr> <td align=left>Globally          </td>
+         <td align=left><tt>[- N]*</tt></td></tr>
+
+    <tr> <td align=left>Before <tt>R</tt>          </td>
+         <td align=left><tt>[- R]* | [- N,R]*; R; .*</tt></td></tr>
+
+    <tr> <td align=left>After <tt>Q</tt>           </td>
+         <td align=left><tt>[- Q]* | ([- Q]*;P)? ; [- N,Q]* ; Q ; [- N]*</tt></t
+h></tr>
+
+    <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt>   </td>
+         <td align=left><pre>
+( ([- Q]*;P)? ; [- N,Q]*; Q; [- N,R]*; R )* ;
+[- Q]*; (Q; [- R]*)?</pre></td></tr>
+
+    <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt>   </td>
+         <td align=left><pre>
+( ([- Q]*;P)? ; [- N,Q]*; Q; [- N,R]*; R )* ;
+( [- Q]* | ([- Q]*;P)? ; [- N,Q]*; Q; [- N,R]* )</pre></td></tr>
+ </table>
+ </center></p>
+
+ 
+<hr>
+
+<p><a name=Precedence><a href="precedence.shtml">Precedence</a></p>
+
+<p><tt>S</tt> precedes <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>[-P]* | ([-S,P]*; S; .*)</tt></td></tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt>[-R]* | ([-P,R]*; R; .*) | ([-S,P,R]*; S; .*)</tt></t
+h></tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>[-Q]*; (Q; ([-P]* | ([-S,P]*; S; .*)) )?</tt></td></t
+r>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+[-Q]*; 
+(Q; [-P,R]* | ([-S,P,R]*; S; [-R]*) R; [-Q]*)*;
+(Q; [-R]*)? </pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+[-Q]*;
+(Q; [-P,R]* | ([-S,P,R]*; S; [-R]*) R; [-Q]*)*;
+(Q; ([-P,R]* | ([-S,P,R]*; S; [-R]*)) )?</pre></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Response><a href="response.shtml">Response</a></p>
+
+<p><tt>S</tt> responds to <tt>P</tt> :
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>[-P]*; (P; [-S]*; S; [-P]*)*</tt></td></tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt>[-R]* | [-P,R]*; (P; [-S,R]*; S; [-P,R]*)*; R; .*</tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>[-Q]*; (Q; [-P]*; (P; [-S]*; S; [-P]*)* )?</tt></td></tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+[-Q]*; (Q; [-P,R]*; (P; [-S,R]*; S; [-P,R]*)*; R; [-Q]*)*; 
+(Q; [-R]*)?</pre></td></tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+[-Q]*; (Q; [-P,R]*; (P; [-S,R]*; S; [-P,R]*)*; R; [-Q]*)*; 
+(Q; [-P,R]*; (P; [-S,R]*; S; [-P,R]*)*)?</pre></td></tr>
+
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Precedence-Chain><a href="precedence-chain.shtml">Precedence Chain</a></p>
+
+<p>This is the 2 cause-1 effect mapping.</p>
+
+<p><tt>S, T</tt> precedes <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+  <tr> <td align=left>Globally</td>
+    <td align=left><tt>
+  [-P]* | ([-P,S]*; S; [-P,T]*; T; .*)
+              </tt></td></tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt>
+  [-R]* | ([-P,R]*; R; .*) | ([-P,R,S]*; S; [-P,R,T]*; T; .*)
+   </tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>
+  [-Q]*; (Q; ([-P]* | ([-P,S]*; S; [-P,T]*; T; .*)))?
+              </tt></td></tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+[-Q]*;
+(Q; ([-P,R]* | ([-P,R,S]*; S; [-P,R,T]*; T; [-R]*)); R; [-Q]*)*;
+(Q; [-R]*)? </pre></td></tr>
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+[-Q]*;
+(Q; ([-P,R]* | ([-S,P,R]*; S; [-P,R,T]*; T; [-R]*)); R; [-Q]*)*;
+(Q; ([-P,R]* | ([-P,R,S]*; S; [-P,R,T]*; T; [-R]*)))? </pre></td></tr>
+</table>
+</center></p>
+
+<p>This is the 1 cause-2 effect mapping.</p>
+
+<p><tt>P</tt> precedes <tt>(S, T)</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally</td>
+        <td align=left><tt>
+  [-P,S]*;((P; .*) | (S; [-T]*))?
+              </tt></td></tr>
+   <tr> <td align=left>Before <tt>R</tt></td>
+        <td align=left><tt>
+  ([-R]*) | ([-P,S,R]*; ((P; [-R]*) | (S; [-T,R]*))?; R; .*)
+              </tt></td></tr>
+   <tr> <td align=left>After <tt>Q</tt></td>
+        <td align=left><tt>
+  [-Q]*; (Q; ([-P,S]*; ((P; .*) | (S; [-T]*))?))?
+              </tt></td></tr>
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt></td>
+        <td align=left><pre>
+[-Q]*;
+(Q; [-P,S,R]*;((P; [-R]*) | (S;[-T,R]*))?; R; [-Q]*)*;
+(Q; [-R]*)?</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt></td>
+        <td align=left><pre>
+[-Q]*;
+(Q; [-P,S,R]*; ((P; [-R]*) | (S; [-T,R]*))?; R; [-Q]*)*;
+(Q; ([-P,S,R]*; ((P; [-R]*) | (S; [-T,R]*))?))?</pre></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Response-Chain><a href="response-chain.shtml">Response Chain</a></p>
+
+<p>This is the 2 stimulus-1 response mapping.</p>
+
+<p><tt>P</tt> responds to <TT>S,T</TT>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally          </td>
+        <td align=left><tt>
+ ([- S]*; S; [- T]*; T; [- P]*; P)*; [- S]*; (S; [- T]*)?
+   </tt></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt>          </td>
+        <td align=left><pre>
+[- R]* | ([- S,R]*; S; [- T,R]*; T; [- P,R]*; P)*;
+[- S,R]*; (S; [- T,R]*)?; R; .*</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt>           </td>
+        <td align=left><tt>
+[- Q]*; (Q; ([- S]*; S; [- T]*; T; [- P]*; P)*;
+[- S]*; (S; [- T]*)?)?</pre></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt>   </td>
+        <td align=left><pre>
+([- Q]*; Q; 
+ ([- S,R]*; S; [- T,R]*; T; [- P,R]*; P)*;
+ [- S,R]*; (S; [-T,R]*)?; R)*; 
+[- Q]*; (Q; [- R]*)?</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt>   </td>
+        <td align=left><pre>
+([- Q]*; Q;
+ ([- S,R]*; S; [- T,R]*; T; [- P,R]*; P)*;
+ [- S,R]*; (S; [-T,R]*)?; R)*; 
+[- Q]*; (Q; ([- S,R]*; S; [- T,R]*; T; [- P,R]*; P)* )?</pre></td></tr>
+</table>
+</center></p>
+
+<p>This is the  1 stimulus-2 response mapping.</p>
+
+<p><tt>S,T</tt> responds to <TT>P</TT>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally          </td>
+        <td align=left><tt>
+ ([- P]*; P; [- S]*; S; [- T]*; T)*; [- P]*
+   </tt></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt>          </td>
+        <td align=left><pre>
+[- R]* | ([- P,R]*; P; [- S,R]*; S; [- T,R]*; T)*;
+[- P,R]*; R; .*</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt>           </td>
+        <td align=left><tt>
+  [- Q]*; (Q; ([- P]*; P; [- S]*; S; [- T]*; T)*; [- P]*)?
+   </tt></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt>   </td>
+        <td align=left><pre>
+([- Q]*; Q; 
+ ([- P,R]*; P; [- S,R]*; S; [- T,R]*; T)*;
+ [- P,R]*; R)*; 
+[- Q]*; (Q; [- R]*)?</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt>   </td>
+        <td align=left><pre>
+([- Q]*; Q;
+ ([- P,R]*; P; [- S,R]*; S; [- T,R]*; T)*;
+ [- P,R]*; R)*; 
+[- Q]*; (Q; ([- P,R]*; P; [- S,R]*; S; [- T,R]*; T)* )?</pre></td></tr>
+</table>
+</center></p>
+
+<hr>
+
+<p><a name=Constrained><a href="constrained.shtml">Constrained Chain Patterns</a></p>
+
+<p>This is the 2-1 response chain constrained with a single event.</p>
+
+<p><tt>S,T</tt> without <tt>Z</tt> responds to <tt>P</tt>:
+<center>
+<table border="2" cellspacing="3" cellpadding="10">
+   <tr> <td align=left>Globally          </td>
+        <td align=left><tt>
+ ([- P]*; P; [- S]*; S; [- T,Z]*; T)*; [- P]*
+   </tt></td></tr>
+
+   <tr> <td align=left>Before <tt>R</tt>          </td>
+        <td align=left><pre>
+[- R]* | ([- P,R]*; P; [- S,R]*; S; [- T,R,Z]*; T)*; 
+[- P,R]*; R; .*</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt>           </td>
+        <td align=left><tt>
+  [- Q]*; (Q; ([- P]*; P; [- S]*; S; [- T,Z]*; T)*; [- P]*)?
+   </tt></td></tr>
+
+   <tr> <td align=left>Between <tt>Q</tt> and <tt>R</tt>   </td>
+        <td align=left><pre>
+([- Q]*; Q; 
+ ([- P,R]*; P; [- S,R]*; S; [- T,R,Z]*; T)*; 
+ [- P,R]*; R)*; 
+[- Q]*; (Q; [- R]*)?</pre></td></tr>
+
+   <tr> <td align=left>After <tt>Q</tt> until <tt>R</tt>   </td>
+        <td align=left><pre>
+([- Q]*; Q; 
+ ([- P,R]*; P; [- S,R]*; S; [- T,R,Z]*; T)*; 
+ [- P,R]*; R)*; 
+[- Q]*; (Q; ([- P,R]*; P; [- S,R]*; S; [- T,R,Z]*; T)* )?</pre></td></tr>
+</table>
+</center></p>
+
+<!--#include virtual="/footer.shtml" -->

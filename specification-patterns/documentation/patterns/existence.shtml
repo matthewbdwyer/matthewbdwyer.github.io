@@ -1,0 +1,50 @@
+<!--#set var="title" value="Existence Property Pattern" -->
+
+<!--#include virtual="/header.shtml" -->
+
+<p><b>Intent</b></p>
+
+<p>To describe a portion of a system's execution that contains
+    an instance of certain events or states.  Also known as <B>Eventually</B>.</p>
+
+<hr>
+
+<p><b>Example Mappings</b></p>
+
+<ul>
+  <li><a href=ctl.shtml#Existence>CTL</a>
+  <li><a href=ltl.shtml#Existence>LTL</a>
+  <li><a href=qre.shtml#Existence>QRE</a>
+  <li><a href=inca.shtml#Existence>INCA</a>
+  <li><a href=gil.shtml#Existence>GIL</a>
+</ul>
+
+<hr>
+
+<p><b>Examples and Known Uses</b></p>
+
+<p>The classic example of existence is specifying termination, e.g.,
+  on all executions do we eventually reach a terminal state.</p>
+
+<hr>
+
+<p><b>Relationships</b></p>
+
+<p>This pattern is the dual of the <a href="absence.shtml">Absence</a> pattern.  In fact, in many specification formalisms negation and explicit queries for
+    existence will be used to formulate an instance of the <a href="absence.shtml">Absence</a> pattern.</p>
+    
+<p>We may wish to specify that a state/event occur at most some bounded number
+    of times.  The <a href="bounded.shtml">Bounded Existence</a> pattern
+    handles that case.</p>
+    
+<p>If one wishes to require the existence of a state characterized 
+    by multiple propositions
+    or multiple events one can do this by defining <tt>P</tt> appropriately.
+    One common use is to fill the role of <tt>P</tt> in the above mappings  
+    with disjunctions of propositions or event symbols.  For other 
+    parameterizations of patterns
+    consult the <a href="notes.shtml">pattern notes</a>.</p>
+    
+<p>This is an <a href="occurrence.shtml">Occurrence</a> pattern.</p>
+
+<!--#include virtual="/footer.shtml" -->
