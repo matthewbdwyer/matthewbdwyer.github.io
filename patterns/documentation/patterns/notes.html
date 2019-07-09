@@ -1,6 +1,6 @@
 <!--#set var="title" value="Property Specification Pattern Notes" -->
 
-<!--#include virtual="/header.shtml" -->
+<!--#include virtual="/header.html" -->
 
 <p>The patterns provided in this system cover a broad range of
 requirements for real systems.  Your requirement, however,
@@ -22,7 +22,7 @@ These descriptions can be more complex than just a single proposition
 or event name.  Here are a few typical examples:</p>
 
 
-<p>For Logics (e.g., <a href="ctl.shtml">CTL</a>, <a href="ltl.shtml">LTL</a>)</p>
+<p>For Logics (e.g., <a href="ctl.html">CTL</a>, <a href="ltl.html">LTL</a>)</p>
 <ul>
 <li> Purely propositional formula can always be used to describe a state.
 This includes simple negations, disjunctions, conjunctions and implications.
@@ -51,7 +51,7 @@ The resulting formula is:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<tt><>shutdown -> (([](request -> (!shutdown U respond))) U shutdown)</tt><br>
 </ul>
 
-<p>For <a href="qre.shtml">QREs</a></p>
+<p>For <a href="qre.html">QREs</a></p>
 
 <p>Each portion of a specification "matches" some portion of program
 behavior.  This "matching", which is inherent to an automata based
@@ -183,12 +183,12 @@ to adjust all the mappings for the various versions of the scopes.
 specified states or events.  It is sometimes the case that one wishes
 to specify not only the sequencing relationship, but that the region
 between the states or events in that relationship is free of 
-some other events. We provide <a href="constrained.shtml">constrained chain</a>
+some other events. We provide <a href="constrained.html">constrained chain</a>
 patterns to address this issue for 
-<a href="precedence-chain.shtml">precedence</a> and
-<a href="response-chain.shtml">response</a> chains.</p>
+<a href="precedence-chain.html">precedence</a> and
+<a href="response-chain.html">response</a> chains.</p>
 
-<p>The plain <a href="response.shtml">response</a> pattern 
+<p>The plain <a href="response.html">response</a> pattern 
 also has a constrained variation.  For example, one can restrict <tt>Z</tt>
 from the region between <tt>P</tt> and the <tt>S</tt> that responds
 to it in LTL, but converting the <code><></code> to its <code>U</code>
@@ -258,4 +258,4 @@ absence with a between scope.  The latter, which in LTL is:
 <p>does not require the closing of the scope (which corresponds to the
 responding state).
 
-<!--#include virtual="/footer.shtml" -->
+<!--#include virtual="/footer.html" -->

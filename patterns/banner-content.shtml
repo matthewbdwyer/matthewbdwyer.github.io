@@ -1,8 +1,0 @@
-  <div id="title">Spec Patterns</div>
-    <!--#if expr="${description}" -->
-    <!--<div id="description"> <!--#echo var="description" --> </div> -->
-    <!--#else -->
-    <!--<div id="description">Downloads</div>-->
-    <!--#endif -->
-    
-  <div id="logo2"><a href="http://www.cis.ksu.edu/santos/"><img src="/images/smSantos.gif" border="0" alt="santos lab"></a></div>
