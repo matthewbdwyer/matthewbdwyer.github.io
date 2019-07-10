@@ -1,21 +1,14 @@
-<HTML>
-<HEAD>
-   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
-   <META NAME="description" CONTENT="Formal Specifications for the Replicated Workers Framework.">
-   <META NAME="keywords" CONTENT="final2">
-   <META NAME="resource-type" CONTENT="document">
-   <META NAME="distribution" CONTENT="global">
-   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (X11; U; SunOS 5.6 sun4c) [Netscape]">
-   <TITLE>Formal Specifications for a Replicated Workers Framework.</TITLE>
-</HEAD>
-<BODY BACKGROUND="marble1.jpg" LANG="EN">
+<H1>Formal Specifications for a Replicated Workers Framework.</H1>
 
-<H1>
-<A NAME="SECTION00010000000000000000"></A>Replicated Workers Framework</H1>
 We specified properties of a generic, programming framework (written in
-Ada) that supports distribution and concurrent execution of sub-computations
-(see the <A HREF="http://www.cis.ksu.edu/~dwyer/CAS/cas.html">coordination
-abstraction</A> web pages for details).
+Ada) that supports distribution and concurrent execution of sub-computations.
+See these papers for more detail:
+<ul>
+<li> <a href="https://dl.acm.org/citation.cfm?doid=240678.240715">An application-independent concurrency skeleton in Ada 95</a>
+<li> <A HREF="https://www.semanticscholar.org/paper/Object-Oriented-Coordination-Abstractions-for-Dwyer-Wallentine/e6bdab2b4c0dcb41feb1dcd8f96c255d174bd799">
+Object-Oriented Coordination Abstractions for Parallel Software</A> 
+<li> <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/%28SICI%291096-9128%28199711%299%3A11%3C1293%3A%3AAID-CPE340%3E3.0.CO%3B2-J">A framework for parallel adaptive grid simulations</a>
+</ul>
 
 <P>These specifications use a collection of propositions defined in a finite-state
 model of a configuration of the programming framework that instantiates
@@ -195,5 +188,3 @@ and we checked in the end the following formula:
 || done_worker1 || [] (! pool.Finished)))</TT></B>
 <BR>&nbsp;</UL>
 
-</BODY>
-</HTML>
