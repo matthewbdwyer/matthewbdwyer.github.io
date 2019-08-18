@@ -1,0 +1,97 @@
+Su Mo Tu We Th Fr Sa  
+
+Class meets: MW 10:30-11:45
+
+Expectations:
+ - you have a familiarity with compilers, e.g., ugrad PL, compilers class
+ - you will program in this course
+ - you will have to learn new languages in this course
+ - you will have to understand existing, non-trivial, software systems
+ - you will read research papers in this course
+ - you will share what you learn with the class, e.g., through presentations
+
+Grading:
+ - exercises : 32%
+ - paper analysis : 14%
+ - pass analysis : 14%
+ - project : 40%
+
+28 students: work in pairs for pass analysis and project
+
+All work done in pairs, you choose your partner for assignment, only allowed
+to repeat a partner twice (use smaller projects to scout for project partners)
+
+Exercises:
+ - deliver tested solution, explain solution to class
+ - for you to do: 3, 4, 5, 10, 11 
+ - graded TIP exercises: 1, 7, 12, 13/14
+
+Pass analysis:
+ - pick an LLVM pass from the list, explain the algorithm used, provide
+   examples that illustrate the different use cases realized in the pass
+
+Project:
+ - goal of the project is to give you working experience with LLVM
+ - extend the LLVM tip compiler
+   - add support for records
+   - add TIP type checking
+   - new data types or features
+   - implement a TIP scala analysis in LLVM and compare to native version
+ - develop a differential testing approach for tip using grammarinator
+ - something that interests you
+
+Paper analysis:
+ - pick a paper, write up an description of the key idea, limitations, and draw connections to the content of this course
+
+2 TIP homeworks 
+1 LLVM homework
+  - present a pass to the class
+1 LLVM project
+  - implement native type checking in tipcc
+
+TIP exercises
+  - 2nd class of the week: first 15 minutes 3 pairs present exercise solutions
+
+LLVM research:
+  - -Overify https://www.usenix.org/system/files/conference/hotos13/hotos13-final69.pdf
+  - Alive https://dl.acm.org/citation.cfm?id=2737965
+  - Alive-Infer https://dl.acm.org/citation.cfm?id=3062372
+  - Souper https://arxiv.org/abs/1711.04422
+  - Crellvm https://dl.acm.org/citation.cfm?id=3192377
+  - Taming undefined behavior https://dl.acm.org/citation.cfm?id=3062343
+
+Compiler testing:
+  - Csmith https://dl.acm.org/citation.cfm?id=1993532
+  - Equivalence modulo inputs https://dl.acm.org/citation.cfm?id=2594334
+
+08/28/19: Class overview
+09/02/19: TIP
+09/04/19: Types
+09/08/19: Lattic Theory
+09/11/19: Data flow Analysis
+09/16/19: Data flow Analysis
+09/18/19: Interval Analysis
+09/23/19: Path sensitive analysis
+09/25/19: Interprocedural analysis
+09/30/19: CFA
+10/02/19: Pointer analysis
+10/07/19: No class - reading day
+10/09/19: Pointer analysis
+10/14/19: No class - instructor travel
+10/16/19: No class - instructor travel
+10/21/19: LLVM introduction
+10/23/19: LLVM TIP walkthrough
+10/28/19: 
+10/30/19:
+11/04/19:
+11/06/19:
+11/11/19: No class - instructor travel
+11/13/19: No class - instructor travel
+ - office hours will be held later in week
+11/18/19: 
+11/20/19: 
+11/25/19: 4 * 18min - present a pass
+11/27/19: NO class - thanksgiving
+12/02/19: 4 * 18min - present a pass
+12/04/19: 4 * 18min - present a pass
+
