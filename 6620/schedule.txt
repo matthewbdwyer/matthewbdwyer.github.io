@@ -60,6 +60,9 @@ LLVM research:
   - Crellvm https://dl.acm.org/citation.cfm?id=3192377
   - Taming undefined behavior https://dl.acm.org/citation.cfm?id=3062343
 
+Compiler research:
+  - Transfer function synthesis
+
 Compiler testing:
   - Csmith https://dl.acm.org/citation.cfm?id=1993532
   - Equivalence modulo inputs https://dl.acm.org/citation.cfm?id=2594334
