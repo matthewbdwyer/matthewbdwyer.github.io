@@ -7,7 +7,7 @@ compilers at the University of Virginia.
 <dl>
 <dt>Time</dt> <dd>Mon/Wed 10:30-11:45</dd>
 <dt>Location</dt> <dd>Rice 340</dd>
-<dt>Reading</dt> <dd>No required textbook, we will work through the lecture notes on <a href="https://cs.au.dk/~amoeller/spa/">Static Program Analysis</a> (SPA) and selected research papers 
+<dt>Reading</dt> <dd>No required textbook, we will work through the lecture notes on <a href="https://cs.au.dk/~amoeller/spa/">Static Program Analysis</a> (SPA), selected research papers (see below), and code (e.g., LLVM APIs, TIP Scala)
 </dl>
 
 <h2>Expectations</h2>
@@ -26,7 +26,7 @@ This is a course where you will learn both analytically, e.g., by reading, think
 There will be four different kinds of assignments.
 <dl>
 <dt>Exercises (24%)</dt> <dd>3 small programming exercises, in Scala, that add functionality to the TIP compiler</dd>
-<dt>Paper analysis (14%)</dt> <dd>read and report on a research paper</dd>
+<dt>Paper analysis (14%)</dt> <dd>read and report on a research paper about LLVM</dd>
 <dt>Pass analysis (14%)</dt> <dd>read, understand, and explain an LLVM pass</dd>
 <dt>Project (48%)</dt> <dd>a programming project based in LLVM that, e.g., adds features to the existing TIP compiler, extends the TIP language and compiler.</dd>
 </dl>
@@ -35,6 +35,46 @@ The assignments can be done in teams of 2, but you cannot have the same partner 
 <h2>Syllabus</h2>
 <ul>
 </ul>
+
+<h2>Papers</h2>
+Papers related to LLVM that you can select to study.
+We can extend this set if you know of a paper that is related to LLVM that you would like to suggest.
+<ul>
+<li><a href="https://www.usenix.org/system/files/conference/hotos13/hotos13-final69.pdf">-Overify</a> 
+<li><a href="https://dl.acm.org/citation.cfm?id=2737965">Alive</a> 
+<li><a href="https://dl.acm.org/citation.cfm?id=3062372">Alive-Infer</a>
+<li><a href="https://arxiv.org/abs/1711.04422">Souper</a> 
+<li><a href="https://dl.acm.org/citation.cfm?id=3192377">Crellvm</a> 
+<li><a href="https://dl.acm.org/citation.cfm?id=3062343">Taming undefined behavior</a> 
+<li><a href="https://dl.acm.org/citation.cfm?id=1993532">Csmith</a> 
+<li><a href="https://dl.acm.org/citation.cfm?id=2594334">Equivalence modulo inputs</a> 
+</ul>
+
+<h2>Passes</h2>
+This is a list of LLVM passes that you can select to study.
+Interesting studies might involve comparing two related analyses,
+e.g., constant propagation vs. sparse conditional constant propagation.
+These are either pure analysis passes or transformation passes
+that make use of computed analysis results.
+<ul>
+<li>Alias Analysis
+<li>Dependence Analysis
+<li>Dominance Frontier
+<li>Induction Variable Users
+<li>Global Mod/Ref Analysis
+<li>Dead Code Elimination
+<li>Constant Propagation
+<li>Dead Store Elimination
+<li>Combine Redundant Instructions
+<li>Loop Invariant Code Motion
+<li>Sparse Conditional Constant Propagation
+<li>Promote Memory to Register
+<li>Tail Call Elimination
+<li>Loop Strength Reduction
+<li>Global Value Numbering
+</ul>
+There are many more examples listed <a href="https://llvm.org/docs/Passes.html">here</a>
+
 
 <h2>Schedule</h2>
 The course will be broken into three parts: ~7 weeks of coverage of static program analysis, ~4 weeks covering static analysis in LLVM, and ~3 weeks covering emerging research topics.  We may adapt the schedule as we go.
@@ -50,33 +90,33 @@ table, th, td {
 <table>
 <tr> <th>Date</th> <th>Topic</th> <th>Reading</th> <th>To Do</th> </tr>
 <tr> <td>08/28/19</td> <td>Class overview</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>09/02/19</td> <td>TIP</td> <td>read SPA 1 and 2</td> <td>solve Y</td> </tr>
-<tr> <td>09/04/19</td> <td>Types</td> <td>read SPA 3</td> <td>solve Y</td> </tr>
-<tr> <td>09/08/19</td> <td>Lattic Theory</td> <td>read SPA 4</td> <td>solve Y</td> </tr>
-<tr> <td>09/11/19</td> <td>Data flow analysis</td> <td>read SPA 5.1-5.3 </td> <td>solve Y</td> </tr>
-<tr> <td>09/16/19</td> <td>Data flow analysis</td> <td>read SPA 5.4-5.10</td> <td>solve Y</td> </tr>
-<tr> <td>09/18/19</td> <td>Interval analysis</td> <td>read SPA 5.11-5.12</td> <td>solve Y</td> </tr>
-<tr> <td>09/23/19</td> <td>Path sensitive analysis</td> <td>read SPA 6</td> <td>solve Y</td> </tr>
-<tr> <td>09/25/19</td> <td>Interprocedural analysis</td> <td>read SPA 7</td> <td>solve Y</td> </tr>
-<tr> <td>09/30/19</td> <td>Control flow analysis</td> <td>read SPA 8</td> <td>solve Y</td> </tr>
-<tr> <td>10/02/19</td> <td>Pointer analysis</td> <td>read SPA 9.1-9.3</td> <td>solve Y</td> </tr>
+<tr> <td>09/02/19</td> <td>TIP</td> <td>read SPA 1 and 2</td> <td>-</td> </tr>
+<tr> <td>09/04/19</td> <td>Types</td> <td>read SPA 3</td> <td>-</td> </tr>
+<tr> <td>09/08/19</td> <td>Lattic Theory</td> <td>read SPA 4</td> <td>TIP Exercise 1</td> </tr>
+<tr> <td>09/11/19</td> <td>Data flow analysis</td> <td>read SPA 5.1-5.3 </td> <td>-</td> </tr>
+<tr> <td>09/16/19</td> <td>Data flow analysis</td> <td>read SPA 5.4-5.10</td> <td>-</td> </tr>
+<tr> <td>09/18/19</td> <td>Interval analysis</td> <td>read SPA 5.11-5.12</td> <td>TIP Exercise 4, 6</td> </tr>
+<tr> <td>09/23/19</td> <td>Path sensitive analysis</td> <td>read SPA 6</td> <td>-</td> </tr>
+<tr> <td>09/25/19</td> <td>Interprocedural analysis</td> <td>read SPA 7</td> <td>TIP Exercise 7</td> </tr>
+<tr> <td>09/30/19</td> <td>Control flow analysis</td> <td>read SPA 8</td> <td>-</td> </tr>
+<tr> <td>10/02/19</td> <td>Pointer analysis</td> <td>read SPA 9.1-9.3</td> <td>-</td> </tr>
 <tr> <td>10/07/19</td> <td>No class - reading day</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>10/09/19</td> <td>Pointer analysis</td> <td>read SPA 9.4-9.7</td> <td>solve Y</td> </tr>
+<tr> <td>10/09/19</td> <td>Pointer analysis</td> <td>read SPA 9.4-9.7</td> <td>-</td> </tr>
 <tr> <td>10/14/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
 <tr> <td>10/16/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
 <tr> <td>10/21/19</td> <td>CLANG and LLVM</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>10/23/19</td> <td>LLVM and TIP</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>10/28/19</td> <td>LLVM passes</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>10/30/19</td> <td></td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/04/19</td> <td></td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/06/19</td> <td></td> <td>-</td> <td>-</td> </tr>
+<tr> <td>10/23/19</td> <td>Dependence, Dominance, and SSA</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>10/28/19</td> <td>LLVM and TIP</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>10/30/19</td> <td>LLVM passes</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>11/04/19</td> <td>Passes</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>11/06/19</td> <td>Passes</td> <td>-</td> <td>-</td> </tr>
 <tr> <td>11/11/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
 <tr> <td>11/13/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/18/19</td> <td></td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/20/19</td> <td></td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/25/19</td> <td></td> <td>-</td> <td>-</td> </tr>
+<tr> <td>11/18/19</td> <td>Papers</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>11/20/19</td> <td>Papers</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>11/25/19</td> <td>Papers</td> <td>-</td> <td>-</td> </tr>
 <tr> <td>11/27/19</td> <td>No class - thanksgiving</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>12/02/19</td> <td></td> <td>-</td> <td>-</td> </tr>
-<tr> <td>12/04/19</td> <td></td> <td>-</td> <td>-</td> </tr>
+<tr> <td>12/02/19</td> <td>Projects</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>12/04/19</td> <td>Projects</td> <td>-</td> <td>-</td> </tr>
 </table>
 
