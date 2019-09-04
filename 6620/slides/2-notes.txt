@@ -1,9 +1,14 @@
-Demo scan-build
+What is a "trivial" property?
 
-Notes on Slides
+1) Technically that it is neither valid nor unsat for all programs
+2) In addition, that it is semantic rather than syntactic, e.g., 
+   does the program contain an "if" statement.
 
-slide 3:
- - "no runtime TYPE errors occur"
+scan-build
+
+** describe HW1
+
+** Notes on Slides
 
 slide 11:
  - constraints between type variables and types
@@ -74,9 +79,9 @@ slides 26:
  - TIP has a rich type system for such a tiny language
  - it requires a more sophisticated approach than we have seen so far
 
-slide 30:
- - drop the "not very useful comment from ppt"
-
-   
-
-
+*** Let's look at the related portions of the Scala implementation
+ - AST
+ - Types
+ - TypeAnalysis.visit
+ - DepthFirstVisitor
+ - lots of examples to test your code on
