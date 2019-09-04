@@ -25,9 +25,9 @@
 
 \pagestyle{fancyplain}
 \headheight 35pt
-\lhead{8 points}
+\lhead{12 points}
 \chead{\textbf{\Large Homework \hwnumber}}
-\rhead{\course \\ assigned: Sept. 4, 2019\\ due: $\le$23:59 EST Sept. 16, 2019 }
+\rhead{\course \\ assigned: Sept. 4, 2019\\ due: $\le$23:59 EST Sept. 18, 2019 }
 \lfoot{}
 \cfoot{}
 \rfoot{}
@@ -36,17 +36,31 @@
 \begin{document}
 This assignment can be completed individually or in a pair.  All assignments in the class can be completed this way, but you cannot repeat any pairing during the course.  Please clearly indicate the names of the people submitting the solution on the two attached files.
 
+\section*{Part 1}
 Complete the TIP type analysis by: a implementing the undefined behavior in\\
 \texttt{tip.analysis.TypeAnalysis.visit}, explaining three distinct cases of the type analysis that implemented , and providing evidence that your implementation is correct.  More specifically, you should submit the following files to the CS6620 collab site for HW1.
 \begin{enumerate}
 \item \texttt{TypeAnalysis.scala} with all \texttt{// <--- Complete here} text replaced with functional scala code.
-\item A PDF file \texttt{hw1.pdf} with three parts:
+\item A PDF file \texttt{hw1.pdf} with the following information for part 1: 
 \begin{enumerate}
 \item Describe three distinct cases of type analysis that you implemented; ``distinct'' means that the structure of the generated type constraints are not simple variants of one another, e.g., renamings of parameters. 
 \item Provide evidence of the correctness of your type implementation.  For example, you might describe how you tested your implementation and why you think it is adequate.
 \item Explain how the \texttt{TypeAnalysis} and \texttt{UnionFindSolver} operate
 when processing the following simple TIP program: \texttt{poly(p) \{ return *p; \}}
 \end{enumerate}
+\end{enumerate}
+
+\section*{Part 2}
+Solve Exercise 3.14 in the SPA notes.  This exercise asks you to 
+extend the type analysis in TIP to support arrays.   Your solution
+should focus on the \textit{design} of the extension, e.g., what 
+are the type rules, and a description of the types inferred for the
+example -- you will conduct this type analysis by hand.
+
+Add to the PDF file \texttt{hw1.pdf} the following information for part 2: 
+\begin{enumerate}
+\item Describe the type rules for all of the array operations.
+\item For the given example, provide the inferred types for the 4 program variables.
 \end{enumerate}
 
 \section*{Hints}
