@@ -1,0 +1,103 @@
+slide 3:
+ - we refer to \top as "top" and \bot as "bottom" regardless of the lattice
+ - we use the term "state" to capture the idea that at any point during
+   program execution we can dump the contents of memory to capture the
+   values of all program variables, the heap, etc.   Our analyses will
+   reason about "sets of states" and will represent them symbolically.
+ - sometimes we say "abstract state" to describe the representations
+   of such a set of states
+
+slide 4:
+ - the x_i are variables that hold the current "abstract state"
+ - like with type analysis these are equality constraints, but as we 
+   will see the structure of the constraints presents some additional
+   challenges
+
+slide 8:
+ - what makes a good lattice?
+ - we are discussing precision here, but as we will see increasing
+   the size of the lattice increases the complexity of analysis
+ - there is no single "best" lattice
+   - it depends on the program being analyzed
+   - it depends on how you will consume analysis results
+ - the topic of "computing" a good lattice for a given program is an 
+   active area of research
+
+slide 13:
+ - no top element, what is the lub of the two in the circle
+ - no lub, what is the lub of the two in the circle
+
+slide 14:
+ - you have all probably seen this before
+ - for program analysis you want to develop the intuition that ordering
+   in the lattice corresponds to precision of static analysis results
+ - so if we are trying to describe a set of values that a variable
+   can take on being lower in the lattice is more precise
+
+slide 16:
+ - for every element of the domain, A, the value may take on a value in L
+ - since ordering is pointwise we have
+   - height(L) for a_1
+   - height(L) for a_2
+   - etc.
+
+slide 17:
+ - with the map lattice there is a single lattice in the co-domain of the map
+ - here we can combine distinct lattices
+
+slide 19
+ - sometimes we want to introduce the notion of "undefinedness" for any
+   given lattice
+ - the lift lattice does this
+
+slide 22:
+ - there are several ways that we can restrict the functions in constraints 
+   to guarantee the existence of solutions that vary with cost
+ - an efficient yet powerful, constraint is to require that they be
+   monotone
+
+slide 23:
+ - the key intuition that you should work to develop is that a monotone
+   function preserves order in the lattice
+ - not that if a pair of values is not ordered, then such a function
+   is free to do whatever it likes
+ - we can define the space of monotone functions that is closed under
+   composition 
+
+slide 24:
+ - are the abstract operators monotone?
+ - worth your time to think through some of the exercises (I'll list a few on the schedule for you to consider)
+ - here is one example [[x = 42;]] = JOIN(v)[x \mapsto "+"]
+   - take two values for v that are ordered, v1 \sqsubseteq v2
+   - all elements except for the mapping for "x" are preserved
+   - let's think about that can happen with the map update for "x"
+     - v1 is equal to v2, and they will be equal afterwards
+     - v1 is strictly less than v2, and they will be equal afterwards
+ - automating the generation of these functions \overbar{op} is an active
+   area of research
+
+slide 25:
+ - a fixed-point of a function is a value, x, where f(x) = x
+ - this theorem states the existence of a unique least fixed point
+ - the notation f_i means that f is composed with itself i times
+ - the fixpoint is the least upper bound of all of these compositions
+   applied to the bottom element of the lattice
+
+slide 26:
+ - \bottom is below every element so the first is clearly true
+ - monotone functions preserve ordering, so if we apply f to the first observation we get this
+ - we can keep on going i times
+ - every pair of elements that we produce in this process is ordered
+ - the longest chain in a lattice is equal to its height, so there must be 
+   some height at which f^i stabilizes, in the worst-case at the top of 
+   the lattice
+ - note that the ordering on L is non-strict, but if we apply f at some point
+   in the chain and it doesn't produce a strictly greater value then we
+   have reached the fixpoint
+ - finally for two ordered elements in the lattice the lub is the greater
+   of the two
+
+STOPPED HERE
+    
+
+
