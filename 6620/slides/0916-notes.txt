@@ -1,0 +1,6 @@
+Go back over the idea of point-wise ordering and point-wise join
+ - go through reworked slides beginning with the map lattice
+
+Jump forward to the uniqueness argument for Kleene's theorem
+
+INTEGRATE NOTES ON HOME MACHINE HERE
