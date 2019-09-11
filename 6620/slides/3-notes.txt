@@ -15,6 +15,9 @@ slide 4:
    will see the structure of the constraints presents some additional
    challenges
 
+slide 5:
+ - note the general form of these equations is [[v]] = t_v(JOIN(v))
+
 slide 8:
  - what makes a good lattice?
  - we are discussing precision here, but as we will see increasing
