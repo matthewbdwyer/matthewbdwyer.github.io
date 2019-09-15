@@ -21,7 +21,7 @@
 
 % Edit these as appropriate
 \newcommand\course{CS 6620}
-\newcommand\hwnumber{1}                  % <-- homework number
+\newcommand\hwnumber{2}                  % <-- homework number
 
 \pagestyle{fancyplain}
 \headheight 35pt
@@ -36,31 +36,41 @@
 \begin{document}
 This assignment can be completed individually or in a pair.  All assignments in the class can be completed this way, but you cannot repeat any pairing during the course.  Please clearly indicate the names of the people submitting the solution on the two attached files.
 
-\section*{Part 1}
-Complete the TIP data flow analysis for live variables.
+\section*{Part 1 (5 points)}
+Complete the TIP data flow analysis for live variables.  This involves
+completing the definition of the \texttt{LiveVarsAnalysis} in \texttt{.../src/analysis/LiveVarsAnalysis.scala} and then providing convincing evidence
+that your analysis implementation is correct.
 \begin{enumerate}
-\item implement the ??? cases
-\item provide evidence
+\item Implement the undefined portions of the analysis implementation, marked as \texttt{<--- Complete here}.  Note that you do not have to 
+implement the \verb|case _ => ???| case for assignment -- this handles the situation where you are assigning through a pointer, but this simple analysis doesn't support that.
+\item Provide convincing evidence that your analysis implementation is correct.  The typical way to do this is to define a comprehensive test suite on which you have confirmed the correct behavior of the analysis.  The test suite should be comprised of the files from \texttt{examples/*.tip}, but you may supplement those files if you choose.
 \end{enumerate}
 
-\section*{Part 2}
-Implement a reaching definitions data flow analysis for TIP.
+\section*{Part 2 (5 points)}
+TIP does not include a reaching definitions analysis.  You are to implement one.
+Here you are starting from scratch, but you can leverage the fact that data flow analyses are variations on a pattern and there are other analyses defined for TIP, e.g., \texttt{AvailableExpAnalysis.scala}, and you just implemented \texttt{LiveVarsAnalysis}.  These analyses will define much of the boilerplate for your implementation, but you will have to adapt that code to compute reaching definitions.
 \begin{enumerate}
-\item 
-\item
+\item Implement \texttt{ReachingDefAnalysis} in the file \texttt{.../src/analysis/ReachingDefAnalysis.scala}
+\item Implement the undefined behavior marked with \texttt{<--- Complete here} in\\ 
+\texttt{.../src/analysis/FlowSensitiveAnalysis.scala} to create the solvers.
+\item Provide convincing evidence that your analysis implementation is correct.  The typical way to do this is to define a comprehensive test suite on which you have confirmed the correct behavior of the analysis.  The test suite should be comprised of the files from \texttt{examples/*.tip}, but you may supplement those files if you choose.
 \end{enumerate}
 
-\section*{Submissino} 
-Upload to the course collab site the following three files: \texttt{LiveVarsAnalysis.scala}, \texttt{ReachingDefAnalysis.scala}, and a PDF file describing how you designed the reaching definition implementation and how you validated both of the analyses.
+\section*{Part 3 (2 points)}
+Pick one of the two analyses above and identify an example that reveals the difference between the simple fixpoint solver and the worklist solver.  Explain the differences and describe how the features of the example reveal those differences.
+
+\section*{Submission} 
+Upload to the course collab site the following three files: \texttt{LiveVarsAnalysis.scala},\\
+\texttt{ReachingDefAnalysis.scala}, and a PDF file describing how you designed the reaching definition implementation, your analysis of the different solver algorithms, and how you validated both of the analyses.  If you included test cases of your own design, please include those as well.
 
 \section*{Hints}
 You will want to become familiar with the following elements of the TIP analysis implementation:
 \begin{itemize}
-\item 
-\item 
-\item 
-\item 
-\item 
+\item \texttt{.../src/cfg/CfgNode.scala} defines the types of CFG nodes.  Each node contains a \texttt{data} field which holds a reference to the associate AST node.
+\item \texttt{.../src/cfg/CfgOps.scala} defines a number of convenience methods that access information from CFG node \texttt{data} fields, for example.
+\item \texttt{.../src/ast/AstOps.scala} defines a number of convenience methods that access information from AST nodes.  Not suprisingly many of these are implemented using \texttt{DepthFirstAstVisitor}.  If you didn't take the chance to understand and appreciate the visitor pattern in HW1, you should do so now.  This is a very valuable concept when manipulating and analyzing programs.
+\item Note that much of the boilerplate to allow you to run the analyses is already defined, e.g., the command line option is \texttt{-reaching} and the parsing and invocation of the analysis is already setup.
+\item run with the \texttt{-verbose} option turned on to see intermediate calculations of your analysis runs.  You don't need to add any debugging statements since the infrastructure already provides what you need in the generic logging code.
 \end{itemize}
 
 
