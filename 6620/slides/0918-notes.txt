@@ -1,0 +1,62 @@
+updated slides from last time thanks to Maggie's suggestion
+
+restart on slide 7
+
+Liveness:
+ - you will notice as we go through these analyses that there are some points of variation
+ - with Signs analysis we were computing sound approximations of the values a variable can take on at each program point
+   - intuitively, this requires analysis of past program execution
+   - i.e., you need to understand the state of the program on entry to a statement in order to compute the result of the statement
+ - with liveness we will be interested in future program execution
+   - this will cause multiple other aspects of the analysis to change slightly
+   - variables will capture information BEFORE a statement, rather than after
+   - we will join the values of CFG SUCCESSORS, rather than predecessors
+   - we will want to initialize the CFG EXIT, rather than the entry
+ - we sometimes refer to analyses like Signs as "forward" and analyses
+   like Liveness as "backward"
+
+slide 11:
+ - point out the GEN-KILL nature of these constraints
+   - GEN with union
+   - KILL with "\" set difference, you can think of this as "subtraction"
+ - this is a very common form for transfer functions
+ - note that these rules are a bit incomplete, e.g., return
+ - does anyone have an idea of how we can implement "vars(E)"?
+
+slide 12:
+ - point out the indirect recursion here
+   - from x>1 towards the top, to z=z-1 towards the bottom
+
+slide 17:
+ - is this forward or backward?
+ - what will that mean for the formulation of this analysis?
+ - in Signs and Liveness, the notion of a "safe" solution was that
+   it might describe "too many" elements, e.g., values, variables, 
+   but it can NEVER contain "too few" relative to the true solution
+ - things seem different for available expressions
+ - what will that mean for the formulation of this analysis?
+   - structure of the lattice, definition of join
+
+slide 21:
+ - note here that we are using intersection here to combine predecessor
+   values, this is JOIN for our reversed lattice
+
+slide 28:
+ - is this forward or backward?
+   - implications
+ - what is the notion of safety of answers?
+   - implications
+
+slide 34:
+ - is this forward or backward?
+   - implications
+ - what is the notion of safety of answers?
+   - implications
+
+HW2
+
+Show LiveVars
+
+Show AstOps
+
+
