@@ -1,6 +1,28 @@
 Go back over the idea of point-wise ordering and point-wise join
  - go through reworked slides beginning with the map lattice
+ - slide 16-20
 
 Jump forward to the uniqueness argument for Kleene's theorem
+ - slide 28
 
-INTEGRATE NOTES ON HOME MACHINE HERE
+Data flow analysis slides:
+
+slide 3:
+ - constant propagation for x
+ - constant folding 2*x
+ - dead code elimination of the "then" block
+ - live variables triggers elimination of assignment to z
+ - constant propogation for y
+ - the input statement has a "side effect" (reading from input) so it 
+   is retained even though y is never used
+
+*** There is a compounding effect with these analyses and transformations
+ - each is small in focus, but may create further opportunities
+ - the transitive impact of a set of analyses and transformations can be 
+   substantial
+ - NOTE ALSO that you may think programmers don't create code like this and 
+   largely you'd be right, but the action of other optimizations may create
+   these code structures
+ - for example, it is very common for array indexing to result in constants
+   that can be folded
+
