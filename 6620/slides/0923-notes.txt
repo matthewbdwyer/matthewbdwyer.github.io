@@ -1,0 +1,26 @@
+slide 12:
+  - every time we apply the interval transfer function we then apply widening
+  - this widening operator generalizes the interval to one that can be 
+    represented just with the values in B
+  - if B = {-\infty, 0, 1, 7, \infty}
+    - x \mapsto [8,8] widens to [7,\infty]   
+      - 7 is the largest value in B that does not overapproximate 8
+      - \infty is the smallest value in B that does not underapproximate 8
+    - y \mapsto [0,1] widens to [0,1]   
+      - since 0 and 1 are in B
+    - y \mapsto [0,2] widens to [0,7]   
+      - 7 is the smallest value in B that does not underapproximate 2
+
+slide 15:
+  - fix f \subseteq f(fix \omega) \subset fix \omega
+  - as we will see this follows from the fact that \omega is monotone
+    and extensive
+
+slide 16:
+  - note that repeated applications of f can never lead us to
+    underestimate fix f, but we will hopefully underestimate fix \omega
+
+
+
+
+
