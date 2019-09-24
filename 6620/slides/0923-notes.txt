@@ -1,3 +1,11 @@
+slide 8:
+  - note that this is an aggressive approach to widening
+  - after every application of f, there is an application of \omega
+  - it is typically to allow f to try to converge for some period
+    of time before widening, e.g., k iterations
+  - all of the correctness results we'll discuss work for this case
+    as well; useful to convince yourself of this
+
 slide 12:
   - every time we apply the interval transfer function we then apply widening
   - this widening operator generalizes the interval to one that can be 
@@ -20,7 +28,8 @@ slide 16:
   - note that repeated applications of f can never lead us to
     underestimate fix f, but we will hopefully underestimate fix \omega
 
+Look at IntervalLattice.scala
 
-
-
-
+You should be thinking about the parts of TIP that you find most interesting.
+This will help you pick a project.
+For example, implementing a data flow framework in LLVM, implementing abstract numerical domains with widening in LLVM, etc.
