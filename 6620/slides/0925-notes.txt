@@ -1,0 +1,51 @@
+Correction on HW2
+
+slide 5:
+  - what is least upper bound?
+    * the smallest interval that subsumes both
+    * [l1,h1] join [l2,h2] = [min(l1,l2),max(h1,h2)]
+  - what is greatest lower bound
+    * the largest interval subsumed by both
+    * [l1,h1] meet [l2,h2] = 
+        if (h1 < l2 || h2 < l1)
+           bottom
+        else
+           [max(l1,l2),min(h1,h2)]
+  - important!
+    * if the two intervals are disjoint then the lower bound is \bottom
+  - think through some examples:
+    * [2,4] > [0,6]
+      * [2,4] meet [0,\infty] = [2,4]  
+      * the values of X that may be greater than E
+    * [0,6] > [2,4]
+      * [0,6] meet [2,\infty] = [2,6]  
+      * the values of X that may be greater than E
+    * [2,2] > [3,4]
+      * [2,2] meet [3,\infty] = \bottom  
+      * which is unreachable!!
+      * by construction this is impossible, since the if condition guards the assert
+
+slide 14:
+  - note that changing the lattice to a map from paths, means that our transfer functions need to take paths as a parameter
+  - we will use a lambda abstraction to denote this
+
+slide 15:
+  - think of these lambda abstractions as functions returning a constant
+  - in other words for any path context, return "open"
+  - the flag updates simultanously change the image of the map for both values
+  - in last definition we use q because p is taken to join predecessors
+
+slide 16:
+  - the asserts here compute the incoming value of flag value that is consistent with assert condition and rule out the one that is impossible
+
+This is a fascinating area of program analysis
+ - the introduction of targetted precision
+ - there are methods for automatically determining the predicate combinations to use
+ - if you are interested in this I am happy to chat as this was the topic of my PhD thesis in 1995
+
+
+
+
+
+    
+  
