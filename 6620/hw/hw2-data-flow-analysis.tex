@@ -43,8 +43,10 @@ Complete the TIP data flow analysis for live variables.  This involves
 completing the definition of the \texttt{LiveVarsAnalysis} in \texttt{.../src/analysis/LiveVarsAnalysis.scala} and then providing convincing evidence
 that your analysis implementation is correct.
 \begin{enumerate}
-\item Implement the undefined portions of the analysis implementation, marked as \texttt{<--- Complete here}.  Note that you do not have to 
+\item Implement the undefined portions of the analysis implementation, marked as\\
+ \verb|<--- Complete here|.  Note that you do not have to 
 implement the \verb|case _ => ???| case for assignment -- this handles the situation where you are assigning through a pointer, but this simple analysis doesn't support that.
+\item You will also need to implement the \verb|<--- Complete here| lines for class \texttt{PowersetLattice} in \texttt{.../src/lattices/GenericLattices.scala}.
 \item Provide convincing evidence that your analysis implementation is correct.  The typical way to do this is to define a comprehensive test suite on which you have confirmed the correct behavior of the analysis.  The test suite should be comprised of the files from \texttt{examples/*.tip}, but you may supplement those files if you choose.
 \end{enumerate}
 
