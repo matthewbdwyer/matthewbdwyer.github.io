@@ -1,9 +1,27 @@
 Correction on HW2
 
+slide 2:
+  - these are the values after the loop exit 
+  - B is 0, 1, 17 and the infinities
+  - we can see that these results are imprecise
+    * at the exit of the loop x>0 is false so an upper bound of infinity is very imprecise
+    * the increments of y only happen when y is less than 17, so an upper bound of infinity is very imprecise
+    * we know that x is positive at the start of every loop iteration
+    * so z is only ever incremented by a positive number, so a lower bound of negative infinity is very imprecise
+
 slide 5:
+  - what are we trying to do with asserts?
+    - we want to restrict the values of x to those that are consistent
+      with the assertion
+    - we are willing to overapproximate those values
+    - that is what our prior analysis without asserts did
+
+  - go back to interval lattice from prior lecture
+
   - what is least upper bound?
     * the smallest interval that subsumes both
     * [l1,h1] join [l2,h2] = [min(l1,l2),max(h1,h2)]
+
   - what is greatest lower bound
     * the largest interval subsumed by both
     * [l1,h1] meet [l2,h2] = 
@@ -13,6 +31,7 @@ slide 5:
            [max(l1,l2),min(h1,h2)]
   - important!
     * if the two intervals are disjoint then the lower bound is \bottom
+
   - think through some examples:
     * [2,4] > [0,6]
       * [2,4] meet [0,\infty] = [2,4]  
@@ -25,7 +44,14 @@ slide 5:
       * which is unreachable!!
       * by construction this is impossible, since the if condition guards the assert
 
+slide 12:
+  - here we are tracking the relevant information
+  - the updates are done component-wise
+  - THERE IS NO INTERACTION BETWEEN THE TWO
+  - so the value of the flag component doesn't influence the update of open/closed
+
 slide 14:
+  - we achieve this interaction by using a map lattice from information about the execution context, e.g., paths
   - note that changing the lattice to a map from paths, means that our transfer functions need to take paths as a parameter
   - we will use a lambda abstraction to denote this
 
