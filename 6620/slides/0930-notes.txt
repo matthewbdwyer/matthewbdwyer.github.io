@@ -1,0 +1,55 @@
+slide 8:
+  ? the comment about evaluating all params and issues with recursion
+
+slide 10:
+  - note that there may be multiple call to a function
+    * there are multiple incoming call edges
+    * there may be multiple outgoing return edges
+
+slide 12:
+  - as CFGs get larger and more inter-connected as with the ICFG there can be lots of redundant computation even with the worklist algorithm
+  - the dot in the diagram denotes the value stored by [[v_i]], i.e., x_i
+  - it is the value AFTER the node
+
+slide 13:
+  - section 5.10 of the notes introduces an improved worklist algorithm that only adds dependent nodes to the worklist if their input value is changed
+  - this requires a shift in the meaning of the variable x_i
+    - it now stores the value before node i
+    - note that it is trivial to get the value after the node by just applying the transfer function, i.e., t_i(x_i)
+  - this algorithm helps improve performance with interprocedural data flow analysis
+
+slide 19:
+  - last lecture we saw that we could introduce a "Path Context" to create a path-sensitive analysis
+  - here we are going to use the same trick, but the paths we are going to focus on are inter-procedural call-return paths
+
+slide 22:
+  - stop to discuss the question
+
+slide 23:
+  - recall now that the lattice is a map from contexts to the underlying data flow values
+  - we want to use the current context to "look up" the appropriate values to operate on and to update
+  - here you should think of c=w as the defining call site
+  - think of c' as the set of possible calling contexts
+    - in this case all of the top level calls
+  - in general a function may be called in different contexts
+    - a() calls b() calls f()
+    - c() calls b() calls f()
+    - here the call site of f() is the same place in b()
+    - but it is happening under a differenc context
+  - think of s^c'_w as 
+    - the abstract state computed from w
+    - in calling context c'
+  - note that for k=1 the number of contexts is manageable  
+    - as k grows the contexts can grow significantly
+    - in practice k>2 is too expensive
+
+slide 24:
+  - recall that by updating [[v']](c) we are 
+    - preserving the locals in the calling function
+    - in the context c from which the call was made
+
+slide 28:
+  - key difference is that here c, the context, is the state on entry to f()
+  
+
+
