@@ -1,6 +1,3 @@
-slide 8:
-  ? the comment about evaluating all params and issues with recursion
-
 slide 10:
   - note that there may be multiple call to a function
     * there are multiple incoming call edges
