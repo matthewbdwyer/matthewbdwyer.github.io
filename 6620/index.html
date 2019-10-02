@@ -40,11 +40,16 @@ This is a list of project ideas that will provide the chance to
 dig in to the details of representing, analyzing, and transforming
 programs with LLVM.   These are based, primarily, on implementing
 features of TIP in <span style="font-family:courier">tipc</span>.
+<br>
+You will propose your project and have it accepted by me prior to 
+October 23, 2019 (instructions forthcoming on the schedule).  I welcome
+preliminary conversations about possible projects.  Students should team up on a project since an acceptable project will require quite a bit of work.
+It is possible for two different teams to solve the same project.
 <dl>
 
 <dt>Type Checking</dt> <dd>Currently <span style="font-family:courier">tipc</span> assumes that a program has been type checked by the Scala TIP analyzer.  This project would do the type checking within <span style="font-family:courier">tipc</span> by implementing a union-find engine and the analog of TIP's type analysis.</dd>
 
-<dt>Using Type Annotations</dt> <dd>Running Scala TIP type checker produces a type-annotated TIP program, with a <span style="font-family:courier">.ttip</span> suffix.  Currently <span style="font-family:courier">tipc</span></dd> does not consume these annotations, but it could be extended to do so and this would pave the way for handling the rest of the TIP language, e.g., records.
+<dt>Using Type Annotations</dt> <dd>Running Scala TIP type checker produces a type-annotated TIP program, with a <span style="font-family:courier">.ttip</span> suffix.  Currently <span style="font-family:courier">tipc</span></dd> does not consume these annotations, but it could be extended to do so and this would pave the way for handling the rest of the TIP language, e.g., records.</dd>
 
 <dt>Symbolic Traces</dt> <dd>TIP includes a <span style="font-family:courier">ConcolicEngine</span> which mixes execution of the program with computation of the symbolic constraints governing the execution of a path.  In this project, you will compute such symbolic constraints by instrumenting LLVM bitcodes and then emitting the constraints.  An external script can be used to generate new inputs from the constraints to drive exploration of new program paths.</dd>
 
@@ -57,7 +62,6 @@ features of TIP in <span style="font-family:courier">tipc</span>.
 <dt>Testing</dt> <dd>Build a CSmith-like differential testing system for TIP using <a href="https://github.com/renatahodovan/grammarinator">Grammarinator</a>; the TIP .g4 grammar makes it easy to get started.  The tricky part is ensuring that you generate TIP programs that will exercise <span style="font-family:courier">.ttip</span> thoroughly.</dd>
 
 </dl>
-Students should team up on a project and there may be multiple teams solving the same project.
 
 <h2>Passes</h2>
 This is a list of LLVM passes that you can select to study.
@@ -147,7 +151,7 @@ table, th, td {
 <tr> <td>10/14/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
 <tr> <td>10/16/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
 <tr> <td>10/21/19</td> <td>-</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>10/23/19</td> <td>-</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>10/23/19</td> <td>-</td> <td>-</td> <td>Project Proposals due</td> </tr>
 <tr> <td>10/28/19</td> <td>Pass Presentations</td> <td>-</td> <td>HW3 due</td> </tr>
 <tr> <td>10/30/19</td> <td>Pass Presentations</td> <td>-</td> <td></td> </tr>
 <tr> <td>11/04/19</td> <td>-</td> <td>-</td> <td>-</td> </tr>
