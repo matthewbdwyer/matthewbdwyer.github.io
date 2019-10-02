@@ -38,13 +38,8 @@ The course syllabus is linked <a href="syllabus/syllabus.pdf">here</a>.
 <h2>Projects</h2>
 This is a list of project ideas that will provide the chance to
 dig in to the details of representing, analyzing, and transforming
-programs with LLVM.   These are based, primarily, on implementing
-features of TIP in <span style="font-family:courier">tipc</span>.
-<br>
-You will propose your project and have it accepted by me prior to 
-October 23, 2019 (instructions forthcoming on the schedule).  I welcome
-preliminary conversations about possible projects.  Students should team up on a project since an acceptable project will require quite a bit of work.
-It is possible for two different teams to solve the same project.
+programs with LLVM.   These are based, primarily, on extending
+the implementation of <span style="font-family:courier">tipc</span>.
 <dl>
 
 <dt>Type Checking</dt> <dd>Currently <span style="font-family:courier">tipc</span> assumes that a program has been type checked by the Scala TIP analyzer.  This project would do the type checking within <span style="font-family:courier">tipc</span> by implementing a union-find engine and the analog of TIP's type analysis.</dd>
@@ -62,6 +57,11 @@ It is possible for two different teams to solve the same project.
 <dt>Testing</dt> <dd>Build a CSmith-like differential testing system for TIP using <a href="https://github.com/renatahodovan/grammarinator">Grammarinator</a>; the TIP .g4 grammar makes it easy to get started.  The tricky part is ensuring that you generate TIP programs that will exercise <span style="font-family:courier">.ttip</span> thoroughly.</dd>
 
 </dl>
+You will propose your project and have it accepted by me prior to 
+October 23, 2019 (instructions forthcoming).  I welcome
+preliminary conversations about possible projects.  Students should team up on a project since an acceptable project will require more work than one person
+can reasonably complete.
+It is possible for two different teams to solve the same project.
 
 <h2>Passes</h2>
 This is a list of LLVM passes that you can select to study.
