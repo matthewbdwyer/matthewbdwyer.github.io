@@ -1,0 +1,100 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\hypersetup{%
+  colorlinks=true,
+  linkcolor=blue,
+  linkbordercolor={0 0 1}
+}
+ 
+\setlength{\parskip}{0.05in}
+
+% Edit these as appropriate
+\newcommand\course{CS 6620}
+\newcommand\hwnumber{2}                  % <-- homework number
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{14 points}
+\chead{\textbf{\Large Homework \hwnumber}}
+\rhead{\course \\ assigned: 10/16/2019\\ 
+oral due: 10/30 - 11/6, 2019\\
+written due: 11/6/2019
+}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\headsep 1.5em
+
+\begin{document}
+~
+
+You are to select, study, and ``present'' an LLVM pass to the class.
+You are free to select any pass that you like, except for a trivial
+pass like ``Hello World''.
+For your chosen pass you are expected to:
+\begin{itemize}
+\item Explain what the pass does both conceptually and through examples;
+\item Relate the pass to the concepts, data structures and algorithms studies in the class;
+\item Explain any dependencies of this pass on other parts of LLVM;
+\item Illustrate the pass in action in processing C or TIP programs; and
+\item If you choose an analysis pass, compare it to the closest corresponding TIP analysis. 
+\end{itemize}
+
+This assignment must be completed working with a partner.
+
+The first thing you should do on this assignment is to sign up for
+a 15 minute presentation slot on Oct. 30, Nov. 4, or Nov. 6.  There are
+4 slots per class and they will be assigned on a first-come first-served
+basis.  When presenters sign-up I will update the course web-page.
+
+\section*{Part 1 (7 points)}
+Prepare and present a 15 minute introduction to and explanation of your
+selected pass.  You should cover all of the areas discussed above and 
+provide a ``tutorial'' explanation of the pass to educate the class.
+
+Both team members are required to participate in the presentation.
+You will be graded on the organization of your presentation,
+the quality of your presentation materials,
+the clarity of your explanations,
+the extent to which you use your 15 minutes appropriately (i.e., being
+on time),
+and your ability to answer questions about your presentation. 
+
+There are many good resources available online about how to prepare
+and give a technical presentation.  This site is a nice example:
+\url{https://homes.cs.washington.edu/~mernst/advice/giving-talk.html}
+
+You may use any slide preparation system you would like, but you 
+will submit a PDF copy of the slides you use in making your presentation.
+
+
+\section*{Part 2 (7 points)}
+Prepare a written presentation of your selected pass that covers all of
+the areas discussed above.  Your written presentation should be well-organized 
+and cover all of the areas described above.  The writeup need not be long,
+e.g., it will be less than 10 pages, but it should be clear and comprehensive.
+
+The writeup will be graded on the organization of the presentation,
+the quality of the presentation (e.g., grammar), and
+the clarity of the explanations.
+
+You should cite related
+work appropriately, e.g., when you relate the pass to concepts, data
+structures, and algorithms make an effort to find an appropriate citation.
+
+You will submit a PDF copy of your written presentation.
+
+\end{document}
+
+
