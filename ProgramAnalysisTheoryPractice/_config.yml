@@ -1,0 +1,5 @@
+theme: jekyll-theme-slate
+title: [Compilers]
+description: [A course covering the theory and practice of program analysis]
+future: true
+timezone: America/New_York
