@@ -1,0 +1,77 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{fullpage}
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\hypersetup{%
+  colorlinks=true,
+  linkcolor=blue,
+  linkbordercolor={0 0 1}
+}
+ 
+\setlength{\parskip}{0.05in}
+
+% Edit these as appropriate
+\newcommand\course{CS 6620}
+\newcommand\hwnumber{3}                  % <-- homework number
+
+\pagestyle{fancyplain}
+\headheight 35pt
+\lhead{14 points}
+\chead{\textbf{\Large Homework \hwnumber}}
+\rhead{\course \\ team members\\ ~~\\~~~~~~~~~~~~\\~~~~~~~~~~~~}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\headsep 1.5em
+
+\begin{document}
+~
+
+You are to select, study, and ``present'' an LLVM pass to the class.
+You are free to select any pass that you like, except for a trivial
+pass like ``Hello World''.
+For your chosen pass you are expected to:
+\begin{itemize}
+\item Explain what the pass does both conceptually and through examples;
+\item Relate the pass to the concepts, data structures and algorithms studies in the class;
+\item Explain any dependencies of this pass on other parts of LLVM;
+\item Illustrate the pass in action in processing C or TIP programs; and
+\item If you choose an analysis pass, compare it to the closest corresponding TIP analysis. 
+\end{itemize}
+
+\section*{Part 1 (7 points)}
+Grading rubric for oral presentation:
+\begin{itemize}
+\item (1 point) Both team members participate
+\item (1 point) Used 15 minutes appropriately (neither too long nor too short)
+\item (1 point) Clarity of oral presentation
+\item (1 point) Clarity of slide organization
+\item (1 point) Answered questions effectively
+\item (1 point) Illustrate the pass with an example
+\item (1 point) Related pass to concepts in class
+\end{itemize}
+
+
+
+\section*{Part 2 (7 points)}
+Grading rubric for written presentation:
+\begin{itemize}
+\item (2 points) Clear conceptual presentation of pass
+\item (1 point) Illustrate the pass with an example
+\item (2 points) Related pass to algorithms, concepts, data structures in class
+\item (1 point) Cited related work
+\item (1 point) Grammatically correct and well-written
+\end{itemize}
+
+\end{document}
+
+
