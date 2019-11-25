@@ -1,0 +1,34 @@
+Discussion slots for project Nov. 1
+ - no office hours on Thurs. Oct. 31
+
+For X=*Y; imagine the following program:
+
+if (c) 
+  Y = &a;
+else
+  Y = &b;
+X = *Y;  // at this location
+
+Draw picture of memory cells for a and b
+
+at the location Y could point to either of those cells
+  - draw edges
+  
+we denote this as
+  [[Y]] = { [[a]], [[b]] }
+
+We handle each element of the set for Y with a conditional constraint
+  - the conditioned constraint is just the inclusion for an assignment
+
+For *X=Y; a variant of the program:
+
+if (c) 
+  X = &a;
+else
+  X = &b;
+*X = Y;  // at this location
+
+Just erase the Ys and put Xs in their place
+
+
+
