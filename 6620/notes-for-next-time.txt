@@ -1,0 +1,13 @@
+HW1 (15 pts) : require more testing
+HW2 (15 pts) : require more testing
+HW3 (30 pts) : extend tipc with arrays
+Project (40 pts) :
+ - project proposal (10)
+ - project presentation (10)
+ - project report (20) - finals week
+
+Extend tipc with:
+ - native architecture support
+ - type checking
+ - records
+ - rename intrinsics to lib, i.e., "tip_lib.bc"
