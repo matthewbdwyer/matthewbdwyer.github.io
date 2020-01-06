@@ -1,12 +1,12 @@
 <h1>Compilers</h1>
 
-This is the web-site for the Fall 2019 offering of graduate-level
+This is the web-site for the Spring 2020 offering of graduate-level
 compilers at the University of Virginia.
 
 <h2>Logistics</h2>
 <dl>
-<dt>Time</dt> <dd>Mon/Wed 10:30-11:45</dd>
-<dt>Location</dt> <dd>Rice 340</dd>
+<dt>Time</dt> <dd>Tue/Thur 15:30-16:45</dd>
+<dt>Location</dt> <dd>Mech. Eng. 339</dd>
 <dt>Reading</dt> <dd>No required textbook, we will work through the lecture notes developed by Anders M&oslash;ller and Michael Schwartzbach on <a href="https://cs.au.dk/~amoeller/spa/">Static Program Analysis</a> (SPA), selected research papers (see below), and code (e.g., LLVM APIs, TIP Scala)
 </dl>
 
@@ -25,12 +25,10 @@ This is a course where you will learn both analytically, e.g., by reading, think
 <h2>Grading</h2>
 There will be four different kinds of assignments.
 <dl>
-<dt>Exercises (24%)</dt> <dd>2 programming exercises, in Scala, that add functionality to the TIP compiler</dd>
-<dt>Pass analysis (14%)</dt> <dd>read, understand, and explain an LLVM pass</dd>
-<dt>Topic tutorial (14%)</dt> <dd>study, prepare, and present a tutorial on on a research topic</dd>
-<dt>Project (48%)</dt> <dd>a programming project based in LLVM that, e.g., adds features to the existing TIP compiler, extends the TIP language and compiler.</dd>
+<dt>Exercises (42%)</dt> <dd>3 programming exercises, in Scala, that add functionality to the TIP compiler</dd>
+<dt>Pass analysis (12%)</dt> <dd>read, understand, and explain an LLVM pass</dd>
+<dt>Project (46%)</dt> <dd>a programming project based in LLVM that, e.g., adds features to the existing TIP compiler, extends the TIP language and compiler.</dd>
 </dl>
-The assignments can be done in teams of 2, but you cannot have the same partner for multiple assignments.  After assignments are due, I will call on teams and call on members of teams to answer a question or two about the solution turned in.  This will be a randomized process and all members of the team are responsible for answers, so please work together so that all team members learn.
 
 <h2>Syllabus</h2>
 The course syllabus is linked <a href="syllabus/syllabus.pdf">here</a>.
@@ -140,40 +138,36 @@ table, th, td {
 <p>
 <table>
 <tr> <th>Date</th> <th>Topic</th> <th>Reading</th> <th>To Do</th> </tr>
-<tr> <td>08/28/19</td> <td><a href="slides/0-introduction.pdf">Class overview</a></td> <td>-</td> <td>-</td> </tr>
-<tr> <td>09/02/19</td> <td><a href="slides/1-TIP.pdf">TIP</a></td> <td>read SPA 1 and 2</td> <td>-</td> </tr>
-<tr> <td>09/04/19</td> <td><a href="slides/2-type-analysis.pdf">Types</a></td> <td>read SPA 3</td> 
-<td><a href="hw/hw1-type-analysis.pdf">HW1</a></td> </tr>
-<tr> <td>09/09/19</td> <td><a href="slides/3-lattices-and-fixpoints.pdf">Lattice Theory</a></td> <td>read SPA 4</td> 
+<tr> <td>01/07/20</td> <td><a href="slides/0-introduction.pdf">Class overview</a></td> <td>-</td> <td>-</td> </tr>
+<tr> <td>01/09/20</td> <td><a href="slides/1-TIP.pdf">TIP</a></td> <td>read SPA 1 and 2</td> <td>-</td> </tr>
+<tr> <td>01/14/20</td> <td><a href="slides/2-type-analysis.pdf">Types</a></td> <td>read SPA 3</td> 
+<td><a href="hw/hw1-type-analysis">HW1 out</a></td> </tr>
+<tr> <td>01/16/20</td> <td><a href="slides/3-lattices-and-fixpoints.pdf">Lattice Theory</a></td> <td>read SPA 4</td> 
 <td>-</td> </tr>
-<tr> <td>09/11/19</td> <td>Lattice Theory</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>09/16/19</td> <td>Lattice Theory</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>09/18/19</td> <td><a href="slides/4-flow-sensitive-analysis.pdf">Data flow analysis</a></td> <td>read SPA 5.1-5.10</td> <td><a href="hw/hw1-type-analysis.pdf">HW1</a> due tonight, <a href="hw/hw2-data-flow-analysis.pdf">HW2</a></td> </tr>
-<tr> <td>09/23/19</td> <td><a href="slides/5-widening-and-narrowing.pdf">Widening and narrowing</td> <td>read SPA 5.11-5.12</td> <td></td> </tr>
-<tr> <td>09/25/19</td> <td><a href="slides/6-path-sensitivity.pdf">Path sensitive analysis</a></td> <td>read SPA 6</td> <td>-</td> </tr>
-<tr> <td>09/30/19</td> <td><a href="slides/7-interprocedural-analysis.pdf">Interprocedural analysis</a></td> <td>read SPA 7</td> <td>-</td> </tr>
-<tr> <td>10/02/19</td> <td><a href="slides/LLVM-part1.pdf">LLVM, <span style="font-family:courier">tipc</span>, and projects</a></td> <td>-</td> <td><a href="hw/hw2-data-flow-analysis.pdf">HW2</a> due tonight</td> </tr>
-<tr> <td>10/07/19</td> <td>No class - reading day</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>10/09/19</td> <td><a href="slides/LLVM-part2.pdf">LLVM Passes</a></td> <td></td> <td></td> </tr>
-<tr> <td>10/14/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>10/16/19</td> <td>No class - instructor travel</td> <td>-</td> <td><a href="hw/hw3-llvm-pass-analysis.pdf">HW3</a></td> </tr>
-<tr> <td>10/21/19</td> <td><a href="slides/SSA.pdf">SSA</a></td> <td><a href="https://www.cs.princeton.edu/~appel/papers/ssafun.pdf">SSA is Functional Programming</a></td> <td><a href="hw/hw4-topic-tutorial.pdf">HW4</a>, <a href="hw/project.pdf">Project</a></td> </tr>
-<tr> <td>10/23/19</td> <td><a href="slides/8-control-flow-analysis.pdf">CFA</a></td> <td>read SPA 8</td> <td>-</td> </tr>
-<tr> <td>10/28/19</td> <td><a href="slides/9-pointer-analysis.pdf">Pointer analysis</a></td> <td>read SPA 9</td> <td>
-<a href="https://docs.google.com/spreadsheets/d/1HF4PgGcZvASTtPUPKswj85xQHYA_5W-uVvaU6n1uIwg/edit?usp=sharing">Project meeting signup</a></td> </tr>
-<tr> <td>10/30/19</td> <td>Pointer Analysis</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/04/19</td> <td>Pass Presentations: Yang/Xiong (IV Users), Jordan/Klau (Loop Access), Su/Tian (Tail Call) </td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/06/19</td> <td>Pass Presentations: Leeson/Gates (Const. Prop.), Fang/Wu (Const. Prop.), Qi/Tu (Dead Code), Xiao/Meng (Strength Reduction) </td> <td>-</td> <td>Project proposal due</td> </tr>
-<tr> <td>11/11/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/13/19</td> <td>No class - instructor travel</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/18/19</td> <td>Pass Presentations: Jiang/Zhang (Dominance Frontier), Li/Hildebrandt (Points To Analysis), Yu/McCampbell (Code Motion), Hossain/Seneviratne (Dead Store Elim.)</td> <td>-</td> <td>HW3 due</td> </tr>
-<tr> <td>11/20/19</td> <td>Topic Presentations: Qi/Wu (Superoptimizer), Xiong/Fang (Equiv. Modulo Inputs), Meng/Su (DFA is MC of AbsInt)</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/25/19</td> <td>Topic Presentations: Yang/Tu (Csmith), Xiao/Tian (LLVM Souper), Hossain/Leeson (Taming Undefined Behavior) </td> <td>-</td> <td>-</td> </tr>
-<tr> <td>11/27/19</td> <td>No class - thanksgiving</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>12/02/19</td> <td>Topic Presentations: Gates/Hildebrandt (Configuration Diversification), Yoo/Li (JIT), ... </td> <td>-</td> <td>-</td></tr>
-<tr> <td>12/04/19</td> <td>Topic Presentations: Klau/Jiang (Alive), 
-Zhang/McCampbell (Efficient and Precise), Jordan/Seneviratne (Phasar) 
-</td> <td>-</td> <td>HW4 due</td> </tr>
-<tr> <td>12/06/19</td> <td>No class</td> <td>-</td> <td>Project due</td> </tr>
+<tr> <td>01/21/20</td> <td>Lattice Theory</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>01/23/20</td> <td>Lattice Theory</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>01/28/20</td> <td><a href="slides/4-flow-sensitive-analysis.pdf">Data flow analysis</a></td> <td>read SPA 5.1-5.10</td> <td><a href="hw/hw1-type-analysis">HW1 due</a> due, <a href="hw/hw2-data-flow-analysis">HW2 out</a></td> </tr>
+<tr> <td>01/30/20</td> <td><a href="slides/5-widening-and-narrowing.pdf">Widening and narrowing</td> <td>read SPA 5.11-5.12</td> <td></td> </tr>
+<tr> <td>02/04/20</td> <td><a href="slides/6-path-sensitivity.pdf">Path sensitive analysis</a></td> <td>read SPA 6</td> <td>-</td> </tr>
+<tr> <td>02/06/20</td> <td><a href="slides/7-interprocedural-analysis.pdf">Interprocedural analysis</a></td> <td>read SPA 7</td> <td>-</td> </tr>
+<tr> <td>02/11/20</td> <td><a href="slides/LLVM-part1.pdf">LLVM, <span style="font-family:courier">tipc</span>, and projects</a></td> <td>-</td> <td><a href="hw/hw2-data-flow-analysis">HW2 due</a></td> </tr>
+<tr> <td>02/13/20</td> <td><a href="slides/LLVM-part2.pdf">LLVM Passes</a></td> <td></td> <td><a href="hw/hw3-llvm-pass.">HW3 out</a></td> </tr>
+<tr> <td>02/20/20</td> <td><a href="slides/SSA.pdf">SSA</a></td> <td><a href="https://www.cs.princeton.edu/~appel/papers/ssafun.pdf">SSA is Functional Programming</a></td> <td><a href="hw/pass-analysis">Pass Analysis out</a></td> </tr>
+<tr> <td>02/25/20</td> <td><a href="slides/8-control-flow-analysis.pdf">CFA</a></td> <td>read SPA 8</td> <td>-</td> </tr>
+<tr> <td>03/03/20</td> <td><a href="slides/9-pointer-analysis.pdf">Pointer analysis</a></td> <td>read SPA 9</td> <td> </td> </tr>
+<tr> <td>03/05/20</td> <td>Pointer Analysis</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>03/10/20</td> <td>no class (Spring Break)</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>03/12/20</td> <td>no class (Spring Break)</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>03/18/20</td> <td>Pass Presentations: ... </td> <td>-</td> <td>-</td> </tr>
+<tr> <td>03/19/20</td> <td>Pass Presentations: ...</td> <td>-</td> <td>Project proposal due</td> </tr>
+<tr> <td>03/24/20</td> <td>Pass Presentations: ...</td> <td>-</td> <td>HW3 due</td> </tr>
+<tr> <td>03/26/20</td> <td>Pass Presentations: ...</td> <td>-</td> <td>HW3 due</td> </tr>
+<tr> <td>03/31/20</td> <td>Project Meetings (Rice 424) </td> <td>-</td> <td>-</td> </tr>
+<tr> <td>04/02/19</td> <td>Project Meetings (Rice 424) </td> <td>-</td> <td>-</td> </tr>
+<tr> <td>04/07/19</td> <td>Project Meetings (Rice 424)</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>04/09/19</td> <td>Project Presentations: ...</td> <td>-</td> <td>-</td></tr>
+<tr> <td>04/21/19</td> <td>Project Presentations: ... </td> <td>-</td> <td>-</td> </tr>
+<tr> <td>04/23/19</td> <td>Project Presentations: ... </td> <td>-</td> <td>-</td> </tr>
+<tr> <td>04/28/19</td> <td>Project Presentations: ... </td> <td>-</td> <td>-</td> </tr>
 </table>
 
