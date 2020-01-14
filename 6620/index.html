@@ -23,7 +23,7 @@ This may require a degree of independence that you have not have had to practice
 This is a course where you will learn both analytically, e.g., by reading, thinking, and discussing, and by doing, e.g., by implementing systems and evaluating them.
 
 <h2>Grading</h2>
-There will be four different kinds of assignments.
+There will be three different kinds of learning experiences in the class that will be graded:
 <dl>
 <dt>Exercises (42%)</dt> <dd>3 programming exercises, in Scala and C++, that add functionality to the TIP compiler and implement an LLVM pass</dd>
 <dt>Pass analysis (12%)</dt> <dd>read, understand, and explain an LLVM pass</dd>
@@ -52,12 +52,11 @@ the implementation of <span style="font-family:courier">tipc</span>.
 
 <dt>Monotone Dataflow Framework</dt> <dd>Build a monotone data flow analysis framework, i.e., providing solver, lattice, and other capabilities as in TIP scala, but instead in LLVM.  Test it by building a few different analyses and compare your results to what TIP computes.</dd>  
 
-<dt>Testing</dt> <dd>Build a CSmith-like differential testing system for TIP using <a href="https://github.com/renatahodovan/grammarinator">Grammarinator</a>; the TIP .g4 grammar makes it easy to get started.  The tricky part is ensuring that you generate TIP programs that will exercise <span style="font-family:courier">tipc</span> thoroughly.</dd>
-
 </dl>
 You will propose your project and have it accepted by me prior to 
-October 28, 2019 (instructions forthcoming).  I welcome
-preliminary conversations about possible projects.  Students should team up on a project since an acceptable project will require more work than one person
+March 19, 2020 (instructions forthcoming).  I welcome
+preliminary conversations about possible projects.  
+Students may team up on projects that will require more work than one person
 can reasonably complete.
 It is possible for two different teams to solve the same project.
 
@@ -86,31 +85,6 @@ that make use of computed analysis results.
 </ul>
 There are many more examples listed <a href="https://llvm.org/docs/Passes.html">here</a>
 
-<h2>Papers</h2>
-Analysis papers related to LLVM, other topics mentioned in class, and a few 
-"classic papers" that you can select from.  If you have another paper or topic
-that you would like to study and present, let me know.
-<ul>
-<li><a href="https://dl.acm.org/citation.cfm?id=2737965">Alive</a> 
-<li><a href="https://dl.acm.org/citation.cfm?id=3062372">Alive-Infer</a>
-<li><a href="https://dl.acm.org/citation.cfm?id=36194">Superoptimization</a>
-<li><a href="https://arxiv.org/abs/1711.04422">Souper</a> 
-<li><a href="https://dl.acm.org/citation.cfm?id=1538814">CompCert</a>
-<li><a href="https://dl.acm.org/citation.cfm?id=3192377">Crellvm</a> 
-<li><a href="https://dl.acm.org/citation.cfm?id=3062343">Taming undefined behavior</a> 
-<li><a href="https://dl.acm.org/citation.cfm?id=1993532">Csmith</a> 
-<li><a href="https://dl.acm.org/citation.cfm?id=2594334">Equivalence modulo inputs</a> 
-<li><a href="https://dl.acm.org/citation.cfm?doid=3152284.3133923">Efficient and precise alias-aware dataflow analysis</a>
-<li><a href="https://dl.acm.org/citation.cfm?id=1145526">The octagon abstract domain</a>
-<li><a href="https://dl.acm.org/citation.cfm?doid=3177123.3158143">Decomposing numerical abstract domains</a>
-<li><a href="https://link.springer.com/chapter/10.1007/11575467_8">Program analysis implementation using datalog</a>
-<li><a href="https://dl.acm.org/citation.cfm?id=2362238">Symbolically computing abstract operations </a>
-<li><a href="https://dl.acm.org/citation.cfm?id=268950">Data flow analysis is model checking of abstract interpretations</a> 
-<li><a href="https://dl.acm.org/citation.cfm?doid=3302515.3290361">Highly-sensitive data flow analysis using pushdown systems</a>
-<li><a href="https://doi.org/10.1016/j.scico.2005.02.009">Weighted pushdown systems and their application to interprocedural dataflow analysis</a>
-</ul>
-
-
 <h2>Resources</h2>
 Helpful resources will be posted here as the need arises.
 <ul>
@@ -119,14 +93,13 @@ Helpful resources will be posted here as the need arises.
 <span style="font-family:courier">set(ANTLR_EXECUTABLE /usr/local/lib/antlr-4.7.2-complete.jar)</span>.
 <li> On <span style="font-family:courier">portal.cs.virginia.edu</span> execute the command "<span style="font-family:courier">module load cs6620</span>" 
 to get access to scala, sbt, antlr4, llvm-7, and other required software.
-<li> There are discussions forums on UVACollab where you can ask questions and answer other people's questions.   I will award extra credit to those who make notable contributions to the forum at the end of the semester.
 <li> Clone TIP from this <a href="https://github.com/cs-au-dk/TIP/">github repo</a>.
 <li> Note that when you run tip from the command line it will mess up your terminal.  I simply type "<span style="font-family:courier">reset</span>" to get back to normal.
 <li> <a href="https://docs.scala-lang.org/tutorials/">Scala tutorials</a>
 </ul>
 
 <h2>Schedule</h2>
-The course will be broken into three parts: ~7 weeks of coverage of static program analysis, ~3 weeks covering static analysis in LLVM, and ~1 weeks covering code generation topics.  We will spend time working on projects.  We may adapt the schedule as we go.
+The course will be broken into three parts: ~7 weeks of coverage of static program analysis, ~3 weeks covering static analysis in LLVM, and ~1 weeks covering code generation topics.  We will also spend time discussing and working on projects.  We may adapt the schedule as we go.
 
 <style>
 table, th, td {
@@ -138,38 +111,38 @@ table, th, td {
 <p>
 <table>
 <tr> <th>Date</th> <th>Topic</th> <th>Reading</th> <th>To Do</th> </tr>
-<tr> <td>01/07/20</td> <td><a href="slides/0-introduction.pdf">Class overview</a></td> <td>-</td> <td>-</td> </tr>
-<tr> <td>01/09/20</td> <td><a href="slides/1-TIP.pdf">TIP</a></td> <td>read SPA 1 and 2</td> <td>-</td> </tr>
-<tr> <td>01/14/20</td> <td><a href="slides/2-type-analysis.pdf">Types</a></td> <td>read SPA 3</td> 
+<tr> <td>01/14/20</td> <td><a href="slides/0-introduction.pdf">Class overview</a></td> <td>-</td> <td>-</td> </tr>
+<tr> <td>01/16/20</td> <td><a href="slides/1-TIP.pdf">TIP</a></td> <td>read SPA 1 and 2</td> <td>-</td> </tr>
+<tr> <td>01/21/20</td> <td><a href="slides/2-type-analysis.pdf">Types</a></td> <td>read SPA 3</td> 
 <td><a href="hw/hw1-type-analysis">HW1 out</a></td> </tr>
-<tr> <td>01/16/20</td> <td><a href="slides/3-lattices-and-fixpoints.pdf">Lattice Theory</a></td> <td>read SPA 4</td> 
+<tr> <td>01/23/20</td> <td><a href="slides/3-lattices-and-fixpoints.pdf">Lattice Theory</a></td> <td>read SPA 4</td> 
 <td>-</td> </tr>
-<tr> <td>01/21/20</td> <td>Lattice Theory</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>01/23/20</td> <td>Lattice Theory</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>01/28/20</td> <td><a href="slides/4-flow-sensitive-analysis.pdf">Data flow analysis</a></td> <td>read SPA 5.1-5.10</td> <td><a href="hw/hw1-type-analysis">HW1 due</a> due, <a href="hw/hw2-data-flow-analysis">HW2 out</a></td> </tr>
-<tr> <td>01/30/20</td> <td><a href="slides/5-widening-and-narrowing.pdf">Widening and narrowing</td> <td>read SPA 5.11-5.12</td> <td></td> </tr>
-<tr> <td>02/04/20</td> <td><a href="slides/6-path-sensitivity.pdf">Path sensitive analysis</a></td> <td>read SPA 6</td> <td>-</td> </tr>
-<tr> <td>02/06/20</td> <td><a href="slides/7-interprocedural-analysis.pdf">Interprocedural analysis</a></td> <td>read SPA 7</td> <td>-</td> </tr>
-<tr> <td>02/11/20</td> <td><a href="slides/LLVM-part1.pdf">LLVM, <span style="font-family:courier">tipc</span>, and projects</a></td> <td>-</td> <td><a href="hw/hw2-data-flow-analysis">HW2 due</a></td> </tr>
-<tr> <td>02/13/20</td> <td><a href="slides/LLVM-part2.pdf">LLVM Passes</a></td> <td></td> <td><a href="hw/hw3-llvm-pass.">HW3 out</a></td> </tr>
-<tr> <td>02/18/20</td> <td><a href="slides/SSA.pdf">SSA</a></td> <td><a href="https://www.cs.princeton.edu/~appel/papers/ssafun.pdf">SSA is Functional Programming</a></td> <td>-</td> </tr>
-<tr> <td>02/20/20</td> <td><a href="slides/8-control-flow-analysis.pdf">CFA</a></td> <td>read SPA 8</td> <td>-</td> </tr>
-<tr> <td>02/25/20</td> <td><a href="slides/9-pointer-analysis.pdf">Pointer analysis</a></td> <td>read SPA 9</td> <td> </td> </tr>
-<tr> <td>02/27/20</td> <td>Pointer Analysis</td> <td>-</td> <td><a href="hw/pass-analysis">Pass Analysis out</a></td> </tr>
-<tr> <td>03/03/20</td> <td>Project Ideas</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>03/05/20</td> <td>Project Discussion</td> <td>-</td> <td><a href="hw/hw3-llvm-pass.">HW3 due</a></td> </tr>
+<tr> <td>01/28/20</td> <td>Lattice Theory</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>01/30/20</td> <td>Lattice Theory</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>02/04/20</td> <td><a href="slides/4-flow-sensitive-analysis.pdf">Data flow analysis</a></td> <td>read SPA 5.1-5.10</td> <td><a href="hw/hw1-type-analysis">HW1 due</a> due, <a href="hw/hw2-data-flow-analysis">HW2 out</a></td> </tr>
+<tr> <td>02/06/20</td> <td><a href="slides/5-widening-and-narrowing.pdf">Widening and narrowing</td> <td>read SPA 5.11-5.12</td> <td></td> </tr>
+<tr> <td>02/11/20</td> <td><a href="slides/6-path-sensitivity.pdf">Path sensitive analysis</a></td> <td>read SPA 6</td> <td>-</td> </tr>
+<tr> <td>02/13/20</td> <td><a href="slides/7-interprocedural-analysis.pdf">Interprocedural analysis</a></td> <td>read SPA 7</td> <td>-</td> </tr>
+<tr> <td>02/18/20</td> <td><a href="slides/LLVM-part1.pdf">LLVM, <span style="font-family:courier">tipc</span>, and projects</a></td> <td>-</td> <td><a href="hw/hw2-data-flow-analysis">HW2 due</a></td> </tr>
+<tr> <td>02/20/20</td> <td><a href="slides/LLVM-part2.pdf">LLVM Passes</a></td> <td></td> <td><a href="hw/hw3-llvm-pass.">HW3 out</a></td> </tr>
+<tr> <td>02/25/20</td> <td><a href="slides/SSA.pdf">SSA</a></td> <td><a href="https://www.cs.princeton.edu/~appel/papers/ssafun.pdf">SSA is Functional Programming</a></td> <td>-</td> </tr>
+<tr> <td>02/27/20</td> <td><a href="slides/8-control-flow-analysis.pdf">CFA</a></td> <td>read SPA 8</td> <td>-</td> </tr>
+<tr> <td>03/03/20</td> <td><a href="slides/9-pointer-analysis.pdf">Pointer analysis</a></td> <td>read SPA 9</td> <td> </td> </tr>
+<tr> <td>03/05/20</td> <td>Pointer Analysis</td> <td>-</td> <td><a href="hw/pass-analysis">Pass Analysis out</a>,
+<a href="hw/hw3-llvm-pass.">HW3 due</a>
+</td> </tr>
 <tr> <td>03/10/20</td> <td>no class (Spring Break)</td> <td>-</td> <td>-</td> </tr>
 <tr> <td>03/12/20</td> <td>no class (Spring Break)</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>03/17/20</td> <td>Pass Presentations: ... </td> <td>-</td> <td>-</td> </tr>
-<tr> <td>03/19/20</td> <td>Pass Presentations: ... </td> <td>-</td> <td>Project proposal due</td> </tr>
+<tr> <td>03/17/20</td> <td>Project Discussion</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>03/19/20</td> <td>Project Discussion</td> <td>-</td> <td> Project proposal due </td> </tr>
 <tr> <td>03/24/20</td> <td>Pass Presentations: ... </td> <td>-</td> <td></td> </tr>
 <tr> <td>03/26/20</td> <td>Pass Presentations: ... </td> <td>-</td> <td></td> </tr>
-<tr> <td>03/31/20</td> <td>Project Meetings (Rice 424) </td> <td>-</td> <td>-</td> </tr>
+<tr> <td>03/31/20</td> <td>Pass Presentations: ... </td> <td>-</td> <td></td> </tr>
 <tr> <td>04/02/19</td> <td>Project Meetings (Rice 424) </td> <td>-</td> <td>-</td> </tr>
 <tr> <td>04/07/19</td> <td>Project Meetings (Rice 424)</td> <td>-</td> <td>-</td> </tr>
-<tr> <td>04/09/19</td> <td>Code Generation </td> <td>-</td> <td>-</td></tr>
-<tr> <td>04/14/19</td> <td>Code Generation </td> <td>-</td> <td>-</td> </tr>
-<tr> <td>04/16/19</td> <td>Project Presentations: ... </td> <td>-</td> <td>-</td> </tr>
+<tr> <td>04/09/19</td> <td>Project Meetings (Rice 424)</td> <td>-</td> <td>-</td> </tr>
+<tr> <td>04/14/19</td> <td>Code Generation </td> <td>-</td> <td>-</td></tr>
+<tr> <td>04/16/19</td> <td>Code Generation </td> <td>-</td> <td>-</td> </tr>
 <tr> <td>04/21/19</td> <td>Project Presentations: ... </td> <td>-</td> <td>-</td> </tr>
 <tr> <td>04/23/19</td> <td>Project Presentations: ... </td> <td>-</td> <td>-</td> </tr>
 <tr> <td>04/28/19</td> <td>Project Presentations: ... </td> <td>-</td> <td>-</td> </tr>
