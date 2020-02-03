@@ -7,8 +7,6 @@ slide 3:
  - sometimes we say "abstract state" to describe the representations
    of such a set of states
 
-RESTART LECTURE HERE
-
 slide 4:
  - the x_i are variables that hold the current "abstract state"
  - like with type analysis these are equality constraints, but as we 
