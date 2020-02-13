@@ -1,0 +1,29 @@
+New type constraint rules for the new syntax:
+
+In these rules we introduce a type constructor for arrays.
+We denote an array of type t with:
+  t[]
+
+Array constructor:
+  {E1,...,En} : [[{E1,...,En}]] = alpha[] && [[Ei]] = alpha for i= 1,...,n
+   
+  The constructor yields an array of some element type, alpha, where 
+  that element type is the same for all of the Ei  
+
+Array index expression:
+  E1[E2] : [[E1]] = [[E1[E2]]][] && [[E2]] =int
+
+  The array E1 must be an array that holds elements of type E1[E2]
+  and the index expression must be an int
+
+Assignment to an array element:
+  E1[E2] = E3 : [[E1]] = [[E3]][] && [[E2]] =int
+
+  The array E1 must be an array that holds elements of type E3
+  and the index expression must be an int
+
+Solutions for the example:
+  [[x]] =int[]
+  [[y]] =int
+  [[z]] =int[][]
+  [[t]] =int[]
