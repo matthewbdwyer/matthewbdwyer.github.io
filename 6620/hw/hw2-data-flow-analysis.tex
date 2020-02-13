@@ -25,7 +25,7 @@
 
 \pagestyle{fancyplain}
 \headheight 35pt
-\lhead{12 points}
+\lhead{14 points}
 \chead{\textbf{\Large Homework \hwnumber}}
 \rhead{\course \\ assigned: Feb. 6, 2019\\ due: $\le$23:59 EST Feb. 20, 2019 }
 \lfoot{}
@@ -38,7 +38,7 @@ This assignment should be completed individually.
 
 The instructor will answer questions on this assignment up to 23:59 EST on Feb. 20, 2019 -- 48 hours before the due date. 
 
-\section*{Part 1 (5 points)}
+\section*{Part 1 (6 points)}
 Complete the TIP data flow analysis for live variables.  This involves
 completing the definition of the \texttt{LiveVarsAnalysis} in \texttt{.../src/analysis/LiveVarsAnalysis.scala} and then providing convincing evidence
 that your analysis implementation is correct.
@@ -50,7 +50,7 @@ implement the \verb|case _ => ???| case for assignment -- this handles the situa
 \item Provide convincing evidence that your analysis implementation is correct.  The typical way to do this is to define a comprehensive test suite on which you have confirmed the correct behavior of the analysis.  The test suite should be comprised of the files from \texttt{examples/*.tip}, but you may supplement those files if you choose.
 \end{enumerate}
 
-\section*{Part 2 (5 points)}
+\section*{Part 2 (6 points)}
 TIP does not include a reaching definitions analysis.  You are to implement one.
 Here you are starting from scratch, but you can leverage the fact that data flow analyses are variations on a pattern and there are other analyses defined for TIP, e.g., \texttt{AvailableExpAnalysis.scala}, and you just implemented \texttt{LiveVarsAnalysis}.  These analyses will define much of the boilerplate for your implementation, but you will have to adapt that code to compute reaching definitions.
 \begin{enumerate}
