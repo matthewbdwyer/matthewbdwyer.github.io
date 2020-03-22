@@ -1,0 +1,201 @@
+CFA
+ - previously we studied how to extend intraprocedural to interprocedural analysis
+ - this required building the ICFG with call and return edges
+ - that approached worked because we could determine at a call site which function was being called, i.e., the expression in the "function" position of a "call expression" was a constant as in a call to "printf(...)"
+
+ - TIP's design adds additional complexity because "call expressions" allow for non-constant expressions in the "function" position
+ - you can pass a function as an argument and then apply that argument
+ - this makes building the ICFG more complicated
+  - need to solve a dataflow problem to determine values of expressions in the "function" position
+  - but those flows may be inter-procedural and you need an ICFG for that
+  - so this is a bit of a chicken-and-egg problem
+
+CFA
+ - conservative
+ - we will study a flow-insensitive CFA
+
+We will study this problem using a minimal language - the lambda calculus
+ - function definitions
+ - function application (or function call)
+ - variable reference
+ * this is suprisingly powerful, e.g., can build up arithmetic, logical operations, conditionals, etc.  have a look at the Wiki page for examples
+
+As with all analysis problems we define a set of values over which the solution is computed
+ - for type analysis this was types derivable from the type grammar
+ - for data flow analysis this was defined by the lattice
+ - here we will compute over sets of "abstract closures"
+
+An abstract closure \lambda x, defines the function \lambda x.E in all application contexts.
+ - we could write something like 
+      \lambda x.xy
+   which means that the parameter, x, is a function that is applied to an argument y to produce the result.
+   here y is a free variable as it is determined by the enclosing lambda 
+ - the abstract closure captures \lambda x . xy regardless of that enclosing context
+  
+As with prior analysis we will introduce variables and constraints
+ - a variable [[v]] for every AST node
+ - for a function definition we have the inclusion constraint \lambda x \in [[\lambda x.E]]
+ - for a function application we need to make sure the arguments and 
+   results are consistent
+   - for an application E1 E2 to be consistent with \lambda x
+     - [[x]] are the possible arguments and [[E2]] must be among them
+     - [[E1 E2]] are the possible return values and [[E]] must be among them
+   - these are conditioned upon \lambda x being among the possible function expression values [[E1]] of the application
+
+These conditional contraints cannot be expressed using the unification or data flow analysis constraints we've studied before
+
+The cubic framework
+ - the tokens will be used to model abstract closures
+ - variables will be used to model sets of abstract closures
+   - when we write x, y, z these are all variable names
+ - note that two constraints can be used to enforce a conjunction
+   t \in x \implies arguments and parameters are consistent
+   t \in x \implies results and return are consistent
+
+Data structure
+ - a map from variables in the constraint system to nodes in a DAG
+ - a node represents a set of token values
+ - the node's values are stored in a bitvector of length k, a bit for each token
+ - an edge represents an subset constraint
+ - bits may have pairs of variables associated with them
+   - this models a conditional inclusion constraint
+   - only create the inclusion constraint if the bit gets set to 1
+
+Adding an inclusion constraint t \in x
+
+Adding a conditional constraint t \in x \implies y \subseteq z
+ - two cases
+   - the condition has already been met, so add the inclusion
+   - the condition has not been met, so store the inclusion in a pair
+     - and it will be added later if the condition is ever met
+
+Handling cycle
+ - adding new subset constraints, i.e., edges to the DAG may introduce cycles
+ - a cycle means that all of the all of the nodes in the cycle model sets that must be equivalent
+   - each includes the others by either a direct or transitive subset inclusion
+ - so we collapse the cycle
+   - union the bitvectors
+   - append the lists
+ - this leaves us with a DAG
+
+Whenever we set a bit in some node we need to update other nodes based on the subset constraints
+ - this can be done by propagating values along dag edges
+
+Time Complexity
+
+In the next lecture we will see how to put this constraint/solver framework to work for control flow analysis
+
+**** Part 2
+
+Apply the cubic framework to TIP which has a richer syntax than lambda calculus
+
+The "call" expression in TIP allows multiple parameters and expressions in the function call position.
+ - we could try to use worst-case sound approximations, i.e., all functions
+ - we could be a bit more clever, i.e., all functions with right signature
+ - CFA will give us better results
+
+We instantiate the cubic framework as follows:
+ - we can visit the AST to find the function definitions, extract their names, and this is the set of tokens 
+ - as with the type analysis, we introduce a variable [[v]] to store the set of functions associated to which v may evaluate 
+
+For function definitions, we use the analagous rule as for the lambda calculus
+ f \in [[f]]
+
+TIP has assignments and we will introduce subset constraints for these
+ - the set of functions on the RHS is a subset of the set of functions on the LHS
+ - recall this is a flow insensitive analysis so if there are multiple assignments to x we need to account for all of them and this has the effect of doing that
+
+For function calls there are two cases
+
+A direct call f(E1, ..., En) is one where the call expression is constant
+ - here we do not need a conditional constraint
+ - we just need subset constraints that model 
+   1) the "assignment" of call arguments to formal parameters
+   2) the "assignment" of return value to function call result
+ - these correspond exactly to the semantics of how we handled call and return edges in the ICFG except here we are using the subset constraint for assignments
+
+A computed call E(E1, ..., En) is one where the call expression is non-constant
+ - we need a conditional constraint
+ - the left side of the implication is condition we saw in the lambda calculus rule
+ - the right side encodes the subset constraints for argument passing and return
+   - in the rule E' is the expression in f's return statement
+
+We could go further and exploit type information here
+ - we know the type of E(E1, ..., En) from the type analysis
+ - for every function f, we know the type of its E'
+ - we only introduce a conditional constraint when the two types are compatible
+
+Let's look at this framework in action on a simple example
+ - three functions that take a single int argument and return an int
+   - inc, dec, ide for identity
+ - foo accepts an integer and a function parameter
+   - based on the value of the integer it may assign the parameter a new value
+   - then it invokes the function parameter's value on the integer parameter's value
+
+WHAT ARE THE POSSIBLE VALUES OF f IN THE ASSIGNMENT r = f(n)
+
+ - the main function reads an input and based on the value invokes foo with either inc or dec as its second parameter
+ - remember that foo may then assign a new value for the parameter
+
+Let's look at the generated constraints:
+
+We see constraints like 
+  inc \in [[inc]]
+for all of the functions in the program.
+
+For assignments we see constraints like
+  [[ide]] \subseteq [[f]]
+where ide is the RHS and f is the LHS of the assignment  within foo
+
+For the assignment r = f(n) there are three constraints generated
+ - one for inc, dec, and ide 
+These constraints differ because 
+ - the names of the formal parameters within the functions are named differently
+ - the return expressions are different
+
+For inc we have:
+ - the first call argument, n, is a subset of the first parameter, i
+ - the return value, i+1, is a subset of the function call result, f(n)
+
+If we look back at inc's definition we can check that this makes sense
+
+It is similar for the other functions
+
+These constraints were generated assuming that ALL calls are computed 
+ - which is why you see the conditional constraint for foo near the bottom.
+ - the foo constraints are little more complicated because it has two parameters
+
+The cubic algorithm produces the least solution which tells us that in
+ r = f(n)
+f could be any of inc, dec, and ide
+
+Let's look at the more general setting of object-oriented languages
+
+when we have a method invocation like
+  x.m(a,b,c)
+the type of the object x determines which m is invoked
+
+This can vary due to method inheritence and overriding
+
+It is possible to perform the type of CFA discussed in this lecture, but there are other solutions that are more efficient and still do a pretty good job
+
+We are considering single inheritence here ala Java
+
+CHA
+  - inheritence says that if x is declared to be of a certain type T then it is possible that at runtime it could be any of the declared subtypes of T
+  - this restricts the set of definitions of "m" that need to be considered
+
+going further
+
+RTA
+ - scan the program to determine the types that are used in "new" expressions
+ - these are the ones that can occur at runtime
+ - now restrict subtypes of T to those that can occur at runtime
+ - this further restricts the set of definitions of "m" that need to be considered
+
+Researchers have explored more aggressive forms of analysis that perform intraprocedural CFA, like variable type analysis, but RTA is quite common
+
+We've seen how the cubic framework can be used for CFA, but in subsequent lectures we study how it can be used for computing the set of memory locations that a pointer expression can point to, i.e., points-to analysis
+
+
+
