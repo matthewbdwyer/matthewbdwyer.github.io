@@ -1,0 +1,253 @@
+Recall the fragment of TIP that involves pointers and the heap
+ - address of, allocation, ..., expressions
+ - assignments through pointers
+ - computed calls
+
+Think about the question for a minute - pause the recording if you need time 
+ - z will be 42 if the assignment through *y does not change the value of *x
+ - this happens if x != y
+ - if x and y point to the same memory location then z is -87
+ - pointers that point to the same memory location are said to be "aliased"
+
+To think about this problem we will simplify the setting a bit
+ - normally alloc can create records and each field could be a pointer
+ - if we ignore records alloc creates a single cell
+ - we can create lots of interesting linear structures
+   - the spine of list (y)
+   - the extension of a list (x)
+   - a cyclic list
+
+For every analysis we need to design an abstraction of the values it computes
+ - type terms for type analysis
+ - signs for data flow
+ - abstract closures for CFA
+ 
+Here we need to define an abstraction for memory locations
+ - there are lots of possible choices
+ - we will study a pretty common one that defines an abstract memory "cell" as
+   - a program variable, each variable has a distinct memory cell 
+   - an "alloc" statement which abstracts all memory locations created by that stmt
+     - there are a finite set of "alloc" statements in any program
+     - for the ith statement we write "alloc-i"
+ - this is called an allocation site abstraction
+   - it can distinguish memory locations allocated by different "alloc" stmts
+   - but not those allocated at the same site
+   - thus each abstract cell may represent many concrete memory cell
+   - variables can be distinguished from each other and from alloc-i cells
+
+Points-to analysis
+ - determine the abstract cells that each pointer variable may point to
+   - pt(X) for a pointer variable X
+   - we call this the "points-to" set for X
+
+As usual we want to be conservative
+ - we want to overapproximate points-to sets, so this is a may analysis
+
+The nature of this approximation allows us to answer the question earlier
+ - if pt(x) \cap pt(y) = \emptyset then x !\ y and z = 42
+ - of course the overapproximation may mean that we think the pointers are aliased when they are not
+ - if that were the case here any analysis would have to proceed under the assumption that x is 42 or -87
+
+Since flow-sensitive analyses are generally more efficient than flow-sensitive analyses, we'll start there
+ - as we've seen with type and control flow analyses we generate constraints from the AST
+ - could actually solve these in tandem with CFA 
+   - you'll see why in a few minutes
+
+The worst-case points-to analysis would say that 
+ - pt(x) = union of all variable calls and all alloc-i cells, for all pointer variables
+ - can improve on this by eliminating variables whose addresses are not tsaken
+ - can further improve by eliminating all variables and cells whose type does not match the pointer variable
+
+These cheap approaches can be effective, but we can do better
+
+We have seen normalization help with other analyses
+ - llvm bitcode turns complex expressions into sequences 3-address instructions
+
+We will normalize pointer expressions here
+ - rewrite X = **Y as
+     X1 = *Y
+     X = *X1
+ - this gives us the following pointer use cases to handle
+
+Anderson's algorithm
+ - as usual we will formulate the analysis as a set of constraints
+ - we have a constraint for every cell [[c]] 
+ - constraint solutionts update a map from cells to sets of cells
+
+We traverse the AST and generate constraints as we go:
+ - when we see the creation of a memory cell we use an inclusion constraint
+   - X = alloc P
+   - X = &Y
+ - as with CFA variable assignments introduce subset constraints
+ - assigning null introduces no constraint (the set of pointed to cells does not grow)
+ - assignments from and through pointers introduce conditional constraints
+
+X = *Y
+ - we want to create a subset constraint like the variable assignment case
+ - but we need to include the points-to sets of the cells that Y points-to 
+   in the subset constraint and we don't know pt(Y) yet
+ - we express this using conditional constraints
+      if alpha \in [[Y]] then [[alpha]] \in [[X]]
+   where alpha ranges over all abstract cells
+ - this sets us up so that when the constraints are solved whatever is included
+   in Y's points activates a conditional constraint which creates the 
+   right subset relationship
+
+*X = Y
+ - this the dual of the above
+ - we want to create a subset constraint like the variable assignment case
+ - we need to include pt(Y) as a subset of every points-to set of the cells that X can point to and we don't know pt(X) yet
+ - the conditional constraints express that the final solution needs to 
+   include the right subset relatinships
+
+These constraints should look familiar
+ - inclusion constraints
+ - subset constraints 
+ - conditional subset constraints
+
+We can solve these using the cubic framework 
+ - the inclusions in our constraints model the flow of assignments 
+ - but the order in which assignments occur in the program is not considered
+   so this is a flow-insensitive analysis
+
+A simple example
+ - we will ignore the fact that variables are uninitialized when declared
+ - an alloc
+ - some assignments
+ - assignment through a pointer, from a pointer
+ - and the address taken of a few variables
+
+The constraints
+ - the first comes from the "p = alloc null" stmt
+ - the subset constraints come from variable assignments - 2,3,4th
+ - the last and 3rd from last represent the address of assignments
+ - we write the conditional constraints symbolically
+   - but really the alpha are instantiated for all cells
+   - remember they only get "activated" when the condition on the LHS of the implication is true
+   - *p = z  on line 4
+   - x = *p on the 2nd from last
+
+The solution reveals just two pointer variables p and q
+ - q points to y
+ - p points to y, z, and alloc-1
+
+The answer for q is obvious
+
+For p the inclusion of z and alloc-1 is also obvious
+ - the inclusion of y is  due to the fact that p and q are aliased
+
+The cubic algorithm is quadratic or cubic, which is a bit expensive
+ - Steengaard's algorithm tries to be more efficient
+ - it views assignments as bi-directional
+
+X = Y means
+ - [[X]] subset [[Y]]
+ - [[Y]] subset [[X]]
+ - or [[X]] = [[Y]]
+
+The constraints are a variant of Anderson's but with equalities
+
+It also includes some additional constraints
+ - if two cells are in the same points to set then their points-to sets are identical
+ - if two points-to sets overlap then they are identical
+
+If you go back and read Steengard's original paper (POPL 1996) you will see that it is formulated slightly differently
+
+We will reformulate it further using term unification
+
+We introduce term variables to represent the possible values of cells
+ - [[X]] for each variable
+ - [[alloc-i]] for each "alloc"
+ - \alpha
+
+Unlike the term grammar for type checking, we use a simple grammar
+ - a single constructor &t representing the location of the cell that t represents
+
+Note that whereas before [[X]] was a constraint variable holding a set of cells, not it is a term variable over the above grammar
+
+Constraints now use this setup
+
+X = alloc P
+ - is expressed as [[X]] = &[[alloc-i]]
+ - meaning that the points-to set for X is the term representing the location of alloc-i
+
+X = &X is analagous and X = Y is term variable equality
+
+The conditional constraints are similar, except that we use fresh term variables to do the work of the implication
+
+X = *Y  
+  - the constraint says that "Y points to the location of some alpha"
+  - so "X and alpha have the same points to sets"
+
+*X = Y
+  - the constraint says that "X points to the location of some alpha"
+  - so "Y and alpha have the same points to sets"
+
+These constraints meet the requirements of the unification solver
+ - we used this for type analysis
+ - here since we have one term constructor unification cannot fail
+
+The resulting points-to information for a variable X is 
+ - the cells, c, such that the term variable for X, [[X]], is equated with &[[c]], i.e., the location of c
+
+Considering the same simple example we get the following constraints
+ - these are not reformulated as term constraints
+ - structurally these are identical to those of Andersen's except for all subsets are replaced with equalities
+ - and we have those additional constraints
+
+As we can see we have lot precision for q
+ - for Anderson it only pointer do y
+ - now the bidirectionality of the assignment gives us
+     [[q]] = [[p]]
+   instead of 
+     [[q]] \subset [[p]]
+ - this forces pt(q) to overapproximate
+
+Let's look at another example and compare precision
+
+The program consists of a set of assignments with RHS taking addresses of vars
+
+For Andersen's analysis these assignments produce inclusion constraints
+  b1 \in [[a1]]
+In this example only b1 is assignnet more than once, so we end up with
+  c1 \in [[b1]]
+and
+  c2 \in [[b1]]
+
+For Steensgard's analysis we get the same constraints, but we also get
+the extra constraints
+ - if two cells are in the same points to set then their points-to sets are identical
+ - if two points-to sets overlap then they are identical
+
+We apply these additional constraints to the one's derived explicitly from the AST
+
+[[b1]] = {c1, c2}
+[[b2]] = {c2}
+  - by the second rule, [[b1]] and [[b2]] overlap so we they must be identical
+  - this effectively adds c1 to [[b2]]
+
+[[b1]] = {c1, c2}
+  - by the first rule, c1 and c2 are in the same points-to set, [[b1]] and now [[b2]]
+  - so the points to sets [[c1]] and [[c2]] must be identical
+  - this adds d1 to [[c2]] and d2 to [[c1]]
+
+In essence, these implicit rules have c1 and c2 and d1 and d2
+
+
+Next time we'll look at some other variants of these analyses
+     
+
+   
+
+
+
+
+
+   
+  
+
+
+
+
+
+    
