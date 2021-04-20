@@ -1,0 +1,52 @@
+<h1>Compilers</h1>
+This is site provides an overview of the undergraduate compilers course at the University of Virginia.
+The actual course content is hosted on UVA Collab.
+
+<h2>Learn about compilers</h2>
+Like every other compiler course, this one teaches you how programs in a high-level source language, e.g., Rust, are translated to a low-level target language, e.g., x86.  You'll learn about the foundational concepts, formalisms, and algorithms that make compilation possible.
+
+Like many other compiler courses, this one involves implementing a compiler.  You will learn a lot more about the concepts, formalisms, and algorithms if you put them into practice.
+
+<h2>Learn a bunch more</h2>
+Unlike other compiler courses, however, this one starts you off with a well-engineered compiler (https://github.com/matthewbdwyer/tipc) and asks you to extend it to support new features in the source language.   This provides a model for your work that you can learn from.  That model includes among other things: the use of modern C++ design and coding practices (e.g., RAII through smart pointers, the visitor pattern), substantial testing (300 unit test using the CATCH-2 framework, 70 system tests) that covers ever statement in the program exept for those that perform internal error checking, the use of domain-specific languages for parsing (e.g., ANTLR4), the use of modern build systems (e.g., cmake), the use of code coverage measurement tools (e.g., gcov/lcov), the use of logging (e.g., loguru) to support debugging, documentation of every public interface in the code base (using Doxygen), and the use of production compiler infrastructure (e.g., LLVM).
+
+The language you will compile has some interesting features, e.g., higher-order functions, type inference.  If you've always wondered how these work you'll get to see by implementing support for these features.  The extensions you will support in your semester long project add even more interesting features and allow you to build complex programs that use parametric polymorphism like this one:
+
+<code>
+/*
+ * This is a higher-order function of type:
+ *    ([] t1, t2, (t2, t1) -> t2) -> t2
+ * where t1 and t2 are type parameters.
+ */
+fold(a, i, f) {
+  var s, e;
+  s = i;
+  for (e : a) {                 
+    s = f(s,e);
+  }
+  return s;
+}
+
+sum(x,y) { return x + y; }
+
+orodd(x,y) { return x or (y % 2 != 0); }
+
+main() {
+  var a;
+  a = [ 13, 7, -4, 14, 0 ];
+
+  // The sum of the list is 30, anything else is an error
+  if (fold(a, 0, sum) != 30) error fold(a, 0, sum);
+
+  // There is an odd number in the list so fold should return false
+  if (not fold(a, false, orodd)) error -1;
+
+  return 0;
+}
+</code>
+
+<h2>Hone your programming skills</h2>
+The starter compiler is about 4000 lines of source code and with a partner you will write about 1100 lines of code.  In addition you will document and test the code you write.  Testing will require that you write about 150 unit tests and 50 system tests (on top of the 300 unit and 100 system tests provided with the starter system).
+
+You will become intimately familiar with the visitor pattern.  You will extend visitors for the abstract syntax tree (AST) and type representation and you will build custom processing of compiler data using those visitors to check for semantic errors, perform type checking, generate code, etc.
+
