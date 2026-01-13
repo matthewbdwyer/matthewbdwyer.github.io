@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<title>{{ page.title }}</title>
-			<!-- link to main stylesheet -->
-			<link rel="stylesheet" type="text/css" href="/css/main.css">
-		</head>
-		<body>
-			<nav>
-	    		<ul>
-	        		<li><a href="/">Home</a></li>
-	        		<li><a href="/research">Research</a></li>
-	        		<li><a href="/teaching">Teaching</a></li>
-	        		<li><a href="/cv">CV</a></li>
-	    		</ul>
-			</nav>
-			<div class="container">
-			
-			{{ content }}
-			
-			</div><!-- /.container -->
-		</body>
-	</html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Matthew Dwyer - Robert Thomson Distinguished Professor at University of Virginia">
+		<title>{{ page.title }}</title>
+		<!-- link to main stylesheet -->
+		<link rel="stylesheet" type="text/css" href="/css/main.css">
+	</head>
+	<body>
+		<nav>
+    		<ul>
+        		<li><a href="/">Home</a></li>
+        		<li><a href="/research">Research</a></li>
+        		<li><a href="/teaching">Teaching</a></li>
+        		<li><a href="/cv">CV</a></li>
+    		</ul>
+		</nav>
+		<div class="container">
+		
+		{{ content }}
+		
+		</div><!-- /.container -->
+		<footer>
+			<p>&copy; {{ site.time | date: '%Y' }} {{ site.name }}</p>
+		</footer>
+	</body>
+</html>

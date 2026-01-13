@@ -1,46 +1,229 @@
-e the following inside main.css:
+/* Modern Minimal CSS - matthewbdwyer.github.io */
+/* UVA Colors: Blue #232D4B, Orange #E57200 */
 
+:root {
+    --color-bg: #fafafa;
+    --color-text: #2d3748;
+    --color-text-muted: #718096;
+    --color-accent: #232D4B;          /* UVA Blue */
+    --color-accent-hover: #E57200;    /* UVA Orange on hover */
+    --color-border: #e2e8f0;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: Georgia, "Times New Roman", serif;
+    --max-width: 800px;
+    --spacing: 2rem;
+}
+
+/* Base reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Body */
 body {
-    margin: 60px auto;
-    width: 70%;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    margin: 0;
+    padding: var(--spacing);
+    min-height: 100vh;
 }
-nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-    padding: 0px;
+
+/* Container */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing) 0;
+}
+
+/* Navigation */
+nav {
+    max-width: var(--max-width);
+    margin: 0 auto 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+nav ul {
     list-style: none;
-    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
-nav ul li, footer ul li {
+
+nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 0;
 }
-a {
+
+nav ul li a {
+    color: var(--color-text-muted);
     text-decoration: none;
-    color: #999;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+    padding: 0.25rem 0;
+    position: relative;
 }
+
+nav ul li a:hover {
+    color: var(--color-accent);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.2s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: 0;
+    color: var(--color-text);
+}
+
+h1 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 1.25rem;
+}
+
+/* Links */
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
 a:hover {
+    color: var(--color-accent-hover);
     text-decoration: underline;
 }
-h1 {
-    font-size: 3em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-}
-p {
-    font-size: 1.5em;
-    line-height: 1.4em;
-    color: #333;
-}
-footer {
-    border-top: 1px solid #d5d5d5;
-    font-size: .8em;
+
+/* Profile card / blurb */
+.blurb {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
-ul.posts { 
-    margin: 20px auto 40px; 
-    font-size: 1.5em;
+.blurb .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blurb .profile-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.blurb .profile-info h2 {
+    margin-bottom: 1rem;
+    font-size: 1.875rem;
+}
+
+.blurb .profile-info p,
+.blurb .profile-info a {
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+/* Lists */
+ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+ul.posts {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
 }
 
 ul.posts li {
-    list-style: none;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
 }
+
+ul.posts li:last-child {
+    border-bottom: none;
+}
+
+/* Footer */
+footer {
+    max-width: var(--max-width);
+    margin: 3rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    nav ul {
+        gap: 1.25rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    .blurb {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .blurb .profile-info {
+        min-width: auto;
+    }
+}
+
 
