@@ -1,0 +1,166 @@
+<title>Specification Engineering</title>
+<h1>Specification Engineering</h1>
+This site provides an overview of CS 4501 Specification Engineering, an undergraduate course at the University of Virginia.
+The actual course content is hosted on UVA Canvas.
+
+<h2>Agents write the code. Who decides what it should do?</h2>
+<p>
+AI agents can now write a working module in minutes, and increasingly they can write the proofs that it is correct too.  But an agent builds what you asked for.  If what you asked for is vague, incomplete, or wrong, you get well-tested, confident, wrong software.
+</p>
+
+<p>
+As agents take over more of the coding, the skill that matters is saying precisely what a system must do and checking that what was built does it.  Software engineers have long separated two questions: <i>are we building the system right?</i> (verification) and <i>are we building the right system?</i> (validation).  Agents are getting good at the first, provided someone gives them a spec.  This course teaches you to write that spec, show that it is the right one, and hold agents to it: to build the right system right.  You will own the requirements and specifications; agents will write the code and proofs; a verifier will decide what gets accepted.
+</p>
+
+<p>
+Industry is already moving this way.  Spec-driven development tools such as <a href="https://kiro.dev/docs/specs/">Kiro</a> and <a href="https://github.com/github/spec-kit">GitHub Spec Kit</a> have agents work from written requirements and specifications instead of one-line prompts.  This course goes two steps further: you will <i>prove</i> that code meets its specification, not just test it, and you will learn to show that the specification says what people actually meant.
+</p>
+
+<h2>A simple request</h2>
+<p>
+Here is a request you could implement in five minutes:
+</p>
+
+<blockquote><i>Rank the class roster by grade, highest first.</i></blockquote>
+
+<p>
+Here is a first attempt at saying precisely what that means, written in <a href="https://github.com/verus-lang/verus">Verus</a>, a verifier for Rust.  The <code>ensures</code> clause is the specification: it states what must be true of the output <code>out</code> for every possible roster.
+</p>
+
+<pre>
+<code>
+/// Rank the class roster by grade, highest first.
+fn rank(roster: Vec&lt;Student&gt;) -&gt; (out: Vec&lt;Student&gt;)
+    ensures
+        // highest grade first
+        forall|i: int, j: int| 0 &lt;= i &lt; j &lt; out.len() ==&gt; out[i].grade &gt;= out[j].grade,
+</code>
+</pre>
+
+<p>
+<b>See anything wrong with it?</b>  Take a minute before you read on.  Think about what an implementation could return that meets this spec but that nobody would want.  Think about the cases the one-line request never mentions.
+</p>
+
+<details>
+<summary><b>Reveal: what this spec misses</b></summary>
+
+<ul>
+<li><b>Students can go missing.</b>  The spec says only that the output is in grade order.  An implementation that returns an empty list meets it, for every roster, and Verus will happily prove so:
+<pre>
+<code>
+{
+    Vec::new()   // verified!
+}
+</code>
+</pre>
+</li>
+<li><b>Ties are left to chance.</b>  Ann and Bo both have a 92, and Ann is listed first in the roster.  Should Ann come first in the ranking?  Should ties be alphabetical?  Or does nobody care?  The request doesn't say, so the spec doesn't either.  "Nobody cares" is a legitimate answer, but it should be a decision, not an accident.</li>
+<li><b>What about a student with no grade yet?</b>  Ranked first, last, left out, or not allowed in the input at all?  Every answer leads to a different spec.</li>
+</ul>
+
+<p>
+Here is a spec that settles the first two questions (the third is still open):
+</p>
+
+<pre>
+<code>
+/// The students in `s` whose grade is `g`, in the order they appear in `s`.
+spec fn with_grade(s: Seq&lt;Student&gt;, g: u32) -&gt; Seq&lt;Student&gt; {
+    s.filter(|x: Student| x.grade == g)
+}
+
+/// Rank the class roster by grade, highest first.
+fn rank(roster: Vec&lt;Student&gt;) -&gt; (out: Vec&lt;Student&gt;)
+    ensures
+        // nobody lost, nobody added, nobody duplicated
+        out@.to_multiset() == roster@.to_multiset(),
+        // highest grade first
+        forall|i: int, j: int| 0 &lt;= i &lt; j &lt; out.len() ==&gt; out[i].grade &gt;= out[j].grade,
+        // students with equal grades keep their roster order
+        forall|g: u32| with_grade(out@, g) == with_grade(roster@, g),
+</code>
+</pre>
+
+<p>
+None of these questions is hard.  The point is that the request didn't answer them, and an agent asked to implement it won't ask them either: it will pick an answer silently.
+</p>
+</details>
+
+<h2>What you will learn</h2>
+<p>
+The course is organized around three skills, in the order you will use them: write a spec, test it until you trust it, then hold code to it.
+</p>
+
+<h3>1. Write specifications</h3>
+<p>
+Requirements written in English are full of ambiguities and gaps, like the roster request.  You will learn to find them and to turn requirements into precise, checkable specifications.
+</p>
+<ul>
+<li>reading a professional requirements document critically, and rewriting requirements in a structured form (EARS) that exposes what is missing</li>
+<li>logic for writing specifications: quantifiers, and mathematical types such as sequences, sets, multisets, and maps</li>
+<li>contracts (preconditions and postconditions) and invariants, each traced back to the requirement it comes from</li>
+</ul>
+
+<h3>2. Show that a specification is the right one (validation)</h3>
+<p>
+A verifier can prove that code meets a spec, but nothing checks that the spec says what people meant.  The first-attempt roster spec is a perfectly good spec; it just isn't the one anyone wanted.  You will learn to produce evidence that a spec captures intent, evidence that convinces your team and not just the verifier.
+</p>
+<ul>
+<li><b>Spec tests:</b> concrete examples a spec must allow or forbid, checked by the verifier, one or more per requirement</li>
+<li><b>Property-based testing of specs:</b> running specs on thousands of generated inputs with tools such as <a href="https://github.com/verus-lang/verus-spec-check">verus-spec-check</a>, and mutation testing to ask whether a spec can tell correct code from subtly broken code.  The first-attempt roster spec can't tell a correct sort from one that drops the last student.</li>
+<li><b>Probing specs for defects:</b> specs that are contradictory (so they prove anything), impossible to implement, or too weak to determine the behavior that matters</li>
+<li><b>Playing specs against each other:</b> each member of your team writes a spec for the same requirement, and tools search for concrete cases where the specs disagree.  Every disagreement is a question your team didn't know it had.</li>
+<li><b>Asking stakeholders:</b> turning those examples into concrete yes/no questions ("Ann and Bo both have 92, and Bo comes first.  Acceptable?"), and using the answers to settle what the requirement means</li>
+</ul>
+
+<h3>3. Use specifications as guardrails for agents (verification)</h3>
+<p>
+Once you trust the spec, it becomes the bar that agent-written code must clear.  A spec is mathematics, not code in any particular language, and you can enforce the same spec in different ways, each with a different guarantee:
+</p>
+<ul>
+<li><b>test it:</b> property-based tests check the spec on thousands of generated inputs,</li>
+<li><b>model-check it:</b> a bounded model checker such as <a href="https://github.com/model-checking/kani">Kani</a> checks every input up to a size limit,</li>
+<li><b>prove it:</b> a verifier such as Verus proves it for every input, of every size.</li>
+</ul>
+<p>
+Why does the difference matter?  In 2015, researchers trying to formally verify TimSort, the sorting algorithm in the Java and Python standard libraries, found a bug that years of use and testing had missed: it shows up only on inputs far larger than anyone thought to test.  You will learn what each kind of evidence guarantees, what it asks you to trust, and how to choose: test everything, and prove what matters most.
+</p>
+<p>
+Along the way you will learn:
+</p>
+<ul>
+<li>deductive verification in Verus: loop invariants, termination, ghost state, and diagnosing a proof that fails</li>
+<li>proving small programs by hand, so you understand what you are asking agents to do</li>
+<li>property-based testing and bounded model checking of code against a spec</li>
+<li>directing agents to write code and proofs, and catching the ways they cut corners: weakening a spec, or assuming what they were asked to prove</li>
+<li>stating exactly what has been proved, what has been assumed, and what is simply trusted</li>
+</ul>
+
+<h2>Learn by doing: a semester-long team project</h2>
+<p>
+The course is built around a team project on a real system with real requirements.  Each team takes one application from NASA's open-source <a href="https://github.com/nasa/cFS">core Flight System</a> (cFS), the flight software framework used on a number of NASA missions, and works from the requirements NASA published with it.
+</p>
+
+<p>
+Real requirements have the same problems as the roster request.  One cFS application must start a recovery procedure when a monitored condition "has failed for the table-defined consecutive number of times."  Suppose the condition is checked three times and the results are Fail, then Error, then Fail.  Is that two consecutive failures, or one?  The requirements' own definition of "consecutive" says one.  The C code says two.  Which is right?  In this course, the code does not get to decide.  You do, with evidence.
+</p>
+
+<p>
+Over the semester your team will:
+</p>
+<ol>
+<li>audit your application's requirements and rewrite them in a precise, structured form,</li>
+<li>formalize them as Verus specifications,</li>
+<li>test and validate the specifications: run property-based tests, play teammates' specs against each other, probe for weaknesses, and resolve ambiguities by asking stakeholders concrete questions,</li>
+<li>direct AI agents to write the code, test all of it against your specs, and have agents prove the critical core, and</li>
+<li>present a case, defended orally, for what your team's verified application can and cannot be trusted to do.</li>
+</ol>
+
+<h2>Who should take this course</h2>
+<p>
+Prerequisites are CS 2120 (Discrete Mathematics and Theory 1) and CS 3140 (Software Development Essentials).  No prior experience with Rust, Verus, or formal methods is assumed.
+</p>
+
+<p>
+If you expect to spend your career working alongside AI agents and want to be the person who knows exactly what the software is supposed to do, and can show that it does, this course is for you.
+</p>
